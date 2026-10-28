@@ -1,0 +1,8 @@
+/*
+ * Spec 078 (B3): /app/agents/$handle. The look of the shared parts (panels, rows, buttons, tabs, callouts, status marks) is
+ * index.css; this file only lays the page out: the tab bar, the header, the day list. Tokens only.
+ */
+
+/* Section tabs (underline) and, under a group with several leaves, a row of small tabs. */
+.agent-tabs { margin: 24px 0 20px; }
+.agent-subtabs { margin-top: 14px; }

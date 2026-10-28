@@ -65,10 +65,10 @@ export function NetworkOfferActions({ groupId, handle, onDone }: { groupId: stri
 
   return (
     <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginTop: 8 }}>
-      <button type="button" className="btn-primary" style={{ gap: 6, fontSize: 12, padding: '5px 10px' }} disabled={busy} onClick={onSwitch}>
+      <button type="button" className="btn-primary btn-sm" disabled={busy} onClick={onSwitch}>
         <Icon name="check" size={13} /> Switch to independent
       </button>
-      <button type="button" className="btn-secondary" style={{ gap: 6, fontSize: 12, padding: '5px 10px' }} disabled={busy} onClick={onKeep}>
+      <button type="button" className="btn-secondary btn-sm" disabled={busy} onClick={onKeep}>
         Keep auto-duplicate
       </button>
       {playbookLink}

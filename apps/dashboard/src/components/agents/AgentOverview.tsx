@@ -18,9 +18,6 @@ import { Modal } from '../Modal';
 import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, AgentModeSwitch, FollowsBadge, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
-import { ResourceSection } from './ResourceProfile';
-import { FormattingSection } from './ResourceFormatting';
-import { ActiveEffects } from './ActiveEffects';
 import { errorBody, useAgentConfigConflicts, usePatchAgent, type AgentDetail, type AgentPatch, type GrammaticalGender, type ReasoningEffort } from '../../api/agents';
 import { useModelCatalog, type Workspace } from '../../api/models';
 import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
@@ -31,7 +28,6 @@ import { useActiveSteering } from '../../api/steering';
 import { useArtifacts } from '../../api/artifacts';
 import { statusLabel } from '../../lib/artifacts';
 import { alignPrompt } from '../../lib/align';
-import { SourcesSection } from './SourcesSection';
 import { PausedSeries } from './PausedSeries';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -146,14 +142,8 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       </div>
 
       {a.kind === 'orchestrator' && a.scopeId && <ConflictsLine handle={a.handle} />}
-      {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
-      {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <PausedSeries handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <SourcesSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <ArtifactsLine handle={a.handle} targetRef={a.scopeId} />}
-
-      <ProfileSummary data={data} ws={ws} />
 
       {data.children.length > 0 && (
         <SectionCard title="Roles" icon="agents" delay={90} style={{ marginTop: 16 }}>
@@ -194,9 +184,10 @@ function Meta({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-/** The profile, read-only: the key settings at a glance and Edit, which opens the form in a dialog. */
-function ProfileSummary({ data, ws }: { data: AgentDetail; ws: Workspace }) {
+/** The profile, read-only: the key settings at a glance and Edit, which opens the form in a dialog (Settings tab). */
+export function AgentProfileCard({ data }: { data: AgentDetail }) {
   const a = data.agent;
+  const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
   const [editing, setEditing] = useState(false);
   const defaultModel = useModelCatalog().data?.defaultModel;
   const model = ownModelIn(a, ws);
