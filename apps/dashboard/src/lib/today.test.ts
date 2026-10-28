@@ -4,8 +4,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  NEEDS_ROWS, greetingFor, inboxLinkCount, kyivEyebrow, kyivGreeting, needsHeadline, needsSummary, openNotes, shorten, sortNotes,
-  type NoteLike,
+  AXIS_END_MIN, AXIS_START_MIN, MARKER_SPAN_MIN, NEEDS_ROWS, activeSlots, axisPct, bucketOf, buildLanes, busiestChannel, capState, greetingFor,
+  inboxLinkCount, kyivEyebrow, kyivGreeting, laneHeight, laneMarkers, legendMarks, needsHeadline, needsSummary, nowLine, openNotes,
+  orchestratorsByChannel, pastPct, otherPlatformCount, reconnectCount, ringArcs, shorten, sortNotes, summarizeDay, telegramSlots,
+  type DayPlan, type DaySlot, type NoteLike,
 } from './today';
 
 const note = (id: number, severity: NoteLike['severity'], createdAt = '2026-10-28T10:00:00.000Z', readAt: string | null = null): NoteLike =>
@@ -93,4 +95,251 @@ test('shorten: one line, cut with an ellipsis', () => {
   assert.equal(shorten('x'.repeat(10), 10), 'x'.repeat(10));
   assert.equal(shorten('x'.repeat(11), 10), `${'x'.repeat(9)}…`);
   assert.ok(NEEDS_ROWS >= 1);
+});
+
+// ── the day ──────────────────────────────────────────────────────────────────
+
+const DAY = '2026-10-28';
+/** An ISO instant for a Kyiv wall-clock time on DAY (EET, UTC+2). `dayOffset` 1 is the next calendar day. */
+const kyiv = (hh: number, mm: number, dayOffset = 0): string => new Date(Date.UTC(2026, 9, 28 + dayOffset, hh - 2, mm)).toISOString();
+
+let seq = 0;
+const slot = (at: string, status = 'planned', extra: Partial<DaySlot> = {}): DaySlot => ({
+  id: `s${String(++seq).padStart(3, '0')}`, channelKey: '@ai_global', scheduledAt: at, kind: 'content', status, topic: 'A topic', error: null, ...extra,
+});
+const plan = (slots: DaySlot[], status = 'active', channelKey = '@ai_global'): DayPlan => ({ channelKey, status, slots });
+
+test('axisPct: 06:00 is 0, 15:00 is 50, 24:00 is 100; outside the axis it clamps', () => {
+  assert.equal(AXIS_START_MIN, 360);
+  assert.equal(AXIS_END_MIN, 1440);
+  assert.equal(axisPct(360), 0);
+  assert.equal(axisPct(900), 50);
+  assert.equal(axisPct(1440), 100);
+  assert.equal(axisPct(120), 0);
+  assert.equal(axisPct(1500), 100);
+  assert.equal(axisPct(720), 33.33);
+});
+
+test('activeSlots: a superseded plan is hidden, even when its slots are all skipped', () => {
+  const old = plan([slot(kyiv(9, 0), 'skipped', { error: 'superseded by a new plan' })], 'superseded');
+  const live = plan([slot(kyiv(9, 30), 'planned')]);
+  assert.deepEqual(activeSlots([old, live]).map((s) => s.scheduledAt), [kyiv(9, 30)]);
+  assert.deepEqual(activeSlots([old]), []);
+  assert.deepEqual(activeSlots(null), []);
+  assert.deepEqual(activeSlots(undefined), []);
+});
+
+test('telegramSlots / otherPlatformCount: a slot with a resourceRef is a copy for another platform', () => {
+  const p = plan([slot(kyiv(9, 0)), slot(kyiv(10, 0), 'planned', { resourceRef: 'instagram:abc' }), slot(kyiv(11, 0), 'planned', { resourceRef: null })]);
+  assert.equal(telegramSlots([p]).length, 2);
+  assert.equal(otherPlatformCount([p]), 1);
+  assert.equal(otherPlatformCount([plan([], 'superseded')]), 0);
+});
+
+test('buildLanes: 0 slots gives an empty lane for a live channel, none for an off channel, none without channels', () => {
+  const lanes = buildLanes({ plans: [], channels: [{ channelKey: '@a', mode: 'live' }, { channelKey: '@b', mode: 'off' }, { channelKey: '@c', mode: 'shadow' }], day: DAY });
+  assert.deepEqual(lanes.map((l) => [l.channelKey, l.markers.length, l.rows]), [['@a', 0, 1], ['@c', 0, 1]]);
+  assert.deepEqual(buildLanes({ plans: null, channels: null, day: DAY }), []);
+  assert.deepEqual(buildLanes({ plans: undefined, channels: [], day: DAY }), []);
+});
+
+test('buildLanes: an off channel with slots on the plan keeps its lane; a plan for an unknown channel gets one at the end', () => {
+  const lanes = buildLanes({
+    plans: [plan([slot(kyiv(9, 0), 'planned', { channelKey: '@b' })], 'active', '@b'), plan([slot(kyiv(10, 0), 'planned', { channelKey: '@z' })], 'active', '@z')],
+    channels: [{ channelKey: '@a', mode: 'live' }, { channelKey: '@b', mode: 'off' }],
+    day: DAY,
+  });
+  assert.deepEqual(lanes.map((l) => [l.channelKey, l.markers.length]), [['@a', 0], ['@b', 1], ['@z', 1]]);
+});
+
+test('buildLanes: a superseded plan draws nothing, and the other platforms stay off the Telegram lane', () => {
+  const lanes = buildLanes({
+    plans: [
+      plan([slot(kyiv(9, 0), 'skipped', { error: 'superseded by a new plan' })], 'superseded'),
+      plan([slot(kyiv(12, 0), 'planned'), slot(kyiv(12, 5), 'planned', { resourceRef: 'threads:x' })]),
+    ],
+    channels: [{ channelKey: '@ai_global', mode: 'live' }],
+    day: DAY,
+  });
+  assert.equal(lanes.length, 1);
+  assert.deepEqual(lanes[0].markers.map((m) => m.time), ['12:00']);
+});
+
+test('laneMarkers: markers closer than the marker width stack, far ones share a row; the result is sorted by time', () => {
+  const slots = [slot(kyiv(15, 0)), slot(kyiv(9, 0)), slot(kyiv(9, 10)), slot(kyiv(9, MARKER_SPAN_MIN))];
+  const { markers, rows } = laneMarkers(slots, DAY);
+  assert.deepEqual(markers.map((m) => m.time), ['09:00', '09:10', '09:36', '15:00']);
+  // 09:00 row 0, 09:10 overlaps it (row 1), 09:36 is clear of 09:00 (row 0 again), 15:00 row 0.
+  assert.deepEqual(markers.map((m) => m.row), [0, 1, 0, 0]);
+  assert.equal(rows, 2);
+});
+
+test('laneMarkers: two slots at the very same minute never share a row, and the tiebreak is the slot id', () => {
+  const a = slot(kyiv(10, 0), 'planned', { id: 'b' });
+  const b = slot(kyiv(10, 0), 'published', { id: 'a' });
+  const { markers, rows } = laneMarkers([a, b], DAY);
+  assert.deepEqual(markers.map((m) => [m.id, m.row]), [['a', 0], ['b', 1]]);
+  assert.equal(rows, 2);
+});
+
+test('laneMarkers: 16 slots with overlaps get sub-rows, keep every slot, and the lane height grows 20px per row', () => {
+  const slots: DaySlot[] = [];
+  // Eight posts every 10 minutes from 09:00 (a burst) and eight every two hours: the burst needs several rows.
+  for (let i = 0; i < 8; i++) slots.push(slot(kyiv(9, i * 10), i % 2 ? 'published' : 'planned'));
+  for (let i = 0; i < 8; i++) slots.push(slot(kyiv(12 + i * 2, 0), 'planned'));
+  const { markers, rows } = laneMarkers(slots, DAY);
+  assert.equal(markers.length, 16);
+  assert.equal(new Set(markers.map((m) => m.id)).size, 16);
+  // 36-minute markers 10 minutes apart: four posts fall inside one marker width (09:00-09:30), so the burst needs 4 rows.
+  assert.equal(rows, 4);
+  assert.ok(markers.every((m) => m.row >= 0 && m.row < rows));
+  // No two markers on the same row sit closer than the marker width.
+  for (let row = 0; row < rows; row++) {
+    const mins = markers.filter((m) => m.row === row).map((m) => m.minutes);
+    for (let i = 1; i < mins.length; i++) assert.ok(mins[i] - mins[i - 1] >= MARKER_SPAN_MIN);
+  }
+  assert.equal(laneHeight(1), 44);
+  assert.equal(laneHeight(3), 84);
+  assert.equal(laneHeight(0), 44);
+});
+
+test('laneMarkers: a slot outside 06:00-24:00 sits on the edge and says so; an owner-time label is built from the status and the reason', () => {
+  const { markers } = laneMarkers([
+    slot(kyiv(4, 30), 'published'),
+    slot(kyiv(0, 30, 1), 'planned'),
+    slot(kyiv(12, 0), 'skipped', { error: 'critic_rejected: too long' }),
+    slot(kyiv(13, 0), 'skipped', { error: 'skipped by owner' }),
+  ], DAY);
+  assert.deepEqual(markers.map((m) => [m.time, m.pct, m.clamped]), [['04:30', 0, true], ['12:00', 33.33, false], ['13:00', 38.89, false], ['00:30', 100, true]]);
+  assert.equal(markers[0].label, '04:30 · Published · A topic · outside the 06-24 axis');
+  assert.equal(markers[1].label, '12:00 · Skipped · A topic · Rejected by the critic');
+  assert.equal(markers[2].label, '13:00 · Skipped · A topic · Skipped by you');
+});
+
+test('laneMarkers: a series slot that did not go out is Missed; a replan skip and an owner rejection are not', () => {
+  const { markers } = laneMarkers([
+    slot(kyiv(9, 0), 'skipped', { seriesName: 'Daily fact', error: 'no_fresh_item' }),
+    slot(kyiv(11, 0), 'skipped', { seriesName: 'Daily fact', error: 'superseded by a new plan' }),
+    slot(kyiv(13, 0), 'skipped', { seriesName: 'Daily fact', error: 'rejected by owner' }),
+    slot(kyiv(15, 0), 'skipped', { error: 'no_fresh_item' }),
+    slot(kyiv(17, 0), 'planned', { kind: 'reserved', topic: 'Anniversary' }),
+  ], DAY);
+  assert.deepEqual(markers.map((m) => m.mark), ['missed', 'skipped', 'skipped', 'skipped', 'planned']);
+  assert.equal(markers[0].label, '09:00 · Missed · Daily fact · Nothing fresh in the sources');
+  assert.equal(markers[4].label, '17:00 · Planned · Reserved: Anniversary');
+});
+
+test('legendMarks: only the marks on the timeline, in legend order', () => {
+  const lanes = buildLanes({
+    plans: [plan([slot(kyiv(9, 0), 'published'), slot(kyiv(10, 0), 'planned'), slot(kyiv(11, 0), 'published'), slot(kyiv(12, 0), 'failed')])],
+    channels: [{ channelKey: '@ai_global', mode: 'live' }],
+    day: DAY,
+  });
+  assert.deepEqual(legendMarks(lanes), ['planned', 'published', 'failed']);
+  assert.deepEqual(legendMarks([]), []);
+});
+
+test('nowLine: inside the axis it has a position and a label; before 06:00, after 24:00 or on another day it is hidden', () => {
+  const noon = nowLine(new Date(kyiv(12, 0)), DAY);
+  assert.deepEqual(noon, { pct: 33.33, minutes: 720, label: 'now 12:00' });
+  assert.equal(nowLine(new Date(kyiv(6, 0)), DAY)?.pct, 0);
+  assert.equal(nowLine(new Date(kyiv(23, 59)), DAY)?.pct, 99.91);
+  assert.equal(nowLine(new Date(kyiv(5, 59)), DAY), null);
+  assert.equal(nowLine(new Date(kyiv(0, 30, 1)), DAY), null);
+  assert.equal(nowLine(new Date(kyiv(12, 0)), '2026-10-27'), null);
+  assert.equal(nowLine(new Date(kyiv(12, 0)), '2026-10-29'), null);
+});
+
+test('pastPct: nothing before 06:00, the share of the axis during the day, everything once the day is over', () => {
+  assert.equal(pastPct(new Date(kyiv(5, 0)), DAY), 0);
+  assert.equal(pastPct(new Date(kyiv(15, 0)), DAY), 50);
+  assert.equal(pastPct(new Date(kyiv(0, 10, 1)), DAY), 100);
+  // A plan day that has not started yet: nothing is past.
+  assert.equal(pastPct(new Date(kyiv(15, 0)), '2026-10-29'), 0);
+});
+
+test('bucketOf / summarizeDay: done is published + shadowed; a replan skip never counts; missed is its own bucket', () => {
+  assert.equal(bucketOf({ status: 'planned' }), 'ahead');
+  assert.equal(bucketOf({ status: 'running' }), 'ahead');
+  assert.equal(bucketOf({ status: 'awaiting_approval' }), 'ahead');
+  assert.equal(bucketOf({ status: 'approved' }), 'ahead');
+  assert.equal(bucketOf({ status: 'expired' }), 'skipped');
+  assert.equal(bucketOf({ status: 'failed' }), 'failed');
+  assert.equal(bucketOf({ status: 'failed', seriesName: 'Daily fact', error: 'boom' }), 'missed');
+
+  const s = summarizeDay([
+    { status: 'published' }, { status: 'published' }, { status: 'shadowed' },
+    { status: 'skipped', error: 'critic_rejected' },
+    { status: 'skipped', error: 'superseded by a new plan' },
+    { status: 'skipped', error: 'mode_changed' },
+    { status: 'skipped', seriesName: 'Daily fact', error: 'no_fresh_item' },
+    { status: 'failed' },
+    { status: 'planned' }, { status: 'awaiting_approval' },
+  ]);
+  assert.deepEqual(s.counts, { published: 2, shadowed: 1, skipped: 1, missed: 1, failed: 1, ahead: 2 });
+  assert.equal(s.total, 8);
+  assert.equal(s.done, 3);
+  assert.deepEqual(summarizeDay([]), { total: 0, done: 0, counts: { published: 0, shadowed: 0, skipped: 0, missed: 0, failed: 0, ahead: 0 } });
+});
+
+test('ringArcs: shares of the circle in order; empty parts draw nothing; no total, no arcs', () => {
+  const arcs = ringArcs([{ key: 'done', value: 3 }, { key: 'failed', value: 0 }, { key: 'missed', value: 1 }], 8, 100);
+  assert.deepEqual(arcs, [
+    { key: 'done', dash: 37.5, gap: 62.5, offset: 0 },
+    { key: 'missed', dash: 12.5, gap: 87.5, offset: 37.5 },
+  ]);
+  assert.deepEqual(ringArcs([{ key: 'done', value: 2 }], 0, 100), []);
+  assert.deepEqual(ringArcs([], 4, 100), []);
+  // Parts that add up to more than the total do not run past the circle.
+  const over = ringArcs([{ key: 'a', value: 3 }, { key: 'b', value: 3 }], 4, 100);
+  assert.equal(over.length, 2);
+  assert.equal(over[0].dash + over[1].dash, 100);
+});
+
+test('busiestChannel: the highest share of its cap; without caps the biggest spender; nothing spent is null', () => {
+  const ch = (channelKey: string, spendUsd: number, dailyBudgetUsd: number | null) => ({ channelKey, title: null, dailyBudgetUsd, today: { spendUsd } });
+  const a = busiestChannel([ch('@a', 1.2, 3), ch('@b', 0.9, 1), ch('@c', 2, null)]);
+  assert.equal(a?.channelKey, '@b');
+  assert.equal(a?.capUsd, 1);
+  assert.equal(Math.round(a?.pct ?? 0), 90);
+  const b = busiestChannel([ch('@a', 0.4, null), ch('@b', 0.9, null)]);
+  assert.deepEqual([b?.channelKey, b?.capUsd, b?.pct], ['@b', null, null]);
+  assert.equal(busiestChannel([ch('@a', 0, 3), ch('@b', 0, null)]), null);
+  assert.equal(busiestChannel([]), null);
+  assert.equal(busiestChannel(null), null);
+  // A zero cap is no cap.
+  assert.equal(busiestChannel([ch('@a', 0.5, 0)])?.pct, null);
+});
+
+test('capState: ok under 70 %, warning from 70, danger from 90 and over the cap; no cap is none', () => {
+  assert.equal(capState(0), 'ok');
+  assert.equal(capState(69.9), 'ok');
+  assert.equal(capState(70), 'warning');
+  assert.equal(capState(89.9), 'warning');
+  assert.equal(capState(90), 'danger');
+  assert.equal(capState(140), 'danger');
+  assert.equal(capState(null), 'none');
+  assert.equal(capState(NaN), 'none');
+});
+
+test('orchestratorsByChannel: telegram orchestrators anywhere in the tree, keyed by the channel', () => {
+  const tree = [
+    { kind: 'manager', scopeId: null, children: [
+      { kind: 'orchestrator', scopeId: 'telegram:@ai_global', children: [{ kind: 'writer', scopeId: 'telegram:@ai_global' }] },
+      { kind: 'orchestrator', scopeId: 'instagram:abc' },
+    ] },
+    { kind: 'orchestrator', scopeId: 'telegram:@recipes' },
+  ];
+  const map = orchestratorsByChannel(tree);
+  assert.deepEqual([...map.keys()], ['@ai_global', '@recipes']);
+  assert.equal(orchestratorsByChannel(undefined).size, 0);
+});
+
+test('reconnectCount: unmuted Meta accounts with a dead token or no access; an expiring token and a Telegram problem do not count', () => {
+  const c = (ref: string, state: string, muted = false) => ({ ref, state, muted });
+  assert.equal(reconnectCount([
+    c('threads:1', 'token_invalid'), c('instagram:2', 'no_access'), c('facebook:3', 'token_invalid', true),
+    c('instagram:4', 'token_expiring'), c('telegram:@x', 'no_access'), c('threads:5', 'rate_limited'),
+  ]), 2);
+  assert.equal(reconnectCount(null), 0);
 });

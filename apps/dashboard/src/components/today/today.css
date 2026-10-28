@@ -30,3 +30,87 @@
   .need-row { padding: 14px 16px; gap: 12px; }
   .need-actions { width: 100%; }
 }
+
+/* ── Today at a glance ─────────────────────────────────────────────────────── */
+.glance-ring { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; min-height: 104px; }
+.glance-error { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.slotring { position: relative; width: 104px; height: 104px; flex: none; }
+.slotring-arc { animation: slotring-draw var(--dur-enter) var(--ease-out) both; }
+@keyframes slotring-draw { from { stroke-dasharray: 0 400; } }
+.slotring-centre { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1; }
+.slotring-num { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; color: var(--color-ink); }
+.slotring-of { font-size: 13px; font-weight: 500; color: var(--color-ink-dim); letter-spacing: 0; }
+.slotring-cap { margin-top: 3px; font-size: 11px; color: var(--color-ink-dim); }
+.slotring-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; flex: 1 1 130px; min-width: 0; }
+.slotring-legend li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--color-ink-muted); }
+.slotring-legend-n { margin-left: auto; font-size: 12px; color: var(--color-ink); }
+
+.glance-list { margin-top: 16px; padding-top: 4px; border-top: 1px solid var(--color-hairline); display: flex; flex-direction: column; }
+.glance-item { padding: 12px 0; border-top: 1px solid var(--color-hairline-soft); }
+.glance-item:first-child { border-top: 0; }
+.glance-head { display: flex; align-items: center; gap: 8px; min-height: 18px; }
+.glance-label { font-size: 12px; color: var(--color-ink-dim); }
+.glance-main { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 4px; min-width: 0; }
+.glance-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 500; }
+.glance-name:empty { display: none; }
+.glance-link { color: var(--color-ink); text-decoration: none; }
+.glance-link:hover { color: var(--color-accent); text-decoration: underline; }
+.glance-value { margin-left: auto; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; color: var(--color-ink); white-space: nowrap; }
+.glance-item > .glance-main > .glance-value:first-child { margin-left: 0; }
+.glance-cap { font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--color-ink-dim); }
+.glance-sub { font-size: 12px; color: var(--color-ink-muted); }
+.glance-sub.is-link { color: var(--color-accent); text-decoration: none; }
+.glance-sub.is-link:hover { text-decoration: underline; }
+.glance-bar { margin-top: 8px; height: 6px; border-radius: var(--radius-pill); background: var(--color-surface-3); overflow: hidden; }
+.glance-bar > div { height: 100%; border-radius: var(--radius-pill); transition: width var(--dur-enter) var(--ease-out); }
+.glance-note { margin: 4px 0 0; color: var(--color-ink-dim); }
+
+/* ── Today's schedule ──────────────────────────────────────────────────────── */
+/* The track column starts after the label column; the overlay (past shading, now-line) shares its inset. */
+.tl-scroll { overflow-x: auto; padding: 0 20px 4px; }
+.tl-scroll:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; border-radius: var(--radius-md); }
+.tl { --tl-label: 156px; --tl-pad: 10px; position: relative; min-width: 760px; padding-bottom: 26px; }
+.tl-axis, .tl-lane { display: grid; grid-template-columns: var(--tl-label) minmax(0, 1fr); align-items: stretch; }
+.tl-axis { height: 28px; align-items: end; }
+.tl-zone { align-self: center; }
+.tl-lane { border-top: 1px solid var(--color-hairline); }
+.tl-track { padding: 0 var(--tl-pad); min-width: 0; }
+.tl-plane { position: relative; height: 100%; }
+/* Hairlines every three hours under the lane (06, 09, ... 21). */
+.tl-lane .tl-plane {
+  background-image: linear-gradient(to right, var(--color-hairline-soft) 1px, transparent 1px);
+  background-size: calc(100% / 6) 100%;
+}
+.tl-ticks .tl-plane { height: 28px; background: none; }
+.tl-tick { position: absolute; bottom: 6px; transform: translateX(-50%); font-size: 11px; color: var(--color-ink-dim); }
+.tl-label { display: flex; align-items: center; gap: 10px; padding: 8px 12px 8px 0; min-width: 0; }
+.tl-label-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tl-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 500; color: var(--color-ink); text-decoration: none; }
+.tl-name:hover { color: var(--color-accent); text-decoration: underline; }
+.tl-handle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--color-ink-dim); }
+.tl-empty { position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--color-ink-dim); }
+.tl-mark {
+  position: absolute; width: 16px; height: 16px; transform: translateX(-50%);
+  display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none;
+}
+/* The mark is 16px. A lane with one row has room for a 44px-tall hit area; stacked rows are 20px apart, so theirs is shorter. */
+.tl-mark::after { content: ''; position: absolute; inset: -14px -6px; }
+.tl-track.is-stacked .tl-mark::after { inset: -2px -6px; }
+.tl-mark:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.tl-mark.is-clamped { opacity: 0.6; }
+.tl-overlay { position: absolute; left: calc(var(--tl-label) + var(--tl-pad)); right: var(--tl-pad); top: 28px; bottom: 0; pointer-events: none; }
+.tl-overlay .tl-plane { height: 100%; }
+.tl-past { position: absolute; left: 0; top: 0; bottom: 26px; background: color-mix(in srgb, var(--color-ink) 4%, transparent); }
+.tl-now { position: absolute; top: 0; bottom: 26px; width: 0; border-left: 1px solid var(--color-accent); }
+.tl-now-label {
+  position: absolute; bottom: -22px; left: 0; transform: translateX(-50%); white-space: nowrap;
+  padding: 2px 8px; border-radius: var(--radius-pill); font-size: 11px;
+  background: var(--color-accent); color: var(--color-on-accent);
+}
+.tl-legend { gap: 16px; }
+.tl-legend-item { display: inline-flex; align-items: center; gap: 6px; color: var(--color-ink-muted); }
+.tl-legend-hint { margin-left: auto; color: var(--color-ink-dim); }
+@media (max-width: 600px) {
+  .tl-scroll { padding: 0 16px 4px; }
+  .tl-legend-hint { display: none; }
+}
