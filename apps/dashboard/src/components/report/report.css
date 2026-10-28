@@ -1,0 +1,29 @@
+/*
+ * Spec 078 (C6): the public advertiser report (routes/report.$token.tsx). Moved here from the route's inline <style>;
+ * same .rp-* layout, on tokens. The metrics are a StatStrip and the cards are SectionCards, so the page reads like the app.
+ */
+
+.rp-root { min-height: 100vh; background: var(--color-canvas); color: var(--color-ink); }
+.rp-main {
+  max-width: 760px; margin: 0 auto;
+  padding: var(--space-xl) var(--space-xl) var(--space-section);
+  display: flex; flex-direction: column; gap: var(--space-lg);
+}
+.rp-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--space-sm); }
+.rp-head .wordmark { font-size: 16px; }
+.rp-head-tag { font-size: 12px; color: var(--color-ink-dim); }
+
+.rp-hero a { color: var(--color-accent); }
+
+.rp-card-body { display: flex; flex-direction: column; gap: var(--space-sm); min-width: 0; }
+.rp-url { overflow-wrap: anywhere; }
+.rp-note { font-size: 12px; color: var(--color-ink-dim); }
+.rp-foot { margin: 0; font-size: 12px; color: var(--color-ink-dim); }
+.rp-error { align-items: center; }
+
+/* The views curve. The svg is drawn at the width of its box (1 unit = 1px), so its 11px labels stay 11px on a phone. */
+.rp-curve { width: 100%; min-width: 0; }
+.rp-curve svg { display: block; width: 100%; height: auto; }
+.rp-empty { margin: 0; font-size: 14px; color: var(--color-ink-dim); }
+
+@media (max-width: 600px) { .rp-main { padding-left: var(--space-lg); padding-right: var(--space-lg); } }
