@@ -65,9 +65,9 @@ Owns: `routes/app.agents_.inbox.tsx`, new `components/inbox/*` except `NoteActio
 ### B3 Agent detail — `routes/app.agents_.$handle.tsx`
 Brief: `research/agent.md`. Handoff §6. Prototype `App-Agent.dc.html`.
 Owns: `routes/app.agents_.$handle.tsx`, `components/agents/*` (AgentsUi restyle, AgentOverview, header pieces, new `lib/agent-tabs.ts` + tests, `lib/mode-hints.ts`), `health/NetworkHealthView.tsx` (AgentLink tab type only).
-- [ ] B3.1 Tab groups (leaf `?tab=` → group; second level; `settings` leaf) + every existing link verified.
-- [ ] B3.2 Header (glyph xl, meta line, big mode switch + kind-aware hint, Run now / Chat / More) + pause banners (series + resource).
-- [ ] B3.3 Overview (KPI strip, Today step by step, Channel + How posts look summaries) + Settings leaf content.
+- [x] B3.1 Tab groups (leaf `?tab=` → group; second level; `settings` leaf) + every existing link verified.
+- [x] B3.2 Header (glyph xl, meta line, big mode switch + kind-aware hint, Run now / Chat / More) + pause banners (series + resource).
+- [x] B3.3 Overview (KPI strip, Today step by step, Channel + How posts look summaries) + Settings leaf content.
 
 ### B4 Calendar — `routes/app.calendar.tsx`
 Brief: `research/calendar.md`. Handoff §7. Prototype `App-Calendar.dc.html`.
@@ -129,6 +129,12 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
 
+B3 Agent detail (worktree `wf_a4c40803-5b3-3`, base `ad17cb89`), done:
+- `8699fe18` B3.1 `lib/agent-tabs.ts` (17 leaves in 5 groups, visibility per kind, `resolveTab`) with tests that scan every `?tab=` link; `AgentTabs` (groups row + leaves row), `AgentSettings` (the new `settings` leaf), the `effects` leaf; `NetworkOfferActions` buttons `btn-sm`.
+- `a6f7c055` B3.2 `AgentHeader` (glyph xl, kind chip, `@handle → scope`, 4-up mode switch with a kind-aware hint, Run now / Chat with / More), `PauseBanners` (series Resume, resource Lift), `lib/mode-hints.ts`, `useAgentSetup`.
+- `976736a7` B3.3 Overview: `StatStrip`, `TodaySteps`, `ChannelSummary`, `FormattingSummary`, Roles as panel rows; `lib/agent-overview.ts`; inbox links 'Open active effects' open `?tab=effects`.
+- Checked under Node 20: `tsc --noEmit` clean, 441 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds. `buildSteps` / `formatRows` were also run against the mock (GET only) for `ai_global`. Browser pass is the lead's.
+
 ## Deltas from the spec
 (each agent appends its own subsection)
 
@@ -186,3 +192,30 @@ Dashboard:
 - **Files outside A2 ownership:** `api/nav.ts` (the `NavConfigV1` to `NavConfig` type rename, one line), `components/ui/Icon.tsx` (appended `ellipsis`, `logout`; a second import line from lucide-react), `lib/env.ts` (appended `ENV_LABEL`). `VITE_ENV_LABEL` is read at build time only; no CI or Docker change was made, so no environment shows the pill until the build arg is set.
 - **For B2 (Inbox):** the Inbox menu entry still has no `search`, so it opens on the Unread tab; when the counter is made of approvals only, the owner lands on an empty Unread list (`?tab=approvals` holds them). The page title and breadcrumb parent ("Agents") are unchanged.
 - **For the merge with A1:** the sidebar relies on A1's `.nav-link`, `.nav-link-active`, `.nav-badge`, `.nav-dot`, `.btn-icon`, `.btn-ghost`, `.cmdk-trigger` and `.kbd`. `components/nav/sidebar.css` adds only tone modifiers (`.nav-badge.nav-badge-*`, which set colors outright), layout and the footer; `components/nav/shell.css` overrides the trigger's width only at 861px and up (`.topbar .cmdk-trigger`). Check both against A1's restyle (row height 40px makes the short-window rule matter more).
+
+### B3
+- **Tabs:**
+  - Two new leaves, so 17 in all: `settings` ("General", with Promo beside it) and `effects` ("In force now", orchestrators only). `inbox` is labelled "From @manager". `lib/agent-tabs.ts` is the one list; the route has no copy of it.
+  - `?tab=` stays the leaf and the group is derived. `validateSearch` does not accept group names as aliases (the brief called that optional), and there is no "Notes from this agent" leaf (the prototype's placeholder has no data source).
+  - A gated leaf falls back to Overview as before. Clicking a group opens its first visible leaf. A group with one visible leaf draws no second row.
+- **Links:**
+  - `lib/agent-tabs.test.ts` scans every dashboard `.ts`/`.tsx` and `apps/automation/src` for `?tab=` on a line that links to `/app/agents/` and fails on a value that is not a leaf.
+  - The inbox links "Open active effects" (resource pause / resume notes, and the inbox page) now carry `?tab=effects`. The `series_paused` note keeps its link without a tab, because the banner is on every tab.
+  - The backend texts "Overview → Paused series" (series-breaker, pause-resume-action, import-bundle) are left alone: the banner is the first thing under the header on every tab, Overview included.
+- **Header:**
+  - Run now is not drawn for kinds that answer `started:false` (ideator, idea_reviewer, executor, builder, sysadmin). It is disabled with a reason when the agent is paused or its mode is off. `useRunAgent` got `meta: { silentError: true }` so the page's own toast (readable texts for `agent_paused`, `channel_off`, `replan_in_progress`, `editor_disabled`, `manager_off`, `no_manager`) is the only one.
+  - Chat with `<name>` opens `/app/chat?q=@handle `; for a role agent it goes through its orchestrator (the label names the parent).
+  - A role agent has no mode switch: the header shows `FollowsBadge` and "Runs in the mode of @parent. Change it there."
+  - The hint under the switch depends on the kind (`lib/mode-hints.ts`): @manager's Shadow means "directives are filed as previews", an orchestrator's means "plans and writes next to you". The approval line names the batch hour and zone from `schedule` of the plan.
+  - More is `NavContextMenu` anchored under its button (no new dropdown component, no new icon: `ellipsis` was added by A2). Items: Set up from history (Telegram orchestrators), Pause… / Resume, Edit profile. Resume gets an Undo toast that restores the previous pause.
+  - `AgentSetupButton.tsx` (not B3's file) was split into `useAgentSetup`; the old button stays as a thin wrapper. `useNetworkPlan` gained an `enabled` argument (default true).
+- **Banners:**
+  - Series pauses (Resume; the toast names the next plan time) and resource pauses by @manager (Lift, the same confirmation as In force now). Three at most, then "Show all". There is no Undo: resuming and lifting are the undo of the pause.
+  - `PausedSeries.tsx` is deleted (the banners replace it). `ActiveEffects` exports `useLiftAction` for the banner.
+- **Overview:**
+  - The Mode tile is gone (the header has it) and so is the Last run tile (the Runs tile says when the last run was).
+  - The MANAGER advice tile counts advice from `useDirectives({agent, binding:'advice'})` (30 days, shadow left out) instead of the KPI digest, which is heavy to build; it can differ slightly from the table on /app when the directive list is capped.
+  - "Today, step by step" uses `useNetworkPlan(orchestrator, '')` (the card's today, the active plan only) with `useAgentRuns` and the open series pauses of today. It is not drawn for an agent without a Telegram card. A run that belongs to a slot is not listed twice. The skip text comes from `skipReason`; `series_paused` already had a branch.
+  - "How posts look" sends the whole `format_prefs` back with new locks (the PUT replaces them). A lock switch has no Undo toast: it is its own way back, and a late Undo would overwrite what an agent changed meanwhile. The card's hashtag range, link style and emoji policy are shown read-only with a link to the card.
+  - `ActiveEffects` and `SourcesSection` keep their `card row-lift` rows (they work; restyle left for a follow-up).
+- **Files outside B3's ownership:** `lib/inbox-kinds.ts` (two links), `lib/inbox-kinds.test.ts` (reads the leaf list from `agent-tabs`), `routes/app.agents_.inbox.tsx` (one link), `lib/directive-view.ts` (a comment), `components/setup/AgentSetupButton.tsx`, `api/agents.ts` (`useRunAgent` meta), `api/network.ts` (`enabled`), `components/health/NetworkHealthView.tsx` (AgentLink tab type, Sources rows open `?tab=settings`).
