@@ -12,14 +12,15 @@
 import { createElement, useEffect, useRef, type CSSProperties, type HTMLAttributes, type JSX, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
-/** Fade + rise, once, when the block scrolls into view. */
-export function Reveal({ children, className, style, delay = 0, y = 24 }: {
-  children: ReactNode; className?: string; style?: CSSProperties; delay?: number; y?: number;
+/** Fade + rise, once, when the block scrolls into view. `as="li"` for the items of a list. */
+export function Reveal({ children, className, style, delay = 0, y = 24, as = 'div' }: {
+  children: ReactNode; className?: string; style?: CSSProperties; delay?: number; y?: number; as?: 'div' | 'li';
 }): JSX.Element {
   const reduced = useReducedMotion();
-  if (reduced) return <div className={className} style={style}>{children}</div>;
+  if (reduced) return createElement(as, { className, style }, children);
+  const M = as === 'li' ? motion.li : motion.div;
   return (
-    <motion.div
+    <M
       className={className}
       style={style}
       initial={{ opacity: 0, y }}
@@ -30,7 +31,23 @@ export function Reveal({ children, className, style, delay = 0, y = 24 }: {
       transition={{ duration: 0.55, delay, ease: [0.2, 0.7, 0.2, 1] }}
     >
       {children}
-    </motion.div>
+    </M>
+  );
+}
+
+/** A line that draws itself from the left, once, when it scrolls into view (the ad steps). A still line under reduced motion. */
+export function DrawLine({ className }: { className?: string }): JSX.Element {
+  const reduced = useReducedMotion();
+  if (reduced) return <div className={className} />;
+  return (
+    <motion.div
+      className={className}
+      style={{ transformOrigin: 'left' }}
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true, margin: '0px 0px -48px 0px' }}
+      transition={{ duration: 1.2, ease: [0.6, 0, 0.2, 1] }}
+    />
   );
 }
 
