@@ -1,51 +1,64 @@
 // Media kit (spec 008 T008): channels with active ad prices, live stats from
 // GET /api/landing/media-kit. Renders nothing until there is at least one price.
+import type { JSX } from 'react';
 import { Icon } from '../ui/Icon';
 import { AD_FORMAT_LABEL, useMediaKit } from '../../api/ads';
+import type { MediaKitChannel } from '../../api/types';
+import { publicTitle } from '../../lib/landing-view';
 import { AdDmLink, NoTelegramLink } from './cta';
 
 const fmt = (v: number | null) => (v == null ? '—' : v.toLocaleString('en-US'));
 
-export function MediaKit() {
+export function MediaKit(): JSX.Element | null {
   const { data } = useMediaKit();
-  const channels = data ?? [];
+  return <MediaKitCards channels={data ?? []} />;
+}
+
+function KitCard({ c }: { c: MediaKitChannel }): JSX.Element {
+  // The tracker syncs the Telegram title; a dev channel's "| DEV" suffix never reaches a visitor.
+  const title = publicTitle(c.title) ?? c.channelKey;
+  return (
+    <div className="lp-kit-card">
+      <div className="lp-kit-head">
+        <Icon name="telegram" size={15} />
+        {c.url
+          ? <a href={c.url} target="_blank" rel="noreferrer" className="lp-kit-title">{title}</a>
+          : <span className="lp-kit-title">{title}</span>}
+      </div>
+      <div className="lp-kit-stats">
+        <span><b className="tabular-nums">{fmt(c.subscribers)}</b><span className="text-micro">subscribers</span></span>
+        <span><b className="tabular-nums">{fmt(c.avgViews30d)}</b><span className="text-micro">avg views / post, 30d</span></span>
+      </div>
+      <ul className="lp-kit-prices">
+        {c.prices.map((p) => (
+          <li key={p.format}>
+            <span className="lp-kit-fmt">
+              {AD_FORMAT_LABEL[p.format]}
+              {p.note ? <span className="text-micro">{p.note}</span> : null}
+            </span>
+            <b className="tabular-nums">{p.priceUah.toLocaleString('en-US')} ₴</b>
+          </li>
+        ))}
+      </ul>
+      {c.adDmUrl && (
+        <div className="lp-kit-cta">
+          <AdDmLink href={c.adDmUrl} placement="mediakit" className="lp-kit-ad" ariaLabel={`Order an ad in Telegram: ${title}`}>
+            <Icon name="telegram" size={12} /> Order an ad in Telegram
+          </AdDmLink>
+          <NoTelegramLink placement="mediakit" target={title} className="lp-kit-notg" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** The cards of the media kit; presentational (the hook is in MediaKit), so they render without a query client. */
+export function MediaKitCards({ channels }: { channels: MediaKitChannel[] }): JSX.Element | null {
   if (!channels.length) return null;
 
   return (
     <div className="lp-kit">
-      {channels.map((c) => (
-        <div key={c.channelKey} className="lp-kit-card">
-          <div className="lp-kit-head">
-            <Icon name="telegram" size={15} />
-            {c.url
-              ? <a href={c.url} target="_blank" rel="noreferrer" className="lp-kit-title">{c.title ?? c.channelKey}</a>
-              : <span className="lp-kit-title">{c.title ?? c.channelKey}</span>}
-          </div>
-          <div className="lp-kit-stats">
-            <span><b className="tabular-nums">{fmt(c.subscribers)}</b><span className="text-micro">subscribers</span></span>
-            <span><b className="tabular-nums">{fmt(c.avgViews30d)}</b><span className="text-micro">avg views / post, 30d</span></span>
-          </div>
-          <ul className="lp-kit-prices">
-            {c.prices.map((p) => (
-              <li key={p.format}>
-                <span className="lp-kit-fmt">
-                  {AD_FORMAT_LABEL[p.format]}
-                  {p.note ? <span className="text-micro">{p.note}</span> : null}
-                </span>
-                <b className="tabular-nums">{p.priceUah.toLocaleString('en-US')} ₴</b>
-              </li>
-            ))}
-          </ul>
-          {c.adDmUrl && (
-            <div className="lp-kit-cta">
-              <AdDmLink href={c.adDmUrl} placement="mediakit" className="lp-kit-ad" ariaLabel={`Order an ad in Telegram: ${c.title ?? c.channelKey}`}>
-                <Icon name="telegram" size={12} /> Order an ad in Telegram
-              </AdDmLink>
-              <NoTelegramLink placement="mediakit" target={c.title ?? c.channelKey} className="lp-kit-notg" />
-            </div>
-          )}
-        </div>
-      ))}
+      {channels.map((c) => <KitCard key={c.channelKey} c={c} />)}
       <style>{`
         .lp-kit {
           width: 100%;

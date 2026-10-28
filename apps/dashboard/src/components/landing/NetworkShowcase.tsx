@@ -9,7 +9,7 @@ import { motion } from 'motion/react';
 import type { LandingNetwork, LandingNetworkResource } from '../../api/landing';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
-import { PLATFORM_META, agentChip, aiRunBadge, compact, resourceKey } from '../../lib/landing-view';
+import { PLATFORM_META, agentChip, aiRunBadge, compact, publicTitle, resourceKey } from '../../lib/landing-view';
 import { AdDmLink, NoTelegramLink } from './cta';
 
 const cardVariants = {
@@ -19,8 +19,10 @@ const cardVariants = {
 
 function ResourceCard({ r }: { r: LandingNetworkResource }): JSX.Element {
   const meta = PLATFORM_META[r.platform];
-  const title = r.displayName ?? (r.handle ? `@${r.handle}` : meta.label);
-  const showHandle = !!r.handle && r.displayName !== null;
+  // A visitor never sees a dev suffix ("| DEV"): publicTitle strips it, and a title that was only the suffix falls back to the @handle.
+  const shown = publicTitle(r.displayName);
+  const title = shown ?? (r.handle ? `@${r.handle}` : meta.label);
+  const showHandle = !!r.handle && shown !== null;
   const badge = aiRunBadge(r.aiRun);
 
   return (
@@ -74,12 +76,13 @@ function ResourceCard({ r }: { r: LandingNetworkResource }): JSX.Element {
 
 function NetworkBlock({ n }: { n: LandingNetwork }): JSX.Element {
   const chip = agentChip(n.agent);
-  const standalone = n.name === null;
+  const name = publicTitle(n.name);
+  const standalone = name === null;
   return (
-    <section className="ns-net" aria-label={standalone ? 'Standalone channels' : n.name ?? undefined}>
+    <section className="ns-net" aria-label={standalone ? 'Standalone channels' : name}>
       <header className="ns-head">
         <div className="ns-head-main">
-          <h3 className="ns-title">{standalone ? 'Standalone channels' : n.name}</h3>
+          <h3 className="ns-title">{standalone ? 'Standalone channels' : name}</h3>
           {chip && n.agent && (
             <span className={`ns-agent ns-agent-${n.agent.mode}`}>
               <span aria-hidden>{n.agent.emoji ?? '🤖'}</span>
@@ -104,7 +107,7 @@ function NetworkBlock({ n }: { n: LandingNetwork }): JSX.Element {
               Advertise in this network <Icon name="telegram" size={12} />
             </AdDmLink>
           )}
-          {n.adDmUrl && <NoTelegramLink placement="network" target={n.name} className="rs-notg" />}
+          {n.adDmUrl && <NoTelegramLink placement="network" target={name} className="rs-notg" />}
         </div>
       </header>
 

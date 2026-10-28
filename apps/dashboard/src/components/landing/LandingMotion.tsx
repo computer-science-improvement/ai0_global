@@ -8,16 +8,28 @@
 //    `both` fill instead, so its text never waits on requestAnimationFrame.
 //  - Reduced motion: the CSS side is collapsed by the global block at the end of index.css. `Reveal` renders a plain div
 //    under it, because motion's `reducedMotion="user"` only drops transforms: an `initial={{ opacity: 0 }}` would still wait
-//    for the observer.
+//    for the observer. The same plain div is rendered where there is no IntersectionObserver at all (nothing would ever
+//    reveal the block), which is also what a server render of the sections shows.
+//  - There is no no-JS state to design for: the dashboard is a client-rendered SPA, so without JavaScript no page renders.
+//    What is guaranteed is the final state in the markup — counters carry their number, entrances end visible.
 import { createElement, useEffect, useRef, type CSSProperties, type HTMLAttributes, type JSX, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+
+/**
+ * True where an entrance must not hide anything: reduced motion, or no IntersectionObserver to ever reveal the block
+ * (`whileInView` would leave it at opacity 0 for good). Those visitors get the content in its final state at once.
+ */
+export function useStillEntrances(): boolean {
+  const reduced = useReducedMotion();
+  return !!reduced || typeof IntersectionObserver === 'undefined';
+}
 
 /** Fade + rise, once, when the block scrolls into view. `as="li"` for the items of a list. */
 export function Reveal({ children, className, style, delay = 0, y = 24, as = 'div' }: {
   children: ReactNode; className?: string; style?: CSSProperties; delay?: number; y?: number; as?: 'div' | 'li';
 }): JSX.Element {
-  const reduced = useReducedMotion();
-  if (reduced) return createElement(as, { className, style }, children);
+  const still = useStillEntrances();
+  if (still) return createElement(as, { className, style }, children);
   const M = as === 'li' ? motion.li : motion.div;
   return (
     <M
@@ -37,8 +49,8 @@ export function Reveal({ children, className, style, delay = 0, y = 24, as = 'di
 
 /** A line that draws itself from the left, once, when it scrolls into view (the ad steps). A still line under reduced motion. */
 export function DrawLine({ className }: { className?: string }): JSX.Element {
-  const reduced = useReducedMotion();
-  if (reduced) return <div className={className} />;
+  const still = useStillEntrances();
+  if (still) return <div className={className} />;
   return (
     <motion.div
       className={className}

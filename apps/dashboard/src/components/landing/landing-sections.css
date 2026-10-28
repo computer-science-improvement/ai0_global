@@ -228,7 +228,7 @@
 .lp-pc-title { font-size: 14px; font-weight: 600; color: var(--color-ink); }
 .lp-pc-when { font-size: 11px; color: var(--color-ink-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .lp-sk-list { display: grid; gap: 8px; margin-top: 18px; }
-.lp-sk { display: block; height: 9px; border-radius: 5px; background: color-mix(in srgb, var(--color-ink) 12%, transparent); }
+.lp-sk { display: block; height: 9px; border-radius: var(--radius-pill); background: color-mix(in srgb, var(--color-ink) 12%, transparent); }
 .lp-opts { display: grid; gap: 8px; margin-top: 14px; }
 .lp-opt {
   display: flex; align-items: center; height: 30px; padding: 0 12px; border-radius: var(--radius-md);
@@ -278,7 +278,7 @@
 
 /* ── #advertise ───────────────────────────────────────────────────────────────────────────────── */
 .lp-adsteps { margin-top: 56px; }
-.lp-linetrack { position: relative; height: 2px; overflow: hidden; border-radius: 2px; background: var(--color-hairline); }
+.lp-linetrack { position: relative; height: 2px; overflow: hidden; border-radius: var(--radius-pill); background: var(--color-hairline); }
 .lp-linefill { position: absolute; inset: 0; background: var(--color-accent); }
 .lp-adstep-list { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px; }
 .lp-adstep-li { display: flex; min-width: 0; }
