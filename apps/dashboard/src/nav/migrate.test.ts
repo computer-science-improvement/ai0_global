@@ -174,6 +174,19 @@ test('a title the owner gave a surviving built-in group is kept; a lost group ta
   assert.equal(r.groups[0].title, 'Start');
 });
 
+test('a stored title that is just the v1 built-in title is not a rename: the group takes its v2 title', () => {
+  const v1 = v1Default();
+  const titles: Record<string, string> = {
+    g_home: 'Home', g_agents: 'Agents', g_publishing: 'Publishing', g_content: 'Content', g_analytics: 'Analytics',
+    g_intelligence: 'Intelligence', g_connections: 'Connections', g_marketing: 'Marketing', g_system: 'System',
+  };
+  for (const g of v1.groups) g.title = titles[g.id];
+  assert.deepEqual(migrate(v1), defaultConfig(), 'a menu saved with every title spelled out migrates to the v2 default');
+  assert.deepEqual(resolveNav(R, v1).groups.map((g) => g.title), ['Home', 'Network', 'Insights', 'System']);
+  v1.groups[1].title = 'My crew';
+  assert.deepEqual(resolveNav(R, v1).groups.map((g) => g.title), ['Home', 'My crew', 'Insights', 'System']);
+});
+
 test('Today and Settings stay in the menu whatever v1 had (forced pages)', () => {
   const v1 = v1Default();
   v1.groups = [];

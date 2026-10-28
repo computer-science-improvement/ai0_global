@@ -14,7 +14,8 @@
 //   tabs…): they stay visible, in their v2 default group;
 // - a custom link that sat in a built-in group stays in it when the group survives
 //   (Home, Network, Insights, System) and goes to More tools otherwise;
-// - the title the owner gave a surviving built-in group.
+// - the title the owner gave a surviving built-in group (a stored title that is just the
+//   v1 built-in title is not a choice, so the group takes its v2 title: Agents → Network).
 //
 // What it does NOT carry over: the order of pages inside a built-in group, pages
 // moved between built-in groups, and the placement of pages the owner left visible
@@ -34,6 +35,12 @@ export const V1_DEFAULT_HIDDEN: ReadonlyArray<string> = [
   'agents-inbox', 'directives', 'bots', 'telegraph', 'connections-meta', 'connections-tiktok',
   'settings-navigation', 'settings-security', 'settings-ai',
 ];
+
+/** The v1 registry's built-in group titles, frozen: a stored title equal to one of these is the default, not a rename. */
+const V1_GROUP_TITLES: Readonly<Record<string, string>> = {
+  g_home: 'Home', g_agents: 'Agents', g_publishing: 'Publishing', g_content: 'Content', g_analytics: 'Analytics',
+  g_intelligence: 'Intelligence', g_connections: 'Connections', g_marketing: 'Marketing', g_system: 'System',
+};
 
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 const strArr = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
@@ -104,7 +111,7 @@ export function migrateV1ToV2(old: unknown, base: NavConfig, registry: ReadonlyA
   // The title the owner gave a built-in group that survives.
   for (const og of oldGroups) {
     const g = builtin.has(og.id) ? groups.find((x) => x.id === og.id) : undefined;
-    if (g && og.title) g.title = og.title;
+    if (g && og.title && og.title !== V1_GROUP_TITLES[og.id]) g.title = og.title;
   }
   // The owner's groups: before the next group of theirs that survives, or last.
   oldGroups.forEach((og, i) => {
