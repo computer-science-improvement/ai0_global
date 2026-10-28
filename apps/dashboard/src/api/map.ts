@@ -1,5 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
+import { pollInterval } from '../lib/map-diff';
 
 // Spec 056: GET /api/map — the whole network in one snapshot (resources, agents with a derived state, roads, alerts, events).
 
@@ -83,6 +84,21 @@ export const MAP_KEY = ['map'] as const;
 export const mapApi = {
   snapshot: () => api<MapSnapshot>('/api/map'),
 };
+
+/**
+ * The map snapshot, polled: every page that reads it (the map, Today's Live activity) shares one cache entry and one
+ * timer. 5 s while any unit works, 30 s otherwise, and none while the tab is hidden (spec 056 FR-004); coming back
+ * refetches at once.
+ */
+export function useMapSnapshot() {
+  return useQuery({
+    queryKey: MAP_KEY,
+    queryFn: mapApi.snapshot,
+    refetchInterval: (query) => pollInterval(query.state.data, typeof document !== 'undefined' && document.hidden),
+    refetchIntervalInBackground: false,
+    retry: false,
+  });
+}
 
 /** Spec 056 follow-up: move a resource into a network, or out of any (groupId null). 409 when the network has one of that platform. */
 export function useSetResourceNetwork() {

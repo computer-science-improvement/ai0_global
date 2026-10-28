@@ -51,9 +51,9 @@ Owns: `<scratchpad>/rdmock/` only. No repo edits at all.
 ### B1 Today — `routes/app.index.tsx`
 Brief: `research/today.md`. Handoff §4. Prototype `App-Today.dc.html`.
 Owns: `routes/app.index.tsx`, `components/overview/*`, new `components/today/*` (DayTimeline, SlotRing, NeedsYouList, ActivityList, AgentsPanel), `lib/today.ts` (+tests), `lib/useNow.ts` (moved from map), `api/map.ts` (`useMapSnapshot`) + `map/MapPage.tsx` (switch to the hook only).
-- [ ] B1.1 Header (eyebrow date/time Kyiv, greeting, "N things need you", severity pills) + Needs you (D6) with NoteActions, Dismiss + Undo toast, All clear.
-- [ ] B1.2 Glance (SlotRing, runs, AI budget, busiest channel) + DayTimeline (D6) + legend; tests for 0 / 15+ slots / superseded hidden.
-- [ ] B1.3 Agents panel (ModeSwitch by channel, live via AutonomyDialog) + Live activity (useMapSnapshot) + KPI strip with sparkline + health link line; remove the legacy blocks and dead components.
+- [x] B1.1 Header (eyebrow date/time Kyiv, greeting, "N things need you", severity pills) + Needs you (D6) with NoteActions, Dismiss + Undo toast, All clear.
+- [x] B1.2 Glance (SlotRing, runs, AI budget, busiest channel) + DayTimeline (D6) + legend; tests for 0 / 15+ slots / superseded hidden.
+- [x] B1.3 Agents panel (ModeSwitch by channel, live via AutonomyDialog) + Live activity (useMapSnapshot) + KPI strip with sparkline + health link line; remove the legacy blocks and dead components.
 
 ### B2 Inbox — `routes/app.agents_.inbox.tsx`
 Brief: `research/inbox.md`. Handoff §5. Prototype `App-Inbox.dc.html`.
@@ -129,6 +129,12 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
 
+### B1 Today (branch `worktree-wf_a4c40803-5b3-1`, base `ad17cb89`)
+- B1.1 `5a53e8ed` header (Kyiv eyebrow, greeting, "N things need you", severity pills) and Needs you (NoteActions, Dismiss with Undo, All clear).
+- B1.2 `ca01c150` Today at a glance (SlotRing, runs, AI budget, busiest channel) and the day timeline (fixed 06-24 axis, StatusMark markers, now-line, past shading, legend).
+- B1.3 `29bc2514` Agents panel (ModeSwitch by channel), Live activity (`useMapSnapshot`, shared with the map), KPI strip with the spend trend, health line; the legacy blocks and `AgentsCard.tsx` are gone.
+- Checked under Node 20: `tsc --noEmit` clean, 431 node tests pass (24 new in `lib/today.test.ts`), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Looked at in the browser through a dev server on 3111 proxied to the read-only mock (GET only, nothing that writes was clicked) at 1440 and 390 wide, and with the clock pinned to 14:00 Kyiv for the now-line. The lead's browser pass is still to do.
+
 ## Deltas from the spec
 (each agent appends its own subsection)
 
@@ -196,3 +202,44 @@ Dashboard:
   - The More tools dot rolled up sub-view counters that the list does not show; it now rolls up the More tools list itself.
   - "Edit in menu settings…" on a hidden page focused nothing: the Hidden panel's Restore button now has `navc-hidden-<id>` and gets the focus.
   - Danger text on the danger tint was ~3.8–4.5:1: new `--color-danger-ink` for text on tints (nav counters, `.sev-critical`, selected danger tab, `.chip-danger`, danger toast action), ≥5:1.
+
+### B1
+Header and Needs you:
+- **The headline counts what needs a decision**: unread critical and action notes, posts to approve, cards waiting in a chat (D6). FYI notes are neither counted nor listed; they only add to the "Open inbox · N" counter, which is the menu's sum (every unread note plus approvals). Until the inbox has answered the title is the greeting alone, so a slow server never flashes "Nothing needs you".
+- **A failed inbox never says "All clear"**: the panel says the notes could not be loaded and offers Try again.
+- **Queue rows come in addition to the top 4 notes**: one row "N posts to approve" (Review posts, to `/app/agents/inbox?tab=approvals`) and one "N actions wait for your confirmation" (Open chat). When only approvals wait, "Open inbox" goes to the Approvals tab (the Unread tab would be empty).
+- **Dismiss marks the note read at once** (no delayed POST). The toast offers Undo, which calls mark-unread and puts the row back; a failed request puts the note back. Undo after the owner bot's sweep closed the Telegram card brings the note back to the list, not to Telegram (A3's note).
+- **Button heights are normalised in CSS** (`.need-actions`): A3's `NoteActions` renders its link steps with inline compact padding, so they are forced to a 36px minimum height with a 44px hit area, to sit level with Dismiss.
+- **The prototype's "streaming" pill is dropped** (it was a poll indicator); Live activity has an "Open map →" link instead.
+
+Glance and timeline:
+- **The ring and the timeline cover the Telegram lane only**: active plans (a replanned day's superseded plan never shows), slots with no `resourceRef`. The copies for Instagram, Facebook and Threads are not drawn; a quiet line under the ring says how many there are. Reserved slots are drawn and counted.
+- **The ring**: published plus shadowed count as done; a skip the system chose (replan, mode change, cancelled draft, paused series) is not in the total; missed comes from `isMissed` on the plan's slots, not from the channel counters. The legend always lists Published, Missed and Skipped, the other rows only when they are not zero. Known limit (skeptic): a series slot an evergreen fallback filled is a miss on the server and a published slot here.
+- **Timeline details**:
+  - The axis is fixed at 06:00 to 24:00 Kyiv. A slot outside it sits on the edge, dimmed, and its tooltip says so.
+  - Markers closer than 36 minutes stack into sub-rows (20px each) and the lane grows. 36 is what a 16px mark needs on the narrowest axis (760px).
+  - The hit area of a marker is 44px tall in a one-row lane and 20px in a stacked lane (rows are 20px apart).
+  - A live or shadow channel with no plan shows "No plan for today yet" in its lane; an off channel with nothing planned has no lane.
+  - Below 760px the timeline scrolls sideways inside its panel (keyboard focusable); the page itself does not scroll sideways.
+  - With no slot at all the panel is an empty state, not an empty axis.
+- **The old "Upcoming slots (next 24 h)" card is gone.** Slots after midnight (tomorrow's first posts) are not on Today any more; the Calendar has them. `api/upcoming.ts` (`useUpcomingSlots`) and `upcomingName` / `upcomingTitle` in `lib/slot-plan.ts` have no user left; they are left in place (not B1's files) and can go once nobody else adds one.
+- **Glance numbers come from different sources, by design**:
+  - AI budget today is the global budget row from `useBudgets` (`pickGlobalBudget`, the sidebar footer's rule), which reads raw `llm_usage`. The 7-day KPI is the rollup (up to 5 minutes behind). Without a global row the glance shows `periods.today.usd` and a "No budget set" link.
+  - It draws its own meter, not `BudgetBar`, for A2's reason (the header does not fit). `AiSpendCard.tsx` (with `BudgetBar`) is untouched and no longer used on Today.
+  - "Agent runs today" is `/api/overview/agents` `runs.today` (every agent run, role children included); the Agents rows show the channel's own `today.runs`, so the two numbers differ.
+  - "Busiest channel" is the channel with the highest share of its daily cap, else the biggest spender; nothing spent today hides it.
+- **Class names are `slotring*`, not `ring*`**: Tailwind v4 emits a `.ring` utility (a 1px box-shadow) whenever the word appears anywhere in the sources, which drew a frame round the ring.
+
+Agents, activity, KPI:
+- **The Agents panel lists editor channels** (`ModeSwitch` keyed by channel, the Editor page's own control; live opens the autonomy dialog; it invalidates `['editor']`). Orchestrators of native platforms without an editor channel are not listed (no card, no mode switch). Names and emoji come from the agent tree (orchestrator with scope `telegram:<key>`), else the channel title. The footer shows the manager, builder and auditor roots with their last run and today's spend.
+- **Live activity** reads `useMapSnapshot()` (new, `api/map.ts`; `MapPage` uses it too, same options, one cache entry and one timer). It shows the 6 newest events (the feed itself only goes back 24 hours). The pixel avatar is shown when the event's agent is a unit on the map, else the icon of the event kind; a failed event has a red edge. The event text is shown as the server wrote it. `ActivityList` imports `components/map/map.css` for `.map-avatar` (class names are all `map-*`, no global selectors).
+- **KPI strip**:
+  - Telegram subscribers: sum of `subsCount` over `filter: 'mine'`.
+  - Meta followers: sum of `followers`; the warning line counts unmuted `token_invalid` and `no_access` connections of Threads, Instagram and Facebook from `useNetworkHealth` (an expiring token is not a reconnect yet), else the 24 h change.
+  - Agent posts · 7 days: `overview.posts.d7.published`. The prototype's "88% of all content" has no source and is dropped.
+  - AI spend · 7 days: `periods['7d']` with `fmtDelta` and a sparkline from the daily breakdown.
+  - Under the strip a link "Network health · N problems →". `problems` includes muted connections and every stuck group (approvals among them), so it overlaps the headline; it is a pointer, not a second headline.
+- **Removed from Today**: the 5-tile stat grid (its Errors tile counted failed legacy strategy runs), "Legacy strategy runs", the "Meta accounts" list (the Meta page has it), `AgentsCard.tsx` (deleted; nothing else used it), the AI spend and Network health cards. `NetworkHealthCard` in `components/agents/NetworkHealth.tsx` is B3's file: it stays and has no user on Today now.
+- **The Meta accounts card's Refresh button is kept** as a ghost button "Refresh Meta numbers" under the KPI strip (it was the only UI for `useRefreshMetaStats`).
+
+Files outside B1's list: `components/map/MapHud.tsx` (its local `useNow` moved to `lib/useNow.ts`, as the task says; one import line changed), `components/map/MapPage.tsx` (switched to `useMapSnapshot`, as the task says).
