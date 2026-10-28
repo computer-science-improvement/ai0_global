@@ -1,10 +1,9 @@
 // Meta accounts manager — one platform (Facebook / Instagram / Threads). Lists
-// connected accounts as preview cards (mirrors the Telegram connection cards)
-// with verify / pause / delete actions. Tokens live in .env; only the env-var
-// NAME is ever shown.
+// connected accounts as rows of a flush panel (identity, token line, followers and the
+// 24 h change, verify / pause / delete actions). Tokens are stored encrypted in the
+// database; only the env-var NAME of a legacy token is ever shown.
 
 import { useState, type ReactNode } from 'react';
-import { Link } from '@tanstack/react-router';
 import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
 import { TableAction, RowActions } from '../ui/table';
@@ -12,9 +11,10 @@ import { EmptyState } from '../ui/primitives';
 import { fmtDate } from '../../lib/format';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { AddMetaAccountModal } from './AddMetaAccountModal';
+import { ConnAdd, ConnError, ConnPanel, ConnRow, ConnState, ConnStat } from './ConnUi';
 import {
   useMetaAccounts, useVerifyMetaAccount, useToggleMetaAccount, useDeleteMetaAccount,
-  useRefreshThreadsToken, useMetaAccountGroups,
+  useRefreshThreadsToken, useMetaAccountGroups, useRefreshMetaStats,
 } from '../../api/meta-accounts';
 import { useStrategies } from '../../api/strategies';
 import type { MetaAccount, MetaPlatform, Strategy } from '../../api/types';
@@ -36,44 +36,43 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
   const toggle = useToggleMetaAccount();
   const remove = useDeleteMetaAccount();
   const refreshToken = useRefreshThreadsToken();
+  const refreshStats = useRefreshMetaStats();
   const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
 
   const accounts = (data ?? []).filter(a => a.platform === platform);
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
-        <div>
-          <h2 className="text-eyebrow" style={{ margin: 0 }}>{PLATFORM_LABEL[platform]}</h2>
-          <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            {PLATFORM_LABEL[platform]} accounts. Tokens are stored encrypted in the database.
-          </p>
-        </div>
-        <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>
-          <Icon name="plus" size={14} /> Add account
-        </button>
-      </div>
+    <>
+      <ConnPanel
+        title={PLATFORM_LABEL[platform]}
+        note={`${PLATFORM_LABEL[platform]} accounts. Tokens are stored encrypted in the database.`}
+        add={
+          <span style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+            {accounts.length > 0 && (
+              <button type="button" className="btn-secondary btn-sm" onClick={() => refreshStats.mutate()} disabled={refreshStats.isPending}
+                title="Fetch the latest followers and insights now">
+                <Icon name="refresh" size={14} /> {refreshStats.isPending ? 'Refreshing…' : 'Refresh stats'}
+              </button>
+            )}
+            <ConnAdd onClick={() => setAddOpen(true)}>Add account</ConnAdd>
+          </span>
+        }
+      >
+        <ConnState loading={isLoading} error={error} />
+        <ConnError error={remove.error} />
+        <ConnError error={refreshStats.error} />
 
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
-      {remove.error && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
-          {(remove.error as Error).message}
-        </p>
-      )}
+        {!isLoading && accounts.length === 0 && (
+          <EmptyState
+            icon={PLATFORM_ICON[platform]}
+            title={`No ${PLATFORM_LABEL[platform]} accounts yet`}
+            note="Add one to connect and start publishing."
+          />
+        )}
 
-      {!isLoading && accounts.length === 0 && (
-        <EmptyState
-          icon={PLATFORM_ICON[platform]}
-          title={`No ${PLATFORM_LABEL[platform]} accounts yet`}
-          note="Add one to connect and start publishing."
-        />
-      )}
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {accounts.map(a => (
-          <AccountCard
+          <AccountRow
             key={a.id}
             account={a}
             groupName={a.group_id ? groupName.get(a.group_id) ?? null : null}
@@ -105,10 +104,10 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
             }}
           />
         ))}
-      </div>
+      </ConnPanel>
 
       <AddMetaAccountModal open={addOpen} platform={platform} onClose={() => setAddOpen(false)} />
-    </div>
+    </>
   );
 }
 
@@ -132,7 +131,7 @@ function AttachedStrategiesList({ strategies }: { strategies: Strategy[] }) {
   );
 }
 
-function AccountCard({ account: a, groupName, onVerify, onToggle, onDelete, onRefreshToken, refreshing, refreshError }: {
+function AccountRow({ account: a, groupName, onVerify, onToggle, onDelete, onRefreshToken, refreshing, refreshError }: {
   account: MetaAccount;
   groupName: string | null;
   onVerify: () => void; onToggle: () => void; onDelete: () => void;
@@ -140,66 +139,62 @@ function AccountCard({ account: a, groupName, onVerify, onToggle, onDelete, onRe
 }) {
   // A Facebook Page or system user has no @username: a successful verify is enough.
   const verified = !a.verify_error && (!!a.username || !!a.last_verified_at);
+  const d = a.followers_delta_24h;
   return (
-    <div className="card" style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}>
-      <Avatar url={a.picture_url} platform={a.platform} />
-
-      <Link
-        to={'/app/connections/meta/$accountId' as any}
-        params={{ accountId: a.id } as any}
-        style={{ flex: 1, minWidth: 200, textDecoration: 'none', color: 'inherit' }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
-            {a.display_name ?? a.account_id}
-          </span>
-          {a.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{a.username}</span>}
-          {!a.active && <Badge tone="neutral">inactive</Badge>}
-          {groupName && (
-            <span title="Meta group — manage on the Groups tab" style={{ display: 'inline-flex' }}>
-              <Badge tone="accent"><Icon name="connections" size={11} /> {groupName}</Badge>
-            </span>
-          )}
-        </div>
-        <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
-          {a.followers != null && <>{a.followers.toLocaleString()} followers · </>}
-          {a.token_env && <><code>{a.token_env}</code> · </>}id <code>{a.target_id}</code>
-          {a.last_verified_at && <> · verified {fmtDate(a.last_verified_at)}</>}
-        </div>
-        <div style={{ marginTop: 8 }}>
-          {a.verify_error
-            ? <Badge tone="danger"><span title={a.verify_error}>{a.verify_error.slice(0, 48)}</span></Badge>
-            : verified
-              ? <Badge tone="success">connected</Badge>
-              : <Badge tone="neutral">unverified</Badge>}
-        </div>
-        <TokenInfo account={a} />
-      </Link>
-
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
-        <RowActions danger={<TableAction action="delete" onClick={onDelete} />}>
-          <TableAction action="verify" onClick={onVerify} title="Verify token" />
-          {/* Threads tokens are short-lived (~60d) and refreshable with only the
-              current token. Refresh re-encrypts the new token + updates the expiry.
-              Kept labelled (vs icon-only) so it isn't confused with Verify. */}
-          {a.platform === 'threads' && (
-            <TableAction
-              icon="refresh"
-              label={refreshing ? 'Refreshing…' : 'Refresh token'}
-              onClick={onRefreshToken}
-              disabled={refreshing}
-              title="Refresh the Threads long-lived token"
-            />
-          )}
-          <TableAction action={a.active ? 'pause' : 'enable'} onClick={onToggle} />
-        </RowActions>
-        {refreshError && (
-          <span className="text-micro" style={{ color: 'var(--color-danger)', maxWidth: 240, textAlign: 'right' }}>
-            {refreshError}
+    <ConnRow
+      link={{ to: '/app/connections/meta/$accountId', params: { accountId: a.id } }}
+      lead={a.picture_url ? <img src={a.picture_url} alt="" width={36} height={36} /> : <Icon name={PLATFORM_ICON[a.platform]} size={16} />}
+      stat={a.followers != null ? (
+        <ConnStat
+          value={a.followers.toLocaleString()} label="followers"
+          delta={d != null ? `${d > 0 ? '+' : ''}${d.toLocaleString()} 24h` : undefined}
+          tone={d == null || d === 0 ? undefined : d > 0 ? 'up' : 'down'}
+        />
+      ) : undefined}
+      actions={
+        <>
+          <RowActions danger={<TableAction action="delete" onClick={onDelete} />}>
+            <TableAction action="verify" onClick={onVerify} title="Verify token" />
+            {/* Threads tokens are short-lived (~60d) and refreshable with only the
+                current token. Refresh re-encrypts the new token + updates the expiry.
+                Kept labelled (vs icon-only) so it isn't confused with Verify. */}
+            {a.platform === 'threads' && (
+              <TableAction
+                icon="refresh"
+                label={refreshing ? 'Refreshing…' : 'Refresh token'}
+                onClick={onRefreshToken}
+                disabled={refreshing}
+                title="Refresh the Threads long-lived token"
+              />
+            )}
+            <TableAction action={a.active ? 'pause' : 'enable'} onClick={onToggle} />
+          </RowActions>
+          {refreshError && <span className="conn-actions-err">{refreshError}</span>}
+        </>
+      }
+    >
+      <div className="conn-title">
+        <span className="conn-name">{a.display_name ?? a.account_id}</span>
+        {a.username && <span className="conn-handle">@{a.username}</span>}
+        {a.verify_error
+          ? <Badge tone="danger"><span title={a.verify_error}>{a.verify_error.slice(0, 48)}</span></Badge>
+          : verified
+            ? <Badge tone="success">connected</Badge>
+            : <Badge tone="neutral">unverified</Badge>}
+        {!a.active && <Badge tone="neutral">inactive</Badge>}
+        {groupName && (
+          <span title="Meta group — manage on the Groups tab" style={{ display: 'inline-flex' }}>
+            <Badge tone="accent"><Icon name="connections" size={11} /> {groupName}</Badge>
           </span>
         )}
       </div>
-    </div>
+      <div className="conn-sub">
+        {a.token_env && <><span className="mono">{a.token_env}</span><span aria-hidden>·</span></>}
+        <span>id <span className="mono">{a.target_id}</span></span>
+        {a.last_verified_at && <><span aria-hidden>·</span><span>verified <span className="mono">{fmtDate(a.last_verified_at)}</span></span></>}
+      </div>
+      <TokenInfo account={a} />
+    </ConnRow>
   );
 }
 
@@ -221,9 +216,7 @@ function daysUntil(iso: string): number {
 function TokenInfo({ account: a }: { account: MetaAccount }) {
   if (a.platform === 'threads' && !a.token_checked_at) return null;
 
-  const dot = (color: string) => (
-    <span style={{ width: 7, height: 7, borderRadius: 999, background: color, display: 'inline-block', flexShrink: 0 }} />
-  );
+  const dot = <span className="conn-dot" aria-hidden />;
 
   // The token itself was checked (debug_token ran) but reported is_valid=false —
   // independent of verify, so show this even when the connection looks fine.
@@ -231,29 +224,25 @@ function TokenInfo({ account: a }: { account: MetaAccount }) {
 
   let expiry: ReactNode;
   if (!a.token_checked_at) {
-    expiry = <span style={{ color: 'var(--color-ink-dim)' }}>Token: not checked — Verify to read</span>;
+    expiry = <span>Token: not checked — Verify to read</span>;
   } else if (tokenInvalid) {
     // An invalid token's expiry is meaningless — surface the validity instead.
-    expiry = (
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--color-danger)', fontWeight: 500 }}>
-        {dot('var(--color-danger)')} Invalid token
-      </span>
-    );
+    expiry = <span className="conn-token-expiry is-bad">{dot} Invalid token</span>;
   } else if (!a.token_expires_at) {
-    expiry = <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--color-success)' }}>{dot('var(--color-success)')} Token: never expires</span>;
+    expiry = <span className="conn-token-expiry is-ok">{dot} Token: never expires</span>;
   } else {
     const days = daysUntil(a.token_expires_at);
-    const color = days <= 0 ? 'var(--color-danger)' : days <= 30 ? 'var(--color-warning)' : 'var(--color-success)';
+    const tone = days <= 0 ? 'is-bad' : days <= 30 ? 'is-warn' : 'is-ok';
     const tail = days <= 0 ? 'expired' : `in ${days} day${days === 1 ? '' : 's'}`;
     expiry = (
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color }} title={fmtDate(a.token_expires_at)}>
-        {dot(color)} Token expires {fmtDate(a.token_expires_at)} · {tail}
+      <span className={`conn-token-expiry ${tone}`} title={fmtDate(a.token_expires_at)}>
+        {dot} Token expires {fmtDate(a.token_expires_at)} · {tail}
       </span>
     );
   }
 
   return (
-    <div className="text-micro" style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, rowGap: 4 }}>
+    <div className="conn-token">
       <Badge tone={a.token_type ? TOKEN_TYPE_TONE[a.token_type] ?? 'neutral' : 'neutral'}>
         {a.token_type ?? 'unknown'}
       </Badge>
@@ -265,7 +254,7 @@ function TokenInfo({ account: a }: { account: MetaAccount }) {
 
 // Click-to-expand granted scopes. Collapsed shows the first 3 + a "+N more"
 // button; expanded shows every scope as wrapped chips with a "show less" toggle.
-// The card itself is a Link, so the toggle stops the click from navigating.
+// The identity block is a Link, so the toggle stops the click from navigating.
 function ScopeList({ scopes }: { scopes: string[] }) {
   const [expanded, setExpanded] = useState(false);
   if (!scopes.length) return null;
@@ -276,19 +265,14 @@ function ScopeList({ scopes }: { scopes: string[] }) {
     setExpanded(v => !v);
   };
 
-  const toggleStyle: React.CSSProperties = {
-    background: 'none', border: 'none', padding: 0, cursor: 'pointer',
-    font: 'inherit', color: 'var(--color-accent)', textDecoration: 'underline',
-  };
-
   if (!expanded) {
     const head = scopes.slice(0, 3);
     const rest = scopes.length - head.length;
     return (
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
-        · {head.join(', ')}
+      <span className="conn-scopes">
+        · <span className="mono">{head.join(', ')}</span>
         {rest > 0 && (
-          <button type="button" onClick={toggle} style={toggleStyle} aria-expanded={false}>
+          <button type="button" onClick={toggle} className="conn-link-btn" aria-expanded={false}>
             +{rest} more
           </button>
         )}
@@ -297,28 +281,11 @@ function ScopeList({ scopes }: { scopes: string[] }) {
   }
 
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
-      {scopes.map(s => <span key={s} className="chip" style={{ fontSize: 10 }}>{s}</span>)}
-      <button type="button" onClick={toggle} style={toggleStyle} aria-expanded={true}>
+    <span className="conn-scopes">
+      {scopes.map(s => <span key={s} className="conn-scope">{s}</span>)}
+      <button type="button" onClick={toggle} className="conn-link-btn" aria-expanded={true}>
         show less
       </button>
     </span>
-  );
-}
-
-function Avatar({ url, platform }: { url: string | null; platform: MetaPlatform }) {
-  const size = 48;
-  if (url) {
-    return <img src={url} alt="" width={size} height={size}
-      style={{ borderRadius: 999, objectFit: 'cover', flexShrink: 0 }} />;
-  }
-  return (
-    <div style={{
-      width: size, height: size, borderRadius: 999, flexShrink: 0,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'var(--color-surface-3)', color: 'var(--color-ink-muted)',
-    }}>
-      <Icon name={PLATFORM_ICON[platform]} size={22} />
-    </div>
   );
 }

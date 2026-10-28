@@ -4,6 +4,7 @@ import { Icon } from '../ui/Icon';
 import { Field } from '../ui/primitives';
 import { useCreateMetaAccount } from '../../api/meta-accounts';
 import type { MetaPlatform } from '../../api/types';
+import './connections.css';
 
 const DEFAULTS: Record<MetaPlatform, { label: string; tokenEnv: string; targetHint: string }> = {
   facebook:  { label: 'Facebook',  tokenEnv: 'FACEBOOK_PAGE_TOKEN', targetHint: 'Page id (e.g. 1029384756)' },
@@ -59,7 +60,7 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
         <input value={accountId} onChange={e => setAccountId(e.target.value)}
           placeholder="my_page" className="input-field"
           style={{ width: '100%', borderColor: idError ? 'var(--color-danger)' : undefined }} />
-        <span className="text-micro" style={{ display: 'block', marginTop: 4, color: idError ? 'var(--color-danger)' : 'var(--color-ink-dim)' }}>
+        <span className={`conn-field-note${idError ? ' is-error' : ''}`}>
           {idError
             ? 'Only letters, digits, . _ - — no spaces (e.g. ai0-recipes).'
             : 'A slug, not a display name. Letters, digits, . _ - only.'}
@@ -83,24 +84,24 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
           placeholder={d.targetHint} className="input-field" style={{ width: '100%' }} />
       </Field>
 
-      <div className="callout-warning" style={{ marginBottom: 16 }}>
+      <div className="inset conn-hint">
         <Icon name="info" size={14} />
-        <span className="text-micro">
+        <span>
           {token.trim()
             ? <>The token is encrypted on save — it is never stored in plaintext or shown again. Click <b>Verify</b> after saving.</>
-            : <>Save the token in <code style={{ color: 'var(--color-ink)' }}>.env</code> as{' '}
-                <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || d.tokenEnv}=…</code>, restart automation, then click <b>Verify</b>. Or paste the token value above to store it encrypted.</>}
+            : <>Save the token in <code>.env</code> as{' '}
+                <code>{tokenEnv || d.tokenEnv}=…</code>, restart automation, then click <b>Verify</b>. Or paste the token value above to store it encrypted.</>}
         </span>
       </div>
 
       {create.error && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
+        <p className="conn-form-error" role="alert">
           {(create.error as Error).message}
         </p>
       )}
 
       <div className="modal-foot">
-        <button onClick={onClose} className="btn-secondary">Cancel</button>
+        <button onClick={onClose} className="btn-ghost">Cancel</button>
         <button onClick={submit} disabled={!canSubmit} className="btn-primary">
           {create.isPending ? 'Saving…' : 'Save'}
         </button>
