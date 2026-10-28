@@ -16,10 +16,9 @@ import type { JSX } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
-import { Panel } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { TableAction } from '../components/ui/table';
-import { EmptyState } from '../components/ui/primitives';
+import { EmptyState, SectionCard } from '../components/ui/primitives';
 import { Icon, type IconName } from '../components/ui/Icon';
 import { NetworkShowcase } from '../components/landing/NetworkShowcase';
 import { NetworksCard } from '../components/landing/NetworksCard';
@@ -27,11 +26,13 @@ import { PublicPageCard } from '../components/landing/PublicPageCard';
 import { CtaStatsCard } from '../components/landing/CtaStatsCard';
 import { LeadsCard } from '../components/landing/LeadsCard';
 import { SegmentedTabs } from '../components/SegmentedTabs';
+import { SkeletonRows } from '../components/SkeletonRows';
 import {
   landingApi, useLandingAdmin, useLandingAdminNetworks, useSetFeatured,
   type LandingAdminResource, type LandingPlatform,
 } from '../api/landing';
 import { PLATFORM_META as PUBLIC_PLATFORM_META, PLATFORM_ORDER as PUBLIC_PLATFORM_ORDER } from '../lib/landing-view';
+import '../components/landing/landing-admin.css';
 
 // Tabs (spec 026 FR-015): the page setup, the leads from the public forms and the CTA stats.
 type LandingTab = 'page' | 'leads' | 'stats';
@@ -65,16 +66,17 @@ function LandingAdminPage(): JSX.Element {
   return (
     <div>
       <PageHeader
+        eyebrow="Public site"
         title="Landing"
         subtitle="How the public landing page takes ad orders, which resources it shows in which order, and what visitors do."
         actions={
-          <a href="/" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ gap: 6 }}>
-            Open live page <span aria-hidden>↗</span>
+          <a href="/" target="_blank" rel="noopener noreferrer" className="btn-secondary btn-sm" style={{ gap: 6 }}>
+            Open live page <Icon name="external" size={13} />
           </a>
         }
       />
       <div style={{ marginBottom: 'var(--space-xl)' }}>
-        <SegmentedTabs<LandingTab> value={tab} onChange={setTab} options={LANDING_TABS} />
+        <SegmentedTabs<LandingTab> variant="underline" ariaLabel="Landing sections" value={tab} onChange={setTab} options={LANDING_TABS} />
       </div>
       {tab === 'page' && <PageSetup />}
       {tab === 'leads' && <LeadsCard />}
@@ -160,42 +162,26 @@ function PageSetup(): JSX.Element {
     visibleSorted.findIndex((v) => v.platform === r.platform && v.id === r.id);
 
   return (
-    <div>
-      <div style={{ marginBottom: 'var(--space-xl)' }}>
-        <PublicPageCard />
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <PublicPageCard />
 
       <div className="la-wrap">
         <div className="la-editor">
-          <div style={{ marginBottom: 16 }}>
-            <NetworksCard data={networks.data} isLoading={networks.isLoading} error={networks.error} />
-          </div>
+          <NetworksCard data={networks.data} isLoading={networks.isLoading} error={networks.error} />
 
-          {/* Loading — skeleton rows mirroring the editor-row rhythm. */}
+          {/* Loading: skeleton rows in a panel that keeps the editor's rhythm. */}
           {isLoading && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="la-skeleton" style={{ animationDelay: `${i * 60}ms` }} />
-              ))}
-            </div>
+            <SectionCard title="Resources" flush delay={60}>
+              <SkeletonRows flush rows={5} height={54} label="Loading landing resources" />
+            </SectionCard>
           )}
 
-          {/* Error — contained danger card, same pattern as the list pages. */}
+          {/* Error: a danger callout, the same pattern as the list pages. */}
           {error && (
-            <div
-              className="card"
-              style={{
-                display: 'flex', alignItems: 'flex-start', gap: 12,
-                borderColor: 'var(--color-danger-soft)', background: 'var(--color-danger-soft)',
-              }}
-            >
-              <span style={{ color: 'var(--color-danger)', display: 'flex', marginTop: 1 }}>
-                <Icon name="warning" size={16} />
-              </span>
+            <div className="callout-danger" role="alert">
+              <Icon name="warning" size={16} />
               <div>
-                <div className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
-                  Couldn’t load landing resources
-                </div>
+                <div className="text-body" style={{ fontWeight: 500 }}>Couldn’t load landing resources</div>
                 <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
                   {(error as Error).message}
                 </div>
@@ -211,174 +197,107 @@ function PageSetup(): JSX.Element {
             />
           )}
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {groups.map((g) => {
-              const meta = PLATFORM_META[g.platform];
-              const featuredCount = g.items.filter((r) => r.landingVisible).length;
-              return (
-                <Panel
-                  key={g.platform}
-                  title={meta.label}
-                  action={
-                    <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                      {featuredCount}/{g.items.length} featured
-                    </span>
-                  }
-                >
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    {g.items.map((r) => {
-                      const vIdx = visibleIndex(r);
-                      const isFirst = vIdx === 0;
-                      const isLast = vIdx === visibleSorted.length - 1;
-                      return (
-                        <div key={r.id} className={`la-row${r.landingVisible ? ' la-row-featured' : ''}`}>
-                          <span className="la-avatar">
-                            {r.avatarUrl ? (
-                              <img src={r.avatarUrl} alt="" className="la-avatar-img" loading="lazy" />
-                            ) : (
-                              <Icon name={meta.icon} size={15} />
-                            )}
-                          </span>
+          {groups.map((g, gi) => {
+            const meta = PLATFORM_META[g.platform];
+            const featuredCount = g.items.filter((r) => r.landingVisible).length;
+            return (
+              <SectionCard
+                key={g.platform}
+                title={meta.label}
+                flush
+                delay={60 + gi * 40}
+                action={<span className="la-count">{featuredCount}/{g.items.length} featured</span>}
+              >
+                {g.items.map((r) => {
+                  const vIdx = visibleIndex(r);
+                  const isFirst = vIdx === 0;
+                  const isLast = vIdx === visibleSorted.length - 1;
+                  return (
+                    <div key={r.id} className={`panel-row${r.landingVisible ? ' is-selected' : ' la-hidden'}`}>
+                      <span className="la-avatar">
+                        {r.avatarUrl ? (
+                          <img src={r.avatarUrl} alt="" className="la-avatar-img" loading="lazy" />
+                        ) : (
+                          <Icon name={meta.icon} size={15} />
+                        )}
+                      </span>
 
-                          <div className="la-row-main">
-                            <span className="text-body-sm la-row-name">
-                              {r.displayName ?? (r.handle ? `@${r.handle}` : meta.label)}
-                            </span>
-                            <span className="text-micro la-row-sub">
-                              {r.handle && <span>@{r.handle}</span>}
-                              {r.followerCount !== null && (
-                                <span>{r.handle ? ' · ' : ''}{fmtFollowers(r.followerCount)} followers</span>
-                              )}
-                            </span>
-                          </div>
+                      <div className="la-row-main">
+                        <span className="text-body-sm la-row-name">
+                          {r.displayName ?? (r.handle ? `@${r.handle}` : meta.label)}
+                        </span>
+                        <span className="la-row-sub">
+                          {r.handle && <span className="mono">@{r.handle}</span>}
+                          {r.followerCount !== null && (
+                            <span>{r.handle ? ' · ' : ''}{fmtFollowers(r.followerCount)} followers</span>
+                          )}
+                        </span>
+                      </div>
 
-                          <div className="la-row-actions">
-                            {r.landingVisible && (
-                              <>
-                                <span title="Position on the public landing (one flat order across platforms)">
-                                  <Badge tone="accent">#{vIdx + 1} on landing</Badge>
-                                </span>
-                                <TableAction
-                                  icon="chevron-up"
-                                  title="Move up"
-                                  disabled={isFirst || pending}
-                                  onClick={() => move(r, -1)}
-                                />
-                                <TableAction
-                                  icon="chevron-down"
-                                  title="Move down"
-                                  disabled={isLast || pending}
-                                  onClick={() => move(r, 1)}
-                                />
-                                <TableAction
-                                  action="pause"
-                                  title="Hide from the landing"
-                                  disabled={pending}
-                                  onClick={() => toggleVisible(r)}
-                                />
-                              </>
-                            )}
-                            {!r.landingVisible && (
-                              <TableAction
-                                action="enable"
-                                title="Feature on the landing"
-                                disabled={pending}
-                                onClick={() => toggleVisible(r)}
-                              />
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </Panel>
-              );
-            })}
-          </div>
+                      <div className="la-row-actions">
+                        {r.landingVisible && (
+                          <>
+                            <span title="Position on the public landing (one flat order across platforms)">
+                              <Badge tone="accent">#{vIdx + 1} on landing</Badge>
+                            </span>
+                            <TableAction
+                              icon="chevron-up"
+                              title="Move up"
+                              disabled={isFirst || pending}
+                              onClick={() => move(r, -1)}
+                            />
+                            <TableAction
+                              icon="chevron-down"
+                              title="Move down"
+                              disabled={isLast || pending}
+                              onClick={() => move(r, 1)}
+                            />
+                            <TableAction
+                              action="pause"
+                              title="Hide from the landing"
+                              disabled={pending}
+                              onClick={() => toggleVisible(r)}
+                            />
+                          </>
+                        )}
+                        {!r.landingVisible && (
+                          <TableAction
+                            action="enable"
+                            title="Feature on the landing"
+                            disabled={pending}
+                            onClick={() => toggleVisible(r)}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </SectionCard>
+            );
+          })}
         </div>
 
         <div className="la-preview">
-          <Panel
+          <SectionCard
             title="Live preview"
+            delay={60}
             action={
-              previewCount > 0 ? (
-                <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                  {previewCount} featured
-                </span>
-              ) : undefined
+              previewCount > 0 ? <span className="la-count">{previewCount} featured</span> : undefined
             }
           >
-            <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)' }}>
+            <p className="la-note">
               The same as the public landing page at <code>/</code> — same component, same data, same order.
             </p>
-            {networks.isLoading && <div className="la-skeleton" style={{ height: 160 }} />}
+            {networks.isLoading && <SkeletonRows rows={1} height={160} label="Loading the preview" />}
             {networks.error && (
-              <div className="text-body-sm" style={{ color: 'var(--color-danger)' }}>
+              <div className="callout-danger" role="alert">
                 Couldn’t load the preview: {(networks.error as Error).message}
               </div>
             )}
             {networks.data && <NetworkShowcase networks={preview} />}
-          </Panel>
+          </SectionCard>
         </div>
       </div>
-
-      <style>{`
-        .la-wrap {
-          display: grid;
-          grid-template-columns: minmax(360px, 1fr) minmax(360px, 1.1fr);
-          gap: var(--space-xl);
-          align-items: start;
-        }
-        @media (max-width: 1024px) {
-          .la-wrap { grid-template-columns: minmax(0, 1fr); }
-        }
-        .la-preview { position: sticky; top: var(--space-lg); }
-        .la-row {
-          display: flex; align-items: center; gap: 12px;
-          padding: 10px 12px;
-          background: var(--color-surface-2);
-          border: 1px solid var(--color-hairline);
-          border-radius: var(--radius-md);
-          transition: opacity 0.15s ease, border-color 0.15s ease;
-        }
-        /* Hidden-from-landing rows recede; featured rows carry a faint accent edge. */
-        .la-row:not(.la-row-featured) { opacity: 0.72; }
-        .la-row:not(.la-row-featured):hover { opacity: 1; }
-        .la-row-featured {
-          border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-hairline));
-        }
-        .la-avatar {
-          display: inline-flex; align-items: center; justify-content: center;
-          width: 32px; height: 32px; flex-shrink: 0;
-          border-radius: var(--radius-sm);
-          background: var(--color-surface-3);
-          border: 1px solid var(--color-hairline);
-          color: var(--color-ink-muted);
-          overflow: hidden;
-        }
-        .la-avatar-img { width: 100%; height: 100%; object-fit: cover; }
-        .la-row-main {
-          flex: 1; min-width: 0;
-          display: flex; flex-direction: column; gap: 2px;
-        }
-        .la-row-name {
-          color: var(--color-ink);
-          overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
-        .la-row-sub { color: var(--color-ink-dim); }
-        .la-row-actions {
-          display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
-        }
-        .la-skeleton {
-          height: 54px; border-radius: var(--radius-md);
-          background: linear-gradient(90deg, var(--color-surface-2) 25%, var(--color-surface-3) 50%, var(--color-surface-2) 75%);
-          background-size: 200% 100%;
-          border: 1px solid var(--color-hairline);
-          animation: la-shimmer 1.6s ease-in-out infinite;
-        }
-        @keyframes la-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
-        @media (prefers-reduced-motion: reduce) { .la-skeleton { animation: none; } }
-      `}</style>
     </div>
   );
 }

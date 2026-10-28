@@ -2,9 +2,12 @@
 // anonymous beacon counters), set against DM threads the triage attributed to that
 // placement (the ai0web tag) and form leads. Untagged ad DMs are shown too: they are
 // people who removed the tag or whose Telegram client dropped the prefilled text.
+// Spec 078 (C6): the totals are a StatStrip above the per-placement table (the old Total row).
 import type { JSX } from 'react';
-import { SectionCard, EmptyState } from '../ui/primitives';
+import { SectionCard, EmptyState, StatStrip, StatTile } from '../ui/primitives';
+import { SkeletonRows } from '../SkeletonRows';
 import { useLandingCtaStats } from '../../api/landing';
+import './landing-admin.css';
 
 const PLACEMENT_LABEL: Record<string, string> = {
   hero: 'Hero', topbar: 'Top bar', network: 'Network block', resource: 'Channel card',
@@ -19,14 +22,14 @@ export function CtaStatsCard(): JSX.Element {
   const empty = data && data.rows.length === 0 && data.untaggedAdThreads === 0;
 
   return (
-    <SectionCard title="CTA stats · last 30 days" icon="analytics">
-      <p className="text-body-sm" style={{ margin: '0 0 12px', color: 'var(--color-ink-muted)' }}>
+    <SectionCard title="CTA stats · last 30 days" delay={0}>
+      <p className="cs-intro">
         Clicks on the landing’s ad buttons, and how many people then actually wrote: DM threads that still carry the
         landing tag, and requests sent through the form. Clicks are anonymous day counters; no visitor data is kept.
       </p>
-      {isLoading && <div className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>Loading…</div>}
+      {isLoading && <SkeletonRows rows={3} height={48} label="Loading CTA stats" />}
       {error && (
-        <div className="text-body-sm" role="alert" style={{ color: 'var(--color-danger)' }}>
+        <div className="callout-danger" role="alert">
           Couldn’t load CTA stats: {(error as Error).message}
         </div>
       )}
@@ -35,6 +38,16 @@ export function CtaStatsCard(): JSX.Element {
       )}
       {data && !empty && (
         <>
+          <div className="cs-strip">
+            <StatStrip label="Totals for the last 30 days">
+              <StatTile label="Telegram clicks" value={data.totals.dmClicks} />
+              <StatTile label="Tagged DM threads" value={data.totals.dmThreads} />
+              <StatTile label="DM rate" value={rate(data.totals.dmThreads, data.totals.dmClicks)} />
+              <StatTile label="Form opens" value={data.totals.formClicks} />
+              <StatTile label="Form leads" value={data.totals.leads} />
+              <StatTile label="White-label clicks" value={data.totals.whiteLabelClicks} />
+            </StatStrip>
+          </div>
           <div className="table-wrap">
             <table className="table">
               <thead>
@@ -60,19 +73,10 @@ export function CtaStatsCard(): JSX.Element {
                     <td className="num">{r.whiteLabelClicks}</td>
                   </tr>
                 ))}
-                <tr>
-                  <td style={{ fontWeight: 600 }}>Total</td>
-                  <td className="num" style={{ fontWeight: 600 }}>{data.totals.dmClicks}</td>
-                  <td className="num" style={{ fontWeight: 600 }}>{data.totals.dmThreads}</td>
-                  <td className="num" style={{ fontWeight: 600 }}>{rate(data.totals.dmThreads, data.totals.dmClicks)}</td>
-                  <td className="num" style={{ fontWeight: 600 }}>{data.totals.formClicks}</td>
-                  <td className="num" style={{ fontWeight: 600 }}>{data.totals.leads}</td>
-                  <td className="num" style={{ fontWeight: 600 }}>{data.totals.whiteLabelClicks}</td>
-                </tr>
               </tbody>
             </table>
           </div>
-          <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-dim)' }}>
+          <p className="cs-foot">
             Since {data.since} (UTC). Ad DM threads without a landing tag in the same period: {data.untaggedAdThreads}.
           </p>
         </>
