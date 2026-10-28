@@ -211,11 +211,26 @@ test('chips sort by time, slot before projection at the same minute, the owner\'
   assert.deepEqual(sortChips([mk('12:00', 'yours', 'c'), mk('12:00', 'series', 'b'), mk('12:00', 'slot', 'a'), mk('09:00', 'pin', 'z')]).map((c) => c.title), ['z', 'a', 'b', 'c']);
 });
 
-test('"+N more" keeps the first five chips of a crowded cell', () => {
-  const chips = Array.from({ length: 8 }, (_, i) => ({ key: String(i) }) as CalChip);
-  assert.deepEqual(visibleChips(chips, false), { shown: chips.slice(0, 5), hidden: 3 });
-  assert.equal(visibleChips(chips, true).hidden, 0);
-  assert.equal(visibleChips(chips.slice(0, 5), false).hidden, 0);
+test('"+N more": a crowded cell shows what needs the owner, then what is ahead, then what is done, in clock order', () => {
+  const chip = (key: string, time: string, mark: CalChip['mark'], over: Partial<CalChip> = {}): CalChip =>
+    ({ key, time, mark, kind: 'slot', muted: false, alert: null, target: null, title: key, ...over }) as CalChip;
+  const few = Array.from({ length: 5 }, (_, i) => chip(String(i), `0${i}:00`, 'published'));
+  assert.deepEqual(visibleChips(few, false), { shown: few, hidden: 0 });
+  const day = [
+    chip('a', '08:00', 'published'), chip('b', '09:00', 'published'), chip('c', '10:00', 'missed'), chip('d', '11:00', 'published'),
+    chip('e', '12:00', 'skipped'), chip('f', '13:00', 'planned'), chip('g', '14:00', 'awaiting_approval'), chip('h', '15:00', 'not_planned'),
+    chip('i', '16:00', 'yours', { kind: 'yours', target: { type: 'post', id: 'p', pending: true } }),
+    chip('j', '17:00', 'yours', { kind: 'yours', target: { type: 'post', id: 'q', pending: false } }),
+    chip('k', '18:00', 'yours', { kind: 'yours', alert: 'danger', target: { type: 'post', id: 'r', pending: false } }),
+  ];
+  const { shown, hidden } = visibleChips(day, false);
+  // attention first (c, g, k), then what is ahead in clock order (f, h); shown in clock order
+  assert.deepEqual(shown.map((c) => c.key), ['c', 'f', 'g', 'h', 'k']);
+  assert.equal(hidden, 6);
+  assert.deepEqual(visibleChips(day, true), { shown: day, hidden: 0 });
+  // two attention chips and nothing ahead: the done ones fill up from the morning
+  const past = [chip('a', '08:00', 'published'), chip('b', '09:00', 'published'), chip('c', '10:00', 'failed'), chip('d', '11:00', 'published'), chip('e', '12:00', 'published'), chip('f', '13:00', 'missed'), chip('g', '14:00', 'published')];
+  assert.deepEqual(visibleChips(past, false).shown.map((c) => c.key), ['a', 'b', 'c', 'd', 'f']);
 });
 
 // ── owner posts ──

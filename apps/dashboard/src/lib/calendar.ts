@@ -425,10 +425,23 @@ export function buildRows(i: BuildInput): CalRow[] {
   return rows;
 }
 
-/** Chips beyond this index sit behind "+N more" unless the cell is expanded. */
+/** How much a chip needs the owner's eye when a cell is too crowded to show all: 0 = needs attention, 1 = still ahead, 2 = done. */
+function chipRank(c: CalChip): 0 | 1 | 2 {
+  if (c.alert || c.mark === 'failed' || c.mark === 'missed' || c.mark === 'awaiting_approval') return 0;
+  if (c.muted || c.mark === 'published' || c.mark === 'skipped' || c.mark === 'expired') return 2;
+  if (c.kind === 'yours' && c.target?.type === 'post' && !c.target.pending) return 2;
+  return 1;
+}
+
+/**
+ * The chips a cell shows. A cell that fits (or is expanded) shows them all in clock order. A crowded one shows `max` of
+ * them, still in clock order, picked by need: what asks for the owner first (failed, missed, awaiting approval), then what is
+ * still ahead, then what is done. The rest sits behind "+N more".
+ */
 export function visibleChips(chips: readonly CalChip[], expanded: boolean, max: number = CELL_CHIPS): { shown: CalChip[]; hidden: number } {
   if (expanded || chips.length <= max) return { shown: [...chips], hidden: 0 };
-  return { shown: chips.slice(0, max), hidden: chips.length - max };
+  const keep = new Set(chips.map((c, i) => [c, i] as const).sort((a, b) => chipRank(a[0]) - chipRank(b[0]) || a[1] - b[1]).slice(0, max).map(([, i]) => i));
+  return { shown: chips.filter((_, i) => keep.has(i)), hidden: chips.length - max };
 }
 
 /** The accessible name of a "+ Add" button. */
