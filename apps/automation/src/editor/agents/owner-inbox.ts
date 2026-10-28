@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import { DEMOTE_AFTER, decideNote, noteGrowStep, noteRepeatDays, partsKey, stillWording, type NoteGate } from './note-gate';
-import type { NoteAction } from '../series-pause/note-actions';
+import { actionViews, type InboxActionView, type NoteAction } from '../series-pause/note-actions';
 
 export type InboxSeverity = 'info' | 'action' | 'critical';
 
@@ -49,7 +49,18 @@ export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'al
   agentId:   string | null;
   readAt:    Date | null;
   createdAt: Date;
+  /** Spec 078 D5 gap #1: the problem the note is about and what it said (spec 060 gate); null for a note without a gate. */
+  subject:   string | null;
+  parts:     string[] | null;
+  /** The note's buttons in the dashboard's words (English); the stored Ukrainian labels stay on the Telegram card. */
+  actions:   InboxActionView[];
 }
+
+const toItem = (r: any): InboxItem => ({
+  id: Number(r.id), agentId: r.agent_id ?? null, kind: r.kind, title: r.title, body: r.body ?? null,
+  refType: r.ref_type ?? null, refId: r.ref_id ?? null, severity: r.severity, readAt: r.read_at ?? null, createdAt: r.created_at,
+  subject: r.subject ?? null, parts: r.parts ?? null, actions: actionViews(r.actions),
+});
 
 /**
  * Spec 012 FR-002: while the owner bot's cards are on, a stored note goes to the bot instead of the plain alert (a
@@ -242,10 +253,13 @@ export class OwnerInbox {
     const { rows } = await this.pool.query(
       `SELECT * FROM agent_inbox WHERE ($1::bool IS NOT TRUE OR read_at IS NULL) ORDER BY created_at DESC LIMIT $2`,
       [o.unreadOnly ?? false, o.limit ?? 100]);
-    return rows.map((r) => ({
-      id: Number(r.id), agentId: r.agent_id ?? null, kind: r.kind, title: r.title, body: r.body ?? null,
-      refType: r.ref_type ?? null, refId: r.ref_id ?? null, severity: r.severity, readAt: r.read_at ?? null, createdAt: r.created_at,
-    })) as InboxItem[];
+    return rows.map(toItem);
+  }
+
+  /** One note (the dashboard's action answer), or null. */
+  async get(id: number): Promise<InboxItem | null> {
+    const { rows } = await this.pool.query(`SELECT * FROM agent_inbox WHERE id = $1`, [id]);
+    return rows[0] ? toItem(rows[0]) : null;
   }
 
   async markRead(ids: number[] | 'all'): Promise<number> {

@@ -63,3 +63,42 @@ export function cleanActions(v: unknown): NoteAction[] {
   if (!Array.isArray(v)) return [];
   return v.filter((a): a is NoteAction => !!a && typeof a.key === 'string' && typeof a.label === 'string' && parseNoteAction(a.key) !== null);
 }
+
+/**
+ * Spec 078 D5 gap #1: an action as the dashboard gets it. The stored `label` is the owner's Telegram text (Ukrainian) and
+ * stays that for the cards; the dashboard is English, so the `label` here is made from the action's type. `target` is what
+ * the key names (`parseNoteAction`), so the page does not parse keys.
+ */
+export type InboxActionTarget =
+  | { pauseId: string }
+  | { channelKey: string; seriesKey: string; label: string }
+  | { ref: string };
+
+export interface InboxActionView {
+  key:    string;
+  type:   ParsedNoteAction['type'];
+  label:  string;
+  target: InboxActionTarget;
+}
+
+/** A note with one pause action says "Pause series"; with two, each is named after its series (as the Telegram card does). */
+const pauseLabel = (label: string, siblings: number) => (siblings > 1 ? `Pause: ${label.length > 24 ? `${label.slice(0, 23)}…` : label}` : 'Pause series');
+
+/** One stored action in the dashboard's words; null for a key that is not ours. `pauses` = how many pause actions the note has. */
+export function actionView(a: Pick<NoteAction, 'key'>, pauses = 1): InboxActionView | null {
+  const p = parseNoteAction(a.key);
+  if (!p) return null;
+  switch (p.type) {
+    case 'resume': return { key: a.key, type: 'resume', label: 'Resume', target: { pauseId: p.id } };
+    case 'keep':   return { key: a.key, type: 'keep', label: 'Keep paused', target: { pauseId: p.id } };
+    case 'pause':  return { key: a.key, type: 'pause', label: pauseLabel(p.label, pauses), target: { channelKey: p.channelKey, seriesKey: p.seriesKey, label: p.label } };
+    case 'mute':   return { key: a.key, type: 'mute', label: 'Mute for 7 days', target: { ref: p.ref } };
+  }
+}
+
+/** The actions of a stored note (`agent_inbox.actions`) for the dashboard: the usable ones, in their stored order. */
+export function actionViews(stored: unknown): InboxActionView[] {
+  const list = cleanActions(stored);
+  const pauses = list.filter((a) => parseNoteAction(a.key)?.type === 'pause').length;
+  return list.map((a) => actionView(a, pauses)).filter((v): v is InboxActionView => v !== null);
+}
