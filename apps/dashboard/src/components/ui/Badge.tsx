@@ -10,6 +10,7 @@ const STYLE: Record<Tone, { bg: string; fg: string }> = {
   accent:  { bg: 'var(--color-accent)',       fg: 'var(--color-on-accent)' },
 };
 
+/** The status cell of tables and card-rows (11px / 600, sentence case: `@handles` stay lower case). */
 export function Badge({
   tone = 'neutral', children, title, style,
 }: {
@@ -25,7 +26,7 @@ export function Badge({
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 4,
         background: s.bg, color: s.fg,
-        fontSize: 10, fontWeight: 500, padding: '2px 8px',
+        fontSize: 11, fontWeight: 600, padding: '2px 8px',
         borderRadius: 'var(--radius-pill)', lineHeight: 1.6,
         ...style,
       }}

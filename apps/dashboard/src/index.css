@@ -553,7 +553,7 @@ a.panel-row, button.panel-row { width: 100%; color: inherit; font: inherit; text
 }
 .empty-state.is-clear .empty-medallion { background: var(--color-success-soft); border-color: transparent; color: var(--color-accent); }
 .empty-title { margin: 0 0 4px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); }
-.empty-note { margin: 0 auto; max-width: 360px; font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); }
+.empty-note { margin: 0 auto; max-width: 420px; font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); }
 
 /* Compact card (ui/CompactCard): a small button with the key facts that opens a details dialog. */
 .compact-card {

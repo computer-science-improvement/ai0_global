@@ -377,6 +377,7 @@ function PageSetup(): JSX.Element {
           animation: la-shimmer 1.6s ease-in-out infinite;
         }
         @keyframes la-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+        @media (prefers-reduced-motion: reduce) { .la-skeleton { animation: none; } }
       `}</style>
     </div>
   );

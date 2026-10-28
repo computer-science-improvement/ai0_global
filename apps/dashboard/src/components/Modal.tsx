@@ -2,9 +2,9 @@
 // elevation treatment. Clicking the backdrop closes; clicks inside the shell
 // bubble up but don't propagate to the backdrop. Press Escape to close.
 //
-// Pulls all three modals (AddBotModal, AddChannelModal, EditThemesModal) into
-// one place — they used three different backdrop alphas, three different
-// surfaces, three different radii before.
+// Sizes: md / lg / xl are centered dialogs; `drawer` is a right sheet (long forms such as the
+// Calendar composer). At <= 600px every size becomes a bottom sheet (index.css). Header and
+// footer are divided from the body by hairlines; the footer (`.modal-foot`) sticks to the bottom.
 
 import { useEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
@@ -19,8 +19,8 @@ interface Props {
   subtitle?: string;
   /** Optional leading glyph in the header — matches the SectionCard headers. */
   icon?:    IconName;
-  /** Wider variants: lg for theme-pickers and dense forms, xl for side-by-side editors. */
-  size?:    'md' | 'lg' | 'xl';
+  /** Wider variants: lg for theme-pickers and dense forms, xl for side-by-side editors; `drawer` = a right sheet. */
+  size?:    'md' | 'lg' | 'xl' | 'drawer';
   children: ReactNode;
 }
 
@@ -55,7 +55,7 @@ export function Modal({ open, onClose, title, subtitle, icon, size = 'md', child
   // would otherwise become the containing block and trap this fixed overlay
   // inside the row instead of covering the viewport).
   return createPortal(
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className={size === 'drawer' ? 'modal-backdrop is-drawer' : 'modal-backdrop'} onClick={onClose}>
       <div
         className={size === 'md' ? 'modal-shell' : `modal-shell modal-shell-${size}`}
         onClick={(e) => e.stopPropagation()}
@@ -68,9 +68,7 @@ export function Modal({ open, onClose, title, subtitle, icon, size = 'md', child
             {icon && <span className="section-glyph"><UiIcon name={icon} size={15} /></span>}
             <div style={{ flex: 1, minWidth: 0 }}>
               {title && (
-                <h2 style={{ margin: 0, fontSize: 17, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--color-ink)' }}>
-                  {title}
-                </h2>
+                <h2 className="modal-title">{title}</h2>
               )}
               {subtitle && (
                 <p className="text-micro" style={{ margin: '3px 0 0', color: 'var(--color-ink-muted)' }}>
@@ -78,12 +76,7 @@ export function Modal({ open, onClose, title, subtitle, icon, size = 'md', child
                 </p>
               )}
             </div>
-            <button
-              onClick={onClose}
-              aria-label="Close"
-              className="btn-icon"
-              style={{ width: 32, height: 32, flexShrink: 0 }}
-            >
+            <button type="button" onClick={onClose} aria-label="Close" className="modal-close">
               <Icon name="x" size={16} />
             </button>
           </div>
