@@ -2,6 +2,8 @@
 // and day, with "Approve all" per resource-day and per network-day (posts
 // with lint warnings are never bulk-approved). Used on the Inbox page, the
 // agent page and in the agent chat.
+// Spec 078 D4: a group is a titled block (resource, day, counts) over a compact-grid of cards; "Approve all" is a quiet
+// secondary button (the one main action is Approve in a post's dialog). Styles: approvals.css (appr-).
 
 import { Fragment, useMemo } from 'react';
 import { EmptyState } from '../ui/primitives';
@@ -51,16 +53,16 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
     onError: (e) => toast.error(describeError(e)),
   });
 
-  if (q.error) return <div className="callout-danger">{describeError(q.error)}</div>;
-  if (!q.data) return <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />;
+  if (q.error) return <div className="callout-danger" role="alert">{describeError(q.error)}</div>;
+  if (!q.data) return <div className="appr-skeleton" aria-busy="true" />;
   if (!items.length) {
-    return <EmptyState icon="check" title="Nothing awaiting approval"
+    return <EmptyState tone="clear" title="Nothing awaiting approval"
       note={emptyNote ?? 'Resources in approval mode write posts in advance (the next day at 20:00), and each one appears here before it is published.'} />;
   }
 
   let lastNetworkDay = '';
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+    <div className="appr-list">
       {groups.map((g) => {
         const waiting = g.items.filter((i) => i.status === 'awaiting_approval');
         // Posts with lint warnings or a critic verdict other than pass are decided one by one (spec 034 FR-004).
@@ -71,29 +73,27 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
         return (
           <Fragment key={g.key}>
             {showNetwork && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', padding: '10px 12px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)' }}>
-                <span className="text-body-sm" style={{ flex: '1 1 220px' }}>Network {g.title} · {fmtDay(g.day)}: posts on several resources</span>
-                <button className="btn-secondary" disabled={bulk.isPending} onClick={() => approveAll({ channel: g.channelKey, date: g.day }, `network ${g.title}, ${fmtDay(g.day)}`)}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <div className="inset appr-network">
+                <span className="text-body-sm appr-network-text">Network {g.title} · {fmtDay(g.day)}: posts on several resources</span>
+                <button className="btn-secondary btn-sm" disabled={bulk.isPending} onClick={() => approveAll({ channel: g.channelKey, date: g.day }, `network ${g.title}, ${fmtDay(g.day)}`)}>
                   <Icon name="check" size={14} /> Approve all in the network for {fmtDay(g.day)}
                 </button>
               </div>
             )}
-            <section>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 10 }}>
-                <div style={{ minWidth: 0, flex: '1 1 200px' }}>
-                  <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {g.title}{g.resourceRef !== `telegram:${g.channelKey}` ? ` · ${g.resourceRef}` : ''}
-                  </div>
-                  <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+            <section className="appr-group" aria-label={`${g.title}, ${fmtDay(g.day)}`}>
+              <div className="appr-group-head">
+                <div className="appr-group-title">
+                  <h3 className="text-heading-md appr-group-name">
+                    {g.title}{g.resourceRef !== `telegram:${g.channelKey}` ? <span className="mono appr-group-ref"> · {g.resourceRef}</span> : ''}
+                  </h3>
+                  <div className="text-micro mono appr-dim">
                     {fmtDay(g.day)} · {waiting.length} waiting{g.items.length > waiting.length ? ` · ${g.items.length - waiting.length} approved` : ''}
                   </div>
                 </div>
                 {waiting.length > 0 && (
-                  <button className="btn-primary" disabled={bulk.isPending || clean === 0}
+                  <button className="btn-secondary btn-sm" disabled={bulk.isPending || clean === 0}
                     title={clean === 0 ? 'Every post has warnings — approve them one by one' : undefined}
-                    onClick={() => approveAll({ resource: g.resourceRef, date: g.day }, `${g.title}, ${fmtDay(g.day)}`)}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    onClick={() => approveAll({ resource: g.resourceRef, date: g.day }, `${g.title}, ${fmtDay(g.day)}`)}>
                     <Icon name="check" size={14} /> Approve all for {fmtDay(g.day)}{clean < waiting.length ? ` (${clean})` : ''}
                   </button>
                 )}

@@ -2,6 +2,7 @@
 // the approval card before the owner approves — story matches (with links to the
 // earlier posts), numbers without a source, date checks and the other lint
 // warnings. Each finding: the rule, the words of the post it is about, how to fix.
+// Spec 078 D4: an inset with an overline per section. Styles: approvals.css (appr-).
 
 import { Badge } from '../ui/Badge';
 import { FindingRefs } from '../agents/PostAuditNotes';
@@ -11,28 +12,19 @@ export function ApprovalFindings({ findings }: { findings: ApprovalFinding[] | n
   const sections = findingsBySection(findings);
   if (!sections.length) return null;
   return (
-    <div data-testid="approval-findings" style={{
-      marginTop: 10, padding: '8px 10px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)',
-      borderRadius: 'var(--radius-md)', display: 'grid', gap: 8, minWidth: 0,
-    }}>
+    <div data-testid="approval-findings" className="inset appr-findings">
       {sections.map((s) => (
-        <div key={s.section} style={{ display: 'grid', gap: 4, minWidth: 0 }}>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}>
-            {s.label} · {s.items.length}
-          </div>
+        <div key={s.section} className="appr-findings-section">
+          <span className="text-overline">{s.label} · {s.items.length}</span>
           {s.items.map((f, i) => (
-            <div key={`${f.code}${i}`} style={{ display: 'grid', gap: 2, minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', minWidth: 0 }}>
+            <div key={`${f.code}${i}`} className="appr-finding">
+              <div className="appr-finding-head">
                 <Badge tone={f.level === 'error' ? 'danger' : 'warning'}>{f.level}</Badge>
-                <span className="text-micro" style={{ color: 'var(--color-ink)', fontWeight: 500, overflowWrap: 'anywhere' }} title={f.explain}>{f.title}</span>
+                <span className="text-caption appr-finding-title" title={f.explain}>{f.title}</span>
               </div>
-              {f.excerpt && (
-                <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', borderLeft: '2px solid var(--color-hairline)', paddingLeft: 6 }}>
-                  “{f.excerpt}”
-                </div>
-              )}
-              <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
-                {f.explain} <span style={{ color: 'var(--color-ink)' }}>Fix: {f.fix}</span>
+              {f.excerpt && <div className="text-micro appr-excerpt">“{f.excerpt}”</div>}
+              <div className="text-micro appr-muted appr-wrap">
+                {f.explain} <span className="appr-ink">Fix: {f.fix}</span>
               </div>
               <FindingRefs extra={f.extra} />
             </div>

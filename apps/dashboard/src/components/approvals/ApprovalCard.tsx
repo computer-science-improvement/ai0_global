@@ -3,12 +3,12 @@
 // in the resource's zone, the agent's rationale and the owner's actions —
 // approve, edit and approve, reschedule, reject. A lost race with another tab
 // (409 already_decided) is shown as a toast and the list refreshes.
+// Spec 078 D4: status tone and label from lib/status-tone.ts, facts in insets with overline keys, no inline colour. Styles: approvals.css (appr-).
 
 import { useMemo, useState } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
 import { Field } from '../ui/primitives';
-import type { Tone } from '../ui/primitives';
 import { toast, describeError } from '../ui/Toast';
 import { Modal } from '../Modal';
 import { SegmentedTabs } from '../SegmentedTabs';
@@ -18,18 +18,14 @@ import { ApprovalFindings } from './ApprovalFindings';
 import { CompactCard, plainText } from '../ui/CompactCard';
 import { CriticBadge } from '../editor/SlotPlan';
 import { heldByCritic } from '../../lib/critic';
+import { slotLabel, slotTone } from '../../lib/status-tone';
 import { errorBody } from '../../api/agents';
 import {
   fmtDay, toZonedInput, useApprovalAction, zonedInputToIso, type ApprovalCardData, type RenderedPlatformPost,
 } from '../../api/approvals';
 
-const STATUS: Record<string, { label: string; tone: Tone }> = {
-  awaiting_approval: { label: 'Awaiting approval', tone: 'warning' },
-  approved:          { label: 'Approved', tone: 'accent' },
-  expired:           { label: 'Expired', tone: 'neutral' },
-  skipped:           { label: 'Rejected', tone: 'neutral' },
-  published:         { label: 'Published', tone: 'success' },
-};
+/** The post's status as the owner reads it: tone from the app's one status map; a post that ended `skipped` here is one the owner rejected. */
+const statusLabel = (status: string) => (status === 'skipped' ? 'Rejected' : slotLabel(status));
 
 const PLATFORM_ICON: Record<string, IconName> = {
   telegram: 'telegram', instagram: 'instagram', facebook: 'facebook', threads: 'threads', tiktok: 'tiktok', youtube: 'globe',
@@ -70,7 +66,6 @@ function mediaCount(item: ApprovalCardData): number {
  */
 export function ApprovalCard({ item, delay = 0, focused = false }: { item: ApprovalCardData; delay?: number; focused?: boolean }) {
   const waiting = item.status === 'awaiting_approval';
-  const st = STATUS[item.status] ?? { label: item.status, tone: 'neutral' as Tone };
   const issues = item.findings?.length || item.lintWarnings.length;
   const held = heldByCritic(item.critic);
   const media = mediaCount(item);
@@ -78,23 +73,21 @@ export function ApprovalCard({ item, delay = 0, focused = false }: { item: Appro
   return (
     <CompactCard id={`approval-${item.id}`} delay={delay} focused={focused} attention={waiting && (!!issues || held)} hint="Open the post"
       top={<>
-        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-          <Icon name="clock" size={12} /> {item.localTime}
-        </span>
-        <Badge tone={st.tone}>{st.label}</Badge>
-        <span className="chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11 }} title={item.resourceRef}>
+        <span className="appr-time mono tabular-nums"><Icon name="clock" size={12} /> {item.localTime}</span>
+        <Badge tone={slotTone(item.status)}>{statusLabel(item.status)}</Badge>
+        <span className="chip mono appr-format" title={item.resourceRef}>
           <Icon name={PLATFORM_ICON[item.platform] ?? 'globe'} size={11} /> {item.format}
         </span>
-        {item.ownerEdited && <span className="chip" style={{ fontSize: 11 }}>edited</span>}
-        {item.replacesSlotId && <span className="chip" style={{ fontSize: 11 }}>replacement</span>}
-        {item.isExperiment && <span className="chip" style={{ fontSize: 11 }}>experiment</span>}
+        {item.ownerEdited && <span className="chip">edited</span>}
+        {item.replacesSlotId && <span className="chip">replacement</span>}
+        {item.isExperiment && <span className="chip">experiment</span>}
       </>}
       title={item.topic}
       body={cardText(item) || undefined}
       extra={(item.critic || media > 0) ? (
-        <span style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap' }}>
+        <span className="appr-extra">
           <CriticBadge critic={item.critic} />
-          {media > 0 && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="image" size={11} /> {media}</span>}
+          {media > 0 && <span className="text-micro mono appr-dim appr-media-count" title="Images and videos"><Icon name="image" size={11} /> {media}</span>}
         </span>
       ) : undefined}
       note={issues ? `${issues} ${issues === 1 ? 'finding' : 'findings'} — check before approving` : undefined}
@@ -111,10 +104,10 @@ export function ApprovalCard({ item, delay = 0, focused = false }: { item: Appro
 function ApprovalDetails({ item }: { item: ApprovalCardData }) {
   const title = item.channelTitle || item.channelKey;
   return (
-    <div style={{ minWidth: 0 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-        <Badge tone={(STATUS[item.status] ?? { tone: 'neutral' as Tone }).tone}>{(STATUS[item.status] ?? { label: item.status }).label}</Badge>
-        <span className="chip">{item.format}</span>
+    <div className="appr-details">
+      <div className="appr-tags">
+        <Badge tone={slotTone(item.status)}>{statusLabel(item.status)}</Badge>
+        <span className="chip mono">{item.format}</span>
         {item.ownerEdited && <span className="chip">edited</span>}
         {item.replacesSlotId && <span className="chip">replacement</span>}
         {item.isExperiment && <span className="chip">experiment</span>}
@@ -126,12 +119,12 @@ function ApprovalDetails({ item }: { item: ApprovalCardData }) {
           ? <PlatformPreview platform={item.platform} title={title} post={item.render.rendered} time={item.localTime} />
           : item.render?.kind === 'forward'
             ? (
-              <div className="text-body-sm" style={{ padding: '10px 12px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)', overflowWrap: 'anywhere' }}>
+              <div className="inset text-body-sm appr-forward">
                 ↪️ Repost of {item.render.fromKey}/{item.render.messageId} into {item.channelKey}
-                <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-dim)' }}>Forwarded as is at the slot time; it cannot be edited.</span>
+                <span className="text-micro appr-dim appr-block">Forwarded as is at the slot time; it cannot be edited.</span>
               </div>
             )
-            : <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Preview unavailable.</div>}
+            : <div className="text-micro appr-dim">Preview unavailable.</div>}
 
       <Rationale item={item} />
 
@@ -141,13 +134,13 @@ function ApprovalDetails({ item }: { item: ApprovalCardData }) {
       <ApprovalFindings findings={item.findings} />
 
       {item.lintWarnings.length > 0 && (
-        <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {!item.findings?.length && item.lintWarnings.map((w, i) => <span key={i} className="text-micro" style={{ color: 'var(--color-warning)', overflowWrap: 'anywhere' }}>⚠ {w}</span>)}
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Posts with warnings or a critic verdict other than pass are left out of "Approve all".</span>
+        <div className="appr-notes">
+          {!item.findings?.length && item.lintWarnings.map((w, i) => <span key={i} className="text-micro appr-warn">⚠ {w}</span>)}
+          <span className="text-micro appr-dim">Posts with warnings or a critic verdict other than pass are left out of "Approve all".</span>
         </div>
       )}
       {item.status === 'awaiting_approval' && (
-        <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-dim)' }}>
+        <div className="text-micro appr-dim appr-expiry">
           If it is not approved by {toZonedInput(new Date(item.expiresAt), item.timezone).replace('T', ' ')} ({item.timezone}), the post will not go out.
         </div>
       )}
@@ -178,25 +171,25 @@ function ApprovalActions({ item, onDone }: { item: ApprovalCardData; onDone: () 
   });
 
   return (
-    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
-      {approved && !editable && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center', marginRight: 'auto' }}>Less than 2 minutes to publication — the post is locked.</span>}
+    <div className="appr-actions">
+      {approved && !editable && <span className="text-micro appr-dim appr-locked">Less than 2 minutes to publication — the post is locked.</span>}
       {editable && (
-        <button className="btn-ghost" disabled={busy} onClick={() => setModal('reject')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+        <button className="btn-ghost appr-reject" disabled={busy} onClick={() => setModal('reject')}>
           <Icon name="ban" size={14} /> Reject
         </button>
       )}
       {editable && (
-        <button className="btn-secondary" disabled={busy} onClick={() => setModal('reschedule')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <button className="btn-secondary" disabled={busy} onClick={() => setModal('reschedule')}>
           <Icon name="calendar" size={14} /> Reschedule
         </button>
       )}
       {editable && !forward && (
-        <button className="btn-secondary" disabled={busy} onClick={() => setModal('edit')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <button className="btn-secondary" disabled={busy} onClick={() => setModal('edit')}>
           <Icon name="pencil" size={14} /> {waiting ? 'Edit and approve' : 'Edit'}
         </button>
       )}
       {waiting && (
-        <button className="btn-primary" disabled={busy} onClick={approve} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <button className="btn-primary" disabled={busy} onClick={approve}>
           <Icon name="check" size={14} /> Approve
         </button>
       )}
@@ -210,21 +203,21 @@ function ApprovalActions({ item, onDone }: { item: ApprovalCardData; onDone: () 
 function Rationale({ item }: { item: ApprovalCardData }) {
   const r = item.rationale;
   const rows: Array<[string, React.ReactNode]> = [];
-  if (r.idea) rows.push(['Idea', <>{r.idea.title}{r.idea.why ? <span style={{ color: 'var(--color-ink-muted)' }}> — {r.idea.why}</span> : null}</>]);
+  if (r.idea) rows.push(['Idea', <>{r.idea.title}{r.idea.why ? <span className="appr-muted"> — {r.idea.why}</span> : null}</>]);
   if (r.angle) rows.push(['Angle', r.angle]);
   if (r.source) {
     rows.push(['Source', /^https?:\/\//i.test(r.source.url)
-      ? <a href={r.source.url} target="_blank" rel="noopener noreferrer nofollow" className="link-accent" style={{ wordBreak: 'break-all' }}>{r.source.label || r.source.url}</a>
+      ? <a href={r.source.url} target="_blank" rel="noopener noreferrer nofollow" className="link-accent appr-break">{r.source.label || r.source.url}</a>
       : r.source.url]);
   }
   if (r.plan) rows.push(['Why this time', r.plan]);
   if (!rows.length) return null;
   return (
-    <div style={{ marginTop: 10, padding: '8px 10px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)', display: 'grid', gap: 4 }}>
+    <div className="inset appr-rationale">
       {rows.map(([k, v]) => (
-        <div key={k} className="text-micro" style={{ display: 'flex', gap: 8, minWidth: 0 }}>
-          <span style={{ color: 'var(--color-ink-dim)', flexShrink: 0, width: 92 }}>{k}</span>
-          <span style={{ color: 'var(--color-ink)', minWidth: 0, overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{v}</span>
+        <div key={k} className="appr-kv">
+          <span className="text-overline">{k}</span>
+          <span className="appr-kv-value">{v}</span>
         </div>
       ))}
     </div>
@@ -235,26 +228,21 @@ function Rationale({ item }: { item: ApprovalCardData }) {
 export function PlatformPreview({ platform, title, post, time }: { platform: string; title: string; post: RenderedPlatformPost; time: string }) {
   const media = post.imageUrls.filter((u) => /^https?:\/\//i.test(u));
   return (
-    <div style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', maxWidth: 480 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 10px', borderBottom: '1px solid var(--color-hairline-soft)' }}>
+    <div className="appr-platform">
+      <div className="appr-platform-head">
         <Icon name={PLATFORM_ICON[platform] ?? 'globe'} size={14} />
-        <span className="text-micro" style={{ color: 'var(--color-ink)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</span>
-        <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)' }}>{platform} · {time}</span>
+        <span className="appr-platform-title">{title}</span>
+        <span className="appr-platform-meta">{platform} · {time}</span>
       </div>
       {media.length > 0 && (
-        <div style={{ display: 'flex', gap: 2, overflowX: 'auto', scrollSnapType: 'x mandatory' }}>
-          {media.map((u, i) => (
-            <img key={i} src={u} alt="" loading="lazy" referrerPolicy="no-referrer"
-              style={{ width: media.length > 1 ? '80%' : '100%', flexShrink: 0, aspectRatio: '1 / 1', objectFit: 'cover', scrollSnapAlign: 'start', background: 'var(--color-surface-2)' }} />
-          ))}
+        <div className={`appr-media${media.length > 1 ? ' is-multi' : ''}`}>
+          {media.map((u, i) => <img key={i} src={u} alt="" loading="lazy" referrerPolicy="no-referrer" />)}
         </div>
       )}
-      {post.videoUrl && <div className="text-micro" style={{ padding: '6px 10px', color: 'var(--color-ink-muted)', wordBreak: 'break-all' }}>🎬 {post.videoUrl}</div>}
-      {platform === 'tiktok' && post.title && <div className="text-body-sm" style={{ padding: '8px 10px 0', fontWeight: 600, color: 'var(--color-ink)' }}>{post.title}</div>}
-      <div className="text-body-sm" style={{ padding: '8px 10px', color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.5 }}>{post.caption}</div>
-      {post.firstComment && (
-        <div className="text-micro" style={{ padding: '0 10px 8px', color: 'var(--color-ink-muted)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>💬 {post.firstComment}</div>
-      )}
+      {post.videoUrl && <div className="text-micro appr-muted appr-pad appr-break">🎬 {post.videoUrl}</div>}
+      {platform === 'tiktok' && post.title && <div className="text-body-sm appr-pad appr-platform-tt">{post.title}</div>}
+      <div className="text-body-sm appr-caption">{post.caption}</div>
+      {post.firstComment && <div className="text-micro appr-muted appr-first-comment">💬 {post.firstComment}</div>}
     </div>
   );
 }
@@ -307,29 +295,28 @@ function EditModal({ item, onClose, onSaved }: { item: ApprovalCardData; onClose
 
   return (
     <Modal open onClose={onClose} title={item.status === 'approved' ? 'Edit post' : 'Edit and approve'} subtitle={`${item.resourceRef} · ${item.localTime}`} icon="pencil" size="lg">
-      <div style={{ marginBottom: 10 }}>
+      <div className="appr-mode">
         <SegmentedTabs size="sm" value={mode} onChange={setMode}
           options={isPlatform || hasBody ? [{ key: 'text' as const, label: 'Text' }, { key: 'json' as const, label: 'JSON' }] : [{ key: 'json' as const, label: 'JSON' }]} />
       </div>
       {mode === 'text' ? (
         <>
           <Field label={isPlatform ? 'Caption' : 'Text'} hint={isPlatform ? undefined : 'Separate paragraphs with a blank line; "• " starts a list, "> " a quote. The first paragraph stays the headline if it was one.'}>
-            <textarea className="input-field" rows={10} value={text} onChange={(e) => setText(e.target.value)} style={{ width: '100%', resize: 'vertical', fontFamily: 'inherit' }} />
+            <textarea className="input-field appr-textarea" rows={10} value={text} onChange={(e) => setText(e.target.value)} />
           </Field>
           <Field label="Hashtags" hint="Space-separated, without #">
-            <input className="input-field" value={tags} onChange={(e) => setTags(e.target.value)} style={{ width: '100%' }} />
+            <input className="input-field appr-field" value={tags} onChange={(e) => setTags(e.target.value)} />
           </Field>
         </>
       ) : (
         <Field label="PostSpec (JSON)" hint="The full post spec: poll, media, buttons.">
-          <textarea className="input-field" rows={16} value={json} onChange={(e) => setJson(e.target.value)} spellCheck={false}
-            style={{ width: '100%', resize: 'vertical', fontFamily: 'var(--font-mono, monospace)', fontSize: 12 }} />
+          <textarea className="input-field appr-textarea appr-json" rows={16} value={json} onChange={(e) => setJson(e.target.value)} spellCheck={false} />
         </Field>
       )}
-      {error && <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{error}</span></div>}
-      <p className="text-micro" style={{ margin: '8px 0 0', color: 'var(--color-ink-muted)' }}>Your edit goes through the same checks as the agent's post; the preview updates after saving.</p>
+      {error && <div className="callout-danger appr-err" role="alert"><span className="text-micro">{error}</span></div>}
+      <p className="text-micro appr-muted appr-note">Your edit goes through the same checks as the agent's post; the preview updates after saving.</p>
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-ghost" onClick={onClose}>Cancel</button>
         <button className="btn-primary" disabled={action.isPending} onClick={save}>{item.status === 'approved' ? 'Save' : 'Save and approve'}</button>
       </div>
     </Modal>
@@ -348,12 +335,12 @@ function RescheduleModal({ item, onClose, onSaved }: { item: ApprovalCardData; o
   return (
     <Modal open onClose={onClose} title="Reschedule post" subtitle={`${item.resourceRef} · ${item.topic}`} icon="calendar">
       <Field label="Date and time" hint={`The resource's time zone (${item.timezone}). Quiet hours and the gap to neighbouring posts are checked.`}>
-        <input className="input-field" type="datetime-local" value={value} min={min} step={300}
-          onChange={(e) => setValue(e.target.value)} style={{ width: '100%', colorScheme: 'dark' }} />
+        <input type="datetime-local" value={value} min={min} step={300}
+          onChange={(e) => setValue(e.target.value)} className="input-field appr-field appr-datetime" />
       </Field>
-      {error && <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro">{error}</span></div>}
+      {error && <div className="callout-danger appr-err" role="alert"><span className="text-micro">{error}</span></div>}
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-ghost" onClick={onClose}>Cancel</button>
         <button className="btn-primary" disabled={action.isPending || !value} onClick={submit}>Reschedule</button>
       </div>
     </Modal>
@@ -373,10 +360,10 @@ function RejectModal({ item, onClose, onSaved }: { item: ApprovalCardData; onClo
   return (
     <Modal open onClose={onClose} title="Reject post" subtitle={`${item.resourceRef} · ${item.topic}`} icon="ban">
       <Field label="Reason (optional)" hint="The agent sees it when it writes the replacement.">
-        <textarea className="input-field" rows={3} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} style={{ width: '100%', resize: 'vertical', fontFamily: 'inherit' }} />
+        <textarea className="input-field appr-textarea" rows={3} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} />
       </Field>
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-ghost" onClick={onClose}>Cancel</button>
         <button className="btn-danger" disabled={action.isPending} onClick={submit}>Reject</button>
       </div>
     </Modal>
