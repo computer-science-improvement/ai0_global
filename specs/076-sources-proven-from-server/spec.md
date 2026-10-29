@@ -1,6 +1,6 @@
 # 076 — Sources proven from the server
 
-Status: draft · Builds on 049 (source health, `change_source`), 061 (host strikes, slot pre-flight), 065/070 (DocStore, list import, `split_on`, feed blocks), 039 (settings), 060/068 (series pauses) · Migration 100
+Status: done · Builds on 049 (source health, `change_source`), 061 (host strikes, slot pre-flight), 065/070 (DocStore, list import, `split_on`, feed blocks), 039 (settings), 060/068 (series pauses) · Migration 100
 Linear AI0-254 · Wave 7, W1: built in parallel with 072 and 073, merged 073 → 072 → 076. Runbook § 36. Mock port 3176.
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.

@@ -892,6 +892,9 @@ No migration. One owner action per item below; none of them needs a setting.
 A law or standard on one long page has no headings per clause, so `import_list` cuts it by a line pattern. The first use is the road rules for @pdr_dev_channel: 866 `pdr_questions` rows are used up, and the clauses are the next source of quiz posts.
 
 1. In the chat with @pdr_dev_channel (or `@ai0`): fetch the page of the rules on zakon.rada.gov.ua (the `…/print` address), then ask for an import into `pdr_rules` with `split_on` set to `^([0-9]{1,2}[.][0-9]{1,2}(?:[.][0-9]{1,2})?)[.]` (group 1 is the clause number) and this mapping: `clause` = `split_key`, `title` = `heading`, `text` = `text_without:^\{` (leaves out the editorial notes «{Пункт … в редакції …}»), `category` = `context_line:^[0-9]{1,2}[.] [^.]{3,60}$` (the section title, e.g. «14. ОБГІН»), `source_url` = `url_anchor:п.`, `license` = `const:public domain`.
+
+   Now: save the page in a browser and upload it (§ 36).
+
 2. Read the preview: `records` (one per clause), `longest_record_chars` (one clause that runs to thousands of characters means a section title was not recognised), and `repeated_keys` (`1.1 ×2` means a sign or markup line collides with a clause: narrow the pattern). The patterns are tested on the first 300 characters of each line and are **case-insensitive**, so rely on the numbering, not on capitals.
 3. Press **Apply**. `post_requires` is `[[text]]` (with `split_on` the default is only the fields read by `text` / `text_without`; a picture or the heading is not enough); `list_ref` is the page address plus `#<clause>` and is the dedup key; the weekly re-sync repeats the same `split_on` and updates only the clauses that changed.
 4. Add `pdr_rules` as a library source on the pdr card and allow the `quiz` format. Library posts carry `library_ref` (`data://pdr_rules/N`) and `source.url` = the anchored clause (`…/print#п.14.6`), so the ledger records both and the critic reads the row.
@@ -1059,3 +1062,83 @@ The dashboard and the landing page have a new look: dark panels with hairlines, 
 - Tests:
   - Dashboard: `nav/migrate.test.ts`, `nav/registry.test.ts`, `nav/badges.test.ts`, `lib/today.test.ts`, `lib/inbox-*.test.ts`, `lib/calendar.test.ts`, `lib/agent-tabs.test.ts`, `lib/landing-*.test.ts`, `lib/status-tone.test.ts`.
   - Backend: `editor/series-pause/inbox-actions.078.test.ts` and `inbox-actions.078.pg.test.ts`.
+
+## 36. Sources proven from the server (spec 076)
+
+A channel used to learn that a source was dead only when a slot tried it, and a site that blocks the server's country (zakon.rada.gov.ua from the US droplet) could only be worked around by splitting the page on a laptop. Now the server reads each feed and page itself ("a probe"), says what it saw, counts repeated timeouts as a strike, can send chosen hosts through a proxy, and takes a page you saved in your own browser.
+
+**Needs (deploy order matters)**
+
+1. **Apply migration 100 first** (`database/migrations/100_source_reach.sql`; undo: `database/migrations/down/100_source_reach.down.sql`). It adds `source_probes` and three columns on `source_host_failures`. It is additive and idempotent. The code that records host failures swallows its errors, so **without the migration nothing is stored**: no strike, no probe cache, no host note.
+2. Deploy the automation image **and** the dashboard image together. The dashboard's nginx now allows a 12 MB body on the API location (an uploaded page); with an older nginx a page over 1 MB answers 413.
+3. Optional: a proxy (below). Nothing else needs a setting.
+
+**What a probe tells**
+
+- A probe reads the address like an agent would (feed first, then the page) and stores one row per address: `ok`, the failure class (`timeout`, `refused`, `tls`, `dns`, `http`, `empty`), the HTTP status, the items found, the newest item, up to five sample titles, how long it took and whether it went through the proxy.
+- The answer is **cached for 6 hours** (`source_probes`). "Test from server" and the daily worker's forced reads skip the cache; the card save and the series bind probe in the background and use it.
+- `invalid` is the class of an address the server refuses to open (not http or https, a private or local address). It is never stored, never cached and never counted against the host.
+- Where you see it:
+  - **Agent → Settings → Sources**: each feed and page shows «Server read: OK · 24 items · newest 2 h ago · checked 3 h ago», or the failure («timed out twice», «refused (HTTP 403)», «address not found»), in green, amber or red. A source that worked in the agent's runs but cannot be read now gets the badge «Cannot be read».
+  - **Health → Sources** shows the same line for every channel.
+  - A dataset source shows its runway («12 rows left · ~4 days», amber under 7 days, red at none); a channel whose card and playbook name no source says «No sources: the channel writes from its brief only».
+- **Workers**: daily at 05:35 Kyiv the server probes the sources of every channel younger than 14 days (and of its playbook), one at a time, 2 s apart, then writes the host notes. Every 6 hours it re-reads the sources of a channel with an open `source_unreachable` pause, forced, one per host: a success ends the block, and the pause lifts by itself (specs 072 and 074).
+- A $0 slot pre-flight skips a slot whose every feed is blocked (`preflight_host_blocked`) instead of spending a run on it.
+
+**The `unreachable` strike**
+
+- **Three timeouts in a row on one host inside a sliding 14 days** make the host `unreachable`. Its block is **1 day, then 3 days, then 7 days** for the next strikes. **One success ends it**: the count and the block are cleared.
+- A host that refuses (401, 403, 429, 451), does not resolve or fails TLS keeps its own rules from § 20 and § 29; only timeouts count here.
+- The owner hears about it once per streak: a note `host_struck` per channel, in the Inbox and in the owner bot («host cannot be reached from the server»). It is repeated as «still …» every 3 days (`OWNER_NOTE_REPEAT_DAYS`) while the host stays struck, and the third one nobody answered is posted as info. The note's first button opens the channel's Sources panel.
+- **Details** on a source row shows the block and when it ends. **Test from server** reads the address now, whatever the block says; a success clears it.
+
+**The proxy (`EGRESS_PROXY_URL`, `EGRESS_PROXY_HOSTS`)**
+
+1. Open Settings → Configuration → Integrations. Set **Source proxy URL** (`EGRESS_PROXY_URL`) to an **http or https** proxy, as `http://user:pass@host:port`. A `socks5://` address is not supported and counts as no proxy (the log warns once, without printing the value). The value is a secret: it is stored encrypted, which needs `TOKEN_ENCRYPTION_KEY` like every secret setting.
+2. Set **Hosts read through the proxy** (`EGRESS_PROXY_HOSTS`) to a comma-separated list: `zakon.rada.gov.ua`. A host and its subdomains match; `www.` is ignored. Both settings apply at once, with no restart.
+3. Only those hosts go through the proxy, only for **source reads** (feeds, pages, the probe, list import). **Model, Telegram, Meta and TikTok traffic never uses it**, and a host that is not listed is read directly, so a process-wide `HTTPS_PROXY` keeps working for it. Every redirect picks its own route, and the private-address check runs before each hop, proxy or not.
+4. Shortcut: on a source row that failed with a timeout or a refusal, **Route via proxy** appears when a proxy URL is set. It adds the host to the list and reads the address once more, and the toast says whether it helped.
+
+**Upload the page (a saved page instead of a fetch)**
+
+For a site the server cannot reach and no proxy helps. The first use is the road rules for @pdr_dev_channel: this replaces the local split of § 29.
+
+1. In your browser, open the page the dataset is made from (for the rules: `https://zakon.rada.gov.ua/laws/show/1306-2001-%D0%BF/print`). Save it: **File → Save Page As → "Webpage, HTML only"** (Safari: format «Page Source»). Do not pick "Webpage, Complete": the folder of images is not needed.
+2. Open **Data → Upload page**, or the failed source's row in **Agent → Settings → Sources → Upload the page** (the address is filled in). The address must be the one the page came from. Choose the file (`.html`, `.htm`, `.txt` or `.md`, up to 5 MB, at most 5,000,000 characters), or switch to **Pasted text** and paste the HTML.
+3. A page saved from a Ukrainian site may be windows-1251: the dialog reads the file as bytes and decodes it in the charset the page declares (it says «read as windows-1251»), so the letters arrive intact.
+4. **First import.** Leave "Re-sync a dataset" empty and press **Upload**. The server keeps the page for **7 days** and shows its title, sections and page id. Press **Continue in chat**: the chat opens with «Import the uploaded page <id> (<address>) with import_list». Give it the `split_on` and mapping of § 29 step 1, read the preview (§ 29 step 2) and press **Apply**. The page is read from memory; the site is never fetched.
+5. **Re-sync.** To refresh a dataset made that way, upload the new page again and choose the dataset in the dialog: it is re-synced at once from the saved `split_on` and mapping, and a toast says «N new, M changed» with a link to the dataset. If the address differs from the one the dataset was imported from, the dialog answers «The dataset was imported from another address: …» and changes nothing.
+6. **The weekly re-sync does not touch it.** A dataset made from an uploaded page is marked `uploaded`: it is never read from the site, and the chat's own re-sync is refused (`resync_manual: imported from an uploaded page: upload the page again`). The channel doctor lists it as an info finding (`dataset_resync_manual`).
+7. **After a restart** the kept pages are gone (the store is in memory; it also keeps at most 100). **Apply** on an old preview then answers `upload_expired: the uploaded page is gone …; upload it again`. Upload the page again and repeat from step 4; nothing was changed.
+8. A dataset that is re-synced weekly from a live page and starts failing (the site is down, blocked, or its page changed) posts one note `resync_failed` («Re-sync of <dataset> failed») per kind of failure, not one per week. Its text points to **Data → Upload page**.
+9. Not accepted: a JSON file (the dialog says so; use the `import_list` API reader of § 25), and a page with no text (check that the saved file is the page itself).
+
+**The Sources panel buttons**
+
+| Button | What it does | Appears |
+|---|---|---|
+| Test from server | Reads the address now (skips the 6 h cache and a host block) and shows the answer in a toast | every feed and page |
+| Details | The result, status, items, newest item, how it was read, sample titles of a fresh read, the block on the host, and Test again | every feed and page |
+| Route via proxy | Adds the host to `EGRESS_PROXY_HOSTS` and reads once more | the read failed or the host is `unreachable`, the address is valid, a proxy URL is set, and the failed read did not already use it (the channel doctor suggests it only for timeouts and refusals) |
+| Upload the page | Opens the upload dialog with the address filled in | the read failed or the host is `unreachable` |
+| Remove | Takes the source off the channel's card, after a confirmation | a card source whose read failed (not a source only the playbook reads) |
+
+A library or api source is not read from the server, so its row has no buttons.
+
+**Owner steps after deploy**
+
+1. Apply migration 100, then deploy both images (see Needs).
+2. Optional: set the proxy URL and `zakon.rada.gov.ua` in the hosts list. If the proxy works, the pdr feed and page read by themselves and step 3 is not needed.
+3. Upload the saved page of the rules for `pdr_rules` (the steps above), then Apply the import in the chat. After that, set the reuse policy of `pdr_rules` to «Repeat in rounds» and resume @pdr_dev_channel if it was paused (§ 29 step 5).
+4. Open Health → Sources once: the sources the server cannot read are listed with the reason. For each one pick **Route via proxy**, **Upload the page** or **Remove**.
+
+**Troubleshooting**
+
+- Every source says «Server read: not read yet»: the daily worker has not run and nobody pressed **Test from server**; the card save and the series bind probe in the background, so an edited card fills in shortly after it is saved.
+- No probe line and no buttons on any row: the automation image is older than the dashboard, or migration 100 is missing (the report then has no probe data).
+- «No proxy is set up yet. Add EGRESS_PROXY_URL in Settings first.»: Route via proxy was pressed with no valid http(s) proxy URL.
+- A file is refused with «The file is 6.0 MB; the limit is 5 MB.»: save «HTML only», not «Complete», or paste the text of the section you need.
+- The upload answers «The page is too large» (413): the page text is over 5,000,000 characters, or the dashboard image's nginx is older than the automation image (it allows 1 MB).
+- Cyrillic letters turn into replacement boxes (U+FFFD) in the preview: the page declared no charset and is not UTF-8. Save it again from the browser (it writes the charset), or paste the text.
+- A dead channel's host note comes every 3 days: that is the repeat. Fix the source or press **Remove**; a success clears the strike.
+- Tests: `net/host-unreachable.076.test.ts`, `net/egress.076.test.ts`, `sources/probe.076.test.ts`, `sources/source-health.076.test.ts`, `sources/source-findings.076.test.ts`, `sources/codes.076.test.ts`, `sources/onboarding-1027.076.test.ts` (the 10-27 channels as acceptance replays), `sources/sources.controller.076.test.ts`, `docs/upload.076.test.ts`, `docs/upload.076.pg.test.ts`, `net/source-reach.076.pg.test.ts`; dashboard `lib/source-probe.test.ts`, `lib/page-charset.test.ts`, `lib/inbox-kinds.test.ts`.

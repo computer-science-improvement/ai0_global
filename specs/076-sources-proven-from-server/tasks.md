@@ -359,7 +359,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - A look on the mock: Settings → Sources, both dialogs, Health → Sources, Data → Upload page, in light and dark, at desktop and 375 px. If it cannot run, the final report lists these checks for the lead.
   - **Done when:** a windows-1251 page saved from a browser uploads with readable Cyrillic, and a 6 MB file is refused in the dialog.
 
-- [ ] **T10 Docs and close-out** (A28)
+- [x] **T10 Docs and close-out** (A28)
   - **What:**
     - Runbook **§ 36 "Sources proven from the server (spec 076)"**, one contiguous block at the end of `docs/runbooks/agent-platform.md`. It covers:
       - what a probe tells, the 6 h cache and `invalid`;
@@ -402,7 +402,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T7 `34d0e9f4` `SourceProbeWorker` (daily + paused re-probe), `SourcesController` (`probe`, `upload`, `drop`, `proxy-host`), `source-fixes.ts`, background probes on card save and series bind, `reach` in the `import_list` preview; host notes move from `toReplaceToday` to the worker.
 - T8 `3e6afbce` pure `sourceFindings` and `SOURCE_REASONS` (seven codes), the 10-27 fixtures and the three acceptance replays.
 - T9a `005bace7` `api/sources.ts` (four hooks), `lib/source-probe.ts`, the probe line / badge / runway / buttons / no-sources line in `SourcesSection`, the probe line on the Health page, `resync_failed` and the new `host_struck` steps in `inbox-kinds`.
-- T9b — (commit hash filled in the next commit) `lib/page-charset.ts` (`decodePageBytes`, `contentTypeOf`), `SourceProbeDialog`, `UploadPageDialog`, both wired into `SourcesSection`, and an "Upload page" button in the Data header.
+- T9b `4b7473fb` `lib/page-charset.ts` (`decodePageBytes`, `contentTypeOf`), `SourceProbeDialog`, `UploadPageDialog`, both wired into `SourcesSection`, and an "Upload page" button in the Data header.
+- T10 — this commit (the last of the series): runbook § 36 and the § 29 pointer, spec status done, the README row and migration line, the final checks.
 
 ## Deltas from the spec
 
@@ -475,3 +476,13 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
     - Health → Sources shows the same probe lines; Data → Upload page opens the same dialog, rejects an address without `http(s)://` inline and re-syncs a dataset with the toast.
     - At 375 px both dialogs are bottom sheets and nothing scrolls sideways (document and dialog widths equal the viewport).
     - The dashboard has one dark theme (no `prefers-color-scheme` or `data-theme` rules in `index.css`), so there is no light mode to check; emulating light changes nothing.
+- **T10.**
+  - The runbook block is **§ 36**, as the task says, though the file's last section is § 31: numbers 32 to 35 are held by the other specs of the wave. It sits at the end of the file in one piece. The § 29 pointer is an indented paragraph under step 1 («Now: save the page in a browser and upload it (§ 36).»), so the numbered list keeps its numbers.
+  - `specs/README.md`: the 076 row already existed (IN PROGRESS), so it is edited, not added: status DONE and the dependencies read 049, 061, 065, 070. The migration list gains "100 spec 076 (source probes, unreachable strikes: apply before deploying the code that writes them)" after 096.
+  - The required Deltas, where they are:
+    - `area: 'channel'` declared locally (A4): T8.
+    - Repeat and demotion of host notes, and the changed 061 tests (A9): T5 (the notes go through the gate; the repeat is `OWNER_NOTE_REPEAT_DAYS`, 3 days by default, and the third unanswered one is info), and T7 for the call that left `toReplaceToday`.
+    - `feed-items.test.ts:51-57` (A20): T4.
+    - `inbox-kinds.test.ts:383` (A24): T9a.
+    - The splits and the swap (A27): T6 is T6a (the parse branch, the doc store and the body limit) and T6b (the import marks and the re-sync from memory); T9 is T9a (API, rows, inbox kinds) and T9b (the dialogs, the charset, the browser check); T2 and T3 were swapped, so the proxy (T2) lands before `probeSource` (T3), which reads through it.
+  - Final checks, Node 20, on the scratch server with a copy database made for this run (`t076_w1_copy`, dropped at close-out): automation suite 4283 tests, 4281 pass, 1 skipped, 1 failure that passes alone (`manager/directive-lifecycle.e2e.pg.test.ts`, a shared-server race: the first full run had five other PG files fail the same way, `llm-budget`, `independent-resources`, `repurpose.e2e`, `derived-slots.e2e`, `network-offers`, and all pass alone, 11 of 11), `npm run build` exit 0, `npm run lint` 0 errors, 40 warnings (the baseline); dashboard tests 656 of 656, `tsc --noEmit` exit 0, `vite build` exit 0 (with `VITE_ALLOW_DEV_AUTH=true`, which a local-only build needs).
