@@ -12,6 +12,7 @@ import { useConfirm } from '../components/ui/ConfirmDialog';
 import { fmtDate } from '../lib/format';
 import { publicationLabel, publicationTone } from '../lib/status-tone';
 import type { ScheduledPost } from '../api/types';
+import { describeError } from '../components/ui/Toast';
 import '../components/calendar/calendar.css';
 
 export const Route = createFileRoute('/app/scheduled')({ component: ScheduledPage });
@@ -62,7 +63,7 @@ function ScheduledPage() {
       {error && (
         <div className="callout-danger">
           <Icon name="warning" size={16} />
-          <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{(error as Error).message}</span>
+          <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{describeError(error)}</span>
         </div>
       )}
 

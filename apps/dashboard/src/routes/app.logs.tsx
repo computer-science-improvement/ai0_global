@@ -21,6 +21,7 @@ import { dayEyebrow, dayHeading, fmtDayShort, groupByDay } from '../lib/day-grou
 import { markTone, type MarkKind } from '../lib/status-tone';
 import { KYIV_TZ, dayIn, fmtDateTimeIn, formatIn } from '../lib/zoned-time';
 import type { ActivityEvent, ActivityType, RunStep } from '../api/types';
+import { describeError } from '../components/ui/Toast';
 import '../components/activity/activity.css';
 
 export const Route = createFileRoute('/app/logs')({ component: LogsPage });
@@ -266,7 +267,7 @@ function LogsPage() {
           <Icon name="warning" size={16} />
           <div style={{ flex: '1 1 220px', minWidth: 0 }}>
             <div className="text-heading-md">Couldn’t load activity</div>
-            <div className="text-body-sm ink-muted" style={{ marginTop: 2, overflowWrap: 'anywhere' }}>{(q.error as Error).message}</div>
+            <div className="text-body-sm ink-muted" style={{ marginTop: 2, overflowWrap: 'anywhere' }}>{describeError(q.error)}</div>
           </div>
           <button className="btn-secondary btn-sm" onClick={() => q.refetch()}>
             <Icon name="refresh" size={13} /> Retry

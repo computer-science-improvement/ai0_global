@@ -4,6 +4,7 @@ import { Icon } from '../ui/Icon';
 import { Field } from '../ui/primitives';
 import { useCreateMetaAccount } from '../../api/meta-accounts';
 import type { MetaPlatform } from '../../api/types';
+import { describeError } from '../ui/Toast';
 import './connections.css';
 
 const DEFAULTS: Record<MetaPlatform, { label: string; tokenEnv: string; targetHint: string }> = {
@@ -96,7 +97,7 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
 
       {create.error && (
         <p className="conn-form-error" role="alert">
-          {(create.error as Error).message}
+          {describeError(create.error)}
         </p>
       )}
 

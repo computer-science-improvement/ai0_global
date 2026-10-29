@@ -18,6 +18,7 @@ import {
 } from '../../api/meta-accounts';
 import { useStrategies } from '../../api/strategies';
 import type { MetaAccount, MetaPlatform, Strategy } from '../../api/types';
+import { describeError } from '../ui/Toast';
 
 const PLATFORM_ICON: Record<MetaPlatform, 'facebook' | 'instagram' | 'threads'> = {
   facebook: 'facebook', instagram: 'instagram', threads: 'threads',
@@ -79,7 +80,7 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
             onVerify={() => verify.mutate(a.id)}
             onRefreshToken={() => refreshToken.mutate(a.id)}
             refreshing={refreshToken.isPending && refreshToken.variables === a.id}
-            refreshError={refreshToken.variables === a.id && refreshToken.isError ? (refreshToken.error as Error).message : null}
+            refreshError={refreshToken.variables === a.id && refreshToken.isError ? describeError(refreshToken.error) : null}
             onToggle={async () => {
               const action = a.active ? 'pause' : 'activate';
               if (await confirm(`${action} account ${a.account_id}`, { danger: false, confirmLabel: a.active ? 'Pause' : 'Activate' }))

@@ -14,6 +14,7 @@ import {
 } from '../../api/tiktok-accounts';
 import type { TikTokAccount } from '../../api/tiktok-accounts';
 import { fmtDate } from '../../lib/format';
+import { describeError } from '../ui/Toast';
 
 export function TikTokAccountsManager({ notice }: { notice?: 'connected' | 'error' }) {
   const { data, isLoading, error } = useTikTokAccounts();
@@ -26,7 +27,7 @@ export function TikTokAccountsManager({ notice }: { notice?: 'connected' | 'erro
   const connect = async () => {
     setConnecting(true); setConnectError(null);
     try { await startTikTokOAuth(); }
-    catch (e) { setConnectError((e as Error).message); setConnecting(false); }
+    catch (e) { setConnectError(describeError(e)); setConnecting(false); }
   };
 
   const accounts = data ?? [];

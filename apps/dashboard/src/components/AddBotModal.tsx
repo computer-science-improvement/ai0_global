@@ -3,6 +3,7 @@ import { useCreateBot } from '../api/bots';
 import { Modal } from './Modal';
 import { Icon } from './ui/Icon';
 import { Field } from './ui/primitives';
+import { describeError } from './ui/Toast';
 import './connections/connections.css';
 
 interface Props {
@@ -81,7 +82,7 @@ export function AddBotModal({ open, onClose }: Props) {
 
       {create.error && (
         <p className="conn-form-error" role="alert">
-          {(create.error as Error).message}
+          {describeError(create.error)}
         </p>
       )}
 
