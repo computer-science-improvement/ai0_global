@@ -18,7 +18,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
 
 ---
 
-- [ ] **T1 Migration 100 and the `unreachable` strike** (FR-002, A1, A2, A5–A8, A17)
+- [x] **T1 Migration 100 and the `unreachable` strike** (FR-002, A1, A2, A5–A8, A17)
   - **What:**
     - `100_source_reach.sql` as in the spec, plus the guarded `editor_ro` GRANT (A17). The down file is idempotent (A17).
     - In `net/host-failures.ts`:

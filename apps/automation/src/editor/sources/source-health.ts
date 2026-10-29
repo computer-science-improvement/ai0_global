@@ -191,10 +191,13 @@ export const isTroubled = (h: SourceHealth): boolean => h.state === 'blocked' ||
 
 /**
  * Sources worth a replacement: failing or exhausted, or blocked again and again (one 24-hour block is a blip — a site
- * that refused twice in a row, or a block on top of failed reads, is not).
+ * that refused twice in a row, or a block on top of failed reads, is not). An `unreachable` block (spec 076: three timeouts
+ * in a row, at least two hours of failures) counts at its first strike.
  */
 export const needsReplacement = (h: SourceHealth): boolean =>
-  h.state === 'failing' || h.state === 'exhausted' || (h.state === 'blocked' && h.blocked?.reason !== 'timeout' && ((h.blocked?.failures ?? 1) >= 2 || (h.blocked?.strikes ?? 0) >= 2 || h.errors >= FAILING_MIN_ERRORS));
+  h.state === 'failing' || h.state === 'exhausted'
+  || (h.state === 'blocked' && h.blocked?.reason !== 'timeout'
+    && ((h.blocked?.failures ?? 1) >= 2 || (h.blocked?.strikes ?? 0) >= 2 || h.errors >= FAILING_MIN_ERRORS || h.blocked?.reason === 'unreachable'));
 
 /** The hosts and feed addresses a card's sources (and the steps' urls) can be blocked under. */
 export function blockKeys(sources: CardSource[], steps: SourceStep[]): string[] {

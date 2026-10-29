@@ -280,6 +280,10 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
         }
         throw err;
       }
+      // Spec 076 A8: the feed was read, so the host's and the feed address's timeout counts start over and an `unreachable` block ends.
+      // `'feed'` leaves the strikes of a refusal streak (the host's pages) alone.
+      if (host) await d.hosts?.succeeded?.(host, 'feed');
+      if (key) await d.hosts?.succeeded?.(key, 'feed');
       // Spec 034 FR-010: freshness and (live slots) the ledger + 7-day repeat check, in code.
       const resourceRef = exclude_posted ? slotResourceRef(ctx) : null;
       if (exclude_posted && !resourceRef) return { error: 'no_resource', details: 'exclude_posted потребує каналу (контексту слота)' };

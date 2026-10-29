@@ -40,6 +40,10 @@ test('blocked, exhausted, ok and unused; a feed block does not stop a page sourc
   assert.equal(once.state, 'blocked');
   assert.equal(needsReplacement(once), false, 'one 24-hour block is a blip');
   assert.equal(needsReplacement(sourceHealthOf(PAGE, [], [block('example.org', 'refused', 2)], NOW)), true);
+  // Spec 076 A1: a first `unreachable` strike (strikes 1, failures 1) is already worth a replacement; a first refusal is still a blip.
+  const first = (reason: string): HostBlockRow => ({ host: 'example.org', reason, statusCode: null, until: new Date(NOW.getTime() + 3_600_000), failures: 1, strikes: 1 });
+  assert.equal(needsReplacement(sourceHealthOf(PAGE, [], [first('unreachable')], NOW)), true);
+  assert.equal(needsReplacement(sourceHealthOf(PAGE, [], [first('refused')], NOW)), false);
   assert.equal(sourceHealthOf(PAGE, [], [block('example.org', 'feed_unparseable')], NOW).state, 'unused');
   assert.equal(sourceHealthOf(FEED, [], [block('theverge.com/rss/index.xml', 'feed_too_large')], NOW).state, 'blocked');
 
