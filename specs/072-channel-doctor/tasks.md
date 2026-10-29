@@ -185,6 +185,17 @@ Not wired here:
 - 075's `materialAvailable`, the `bind_dataset` and `dataset_patch` kinds, and 074's `applied_hash`: these come with W2.
 - The effective tools still come from the card's lists, not the executor's registry names: the facts loader has no `ToolRegistry`.
 
+Fixed after the W1 integration review (`5cfacfea`…`9bbb3f9a`):
+- **One judgement per text (`5cfacfea`).** `judgePair` judges a skill, rule or steering line once against every required series it is about (`seriesAbout` + `seriesSourceConflictAmong` in `agents/skill-warnings.ts`), as the write path does. Suggested series are judged with the required ones as the text's own sources, and each conflict goes to the series it names. The write path still judges a feed by its raw card ref, so it can be stricter than the doctor there.
+- **`host_proxy_add` reads the source again (`62743ad8`).** The Fix carries `url` and `sourceKind`, and the runner forces a read through the proxy. It refuses with `source_still_failing` when the read still fails. The doctor offers the proxy only for a timeout or a refusal that did not already go through it, and only when the host is not yet listed in `EGRESS_PROXY_HOSTS`. A host listed after the failed read shows "routed through the proxy, waiting for a new read", with no Fix.
+- **The fixture rename is recorded (`35b84549`)** in specs 072 and 074.
+- **The `series_paused` hint names no single cause (`86695986`).**
+- **The owner-bot readiness card (`b2551649`).** Each blocker line keeps its subject. The card lists what one tap does only for the blockers it names, and a failed Fix shows Ukrainian text, never a refusal code.
+- **Owner-facing Ukrainian in the formal register, with no internal tokens (`e7ed8863`).** A catalogue test now guards this.
+- **Slot reasons (`271cd65c`).** Unclassified text shows as "Reason not classified". `retry after` and `waiting for budget` are read the way the server reads them. The calendar shows reasons only on closed slots.
+- **`source_drop` is destructive (`0d40a908`).** Its label names the source, and the panel confirms it as a danger "Remove".
+- **The Sources row agrees with the doctor (`9bbb3f9a`).** An empty source shows "Empty". "Route via proxy" appears only for a timeout, a refusal or an unreachable block. "Upload the page" appears only for a page source.
+
 ## Deltas from the spec
 
 Written task by task; the list is appended to as each task lands.
