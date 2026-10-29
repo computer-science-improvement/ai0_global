@@ -32,11 +32,11 @@ test('one day: today\'s miss is a series_missed note without the stalled part', 
   assert.doesNotMatch(note!.body, /two days in a row/);
 });
 
-test('two days: one stalled:<name> part, one line in the body and in the alert (the code until the catalogue)', () => {
+test('two days: one stalled:<name> part, one line in the body and in the alert (the label from the catalogue)', () => {
   const note = noteOf([slot({ at: YEST, error: SKIPPED }), slot({ at: TOD, error: SKIPPED })])!;
   assert.deepEqual(note.parts.filter((p) => p.startsWith('stalled:')), ['stalled:Prompt']);
-  assert.match(note.body, /Series "Prompt" has not gone out two days in a row: planner_skipped/);
-  assert.match(note.alert.body, /Серія «Prompt» не виходить два дні поспіль: planner_skipped/);
+  assert.match(note.body, /Series "Prompt" has not gone out two days in a row: Skipped by the planner$/m);
+  assert.match(note.alert.body, /Серія «Prompt» не виходить два дні поспіль: Планувальник пропустив цей випуск$/m);
   assert.equal(note.day, TODAY);
   assert.equal(note.subject, `silent:${REF}:miss`, 'the day\'s miss subject: it merges with the dark_day note');
   assert.equal(note.parts.filter((p) => p === 'stalled:Prompt').length, 1);
@@ -47,7 +47,7 @@ test('the qualifying reasons: planner_skipped, lint and other, in any mix across
   assert.deepEqual(stalledParts([slot({ at: YEST, error: SKIPPED }), slot({ at: TOD, status: 'failed', error: 'max_steps: ran out of steps' })]), ['stalled:Prompt']);
   assert.deepEqual(stalledParts([slot({ at: YEST, error: 'skipped by agent: пост не склався' }), slot({ at: TOD, error: 'lint_failed: too_long' })]), ['stalled:Prompt']);
   const note = noteOf([slot({ at: YEST, error: SKIPPED }), slot({ at: TOD, error: 'lint_failed: caption_too_long' })])!;
-  assert.match(note.body, /two days in a row: lint_failed/, 'the code of today\'s latest close');
+  assert.match(note.body, /two days in a row: Post failed the text checks/, 'the label of today\'s latest close');
 });
 
 test('a material, owner, critic or budget close on either day: none', () => {

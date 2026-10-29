@@ -83,7 +83,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `post/lint-post.073.test.ts`.
   - Done when: a poll with `correct_index` fails lint, a quiz with it passes, and the suite is green.
 
-- [ ] **T9 Reason catalogue (FR-014; A10, A28, A29, A39).**
+- [x] **T9 Reason catalogue (FR-014; A10, A28, A29, A39).**
   - What:
     - `reasons/catalogue.ts` with `ReasonEntry` (the contract's text, verbatim), `REASONS`, `reasonFor` and `reasonOfError` (no `codeOfError`), with entries for every code that exists after T1–T8, `planner_skipped` and `series_stalled` included;
     - the dashboard mirror `lib/reasons.ts` (`{ code, en, fix?.en, link? }`) with its drift test, and `reasonLink` (A29);

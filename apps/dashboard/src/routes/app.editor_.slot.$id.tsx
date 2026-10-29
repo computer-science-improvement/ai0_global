@@ -65,7 +65,7 @@ function EditorSlotPage() {
       {/* Spec 034 FR-012: what the slot will do (or why it did not), and when / by which run it was planned. */}
       <SectionCard title="Plan" delay={20} style={{ marginBottom: 16 }}>
         <div style={{ display: 'grid', gap: 10, minWidth: 0 }}>
-          <SlotDescription slot={view} tz={tz} feeds={feedsOf(channel.data)} />
+          <SlotDescription slot={view} tz={tz} feeds={feedsOf(channel.data)} links={{ channel: s.channelKey }} />
           {s.error && s.status !== 'skipped' && s.status !== 'failed' && s.status !== 'expired' && (
             <div className="text-micro ink-dim" style={{ overflowWrap: 'anywhere' }}>{s.error}</div>
           )}

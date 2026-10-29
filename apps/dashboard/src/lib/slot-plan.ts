@@ -6,6 +6,7 @@
 // them); every time goes through an explicit zone, never the browser's.
 
 import type { CriticVerdict } from './critic';
+import { reasonOfToken, reasonView } from './reasons';
 import { formatIn, zoneLabel } from './zoned-time';
 
 /** A live slot's spec as the API returns it (backend LiveSpec). */
@@ -97,31 +98,46 @@ export const LIVE_ORIGIN_LABEL: Record<LiveSpecView['origin'], string> = {
   planner: 'live · planner', news_watch: 'live · news watch', pin: 'live · pinned',
 };
 
-/** Why a slot did not produce a post, from its `error` (the system's words stay as the detail). */
-export interface SkipReason { code: string; label: string; detail: string }
+/**
+ * Why a slot did not produce a post, from its `error` (the system's words stay as the detail). `fix` and `link` come from the
+ * reason catalogue's mirror (`lib/reasons.ts`) and are set only when the entry has them; `link` is its path template, which
+ * `reasonLink` fills in.
+ */
+export interface SkipReason { code: string; label: string; detail: string; fix?: string; link?: string }
 
 const AGENT_CAUSE_LABEL: Record<string, string> = {
   no_material: 'no material', source_used: 'source already used', source_unreachable: 'source unreachable', quality: 'weak material', other: 'other reason',
 };
 
+/** A reason with the fix line and the link of the catalogue entry `serverCode`. */
+function withFix(r: SkipReason, serverCode: string): SkipReason {
+  const e = reasonView(serverCode);
+  return { ...r, ...(e?.fix ? { fix: e.fix.en } : {}), ...(e?.link ? { link: e.link } : {}) };
+}
+
 export function skipReason(error: string | null | undefined): SkipReason | null {
   if (!error) return null;
   const e = error.trim();
   const rest = (prefix: RegExp) => e.replace(prefix, '').trim();
-  if (/^no_fresh_item\b/.test(e)) return { code: 'no_fresh_item', label: 'Nothing fresh in the sources', detail: rest(/^no_fresh_item:?/) };
-  if (/^critic_rejected\b/.test(e)) return { code: 'critic_rejected', label: 'Rejected by the critic', detail: rest(/^critic_rejected:?/) };
-  if (/^critic_failed\b/.test(e)) return { code: 'critic_failed', label: 'Critic unavailable — held', detail: rest(/^critic_failed:?/) };
+  // The special cases keep their own `code` strings and today's labels; the fix line and the link come from the mirror.
+  if (/^no_fresh_item\b/.test(e)) return withFix({ code: 'no_fresh_item', label: 'Nothing fresh in the sources', detail: rest(/^no_fresh_item:?/) }, 'no_fresh_item');
+  if (/^critic_rejected\b/.test(e)) return withFix({ code: 'critic_rejected', label: 'Rejected by the critic', detail: rest(/^critic_rejected:?/) }, 'critic_rejected');
+  if (/^critic_failed\b/.test(e)) return withFix({ code: 'critic_failed', label: 'Critic unavailable — held', detail: rest(/^critic_failed:?/) }, 'critic_failed');
   if (/^superseded by a new plan/.test(e)) return { code: 'superseded', label: 'Replaced by a newer plan', detail: '' };
   if (/^skipped by owner/.test(e)) return { code: 'owner', label: 'Skipped by you', detail: rest(/^skipped by owner:?/) };
   // Spec 068: the agent names why (`skipped by agent: <cause>: <reason>`); older rows have the reason only.
   const cause = /^skipped by agent:\s*(no_material|source_used|source_unreachable|quality|other):\s*/.exec(e);
-  if (cause) return { code: 'agent', label: `Skipped by the agent — ${AGENT_CAUSE_LABEL[cause[1]]}`, detail: e.slice(cause[0].length).trim() };
-  if (/^skipped by agent/.test(e)) return { code: 'agent', label: 'Skipped by the agent', detail: rest(/^skipped by agent:?/) };
-  if (/^planner_(no_material|source_unreachable)\b/.test(e)) return { code: 'planner_empty', label: 'Declared empty by the planner', detail: rest(/^planner_(no_material|source_unreachable):?/) };
-  if (/^preflight_no_material\b/.test(e)) return { code: 'preflight_no_material', label: 'Nothing to post from the library row', detail: rest(/^preflight_no_material:?/) };
-  if (/^resource_paused/.test(e)) return { code: 'paused', label: 'Resource paused', detail: '' };
-  if (/^resource_unavailable\b/.test(e)) return { code: 'unavailable', label: 'Connection broken', detail: rest(/^resource_unavailable:?/) };
-  return { code: 'other', label: 'Note', detail: e };
+  if (cause) return withFix({ code: 'agent', label: `Skipped by the agent — ${AGENT_CAUSE_LABEL[cause[1]]}`, detail: e.slice(cause[0].length).trim() }, cause[1]);
+  if (/^skipped by agent/.test(e)) return withFix({ code: 'agent', label: 'Skipped by the agent', detail: rest(/^skipped by agent:?/) }, 'skipped_by_agent');
+  const planner = /^(planner_(?:no_material|source_unreachable))\b/.exec(e);
+  if (planner) return withFix({ code: 'planner_empty', label: 'Declared empty by the planner', detail: rest(/^planner_(no_material|source_unreachable):?/) }, planner[1]);
+  if (/^preflight_no_material\b/.test(e)) return withFix({ code: 'preflight_no_material', label: 'Nothing to post from the library row', detail: rest(/^preflight_no_material:?/) }, 'preflight_no_material');
+  if (/^resource_paused/.test(e)) return withFix({ code: 'paused', label: 'Resource paused', detail: '' }, 'resource_paused');
+  if (/^resource_unavailable\b/.test(e)) return withFix({ code: 'unavailable', label: 'Connection broken', detail: rest(/^resource_unavailable:?/) }, 'resource_unavailable');
+  // Any other leading `<code>` or `<code>:` the catalogue knows (the legacy texts of the server's mapping are not ported).
+  const entry = reasonOfToken(e);
+  if (entry) return withFix({ code: entry.code, label: entry.en, detail: rest(new RegExp(`^${entry.code}:?`)) }, entry.code);
+  return { code: 'other', label: 'Skipped — reason not classified', detail: e };
 }
 
 /** "Planned at 06:02 Kyiv" (the plan's creation time in the channel's zone). */

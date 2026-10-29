@@ -137,7 +137,9 @@ test('series_missed: one note per resource per day listing the misses; owner dec
   let notes = inbox.items.filter((i) => i.kind === 'series_missed');
   assert.equal(notes.length, 1);
   assert.equal(notes[0].refId, `${ref}|2026-10-11`);
-  assert.match(notes[0].body, /12:00 series "Три новини дня" — skipped: no_fresh_item/);
+  // Spec 073 FR-014: the line reads the catalogue (label, the system's words, what to change), and the Telegram text is Ukrainian.
+  assert.match(notes[0].body, /12:00 series "Три новини дня" — skipped: Nothing fresh in the sources: no item ≤ 12 h — Add a source that publishes more often/);
+  assert.match(notes[0].alert.body, /12:00 серія «Три новини дня» — пропущено: У джерелах немає свіжого: no item ≤ 12 h — Додайте джерело/);
   // The next day's real miss gets its own note.
   data.push(slot({ id: 's12', ref, scheduledAt: at('2026-10-12T09:00:00Z'), status: 'skipped', error: 'critic_rejected: reject', seriesName: 'Три новини дня', criticVerdict: 'reject' }));
   await watch.check(cards, at('2026-10-12T10:30:00Z'));
