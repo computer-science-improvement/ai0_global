@@ -1,0 +1,28 @@
+/* Legacy strategy bindings banner on /app/agents (spec 078 C4): a flush panel whose rows are the channels that still need the owner. */
+
+.mig-intro { margin: 0; padding: 0 20px 14px; font-size: 14px; line-height: 1.45; color: var(--color-ink-muted); max-width: 760px; }
+.mig-callout { margin: 0 20px 14px; }
+
+.mig-row { align-items: flex-start; }
+.mig-main { flex: 1 1 260px; min-width: 0; }
+.mig-title { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.mig-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); overflow-wrap: anywhere; }
+.mig-agent { font-size: 12px; }
+.mig-meta { display: flex; flex-wrap: wrap; gap: 2px 8px; margin-top: 4px; font-size: 12px; color: var(--color-ink-muted); }
+.mig-msg { margin-top: 6px; font-size: 13px; overflow-wrap: anywhere; }
+.mig-msg.is-ok { color: var(--color-success); }
+.mig-msg.is-error { color: var(--color-danger); }
+.mig-card { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.mig-card-text { flex: 1 1 200px; min-width: 0; font-size: 13px; color: var(--color-ink); overflow-wrap: anywhere; }
+.mig-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* The dry run of one channel (MigrateModal). */
+.mig-lead { margin: 0 0 12px; font-size: 14px; color: var(--color-ink); }
+.mig-list { display: flex; flex-direction: column; gap: 8px; max-height: 50vh; overflow-y: auto; }
+.mig-binding { padding: 10px 12px; border-radius: var(--radius-lg); background: var(--color-surface-1); border: 1px solid var(--color-hairline); }
+.mig-binding-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.mig-binding-name { font-size: 14px; font-weight: 600; color: var(--color-ink); overflow-wrap: anywhere; }
+.mig-binding-sched { font-size: 12px; color: var(--color-ink-dim); }
+.mig-binding-text { margin-top: 4px; font-size: 13px; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.mig-binding-warn { margin-top: 2px; font-size: 13px; color: var(--color-warning); overflow-wrap: anywhere; }
+.mig-note { margin: 0; font-size: 14px; color: var(--color-ink-muted); }

@@ -45,15 +45,13 @@ export function MigrationBanner() {
   if (!error && (isLoading || channels.length === 0)) return null;
 
   return (
-    <SectionCard title="Legacy strategy bindings" icon="strategies" delay={40} style={{ marginBottom: 16 }}>
-      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: '0 0 12px' }}>
+    <SectionCard title="Legacy strategy bindings" flush delay={40} action={<Badge tone="warning">{channels.length}</Badge>}>
+      <p className="mig-intro">
         Strategies were removed: these bindings are still enabled but publish nothing, the channel&apos;s agent writes its
         content. Migrate a channel to turn its bindings into the agent&apos;s series, then cut over to retire them.
       </p>
-      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: 0 }}>{errText(error)}</p>}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {channels.map((c) => <ChannelRow key={c.channel_key} c={c} onMigrate={() => setMigrating(c.channel_key)} />)}
-      </div>
+      {error && <div className="callout-danger mig-callout">{errText(error)}</div>}
+      {channels.map((c) => <ChannelRow key={c.channel_key} c={c} onMigrate={() => setMigrating(c.channel_key)} />)}
       <MigrateModal channel={migrating} onClose={() => setMigrating(null)} />
     </SectionCard>
   );
@@ -87,18 +85,18 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
   const canCutover = c.state === 'cutover_ready' && !c.cards.some((x) => x.kind === 'strategy_cutover');
 
   return (
-    <div className="card" style={{ padding: '12px 14px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-      <div style={{ minWidth: 0, flex: '1 1 260px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500, minWidth: 0, overflowWrap: 'anywhere' }}>{c.channel_key}</span>
+    <div className="panel-row mig-row">
+      <div className="mig-main">
+        <div className="mig-title">
+          <span className="mig-name">{c.channel_key}</span>
           <span title={s.help}><Badge tone={s.tone}>{s.label}</Badge></span>
           {c.agent && (
-            <Link to={'/app/agents/$handle' as never} params={{ handle: c.agent.handle } as never} search={{ tab: 'schedule' } as never} className="link-accent text-body-sm">
+            <Link to="/app/agents/$handle" params={{ handle: c.agent.handle }} search={{ tab: 'schedule' }} className="link-accent mig-agent mono">
               @{c.agent.handle}
             </Link>
           )}
         </div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div className="mig-meta">
           <span>{c.enabled.length} enabled</span>
           {c.retired.length > 0 && <span>· {c.retired.length} retired</span>}
           {c.agent && <span>· agent mode {c.agent.mode}</span>}
@@ -109,15 +107,11 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
           )}
           {c.draft && <span>· draft v{c.draft.version}</span>}
         </div>
-        {msg && (
-          <div className="text-micro" style={{ marginTop: 6, color: msg.tone === 'ok' ? 'var(--color-success, var(--color-accent))' : 'var(--color-danger)', overflowWrap: 'anywhere' }}>
-            {msg.text}
-          </div>
-        )}
+        {msg && <div className={`mig-msg ${msg.tone === 'ok' ? 'is-ok' : 'is-error'}`} role="status">{msg.text}</div>}
         {c.cards.map((card) => (
-          <div key={card.id} style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <div key={card.id} className="mig-card">
             <Badge tone="accent">{OP_LABEL[KIND_OP[card.kind] ?? 'migrate']} card</Badge>
-            <span className="text-micro" style={{ color: 'var(--color-ink)', flex: '1 1 200px', minWidth: 0, overflowWrap: 'anywhere' }}>{card.summary}</span>
+            <span className="mig-card-text">{card.summary}</span>
             <button className="btn-tiny" disabled={busy} onClick={() => { setMsg(null); apply(card.id).catch((err) => setMsg({ tone: 'error', text: errText(err) })); }}>
               <Icon name="check" size={12} /> Apply
             </button>
@@ -127,14 +121,14 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <div className="mig-actions">
         {canMigrate && (
-          <button className="btn-primary" disabled={busy} onClick={onMigrate}>
+          <button className="btn-warning btn-sm" disabled={busy} onClick={onMigrate}>
             <Icon name="agents" size={14} /> Migrate
           </button>
         )}
         {canCutover && (
-          <button className="btn-primary" disabled={busy} onClick={cutover}>
+          <button className="btn-warning btn-sm" disabled={busy} onClick={cutover}>
             <Icon name="check" size={14} /> Cutover
           </button>
         )}
@@ -184,39 +178,39 @@ function MigrateModal({ channel, onClose }: { channel: string | null; onClose: (
 
   return (
     <Modal open={!!channel} onClose={close} title={`Migrate ${channel ?? ''}`} subtitle="How each enabled strategy binding maps to the agent (nothing is written yet)" icon="agents" size="lg">
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Building the proposal…</p>}
-      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>{errText(error)}</p>}
+      {isLoading && <p className="mig-note">Building the proposal…</p>}
+      {error && <div className="callout-danger" style={{ overflowWrap: 'anywhere' }}>{errText(error)}</div>}
       {p && (
         <div>
-          <p className="text-body-sm" style={{ color: 'var(--color-ink)', margin: '0 0 10px' }}>
-            {p.mapped} of {p.total} enabled strategy bindings map to @{p.agent?.handle}
+          <p className="mig-lead">
+            {p.mapped} of {p.total} enabled strategy bindings map to <span className="mono">@{p.agent?.handle}</span>
             {p.active_version ? ` (on top of playbook v${p.active_version})` : ' (a new playbook from the channel card)'}.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxHeight: '50vh', overflowY: 'auto' }}>
+          <div className="mig-list">
             {p.bindings.map((b) => (
-              <div key={b.ext_id} style={{ padding: '8px 10px', background: 'var(--color-surface-2)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                  <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{b.ext_id}</span>
+              <div key={b.ext_id} className="mig-binding">
+                <div className="mig-binding-head">
+                  <span className="mig-binding-name">{b.ext_id}</span>
                   <Badge tone={OUTCOME[b.outcome].tone}>{OUTCOME[b.outcome].label}</Badge>
-                  <span className="text-micro" style={{ color: 'var(--color-ink-dim)', fontVariantNumeric: 'tabular-nums' }}>{b.schedule}</span>
+                  <span className="mig-binding-sched mono">{b.schedule}</span>
                 </div>
-                <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4, overflowWrap: 'anywhere' }}>{outcomeText(b)}</div>
+                <div className="mig-binding-text">{outcomeText(b)}</div>
                 {b.warnings.map((w, i) => (
-                  <div key={i} className="text-micro" style={{ color: 'var(--color-warning, var(--color-ink-muted))', marginTop: 2, overflowWrap: 'anywhere' }}>! {w}</div>
+                  <div key={i} className="mig-binding-warn">! {w}</div>
                 ))}
               </div>
             ))}
           </div>
           {p.errors.length > 0 && (
-            <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginTop: 10, overflowWrap: 'anywhere' }}>The draft does not validate: {p.errors.join('; ')}</p>
+            <div className="callout-danger" style={{ marginTop: 12, overflowWrap: 'anywhere' }}>The draft does not validate: {p.errors.join('; ')}</div>
           )}
         </div>
       )}
       {result && (
-        <p className="text-body-sm" style={{ marginTop: 12, color: result.tone === 'ok' ? 'var(--color-success, var(--color-accent))' : 'var(--color-danger)', overflowWrap: 'anywhere' }}>{result.text}</p>
+        <div className={result.tone === 'ok' ? 'callout-success' : 'callout-danger'} role="status" style={{ marginTop: 12, overflowWrap: 'anywhere' }}>{result.text}</div>
       )}
-      <div className="modal-foot" style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 16, flexWrap: 'wrap' }}>
-        <button className="btn-tiny" onClick={close}>{result?.tone === 'ok' ? 'Close' : 'Cancel'}</button>
+      <div className="modal-foot">
+        <button className="btn-ghost" onClick={close}>{result?.tone === 'ok' ? 'Close' : 'Cancel'}</button>
         {result?.tone !== 'ok' && (
           <button className="btn-primary" disabled={busy || blocked} onClick={submit}>
             {busy ? 'Creating…' : 'Create migration draft'}

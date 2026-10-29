@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
-import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
+import { SectionCard, StatTile, StatStrip, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
 import { describeError } from '../components/ui/Toast';
@@ -10,6 +10,9 @@ import { AgentGlyph, FollowsBadge, KIND_LABEL, LastRun, ScopeChip, StateBadges, 
 import { useAgentInbox, useAgentTree, type AgentNode } from '../api/agents';
 import { MigrationBanner } from '../components/strategies/MigrationBanner';
 import { NeedsYou } from '../components/nav/NeedsYou';
+import '../components/agents-list/agents-list.css';
+// The banner's classes live next to it, but a node test imports MigrationBanner (needsAttention), which cannot load CSS: the page imports it.
+import '../components/strategies/migration.css';
 
 export const Route = createFileRoute('/app/agents')({ component: AgentsPage });
 
@@ -17,7 +20,7 @@ function InboxButton() {
   const inbox = useAgentInbox(true);
   const unread = inbox.data?.items.length ?? 0;
   return (
-    <Link to="/app/agents/inbox" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>
+    <Link to="/app/agents/inbox" className="btn-secondary">
       <Icon name="inbox" size={14} /> Inbox
       {unread > 0 && <Badge tone="accent">{unread}</Badge>}
     </Link>
@@ -36,90 +39,98 @@ function AgentsPage() {
 
   return (
     <div>
-      <PageHeader title="Agents" subtitle="Named agents per resource and network: profiles, skills, memory and run history" actions={<InboxButton />} />
+      <PageHeader
+        eyebrow={tree.data ? `${live} live · ${paused} paused` : undefined}
+        title="Agents"
+        subtitle="Named agents per resource and network: profiles, skills, memory and run history"
+        actions={<InboxButton />}
+      />
 
       {/* What the menu counter of Agents counts: unread Inbox notes and directives waiting for a decision. */}
       <NeedsYou show={['inbox', 'directives']} />
 
-      {tree.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(tree.error)}</div>}
-      {!tree.data && !tree.error && <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {tree.error && <div className="callout-danger">{describeError(tree.error)}</div>}
+        {!tree.data && !tree.error && <div className="panel is-section agl-skeleton compose-rise" aria-hidden />}
 
-      {tree.data && (
-        <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-          <StatTile label="Orchestrators" value={orchestrators.length} icon="agents" accent delta={`${live} live · ${orchestrators.length - live} not live`} />
-          <StatTile label="Paused" value={paused} icon="pause" deltaTone={paused ? 'warning' : 'neutral'} delta={paused ? 'skipping their runs' : undefined} />
-          <StatTile label="Runs today" value={runs} icon="logs" />
-          <StatTile label="Spend today" value={fmtUsd(spend)} icon="analytics" />
-        </div>
-      )}
+        {tree.data && (
+          <StatStrip label="Agents today">
+            <StatTile label="Orchestrators" value={orchestrators.length} delta={`${live} live · ${orchestrators.length - live} not live`} />
+            <StatTile label="Paused" value={paused} deltaTone={paused ? 'warning' : 'neutral'} delta={paused ? 'skipping their runs' : undefined} />
+            <StatTile label="Runs today" value={runs} />
+            <StatTile label="Spend today" value={fmtUsd(spend)} />
+          </StatStrip>
+        )}
 
-      {/* Spec 023 phase B: /app/strategies redirects here; enabled legacy bindings are migrated or cut over here. */}
-      <MigrationBanner />
+        {/* Spec 023 phase B: /app/strategies redirects here; enabled legacy bindings are migrated or cut over here. */}
+        <MigrationBanner />
 
-      {system.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 12, marginBottom: 16 }}>
-          {system.map((a, i) => <SystemCard key={a.id} a={a} delay={i * 40} />)}
-        </div>
-      )}
+        {tree.data && (
+          <SectionCard title="Orchestrators" flush delay={80}>
+            {orchestrators.length === 0
+              ? <EmptyState icon="agents" title="No orchestrators yet" note="Agents are created from editor cards or in the chat with @ai0." />
+              : orchestrators.map((a) => <OrchestratorRow key={a.id} a={a} />)}
+          </SectionCard>
+        )}
 
-      {tree.data && (
-        <SectionCard title="Orchestrators" icon="agents" delay={80}>
-          {orchestrators.length === 0
-            ? <EmptyState icon="agents" title="No orchestrators yet" note="Agents are created from editor cards or in the chat with @ai0." />
-            : <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {orchestrators.map((a, i) => <OrchestratorRow key={a.id} a={a} delay={120 + i * 40} />)}
-              </div>}
-        </SectionCard>
-      )}
+        {tree.data && system.length > 0 && (
+          <SectionCard title="System agents" flush delay={120}>
+            {system.map((a) => <SystemRow key={a.id} a={a} />)}
+          </SectionCard>
+        )}
+      </div>
     </div>
   );
 }
 
-function SystemCard({ a, delay }: { a: AgentNode; delay: number }) {
+/** A system agent (manager, builder, sysadmin): the whole row opens its page. */
+function SystemRow({ a }: { a: AgentNode }) {
   return (
-    <Link to="/app/agents/$handle" params={{ handle: a.handle }} className="card row-lift compose-rise"
-      style={{ display: 'flex', gap: 14, alignItems: 'flex-start', padding: '14px 18px', textDecoration: 'none', color: 'inherit', animationDelay: `${delay}ms`, minWidth: 0 }}>
-      <AgentGlyph agent={a} size={42} />
-      <div style={{ minWidth: 0, flex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 3 }}>
-          <span style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{a.name}</span>
-          <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{a.handle}</span>
+    <Link to="/app/agents/$handle" params={{ handle: a.handle }} className="panel-row">
+      <AgentGlyph agent={a} />
+      <div className="agl-main">
+        <div className="agl-title">
+          <span className="agl-name">{a.name}</span>
+          <span className="agl-handle mono">@{a.handle}</span>
           <StateBadges agent={a} />
         </div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 6 }}>{KIND_LABEL[a.kind]} · system</div>
-        {a.description && <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginBottom: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{a.description}</div>}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-          <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>{fmtUsd(a.activity.spentTodayUsd)} · {runsLabel(a.activity.runsToday)} today</span>
+        <div className="agl-sub">
+          <span>{KIND_LABEL[a.kind]} · system</span>
           <LastRun activity={a.activity} />
         </div>
+        {a.description && <p className="agl-desc clamp">{a.description}</p>}
+      </div>
+      <div className="agl-num">
+        <div className="agl-num-main mono">{fmtUsd(a.activity.spentTodayUsd)}</div>
+        <div className="agl-num-sub">{runsLabel(a.activity.runsToday)} today</div>
       </div>
     </Link>
   );
 }
 
-function OrchestratorRow({ a, delay }: { a: AgentNode; delay: number }) {
+function OrchestratorRow({ a }: { a: AgentNode }) {
   const [open, setOpen] = useState(false);
   const childSpend = a.children.reduce((s, c) => s + c.activity.spentTodayUsd, 0);
   const childRuns = a.children.reduce((s, c) => s + c.activity.runsToday, 0);
   return (
-    <div className="card compose-rise" style={{ padding: 0, animationDelay: `${delay}ms`, overflow: 'hidden' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '13px 16px', flexWrap: 'wrap' }}>
+    <>
+      <div className="panel-row">
         <AgentGlyph agent={a} />
-        <div style={{ minWidth: 180, flex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
-            <Link to="/app/agents/$handle" params={{ handle: a.handle }} style={{ color: 'var(--color-ink)', fontWeight: 600, textDecoration: 'none' }}>{a.name}</Link>
-            <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{a.handle}</span>
+        <div className="agl-main">
+          <div className="agl-title">
+            <Link to="/app/agents/$handle" params={{ handle: a.handle }} className="agl-name">{a.name}</Link>
+            <span className="agl-handle mono">@{a.handle}</span>
             <StateBadges agent={a} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', minWidth: 0 }}>
+          <div className="agl-sub">
             <ScopeChip agent={a} />
             <LastRun activity={a.activity} />
+            {a.children.length > 0 && <span className="mono">{a.children.length} role{a.children.length === 1 ? '' : 's'}</span>}
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginLeft: 'auto' }}>
-        <div className="tabular-nums" style={{ textAlign: 'right', minWidth: 90 }}>
-          <div style={{ fontWeight: 600 }}>{fmtUsd(a.activity.spentTodayUsd + childSpend)}</div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{runsLabel(a.activity.runsToday + childRuns)} today</div>
+        <div className="agl-num">
+          <div className="agl-num-main mono">{fmtUsd(a.activity.spentTodayUsd + childSpend)}</div>
+          <div className="agl-num-sub">{runsLabel(a.activity.runsToday + childRuns)} today</div>
         </div>
         <div style={{ display: 'inline-flex', gap: 6 }}>
           {a.children.length > 0 && (
@@ -131,34 +142,29 @@ function OrchestratorRow({ a, delay }: { a: AgentNode; delay: number }) {
             <Icon name="chevron-right" size={14} />
           </Link>
         </div>
-        </div>
       </div>
-      {open && (
-        <div style={{ borderTop: '1px solid var(--color-hairline-soft)', background: 'var(--color-surface-1)', padding: '6px 10px' }}>
-          {a.children.map((c, i) => <ChildRow key={c.id} c={c} parent={a} delay={i * 30} />)}
-        </div>
-      )}
-    </div>
+      {open && a.children.map((c) => <ChildRow key={c.id} c={c} parent={a} />)}
+    </>
   );
 }
 
-function ChildRow({ c, parent, delay }: { c: AgentNode; parent: AgentNode; delay: number }) {
+function ChildRow({ c, parent }: { c: AgentNode; parent: AgentNode }) {
   return (
-    <Link to="/app/agents/$handle" params={{ handle: c.handle }} className="row-lift compose-rise"
-      style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 8px', borderRadius: 'var(--radius-sm)', textDecoration: 'none', color: 'inherit', flexWrap: 'wrap', animationDelay: `${delay}ms` }}>
-      <AgentGlyph agent={c} size={26} />
-      <div style={{ minWidth: 140, flex: 1, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{KIND_LABEL[c.kind]}</span>
-        <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{c.handle}</span>
-        <FollowsBadge agent={c} parent={{ handle: parent.handle, mode: parent.effectiveMode ?? parent.mode }} />
-        {c.paused && <Badge tone="danger">paused</Badge>}
+    <Link to="/app/agents/$handle" params={{ handle: c.handle }} className="panel-row agl-child anim-fade-up">
+      <AgentGlyph agent={c} size={28} />
+      <div className="agl-main">
+        <div className="agl-title">
+          <span className="agl-name">{KIND_LABEL[c.kind]}</span>
+          <span className="agl-handle mono">@{c.handle}</span>
+          <FollowsBadge agent={c} parent={{ handle: parent.handle, mode: parent.effectiveMode ?? parent.mode }} />
+          {c.paused && <Badge tone="danger">paused</Badge>}
+        </div>
+        <div className="agl-sub"><LastRun activity={c.activity} /></div>
       </div>
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
-        <LastRun activity={c.activity} />
-        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)', minWidth: 96, textAlign: 'right' }}>
-          {fmtUsd(c.activity.spentTodayUsd)} · {runsLabel(c.activity.runsToday)}
-        </span>
-      </span>
+      <div className="agl-num">
+        <div className="agl-num-main mono">{fmtUsd(c.activity.spentTodayUsd)}</div>
+        <div className="agl-num-sub">{runsLabel(c.activity.runsToday)} today</div>
+      </div>
     </Link>
   );
 }

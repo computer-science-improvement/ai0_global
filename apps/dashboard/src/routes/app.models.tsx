@@ -8,7 +8,6 @@ import { ActionsTh, RowActions, TableAction } from '../components/ui/table';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { describeError, toast } from '../components/ui/Toast';
 import { Modal } from '../components/Modal';
-import { SegmentedTabs } from '../components/SegmentedTabs';
 import { ModelSelect } from '../components/models/ModelSelect';
 import { KIND_LABEL } from '../components/agents/AgentsUi';
 import {
@@ -17,6 +16,7 @@ import {
 } from '../api/models';
 import type { ReasoningEffort } from '../api/agents';
 import { fmtContext, fmtPerM, groupAgents, ownCounts, SOURCE_HINT, SOURCE_LABEL, SOURCE_TONE, WORKSPACE_LABEL } from '../lib/models';
+import '../components/models/models.css';
 
 // Models (spec 035): the owner picks the LLM of every agent. One global default
 // (app_settings `ai.default_model`, built-in z-ai/glm-5.3-flash); an agent's own
@@ -25,8 +25,6 @@ import { fmtContext, fmtPerM, groupAgents, ownCounts, SOURCE_HINT, SOURCE_LABEL,
 // Spec 038: one level above, the workspace — OpenRouter or Anthropic (the Claude API directly).
 // Everything below the Workspace card edits the active workspace's choices; each workspace keeps its own.
 export const Route = createFileRoute('/app/models')({ component: ModelsPage });
-
-const mono = { fontFamily: 'var(--font-mono)', fontSize: 13 } as const;
 
 function ModelsPage() {
   const q = useModelsOverview();
@@ -37,47 +35,48 @@ function ModelsPage() {
 
   return (
     <div>
-      <PageHeader title="Models" subtitle="Choose where agents run and the LLM each agent runs on. Agents without their own model use the default." />
+      <PageHeader
+        eyebrow={data ? `${WORKSPACE_LABEL[active]} workspace` : undefined}
+        title="Models"
+        subtitle="Choose where agents run and the LLM each agent runs on. Agents without their own model use the default."
+      />
 
-      {q.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(q.error)}</div>}
-      {!data && !q.error && <div className="panel compose-rise" style={{ height: 160, opacity: 0.55 }} />}
+      <div className="mdl-stack">
+        {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
+        {!data && !q.error && <div className="panel is-section mdl-skeleton compose-rise" aria-hidden />}
 
-      {ws.data?.switchable && <WorkspaceCard info={ws.data} />}
+        {ws.data?.switchable && <WorkspaceCard info={ws.data} />}
 
-      {catalog.data?.source === 'fallback' && (
-        <div className="callout-warning" style={{ marginBottom: 12 }}>
-          <Icon name="warning" size={16} />
-          <div>
-            {active === 'anthropic'
-              ? 'The Anthropic model list is unavailable right now, so only the models with a known price can be chosen. It is retried in a few minutes.'
-              : 'The OpenRouter model list is unavailable right now, so only models with a known price can be chosen. It is retried in a few minutes.'}
+        {catalog.data?.source === 'fallback' && (
+          <div className="callout-warning">
+            <Icon name="warning" size={16} />
+            <div>
+              {active === 'anthropic'
+                ? 'The Anthropic model list is unavailable right now, so only the models with a known price can be chosen. It is retried in a few minutes.'
+                : 'The OpenRouter model list is unavailable right now, so only models with a known price can be chosen. It is retried in a few minutes.'}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {data && data.envOverrides.length > 0 && <EnvNote env={data.envOverrides} />}
-      {data && <DefaultCard data={data} />}
-      {data?.criticModel && <CriticModelCard data={data} />}
-      {data && <AgentsSection data={data} />}
-      {data && data.channelOverrides.length > 0 && <ChannelOverrides data={data} />}
+        {data && data.envOverrides.length > 0 && <EnvNote env={data.envOverrides} />}
+        {data && <DefaultCard data={data} />}
+        {data?.criticModel && <CriticModelCard data={data} />}
+        {data && <AgentsSection data={data} />}
+        {data && data.channelOverrides.length > 0 && <ChannelOverrides data={data} />}
 
-      {catalog.data && (
-        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '12px 0 0' }}>
-          {catalog.data.source === 'openrouter'
-            ? `${catalog.data.models.length} models with tool support from OpenRouter${catalog.data.fetchedAt ? `, fetched ${new Date(catalog.data.fetchedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}${catalog.data.stale ? ' (refresh failed, list may be outdated)' : ''}. Prices are USD per 1M tokens.`
-            : catalog.data.source === 'anthropic'
-              ? `${catalog.data.models.length} Claude models${catalog.data.fetchedAt ? ` (Anthropic's list, fetched ${new Date(catalog.data.fetchedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })})` : ' (built-in price list)'}. Prices are Anthropic list prices, USD per 1M tokens; prompt caching makes repeated input much cheaper.`
-              : `${catalog.data.models.length} priced models (offline list). Prices are USD per 1M tokens.`}
-        </p>
-      )}
+        {catalog.data && (
+          <p className="mdl-note is-dim">
+            {catalog.data.source === 'openrouter'
+              ? `${catalog.data.models.length} models with tool support from OpenRouter${catalog.data.fetchedAt ? `, fetched ${new Date(catalog.data.fetchedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}${catalog.data.stale ? ' (refresh failed, list may be outdated)' : ''}. Prices are USD per 1M tokens.`
+              : catalog.data.source === 'anthropic'
+                ? `${catalog.data.models.length} Claude models${catalog.data.fetchedAt ? ` (Anthropic's list, fetched ${new Date(catalog.data.fetchedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })})` : ' (built-in price list)'}. Prices are Anthropic list prices, USD per 1M tokens; prompt caching makes repeated input much cheaper.`
+                : `${catalog.data.models.length} priced models (offline list). Prices are USD per 1M tokens.`}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
-
-const WORKSPACE_TABS: ReadonlyArray<{ key: Workspace; label: string }> = [
-  { key: 'openrouter', label: WORKSPACE_LABEL.openrouter },
-  { key: 'anthropic', label: WORKSPACE_LABEL.anthropic },
-];
 
 /** Spec 038: OpenRouter or Anthropic for every agent; the choice of models below belongs to the active one. */
 function WorkspaceCard({ info }: { info: WorkspaceInfo }) {
@@ -95,8 +94,8 @@ function WorkspaceCard({ info }: { info: WorkspaceInfo }) {
     const ok = await confirm(`run every agent on ${WORKSPACE_LABEL[next]}`, {
       danger: false, confirmLabel: `Switch to ${WORKSPACE_LABEL[next]}`,
       details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
-          From their next run, agents use the {WORKSPACE_LABEL[next]} models: the default {target ? <span style={mono}>{target.defaultModel}</span> : null}
+        <p className="mdl-note">
+          From their next run, agents use the {WORKSPACE_LABEL[next]} models: the default {target ? <span className="mdl-id">{target.defaultModel}</span> : null}
           {target && target.agentsWithOwnModel > 0 ? `, and ${target.agentsWithOwnModel} agent${target.agentsWithOwnModel === 1 ? '' : 's'} with their own ${WORKSPACE_LABEL[next]} model` : ''}.
           Your {WORKSPACE_LABEL[info.active]} choices are kept and come back when you switch back. Runs already in progress finish where they started.
           {next === 'anthropic' && (
@@ -115,53 +114,54 @@ function WorkspaceCard({ info }: { info: WorkspaceInfo }) {
   };
 
   return (
-    <SectionCard title="Workspace" icon="connections" delay={0} style={{ marginBottom: 12 }}
-      action={<Badge tone={info.active === 'anthropic' ? 'accent' : 'neutral'}>{WORKSPACE_LABEL[info.active]}</Badge>}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-        <SegmentedTabs<Workspace> value={info.active} onChange={change} options={WORKSPACE_TABS} />
-        {info.anthropicKey
-          ? <Badge tone="success" title="The server has an Anthropic API key">Anthropic key set</Badge>
-          : <Badge tone="warning" title="Set EDITOR_ANTHROPIC_API_KEY or ANTHROPIC_API_KEY on the server">No Anthropic key</Badge>}
-      </div>
-      <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-muted)', lineHeight: 1.6, maxWidth: 760 }}>
-        {info.active === 'anthropic'
-          ? <>Agents call the Claude API directly with the server's Anthropic key. With a key from the Console organization linked to your Claude Max plan, runs are paid from its monthly API credits; unused credits expire at the end of each billing cycle, and when they run out, runs fail until the next grant or until you buy credits. Spend shows under the <span style={mono}>anthropic</span> provider.</>
-          : <>Agents run through OpenRouter with the server's OpenRouter key and pay as they go. Any model with tool support from the OpenRouter catalog can be chosen.</>}
-      </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 10 }}>
-        {info.workspaces.map((w) => (
-          <div key={w.id} className="card" style={{ padding: '10px 12px', minWidth: 0, borderColor: w.id === info.active ? 'var(--color-accent)' : undefined }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-              <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{WORKSPACE_LABEL[w.id]}</span>
-              {w.id === info.active && <Badge tone="accent">Active</Badge>}
-            </div>
-            <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
-              Default {w.perRole ? 'per role (Sonnet / Haiku)' : <span style={mono}>{w.defaultModel}</span>} · {w.agentsWithOwnModel} agent{w.agentsWithOwnModel === 1 ? '' : 's'} with their own model
-            </div>
-          </div>
-        ))}
-      </div>
-      {!info.anthropicKey && (
-        <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-dim)', lineHeight: 1.6 }}>
-          To use Anthropic, link a Console organization to your Claude plan (claude.ai → Settings → Billing → API credits), create an API key in it and set it on the server as <span style={mono}>EDITOR_ANTHROPIC_API_KEY</span>, then restart.
+    <SectionCard title="Workspace" delay={0}
+      action={info.anthropicKey
+        ? <Badge tone="success" title="The server has an Anthropic API key">Anthropic key set</Badge>
+        : <Badge tone="warning" title="Set EDITOR_ANTHROPIC_API_KEY or ANTHROPIC_API_KEY on the server">No Anthropic key</Badge>}>
+      <div className="mdl-body">
+        <p className="mdl-note">
+          {info.active === 'anthropic'
+            ? <>Agents call the Claude API directly with the server's Anthropic key. With a key from the Console organization linked to your Claude Max plan, runs are paid from its monthly API credits; unused credits expire at the end of each billing cycle, and when they run out, runs fail until the next grant or until you buy credits. Spend shows under the <span className="mdl-id">anthropic</span> provider.</>
+            : <>Agents run through OpenRouter with the server's OpenRouter key and pay as they go. Any model with tool support from the OpenRouter catalog can be chosen.</>}
         </p>
-      )}
+        <div className="mdl-ws" role="group" aria-label="Workspace">
+          {info.workspaces.map((w) => {
+            const on = w.id === info.active;
+            return (
+              <button key={w.id} type="button" className="mdl-ws-option" aria-pressed={on} onClick={() => change(w.id)}>
+                <span className="mdl-ws-head">
+                  <span className="mdl-ws-name">{WORKSPACE_LABEL[w.id]}</span>
+                  {on && <Badge tone="accent">Active</Badge>}
+                </span>
+                <span className="mdl-ws-meta">
+                  Default {w.perRole ? 'per role (Sonnet / Haiku)' : <span className="mdl-id">{w.defaultModel}</span>} · {w.agentsWithOwnModel} agent{w.agentsWithOwnModel === 1 ? '' : 's'} with their own model
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        {!info.anthropicKey && (
+          <p className="mdl-note is-dim">
+            To use Anthropic, link a Console organization to your Claude plan (claude.ai → Settings → Billing → API credits), create an API key in it and set it on the server as <span className="mdl-id">EDITOR_ANTHROPIC_API_KEY</span>, then restart.
+          </p>
+        )}
+      </div>
     </SectionCard>
   );
 }
 
 function EnvNote({ env }: { env: ModelsOverview['envOverrides'] }) {
   return (
-    <div className="callout-warning" style={{ marginBottom: 12 }}>
+    <div className="callout-warning">
       <Icon name="info" size={16} />
       <div>
         <div style={{ marginBottom: 4 }}>
           Server environment variables override the default model for {env.length === 1 ? 'one role' : `${env.length} roles`}:
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
-          {env.map((e) => <span key={e.key} className="chip" style={mono}>{e.key}</span>)}
+          {env.map((e) => <span key={e.key} className="chip mono">{e.key}</span>)}
         </div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+        <div className="mdl-note">
           They beat the default chosen here (an agent's own model still wins). Remove them on the server to let the default apply.
         </div>
       </div>
@@ -171,13 +171,13 @@ function EnvNote({ env }: { env: ModelsOverview['envOverrides'] }) {
 
 function PriceFacts({ inPerM, outPerM, context }: { inPerM: number | null | undefined; outPerM: number | null | undefined; context?: number | null }) {
   const item = (label: string, value: ReactNode) => (
-    <div style={{ minWidth: 0 }}>
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 2 }}>{label}</div>
-      <div className="tabular-nums" style={{ color: 'var(--color-ink)', fontSize: 15 }}>{value}</div>
+    <div className="mdl-fact">
+      <div className="text-overline">{label}</div>
+      <div className="mdl-fact-value mono">{value}</div>
     </div>
   );
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 24px' }}>
+    <div className="inset mdl-facts" aria-label="Price and context">
       {item('Input / 1M', fmtPerM(inPerM))}
       {item('Output / 1M', fmtPerM(outPerM))}
       {context ? item('Context', fmtContext(context)) : null}
@@ -206,7 +206,7 @@ function DefaultCard({ data }: { data: ModelsOverview }) {
     const ok = await confirm(`make ${next} the default model`, {
       danger: false, confirmLabel: 'Set default',
       details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+        <p className="mdl-note">
           {following} agent{following === 1 ? '' : 's'} currently follow{following === 1 ? 's' : ''} the default and switch from {def.model} to {next} on their next run.
           Agents with their own model, a channel override or an env override keep theirs.
         </p>
@@ -222,29 +222,29 @@ function DefaultCard({ data }: { data: ModelsOverview }) {
   };
 
   return (
-    <SectionCard title="Default model" icon="cpu" delay={0} style={{ marginBottom: 12 }}
+    <SectionCard title="Default model" delay={0}
       action={def.saved ? <Badge tone="accent">Custom</Badge> : <Badge tone="neutral">Built-in</Badge>}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 16, alignItems: 'end' }}>
-        <Field label="Model" hint={`${following} of ${data.agents.length} agents follow it`}>
-          <ModelSelect value={def.model} onChange={(m) => change(m)} ariaLabel="Default model" disabled={save.isPending} />
-        </Field>
-        <div style={{ paddingBottom: 18 }}>
+      <div className="mdl-body">
+        <div className="mdl-grid">
+          <Field label="Model" hint={`${following} of ${data.agents.length} agents follow it`} style={{ marginBottom: 0 }}>
+            <ModelSelect value={def.model} onChange={(m) => change(m)} ariaLabel="Default model" disabled={save.isPending} />
+          </Field>
           <PriceFacts inPerM={entry?.inPerM ?? def.price?.inPerM} outPerM={entry?.outPerM ?? def.price?.outPerM} context={entry?.contextLength} />
         </div>
+        {def.roleModels && (
+          <p className="mdl-note">
+            No default chosen, so each role runs its built-in Claude model: {roleModelsText(def.roleModels)}. Choosing a default here puts every role on that model.
+          </p>
+        )}
+        {def.saved && (
+          <div className="mdl-row">
+            <button type="button" className="btn-secondary btn-sm" disabled={save.isPending} onClick={() => change(null)}>
+              <Icon name="reset" size={13} /> Use the built-in default
+            </button>
+            <span className="mdl-id is-dim">{def.builtin}</span>
+          </div>
+        )}
       </div>
-      {def.roleModels && (
-        <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)', lineHeight: 1.6, maxWidth: 760 }}>
-          No default chosen, so each role runs its built-in Claude model: {roleModelsText(def.roleModels)}. Choosing a default here puts every role on that model.
-        </p>
-      )}
-      {def.saved && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <button type="button" className="btn-secondary" style={{ gap: 6 }} disabled={save.isPending} onClick={() => change(null)}>
-            <Icon name="reset" size={13} /> Use the built-in default
-          </button>
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{def.builtin}</span>
-        </div>
-      )}
     </SectionCard>
   );
 }
@@ -264,7 +264,7 @@ function CriticModelCard({ data }: { data: ModelsOverview }) {
     const ok = await confirm(`use ${next} for the critic`, {
       danger: false, confirmLabel: 'Set critic model',
       details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+        <p className="mdl-note">
           The critic reviews every post (once more after a rewrite), so its cost is added to each post. A stronger model catches more AI-sounding and senseless posts.
         </p>
       ),
@@ -283,28 +283,28 @@ function CriticModelCard({ data }: { data: ModelsOverview }) {
     : <Badge tone="neutral">Follows the default</Badge>;
 
   return (
-    <SectionCard title="Critic model" icon="sparkles" delay={40} style={{ marginBottom: 12 }} action={badge}>
-      <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
-        Before a post is published, stored as a preview or sent for your approval, the critic scores it (human voice, sense, tone, facts, reader asks, format)
-        and passes it, asks the agent for one rewrite, or rejects it. Its spend shows as <span style={mono}>editor.checker</span> on the Spend page.
-      </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 16, alignItems: 'end' }}>
-        <Field label="Model" hint={c.source === 'env' ? `${data.workspace === 'anthropic' ? 'EDITOR_ANTHROPIC_MODEL_CHECKER' : 'EDITOR_MODEL_CHECKER'} is set on the server; a model chosen here beats it` : undefined}>
-          <ModelSelect value={c.saved} onChange={(m) => change(m)} ariaLabel="Critic model" disabled={save.isPending}
-            defaultLabel={`Default (${c.source === 'env' ? c.model : data.defaultModel.model})`} />
-        </Field>
-        <div style={{ paddingBottom: 18 }}>
+    <SectionCard title="Critic model" delay={40} action={badge}>
+      <div className="mdl-body">
+        <p className="mdl-note">
+          Before a post is published, stored as a preview or sent for your approval, the critic scores it (human voice, sense, tone, facts, reader asks, format)
+          and passes it, asks the agent for one rewrite, or rejects it. Its spend shows as <span className="mdl-id">editor.checker</span> on the Spend page.
+        </p>
+        <div className="mdl-grid">
+          <Field label="Model" hint={c.source === 'env' ? `${data.workspace === 'anthropic' ? 'EDITOR_ANTHROPIC_MODEL_CHECKER' : 'EDITOR_MODEL_CHECKER'} is set on the server; a model chosen here beats it` : undefined} style={{ marginBottom: 0 }}>
+            <ModelSelect value={c.saved} onChange={(m) => change(m)} ariaLabel="Critic model" disabled={save.isPending}
+              defaultLabel={`Default (${c.source === 'env' ? c.model : data.defaultModel.model})`} />
+          </Field>
           <PriceFacts inPerM={entry?.inPerM ?? c.price?.inPerM} outPerM={entry?.outPerM ?? c.price?.outPerM} context={entry?.contextLength} />
         </div>
+        {c.saved && (
+          <div className="mdl-row">
+            <button type="button" className="btn-secondary btn-sm" disabled={save.isPending} onClick={() => change(null)}>
+              <Icon name="reset" size={13} /> Follow the default model
+            </button>
+            <span className="mdl-id is-dim">{data.defaultModel.model}</span>
+          </div>
+        )}
       </div>
-      {c.saved && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <button type="button" className="btn-secondary" style={{ gap: 6 }} disabled={save.isPending} onClick={() => change(null)}>
-            <Icon name="reset" size={13} /> Follow the default model
-          </button>
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{data.defaultModel.model}</span>
-        </div>
-      )}
     </SectionCard>
   );
 }
@@ -330,7 +330,7 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
     const ok = await confirm(`run every agent (${data.agents.length}) on ${bulkModel}`, {
       danger: false, confirmLabel: 'Apply to all',
       details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+        <p className="mdl-note">
           Sets {bulkModel} as the own model of every agent, including role agents. It beats channel and env overrides and later changes of the default.
           Use "Reset all to default" to undo.
         </p>
@@ -347,7 +347,7 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
     const ok = await confirm(`clear the own model of ${own.models} agent${own.models === 1 ? '' : 's'}`, {
       danger: true, confirmLabel: 'Reset all',
       details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+        <p className="mdl-note">
           Every agent goes back to the default model ({data.defaultModel.model}), unless a channel or env override applies. Reasoning effort settings are kept.
         </p>
       ),
@@ -368,32 +368,32 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
     } catch (err) { toast.error(describeError(err)); }
   };
 
-  const rowView = (row: AgentModelRow, child: boolean, i: number) => (
-    <tr key={row.id} className="compose-rise" style={{ animationDelay: `${Math.min(i, 20) * 15}ms` }}>
-      <td style={{ paddingLeft: child ? 36 : undefined, minWidth: 180 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          {child && <span aria-hidden style={{ color: 'var(--color-ink-dim)' }}><Icon name="chevron-right" size={12} /></span>}
+  const rowView = (row: AgentModelRow, child: boolean) => (
+    <tr key={row.id}>
+      <td className={child ? 'mdl-child-pad' : undefined} style={{ minWidth: 180 }}>
+        <div className="mdl-who">
+          {child && <span aria-hidden className="mdl-dim"><Icon name="chevron-right" size={12} /></span>}
           <span aria-hidden>{row.emoji ?? ''}</span>
           <span style={{ minWidth: 0 }}>
-            <Link to="/app/agents/$handle" params={{ handle: row.handle }} style={{ color: 'var(--color-ink)', textDecoration: 'none', fontWeight: child ? 400 : 500 }}>
+            <Link to="/app/agents/$handle" params={{ handle: row.handle }} className={`mdl-who-name${child ? ' is-child' : ''}`}>
               {row.name}
             </Link>
-            <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-muted)' }}>@{row.handle}</span>
+            <span className="mdl-handle mono">@{row.handle}</span>
           </span>
         </div>
       </td>
       <td className="meta" style={{ whiteSpace: 'nowrap' }}>{KIND_LABEL[row.kind] ?? row.kind}</td>
       <td style={{ minWidth: 200 }}>
-        <span style={{ ...mono, color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{row.effective.model}</span>
-        {row.effective.inheritedFrom && <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-dim)' }}>via @{row.effective.inheritedFrom}</span>}
+        <span className="mdl-id is-ink">{row.effective.model}</span>
+        {row.effective.inheritedFrom && <span className="mdl-sub">via @{row.effective.inheritedFrom}</span>}
       </td>
       <td><SourceBadge row={row} /></td>
-      <td className="num">{fmtPerM(row.price?.inPerM)}</td>
-      <td className="num">{fmtPerM(row.price?.outPerM)}</td>
+      <td className="num mono">{fmtPerM(row.price?.inPerM)}</td>
+      <td className="num mono">{fmtPerM(row.price?.outPerM)}</td>
       <td style={{ whiteSpace: 'nowrap' }}>
         {row.effective.reasoningEffort}
         {row.effective.reasoningSource !== 'default' && (
-          <span className="text-micro" style={{ marginLeft: 6, color: 'var(--color-ink-dim)' }}>
+          <span className="mdl-sub-inline">
             {row.effective.reasoningSource === 'env' ? 'env' : row.reasoningEffort ? 'own' : 'inherited'}
           </span>
         )}
@@ -407,16 +407,15 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
     </tr>
   );
 
-  let n = 0;
   return (
-    <SectionCard title="Agents" icon="agents" delay={40} style={{ marginBottom: 12 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 8, marginBottom: 14 }}>
-        <div style={{ flex: '1 1 260px', maxWidth: 420, minWidth: 0 }}>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 4 }}>Bulk model</div>
+    <SectionCard title="Agents" delay={40} action={<span className="mdl-count mono">{data.agents.length} total</span>}>
+      <div className="mdl-toolbar">
+        <div className="mdl-toolbar-pick">
+          <div className="text-eyebrow" style={{ marginBottom: 4 }}>Bulk model</div>
           <ModelSelect value={bulkModel} onChange={setBulkModel} ariaLabel="Model for all agents" compact />
         </div>
-        <button type="button" className="btn-primary" disabled={!bulkModel || bulk.isPending} onClick={applyAll}>Apply to all agents</button>
-        <button type="button" className="btn-secondary" style={{ gap: 6 }} disabled={own.models === 0 || bulk.isPending} onClick={resetAll}>
+        <button type="button" className="btn-primary btn-sm" disabled={!bulkModel || bulk.isPending} onClick={applyAll}>Apply to all agents</button>
+        <button type="button" className="btn-secondary btn-sm" disabled={own.models === 0 || bulk.isPending} onClick={resetAll}>
           <Icon name="reset" size={13} /> Reset all to default
         </button>
       </div>
@@ -431,12 +430,12 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
               <th className="num">In / 1M</th><th className="num">Out / 1M</th><th>Effort</th><ActionsTh />
             </tr></thead>
             <tbody>
-              {groups.flatMap((g) => [rowView(g.root, false, n++), ...g.children.map((c) => rowView(c, true, n++))])}
+              {groups.flatMap((g) => [rowView(g.root, false), ...g.children.map((c) => rowView(c, true))])}
             </tbody>
           </table>
         </div>
       )}
-      <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>
+      <p className="mdl-note is-dim" style={{ marginTop: 12 }}>
         {data.workspace === 'anthropic'
           ? <>Precedence: the agent's own Anthropic model (role agents inherit their orchestrator's), then an env variable, then the default (without one, the role's built-in model). Channel overrides apply to OpenRouter only.</>
           : <>Precedence: the agent's own model (role agents inherit their orchestrator's), then a channel override, then an env variable, then the default.</>}
@@ -485,12 +484,12 @@ function AgentModelModal({ row, parent, defaultModel, onClose }: {
       {row.effective.source === 'env' && !model && (
         <div className="callout-warning" style={{ marginBottom: 12 }}>
           <Icon name="info" size={16} />
-          <div className="text-micro">An env variable on the server sets this role's model ({row.effective.model}); it beats the default.</div>
+          <div className="text-caption">An env variable on the server sets this role's model ({row.effective.model}); it beats the default.</div>
         </div>
       )}
       {save.error && <div className="callout-danger" style={{ marginBottom: 12 }}>{describeError(save.error)}</div>}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+      <div className="modal-foot">
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={!dirty || save.isPending} onClick={submit}>{save.isPending ? 'Saving…' : 'Save'}</button>
       </div>
     </Modal>
@@ -518,31 +517,22 @@ function ChannelOverrides({ data }: { data: ModelsOverview }) {
   };
 
   return (
-    <SectionCard title="Channel overrides (legacy)" icon="channels" delay={80}
-      action={<button type="button" className="btn-secondary" disabled={clear.isPending} onClick={clearAll}>Clear all</button>}>
-      <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '0 0 10px' }}>
+    <SectionCard title="Channel overrides (legacy)" flush delay={80}
+      action={<button type="button" className="btn-secondary btn-sm" disabled={clear.isPending} onClick={clearAll}>Clear all</button>}>
+      <p className="mdl-note mdl-ovr-intro">
         Per-role models saved on a channel card (the older way to pick a model). They beat env variables and the default, but not an agent's own model.
       </p>
-      <div className="table-wrap">
-        <table className="table">
-          <thead><tr><th>Channel</th><th>Role</th><th>Model</th><ActionsTh /></tr></thead>
-          <tbody>
-            {rows.map((r) => (
-              <tr key={`${r.channelKey}:${r.role}`}>
-                <td>
-                  <Link to="/app/editor/$channel" params={{ channel: r.channelKey }} style={{ color: 'var(--color-ink)', textDecoration: 'none' }}>{r.title ?? r.channelKey}</Link>
-                  {r.title && <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-muted)' }}>{r.channelKey}</span>}
-                </td>
-                <td className="meta">{r.role}</td>
-                <td><span style={{ ...mono, overflowWrap: 'anywhere' }}>{r.model}</span></td>
-                <td style={{ textAlign: 'right' }}>
-                  <RowActions danger={<TableAction action="delete" title="Remove override" onClick={() => clearOne(r.channelKey, r.role, r.model)} />} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {rows.map((r) => (
+        <div key={`${r.channelKey}:${r.role}`} className="panel-row">
+          <div className="mdl-ovr-main">
+            <Link to="/app/editor/$channel" params={{ channel: r.channelKey }} className="mdl-ovr-name">{r.title ?? r.channelKey}</Link>
+            {r.title && <span className="mdl-handle mono">{r.channelKey}</span>}
+          </div>
+          <span className="chip mono">{r.role}</span>
+          <div className="mdl-ovr-model"><span className="mdl-id">{r.model}</span></div>
+          <RowActions danger={<TableAction action="delete" title="Remove override" onClick={() => clearOne(r.channelKey, r.role, r.model)} />} />
+        </div>
+      ))}
     </SectionCard>
   );
 }

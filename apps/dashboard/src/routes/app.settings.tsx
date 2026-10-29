@@ -9,6 +9,7 @@ import { SegmentedTabs } from '../components/SegmentedTabs';
 import { SecurityTab } from '../components/settings/SecurityTab';
 import { NavigationTab } from '../components/settings/NavigationTab';
 import { ConfigurationTab } from '../components/settings/ConfigurationTab';
+import '../components/settings/settings.css';
 
 type Tab = 'configuration' | 'security' | 'navigation';
 
@@ -53,8 +54,8 @@ function SettingsPage() {
     <div>
       <PageHeader title="Settings" subtitle="Everything but infrastructure: values imported from .env once, then edited here" />
 
-      <div style={{ overflowX: 'auto', marginBottom: 20, paddingBottom: 2 }}>
-        <SegmentedTabs value={tab} onChange={setTab} options={TABS} />
+      <div className="set-tabs">
+        <SegmentedTabs variant="underline" value={tab} onChange={setTab} options={TABS} ariaLabel="Settings sections" />
       </div>
 
       {tab === 'configuration' && <ConfigurationTab group={group ?? 'all'} onGroup={setGroup} />}

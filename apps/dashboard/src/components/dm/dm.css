@@ -1,0 +1,45 @@
+/* /app/dm (spec 078 C4): the DM triage page. KPI strip on top, chat intel as two flush panels, rich items (pending actions, threads)
+   stay compact cards that open a dialog. */
+
+.dm-stack { display: flex; flex-direction: column; gap: 16px; }
+.dm-skeleton { height: 96px; opacity: 0.55; }
+
+/* Chat intel: monitored chats and new opportunities side by side where there is room. */
+.dm-intel { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; align-items: start; }
+.dm-grow { flex: 1 1 200px; min-width: 0; }
+.dm-chat { font-size: 14px; font-weight: 500; color: var(--color-ink); overflow-wrap: anywhere; }
+.dm-count { font-size: 12px; color: var(--color-ink-dim); }
+
+/* An opportunity row. */
+.dm-opp { align-items: flex-start; }
+.dm-opp-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.dm-meta { font-size: 12px; color: var(--color-ink-dim); }
+.dm-meta.is-muted { color: var(--color-ink-muted); }
+.dm-opp-summary { margin: 4px 0 0; font-size: 14px; color: var(--color-ink-muted); }
+
+/* Compact cards: who/what the card is about, and the "a draft is waiting" cue. */
+.dm-peer { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); overflow-wrap: anywhere; min-width: 0; }
+.dm-target { font-size: 12px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+.dm-ready { font-size: 12px; color: var(--color-accent); }
+
+/* Threads: the category tabs over the grid. */
+.dm-tabs { margin-bottom: 14px; }
+
+/* Dialog bodies (thread and pending action). */
+.dm-detail { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.dm-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.dm-key { margin-bottom: 4px; }
+.dm-text { font-size: 14px; line-height: 1.45; color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.dm-text.is-muted { color: var(--color-ink-muted); }
+.dm-hint { margin: 6px 0 0; font-size: 12px; color: var(--color-ink-dim); }
+.dm-textarea { width: 100%; box-sizing: border-box; resize: vertical; font-family: inherit; }
+.dm-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; width: 100%; }
+.dm-actions .dm-push { margin-right: auto; }
+
+/* A quiet button whose action is destructive (Reject, Archive): danger text, danger wash on hover. */
+.btn-ghost.dm-danger { color: var(--color-danger); }
+.btn-ghost.dm-danger:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger); }
+
+@media (max-width: 600px) {
+  .dm-actions .dm-push { margin-right: 0; width: 100%; justify-content: center; }
+}

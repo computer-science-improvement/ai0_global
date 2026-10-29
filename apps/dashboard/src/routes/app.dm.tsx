@@ -1,12 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
-import { SectionCard, EmptyState } from '../components/ui/primitives';
+import { SectionCard, StatTile, StatStrip, EmptyState, Field } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { TableAction, RowActions } from '../components/ui/table';
 import { Icon } from '../components/ui/Icon';
-import { Field } from '../components/ui/primitives';
 import { describeError } from '../components/ui/Toast';
 import { CompactCard } from '../components/ui/CompactCard';
 import {
@@ -24,6 +23,7 @@ import {
 } from '../api/agent';
 import type { AgentCategory, AgentAction, AgentThread, OpportunityKind } from '../api/types';
 import { fmtDate, fmtRelative } from '../lib/format';
+import '../components/dm/dm.css';
 
 type CatFilter = 'all' | AgentCategory;
 
@@ -34,14 +34,15 @@ const CATS: CatFilter[] = ['all', 'ad', 'vp', 'question', 'spam', 'other'];
 export const Route = createFileRoute('/app/dm')({
   validateSearch: (s: Record<string, unknown>): { cat?: CatFilter } =>
     CATS.includes(s.cat as CatFilter) && s.cat !== 'all' ? { cat: s.cat as CatFilter } : {},
-  component: AgentPage,
+  component: DmPage,
 });
 
+// Amber is the colour of the human (approve, needs you); spam is not a call the owner has to make, so it reads neutral.
 const CAT_TONE: Record<AgentCategory, 'accent' | 'success' | 'neutral' | 'warning'> = {
   ad:       'accent',
   vp:       'success',
   question: 'neutral',
-  spam:     'warning',
+  spam:     'neutral',
   other:    'neutral',
 };
 
@@ -130,46 +131,43 @@ function PendingActionRow({ action }: { action: AgentAction }) {
     <CompactCard hint="Open the action" attention={!!action.error}
       top={<>
         <Badge tone={action.type === 'reply' ? 'accent' : 'neutral'}>{action.type}</Badge>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{target}</span>
-        {textChanged && <span className="chip" style={{ fontSize: 11 }}>edited</span>}
+        <span className="dm-target mono">{target}</span>
+        {textChanged && <span className="chip">edited</span>}
       </>}
       meta={when ?? fmtRelative(action.created_at)}
-      body={editedText || <span style={{ color: 'var(--color-ink-dim)' }}>No text</span>}
+      body={editedText || <span className="dm-meta">No text</span>}
       note={action.error ?? undefined}
       noteTone="danger"
       dialog={{
         size: 'lg', icon: 'check', title: action.type === 'reply' ? 'Reply' : action.type.replace(/_/g, ' '),
         subtitle: `${target}${when ? ` · ${when}` : ''} · nothing is sent until you approve`,
         body: () => (
-          <div style={{ minWidth: 0 }}>
-            <Field label="Text" hint="Edit it before approving; an edited text becomes a new action to approve.">
-              <textarea className="input-field" value={editedText} onChange={(e) => setEditedText(e.target.value)} rows={8}
-                style={{ width: '100%', resize: 'vertical', fontFamily: 'inherit', fontSize: '0.85rem' }} />
+          <div className="dm-detail">
+            <Field label="Text" hint="Edit it before approving; an edited text becomes a new action to approve." style={{ marginBottom: 0 }}>
+              <textarea className="input-field dm-textarea" value={editedText} onChange={(e) => setEditedText(e.target.value)} rows={8} />
             </Field>
             {textChanged && (
-              <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: -6 }}>
+              <div className="dm-hint" style={{ marginTop: 0 }}>
                 Text edited — Approve will create a new action with the updated text.
               </div>
             )}
             {action.error && (
-              <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{action.error}</span></div>
+              <div className="callout-danger"><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{action.error}</span></div>
             )}
             {err && (
-              <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro">{describeError(err)}</span></div>
+              <div className="callout-danger"><span className="text-micro">{describeError(err)}</span></div>
             )}
           </div>
         ),
         actions: (close) => (
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
-            <button type="button" className="btn-ghost" disabled={busy} onClick={() => reject.mutate(action.id, { onSuccess: close })}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+          <div className="dm-actions">
+            <button type="button" className="btn-ghost dm-danger dm-push" disabled={busy} onClick={() => reject.mutate(action.id, { onSuccess: close })}>
               <Icon name="ban" size={14} /> Reject
             </button>
             {textChanged && (
               <button type="button" className="btn-secondary" disabled={busy} onClick={() => setEditedText(storedText)}>Undo edits</button>
             )}
-            <button type="button" className="btn-primary" disabled={busy} onClick={() => handleApprove(close)}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-primary" disabled={busy} onClick={() => handleApprove(close)}>
               <Icon name="check" size={14} /> {textChanged ? 'Approve with edits' : 'Approve'}
             </button>
           </div>
@@ -192,65 +190,62 @@ function ThreadCard({ t, index }: { t: AgentThread; index: number }) {
   return (
     <CompactCard hint="Open the thread" delay={Math.min(index, 12) * 30}
       top={<>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{peer}</span>
+        <span className="dm-peer">{peer}</span>
         <Badge tone={CAT_TONE[t.category]}>{t.category}</Badge>
-        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>score {t.score}</span>
+        <span className="dm-meta mono">score {t.score}</span>
         {/* Spec 026 FR-016: the DM came from a landing CTA (its prefilled ai0web tag). */}
-        {landing && <span className="chip" style={{ fontSize: 11 }} title={`Opened from the public landing (${t.fields.placement ?? 'unknown'} button)${t.fields.channel ? `, about ${t.fields.channel}` : ''}`}>{landing}</span>}
+        {landing && <span className="chip" title={`Opened from the public landing (${t.fields.placement ?? 'unknown'} button)${t.fields.channel ? `, about ${t.fields.channel}` : ''}`}>{landing}</span>}
       </>}
       meta={<span title={fmtDate(t.last_message_at)}>{fmtRelative(t.last_message_at)}</span>}
       body={t.summary ?? t.last_text ?? undefined}
-      extra={t.draft_reply ? <span className="text-micro" style={{ color: 'var(--color-accent)' }}>Draft reply ready</span> : undefined}
+      extra={t.draft_reply ? <span className="dm-ready">Draft reply ready</span> : undefined}
       dialog={{
         size: 'lg', icon: 'chat', title: peer,
         subtitle: `${t.category} · score ${t.score} · last message ${fmtDate(t.last_message_at)}`,
         body: () => (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <div className="dm-detail">
+            <div className="dm-chips">
               <Badge tone={CAT_TONE[t.category]}>{t.category}</Badge>
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>score {t.score}</span>
-              {t.peer_username && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{t.peer_username}</span>}
-              {landing && <span className="chip" style={{ fontSize: 11 }}>{landing}</span>}
+              <span className="dm-meta mono">score {t.score}</span>
+              {t.peer_username && <span className="dm-meta is-muted mono">@{t.peer_username}</span>}
+              {landing && <span className="chip">{landing}</span>}
             </div>
             {t.summary && (
               <div>
-                <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Summary</div>
-                <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{t.summary}</div>
+                <div className="text-overline dm-key">Summary</div>
+                <div className="dm-text">{t.summary}</div>
               </div>
             )}
             {t.last_text && (
               <div>
-                <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Last message</div>
-                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{t.last_text}</div>
+                <div className="text-overline dm-key">Last message</div>
+                <div className="dm-text is-muted">{t.last_text}</div>
               </div>
             )}
             <div>
-              <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Draft reply</div>
+              <div className="text-overline dm-key">Draft reply</div>
               {t.draft_reply
-                ? <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', padding: '8px 10px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)' }}>{t.draft_reply}</div>
-                : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>No draft reply.</span>}
-              <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
+                ? <div className="inset dm-text">{t.draft_reply}</div>
+                : <span className="dm-meta">No draft reply.</span>}
+              <p className="dm-hint">
                 Queue reply adds it to Pending actions above; it is sent only when you approve it there.
-              </div>
+              </p>
             </div>
             {err && <div className="callout-danger"><span className="text-micro">{describeError(err)}</span></div>}
           </div>
         ),
         actions: (close) => (
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
-            <button type="button" className="btn-ghost" disabled={busy} onClick={() => patch.mutate({ id: t.id, status: 'archived' }, { onSuccess: close })}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+          <div className="dm-actions">
+            <button type="button" className="btn-ghost dm-danger dm-push" disabled={busy} onClick={() => patch.mutate({ id: t.id, status: 'archived' }, { onSuccess: close })}>
               <Icon name="trash" size={14} /> Archive
             </button>
-            <button type="button" className="btn-secondary" disabled={busy} onClick={() => patch.mutate({ id: t.id, status: 'reviewed' }, { onSuccess: close })}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-secondary" disabled={busy} onClick={() => patch.mutate({ id: t.id, status: 'reviewed' }, { onSuccess: close })}>
               <Icon name="check" size={14} /> Mark reviewed
             </button>
             {/* Queue reply: creates a pending action from the draft_reply text. Sending only happens when the
                 action is Approved in the Pending section — this button never sends directly. */}
             <button type="button" className="btn-primary" disabled={busy}
-              onClick={() => create.mutate({ type: 'reply', threadId: t.id, payload: { text: t.draft_reply ?? '' } }, { onSuccess: close })}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              onClick={() => create.mutate({ type: 'reply', threadId: t.id, payload: { text: t.draft_reply ?? '' } }, { onSuccess: close })}>
               <Icon name="play" size={14} /> Queue reply
             </button>
           </div>
@@ -266,203 +261,173 @@ function ChatIntelSection() {
   const setMonitor  = useSetChatMonitor();
   const opps        = useAgentOpportunities('new');
   const patchOpp    = usePatchOpportunity();
+  const monitored   = chats.data?.filter((c) => c.enabled).length ?? 0;
 
   return (
-    <SectionCard title="Chat intel" icon="bots" delay={30} style={{ marginBottom: 16 }}>
+    <div className="dm-intel">
       {/* ── Monitored chats ── */}
-      <div style={{ marginBottom: 16 }}>
-        <div
-          className="text-eyebrow"
-          style={{ color: 'var(--color-ink-dim)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}
-        >
-          Monitored chats
-        </div>
-        {chats.data && chats.data.length === 0 && (
-          <EmptyState
-            icon="bots"
-            title="No joined groups"
-            note="Add the agent account to chats in Telegram first, then refresh."
-          />
-        )}
-        {chats.data && chats.data.length > 0 && (
-          <div className="table-wrap">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Group</th>
-                  <th style={{ width: 80, textAlign: 'right' }}>Monitor</th>
-                </tr>
-              </thead>
-              <tbody>
-                {chats.data.map((c) => (
-                  <tr key={c.chatId}>
-                    <td className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-                      {c.title}
-                    </td>
-                    <td style={{ textAlign: 'right' }}>
-                      <input
-                        type="checkbox"
-                        checked={c.enabled}
-                        disabled={setMonitor.isPending}
-                        onChange={(e) =>
-                          setMonitor.mutate({ chatId: c.chatId, enabled: e.target.checked })
-                        }
-                        title={c.enabled ? 'Disable monitoring' : 'Enable monitoring'}
-                        style={{ cursor: 'pointer', width: 16, height: 16 }}
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
+      {chats.data && (
+        <SectionCard title="Monitored chats" flush delay={30}
+          action={chats.data.length > 0 ? <span className="dm-count mono">{monitored} of {chats.data.length}</span> : undefined}>
+          {chats.data.length === 0 ? (
+            <EmptyState
+              icon="bots"
+              title="No joined groups"
+              note="Add the agent account to chats in Telegram first, then refresh."
+            />
+          ) : chats.data.map((c) => (
+            <div className="panel-row" key={c.chatId}>
+              <div className="dm-grow"><span className="dm-chat">{c.title}</span></div>
+              <button
+                type="button"
+                className="chip-toggle"
+                aria-pressed={c.enabled}
+                aria-label={`Monitor ${c.title}`}
+                disabled={setMonitor.isPending}
+                title={c.enabled ? 'Disable monitoring' : 'Enable monitoring'}
+                onClick={() => setMonitor.mutate({ chatId: c.chatId, enabled: !c.enabled })}
+              >
+                Monitor
+              </button>
+            </div>
+          ))}
+        </SectionCard>
+      )}
 
       {/* ── Opportunities feed ── */}
-      <div>
-        <div
-          className="text-eyebrow"
-          style={{ color: 'var(--color-ink-dim)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}
-        >
-          New opportunities
-        </div>
-        {opps.data && opps.data.length === 0 && (
-          <div className="text-body-sm" style={{ color: 'var(--color-ink-dim)', padding: '4px 0' }}>
-            No new opportunities.
-          </div>
-        )}
-        {opps.data && opps.data.length > 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {opps.data.map((o) => (
-              <div
-                key={o.id}
-                className="card"
-                style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '13px 18px' }}
-              >
-                <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
-                    <Badge tone={KIND_TONE[o.kind]}>{KIND_LABEL[o.kind]}</Badge>
-                    <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                      score {o.score}
-                    </span>
-                    {o.chat_title && (
-                      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                        {o.chat_title}
-                      </span>
-                    )}
-                    {o.suggested_action && (
-                      <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                        → {ACTION_LABEL[o.suggested_action] ?? o.suggested_action}
-                      </span>
-                    )}
-                  </div>
-                  {o.summary && (
-                    <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-                      {o.summary}
-                    </div>
+      {opps.data && (
+        <SectionCard title="New opportunities" flush delay={40}
+          action={opps.data.length > 0 ? <span className="dm-count mono">{opps.data.length}</span> : undefined}>
+          {opps.data.length === 0 ? (
+            <EmptyState icon="sparkles" title="No new opportunities" note="Ad offers and cross-promo requests seen in the monitored chats show up here." />
+          ) : opps.data.map((o) => (
+            <div key={o.id} className="panel-row dm-opp">
+              <div className="dm-grow">
+                <div className="dm-opp-top">
+                  <Badge tone={KIND_TONE[o.kind]}>{KIND_LABEL[o.kind]}</Badge>
+                  <span className="dm-meta mono">score {o.score}</span>
+                  {o.chat_title && <span className="dm-meta is-muted">{o.chat_title}</span>}
+                  {o.suggested_action && (
+                    <span className="dm-meta">→ {ACTION_LABEL[o.suggested_action] ?? o.suggested_action}</span>
                   )}
                 </div>
-                <RowActions
-                  danger={
-                    <TableAction
-                      icon="trash"
-                      danger
-                      title="Archive"
-                      disabled={patchOpp.isPending}
-                      onClick={() => patchOpp.mutate({ id: o.id, status: 'archived' })}
-                    />
-                  }
-                >
-                  <TableAction
-                    icon="check"
-                    title="Mark reviewed"
-                    disabled={patchOpp.isPending}
-                    onClick={() => patchOpp.mutate({ id: o.id, status: 'reviewed' })}
-                  />
-                </RowActions>
+                {o.summary && <p className="dm-opp-summary clamp">{o.summary}</p>}
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </SectionCard>
+              <RowActions
+                danger={
+                  <TableAction
+                    icon="trash"
+                    danger
+                    title="Archive"
+                    disabled={patchOpp.isPending}
+                    onClick={() => patchOpp.mutate({ id: o.id, status: 'archived' })}
+                  />
+                }
+              >
+                <TableAction
+                  icon="check"
+                  title="Mark reviewed"
+                  disabled={patchOpp.isPending}
+                  onClick={() => patchOpp.mutate({ id: o.id, status: 'reviewed' })}
+                />
+              </RowActions>
+            </div>
+          ))}
+        </SectionCard>
+      )}
+    </div>
   );
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-function AgentPage() {
+function DmPage() {
   const cat: CatFilter = Route.useSearch().cat ?? 'all';
   const navigate = Route.useNavigate();
   const setCat = (c: CatFilter) => navigate({ search: c === 'all' ? {} : { cat: c }, replace: true });
   const status  = useAgentStatus();
+  // The unfiltered list gives the tab counts; with the "All" tab selected it is also the list (one request: same query key).
+  const everything = useAgentInbox({});
   const inbox   = useAgentInbox(cat === 'all' ? {} : { category: cat });
   const actions = useAgentActions('pending');
+  const opps    = useAgentOpportunities('new');
+
+  const counts: Record<CatFilter, number> | null = everything.data
+    ? { all: everything.data.length, ad: 0, vp: 0, question: 0, spam: 0, other: 0 }
+    : null;
+  if (counts && everything.data) for (const t of everything.data) counts[t.category] += 1;
+  const tabs = TABS.map((t) => ({ ...t, count: counts?.[t.key] }));
+
+  const pending = actions.data?.length ?? 0;
+  const s = status.data;
 
   return (
     <div>
       <PageHeader
+        eyebrow="Telegram · triage"
         title="DM inbox"
         subtitle="Incoming DMs triaged by the agent. Review drafts here — nothing is sent automatically."
       />
 
-      <SectionCard title="Agent status" icon="bots" delay={20} style={{ marginBottom: 16 }}>
-        {!status.data?.hasAgentSession ? (
-          <EmptyState
-            icon="bots"
-            title="No agent session"
-            note="Add an MTProto session and set its role to 'agent' in Connections → Sessions."
-          />
+      <div className="dm-stack">
+        {/* ── Agent status ──────────────────────────────────────────────────── */}
+        {status.isLoading ? (
+          <div className="panel is-section dm-skeleton compose-rise" aria-hidden />
+        ) : !s?.hasAgentSession ? (
+          <SectionCard title="Agent status" delay={20}>
+            <EmptyState
+              icon="bots"
+              title="No agent session"
+              note={<>Add an MTProto session and set its role to 'agent' in <Link to="/app/connections" search={{ section: 'telegram', tab: 'sessions' }} className="link-accent">Connections → Sessions</Link>.</>}
+            />
+          </SectionCard>
         ) : (
-          <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-            Polling {status.data?.enabled ? 'on' : 'off'} · cadence {status.data?.cadence} ·{' '}
-            last polled{' '}
-            {status.data?.lastPolledAt
-              ? fmtDate(status.data.lastPolledAt)
-              : 'never'}
-          </div>
+          <StatStrip label="Agent status">
+            <StatTile label="Polling" value={s.enabled ? 'On' : 'Off'} deltaTone={s.enabled ? 'success' : 'warning'} delta={s.cadence} />
+            <StatTile label="Last polled" value={s.lastPolledAt ? fmtRelative(s.lastPolledAt) : 'Never'} delta={s.lastPolledAt ? fmtDate(s.lastPolledAt) : undefined} />
+            <StatTile label="Pending actions" value={pending} deltaTone="warning" delta={pending > 0 ? 'waiting for you' : undefined} />
+            <StatTile label="New opportunities" value={opps.data?.length ?? 0} />
+          </StatStrip>
         )}
-      </SectionCard>
 
-      {/* ── Chat intel ──────────────────────────────────────────────────────── */}
-      <ChatIntelSection />
+        {/* ── Chat intel ──────────────────────────────────────────────────────── */}
+        <ChatIntelSection />
 
-      {/* ── Pending actions ─────────────────────────────────────────────────── */}
-      <SectionCard
-        title={`Pending actions${actions.data && actions.data.length > 0 ? ` (${actions.data.length})` : ''}`}
-        icon="check"
-        delay={40}
-        style={{ marginBottom: 16 }}
-      >
-        {!actions.data || actions.data.length === 0 ? (
-          <div className="text-body-sm" style={{ color: 'var(--color-ink-dim)', padding: '4px 0' }}>
-            No pending actions.
+        {/* ── Pending actions ─────────────────────────────────────────────────── */}
+        <SectionCard
+          title="Pending actions"
+          delay={40}
+          action={pending > 0 ? <Badge tone="warning">{pending}</Badge> : undefined}
+        >
+          {!actions.data || actions.data.length === 0 ? (
+            <EmptyState tone="clear" title="Nothing to approve" note="Replies you queue from a thread wait here until you approve them." />
+          ) : (
+            <div className="compact-grid">
+              {actions.data.map((a) => (
+                <PendingActionRow key={a.id} action={a} />
+              ))}
+            </div>
+          )}
+        </SectionCard>
+
+        {/* ── Inbox ───────────────────────────────────────────────────────────── */}
+        <SectionCard title="Triaged threads" delay={60}>
+          <div className="dm-tabs">
+            <SegmentedTabs<CatFilter> value={cat} onChange={setCat} options={tabs} ariaLabel="Thread category" />
           </div>
-        ) : (
+
+          {inbox.data && inbox.data.length === 0 && (
+            <EmptyState
+              icon="bots"
+              title="Inbox empty"
+              note={cat === 'all' ? 'Triaged DM threads will show up here.' : 'No threads in this category.'}
+            />
+          )}
+
           <div className="compact-grid">
-            {actions.data.map((a) => (
-              <PendingActionRow key={a.id} action={a} />
-            ))}
+            {inbox.data?.map((t, i) => <ThreadCard key={t.id} t={t} index={i} />)}
           </div>
-        )}
-      </SectionCard>
-
-      {/* ── Inbox ───────────────────────────────────────────────────────────── */}
-      <div style={{ marginBottom: 16 }}>
-        <SegmentedTabs<CatFilter> value={cat} onChange={setCat} options={TABS} />
-      </div>
-
-      {inbox.data && inbox.data.length === 0 && (
-        <EmptyState
-          icon="bots"
-          title="Inbox empty"
-          note="Triaged DM threads will show up here."
-        />
-      )}
-
-      <div className="compact-grid">
-        {inbox.data?.map((t, i) => <ThreadCard key={t.id} t={t} index={i} />)}
+        </SectionCard>
       </div>
     </div>
   );
