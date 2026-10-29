@@ -221,20 +221,20 @@ export function libraryRefOf(spec: any): string | null {
 }
 
 /** Guard and lint codes that say nothing about the row's fitness: the row stays open for the next attempt (spec 071 A2). */
-const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']);
+const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar', 'quiz_answer_mismatch']);
 
 /**
  * Spec 071 A2: does this failure put the post's library row aside for the round (`passRow`)?
  *   - a critic reject that is not fixable (a reject, a low grounding, a wrong topic), or any critic reject of a
  *     `revise_source` step (the row had its second chance);
- *   - `quiz_answer_mismatch` (the row's answer key is wrong, it will not post);
  * never a guard or lint code (`not_next_in_order`, `library_item_already_posted`, `series_source_mismatch`, `lint_failed`,
- * `too_similar`): those say the attempt was wrong, not the row. The caller still relies on the ledger to ignore every ref
+ * `too_similar`): those say the attempt was wrong, not the row. Spec 073 FR-003: nor `quiz_answer_mismatch` — the code
+ * raises it only when the row HAS a known answer and the writer marked another option, so the row is fine and the attempt
+ * is wrong; the next step retries with the code's own text. The caller still relies on the ledger to ignore every ref
  * that is not a row of a cycle dataset.
  */
 export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' | 'libraryRef'>, step: LadderStep): boolean {
   if (!f.libraryRef || NEVER_PASS.has(f.code)) return false;
-  if (f.code === 'quiz_answer_mismatch') return true;
   return f.kind === 'critic_reject' && (!f.fixable || step === 'revise_source');
 }
 
@@ -289,12 +289,27 @@ export function lighterFormat(format: string, allowed: ReadonlySet<string>): str
   return (LIGHTER_FORMATS[format] ?? []).find((f) => allowed.has(f)) ?? null;
 }
 
-/** The steps after the initial attempt (each at most once). */
-export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind']; fixable?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
+/**
+ * Spec 073 FR-003: is this slot's format not the ladder's to change? A series instance (the series sets the format), a pin
+ * (the owner did) and a poll / quiz slot made from a dataset row (`data://` / `library://`: the row is the question). A quiz
+ * that fails goes to the next row or a rewrite, never to a plain text post.
+ */
+export function formatLocked(slot: { format: string; seriesName?: string | null; scheduleRuleId?: string | null; sourceHints?: readonly string[] | null }): boolean {
+  if (slot.seriesName || slot.scheduleRuleId) return true;
+  const hints = slot.sourceHints ?? [];
+  if (hints.some((h) => h.startsWith('series:'))) return true;
+  return POLL_LIKE.has(slot.format) && hints.some((h) => h.startsWith('data://') || h.startsWith('library://'));
+}
+const POLL_LIKE = new Set(['poll', 'quiz']);
+
+/** The steps after the initial attempt (each at most once). `locked` (spec 073, `formatLocked`): the format stays, so there is no lighter or evergreen step. */
+export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind']; fixable?: boolean; locked?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
   // Spec 063 FR-002: a fixable revise keeps its source; the next candidate is the step after it.
   const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [
     ...(o.fixable ? [{ step: 'revise_source' as const, format: o.format }] : []), { step: 'next_candidate', format: o.format },
   ];
+  // Spec 073 A19: a locked slot keeps its format — an evergreen post would be another format (or another kind of post) altogether.
+  if (o.locked) return out;
   const lighter = lighterFormat(o.format, o.allowed);
   // Spec 053 FR-007: only one step runs — a post that failed lint tries the lighter format first.
   if (lighter) out[o.failure === 'lint' ? 'unshift' : 'push']({ step: 'lighter_format', format: lighter });

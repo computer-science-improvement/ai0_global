@@ -31,7 +31,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `schedule/series-format.073.test.ts` (A21: a single plan with no `resource_ref`, and a network plan in which one name exists on two resources; an unknown series is left unchanged; lint's locked format); update tests that expect `формати … недоступні` for weight-0 keys or a series format outside the card weights (grep `недоступн` in `network/`, `launch/` and `setup/` tests); `migration/proposal.test.ts` stays green.
   - Done when: the @pdr case (card quiz, section quiz 0, quiz series) validates as a plan and a playbook, and a submitted series slot in another format is saved in the series format, with the tool result naming it.
 
-- [ ] **T3 Ladder keeps locked formats; answer-key rows stay (FR-003; A19, A35).**
+- [x] **T3 Ladder keeps locked formats; answer-key rows stay (FR-003; A19, A35).**
   - What: `formatLocked(slot)`; `ladderPlan({ locked })` gives a locked slot only `revise_source` (when the failure is fixable) and `next_candidate`, never an evergreen or `lighter_format` step (A19); the runner's `fallback` passes it; `quiz_answer_mismatch` joins `NEVER_PASS` and the :237 line goes.
   - Files: `silent/fallback-ladder.ts`, `roles/editor-runner.service.ts` (:546-556 only).
   - Tests: `silent/fallback-ladder.073.test.ts` (each failure kind: a fixable and a non-fixable critic reject, lint, a guard); update `silent/pass-row.071.test.ts` :97-100 (`passed` is `[]`) and :129 (false) (A35). The loops at :101 and :158 and the `not_next_in_order` cases stay.

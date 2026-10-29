@@ -34,7 +34,7 @@ import { alreadyUsedBlock } from '../post/variety/monotony';
 import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
+  classifyFailure, formatLocked, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import type { PassRow } from '../silent/pass-row';
@@ -553,7 +553,7 @@ export class EditorRunnerService {
     const avoid: string[] = failure.sourceUrl && !failure.fixable && !keep ? [failure.sourceUrl] : [];
     await afterPass(await this.passFailedRow(slot, failure, 'initial'));
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
-    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable || keep });
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable || keep, locked: formatLocked(slot) });
     let ran = 0;
     const agent = EditorRunnerService.agentBudget(ctx);
     const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
