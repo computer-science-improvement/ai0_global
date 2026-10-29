@@ -18,7 +18,7 @@ import { Modal } from '../Modal';
 import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
-import { errorBody, useAgentConfigConflicts, usePatchAgent, type AgentDetail, type AgentPatch, type GrammaticalGender, type ReasoningEffort } from '../../api/agents';
+import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type GrammaticalGender, type ReasoningEffort } from '../../api/agents';
 import { useModelCatalog, type Workspace } from '../../api/models';
 import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
 import { useEditorChannel } from '../../api/editor';
@@ -27,12 +27,12 @@ import { ModelSelect } from '../models/ModelSelect';
 import { useActiveSteering } from '../../api/steering';
 import { useArtifacts } from '../../api/artifacts';
 import { statusLabel } from '../../lib/artifacts';
-import { alignPrompt } from '../../lib/align';
 import { useDirectives } from '../../api/manager';
 import { adviceCounts, planAtLine } from '../../lib/agent-overview';
 import { zoneLabel } from '../../lib/zoned-time';
 import { TodaySteps } from './TodaySteps';
 import { ChannelSummary, FormattingSummary } from './AgentSummaries';
+import { ReadinessPanel } from '../readiness/ReadinessPanel';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -90,23 +90,6 @@ function diff(a: AgentDetail['agent'], f: Form, ws: Workspace): AgentPatch {
   return p;
 }
 
-/** Spec 047 FR-005: "N conflicts" — what keeps the channel from the owner's rules, and the way to resolve it in one card. */
-function ConflictsLine({ handle }: { handle: string }) {
-  const q = useAgentConfigConflicts(handle);
-  const n = q.data?.items?.length ?? q.data?.conflicts.length ?? 0;
-  if (!n) return null;
-  return (
-    <div className="callout-warning" role="status" style={{ flexWrap: 'wrap', gap: 10 }}>
-      <Icon name="warning" size={16} />
-      <span style={{ flex: '1 1 240px', minWidth: 0 }}>
-        <strong>{n} conflict{n === 1 ? '' : 's'}</strong> with your rules — the agent cannot follow the rules and its config at once.
-      </span>
-      <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'memory' } as any} className="btn-tiny">See them</Link>
-      <Link to="/app/chat" search={{ q: alignPrompt(handle) } as any} className="btn-tiny">Resolve in one card</Link>
-    </div>
-  );
-}
-
 /** "MANAGER advice · 30 d": how much of @manager's advice the agent followed and declined (orchestrators only). */
 function AdviceTile({ handle }: { handle: string }) {
   const q = useDirectives({ agent: handle, binding: 'advice' });
@@ -144,7 +127,8 @@ function OverviewKpis({ data }: { data: AgentDetail }) {
   );
 }
 
-export function AgentOverview({ data }: { data: AgentDetail }) {
+/** `focusReadiness` is the deep link `?tab=overview&readiness=1`: the Readiness dialog opens on arrival. */
+export function AgentOverview({ data, focusReadiness = false }: { data: AgentDetail; focusReadiness?: boolean }) {
   const a = data.agent;
   // Spec 038: the agent's model shown and edited is the one of the active workspace.
   const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
@@ -154,7 +138,8 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {/* The mode (and a role agent's "follows") moved to the page header; paused series to the banners under it. */}
       <OverviewKpis data={data} />
 
-      {resource && <ConflictsLine handle={a.handle} />}
+      {/* Spec 072: what keeps the channel from posting (this replaced the conflicts line; its conflicts are rows here). */}
+      {resource && data.channelKey && <ReadinessPanel channelKey={data.channelKey} handle={a.handle} focused={focusReadiness} />}
       {data.channelKey && <TodaySteps data={data} delay={30} />}
 
       {resource && (
