@@ -356,3 +356,21 @@ Landing (`/`), built from `research/landing.md` and `Main.dc.html` as a layout a
 - **Removed / kept**: `HowItWorks.tsx` and `AgentHierarchy.tsx` are deleted; `diagramNodes` stays in `landing-view.ts` but is unused. `MediaKit.tsx` exports `MediaKitCards` (presentational) next to `MediaKit` (the hook), so it renders in a test.
 - **Mock bug found**: the mock API returns `autonomyShare` as a fraction (0.86); the real backend sends an integer percent. The landing shows what the payload says, so the hero reads "1%" on the mock.
 - **Not verified in a browser** (the lead's pass): 375px layout, the orbit and ring geometry, the hover lift, the Shadow / Live switch, the deck and token timing, `prefers-reduced-motion`, off-screen pausing, the sticky nav on anchor jumps. Full-page screenshots taken without scrolling show the sections below the hero empty until they are scrolled into view (that is how `whileInView` entrances behave).
+
+### Lead: wave B merge and review
+- Merged B1 → B2 → B3 → B4 → B5 (`da39d51e`, `8e376816`, `7f3d625f`, `e2850d2f`, `08832621`). B3's change of `routes/app.agents_.inbox.tsx` lost to B2's thin route (the effects link lives in `lib/inbox-kinds.ts`). The stamp unit test follows A's upsert (`4b671097`); the Inbox and its approvals view have no "Agents" parent crumb (`4a5ddafc`). Browser on the mock at 1280 and 375: the 12 prototyped routes render, no page-wide horizontal scroll; at 1280 they match the prototypes.
+- Lead calls: the Today errors tile stays removed, "Run now" stays hidden, the 601–860px Inbox drawer is accepted. B1's `NetworkHealthCard`, `useUpcomingSlots` and `AiSpendCard` lost their users; removed after wave C if nothing else picks them up.
+- Adversarial review (lenses: correctness, data truth, interaction and focus, motion and accessibility; each finding checked by a skeptic): 13 confirmed. Fixed:
+  - **The Today timeline was an hour off on the two DST days**: minutes counted from Kyiv midnight as elapsed time, not wall clock. `axisMinutes(at, day)` reads the wall-clock parts (test on 2026-10-25 and 2027-03-28).
+  - Today's headline could claim a count before the approvals answered: `loaded` waits for both.
+  - "Got it" in the Inbox detail toasted twice (the note's own toast and the page's): `NoteActions` takes `onRead`, the page's handler owns the toast.
+  - **Undo after a mark-read could reopen a note the owner had settled in Telegram** in the meantime: `POST /api/agents/inbox/read` answers the ids it changed (`OwnerInbox.markReadIds`); the Inbox's Undo and Today's Dismiss only reopen those, and Today says "Already done" for the rest. PG test added.
+  - The agent page's More menu: the button now toggles it, the menu gets the button as its `anchor` (focus returns there), and `onClose` is stable (it re-ran the menu's effect on every render).
+  - Resume's Undo restored a stale or past `paused_until` (the server refuses a past one): it now puts back an open-ended pause, or the date only while it is ahead.
+  - The Overview's Lock switch sent back the formatting as the page loaded it, overwriting an agent's change made since: it refetches, then flips only that lock.
+  - The Calendar composer remounted at Kyiv midnight (its key held a day computed from today) and dropped typed text: the start day is fixed when the drawer opens and only an address `day` is in the key.
+  - The composer's unsaved flag outlived the composer (a post that went out while open then asked "discard?" on a read-only sheet): cleared on unmount.
+  - A failed posts request showed "This post is not here any more" for an edit link: it now says the post could not load, with Try again.
+  - With the channels failed, every own post landed in "Other channels" labelled "0 channels without an agent": a banner says the channels did not load (Try again), and a row that holds only posts reads "Your posts".
+  - Landing under reduced motion: the agent log kept its 196px masked window over a list that no longer scrolls, and its aria-hidden loop copy showed; now the log shows whole, once.
+  - Landing orbit: a tile that mounted after its ring started spinning kept a tilted label; each tile's counter-rotation is put on its ring's clock (`getAnimations`) when the tiles change.

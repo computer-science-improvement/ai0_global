@@ -7,7 +7,7 @@
 //   agents      the orchestrator of each channel, found in the agent tree
 //   KPI         the Meta accounts that need reconnecting
 
-import { KYIV_TZ, formatIn, minutesFromDayStart, zonedParts } from './zoned-time';
+import { KYIV_TZ, formatIn, zonedParts } from './zoned-time';
 import { MARK_LABEL, MARK_ORDER, isMissed, isNotAMiss, slotMark, type MarkKind } from './status-tone';
 import { packRows } from './plan-timeline';
 import { skipReason } from './slot-plan';
@@ -250,11 +250,21 @@ function markerLabel(slot: DaySlot, mark: MarkKind, time: string, clamped: boole
   return parts.join(' · ');
 }
 
+/**
+ * Wall-clock minutes of an instant on the axis of `day` in `tz`: 13:30 is 810 even on a DST day (the ticks are wall-clock
+ * hours, so elapsed minutes would put every slot after the switch an hour off). A time on the next day counts past 1440.
+ */
+export function axisMinutes(at: Date | string | number, day: string, tz: string = KYIV_TZ): number {
+  const p = zonedParts(at, tz);
+  const days = Math.round((Date.UTC(p.year, p.month - 1, p.day) - Date.parse(`${day}T00:00:00Z`)) / 86_400_000);
+  return days * 1440 + p.hour * 60 + p.minute;
+}
+
 /** Markers of one lane, sorted by time, with their sub-rows. */
 export function laneMarkers(slots: ReadonlyArray<DaySlot>, day: string, tz: string = KYIV_TZ): { markers: Marker[]; rows: number } {
   const placed = slots
     .map((s) => {
-      const minutes = minutesFromDayStart(s.scheduledAt, day, tz);
+      const minutes = axisMinutes(s.scheduledAt, day, tz);
       return { slot: s, minutes, clamped: minutes < AXIS_START_MIN || minutes > AXIS_END_MIN, mark: slotMark(s), time: formatIn(s.scheduledAt, tz) };
     })
     .sort((a, b) => a.minutes - b.minutes || (a.slot.id < b.slot.id ? -1 : a.slot.id > b.slot.id ? 1 : 0));
@@ -300,14 +310,14 @@ export function legendMarks(lanes: ReadonlyArray<Lane>): MarkKind[] {
 
 /** The now-line: its position on the axis, or null when now is outside 06:00-24:00 of the plan day (or the day is another one). */
 export function nowLine(now: Date, day: string, tz: string = KYIV_TZ): { pct: number; minutes: number; label: string } | null {
-  const minutes = minutesFromDayStart(now, day, tz);
+  const minutes = axisMinutes(now, day, tz);
   if (minutes < AXIS_START_MIN || minutes > AXIS_END_MIN) return null;
   return { pct: axisPct(minutes), minutes, label: `now ${formatIn(now, tz)}` };
 }
 
 /** How much of the axis is already past, in percent: 0 before the axis starts, 100 once the plan day is over. */
 export function pastPct(now: Date, day: string, tz: string = KYIV_TZ): number {
-  return axisPct(minutesFromDayStart(now, day, tz));
+  return axisPct(axisMinutes(now, day, tz));
 }
 
 /** Height of a lane in px: 44 for one row, 20 more for each extra row. */

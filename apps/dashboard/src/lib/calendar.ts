@@ -419,7 +419,10 @@ export function buildRows(i: BuildInput): CalRow[] {
     const keys = others.map((c) => c.channelKey).filter((k): k is string => !!k);
     rows.push({
       key: 'other', kind: 'other', name: 'Other channels',
-      sub: others.length === 1 ? (others[0].channelKey ?? others[0].title ?? '1 channel') : `${others.length} channel${others.length === 1 ? '' : 's'} without an agent`,
+      // No such channel among those loaded (the channels did not load, or the post's channel is not the owner's): the row
+      // holds only posts, and must not claim "0 channels".
+      sub: others.length === 0 ? 'Your posts'
+        : others.length === 1 ? (others[0].channelKey ?? others[0].title ?? '1 channel') : `${others.length} channels without an agent`,
       handle: null, emoji: null, mode: null, paused: false, channelKey: null,
       composeKey: others.length === 1 && keys.length === 1 ? keys[0] : null,
       state: 'ready', error: null,

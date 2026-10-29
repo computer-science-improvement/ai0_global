@@ -296,6 +296,12 @@ test('rows: two channels without an agent share the row and nothing is preselect
   assert.deepEqual([rows[0].composeKey, rows[0].sub], [null, '2 channels without an agent']);
 });
 
+test('rows: posts whose channel did not load sit in "Other channels" as "Your posts", never "0 channels"', () => {
+  const rows = buildRows({ agents: [agent()], channels: [], days, today: TODAY, schedules: { space: ready(sched([], [])) }, pauses: {}, posts: [post()] });
+  const other = rows.find((r) => r.key === 'other');
+  assert.deepEqual([other?.sub, other?.composeKey, other?.cells[1].length], ['Your posts', null, 1]);
+});
+
 test('rows survive nothing loaded: no agents, no channels, no posts', () => {
   assert.deepEqual(buildRows({ agents: [], channels: [], days, today: TODAY, schedules: {}, pauses: {}, posts: [] }), []);
 });

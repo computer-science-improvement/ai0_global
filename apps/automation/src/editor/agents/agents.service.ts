@@ -594,7 +594,9 @@ export class AgentsService {
   async markRead(body: unknown) {
     const p = z.object({ ids: z.union([z.array(z.number().int().positive()).max(500), z.literal('all')]) }).strict().safeParse(body ?? {});
     if (!p.success) throw badRequest(p.error);
-    return { marked: await this.d.inbox.markRead(p.data.ids) };
+    if (p.data.ids === 'all') return { marked: await this.d.inbox.markRead('all') };
+    const ids = await this.d.inbox.markReadIds(p.data.ids);
+    return { marked: ids.length, ids };
   }
 
   /** Spec 078 D5: "Undo" after Dismiss — the notes are unread again. */

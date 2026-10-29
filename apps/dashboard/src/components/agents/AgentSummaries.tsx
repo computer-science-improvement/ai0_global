@@ -70,11 +70,15 @@ export function FormattingSummary({ handle, scopeRef, channelKey, delay }: { han
   const r = d ? d.resources.find((x) => x.ref === scopeRef) ?? d.resources[0] : undefined;
 
   // The switch is its own way back (click again), so no Undo toast: a stale Undo would replace what an agent changed since.
-  const flip = (field: FormatPrefField) => {
+  const flip = async (field: FormatPrefField) => {
     if (!r) return;
-    const locks = toggleLock(r.locks, field);
-    // The PUT replaces the whole format_prefs: send back exactly what the server gave, changing only the locks.
-    put.mutate({ ref: r.ref, format_prefs: r.formatPrefs, format_locks: locks }, {
+    // The PUT replaces the whole format_prefs and locks: read them fresh first, so an agent's change since the page loaded
+    // (or another lock flipped in Settings) is sent back as it is now, and only this one lock changes.
+    const fresh = await q.refetch();
+    const cur = fresh.data?.resources.find((x) => x.ref === r.ref);
+    if (!cur) { toast.error(fresh.error ? describeError(fresh.error) : 'This resource is gone. Reload the page.'); return; }
+    const locks = toggleLock(cur.locks, field);
+    put.mutate({ ref: cur.ref, format_prefs: cur.formatPrefs, format_locks: locks }, {
       onSuccess: () => toast.success(`${FORMAT_LABEL[field]} ${locks.includes(field) ? 'locked: agents cannot change it' : 'unlocked: agents may change it again'}`),
       onError: (e) => toast.error(errorBody(e)?.error ? errorText(e) : describeError(e)),
     });
@@ -94,9 +98,9 @@ export function FormattingSummary({ handle, scopeRef, channelKey, delay }: { han
                 <span className="text-overline">{row.label}</span>
                 <span className={`fmt-value clamp${row.value ? '' : ' is-unset'}`} title={row.value ?? undefined}>{row.value ?? 'Not set — the agent decides'}</span>
               </div>
-              <button type="button" className="chip-toggle is-warning" aria-pressed={row.locked} disabled={put.isPending}
+              <button type="button" className="chip-toggle is-warning" aria-pressed={row.locked} disabled={put.isPending || q.isFetching}
                 title={row.locked ? 'Locked: agents cannot change it. Click to unlock.' : 'Lock it so agents cannot change it'}
-                onClick={() => flip(row.field)}>
+                onClick={() => { void flip(row.field); }}>
                 <Icon name={row.locked ? 'lock' : 'unlock'} size={12} /> {row.locked ? 'Locked' : 'Lock'}
               </button>
             </div>

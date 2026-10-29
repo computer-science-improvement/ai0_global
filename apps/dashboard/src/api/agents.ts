@@ -460,7 +460,8 @@ export function useMarkInboxRead() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (ids: number[] | 'all') =>
-      api<{ marked: number }>('/api/agents/inbox/read', { method: 'POST', body: JSON.stringify({ ids }) }),
+      // `ids`: the notes this call marked (not those already read); an older server answers without it.
+      api<{ marked: number; ids?: number[] }>('/api/agents/inbox/read', { method: 'POST', body: JSON.stringify({ ids }) }),
     onSuccess: () => qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] }),
   });
 }

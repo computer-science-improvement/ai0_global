@@ -4,7 +4,7 @@
 // history, Pause / Resume, Edit profile). Going live still goes through the autonomy dialog / the confirmation inside
 // AgentModeSwitch. A role agent has no switch: it shows what it follows.
 
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { PageHeader } from '../ui/PageHeader';
 import { Badge } from '../ui/Badge';
@@ -57,13 +57,17 @@ export function AgentHeader({ data, onEdit }: { data: AgentDetail; onEdit: () =>
   const [menu, setMenu] = useState<{ x: number; y: number } | null>(null);
   const [pausing, setPausing] = useState(false);
   const moreRef = useRef<HTMLButtonElement>(null);
+  // The More button toggles its menu; the menu returns focus to it (its `anchor`) when it closes.
   const openMenu = () => {
     const r = moreRef.current?.getBoundingClientRect();
-    setMenu(r ? { x: r.right - 210, y: r.bottom + 6 } : { x: 16, y: 120 });
+    setMenu((open) => (open ? null : r ? { x: r.right - 210, y: r.bottom + 6 } : { x: 16, y: 120 }));
   };
-  const closeMenu = () => { setMenu(null); moreRef.current?.focus(); };
+  const closeMenu = useCallback(() => setMenu(null), []);
   const resume = () => {
-    const was = a.pausedUntil ? { paused_until: a.pausedUntil } : { status: 'paused' as const };
+    // Undo puts back the pause the agent had: an open-ended one stays open-ended; a date is sent only while it is ahead
+    // (the server refuses a past one, and a stale paused_until can sit next to status 'paused').
+    const until = a.pausedUntil && Date.parse(a.pausedUntil) > Date.now() ? a.pausedUntil : null;
+    const was = a.status === 'paused' ? { status: 'paused' as const, ...(until ? { paused_until: until } : {}) } : { paused_until: until };
     patch.mutate({ status: 'active', paused_until: null }, {
       onSuccess: () => toast.success(`@${a.handle} resumed`, { action: { label: 'Undo', onClick: () => patch.mutate(was, { onError: (e) => toast.error(describeError(e)) }) } }),
       onError: (e) => toast.error(describeError(e)),
@@ -142,7 +146,7 @@ export function AgentHeader({ data, onEdit }: { data: AgentDetail; onEdit: () =>
         </div>
       </div>
 
-      {menu && <NavContextMenu x={menu.x} y={menu.y} title={`@${a.handle}`} actions={actions} onClose={closeMenu} />}
+      {menu && <NavContextMenu x={menu.x} y={menu.y} title={`@${a.handle}`} actions={actions} onClose={closeMenu} anchor={moreRef.current} />}
       {pausing && <PauseModal handle={a.handle} onClose={() => setPausing(false)} />}
       {setup.dialog}
     </>

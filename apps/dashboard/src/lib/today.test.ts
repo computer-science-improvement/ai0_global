@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ACTIVITY_ROWS, AXIS_END_MIN, AXIS_START_MIN, MARKER_SPAN_MIN, NEEDS_ROWS, activeSlots, axisPct, bucketOf, buildLanes, busiestChannel, capState,
+  ACTIVITY_ROWS, AXIS_END_MIN, AXIS_START_MIN, MARKER_SPAN_MIN, NEEDS_ROWS, activeSlots, axisMinutes, axisPct, bucketOf, buildLanes, busiestChannel, capState,
   greetingFor, healthLabel, inboxLinkCount, kyivEyebrow, kyivGreeting, laneHeight, laneMarkers, legendMarks, metaFollowersLine, needsHeadline,
   needsSummary, nowLine, openNotes, orchestratorsByChannel, otherPlatformCount, pastPct, reconnectCount, recentEvents, ringArcs, shorten, signed,
   sortNotes, summarizeDay, systemAgents, telegramSlots,
@@ -257,6 +257,20 @@ test('pastPct: nothing before 06:00, the share of the axis during the day, every
   assert.equal(pastPct(new Date(kyiv(0, 10, 1)), DAY), 100);
   // A plan day that has not started yet: nothing is past.
   assert.equal(pastPct(new Date(kyiv(15, 0)), '2026-10-29'), 0);
+});
+
+test('axisMinutes: wall-clock minutes on the two DST days, so markers and the now-line sit under their hour ticks', () => {
+  // 2026-10-25 (autumn, UTC+3 → UTC+2): 12:30 Kyiv is 10:30Z, 23:30 Kyiv is 21:30Z.
+  assert.equal(axisMinutes('2026-10-25T10:30:00Z', '2026-10-25'), 750);
+  assert.equal(axisMinutes('2026-10-25T21:30:00Z', '2026-10-25'), 1410);
+  assert.equal(laneMarkers([{ id: 'a', status: 'planned', scheduledAt: '2026-10-25T21:30:00Z' } as DaySlot], '2026-10-25').markers[0].clamped, false);
+  assert.deepEqual(nowLine(new Date('2026-10-25T19:00:00Z'), '2026-10-25'), { pct: 83.33, minutes: 1260, label: 'now 21:00' });
+  // 2027-03-28 (spring, UTC+2 → UTC+3): 06:30 Kyiv is 03:30Z and sits on the axis; 12:30 is under the 12:00-13:00 ticks.
+  assert.equal(axisMinutes('2027-03-28T03:30:00Z', '2027-03-28'), 390);
+  assert.equal(axisPct(axisMinutes('2027-03-28T09:30:00Z', '2027-03-28')), 36.11);
+  // The next day counts past 24:00, the day before is negative.
+  assert.equal(axisMinutes('2026-10-28T22:30:00Z', '2026-10-28'), 1470);
+  assert.equal(axisMinutes('2026-10-27T21:30:00Z', '2026-10-28'), -30);
 });
 
 test('bucketOf / summarizeDay: done is published + shadowed; a replan skip never counts; missed is its own bucket', () => {

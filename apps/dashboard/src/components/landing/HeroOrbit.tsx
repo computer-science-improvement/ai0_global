@@ -7,7 +7,7 @@
 // upright, two satellites circle, the core ripples. The whole picture is decorative (aria-hidden); the sr-only sentence
 // carries its facts. Sizes are in container-query units (see landing.css `.lp-orbit-cq`), so the orbit shrinks with its
 // column instead of overflowing it on a phone.
-import type { CSSProperties, JSX, ReactNode } from 'react';
+import { useLayoutEffect, useRef, type CSSProperties, type JSX, type ReactNode } from 'react';
 import type { LandingNetwork, LandingPlatform, LandingPulse } from '../../api/landing';
 import { Icon } from '../ui/Icon';
 import { PLATFORM_META, PLATFORM_ORDER, agentNodes, livePlatforms, ringAngles } from '../../lib/landing-view';
@@ -43,6 +43,20 @@ export function HeroOrbit({ networks, pulse, platforms }: {
   const ghostCount = agents.length === 0 ? 3 : 0;
   const agentAngles = ringAngles(agents.length || ghostCount, -90);
 
+  // A tile that mounts after its ring started spinning (the showcase loaded a moment later) starts its counter-rotation
+  // at zero while the ring is part-way round, and its label stays tilted. Put every tile's clock on its ring's.
+  const orbitRef = useRef<HTMLDivElement>(null);
+  const layout = `${agents.map((a) => a.key).join(',')}|${ringPlatforms.join(',')}`;
+  useLayoutEffect(() => {
+    const root = orbitRef.current;
+    if (!root || typeof root.getAnimations !== 'function') return;
+    for (const ring of [1, 2]) {
+      const t = root.querySelector(`.lp-ring-${ring}`)?.getAnimations()[0]?.currentTime;
+      if (t == null) continue;
+      root.querySelectorAll(`.lp-up${ring}`).forEach((el) => el.getAnimations().forEach((an) => { an.currentTime = t; }));
+    }
+  }, [layout]);
+
   const summary = [
     managerLive ? 'A MANAGER agent watches the whole network.' : 'A MANAGER agent that steers the whole network is coming soon.',
     agents.length > 0 ? `Agents: ${agents.map((a) => a.name).join(', ')}.` : '',
@@ -52,7 +66,7 @@ export function HeroOrbit({ networks, pulse, platforms }: {
   return (
     <div className="lp-orbit-wrap">
       <div className="lp-orbit-cq">
-        <div className="lp-orbit lp-fade" style={{ animationDelay: '0.1s' }} aria-hidden="true">
+        <div ref={orbitRef} className="lp-orbit lp-fade" style={{ animationDelay: '0.1s' }} aria-hidden="true">
           <div className="lp-ring lp-ring-2">
             {ringPlatforms.map((p, i) => (
               <OrbitNode key={p} ring={2} angle={platformAngles[i]}>

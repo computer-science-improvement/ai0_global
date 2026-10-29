@@ -3,7 +3,7 @@
 // (a one-off pin on the agent's schedule), and the toast with Undo after a save. A post that already went out (or failed,
 // or was canceled) opens read-only.
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { Modal } from '../Modal';
@@ -35,6 +35,9 @@ export interface ComposerDrawerProps {
   channelsLoading: boolean;
   posts: readonly ScheduledPost[] | undefined;
   postsLoading: boolean;
+  /** The posts did not load at all: an edit link cannot be resolved (it is not "gone"). */
+  postsError?: boolean;
+  retryPosts?: () => void;
 }
 
 const same = (a: string | null | undefined, b: string | null | undefined) => !!a && !!b && a.toLowerCase() === b.toLowerCase();
@@ -47,6 +50,12 @@ export function ComposerDrawer(p: ComposerDrawerProps) {
   const pin = useAskAgentPin();
   const unpin = useDisablePin();
   const dirty = useRef(false);
+
+  // The day a "+ Add" starts on is fixed when the drawer opens: at Kyiv midnight `today` moves on, and a key built from it
+  // would remount the composer and drop what the owner typed (React's "adjust state on a prop change" pattern).
+  const [opened, setOpened] = useState<{ open: boolean; today: string }>(() => ({ open: !!search.compose, today: p.today }));
+  if (opened.open !== !!search.compose) setOpened({ open: !!search.compose, today: p.today });
+  const openedToday = opened.today;
 
   const channels = p.channels ?? [];
   const byId = new Map(channels.map((c) => [c.id, c] as const));
@@ -143,16 +152,17 @@ export function ComposerDrawer(p: ComposerDrawerProps) {
       body = <Waiting />;
     } else {
       const preset = search.channel ? channels.find((c) => same(c.channelKey, search.channel)) ?? channels.find((c) => c.id === search.channel) : undefined;
-      const day = search.day && search.day >= p.today ? search.day : defaultComposeDay(p.today);
+      const day = search.day && search.day >= openedToday ? search.day : defaultComposeDay(openedToday);
       body = (
         <PostComposer
-          key={`new:${preset?.id ?? ''}:${day}`} variant="drawer" onDone={finish} onCancel={requestClose} onSaved={saved} ask={ask} dirtyRef={dirty}
+          key={`new:${preset?.id ?? ''}:${search.day ?? ''}`} variant="drawer" onDone={finish} onCancel={requestClose} onSaved={saved} ask={ask} dirtyRef={dirty}
           initial={{ channelId: preset?.id ?? '', botId: preset?.botId ?? null, scheduledAt: kyivInstant(day, defaultTime(day)) }}
         />
       );
     }
   } else if (search.compose === 'edit') {
     if (p.postsLoading && !post) body = <Waiting />;
+    else if (!post && p.postsError) body = <NotLoaded onClose={finish} onRetry={p.retryPosts} />;
     else if (!post) body = <Gone onClose={finish} />;
     else if (pending) {
       body = (
@@ -189,6 +199,23 @@ function Gone({ onClose }: { onClose: () => void }) {
     <>
       <div className="pc-body">
         <EmptyState title="This post is not here any more" note="It may have been canceled or removed. Your other posts are on the Scheduled page." />
+      </div>
+      <div className="modal-foot pc-foot">
+        <button type="button" className="btn-secondary" onClick={onClose}>Close</button>
+      </div>
+    </>
+  );
+}
+
+/** The posts did not load, so `?post=` cannot be found yet: a failure with a retry, not "gone". */
+function NotLoaded({ onClose, onRetry }: { onClose: () => void; onRetry?: () => void }) {
+  return (
+    <>
+      <div className="pc-body">
+        <EmptyState
+          icon="warning" title="The post could not load" note="Your scheduled posts did not answer. Check the connection and try again."
+          action={onRetry ? <button type="button" className="btn-secondary btn-sm" onClick={onRetry}>Try again</button> : undefined}
+        />
       </div>
       <div className="modal-foot pc-foot">
         <button type="button" className="btn-secondary" onClick={onClose}>Close</button>

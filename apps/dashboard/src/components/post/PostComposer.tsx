@@ -155,6 +155,8 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
   const baseline = useRef<string | null>(null);
   if (baseline.current === null) baseline.current = content(post);
   if (dirtyRef) dirtyRef.current = content(post) !== baseline.current;
+  // Gone from the screen (the post went out while open, the sheet switched to a read-only view): nothing of it is unsaved.
+  useEffect(() => () => { if (dirtyRef) dirtyRef.current = false; }, [dirtyRef]);
 
   // Drawer: the day and the time of day are two controls, kept apart so a half-typed time does not lose the day.
   const [when, setWhen] = useState(() => splitKyiv(post.scheduledAt));

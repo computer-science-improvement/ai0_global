@@ -368,6 +368,9 @@
   .lp-mq-half { flex-wrap: wrap; justify-content: center; row-gap: 12px; }
   .lp-mq-half + .lp-mq-half, .lp-chan[aria-hidden="true"] { display: none; }
   .lp-mq-words { display: none; }
+  /* The scrolling log stops: show it whole, once (the second copy only exists for the seamless loop). */
+  .lp-feedwin.is-scrolling { height: auto; mask-image: none; -webkit-mask-image: none; }
+  .lp-feed > .lp-log-list[aria-hidden="true"] { display: none; }
 }
 
 /* ── Phones and tablets ───────────────────────────────────────────────────────────────────────── */

@@ -73,6 +73,12 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
       {tree.error && !tree.data && !broken && (
         <div className="callout-danger cal-banner" role="alert">Agents did not load, so only channels without an agent and your own posts are shown below.</div>
       )}
+      {channelsQ.error && !channelsQ.data && !broken && (
+        <div className="callout-warning cal-banner" role="alert">
+          <span style={{ flex: 1, minWidth: 0 }}>Your channels did not load, so your own posts are grouped under "Other channels" instead of their agent.</span>
+          <button type="button" className="btn-secondary btn-sm" onClick={() => void channelsQ.refetch()}>Try again</button>
+        </div>
+      )}
       {postsQ.error && (
         <div className="callout-warning cal-banner" role="alert">Your scheduled posts did not load. Agent slots are shown without them.</div>
       )}
@@ -113,6 +119,7 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
       <ComposerDrawer
         search={search} close={closeDrawer} today={today} agents={agents} schedules={schedules}
         channels={channelsQ.data?.items} channelsLoading={channelsQ.isLoading} posts={postsQ.data} postsLoading={postsQ.isLoading}
+        postsError={!!postsQ.error && !postsQ.data} retryPosts={() => void postsQ.refetch()}
       />
     </div>
   );

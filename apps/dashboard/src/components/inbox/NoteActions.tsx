@@ -38,6 +38,8 @@ export interface NoteActionsProps {
   size?:      'sm' | 'md';
   /** Called once the note is settled (it was marked read by one of the actions). Links do not call it. */
   onDone?:    () => void;
+  /** Its "Got it" step marked the note read: the page shows its own toast (with Undo) instead of the plain one. Decisions never call it. */
+  onRead?:    () => void;
   className?: string;
 }
 
@@ -62,7 +64,7 @@ function failureText(e: unknown): string {
   return known ?? errorText(e);
 }
 
-export function NoteActions({ item, size = 'md', onDone, className }: NoteActionsProps) {
+export function NoteActions({ item, size = 'md', onDone, onRead, className }: NoteActionsProps) {
   const tree = useAgentTree();
   const agents = tree.data?.agents;
   const plan = useMemo(() => planNote(item, { tree: agents }), [item, agents]);
@@ -125,7 +127,8 @@ export function NoteActions({ item, size = 'md', onDone, className }: NoteAction
       case 'link': return;
       case 'read': {
         await markRead.mutateAsync([item.id]);
-        toast.success('Marked as done');
+        if (onRead) onRead();
+        else toast.success('Marked as done');
         onDone?.();
         return;
       }

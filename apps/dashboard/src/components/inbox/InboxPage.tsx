@@ -95,7 +95,11 @@ export function InboxPage({ search, crumbs, onNavigate }: {
   const markDone = (ids: number[], closeAfter = false) => {
     if (!ids.length) return;
     markRead.mutate(ids, {
-      onSuccess: () => toast.success(markedText(ids.length), { action: { label: 'Undo', onClick: () => markUnread.mutate(ids) } }),
+      // Undo reopens only what this click marked: a note decided elsewhere since the list loaded stays done.
+      onSuccess: (r) => {
+        const changed = r.ids ?? ids;
+        toast.success(markedText(changed.length || ids.length), changed.length ? { action: { label: 'Undo', onClick: () => markUnread.mutate(changed) } } : undefined);
+      },
     });
     if (closeAfter && narrow) closeSheet();
   };

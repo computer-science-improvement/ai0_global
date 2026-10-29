@@ -69,7 +69,7 @@ export function InboxDetail({ item, group, agent, tree, variant, busy, onMarkDon
       </div>
 
       <div className="inbox-actions">
-        <NoteActions item={item} size="md" onDone={hasGotIt ? () => onGotIt(item) : undefined} />
+        <NoteActions item={item} size="md" onRead={() => onGotIt(item)} />
         {unread && !hasGotIt && (
           <Button variant="ghost" disabled={busy} onClick={() => onMarkDone(unreadIds.length ? unreadIds : [item.id])}>Mark as done</Button>
         )}

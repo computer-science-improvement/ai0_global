@@ -169,6 +169,14 @@ test('A10: a run of notes the owner pressed a button on in the dashboard is no l
   assert.deepEqual(stub, [{ status: 'closed', resolved_by: 'dashboard:owner' }], 'the stamp lives on a closed card that is never sent');
 });
 
+test('mark-read answers the ids it changed: a note already read (decided elsewhere) is not among them, so Undo never reopens it', { skip }, async () => {
+  const a = await breakerPause('PgR1');
+  const b = await breakerPause('PgR2');
+  await inbox.markRead([b.noteId]);
+  assert.deepEqual(await svc.markRead({ ids: [a.noteId, b.noteId, 999_999] }), { marked: 1, ids: [a.noteId] });
+  assert.deepEqual(await svc.markRead({ ids: [a.noteId] }), { marked: 0, ids: [] });
+});
+
 test('mark-unread: the notes are unread again; a dashboard stamp is cleared, a Telegram one is kept', { skip }, async () => {
   const a = await breakerPause('PgU1');
   const b = await breakerPause('PgU2');

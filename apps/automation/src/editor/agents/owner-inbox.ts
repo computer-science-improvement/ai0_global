@@ -269,6 +269,12 @@ export class OwnerInbox {
     return rowCount ?? 0;
   }
 
+  /** Spec 078: `markRead` of these notes, answering which ones this call changed (an Undo reopens only those, not a note decided elsewhere meanwhile). */
+  async markReadIds(ids: number[]): Promise<number[]> {
+    const { rows } = await this.pool.query(`UPDATE agent_inbox SET read_at = now() WHERE id = ANY($1::bigint[]) AND read_at IS NULL RETURNING id::int`, [ids]);
+    return (rows as Array<{ id: number }>).map((r) => r.id);
+  }
+
   /**
    * Spec 078 D5: "Undo" after Dismiss — the notes are unread again. An owner card of such a note that the dashboard
    * stamped (`resolved_by 'dashboard:…'`, see `SeriesPauseActions.run`) is unstamped: the note is open, not decided.

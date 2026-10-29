@@ -33,12 +33,15 @@ export function useNeedsYou() {
   /** Mark one note done. The toast offers Undo for a few seconds; a failed request puts the note back (the error is toasted by the router). */
   const dismiss = useCallback(async (item: Pick<InboxItem, 'id' | 'title'>) => {
     hide(item.id);
+    let changed: number[] | undefined;
     try {
-      await markRead.mutateAsync([item.id]);
+      changed = (await markRead.mutateAsync([item.id])).ids;
     } catch {
       unhide(item.id);
       return;
     }
+    // Decided elsewhere (Telegram) since the list loaded: it is done already, and Undo must not reopen it.
+    if (changed && !changed.includes(item.id)) { toast.success(`Already done: ${shorten(item.title)}`); return; }
     toast.success(`Marked as done: ${shorten(item.title)}`, {
       action: {
         label: 'Undo',
@@ -61,8 +64,9 @@ export function useNeedsYou() {
     /** Unread notes of every severity, and with the posts to approve: the menu's Inbox counter. */
     unreadNotes: inboxCount - approvals,
     inboxCount,
-    /** The Inbox answered: the headline may claim a number (or "nothing"). */
-    loaded: inbox.isSuccess && !approvalsQ.isLoading,
+    /** The Inbox answered at least once: the headline may claim a number (or "nothing"). A failed background poll keeps
+     *  the last answer (react-query keeps the data in the error state), so it does not drop the count. */
+    loaded: inbox.data !== undefined && !approvalsQ.isLoading,
     /** The Inbox could not be read at all: say so instead of claiming "all clear". */
     failed: inbox.isError && !inbox.data,
     retry: () => { void inbox.refetch(); },
