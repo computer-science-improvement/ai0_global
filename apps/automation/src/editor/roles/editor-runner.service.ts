@@ -9,7 +9,7 @@ import type { SkillSource } from '../skills/skill-library';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
-import { agentInlineSkills, buildSystemPrompt, executorUserPrompt, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
+import { agentInlineSkills, buildSystemPrompt, executorUserPrompt, moreSkillsLine, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
 import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
 import { parseResourceRef } from '../agents/agent.types';
 import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
@@ -901,6 +901,9 @@ export class EditorRunnerService {
     const voice = await this.voice(targetRef, card);
     // Spec 034 FR-001: an adapt rewrites the text, so it gets the full voice skills (budget-aware); a duplicate keeps it.
     const vs = r.treatment === 'adapt' ? attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []) : null;
+    // Spec 073 FR-013 (A47): the agent's inline skills that did not fit are named in one line (load_skill), not dropped.
+    const own = r.treatment === 'adapt' ? agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...(vs?.names ?? [])]) : null;
+    const more = moreSkillsLine(own?.overflow ?? []);
     const { system, user } = derivedPrompts({
       slot, ready: r, targetRef, targetPlatform: platform, profile: pc?.profile ?? null, formatPrefs, playbook: pc?.playbook ?? null,
       memory: memoryWithoutRules(memory).map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
@@ -908,7 +911,7 @@ export class EditorRunnerService {
       skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
       voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [], examples: pc?.examples ?? null,
       // Spec 040 FR-012: an adapt rewrites the text, so it gets the agent's own skills too.
-      agentSkills: r.treatment === 'adapt' ? agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...(vs?.names ?? [])]).inline : [],
+      agentSkills: own ? [...own.inline, ...(more ? [more] : [])] : [],
     });
     let lintFailedTwice = false;
     const onSecond = async (details: unknown) => {
@@ -981,6 +984,9 @@ export class EditorRunnerService {
     const voice = await this.voice(slot.resourceRef!, card);
     const vs = attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []);
     const own = agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...vs.names]);
+    const listedSkills = skills.list('executor').filter((s) => s.name !== skill?.name && s.name !== VOICE_CORE && !vs.names.includes(s.name));
+    // Spec 073 FR-013 (A47): an inline skill that did not fit is named in one line unless the list below already has it.
+    const moreOwn = moreSkillsLine(own.overflow.filter((n) => !listedSkills.some((s) => s.name === n)));
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
       `${readerLanguageRule(channelLanguage(card))} Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.`,
@@ -1012,8 +1018,8 @@ export class EditorRunnerService {
       ...own.inline,
       ...vs.inline,
       ...[voiceReferenceLine(vs.missing)].filter((x): x is string => !!x),
-      skills.list('executor').filter((s) => s.name !== skill?.name && s.name !== VOICE_CORE && !vs.names.includes(s.name))
-        .map((s) => `- ${s.name}: ${s.description}`).join('\n'),
+      ...(moreOwn ? [moreOwn] : []),
+      listedSkills.map((s) => `- ${s.name}: ${s.description}`).join('\n'),
     ].join('\n');
     const user = [
       slot.topicMode === 'live' && slot.liveSpec

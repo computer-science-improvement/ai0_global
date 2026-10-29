@@ -171,7 +171,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `agents/skill-store.073.pg.test.ts` (agent refused, owner saved with `warnings`); `api/editor-ops.073.test.ts` (`rule_invalid`, `conflicts`); re-run and fix every test that builds a `SkillStore` or calls `writeAgentSkill` (A48's list; grep `SkillStore\|writeAgentSkill` in `*.test.ts`); the existing chat-tool refusal tests stay green.
   - Done when: the old Prompt skill «origin=original, PromptHero» written by the agent through any of the four paths is refused, and the same body from the owner is saved with a warning.
 
-- [ ] **T15 Defaults and migration 098 (FR-013; A37, A38, A46, A47, L5).**
+- [x] **T15 Defaults and migration 098 (FR-013; A37, A38, A46, A47, L5).**
   - What:
     - `CARD_DEFAULTS.hashtagMin` 0; `upsert` is not changed (A38);
     - the `effectiveStyle` vocabulary rule;

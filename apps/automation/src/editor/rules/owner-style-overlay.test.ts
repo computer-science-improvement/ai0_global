@@ -24,11 +24,14 @@ test('overlay: «без хештегів», «без сленгу», «прос�
   assert.deepEqual(rowOwnerRules([{ id: '3', text: 'Без хештегів' }, { id: 'x' }, null]), [{ id: 3, text: 'Без хештегів' }]);
 });
 
-test('no vocabulary, no hashtags: an empty card vocabulary turns the default off; a vocabulary keeps it', () => {
+test('no vocabulary, no hashtags: an empty card vocabulary turns the default off (a stored vocabulary style too); a vocabulary keeps it', () => {
   assert.equal(effectiveStyle({}, { vocabulary: [] }).hashtags, 'off');
   assert.equal(effectiveStyle({}, { vocabulary: ['#ai'] }).hashtags, 'vocabulary');
   assert.equal(effectiveStyle({}, { vocabulary: null }).hashtags, 'vocabulary', 'a platform ref (no card) is not judged');
-  assert.equal(effectiveStyle({ hashtags: 'vocabulary' }, { vocabulary: [] }).hashtags, 'vocabulary', 'the stored style wins over the default');
+  // Spec 073 A46: a stored 'vocabulary' with a known empty vocabulary reads as off; a platform ref (no card) is not judged.
+  assert.equal(effectiveStyle({ hashtags: 'vocabulary' }, { vocabulary: [] }).hashtags, 'off', 'a stored vocabulary style with a known empty vocabulary reads as off');
+  assert.equal(effectiveStyle({ hashtags: 'vocabulary' }, { vocabulary: null }).hashtags, 'vocabulary', 'a platform ref is not judged');
+  assert.equal(effectiveStyle({ hashtags: 'vocabulary' }, { vocabulary: ['#ai'] }).hashtags, 'vocabulary', 'a stored vocabulary style with a vocabulary stays');
   // lint: no minimum without a vocabulary.
   const spec = makeSpec({ hashtags: [] });
   const noVocab = lintPost(spec, makeCard({ hashtags: [], hashtagMin: 2, hashtagMax: 4, style: { hashtags: 'vocabulary' } }));
