@@ -1,6 +1,6 @@
 # UI inventory — dashboard, landing and /app
 
-Snapshot of `apps/dashboard` at `ef525a02` (2026-10-28). Paths are relative to `apps/dashboard/` unless they start with `apps/`. This is a description of what exists, not a proposal; the design rules the code is meant to follow are in `apps/dashboard/CLAUDE.md`.
+Snapshot of `apps/dashboard` at `c54fa21b` (2026-10-29), after the spec 078 redesign (waves A, B and C). The previous version of this file described `ef525a02` (2026-10-28), before the redesign. Paths are relative to `apps/dashboard/` unless they start with `apps/`. This is a description of what exists, not a proposal; the design rules the code is meant to follow are in `apps/dashboard/CLAUDE.md` ("Design language (spec 078)"). Where the code breaks those rules, this file says so.
 
 Contents:
 
@@ -28,21 +28,22 @@ Contents:
 | Animation | `motion` (imported as `motion/react`) | ^12.40.0 |
 | Charts | `recharts`; `force-graph` for the channel graph | ^3.8.1 / ^1.51.4 |
 | Dates | `date-fns` | ^4.1.0 |
-| Unused but installed | `@tanstack/router-devtools`, `@types/d3-force`, `autoprefixer` | |
+| Unused but installed | `@tanstack/router-devtools`, `@types/d3-force`, `autoprefixer` (no imports in `src/`) | |
 
 Scripts: `dev` = `vite` (port 5173), `build` = `tsc && vite build`, `test` = `tsx --test $(find src -name '*.test.ts' | sort)`.
 
 Boot sequence:
 
-- `index.html`: `lang="en"`, `theme-color #1b1b1b`, title "ai0 — a media network run by AI agents".
-- `src/main.tsx`: `StrictMode > QueryClientProvider > RouterProvider`, plus one `<Toaster/>` (so toasts also work on public pages).
+- `index.html`: `lang="en"`, `theme-color #1b1b1b`, title "ai0 — a media network run by AI agents". It also has Open Graph and Twitter meta tags with a `__AI0_PUBLIC_URL__` placeholder, which `publicUrlMeta()` fills in at build time.
+- `src/main.tsx`: imports `./index.css`, then `StrictMode > QueryClientProvider > RouterProvider`, plus one `<Toaster/>` (so toasts also work on public pages).
 - `src/router.ts` creates the `QueryClient`:
   - `staleTime` 30 s; one retry, none on a 401;
-  - a `MutationCache` whose `onError` shows a toast (`router.ts:20-25`) unless the error is a 401 or the mutation sets `meta.silentError`;
-  - every successful mutation refreshes the menu counters unless it sets `meta.skipNavBadges`.
+  - a `MutationCache` whose `onError` shows a toast (`router.ts:21-22`) unless the error is a 401, or the mutation sets `meta.silentError` or has its own `onError`;
+  - every successful mutation (`router.ts:30-31`) asks the menu counters for fresh numbers and invalidates the counter queries, unless it sets `meta.skipNavBadges`;
+  - `defaultPendingMs: 200` on the router.
 - `vite.config.ts`:
   - `TanStackRouterVite({ routesDirectory: 'src/routes', autoCodeSplitting: true })` writes `src/routeTree.gen.ts`;
-  - two local plugins, `requireAuthMode()` and `publicUrlMeta()`;
+  - two local plugins, `requireAuthMode()` and `publicUrlMeta()`, next to `react()` and `tailwindcss()`;
   - the dev proxy forwards `/api`, `/auth`, `/tracking`, `/activity`, `/scheduled-posts`, `/settings`, `/stats` and `/r/` to `:3000` without stripping the prefix.
 
 ### 1.2 How routing works
@@ -53,53 +54,60 @@ Boot sequence:
   - `$param` is a path parameter.
 - **`src/routes/__root.tsx`** renders only `<Outlet/>`, with router context `{ queryClient }`.
 - **`src/routes/app.tsx`** is the `/app` layout:
-  - `beforeLoad` runs `ensureQueryData(sessionQuery)` against `/auth/me` and redirects to `/login` when there is no session;
+  - `beforeLoad` runs `ensureQueryData` for the session query (`/auth/me`, with `revalidateIfStale`) and redirects to `/login` with `next` and `reason` when there is no session;
   - `pendingComponent`: AuthPending ("Checking your session…");
-  - `errorComponent`: AuthCheckFailed ("Can't reach the server");
-  - `notFoundComponent`: `AppNotFound` (`src/components/NotFound.tsx`);
-  - `component`: `AppShell` (`src/components/AppShell.tsx`), which renders the sidebar, a sticky header and `<main><Outlet/></main>`.
+  - `errorComponent`: AuthCheckFailed ("Can't reach the server", with a "Try again" button);
+  - `notFoundComponent`: `AppNotFound` (`src/components/NotFound.tsx:10`);
+  - `component`: `AppShell` (`src/components/AppShell.tsx:31`).
+- **`AppShell`** renders the sidebar, a sticky top bar and `<main><Outlet/></main>`:
+  - the top bar holds the ⌘K trigger, an "N agents live" pill and a "New post" button (to `/app/calendar?compose=new`);
+  - `<main>` is at most 1240px wide with 32px padding (16px on a phone); chat and map are full-bleed;
+  - `ConfirmProvider` is mounted here (`AppShell.tsx:123`).
 - **Session handling**:
   - Any 401 from the API goes through `createUnauthorizedHandler`, which navigates to `/login`.
-  - In production nginx also guards `/app` with `auth_request /_auth_check` and answers 302 to `/login?reason&next`.
-- **Query parameters**: each route hand-writes its own `validateSearch` (no zod). Some pages read search params without validating them: `app.channels.tsx:19` (`filter`) and `app.connections.tsx:56` (`tab`).
+  - In production nginx also guards `/app` (`location = /app` and `^~ /app/`) with `auth_request /_auth_check`; a 401 becomes a 302 to `/login?reason=…&next=…`.
+- **Query parameters**: 20 route files define a hand-written `validateSearch` (no zod). Two pages read search params without checking the value: `app.channels.tsx:21` casts `filter`, and `app.connections.tsx:62` takes `tab` as any string (each section falls back to its own default).
 - **Page titles**:
-  - The "title" column below is the visible `<h1>`, usually through `PageHeader`.
-  - Only `/white-label` sets `document.title`. Every other page keeps the title from `index.html`.
+  - The "title" column below is the visible `<h1>`, usually through `PageHeader` (class `.page-title`).
+  - Only `/white-label` sets `document.title` (`routes/white-label.tsx:31`). Every other page keeps the title from `index.html`.
 
 ### 1.3 Routes under `/app`
+
+`src/routeTree.gen.ts` lists 49 full paths. That is 45 under `/app` (the layout, 34 pages and 10 redirect-only files) and 4 public ones (section 1.4). `src/routes/` holds 50 files, the extra one being `__root.tsx`.
 
 All route files are in `src/routes/`.
 
 | Path | Page title (h1) | Route file | Component |
 |---|---|---|---|
 | `/app` (layout) | — | `app.tsx` | `AppShell` (`src/components/AppShell.tsx`) |
-| `/app` (index) | Overview | `app.index.tsx` | `OverviewPage` |
+| `/app` (index) | Today. The h1 is "&lt;greeting&gt;. &lt;headline&gt;", for example "Nothing needs you." or "N things need you." | `app.index.tsx` | `OverviewPage` (inline), built from `components/today/*` |
 | `/app/ads` | Ads | `app.ads.tsx` | `AdsPage` |
 | `/app/agents` | Agents | `app.agents.tsx` | `AgentsPage` |
-| `/app/agents/$handle` | the agent's name | `app.agents_.$handle.tsx` | `AgentPage` |
-| `/app/agents/inbox` | Agent inbox | `app.agents_.inbox.tsx` | `InboxPage` |
+| `/app/agents/$handle` | the agent's name (`AgentHeader`) | `app.agents_.$handle.tsx` | `AgentPage` |
+| `/app/agents/inbox` | Inbox | `app.agents_.inbox.tsx` | `InboxRoute`, rendering `components/inbox/InboxPage` |
 | `/app/analytics` | Analytics | `app.analytics.tsx` | `AnalyticsPage` |
 | `/app/artifacts` | Artifacts | `app.artifacts.tsx` | `ArtifactsPage` |
+| `/app/calendar` | Calendar (eyebrow "Today &lt;day&gt; · Kyiv") | `app.calendar.tsx` | `CalendarRoute`, rendering `components/calendar/CalendarPage` |
 | `/app/channels` | My channels | `app.channels.tsx` | `ChannelsPage` |
-| `/app/channels/$id` | the channel's name | `app.channels_.$id.tsx` | `ChannelDetailPage` |
+| `/app/channels/$id` | the channel's name ("Channel" while loading) | `app.channels_.$id.tsx` | `ChannelDetailPage` |
 | `/app/chat` | the conversation title, or "New chat" | `app.chat.tsx` | `ChatPage` |
 | `/app/compose` | New post / Edit post | `app.compose.tsx` | `ComposePage` |
 | `/app/connections` | Connections | `app.connections.tsx` | `ConnectionsPage` |
 | `/app/connections/groups` | Groups | `app.connections_.groups.tsx` | `MetaGroupsPage` |
-| `/app/connections/meta/$accountId` | the account's name | `app.connections_.meta_.$accountId.tsx` | `MetaAccountDetailPage` |
+| `/app/connections/meta/$accountId` | the account's name (eyebrow "Meta account · &lt;platform&gt;") | `app.connections_.meta_.$accountId.tsx` | `MetaAccountDetailPage` |
 | `/app/data` | Data | `app.data.tsx` | `DataPage` |
 | `/app/data/$key` | the dataset title | `app.data_.$key.tsx` | `DatasetPage` |
 | `/app/discovery` | Discovery | `app.discovery.tsx` | `DiscoveryPage` |
-| `/app/dm` | DM inbox | `app.dm.tsx` | `AgentPage` (local function of the same name as the agent page's) |
+| `/app/dm` | DM inbox | `app.dm.tsx` | `DmPage` |
 | `/app/editor` | Editor | `app.editor.tsx` | `EditorPage` |
 | `/app/editor/$channel` | the channel card title | `app.editor_.$channel.tsx` | `EditorChannelPage` |
 | `/app/editor/run/$id` | "&lt;role&gt; run" | `app.editor_.run.$id.tsx` | `EditorRunPage` |
 | `/app/editor/slot/$id` | the slot topic | `app.editor_.slot.$id.tsx` | `EditorSlotPage` |
 | `/app/graph` | Channel graph | `app.graph.tsx` | `GraphPage` |
-| `/app/health` | Network health | `app.health.tsx` | inline route component rendering `NetworkHealthView` (`src/components/health/`) |
+| `/app/health` | Network health | `app.health.tsx` | inline `HealthPage`, rendering `NetworkHealthView` and `OwnerBotSection` (`src/components/health/`) |
 | `/app/landing` | Landing | `app.landing.tsx` | `LandingAdminPage` |
 | `/app/logs` | Logs | `app.logs.tsx` | `LogsPage` |
-| `/app/map` | Network map (h1 in `components/map/MapHud.tsx:56`) | `app.map.tsx` | `MapPage` (`src/components/map/MapPage.tsx`) |
+| `/app/map` | Network map (h1 in `components/map/MapHud.tsx:46`) | `app.map.tsx` | `MapPage` (`src/components/map/MapPage.tsx`) |
 | `/app/models` | Models | `app.models.tsx` | `ModelsPage` |
 | `/app/recommendations` | Recommendations | `app.recommendations.tsx` | `RecommendationsPage` |
 | `/app/scheduled` | Scheduled | `app.scheduled.tsx` | `ScheduledPage` |
@@ -107,33 +115,48 @@ All route files are in `src/routes/`.
 | `/app/spend` | AI spend | `app.spend.tsx` | `SpendPage` |
 | `/app/tracked` | Tracked channels | `app.tracked.tsx` | `TrackedPage` |
 
+What changed in the page list since the last version: `/app/` is now Today (it was Overview); `/app/agents/inbox` is "Inbox" and keeps its route file; `/app/calendar` is a real page (it used to be a redirect to `/app/scheduled`); the `/app/dm` component is called `DmPage` (it used to share the name `AgentPage` with the agent page).
+
+Some pages keep their view state in the URL beyond tabs:
+
+| Page | Search parameters |
+|---|---|
+| `/app/calendar` | `from`, `compose` (`new` or `edit`), `channel`, `day`, `post` (parsed by `parseCalendarSearch`) |
+| `/app/artifacts` | `type`, `agent`, `view`, `open` |
+| `/app/channels` | `filter`, `page`, `q`, `bot` |
+| `/app/chat` | `c` (conversation), `q`, `card`, `art` |
+| `/app/analytics` | none. The tab is component state, not URL. |
+
 Tabs selected by a query parameter:
 
 | Page | Tabs |
 |---|---|
-| `/app/agents/$handle?tab=` | overview, approvals, reviews, directives, artifacts, skills, loadout, memory, history, playbook, schedule, ideas, plan, inbox, promo |
-| `/app/agents/inbox?tab=` | approvals, unread, all |
-| `/app/connections?section=` | telegram, meta, tiktok |
+| `/app/agents/$handle?tab=` | 17 tabs in 5 groups (`AGENT_TABS` in `lib/agent-tabs.ts`, drawn by `AgentTabs`). Overview: overview (no `?tab=`). Content: plan, schedule, ideas, approvals ("Posts to approve"). Brain: playbook, skills, loadout, memory, artifacts. Activity: history, inbox ("From @manager"), effects ("In force now"), reviews, directives. Settings: settings ("General"), promo. |
+| `/app/agents/inbox?tab=` | approvals, all, critical, action, fyi. The old value `unread` is still accepted. Also `?unread=` and `?note=`. |
+| `/app/connections?section=` | telegram, meta, tiktok. Inside a section, `?tab=`: sessions, bots, telegraph (Telegram); facebook, instagram, threads (Meta). `?tiktok=connected` or `error` shows the OAuth result banner. |
 | `/app/data/$key?tab=` | items, schema, imports |
-| `/app/landing?tab=` | page, leads, stats |
-| `/app/settings?tab=` | configuration, security, navigation. The legacy values `telegram`, `ai` and `meta` open Configuration with a group preselected. |
-| `/app/spend?tab=` | report, prices, budgets |
+| `/app/landing?tab=` | page (default, no parameter; label "Page setup"), leads ("Leads"), stats ("CTA stats") |
+| `/app/settings?tab=` | configuration, security, navigation (also `group`, `edit`, `from`). The legacy values `telegram`, `ai` and `meta` open Configuration with the group `telegram`, `ai` or `publishing` preselected. |
+| `/app/spend?tab=` | report, prices, budgets (`SPEND_TABS`, `lib/spend-search.ts`) |
+
+Some agent tabs are limited: `plan`, `schedule`, `ideas`, `approvals`, `playbook`, `inbox` and `promo` (`NETWORK_TABS`) exist only for orchestrator and role agents; `effects` only for orchestrators; `reviews` and `directives` only for the manager.
 
 Redirect-only routes. They keep old links working and render nothing:
 
 | Old path | Goes to | File |
 |---|---|---|
-| `/app/agent` | `/app/dm` | `app.agent.tsx` |
+| `/app/agent` | `/app/dm` (search kept) | `app.agent.tsx` |
 | `/app/bots` | `/app/connections?section=telegram&tab=bots` | `app.bots.tsx` |
 | `/app/telegraph` | `/app/connections?section=telegram&tab=telegraph` | `app.telegraph.tsx` |
-| `/app/calendar` | `/app/scheduled` | `app.calendar.tsx` |
-| `/app/setup` | `/app/artifacts?type=setup` | `app.setup.tsx` |
-| `/app/steering` | `/app/artifacts?type=steering` | `app.steering.tsx` |
+| `/app/setup` | `/app/artifacts?type=setup` (plus `open=setup:<id>` when an id is given) | `app.setup.tsx` |
+| `/app/steering` | `/app/artifacts?type=steering` (plus `open=steering:<id>`) | `app.steering.tsx` |
 | `/app/strategies`, `/app/strategies/$id`, `/app/strategies/new` | `/app/agents` | `app.strategies.tsx`, `app.strategies_.$id.tsx`, `app.strategies_.new.tsx` |
-| `/app/connections/meta` | `/app/connections?section=meta` | `app.connections_.meta.tsx` |
-| `/app/connections/tiktok` | `/app/connections?section=tiktok` | `app.connections_.tiktok.tsx` |
+| `/app/connections/meta` | `/app/connections?section=meta` (tab kept) | `app.connections_.meta.tsx` |
+| `/app/connections/tiktok` | `/app/connections?section=tiktok` (the TikTok banner parameter is kept) | `app.connections_.tiktok.tsx` |
 
-There is a test for these redirects (`src/nav/legacy-redirects.test.ts`) but no `legacy-redirects.ts` module: each redirect lives in its own route file.
+That is 10 files. `/app/calendar` is no longer in this table: it is the Calendar page.
+
+There is a test for these redirects (`src/nav/legacy-redirects.test.ts`, covering `agent`, `bots`, `telegraph`, `setup` and `steering`) but no `legacy-redirects.ts` module: each redirect lives in its own route file.
 
 ### 1.4 Public routes (landing and friends)
 
@@ -141,10 +164,10 @@ These render outside `AppShell`, with no sidebar and no session check.
 
 | Path | File | Component | Notes |
 |---|---|---|---|
-| `/` | `index.tsx` | `LandingPage` | Built from `src/components/landing/*`; page-local `.lp-*` styles in an inline `<style>`. |
-| `/login` | `login.tsx` | `LoginPage` | |
-| `/white-label` | `white-label.tsx` | `WhiteLabelPage` | The only page that sets `document.title`. |
-| `/report/$token` | `report.$token.tsx` | `ReportPage` | Public ad report; uses `StatTile` and `Badge`. |
+| `/` | `index.tsx` | `LandingPage` | Rebuilt in spec 078. 325 lines; the sections live in `src/components/landing/*` and the styles in `landing.css` and `landing-sections.css`. The page is wrapped in `MotionConfig reducedMotion="user"`. Sections in order: hero (`#top`: `HeroHeadline`, `ProofStrip`, `HeroOrbit`, `AgentLog`), `ChannelMarquee`, how it works (`#how-it-works`: `RoleExplorer`), the loop (`LoopRing`, guard track), human in the loop (`ApprovalModes`, `ApprovalDeck`), networks (`#networks`: `CountUp`, `NetworkShowcase`), advertise (`#advertise`: `AdSteps`, `MediaKit`, `AdCtaPair`), white label (`#white-label`, only when the flag is on), final call to action, and `AdLeadModal`. |
+| `/login` | `login.tsx` | `LoginPage` | h1 "ai0"; styles in `components/auth/auth.css`. |
+| `/white-label` | `white-label.tsx` | `WhiteLabelPage` | The only page that sets `document.title`. It keeps its own inline `<style>` block and was not restyled in 078. |
+| `/report/$token` | `report.$token.tsx` | `ReportPage` | Public ad report; uses `PageHeader`, `StatStrip`/`StatTile`, `Badge`, `SkeletonRows`, and `components/report/report.css`. |
 
 ---
 
@@ -152,25 +175,57 @@ These render outside `AppShell`, with no sidebar and no session check.
 
 ### 2.1 Where they are defined
 
-- **Everything is in `src/index.css`.**
+- **Everything is in `src/index.css`** (1,360 lines).
   - Line 1 is `@import "tailwindcss";`.
-  - Tokens sit in two Tailwind v4 `@theme` blocks (lines 10–65 and 69–74), so each one is a CSS variable and in principle a Tailwind utility (`bg-surface-2`, `rounded-md`).
+  - Colours, fonts, radii and spacing sit in one Tailwind v4 `@theme` block (lines 12–74), so each one is a CSS variable and in principle a Tailwind utility (`bg-surface-2`, `rounded-md`). A second `@theme` block (lines 78–83) holds the legacy gradient colours.
 - **There is no `tailwind.config.js` and no PostCSS config.** Tailwind v4 reads `@theme` directly.
-- **Two `:root` blocks.**
-  - Lines 79–84 hold the chart colours. They are plain `:root` because only inline styles use them, and Tailwind emits only the `@theme` tokens it sees used.
-  - Line 86 is `:root { color-scheme: dark; }`.
+- **Plain `:root` blocks** hold what only inline styles use, because Tailwind emits only the `@theme` tokens it sees used:
+  - lines 88–93: the chart colours;
+  - line 95: `color-scheme: dark`;
+  - line 99: `--color-danger-ink`;
+  - lines 102–112: the shadow and motion tokens (new in 078).
 - **In practice the app does not use Tailwind utilities.**
-  - Styling is inline `style={{ … var(--color-…) }}` objects (about 3,300 of them) plus hand-written classes in `index.css`: `.card`, `.panel`, `.btn-*`, `.table`, `.nav-*`, `.tabs-pill`.
-  - `Pagination.tsx` is one of the few places with utility classes.
+  - Styling is inline `style={{ … var(--color-…) }}` objects (2,030 occurrences in 167 of 232 `.tsx` files; about 3,300 before the redesign) plus hand-written classes in `index.css` and in the per-area stylesheets below.
+  - The rule in `apps/dashboard/CLAUDE.md` is that inline styles are for layout only; colour, type and borders belong in classes.
+  - Tailwind utility classes appear in `Pagination.tsx` and the four chart wrappers (`h-64 w-full`).
 - **The rules for using tokens** are in `apps/dashboard/CLAUDE.md` ("General": always CSS variables, never hard-coded hex except small per-destination tints).
-- **Other stylesheets:**
-  - `src/components/map/map.css`, imported only by `MapPage.tsx`;
-  - inline `<style>` blocks in `routes/index.tsx`, `routes/app.landing.tsx`, `routes/app.logs.tsx`, `components/landing/AgentHierarchy.tsx` and `components/landing/LeadForms.tsx`.
+- **Per-area stylesheets.** Spec 078 moved most page styling out of inline `<style>` blocks into 30 CSS files next to the components. Each is imported by the component that uses it. Line counts:
+
+| Area | File (under `src/components/`) | Lines |
+|---|---|---|
+| Shell and sidebar | `nav/shell.css`, `nav/sidebar.css`, `nav/needs-you.css` | 34, 100, 14 |
+| Today | `today/today.css` | 154 |
+| Inbox | `inbox/inbox.css` | 76 |
+| Calendar | `calendar/calendar.css` | 124 |
+| Agent page | `agents/agent-detail.css` | 88 |
+| Agents list | `agents-list/agents-list.css` | 27 |
+| Strategies (migration notice) | `strategies/migration.css` | 28 |
+| Channels | `channels/channels.css` (also imported by several other areas) | 244 |
+| Connections | `connections/connections.css` | 122 |
+| Data | `data/data.css` | 128 |
+| DM inbox | `dm/dm.css` | 45 |
+| Editor | `editor/editor.css` | 62 |
+| Network health | `health/health.css` | 75 |
+| Models | `models/models.css`, `models/model-select.css` | 57, 31 |
+| Settings | `settings/settings.css` | 84 |
+| Spend | `spend/spend.css` | 32 |
+| Chat | `chat/chat.css` (also imported by `nav/NeedsYou.tsx`) | 195 |
+| Logs | `activity/activity.css` | 57 |
+| Ads | `ads/ads.css` | 42 |
+| Login, `/app` pending screen, not-found | `auth/auth.css` | 51 |
+| Public report | `report/report.css` | 29 |
+| Compose | `post/composer.css` | 33 |
+| Landing | `landing/landing.css`, `landing/landing-sections.css` | 399, 418 |
+| Landing admin | `landing/landing-admin.css` | 119 |
+| Network map | `map/map.css` (also imported by Today's `ActivityList`) | 283 |
+| Loading rows | `skeleton-rows.css` | 12 |
+
+- **Inline `<style>` blocks** remain only in `landing/MediaKit.tsx`, `landing/WhiteLabel.tsx`, `landing/LeadForms.tsx`, `landing/ProofStrip.tsx`, `landing/NetworkShowcase.tsx` and `routes/white-label.tsx`. The old blocks in `routes/index.tsx`, `routes/app.landing.tsx`, `routes/app.logs.tsx` and `landing/AgentHierarchy.tsx` are gone.
 - **There is one theme only (dark).** No light theme, no `prefers-color-scheme` switch.
 
 ### 2.2 Colours
 
-From `@theme`, `index.css:10-65`. The palette is a Supabase-style dark theme with one emerald accent.
+From `@theme` (`index.css:12-74`) and the `:root` blocks. The palette is a Supabase-style dark theme with one emerald accent. Spec 078 added the rule "amber is the human": `--color-warning` marks what waits for the owner.
 
 | Group | Token | Value | Use |
 |---|---|---|---|
@@ -182,64 +237,73 @@ From `@theme`, `index.css:10-65`. The palette is a Supabase-style dark theme wit
 | | `--color-hairline-soft` | `#262626` | |
 | | `--color-hairline-strong` | `#3a3a3a` | |
 | Ink | `--color-ink` | `#ededed` | text |
-| | `--color-ink-muted` | `#a0a0a0` | secondary text |
-| | `--color-ink-dim` | `#6f6f6f` | tertiary text, group titles |
+| | `--color-ink-muted` | `#b0b0b0` | secondary text (was `#a0a0a0`) |
+| | `--color-ink-dim` | `#949494` | tertiary text, group titles (was `#6f6f6f`; now at least 4.7:1 on the surfaces) |
 | Accent | `--color-accent` | `#3ecf8e` | links, focus, primary button |
 | | `--color-accent-deep` | `#24b47e` | pressed |
 | | `--color-on-accent` | `#10231a` | text on the accent |
 | Status | `--color-success` / `--color-success-soft` | `#3ecf8e` / `rgba(62,207,142,.14)` | |
 | | `--color-warning` / `--color-warning-soft` | `#ffb224` / `rgba(255,178,36,.14)` | |
 | | `--color-danger` / `--color-danger-soft` | `#e5704b` / `rgba(229,112,75,.14)` | |
+| | `--color-on-warning`, `--color-on-danger` | `#1f1503`, `#1f0b05` | text on a solid warning or danger fill (new) |
+| | `--color-danger-ink` (`index.css:99`) | `color-mix(in srgb, var(--color-danger) 70%, var(--color-ink))` | danger text on a danger tint (counters, critical pills); about 4.9:1 where plain danger is about 4.3:1 (new) |
 | Telegram preview | `--color-tg-bg`, `-bubble`, `-button` | `#0e1621`, `#182533`, `#1e2c3a` | draft previews only |
 | | `--color-tg-link`, `-meta`, `-right`, `-wrong` | `#6ab3f3`, `#6c7883`, `#5fb65f`, `#e5534b` | |
-| Legacy gradient (`index.css:69-74`) | `--color-grad-violet`, `-magenta`, `-orange`, `-coral` | `#3ecf8e`, `#3ecf8e`, `#ffb224`, `#e5704b` | kept so old references don't break; `grad-orange` still colours chart lines |
-| Chart series (`:root`, `index.css:79-84`) | `--color-chart-5` … `--color-chart-8` | `#a78bfa`, `#f472b6`, `#94a3b8`, `#facc15` | series 5–8 on the Spend page; series 1–4 are accent, warning, tg-link and danger |
+| Legacy gradient (`index.css:78-83`) | `--color-grad-violet`, `-magenta`, `-orange`, `-coral` | `#3ecf8e`, `#3ecf8e`, `#ffb224`, `#e5704b` | kept so old references don't break; do not use in new code. Only `grad-orange` is still referenced (2 places). |
+| Chart series (`:root`, `index.css:88-93`) | `--color-chart-5` … `--color-chart-8` | `#a78bfa`, `#f472b6`, `#94a3b8`, `#facc15` | series 5–8 on the Spend page; series 1–4 are accent, warning, tg-link and danger |
 
-Hex colours that live outside the tokens (allowed as per-destination tints):
+Hex colours that live outside the tokens (allowed as per-destination tints, plus two leftovers):
 
-- **Platform tints**: `components/agents/NetworkUi.tsx:13-20` (`PLATFORM_TINT`), `components/connections/MetaGroupsManager.tsx:31-36` and `src/lib/landing-view.ts:13-20`.
-- **Avatar monogram palette**: `components/ChannelAvatar.tsx:22-29`.
-- **Code colour** `#e3a679` in `.tg-text` / `.tg-rich` (`index.css:852`, `:881`).
+- **Platform tints**: `components/agents/NetworkUi.tsx:13-20` (`PLATFORM_TINT`, 6 hex), `components/connections/MetaGroupsManager.tsx` (`TINT`, 4 hex, around lines 34–38) and `src/lib/landing-view.ts` (`PLATFORM_META`, 6 hex, around lines 13–20).
+- **Avatar monogram palette**: `components/ChannelAvatar.tsx:22-29` (6 hex).
+- **Graph tiers**: `components/GraphCanvas.tsx`, `TIER_HEX` (lines 21–25) and five fallback colours (lines 96–100).
+- **In `index.css`**: `#f5f5f5` for `.tg-bubble` text (line 1077) and `#e3a679` for inline code (lines 1081 and 1110).
 
 ### 2.3 Typography
 
 **Font**
-- InterVariable, loaded by `@font-face` from `rsms.me` (`index.css:89-95`).
-- Fallback stack: `Inter, system-ui, -apple-system, sans-serif`, set on `html, body` (`index.css:97-105`).
+- InterVariable, loaded by `@font-face` from `rsms.me` (`index.css:115`).
+- Fallback stack: `Inter, system-ui, -apple-system, sans-serif`, set on `html, body` (`index.css:123`).
 - OpenType features `cv01 cv05 cv09 cv11 ss03 ss07 dlig`, plus `tabular-nums` everywhere.
-- **Mono:** `var(--font-mono, ui-monospace, monospace)`. `--font-mono` is never defined in `@theme`, so this is Tailwind's default mono stack.
+- **Mono:** `--font-mono` is now defined in `@theme` (`index.css:73`): `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`. It is a system stack, with no webfont. Mono is for machine facts: handles, times, counts, kind codes, overlines. Never for titles or prose.
 
-**Type scale** (classes in `index.css:112-127`, not tokens):
+**Type scale** (classes in `index.css:141-168`, not tokens):
 
 | Class | Size / weight / line-height / tracking |
 |---|---|
 | `.text-display-xl` | 64 / 500 / 0.95 / −3.2px |
 | `.text-display-lg` | 48 / 500 / 1.00 / −2.4px |
-| `.text-display-md` | 32 / 500 / 1.13 / −1.0px. `PageHeader` uses this class but overrides the size to 24px. |
+| `.text-display-md` | 32 / 500 / 1.13 / −1.0px |
 | `.text-headline` | 22 / 700 / 1.20 / −0.8px |
 | `.text-subhead` | 18 / 400 / 1.30 / −0.18px |
 | `.text-body` | 15 / 400 / 1.30 / −0.15px |
 | `.text-body-sm` | 14 / 500 / 1.40 / −0.14px |
 | `.text-caption` | 13 / 500 / 1.20 / −0.13px |
 | `.text-micro` | 12 / 400 / 1.20 / −0.12px |
-| `.text-eyebrow` | 13 / 500, `ink-muted` (section label) |
+| `.text-heading-md` | 15 / 600 / 1.30 / −0.01em (now defined; the old file said it was missing) |
+| `.page-title` | 32 / 600 / 1.10 / −0.035em; 25px at 600px and below. The h1 of every page through `PageHeader`. |
+| `.text-overline` | mono, 11 / 500, uppercase, 0.1em tracking, `ink-dim`. For page and block overlines and group titles, not for field labels. |
+| `.text-eyebrow` | 13 / 500, `ink-muted` (field label) |
+| `.mono` | switches the font to `--font-mono` and turns off the OpenType features |
 
-`.text-heading-md` is used in the code but not defined anywhere.
+At 600px and below, `.text-display-xl` becomes 40, `-lg` 32, `-md` 25 and `.text-headline` 19.
+
+The contract in `apps/dashboard/CLAUDE.md` is that the smallest type is 11px and sizes are whole pixels. The code does not fully follow it: 27 `font-size` declarations in 13 files are below 11px (`map.css` 6, `AgentPlan.tsx` 6, `PostAuditNotes.tsx` 4, `Directives.tsx` 2, `sidebar.css` 1, and one each in `ApprovalFindings`, `ResourceProfile`, `PlaybookEditor`, `NetworkUi`, `ManagerReviews`, `AgentSkills`, `AgentPlaybook` and `AgentIdeas`), and 16 declarations in 6 files use half pixels.
 
 ### 2.4 Radii
 
 Defined in `@theme`.
 
-| Token | Value |
-|---|---|
-| `--radius-xs` | 4px |
-| `--radius-sm` | 6px (buttons) |
-| `--radius-md` | 8px |
-| `--radius-lg` | 12px |
-| `--radius-xl` | 16px |
-| `--radius-pill` | 9999px |
+| Token | Value | Where the contract uses it |
+|---|---|---|
+| `--radius-xs` | 4px | |
+| `--radius-sm` | 6px | buttons |
+| `--radius-md` | 8px | inputs, tabs, toggles |
+| `--radius-lg` | 12px | insets, callouts, KPI tiles, tab tracks |
+| `--radius-xl` | 16px | panels, dialogs |
+| `--radius-pill` | 9999px | |
 
-Recharts tooltips use a literal radius of 10.
+Recharts tooltips now use `var(--radius-md)` (they used a literal 10 before).
 
 ### 2.5 Spacing
 
@@ -257,125 +321,164 @@ Defined in `@theme`, on an 8px base.
 | `--space-xxl` | 32px |
 | `--space-section` | 64px |
 
-`--space-*` is not a Tailwind v4 theme namespace, so these produce no `p-*`/`m-*` utilities. They are only usable as `var(--space-…)`, and most components use literal pixel values anyway.
+`--space-*` is not a Tailwind v4 theme namespace, so these produce no `p-*`/`m-*` utilities. They are only usable as `var(--space-…)`, and most components use literal pixel values anyway. `--space-hair` and `--space-xxs` have no uses.
 
-### 2.6 Shadows
+### 2.6 Shadows and motion tokens
 
-There are no shadow tokens. Every shadow is a literal in `index.css`:
+Shadows are tokens now (`index.css:102-106`). The contract is "hairlines instead of shadows": a shadow is for something that floats.
 
-| Where | Shadow |
-|---|---|
-| `.card` | `inset 0 1px 0 rgba(255,255,255,.03)` |
-| `.panel`, `.stat-tile` | `inset 0 1px 0 rgba(255,255,255,.04)` |
-| hover lift (`.row-lift`, `.panel.is-interactive`, `.stat-tile`) | `0 8px 28px rgba(0,0,0,.28)` |
-| `.modal-shell` | `inset 0 1px 0 rgba(255,255,255,.06), 0 18px 52px rgba(0,0,0,.52)` |
-| popovers and menus | `0 12px 32px rgba(0,0,0,.45)` |
+| Token | Value | Used by |
+|---|---|---|
+| `--shadow-1` | `0 8px 28px rgba(0,0,0,.28)` | hover lift of `.panel.is-interactive`; chart tooltip on Spend |
+| `--shadow-2` | `0 8px 24px rgba(0,0,0,.35)` | the sticky save bar (`.navc-bar`), raised tiles, map and data styles |
+| `--shadow-pop` | `0 12px 32px rgba(0,0,0,.45)` | the nav context menu, toasts, the model select, map popovers |
+| `--shadow-modal` | `inset 0 1px 0 rgba(255,255,255,.06), 0 18px 52px rgba(0,0,0,.52)` | the modal, the chat drawer, landing overlays, map drawers |
 
-`components/data/SchemaEditor.tsx:181` uses `var(--shadow-2)`, which is not defined, so that element has no shadow.
+The old problem with `SchemaEditor` using an undefined `--shadow-2` is gone: the token exists.
+
+Shadows that are still literals:
+
+- the inset highlights on `.card`, `.panel` and `.stat-tile`;
+- the glow on `.wordmark .dot`;
+- the mobile drawer shadow, written inline in `AppSidebar.tsx:110` (`0 12px 48px rgba(0,0,0,0.55)`);
+- the `.navc-bar` shadow in `index.css:1218`.
+
+Motion tokens (`index.css:108-111`):
+
+| Token | Value | Meaning |
+|---|---|---|
+| `--ease-out` | `cubic-bezier(0.2, 0.8, 0.2, 1)` | the one easing |
+| `--dur-fast` | 120ms | colour and opacity flicks |
+| `--dur-base` | 200ms | hover, press, small transitions |
+| `--dur-enter` | 360ms | entrances (fade-up, pop, slide) |
+
+Every CSS variable in use is defined (checked with a script; the only dynamic one is `--lp-r${ring}` on the landing).
 
 ### 2.7 Other scales that are literals, not tokens
 
-- **z-index:** literal numbers per component.
-- **Breakpoints:**
-  - 860px is the mobile shell (sidebar becomes a drawer, breadcrumbs collapse);
-  - 640px for map drawers and bottom sheets;
-  - 480px on the landing.
-- **Motion durations and easings:** literals. See section 4.
+- **z-index:** literal numbers per component (0 to 80).
+- **Breakpoints** (all literals; the main ones):
+  - 860px is the mobile shell (sidebar becomes a drawer, breadcrumbs collapse, inbox becomes a bottom sheet, chat narrows); `861px` min-width is the matching desktop side;
+  - 600px is the phone rule: smaller type, smaller padding, bottom-sheet dialogs. It is the most used breakpoint (36 rules in the CSS files);
+  - 1100px: landing hero, Today and wide map;
+  - 760, 640 (map: 639), 900, 560, 720, 1024, 1180 (map) and 1279 (chat) each appear in a few files;
+  - 480px: stat grid and `ProofStrip`;
+  - `sidebar.css` also has height breakpoints at 860px and 680px.
+- **Motion durations and easings** inside keyframes and in the landing: literals. The shared ones are the tokens in 2.6. See section 4.
 
 ---
 
 ## 3. Shared UI components
 
-Paths are under `src/components/`. "Users" counts files that import the component.
+Paths are under `src/components/`. "Users" counts files that import the component (tests excluded).
+
+Spec 078 removed these in commit `0c37e078`: `ui/Card.tsx` (`Card`, `Panel`), `ui/Placeholder.tsx`, `ui/StatCard.tsx`, `overview/AiSpendCard.tsx` with `BudgetBar` (and the `components/overview/` folder), `agents/NetworkHealth.tsx` (`NetworkHealthCard`), `src/api/upcoming.ts` (`useUpcomingSlots`), and `upcomingName` / `upcomingTitle` in `src/lib/slot-plan.ts`. They no longer exist. The CSS classes `.card`, `.panel` and `.card-featured` still do.
 
 ### 3.1 The ones named in the question
 
 | Asked for | Actual component | Path | Notes |
 |---|---|---|---|
-| Card | `Card`, `Panel` | `ui/Card.tsx:3`, `:10` | `Card` is a bare `div.card` and nobody renders it. Only `Panel` (a card with an h3 row and optional action) is used, in 3 landing-admin files. Pages use the CSS classes directly: `.card` in about 120 files, `.panel` in about 48, `.card-featured` in 6. In practice the page card is `SectionCard` (below). |
-| Badge | `Badge` | `ui/Badge.tsx:13` | Pill with tone `neutral | success | warning | danger | accent`, mapped to `--color-*` and `--color-*-soft`. 92 users. Required for every status cell (CLAUDE.md). |
-| Tabs | `SegmentedTabs` | `SegmentedTabs.tsx:24` | The only tabs control (`.tabs-pill`, `role=tablist`). Options are `{key, label, icon?, disabled?}`. 24 users. There is no component called `Tabs`. |
-| Sidebar | `AppSidebar` + `nav/SidebarItem` + `nav/NavContextMenu` | `AppSidebar.tsx:27`, `nav/SidebarItem.tsx:15`, `nav/NavContextMenu.tsx:18` | See section 5. |
-| StatTile | `StatTile` | `ui/primitives.tsx:58` | KPI tile: label, value (27px, tabular), delta and tone, optional icon, `accent` variant. 21 users. The older `ui/StatCard.tsx` has 0 users. |
+| Card | `SectionCard`, `CompactCard`, or the CSS classes | `ui/primitives.tsx:110`, `ui/CompactCard.tsx:46` | There is no `Card` component any more. Pages use `.panel` (49 files) and `.card` (14 files) directly, `.panel-row` for a row in a flush panel (34 files), and `SectionCard` (63 users). `SectionCard` takes `flush` (no padding, rows inside), `delay` and `interactive`. |
+| Badge | `Badge` | `ui/Badge.tsx:14` | Pill with tone `neutral`, `success`, `warning`, `danger` or `accent`. 93 users. For a status of a thing, use `StatusMark` instead (below). |
+| Tabs | `SegmentedTabs` | `SegmentedTabs.tsx:38` | The only tabs control (`role=tablist`). Two looks: `variant="track"` (pill track) and `variant="underline"`; sizes `sm`, `md`, `lg`. Options are `{key, label, icon?, disabled?, count?, tone?}`. 27 users. There is no component called `Tabs`. |
+| Sidebar | `AppSidebar` + `nav/SidebarItem` + `nav/NavContextMenu` + `nav/SidebarFooter` | see section 5 | |
+| StatTile | `StatTile` and `StatStrip` | `ui/primitives.tsx:60`, `:95` | `StatTile` is a KPI tile: label, value, delta and delta tone, optional icon, `accent` variant, and `spark` (a `Sparkline`). 26 users. `StatStrip` lays tiles out as one row (23 users). `StatCard` was removed. |
 
 ### 3.2 Primitives — `src/components/ui/`
 
 | Component | Path | What it is |
 |---|---|---|
-| `Field` | `ui/primitives.tsx:21` | Labelled form field (eyebrow label, optional hint). 31 users. |
-| `HubGlyph` | `ui/primitives.tsx:39` | Green-tinted square with an initial or icon (1 user). |
-| `StatusDot` | `ui/primitives.tsx:48` | Coloured dot with a halo (8 users). |
-| `StatTile` | `ui/primitives.tsx:58` | KPI tile. |
-| `SectionCard` | `ui/primitives.tsx:96` | The de facto page card: `section.panel` with a `.section-head` (icon, h2, action). Optional `delay` (entrance animation) and `interactive`. |
-| `EmptyState` | `ui/primitives.tsx:124` | Empty or zero state with a dashed medallion icon. The most used primitive (55 users). |
-| `Tone` (type) | `ui/primitives.tsx:9` | Shared tone union; `TONE_VAR` maps it to colours. |
-| `Badge` | `ui/Badge.tsx:13` | See above. |
-| `Button` | `ui/Button.tsx:18` | Variants `primary | secondary | ghost | tiny | tiny-danger` mapped to `.btn-*`. Only 7 users; most code writes `className="btn-primary"` directly. |
-| `Card`, `Panel` | `ui/Card.tsx` | See above. |
-| `CompactCard` | `ui/CompactCard.tsx:46` | A card that is a `<button>` and opens a details dialog. The standard for rich lists (CLAUDE.md "Compact cards"). |
-| `ConfirmProvider`, `useConfirm` | `ui/ConfirmDialog.tsx:39`, `:89` | Replaces `window.confirm`. The provider is mounted once in `AppShell.tsx:118`; the hook has 46 users. |
-| `Crumbs` | `ui/Crumbs.tsx:15` | Breadcrumbs: full trail on desktop, "‹ Parent" at ≤860px. |
-| `Icon` | `ui/Icon.tsx:52` | Typed Lucide wrapper (87 names, size 16, stroke 1.75). 123 users. Preferred over the legacy `components/Icon.tsx` (hand-drawn SVG, 21 names, 20 users). |
-| `PageHeader` | `ui/PageHeader.tsx:4` | Crumbs, h1, subtitle, actions. 29 users. |
-| `Placeholder` | `ui/Placeholder.tsx:4` | "Soon" card. 0 users. |
-| `StatCard` | `ui/StatCard.tsx:3` | Legacy KPI card. 0 users. |
-| `toast`, `describeError`, `Toaster` | `ui/Toast.tsx:31`, `:40`, `:61` | Module-level toast store (errors kept 8 s, success 4 s, at most 4) and the bottom-right stack. |
-| `ActionsTh`, `TableAction`, `RowActions`, `ACTION`, `ACTIONS_COL_WIDTH` (240) | `ui/table.tsx:28`, `:39`, `:78`, `:13`, `:25` | The single table pattern (CLAUDE.md "Tables"). |
+| `Field` | `ui/primitives.tsx:20` | Labelled form field (eyebrow label, optional hint). 30 users. |
+| `HubGlyph` | `ui/primitives.tsx:38` | Green-tinted square with an initial or icon (3 users). |
+| `StatusDot` | `ui/primitives.tsx:47` | Coloured dot with a halo (2 users). |
+| `StatTile`, `StatStrip` | `ui/primitives.tsx:60`, `:95` | KPI tile and the row that holds tiles. |
+| `SectionCard` | `ui/primitives.tsx:110` | The de facto page card: `section.panel` with a `.section-head` (icon, h2, action). Props `flush`, `delay`, `interactive`. |
+| `EmptyState` | `ui/primitives.tsx:143` | Empty or zero state with a dashed medallion icon; `tone` can be set to clear. The most used primitive (69 users). |
+| `Tone` (type) | `ui/primitives.tsx:9` | Shared tone union. 115 files import something from `primitives.tsx`. |
+| `Badge` | `ui/Badge.tsx:14` | See above. |
+| `StatusMark` | `ui/StatusMark.tsx:45` | The shape-coded status mark for slots and publications. 12 shapes: planned, running (pulses), awaiting_approval, approved, shadowed, published, skipped, failed, expired, missed, not_planned, yours. 7 users. The shape carries the meaning, so it is readable without colour. |
+| `status-tone.ts` (not a component) | `src/lib/status-tone.ts` | The single status map behind `StatusMark` and `Badge`: `SLOT_TONE`, `PUBLICATION_TONE`, `MARK_LABEL`, `PUBLICATION_LABEL`, `MARK_ORDER`, and the helpers `slotTone`, `markTone`, `publicationTone`, `publicationLabel`, `slotLabel`, `slotMark`, `isMissed`, `isNotAMiss`, `isOwnerDecision`. It mirrors the skip reasons in `apps/automation`. |
+| `Pills` | `ui/Pills.tsx` | `SeverityPill` (`:14`), `SeverityMark` (`:20`), `LivePill` (`:26`). 6 files import it. `LivePill` has no users: the shell draws its own `.shell-live`. |
+| `Sparkline` | `ui/Sparkline.tsx:8` | Tiny bar sparkline (the bars grow with `grow-y`). One direct importer; the rest use it through `StatTile spark` (Today KPIs, Analytics, the Meta account page, the channel page). |
+| `Button` | `ui/Button.tsx:30` | Variants `primary`, `secondary`, `ghost`, `danger`, `warning`, `tiny`, `tiny-danger`; sizes `md`, `sm`. Mapped to `.btn-*`. Only 16 users; most code writes `className="btn-primary"` (58 files), `btn-secondary` (68), `btn-ghost` (41), `btn-tiny` (23) and `btn-act` (19) directly. |
+| `CompactCard` | `ui/CompactCard.tsx:46` | A card that is a `<button>` and opens a details dialog; dialog size `md`, `lg` or `xl`. The standard for rich lists (CLAUDE.md "Compact cards"). 16 users. |
+| `ConfirmProvider`, `useConfirm` | `ui/ConfirmDialog.tsx:39`, `:89` | Replaces `window.confirm`. The provider is mounted once in `AppShell.tsx:123`; the hook has 48 users. |
+| `Crumbs` | `ui/Crumbs.tsx:15` | Breadcrumbs: full trail on desktop, "‹ Parent" at 860px and below. Rendered by `PageHeader` (`crumbs` prop). |
+| `Icon` | `ui/Icon.tsx:60` | Typed Lucide wrapper (92 names). 138 users. Preferred over the legacy `components/Icon.tsx` (hand-drawn SVG, 21 names, 5 users, one of them `Modal`). |
+| `PageHeader` | `ui/PageHeader.tsx:8` | Optional crumbs, eyebrow, h1 (`.page-title`), subtitle, actions. 33 users. |
+| `toast`, `describeError`, `Toaster`, `ToastAction` | `ui/Toast.tsx:44`, `:53`, `:71`, `:17` | Module-level toast store and the bottom-right stack. Success stays 4 s, errors 8 s, a toast with actions at least 8 s, at most 4 at once. A toast can carry actions (new in 078). 59 files call `toast`. |
+| `ActionsTh`, `TableAction`, `RowActions`, `ACTION`, `ACTIONS_COL_WIDTH` (240) | `ui/table.tsx:28`, `:39`, `:78`, `:13`, `:25` | The single table pattern (CLAUDE.md "Tables"). 30 users. |
+
+Shared components that sit next to `ui/` but are primitives in practice:
+
+| Component | Path | What it is |
+|---|---|---|
+| `Modal` | `Modal.tsx:31` | Sizes `md` 480, `lg` 640, `xl` 1040, and `drawer` (560px sheet from the right, new in 078; classes `.modal-shell-drawer`, `.is-drawer`). A bottom sheet at 600px and below. Keeps a stack; Escape closes only the top one. 45 users. |
+| `SkeletonRows` | `SkeletonRows.tsx:7` | Loading rows (`.sk-rows`, `.sk-row`, shimmer). 12 users. Styles in `skeleton-rows.css`. |
+| `Pagination` | `Pagination.tsx:2` | "N items · page X of Y" with Prev and Next; hidden for one page. 4 users. |
 
 ### 3.3 Shared components outside `ui/`
 
 | Area | Component | Path |
 |---|---|---|
-| Layout | `AppShell` (`isChatPath`) | `AppShell.tsx:28` |
-| | `AppNotFound` | `NotFound.tsx:9` |
+| Layout | `AppShell` (`isChatPath`) | `AppShell.tsx:31` |
+| | `AppNotFound` | `NotFound.tsx:10` |
 | | `CommandPalette` (⌘K) | `CommandPalette.tsx:19` |
 | | `NavigationTab` (menu editor) | `settings/NavigationTab.tsx:37` |
-| | `NeedsYou` ("Waiting for you") | `nav/NeedsYou.tsx:20` |
-| Overlays | `Modal` (sizes md, lg 640, xl 1040; keeps a stack, Escape closes only the top one) | `Modal.tsx:31` |
-| | `ArtifactPanel` | `artifacts/ArtifactPanel.tsx:36` |
+| | `NeedsYou` ("Waiting for you") | `nav/NeedsYou.tsx:21` |
+| Overlays | `Modal` | `Modal.tsx:31` |
+| | `ArtifactPanel` | `artifacts/ArtifactPanel.tsx:34` |
 | | `AutonomyDialog` | `approvals/AutonomyDialog.tsx:12` |
-| | `EdgePanel` (graph only) | `EdgePanel.tsx:22` |
+| | `EdgePanel` (graph only) | `EdgePanel.tsx:28` |
 | | `MapDrawer` and its variants (map only) | `map/MapDrawers.tsx:20` |
-| | `SetupProposalDialog` / `ProposalBody` | `setup/SetupProposalDialog.tsx` |
-| Lists | `Pagination` | `Pagination.tsx:1` |
-| | `ChannelRow` | `ChannelRow.tsx:14` |
+| | `SetupProposalDialog` / `ProposalBody` | `setup/SetupProposalDialog.tsx:20`, `:34` |
+| | `ComposerDrawer` (a `Modal` drawer, calendar) | `calendar/ComposerDrawer.tsx` |
+| Today (`/app`) | `NeedsYouList`, `TodayGlance`, `SlotRing`, `DayTimeline`, `AgentsPanel`, `ActivityList`, `TodayKpi`; hooks `useNeedsYou`, `useTodayDay` | `today/` (`SlotRing` is hand-drawn SVG, `SlotRing.tsx:35`) |
+| Inbox | `InboxPage`, `InboxList`, `InboxDetail`, `NoteActions` (master and detail; a bottom sheet at 860px and below) | `inbox/` |
+| Calendar | `CalendarPage`, `WeekGrid` (5-day window), `ComposerDrawer`, `useMinute` | `calendar/` |
+| Agent page | `AgentTabs`, `AgentHeader`, `AgentSettings`, `ActiveEffects`; tab list in `lib/agent-tabs.ts` | `agents/` |
+| Network health | `NetworkHealthView`, `OwnerBotSection` | `health/` |
+| Lists | `ChannelRow` | `ChannelRow.tsx:20` |
 | | `ApprovalList` / `ApprovalCard` | `approvals/ApprovalList.tsx:29`, `approvals/ApprovalCard.tsx:71` |
 | | `DirectiveCard` (the reference `CompactCard`) | `agents/Directives.tsx:354` |
-| | `ActionCard` / `GoalChips` | `chat/ActionCard.tsx:379`, `:74` |
-| | `ArtifactChip(s)` / `ArtifactList` | `artifacts/ArtifactChip.tsx:10` |
+| | `ActionCard` / `GoalChips` | `chat/ActionCard.tsx:371`, `:74` |
+| | `ArtifactChip` / `ArtifactChips` / `ArtifactList` | `artifacts/ArtifactChip.tsx:10`, `:45`; `artifacts/ArtifactList.tsx:31` |
 | | `RecommendationsTable` (the reference table) | `RecommendationsTable.tsx:41` |
 | Data display | `ChannelAvatar` | `ChannelAvatar.tsx:38` |
-| | `AgentGlyph`, `ScopeChip`, `FollowsBadge`, `StateBadges`, `LastRun` | `agents/AgentsUi.tsx:36-74` |
-| | `PlatformIcon`, `ResourceLabel`, `ResourceChip`, `ScoreMeter`, `WeightBar` | `agents/NetworkUi.tsx:50-108` |
+| | `AgentGlyph`, `ScopeChip`, `FollowsBadge`, `StateBadges`, `LastRun` | `agents/AgentsUi.tsx:36`, `:52`, `:61`, `:67`, `:82` |
+| | `PlatformIcon`, `ResourceLabel`, `ResourceChip`, `ScoreMeter`, `WeightBar` | `agents/NetworkUi.tsx:50`, `:60`, `:75`, `:92`, `:108` |
 | | `NetworkError` | `agents/NetworkUi.tsx:122` |
-| | `SlotCounts`, `SlotRow`, `JsonBlock` | `editor/EditorUi.tsx:49`, `:105`, `:187` |
-| | `CriticBadge`, `SlotDescription`, `PreviewButton`, `PreviewDraft`, `SlotPost`, `PlanStamp` | `editor/SlotPlan.tsx` |
+| | `SlotCounts`, `SlotRow`, `JsonBlock` | `editor/EditorUi.tsx:57`, `:130`, `:212` |
+| | `SlotDescription`, `CriticBadge`, `PreviewButton`, `PreviewDraft`, `SlotPost`, `PlanStamp` | `editor/SlotPlan.tsx:45`, `:86`, `:93`, `:123`, `:153`, `:196` |
 | | `CriticBlock` | `critic/CriticBlock.tsx:10` |
 | | `TelegramPreview` (rich, chat) | `chat/TelegramPreview.tsx:16` |
 | | `TelegramPreview` (simple, compose; same export name) | `post/TelegramPreview.tsx:4` |
 | | `DiffView` | `agents/AgentSkills.tsx:383` |
-| | `RoiPanel` | `RoiPanel.tsx:11` |
-| | `FindingRefs`, `PostAuditNotes`, `FeedFitList` | `agents/PostAuditNotes.tsx` |
+| | `RoiPanel` | `RoiPanel.tsx:15` |
+| | `FindingRefs`, `PostAuditNotes`, `FeedFitList` | `agents/PostAuditNotes.tsx:24`, `:86`, `:125` |
 | | `MarkdownLite` | `src/lib/markdown-lite.tsx` |
-| Inputs | `Toggle` (the only switch) | `agents/AgentsUi.tsx:195` |
-| | `AgentModeSwitch`, `PauseButton` | `agents/AgentsUi.tsx:89`, `:131` |
-| | `ModeSwitch` | `editor/EditorUi.tsx:72` |
-| | `ModelSelect` | `models/ModelSelect.tsx:19` |
+| Inputs | `Toggle` (the only switch) | `agents/AgentsUi.tsx:203` |
+| | `AgentModeSwitch`, `PauseButton` | `agents/AgentsUi.tsx:97`, `:139` |
+| | `ModeSwitch` | `editor/EditorUi.tsx:96` |
+| | `ModelSelect` | `models/ModelSelect.tsx:20` |
 | | `ChipInput` | `agents/ResourceProfile.tsx:480` |
-| | `Check`, `RoleSelect` | `data/ImportWizard.tsx:220`, `:333` |
+| | `Check`, `RoleSelect` | `data/ImportWizard.tsx:210`, `:323` |
 | | `DirectiveFilterBar` | `agents/Directives.tsx:395` |
-| | `SlashMenu`, `MentionMenu` (chat only) | `chat/SlashMenu.tsx`, `chat/MentionMenu.tsx` |
-| Data import | `ImportWizard`, `ImportHistory`, `SchemaEditor` | `data/` |
-| Editor | `CardEditorModal` (channel card editor) | `editor/CardEditorModal.tsx` |
+| | `SlashMenu`, `MentionMenu` (chat only) | `chat/SlashMenu.tsx:97`, `chat/MentionMenu.tsx:98` |
+| Data import | `ImportWizard`, `ImportHistory` (`:28`), `SchemaEditor` (`:31`) | `data/` |
+| Editor | `CardEditorModal` (channel card editor) | `editor/CardEditorModal.tsx:100` |
 | Charts | See section 4 | |
-| Landing (public) | `AgentHierarchy`, `HowItWorks`, `MediaKit`, `NetworkShowcase`, `ProofStrip`, `LeadForms`, `WhiteLabel`, `cta` | `landing/` |
-| Landing admin | `PublicPageCard`, `NetworksCard`, `LeadsCard` | `landing/` |
+| Landing (public) | `AdSteps`, `AgentLog`, `ApprovalDeck`, `ChannelMarquee`, `CountUp`, `HeroHeadline`, `HeroOrbit`, `LoopRing`, `RoleExplorer`, `SectionHead`, `ShadowLiveDemo`, `MediaKit`, `NetworkShowcase`, `ProofStrip`, `LeadForms`, `WhiteLabel`, `cta`; motion helpers in `LandingMotion` (`Reveal`, `DrawLine`, `LoopScope`, `useStillEntrances`) | `landing/` |
+| Landing admin | `PublicPageCard`, `NetworksCard`, `LeadsCard`, `CtaStatsCard` | `landing/` |
 
-**Loading states.** There is no shared `Skeleton` or `Spinner`. The loading styles are:
+`AgentHierarchy` and `HowItWorks` no longer exist; `RoleExplorer` and `LoopRing` replaced them.
 
-- `.spin-ring` (`index.css:502-511`), used by `SlotPlan`;
+**Loading states.** There is no shared `Spinner`. The loading styles are:
+
+- `SkeletonRows` (`.sk-row`, shimmer), the shared one for lists and tables;
+- `.spin-ring` (`index.css`), used by `SlotPlan`;
 - `.auth-pending-dot`, used by the `/app` pending screen;
-- page-local skeletons: `.la-skeleton` in `app.landing.tsx` and `.lp-skeleton` on `/`.
+- `.lp-skeleton` on the landing (`landing-sections.css`).
 
 ---
 
@@ -385,32 +488,37 @@ Paths are under `src/components/`. "Users" counts files that import the componen
 
 | Library | Version | Where | How |
 |---|---|---|---|
-| `motion` (`motion/react`; resolves to framer-motion 12.40.0) | ^12.40.0 | `routes/index.tsx:3`, `components/landing/HowItWorks.tsx:8`, `components/landing/NetworkShowcase.tsx:8` | Landing only. `NetworkShowcase` is also rendered as a preview on `/app/landing` (`app.landing.tsx:24`, `:320`). The page is wrapped in `<MotionConfig reducedMotion="user">` (`index.tsx:79`). The hero fades and lifts in (`initial {opacity:0, y:18–24}`) with easing `[0.2, 0.7, 0.2, 1]`. |
-| CSS `@keyframes` and transitions | — | `index.css`, `map/map.css`, inline `<style>` blocks | The `/app` dashboard uses CSS animation only. See the table below. |
+| `motion` (`motion/react`; resolves to framer-motion 12.40.0) | ^12.40.0 | `routes/index.tsx:3`, `components/landing/LandingMotion.tsx:16`, `components/landing/NetworkShowcase.tsx:8` | Landing only. `LandingMotion` holds `Reveal` (fade and lift once when scrolled into view: 0.55 s, easing `[0.2, 0.7, 0.2, 1]`) and `DrawLine`. `NetworkShowcase` staggers its rows, and is also rendered as a preview on `/app/landing` (`app.landing.tsx:23`, `:297`). The page is wrapped in `<MotionConfig reducedMotion="user">`. `HowItWorks` no longer uses `motion`. The hero uses CSS keyframes with `both` fill (`lp-word-up`, `lp-fade-up`) instead. |
+| CSS `@keyframes` and transitions | — | `index.css`, the per-area CSS files, a few inline `<style>` blocks | The `/app` dashboard uses CSS animation only. See the table below. |
 | SVG SMIL `<animateMotion>` | — | `components/map/MapFx.tsx:88` | A dot travelling along a road on `/app/map`. |
-| `requestAnimationFrame` count-up | — | `routes/index.tsx:30-58` (`CountUp`) | Audience numbers on the landing count up when scrolled into view. |
-| force-graph physics + `@tweenjs/tween.js` (transitive) | 1.51.4 / 25.0.0 | `components/GraphCanvas.tsx` | The d3-force simulation on `/app/graph` and a 400ms `zoomToFit`. |
+| `requestAnimationFrame` count-up | — | `components/landing/CountUp.tsx` | Audience numbers on the landing count up (1,100 ms, cubic ease-out) when scrolled into view. Under reduced motion the animation is skipped; the final number is in the DOM from the start. |
+| force-graph physics + `@tweenjs/tween.js` (transitive) | 1.51.4 / 25.0.0 | `components/GraphCanvas.tsx` | The d3-force simulation on `/app/graph` and a 400 ms `zoomToFit` (line 244). |
 
 Not installed: GSAP, react-spring, Lottie, `tailwindcss-animate`. No Tailwind `animate-*` or `transition-*` utilities are used.
 
-CSS keyframes:
+CSS keyframes: 50 in total.
 
-| Keyframe | Defined in | Used by | Reduced motion |
-|---|---|---|---|
-| `modal-fade-in` (120ms) | `index.css:480` | `.modal-backdrop` | not handled |
-| `modal-lift-in` (160ms) | `index.css:483` | `.modal-shell` | not handled |
-| `auth-pulse` | `index.css:489` | `.auth-pending-dot` | off |
-| `spin-ring` | `index.css:503` | `.spin-ring` | becomes a static ring |
-| `compose-rise` (360ms) | `index.css:514` | `.compose-rise`, the staggered entrance used in 49 files (`SectionCard delay`, `CompactCard`, `Toast`…) | not handled |
-| `group-rise` (420ms) | `index.css:529` | `.group-card` on `/app/connections/groups` | off |
-| `map-*`, 15 keyframes: pulse, rise, fly, flare, float, travel, shake, bump, beacon, bob, ring, live, drawer-in, sheet-in, feed-in | `map/map.css:207-221` | `/app/map` | all off (`map.css:223-229`, and `MapPage.tsx:33` stops creating effects) |
-| `lp-breathe`, `lp-pulse`, `lp-shimmer` | `routes/index.tsx` inline style | landing hero and skeleton | off |
-| `ah-travel` | `landing/AgentHierarchy.tsx:137` | hero diagram packets | hidden |
-| `lf-spin` | `landing/LeadForms.tsx:487` | lead-form spinner | off |
-| `la-shimmer` | `routes/app.landing.tsx:379` | `/app/landing` skeleton | not handled |
-| `logs-spin` | `routes/app.logs.tsx:270` | running-entry ring on `/app/logs` | not handled |
+| Defined in | Count | Keyframes |
+|---|---|---|
+| `index.css` | 14 | `pulse-ring`, `modal-fade-in` (120ms), `modal-lift-in` (180ms), `sheet-up` (280ms), `auth-pulse`, `spin-ring`, `compose-rise` (360ms), `group-rise` (420ms), `fade-up`, `slide-in`, `pop`, `slide-left`, `grow-x` (1.2s), `grow-y` (0.9s) |
+| `nav/shell.css` | 1 | `shell-live-pulse` |
+| `today/today.css` | 1 | `slotring-draw` |
+| `skeleton-rows.css` | 1 | `sk-shimmer` |
+| `landing/landing.css` | 9 | `lp-word-up`, `lp-fade-up`, `lp-blink`, `lp-spin`, `lp-ripple`, `lp-dot-ring`, `lp-scan`, `lp-feed`, `lp-marquee` |
+| `landing/landing-sections.css` | 8 | `lp-travel`, `lp-lit`, `lp-glow`, `lp-tok`, `lp-deck`, `lp-stamp`, `lp-shimmer`, `lp-bigdot` |
+| `map/map.css` | 15 | `map-pulse`, `-rise`, `-fly`, `-flare`, `-float`, `-travel`, `-shake`, `-bump`, `-beacon`, `-bob`, `-ring`, `-live`, `-drawer-in`, `-sheet-in`, `-feed-in` |
+| `landing/LeadForms.tsx` (inline) | 1 | `lf-spin` |
 
-Reduced-motion guards in `index.css` are at 402–404 (hover lifts), 498–500, 509–511 and 633–636.
+Gone with the old inline styles: `ah-travel`, `la-shimmer`, `logs-spin`, `lp-breathe`, `lp-pulse`.
+
+Utility classes at `index.css:1294-1299`: `.anim-fade-up`, `.anim-slide-in`, `.anim-pop`, `.anim-slide-left`, `.anim-grow-x`, `.anim-grow-y`, all using `--dur-enter` and `--ease-out` (the `grow-*` ones keep their own durations). `.compose-rise` is the staggered entrance: 50 files put it in a `className`, and 51 `.tsx` files contain the string (`SectionCard delay`, `CompactCard`, `Toast`…). The comment above it in `index.css` still says 48.
+
+**Reduced motion.** One global rule at the end of `index.css` (lines 1350-1360) covers everything:
+
+- `animation-duration` and `transition-duration` become 0.01ms, delays become 0, `animation-iteration-count` becomes 1, and `scroll-behavior` becomes `auto`;
+- animations are not switched off with `animation: none`, because `.compose-rise` and `.group-card` start at opacity 0 and need their last keyframe to become visible.
+
+A few local overrides remain on top of it: hover lifts (`index.css:588`), `.auth-pending-dot` (`:706`, `animation: none`), `.spin-ring` (`:717`), `.group-card` (`:839`, `animation: none`, opacity 1), `.shell-live-dot` (`nav/shell.css:33`, `animation: none`), all map animation (`map/map.css:277`, `animation: none`), the landing marquee (`landing.css:365`, which becomes a wrapped list), and inline rules in `ProofStrip.tsx:128`, `LeadForms.tsx:488` and `routes/white-label.tsx:184`. In JavaScript, `usePrefersReducedMotion()` (`lib/useReducedMotion.ts`) gates every recharts component (`isAnimationActive={!reduced}`) and `MapPage.tsx:31` stops creating map effects.
 
 ### 4.2 Charts
 
@@ -422,14 +530,19 @@ Reduced-motion guards in `index.css` are at 402–404 (hover lifts), 498–500, 
 | | | `MetaProfileViewsChart` (bar) | `/app/analytics`, `/app/connections/meta/$accountId` |
 | | | `MetaReachImpressionsChart` (two lines + legend) | `/app/analytics`, `/app/connections/meta/$accountId` |
 | | | `SpendChart` (stacked bar, `components/spend/`) | `/app/spend` |
-| `force-graph` (canvas, d3-force-3d) | ^1.51.4 | `GraphCanvas` (`components/GraphCanvas.tsx:113`), the only importer | `/app/graph`. No per-node DOM allowed (CLAUDE.md). Colours come from the CSS tokens via `getComputedStyle`. |
-| Hand-drawn SVG/HTML | — | `Curve` (`routes/report.$token.tsx:17`) | `/report/$token` |
-| | | Day-plan timeline (`agents/AgentPlan.tsx:290-313`) | agent Plan tab |
+| `force-graph` (canvas, d3-force-3d) | ^1.51.4 | `GraphCanvas` (`components/GraphCanvas.tsx`), the only importer | `/app/graph`. No per-node DOM allowed (CLAUDE.md). Colours come from the CSS tokens via `getComputedStyle`. |
+| Hand-drawn SVG/HTML | — | `Curve` (`routes/report.$token.tsx:38`) | `/report/$token` |
+| | | Day-plan timeline (`agents/AgentPlan.tsx`, `Timeline`, around line 229) | agent Plan tab |
 | | | `ScoreMeter`, `WeightBar` (`agents/NetworkUi.tsx`) | agent pages |
-| | | `BudgetBar` (`overview/AiSpendCard.tsx`) | `/app` overview |
-| | | the whole network map (`components/map/*`, SVG with pan/zoom) | `/app/map` |
+| | | `Sparkline` (`ui/Sparkline.tsx`), through `StatTile spark` | Today, Analytics, Meta account page, channel page |
+| | | `SlotRing` (`today/SlotRing.tsx:35`, SVG ring that draws in) and `DayTimeline` (lanes) | Today |
+| | | `WeekGrid` chips (`calendar/`) | Calendar |
+| | | `BudgetCard`, the sidebar's own meter (`nav/SidebarFooter.tsx`) | every `/app` page |
+| | | the whole network map (`components/map/*`, SVG with pan/zoom; `MapStage.tsx:64`) | `/app/map` |
 
-The recharts components live in `src/components/` (top level unless a folder is named). There is no shared chart wrapper: each one repeats the same inline styling (tooltip on `surface-2` with a hairline border and radius 10, dashed `3 3` hairline grid). None of them sets `isAnimationActive`, so recharts' default entry animation plays, including under reduced motion.
+`BudgetBar` (formerly on the old overview page) was removed with `AiSpendCard`.
+
+The recharts components live in `src/components/` (top level unless a folder is named). There is no shared chart wrapper: each one repeats the same inline styling (tooltip on `surface-2` with a hairline border and `var(--radius-md)`, dashed `3 3` hairline grid). `SpendChart`'s tooltip also uses `var(--shadow-1)`. All of them pass `isAnimationActive={!reduced}`, so recharts' entry animation no longer plays under reduced motion (the old version of this file said it did).
 
 ---
 
@@ -440,138 +553,160 @@ The recharts components live in `src/components/` (top level unless a folder is 
 | Role | File |
 |---|---|
 | Registry, the single list of pages (spec 027 FR-001) | `src/nav/registry.ts` |
-| Saved-menu types and limits | `src/nav/config.ts` (`NavConfigV1`, `NAV_LIMITS`: groups 20, refs 150, custom links 50, pinned 10, label 40) |
+| Saved-menu types and limits | `src/nav/config.ts` (`NAV_SCHEMA_VERSION = 2`; `NAV_LIMITS`: groups 20, refs 150, custom links 50, pinned 10, label 40; `NAV_ID_RE`) |
 | Resolved types | `src/nav/model.ts` (`ResolvedItem`, `ResolvedNav`) |
-| Merge registry and saved menu | `src/nav/resolve.ts` (`normalizeNav` 77–170, `renderNav` 172–252) |
-| Counters | `src/nav/badges.ts` (`badgeFor`, `badgeText`, `shownKeys`, `rollup`) |
-| Data hooks | `src/nav/store.ts` (`useResolvedNav`, `useNavBadgeCounts`), `src/nav/hooks.ts` |
+| Merge registry and saved menu | `src/nav/resolve.ts` (`defaultConfig` 53, `normalizeNav` 84–183, `renderNav` 185–265, `resolveNav` 268, and the `MIGRATIONS` table) |
+| v1 → v2 migration | `src/nav/migrate.ts` (`migrateV1ToV2`, `V1_DEFAULT_HIDDEN`, `V1_GROUP_TITLES`) |
+| Counters | `src/nav/badges.ts` (`badgeFor`, `badgeText`, `shownKeys`, `rollup`, `COVERS`) |
+| Data hooks | `src/nav/store.ts` (`useNavConfig`, `useResolvedNav`, `useQuickNavEdit`, `useNavBadgeCounts`), `src/nav/hooks.ts` |
+| Sidebar view model | `src/nav/sidebar-model.ts` (`moreTools`, `activeItemId`, `showGroupTitle`, `initials`, `pickGlobalBudget`, `liveAgentCount`, `liveAgentsLabel`) |
 | Offline cache of the menu | `src/nav/cache.ts` (localStorage key `dashboard:nav-cache`) |
 | Menu edit operations | `src/nav/ops.ts` (pure; used by the editor, the context menu and ⌘K) |
-| ⌘K, breadcrumbs, route list | `src/nav/palette.ts`, `src/nav/crumbs.ts`, `src/nav/routes.ts` |
-| Rendering | `src/components/AppSidebar.tsx`, `src/components/nav/SidebarItem.tsx`, `src/components/nav/NavContextMenu.tsx` |
+| ⌘K, breadcrumbs, route list | `src/nav/palette.ts` (actions: new post, pin page, edit menu, collapse sidebar), `src/nav/crumbs.ts`, `src/nav/routes.ts` |
+| Environment label | `src/lib/env.ts` (`ENV_LABEL`) |
+| Rendering | `src/components/AppSidebar.tsx`, `src/components/nav/SidebarItem.tsx`, `src/components/nav/NavContextMenu.tsx` (`:22`), `src/components/nav/SidebarFooter.tsx`, `src/components/nav/NeedsYou.tsx` |
 | Menu editor | `src/components/settings/NavigationTab.tsx` (`/app/settings?tab=navigation`) |
-| Styles | `index.css:928-948` (`.nav-link`, `.nav-link-active`, `.nav-badge`, `.nav-new`, `.nav-dot`, `.nav-ctx*`). `.nav-item` at `index.css:783-804` is dead CSS. |
-| Backend | `apps/automation/src/settings/nav/`: `nav.controller.ts`, `nav-config.service.ts` (saved menu), `nav-badges.service.ts` (counters), `nav-attention.service.ts` |
+| Styles | `src/components/nav/sidebar.css` (100 lines) for the sidebar itself; the shared nav classes stay in `index.css` (around lines 1115–1180): `.nav-link`, `.nav-badge` (with `.is-danger`, `.is-accent`), `.nav-new`, `.nav-dot`, `.nav-star`, `.nav-ctx*`, `.navc-*` (menu editor), `.cmdk*` (⌘K) and `.kbd`. The old dead `.nav-item` CSS is gone. |
+| Backend | `apps/automation/src/settings/nav/`: `nav.controller.ts` (`api/nav`: GET, PUT and DELETE `config`, GET `badges`, GET `attention`), `nav-config.service.ts` (saved menu), `nav-config.schema.ts` (`NAV_SETTINGS_KEY = 'ui.nav'`, `NAV_SCHEMA_MAX = 2`), `nav-badges.service.ts` (counters), `nav-attention.service.ts` |
 
 ### 5.2 Where the menu items come from
 
 There are no menu items written in the sidebar component. The menu is computed in three steps:
 
 1. **Registry** (`src/nav/registry.ts`):
-   - `NAV_GROUPS` (lines 46–56) defines 9 groups: Home, Agents, Publishing, Content, Analytics, Intelligence, Connections, Marketing, System.
-   - `NAV_REGISTRY` (lines 61–131) has 42 entries: 35 menu pages and 7 `menu: false` route templates (detail pages, breadcrumbs only).
-   - Each entry has `id`, `to`, optional `search`, `label`, `icon`, `defaultGroup`, ⌘K `keywords`, optional `badge`, `parent` (for breadcrumbs), `hiddenByDefault` and `exact`.
+   - `NAV_GROUPS` defines 9 groups. Four are in the default menu: Home, Network (id `g_agents`), Insights (id `g_analytics`) and System. Five are marked `legacy: true`: Publishing, Content, Intelligence, Connections and Marketing. They are not in `DEFAULT_GROUPS`; a saved menu that still names one keeps its title and nothing else. The ids of the two renamed groups are unchanged so saved menus keep working.
+   - `NAV_REGISTRY` has 43 entries: 36 menu pages and 7 `menu: false` route templates (`agent-detail`, `channel-detail`, `editor-channel`, `editor-run`, `editor-slot`, `meta-account`, `dataset`; breadcrumbs only).
+   - Each entry has `id`, `to`, optional `search`, `label`, `icon`, `defaultGroup`, ⌘K `keywords`, optional `badge`, `parent` (for breadcrumbs), `hiddenByDefault`, `subview` and `exact`.
    - Ids are stable and never reused, because saved menus store them.
    - `FORCED_IDS = ['overview', 'settings']` are always visible, whatever the saved menu says.
 2. **Saved menu**:
-   - The owner's layout is stored in the `app_settings` row `ui.nav` (`NavConfigV1`): groups with item ids, `pinned`, `hidden`, `custom` links, and per-item `overrides` (label, icon, `badge: false`).
-   - It is read and written through `GET/PUT/DELETE /api/nav/config` (`src/api/nav.ts:18-23`; DELETE is "Reset to the default").
-  - It is edited in Settings → Navigation, from the item context menu ("Pin to the top" / "Unpin", "Hide from the menu", "Rename…"), or with ⌘K "pin page".
+   - The owner's layout is stored in the `app_settings` row `ui.nav`: groups with item ids, `pinned`, `hidden`, `custom` links, and per-item `overrides` (label, icon, `badge: false`). The stored schema is version 2.
+   - It is read and written through `GET/PUT/DELETE /api/nav/config` (`src/api/nav.ts`; DELETE is "Reset to the default").
+   - It is edited in Settings → Navigation, from the item context menu ("Pin to the top" / "Unpin", "Hide from the menu", "Rename…"; for a page under More tools also "Edit in menu settings…"), or with ⌘K "pin page".
    - A save carries a revision. A stale revision is rejected with 409.
 3. **Resolve**:
-   - `normalizeNav` (`resolve.ts:77`) merges the saved menu with the current registry. It drops unknown ids and lists them as unavailable, enforces the limits, and places registry pages the saved menu doesn't mention.
-   - `renderNav` (`resolve.ts:172`) produces `ResolvedItem`s with overrides applied.
+   - `normalizeNav` (`resolve.ts:84`) merges the saved menu with the current registry. It drops unknown ids and lists them as unavailable, enforces the limits, and places registry pages the saved menu doesn't mention.
+   - `renderNav` (`resolve.ts:185`) produces `ResolvedItem`s with overrides applied.
    - With no saved menu, the registry defaults are used.
+   - A saved menu with an older schema goes through `MIGRATIONS` first (below). A saved menu with a newer schema than the build knows is not used: the default menu is shown and saving is blocked.
 
-`AppSidebar.tsx:27` then renders:
+`AppSidebar.tsx` then renders:
 
-- the brand row;
-- a "Pinned" group (if any);
-- each group with an uppercase 10px title (`AppSidebar.tsx:99-101`);
-- an "Edit menu" button and a Collapse button.
+- the header: a logo link ("ai0", to Today), the environment label if there is one, and a collapse button (a close X on mobile);
+- a "Pinned" group first, if any;
+- each group with a mono, uppercase, 11px title (`.nav-group-title`, 0.12em tracking). The Home title is hidden when it is the first block and nothing is pinned (`showGroupTitle`);
+- a "More tools" control (below);
+- the footer (`SidebarFooter`): an "AI budget today" meter (`BudgetCard`, links to `/app/spend?tab=budgets`; hidden in the rail and when the window is under 680px tall) and the operator row (initials avatar, name, @username, an "Edit menu" pencil button, Log out).
 
-Widths: 234px normally, 64px as the collapsed rail, and a 264px off-canvas drawer below 860px.
+Widths: 248px normally, 64px as the collapsed rail, and a 264px off-canvas drawer below 860px (`AppSidebar.tsx:96`). The collapsed state is kept in localStorage (`dashboard:sidebar-collapsed`). On chat pages the menu is the rail unless the owner opens it (`dashboard:chat-nav`).
 
-Default menu, with no saved config (26 visible items):
+**The environment label.** `ENV_LABEL` is the build-time value of `VITE_ENV_LABEL`, trimmed and cut to 12 characters. When it is not empty, the header shows it as a small pill (`.side-env`, tooltip "Environment: &lt;label&gt;"). The Dockerfile has `ARG`/`ENV VITE_ENV_LABEL`. `.github/workflows/deploy-develop.yml` passes `${{ vars.DEV_VITE_ENV_LABEL || 'dev' }}` (line 74), so the develop image shows "dev". The production build passes nothing, so there is no pill.
+
+**Default menu**, with no saved config (11 visible items):
 
 | Group | Items (counter key in brackets) |
 |---|---|
-| Home | Overview · Posts to approve [approvals] · Network health |
-| Agents | Agents [agents] · Chat [chat] · Artifacts · DM inbox [dm] · Models · Network map |
-| Publishing | Compose · Scheduled [scheduled] · Editor [editor] · Logs · My channels |
-| Content | Data |
-| Analytics | Analytics · Spend · Tracked |
-| Intelligence | Discovery · Graph · Recommendations |
-| Connections | Connections · Groups |
-| Marketing | Landing · Ads |
+| Home | Today · Inbox [agentsInbox] · Chat [chat] |
+| Network | Agents [directives] · Calendar · Channels · Map |
+| Insights | Analytics · Spend · Health |
 | System | Settings |
 
-Hidden by default (9 items; reachable from ⌘K and addable to the menu):
+**Hidden by default: 25 items.** They are reachable from ⌘K and can be added to the menu.
 
-- Agent inbox [agentsInbox], Directives [directives];
-- Bots, Telegraph, Meta accounts, TikTok accounts;
-- Navigation, Security, AI keys.
+- **Sub-views (9).** Pages that are a tab or section of another page. They never appear under "More tools"; they are reached from ⌘K, breadcrumbs, and the Hidden panel in Settings → Navigation:
+  - Posts to approve [approvals], Directives [directives];
+  - Navigation, Security, AI keys (`settings-navigation`, `settings-security`, `settings-ai`);
+  - Bots, Telegraph, Meta accounts, TikTok accounts.
+- **Under "More tools" (16).** DM inbox [dm], Models, Artifacts, Scheduled [scheduled], Compose, Editor [editor], Logs, Data, Tracked, Discovery, Graph, Recommendations, Connections, Groups, Landing, Ads.
 
-AI keys points to `/app/settings?tab=ai`, a legacy tab value that now opens Configuration with the AI group selected.
+Two entries to know: the registry's `directives` item points to `/app/agents/manager?tab=directives`, and AI keys points to `/app/settings?tab=ai`, a legacy tab value that now opens Configuration with the AI group selected.
+
+**"More tools".**
+
+- In the expanded sidebar it is an ellipsis button with a row of chips (`.nav-chip`), one per page, each with its own counter dot. The open state is kept in localStorage (`dashboard:nav-more`).
+- In the rail it opens a context menu (`NavContextMenu`) with the counters.
+- The dot on the More tools button is a rollup of the `more` pages only. Keys already shown elsewhere in the menu are skipped, and sub-view counters do not light it.
+- If the current page is inside More tools, the group opens by itself.
+- The mobile hamburger shows one dot that rolls up every counter, hidden pages and sub-views included (`AppShell.tsx:105`).
+
+**The v1 → v2 migration.** Before 078 the saved menu was schema 1 (the nine-group layout with 26 visible items). The build now reads both:
+
+- `resolve.ts` has a `MIGRATIONS` table; `MIGRATIONS[1]` calls `migrateV1ToV2(config, defaultConfig(), NAV_REGISTRY)`.
+- It starts from the v2 default menu and carries over only what the owner chose on purpose: pins, custom links, per-item overrides (rename, icon, counter off), custom groups and their order, pages the owner hid, pages the owner un-hid from the v1 default-hidden list (`V1_DEFAULT_HIDDEN`, 9 ids), custom links in groups that survive, and titles the owner gave to groups that survive. A group title equal to the v1 built-in title is not a choice, so it is dropped; "Agents" becomes "Network".
+- It does not carry over the order of pages inside built-in groups, pages the owner moved between built-in groups, or where visible pages sat.
+- It runs during render, on every load, until the owner saves once; after that the stored menu is schema 2.
+- It never throws. On bad data it falls back to the default menu and logs a warning.
+- After migration every page is placed, so nothing counts as "new" until a later build adds a page.
 
 ### 5.3 The "new" pills
 
 The "new" flag is computed on every render, not stored.
 
-- **When an item counts as new.** In `normalizeNav` (`resolve.ts:140-151`), any registry page that is neither placed in the saved menu nor hidden is new since the owner last saved. It is appended to its default group (or Home) and its id goes into `newIds`.
+- **When an item counts as new.** In `normalizeNav` (`resolve.ts`, around lines 153–164), any registry page that is neither placed in the saved menu nor hidden is new since the owner last saved. It is appended to its default group (or Home) and its id goes into `newIds`.
   - A hidden-by-default page that is new goes straight to Hidden and is not marked.
-- **What gets drawn.** `renderNav` sets `isNew: true` on those items (`resolve.ts:195`). `SidebarItem` then draws:
-  - expanded: a `.nav-new` pill reading "new", with the tooltip "New page since you last edited the menu" (`SidebarItem.tsx:61`);
-  - collapsed rail: an accent-coloured `.nav-dot` (`:58`).
+- **What gets drawn.** `renderNav` sets `isNew: true` on those items. `SidebarItem` then draws:
+  - expanded: a `.nav-new` pill reading "new", with the tooltip "New page since you last edited the menu" (`SidebarItem.tsx:68`);
+  - collapsed rail: an accent-coloured `.nav-dot` (`:65`).
   - In both cases the mark appears only when the item has no counter: a number always wins.
 - **When it appears and clears.**
-  - It only appears once the owner has saved a menu at least once and a later build added a page. With no saved menu every page is in its default place, so nothing is "new".
+  - It only appears once the owner has saved a menu at least once and a later build added a page. With no saved menu every page is in its default place, so nothing is "new". The v1 → v2 migration also places every page, so it does not create "new" marks either.
   - It disappears on the next save (editor, pin, hide, rename, ⌘K pin), because the page is then part of the saved layout. "Reset" also clears it.
 
 ### 5.4 Counters
 
 **Data flow**
 
-- **Source 1:** `GET /api/nav/badges`, polled by `useNavBadgeCounts` (`nav/store.ts:108-117`) every 30 s while the tab is visible.
-  - The backend `NavBadgesService` (`apps/automation/src/settings/nav/nav-badges.service.ts`) runs one SQL statement built from `BADGE_SOURCES` (lines 26–36) and caches it for 10 s.
+- **Source 1:** `GET /api/nav/badges`, polled by `useNavBadgeCounts` (`nav/store.ts`) every 30 s while the tab is visible, and again on focus. The query is stale after 25 s.
+  - The backend `NavBadgesService` (`apps/automation/src/settings/nav/nav-badges.service.ts`) runs one SQL statement for its 8 `BADGE_KEYS` and caches the result for 10 s. A request can ask for `fresh` to bypass the cache (minimum age 1 s). The check that the tables exist is cached for 5 minutes.
   - "Today" means since midnight Europe/Kyiv.
-  - A mutation can request `fresh` to bypass the cache.
 - **Source 2:** `GET /api/editor/approvals/count` → `{ waiting }`, via `useApprovalsCount` (`src/api/approvals.ts:82`), polled every 60 s.
 - **Refresh after changes:** every successful mutation refreshes both (`router.ts`), unless it sets `meta.skipNavBadges`.
 
-**Counter definitions** (`nav/badges.ts:36-69`, `badgeFor`)
+**Counter definitions** (`nav/badges.ts`, `badgeFor`). Seven keys are drawn in the sidebar (`BadgeKey`): `approvals`, `agentsInbox`, `directives`, `chat`, `dm`, `editor`, `scheduled`.
 
 | Item (badge key) | Number shown | Database source | Pill colour |
 |---|---|---|---|
-| Posts to approve (`approvals`) | posts waiting for approval | `editor_slots` with `status = 'awaiting_approval'` (approvals endpoint) | warning |
-| Agents (`agents`) | unread agent-inbox notes **+** directives awaiting the owner | `agent_inbox WHERE read_at IS NULL` + `agent_directives WHERE status IN ('awaiting_owner','contested')` | danger if any note is critical or any directive waits; otherwise warning |
-| Agent inbox (`agentsInbox`, hidden by default) | unread notes | `agent_inbox WHERE read_at IS NULL` | danger if critical |
-| Directives (`directives`, hidden by default) | directives awaiting the owner | `agent_directives` as above | danger |
-| Chat (`chat`) | confirmation cards waiting in the chat | `pending_actions` that are pending and under 24 h old | warning |
-| DM inbox (`dm`) | new DM threads **+** replies to approve | `agent_dm_threads WHERE status = 'new'` + `agent_actions WHERE status = 'pending'` | warning |
-| Editor (`editor`) | slots failed today | `editor_slots WHERE status = 'failed'` since Kyiv midnight | danger |
-| Scheduled (`scheduled`) | publications failed today | `scheduled_publications WHERE status IN ('failed','unknown')` since Kyiv midnight | danger |
+| Inbox (`agentsInbox`) | unread agent-inbox notes **+** posts waiting for approval | `agent_inbox WHERE read_at IS NULL` + `editor_slots` with `status = 'awaiting_approval'` (the approvals count) | danger if any unread note is critical; otherwise warning. Example tooltip: "16 unread, 2 critical · 3 posts to approve". |
+| Agents (`directives`) | directives awaiting the owner | `agent_directives WHERE status IN ('awaiting_owner','contested')` | danger |
+| Chat (`chat`) | confirmation cards waiting in the chat | `pending_actions` that are pending and under 24 h old (`chatCardLive`) | warning |
+| Posts to approve (`approvals`, hidden) | posts waiting for approval | `editor_slots` with `status = 'awaiting_approval'` (approvals endpoint) | warning |
+| Directives (`directives`, hidden) | directives awaiting the owner | `agent_directives` as above | danger |
+| DM inbox (`dm`, More tools) | new DM threads **+** replies to approve | `agent_dm_threads WHERE status = 'new'` + `agent_actions WHERE status = 'pending'` | warning |
+| Editor (`editor`, More tools) | slots failed today | `editor_slots WHERE status = 'failed'` and `scheduled_at >= since`, since Kyiv midnight | danger |
+| Scheduled (`scheduled`, More tools) | publications failed today | `scheduled_publications WHERE status IN ('failed','unknown')` and `updated_at >= since`, since Kyiv midnight | danger |
+
+The Inbox pill covers the Posts to approve counter (`COVERS = { agentsInbox: ['approvals'] }` in `badges.ts`), so the two are not shown twice.
 
 **Display rules**
 
 - **Zero or unknown:** no pill. A source that failed returns `null`, never a misleading 0.
 - **Cap:** above 99 the pill reads `99+` (`badgeText`).
-- **Tooltip and screen-reader text** spell out the parts, for example "16 unread in the agent inbox · 1 directive awaits you".
+- **Tooltip and screen-reader text** spell out the parts.
 - **Dots without numbers:**
   - the collapsed rail shows a coloured `.nav-dot`;
-  - counters on hidden pages roll up (`rollup`, `badges.ts:76-108`) into a dot on "Edit menu", whose tooltip lists them. Keys already shown in the visible menu are skipped, so Agents absorbs Agent inbox and Directives.
-  - the mobile hamburger shows one rollup dot over every counter, hidden pages included (`AppShell.tsx:99-102`).
-- **Per-item switch:** the owner can turn off one item's counter in Settings → Navigation (`NavigationTab.tsx:384-389`, stored as `overrides[id].badge = false`).
+  - counters on hidden pages roll up (`rollup`, `badges.ts`) into a dot on "More tools" and on the mobile hamburger (see 5.2). Keys already shown in the visible menu are skipped.
+- **Per-item switch:** the owner can turn off one item's counter in Settings → Navigation (`NavigationTab.tsx`, around lines 389–396, button title "Hide the counter" / "Show the counter"; stored as `overrides[id].badge = false`).
 
-The same counts also drive the "Waiting for you" panel (`nav/NeedsYou.tsx`) on `/app/agents` and `/app/chat`, and the "Inbox N" button on `/app/agents`.
+The same counts also drive the "Waiting for you" panel (`nav/NeedsYou.tsx`) on `/app/agents` (inbox and directives) and `/app/chat` (chat cards). Today has its own "Needs you" list (`today/NeedsYouList.tsx`). The Agents page has an "Inbox" button (`app.agents.tsx:19`) with an accent badge showing the unread count.
 
 ### 5.5 Where the number 17 comes from
 
-**17 is not in the code.** No constant, default, mock or menu limit equals 17. A number on the sidebar is always one of the live counter pills above, so 17 is a count of rows in the database at the moment the page was open.
+**17 is not a constant in the sidebar code.** No default, mock or menu limit equals 17. A number on the sidebar is always one of the live counter pills above, so a 17 there is a count of rows in the database at the moment the page was open.
 
-**Most likely the pill on Agents.** That pill is unread agent-inbox notes plus directives awaiting the owner.
+**Which pill it is now.** The design hand-off (`docs/redesign/HANDOFF.md`, around line 103) records that the counter "17" moved from Agents to Inbox in the redesign. In the old menu the Agents pill showed unread agent-inbox notes plus directives awaiting the owner. Now the same notes sit on the Inbox pill, together with posts waiting for approval, and the Agents pill shows directives only. So a 17 in the sidebar today is on **Inbox**: unread notes plus posts to approve.
 
-- In the stage export of 2026-10-26 the inbox had 16 unread notes, with 0 directives and 0 posts awaiting approval (all channels live).
-- One more agent note (agents write them during runs) makes 17.
-- It is the counter that grows by itself without any failures, because nothing marks the notes read until the owner opens the inbox.
-- The other candidates were ruled out against the same data: 0 posts awaiting approval, and the Editor/Scheduled pills count failures today only.
+- Unread notes pile up by themselves, because nothing marks them read until the owner opens the inbox. That is why this counter grows without any failures.
+- The Editor and Scheduled pills count failures today only, and are under More tools.
+- The earlier version of this file said the stage export of 2026-10-26 had 16 unread notes, 0 directives and 0 posts to approve, so one more note made 17. That came from a database export. The export is not in the repository (exports are archives under `tmp/`), so those numbers were carried over here and not re-checked.
+
+**The other 17 in the dashboard.** The agent page has exactly 17 tab leaves (`AGENT_TABS` in `lib/agent-tabs.ts`; runbook § 31 says "17 tabs in five groups"). That is a fixed number but it is not a counter and is not drawn in the sidebar.
+
+**A coincidence that no longer holds.** The old default menu had exactly 17 visible items outside the Home and Agents groups. The new default menu has 11 visible items in total, so that sum is gone.
 
 **How to confirm in ten seconds.**
 
-1. Hover the pill. The tooltip says what it counts, for example "17 unread in the agent inbox · 0 directives…", or "17 posts awaiting approval".
-2. Or open `GET /api/nav/badges` while signed in and look for the 17 in `counts` (`agentInboxUnread`, `directivesAwaitingOwner`, …).
+1. Hover the pill. The tooltip says what it counts, for example "17 unread, 0 critical · 0 posts to approve".
+2. Or open `GET /api/nav/badges` while signed in and look for the 17 in `counts`.
 3. Or run in SQL: `SELECT count(*) FROM agent_inbox WHERE read_at IS NULL;`
 
-**How to make it go down.** Open Agents → Agent inbox (`/app/agents/inbox?tab=unread`) and mark the notes read; the pill updates on the next poll or right after the mutation. To hide that counter instead, use Settings → Navigation → the "Hide the counter" button next to Agents.
-
-**A coincidence to be aware of.** The default menu has exactly 17 visible items outside the Home and Agents groups (Publishing 5, Content 1, Analytics 3, Intelligence 3, Connections 2, Marketing 2, System 1). That number is never rendered anywhere, so it is not the 17 on screen.
+**How to make it go down.** Open Inbox (`/app/agents/inbox`, default view All with the Unread filter on) and mark the notes read. The pill updates on the next poll or right after the mutation. To hide that counter instead, use Settings → Navigation and the "Hide the counter" button next to Inbox.
