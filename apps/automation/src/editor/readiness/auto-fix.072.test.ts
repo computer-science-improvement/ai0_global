@@ -17,7 +17,9 @@ test('no other kind is auto-safe', () => {
   assert.equal(isAutoSafeFix('tools_allow_add'), true);
 });
 
-test('FIX_ALL_EXCLUDED_KINDS is empty in this wave (075 adds bind_dataset and dataset_patch)', () => {
-  assert.deepEqual([...FIX_ALL_EXCLUDED_KINDS], []);
-  assert.equal(isFixAllKind('series_resume'), true);
+test('FIX_ALL_EXCLUDED_KINDS is bind_dataset and dataset_patch (075 adds the kinds in W2); every current kind is in Fix all', () => {
+  assert.deepEqual([...FIX_ALL_EXCLUDED_KINDS], ['bind_dataset', 'dataset_patch']);
+  assert.equal(isFixAllKind('bind_dataset'), false);
+  assert.equal(isFixAllKind('dataset_patch'), false);
+  for (const k of FIX_KINDS) assert.equal(isFixAllKind(k), true, k);
 });

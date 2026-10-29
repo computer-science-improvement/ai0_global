@@ -148,7 +148,7 @@ function hostLabel(host: string): string | null {
   return parts.length >= 3 && tld.length === 2 && SECOND_LEVEL.has(sld) ? parts[parts.length - 3] : sld;
 }
 
-function sourceTokensIn(text: string): string[] {
+export function sourceTokensIn(text: string): string[] {
   const out = new Set<string>();
   for (const m of text.matchAll(URL_HOST_RE)) { const l = hostLabel(m[1]); if (l) out.add(l); }
   for (const m of text.matchAll(BARE_HOST_RE)) { const l = hostLabel(m[1]); if (l) out.add(l); }
@@ -226,7 +226,7 @@ const FORMAT_WORDS: ReadonlyArray<[string, RegExp]> = [
 /** Words of a skill name that say nothing about the series. */
 const NAME_STOP = new Set(['skill', 'skills', 'channel', 'rules', 'rule', 'style', 'voice', 'canal', 'скіл', 'канал', 'правила', 'стиль', 'source', 'джерело']);
 
-function topicOf(name: string, description: string, body: string): Set<string> {
+export function topicOf(name: string, description: string, body: string): Set<string> {
   const out = new Set<string>();
   const hay = `${name}\n${description}\n${body}`;
   for (const [word, re] of FORMAT_WORDS) if (re.test(hay)) out.add(word);

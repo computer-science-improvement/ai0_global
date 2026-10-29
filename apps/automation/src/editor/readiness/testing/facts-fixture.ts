@@ -16,7 +16,15 @@ export const mkSeries = (over: Record<string, unknown> = {}): Series => SeriesSc
   name: 'Daily tip', cadence: 'daily@10:00', resource_ref: REF, format: 'text', brief: 'A short tip for the channel readers', ...over,
 });
 
-export const mkPlaybook = (series: Series[] = [], over: Record<string, unknown> = {}): Playbook => PlaybookSchema.parse({
+/** The brief of the real «Prompt» series of @ai0_prompts_dev (playbook 14b879 v2, field value copied from the 10-26 export). */
+export const PROMPT_BRIEF = 'Фото-результат, рядок «💬 Prompt:», текст промпту, модель, розмір і один хештег.';
+
+/** The «Prompt» series as the acceptance fixture has it: the name and brief are real, the library source and `required` are synthetic (A2). */
+export const promptSeries = (over: Record<string, unknown> = {}): Series => mkSeries({
+  name: 'Prompt', brief: PROMPT_BRIEF, cadence: 'daily@12:00,20:00', format: 'photo', source: { kind: 'library', table: 'prompts' }, source_mode: 'required', origin: 'owner', locked: true, ...over,
+});
+
+export const mkPlaybook =(series: Series[] = [], over: Record<string, unknown> = {}): Playbook => PlaybookSchema.parse({
   platforms: [{ resource_ref: REF, role: 'core', formats: { text: 1 }, per_day: { min: 1, max: 3 } }], series, ...over,
 });
 
