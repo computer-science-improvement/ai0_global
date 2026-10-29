@@ -67,7 +67,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: new `editor.scheduler.073.test.ts` with its own fake pool (A13's two cases; one test for today's key and one for the ahead key); `editor.scheduler.test.ts` unchanged; `roles/planner-alert.073.test.ts`; `schedule/planner-runs.073.pg.test.ts` for the SQL (`n`, `failed`, `lastFailedAt`, `since`, the local-day boundary).
   - Done when: a restart after 3 failed planner runs does not start a 4th that day, a restart after 2 waits at least 30 minutes after the second before the third, and the alert carries the validator's lines.
 
-- [ ] **T7 A series that stops is noticed (FR-007; A24, A41, A42).**
+- [x] **T7 A series that stops is noticed (FR-007; A24, A41, A42).**
   - What:
     - `planner_skipped: <reason>` placeholders for non-material `skipped_series`;
     - `EMPTY_DAY_ERROR_RE` as in A42, with no `\b` (it is spliced into Postgres `~`);

@@ -91,6 +91,8 @@ export function classifyClose(s: ClosedSlotLike): SlotClose {
   // Spec 068 FR-004: the planner's own honest empty day (a placeholder slot) is classified by its code, like the pre-flight's.
   if (/^planner_no_material\b/.test(e)) return { k: 'cause', cause: 'no_material' };
   if (/^planner_source_unreachable\b/.test(e)) return { k: 'cause', cause: 'source_unreachable' };
+  // Spec 073 FR-007: the planner skipped the instance for another reason — a trace for the stalled-series note, not a dead source.
+  if (/^planner_skipped\b/.test(e)) return { k: 'ignore' };
   if (STORY_TEXT.test(e)) return { k: 'other' };
   // Spec 071's guard code (the series takes rows in order): the text names a row id («наступний — data://prompts/503»), which the
   // free-text reader below would take for an HTTP status. It is a content failure, never a dead source.

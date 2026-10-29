@@ -189,6 +189,20 @@ export function materialSkips(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: 
   return out;
 }
 
+export type NonMaterialSkip = DueInstance & { cause: 'other'; reason: string };
+
+/**
+ * Spec 073 FR-007: the due instances the planner skipped for any other cause. They do not lower the day's minimum (that is the
+ * material causes' honest empty day), but each leaves a `planner_skipped` placeholder, so a series that stops leaves a trace.
+ */
+export function nonMaterialSkips(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: string): NonMaterialSkip[] {
+  const out: NonMaterialSkip[] = [];
+  for (const m of matchDue(plan, ctx, planSlots(plan, ctx, defaultRef))) {
+    if (m.state === 'skipped' && !isMaterialCause(m.cause)) out.push({ ...m.due, cause: 'other', reason: m.reason ?? '' });
+  }
+  return out;
+}
+
 /** The way out a planner is told when a day cannot be filled because there is nothing to post from. */
 export const EMPTY_DAY_WAY_OUT = 'якщо матеріалу немає — skipped_series з cause: no_material (для серії) або short_day (для всього дня)';
 /** The same for a network plan: it has `short_days` (a resource's whole day), not `short_day`. */

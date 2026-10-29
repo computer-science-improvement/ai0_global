@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import type { EditorCard } from '../card';
 import { dailyRef, type InboxItemInput, type OwnerInbox, type SilentDayKind } from '../agents/owner-inbox';
 import { localDate, localHour, localTimeLabel } from '../roles/time';
+import { shiftDate } from '../schedule/schedule-rules';
 import { attemptRejections, type SlotFallback } from './fallback-ladder';
 import { evergreenFilled } from './evergreen-stats';
 import { pauseActions, type PauseTarget } from '../series-pause/note-actions';
@@ -96,6 +97,47 @@ export const criticSubject = (ref: string) => `silent:${ref}:critic`;
 const GROUP_UK: Record<string, string> = {
   critic: 'критик', lint: 'перевірки тексту', cap: 'ліміти й тихі години', nothing_fresh: 'немає свіжого матеріалу', budget: 'бюджет', other: 'інше',
 };
+
+/**
+ * Spec 073 FR-007 (A24): the groups of a close that can make a series STALLED — it stopped for a reason that is not the
+ * material running out (`nothing_fresh`), not the owner's decision, not the critic's verdict and not the budget: the
+ * planner skipped it (`planner_skipped`, group `other`), a check of the text failed (`lint`), or anything else (`other`).
+ * The config group joins with spec 073 T10.
+ */
+const STALL_GROUPS = new Set(['lint', 'other']);
+
+/** The leading code of a slot error (`planner_skipped`, `lint_failed`, …), or its skip group for a free-text one. */
+function errorCodeOf(error: string | null | undefined, group: string): string {
+  const e = (error ?? '').replace(/^skipped by agent:\s*/i, '').trim();
+  return /^[a-z][a-z0-9_]{2,}(?=[:\s]|$)/.exec(e)?.[0] ?? group;
+}
+
+/**
+ * The series that have not gone out two local days in a row: on both `today` and the day before, the series has slots, every
+ * one closed (skipped / failed / expired) for a qualifying reason (`STALL_GROUPS`), and none went out. A material close
+ * (nothing left to post) is the breaker's, the owner's own decisions are not a stall, and one post out on either day ends it.
+ * Returns the series name → the code of today's latest close.
+ */
+export function stalledSeries(slots: WatchSlot[], today: string, tz: string): Map<string, string> {
+  const yesterday = shiftDate(today, -1);
+  const byName = new Map<string, { today: WatchSlot[]; before: WatchSlot[] }>();
+  for (const s of slots) {
+    if (!s.seriesName) continue;
+    const d = localDate(s.scheduledAt, tz);
+    if (d !== today && d !== yesterday) continue;
+    const e = byName.get(s.seriesName) ?? { today: [], before: [] };
+    (d === today ? e.today : e.before).push(s);
+    byName.set(s.seriesName, e);
+  }
+  const stalled = (s: WatchSlot) => ENDED_NOT_OUT.has(s.status) && !isOwnerDecision(s.error) && STALL_GROUPS.has(skipGroupOf(s.error, s.criticVerdict));
+  const out = new Map<string, string>();
+  for (const [name, e] of byName) {
+    if (!e.today.length || !e.before.length || !e.today.every(stalled) || !e.before.every(stalled)) continue;
+    const latest = [...e.today].sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())[0];
+    out.set(name, errorCodeOf(latest.error, skipGroupOf(latest.error, latest.criticVerdict)));
+  }
+  return out;
+}
 
 const clip = (s: string, n: number) => {
   const t = s.replace(/\s+/g, ' ').trim();
@@ -197,22 +239,31 @@ export function evaluateSilentDays(i: {
       if (d < today && i.reportedDays?.has(`${r.ref}|${d}`)) continue;
       missedByDay.set(d, [...(missedByDay.get(d) ?? []), s]);
     }
+    // Spec 073 FR-007: a series that stopped on two local days in a row is one more part (and line) of today's note.
+    const stalled = stalledSeries(counted, today, r.tz);
     for (const [day, miss] of missedByDay) {
       miss.sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
+      const stalledHere = day === today ? [...stalled].filter(([name]) => miss.some((s) => s.seriesName === name)) : [];
       const lines = miss.slice(0, 4).map((s) => {
         const ever = evergreenFilled(s.fallback);
         const what = ever ? `filled by an evergreen post (${s.status}); the main post: ${clip(ever.reason, 160)}` : `${s.status}: ${clip(s.error ?? 'no reason recorded', 160)}`;
         return `${localTimeLabel(s.scheduledAt, r.tz)} ${s.seriesName ? `series "${s.seriesName}"` : 'fixed slot'} — ${what}`;
       });
-      const parts = [...new Set(miss.map((s) => `missed:${s.seriesName ?? `rule:${s.scheduleRuleId}`}:${evergreenFilled(s.fallback) ? 'evergreen' : skipGroupOf(s.error, s.criticVerdict)}`))].sort();
+      const parts = [...new Set([
+        ...miss.map((s) => `missed:${s.seriesName ?? `rule:${s.scheduleRuleId}`}:${evergreenFilled(s.fallback) ? 'evergreen' : skipGroupOf(s.error, s.criticVerdict)}`),
+        ...stalledHere.map(([name]) => `stalled:${name}`),
+      ])].sort();
+      // Until the reason catalogue (T9) the lines name the code.
+      const stalledEn = stalledHere.map(([name, code]) => `Series "${name}" has not gone out two days in a row: ${code}`);
+      const stalledUk = stalledHere.map(([name, code]) => `Серія «${name}» не виходить два дні поспіль: ${code}`);
       out.push({
         kind: 'series_missed', ref: r.ref, day, agentId: r.agentId ?? null, slotIds: miss.map((s) => s.id),
         title: `Series or fixed slot missed on ${r.ref} (${day})`,
-        body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : ''].filter(Boolean).join('\n'),
+        body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : '', ...stalledEn].filter(Boolean).join('\n'),
         subject: missSubject(r.ref), parts, pauses: pauseTargets(miss), ...(day < today ? { pastDay: true } : {}),
         alert: {
           title: `Серія чи слот за розкладом не вийшли на ${r.ref} (${day})`,
-          body: [`Не вийшло: ${miss.length}.`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : ''].filter(Boolean).join('\n'),
+          body: [`Не вийшло: ${miss.length}.`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : '', ...stalledUk].filter(Boolean).join('\n'),
         },
       });
     }

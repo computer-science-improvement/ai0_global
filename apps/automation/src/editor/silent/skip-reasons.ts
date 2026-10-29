@@ -80,6 +80,8 @@ RULES.push(
   ['other', /^preflight_format_unavailable\b/],
   // Spec 068: the planner's honest empty day (a placeholder slot) and the pre-flight's missing / unpostable library row.
   ['nothing_fresh', /^planner_(no_material|source_unreachable)\b/],
+  // Spec 073 FR-007: the planner skipped a series instance for a non-material reason (a placeholder); its group is `other`.
+  ['other', /^planner_skipped\b/],
 );
 
 /** The 060 cause class of a pre-flight skip (null for any other error). */
