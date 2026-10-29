@@ -1,4 +1,6 @@
-import { originWithSource, seriesSourceConflict, sourceTokensIn, topicOf, type SeriesSourceConflict, type SeriesSourceFact } from '../agents/skill-warnings';
+import {
+  originWithSource, seriesAbout, seriesSourceConflictAmong, seriesSourceTokens, sourceTokensIn, topicOf, type SeriesSourceConflict, type SeriesSourceFact,
+} from '../agents/skill-warnings';
 import type { Series } from '../network/playbook';
 
 /**
@@ -6,7 +8,9 @@ import type { Series } from '../network/playbook';
  * the one a series is bound to? Pure.
  *
  * The judgement is 073's `seriesSourceConflict` (`agents/skill-warnings.ts`), the same one every skill write runs (lead, 073 × 072
- * merge): a skill the write path accepts is never a doctor blocker, and the reverse. `judgePair` is the one place it is called.
+ * merge): a skill the write path accepts is never a doctor blocker, and the reverse. So a text is judged once against every
+ * required series it is about, their sources together (W1 integration review): a skill that names each of two series' own
+ * sources contradicts neither. `judgePair` is the one place the judge is called.
  */
 
 /** A text that may tell the writer where to take material from. A rule or a steering line has no name or description. */
@@ -79,44 +83,71 @@ function sentenceOf(body: string, tokens: readonly string[]): string | null {
   return hit ? hit.slice(0, 160) : null;
 }
 
-/**
- * One series against one candidate the candidate is about: 073's `seriesSourceConflict` with that series alone. The first
- * conflict is the verdict. `original_with_source` of a skill whose text `originWithSource` already flags is left to the doctor's
- * own `origin_original_with_source` finding (one finding, said once, as `skillWriteProblems` does for a write).
- */
-export function judgePair(series: Series, c: Candidate, feedUrl: FeedUrlOf = (r) => r): Contradiction | null {
-  const fact = seriesSourceFactOf(series, feedUrl);
-  if (!fact) return null;
-  const said = c.kind === 'skill' && originWithSource(c.body) !== null;
-  const hit = seriesSourceConflict(c.body, [fact], { name: c.name, description: c.description ?? '' })
-    .find((x) => !(x.reason === 'original_with_source' && said));
-  if (!hit) return null;
-  return {
-    series, candidate: c, path: 'series_source_conflict', kind: hit.reason, tokens: hit.tokens, reason: REASON_TEXT[hit.reason](hit.tokens),
-    sentence: sentenceOf(c.body, hit.tokens),
-  };
+/** A series as the judge takes it, with the fact handed to it. */
+interface Judged { s: Series; fact: SeriesSourceFact }
+
+/** The series of `on` a conflict is about: a ruled-out token names its series; another source or origin=original concerns all of them. */
+function conflictSeries(k: SeriesSourceConflict, on: readonly Judged[]): Judged[] {
+  if (k.reason === 'rules_out_source') {
+    const hit = on.filter((j) => seriesSourceTokens(j.fact).some((t) => k.tokens.includes(t)));
+    return hit.length ? hit : [...on];
+  }
+  if (k.reason === 'original_with_source') return on.filter((j) => j.fact.kind === 'library' || j.fact.kind === 'feed');
+  return [...on];
 }
 
 /**
- * Every contradiction between the active series that read a source and the candidates, one per (series, candidate) pair. A
- * candidate is judged against the series it is about, chosen as `seriesSourceConflict` chooses: the only required series when the
- * channel has one, else a series that shares a format or a name word with the text. A `suggested` series is judged by the shared
- * word only (the write path does not judge it at all).
+ * One candidate against the series it is about, in one call of 073's judge per mode:
+ * - the required series as the write path judges a skill (`seriesSourceConflict` over the agent's required series: the only one,
+ *   else those that share a word with the text), their sources together;
+ * - the `suggested` series that share a word with the text (the write path does not judge them), with the required series the
+ *   text is about counted as its own sources too.
+ * At most one contradiction per series; the first conflict is the verdict. `original_with_source` of a skill whose text
+ * `originWithSource` already flags is left to the doctor's own `origin_original_with_source` finding (one finding, said once, as
+ * `skillWriteProblems` does for a write).
+ */
+export function judgePair(series: readonly Series[], c: Candidate, feedUrl: FeedUrlOf = (r) => r): Contradiction[] {
+  const judged = series
+    .filter((s) => s.active !== false && s.source && (SOURCE_SERIES_KINDS as readonly string[]).includes(s.source.kind))
+    .map((s) => ({ s, fact: seriesSourceFactOf(s, feedUrl) }))
+    .filter((j): j is Judged => j.fact !== null);
+  const required = judged.filter((j) => j.s.source_mode === 'required');
+  const opts = { name: c.name, description: c.description ?? '' };
+  const aboutFacts = new Set(seriesAbout(c.body, required.map((j) => j.fact), opts));
+  const reqAbout = required.filter((j) => aboutFacts.has(j.fact));
+  const mine = topicOf(c.name, c.description ?? '', c.body);
+  const sugAbout = judged.filter((j) => j.s.source_mode !== 'required' && [...topicOf(j.s.name, j.s.format, j.s.brief)].some((w) => mine.has(w)));
+
+  const said = c.kind === 'skill' && originWithSource(c.body) !== null;
+  const verdict = new Map<Series, SeriesSourceConflict>();
+  const take = (conflicts: readonly SeriesSourceConflict[], on: readonly Judged[], target: readonly Judged[]) => {
+    for (const k of conflicts) {
+      if (k.reason === 'original_with_source' && said) continue;
+      for (const j of conflictSeries(k, on)) if (target.includes(j) && !verdict.has(j.s)) verdict.set(j.s, k);
+    }
+  };
+  if (reqAbout.length) take(seriesSourceConflictAmong(c.body, reqAbout.map((j) => j.fact)), reqAbout, reqAbout);
+  if (sugAbout.length) {
+    const on = [...reqAbout, ...sugAbout];
+    take(seriesSourceConflictAmong(c.body, on.map((j) => j.fact)), on, sugAbout);
+  }
+  return judged.filter((j) => verdict.has(j.s)).map(({ s }) => {
+    const hit = verdict.get(s)!;
+    return {
+      series: s, candidate: c, path: 'series_source_conflict', kind: hit.reason, tokens: hit.tokens, reason: REASON_TEXT[hit.reason](hit.tokens),
+      sentence: sentenceOf(c.body, hit.tokens),
+    };
+  });
+}
+
+/**
+ * Every contradiction between the active series that read a source and the candidates, at most one per (series, candidate)
+ * pair, in series order: each candidate is judged once against the series it is about (`judgePair`).
  */
 export function seriesSourceContradictions(
   series: readonly Series[], candidates: readonly Candidate[], o: { feedUrl?: FeedUrlOf } = {},
 ): Contradiction[] {
-  const sourced = series.filter((s) => s.active !== false && s.source && (SOURCE_SERIES_KINDS as readonly string[]).includes(s.source.kind));
-  const onlyRequired = sourced.filter((s) => s.source_mode === 'required').length === 1;
-  const out: Contradiction[] = [];
-  for (const s of sourced) {
-    for (const c of candidates) {
-      const mine = topicOf(c.name, c.description ?? '', c.body);
-      const about = (onlyRequired && s.source_mode === 'required') || [...topicOf(s.name, s.format, s.brief)].some((w) => mine.has(w));
-      if (!about) continue;
-      const j = judgePair(s, c, o.feedUrl);
-      if (j) out.push(j);
-    }
-  }
-  return out;
+  const all = candidates.flatMap((c) => judgePair(series, c, o.feedUrl));
+  const rank = (x: Contradiction) => series.indexOf(x.series) * (candidates.length + 1) + candidates.indexOf(x.candidate);
+  return all.sort((a, b) => rank(a) - rank(b));
 }

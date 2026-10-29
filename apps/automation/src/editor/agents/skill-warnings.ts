@@ -420,9 +420,23 @@ function prescribedOriginal(body: string): string | null {
 export function seriesSourceConflict(
   body: string, series: readonly SeriesSourceFact[], opts: { name?: string; description?: string } = {},
 ): SeriesSourceConflict[] {
-  if (!series.length) return [];
+  return seriesSourceConflictAmong(body, seriesAbout(body, series, opts));
+}
+
+/** The series a skill is about, as `seriesSourceConflict` chooses them: the only one when there is one, else those sharing a format or a name word. */
+export function seriesAbout(
+  body: string, series: readonly SeriesSourceFact[], opts: { name?: string; description?: string } = {},
+): SeriesSourceFact[] {
+  if (series.length <= 1) return [...series];
   const mine = topicOf(opts.name ?? '', opts.description ?? '', body);
-  const about = series.length === 1 ? [...series] : series.filter((f) => [...topicOf(f.series, f.format ?? '', f.brief ?? '')].some((w) => mine.has(w)));
+  return series.filter((f) => [...topicOf(f.series, f.format ?? '', f.brief ?? '')].some((w) => mine.has(w)));
+}
+
+/**
+ * The judgement of `seriesSourceConflict` over series already chosen: the sources of all of them together are the skill's own,
+ * so a skill about two series that names each one's source contradicts neither. 072's doctor calls it with the set it chose.
+ */
+export function seriesSourceConflictAmong(body: string, about: readonly SeriesSourceFact[]): SeriesSourceConflict[] {
   if (!about.length) return [];
   const names = [...new Set(about.map((f) => f.series))].join(', ');
   const labels = [...new Set(about.map(seriesSourceLabelOf))].join(', ');

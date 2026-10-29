@@ -143,3 +143,12 @@ test('a feed series is judged against the address the card source holds', () => 
   const none = run({ playbook: mkPlaybook([series]), skills: [skill] });
   assert.deepEqual(none.filter((f) => f.check === 'series_source_contradicted'), []);
 });
+
+test('two required series with different sources and a skill that names each one\'s own source: no blocker, nothing for Fix all to switch off', () => {
+  const news = mkSeries({ name: 'AI news', format: 'text', brief: 'AI news digest', source: { kind: 'feed', ref: 'mtp' }, source_mode: 'required' });
+  const prompt = mkSeries({ name: 'Prompt of the day', format: 'text', brief: 'one prompt', source: { kind: 'library', table: 'prompts' }, source_mode: 'required' });
+  const skill = mkSkill({ id: 'both', name: 'news-and-prompts', description: 'AI news and prompt of the day posts', body: 'Для новин бери матеріал з marktechpost.com. Промпт дня бери з data://prompts/.' });
+  const out = run({ card: { sources: [{ id: 'mtp', kind: 'rss', ref: 'https://www.marktechpost.com/feed/' }] }, playbook: mkPlaybook([news, prompt]), skills: [skill] });
+  assert.deepEqual(out.filter((f) => f.check === 'series_source_contradicted'), []);
+  assert.ok(!out.some((f) => f.fix?.kind === 'skill_disable'));
+});
