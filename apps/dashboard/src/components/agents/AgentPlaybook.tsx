@@ -220,7 +220,7 @@ function PendingCard({ row, active }: { row: PlaybookRow; active: PlaybookRow | 
 }
 
 /** A titled inset of a dialog: an overline key over its content (the reviewer's verdict, the changes). */
-function Fact({ title, children }: { title: string; children: ReactNode }) {
+export function Fact({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="inset apb-fact">
       <h3 className="text-overline">{title}</h3>
@@ -230,7 +230,7 @@ function Fact({ title, children }: { title: string; children: ReactNode }) {
 }
 
 /** A titled block of a dialog or of the playbook view: an overline head (with an optional action) over its content. */
-function Block({ title, action, children }: { title: ReactNode; action?: ReactNode; children: ReactNode }) {
+export function Block({ title, action, children }: { title: ReactNode; action?: ReactNode; children: ReactNode }) {
   return (
     <div className="apb-block">
       <div className="apb-block-head">

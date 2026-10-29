@@ -5,6 +5,7 @@
 // planned — the per-resource decision matrix (spec 024 FR-011). Each idea is a
 // compact card (status, origin, title, angle, reviewer verdict + average score,
 // expiry); a click opens a dialog with everything else and Accept / Reject.
+// Spec 078 D2: classes of agent-playbook.css (prefix apb-).
 
 import { useEffect, useMemo, useState } from 'react';
 import { EmptyState } from '../ui/primitives';
@@ -18,6 +19,7 @@ import { SegmentedTabs } from '../SegmentedTabs';
 import { fmtDate } from '../../lib/format';
 import { useDecideIdea, useIdeas, type IdeaRow, type IdeaScores, type IdeaStatus } from '../../api/network';
 import { DecisionRows } from './AgentPlan';
+import { Block, Fact } from './AgentPlaybook';
 import { IDEA_STATUS_LABEL, IDEA_TONE, NetworkError, ORIGIN_LABEL, ResourceChip, ScoreMeter, errorText, fmtExpires } from './NetworkUi';
 
 export type IdeaFilter = 'accepted' | 'new' | 'needs_revision' | 'planned' | 'used' | 'rejected' | 'all';
@@ -59,22 +61,20 @@ export function AgentIdeas({ handle, focus }: { handle: string; focus?: string }
 
   if (q.error) return <NetworkError error={q.error} />;
 
-  const options = FILTERS.map((f) => {
-    const n = f.key === 'all' ? ideas.length : counts[f.key] ?? 0;
-    return { key: f.key, label: q.data ? `${f.label} · ${n}` : f.label };
-  });
+  const options = FILTERS.map((f) => ({
+    key: f.key, label: f.label,
+    count: q.data ? (f.key === 'all' ? ideas.length : counts[f.key] ?? 0) : undefined,
+  }));
 
   return (
-    <div>
-      <div style={{ marginBottom: 14, maxWidth: '100%' }}>
-        <SegmentedTabs size="sm" value={filter} onChange={setFilter} options={options} />
+    <div className="apb-stack">
+      <div>
+        <SegmentedTabs value={filter} onChange={setFilter} options={options} ariaLabel="Idea status" />
       </div>
-      {!q.data && <div className="panel compose-rise" style={{ height: 140, opacity: 0.55 }} />}
+      {!q.data && <div className="apb-skeleton" style={{ height: 140 }} aria-hidden />}
       {q.data && shown.length === 0 && (
-        <div>
-          <EmptyState icon="sparkles" title={filter === 'all' ? 'The idea pool is empty' : `No ${IDEA_STATUS_LABEL[filter as IdeaStatus]} ideas`}
-            note="The orchestrator adds ideas from sources, series and directives; the idea reviewer scores them before the planner may use them." />
-        </div>
+        <EmptyState icon="sparkles" title={filter === 'all' ? 'The idea pool is empty' : `No ${IDEA_STATUS_LABEL[filter as IdeaStatus]} ideas`}
+          note="The orchestrator adds ideas from sources, series and directives; the idea reviewer scores them before the planner may use them." />
       )}
       <div className="compact-grid">
         {shown.map((idea, i) => <IdeaCard key={idea.id} idea={idea} delay={Math.min(i, 12) * 25} focused={idea.id === focus} />)}
@@ -109,20 +109,20 @@ function IdeaCard({ idea, delay, focused }: { idea: IdeaRow; delay: number; focu
     <CompactCard id={`idea-${idea.id}`} delay={delay} focused={focused} hint="Open the idea"
       top={<>
         <Badge tone={IDEA_TONE[idea.status]}>{IDEA_STATUS_LABEL[idea.status]}</Badge>
-        <span className="chip" style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{ORIGIN_LABEL[idea.origin]}</span>
+        <span className="chip apb-nowrap">{ORIGIN_LABEL[idea.origin]}</span>
       </>}
-      meta={<span style={{ color: expired && !final ? 'var(--color-warning)' : undefined }} title={fmtDate(idea.expiresAt)}>{fmtExpires(idea.expiresAt)}</span>}
+      meta={<span className={`mono${expired && !final ? ' apb-warn' : ''}`} title={fmtDate(idea.expiresAt)}>{fmtExpires(idea.expiresAt)}</span>}
       title={idea.title}
       body={idea.angle || undefined}
       extra={(
-        <span className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
+        <span className="text-micro apb-idea-foot">
           {r ? <>
             <span>reviewer</span>
             {r.verdict && <Badge tone={VERDICT_TONE[r.verdict] ?? 'neutral'} title="Idea reviewer verdict">{r.verdict}</Badge>}
-            {avg != null && <span className="tabular-nums" style={{ color: 'var(--color-ink-muted)' }} title="Average of the five reviewer scores">avg {avg}/5</span>}
+            {avg != null && <span className="mono tabular-nums apb-muted" title="Average of the five reviewer scores">avg {avg}/5</span>}
             {r.owner && <Badge tone="accent" title="Owner override of the reviewer">owner {r.owner}</Badge>}
           </> : <span>not reviewed yet</span>}
-          {idea.variants.length > 0 && <span style={{ marginLeft: 'auto' }}>{idea.variants.length} variant{idea.variants.length === 1 ? '' : 's'}</span>}
+          {idea.variants.length > 0 && <span className="apb-idea-variants">{idea.variants.length} variant{idea.variants.length === 1 ? '' : 's'}</span>}
         </span>
       )}
       dialog={{
@@ -159,73 +159,66 @@ function IdeaDetails({ idea }: { idea: IdeaRow }) {
   const final = idea.status === 'planned' || idea.status === 'used' || idea.status === 'expired';
   const expired = new Date(idea.expiresAt).getTime() < Date.now();
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minWidth: 0 }}>
-      <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+    <div className="apb-col">
+      <div className="apb-chips">
         <Badge tone={IDEA_TONE[idea.status]}>{IDEA_STATUS_LABEL[idea.status]}</Badge>
-        <span className="chip" style={{ fontSize: 11 }} title={idea.originRef ?? undefined}>{ORIGIN_LABEL[idea.origin]}{idea.originRef ? ` · ${idea.originRef}` : ''}</span>
-        {idea.revisions > 0 && <span className="chip" style={{ fontSize: 11 }}>rev {idea.revisions}</span>}
+        <span className="chip" title={idea.originRef ?? undefined}>{ORIGIN_LABEL[idea.origin]}{idea.originRef ? ` · ${idea.originRef}` : ''}</span>
+        {idea.revisions > 0 && <span className="chip mono">rev {idea.revisions}</span>}
         {r?.owner && <Badge tone="accent" title="Owner override of the reviewer">owner {r.owner}</Badge>}
-        <span className="text-micro" style={{ color: expired && !final ? 'var(--color-warning)' : 'var(--color-ink-dim)', marginLeft: 'auto' }} title={fmtDate(idea.expiresAt)}>
+        <span className={`text-micro mono apb-idea-expiry${expired && !final ? ' apb-warn' : ' apb-dim'}`} title={fmtDate(idea.expiresAt)}>
           {fmtExpires(idea.expiresAt)}
         </span>
       </div>
-      {idea.angle && <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{idea.angle}</div>}
+      {idea.angle && <p className="apb-prose">{idea.angle}</p>}
       {idea.variants.length > 0 && (
-        <div>
-          <div className="text-eyebrow" style={{ marginBottom: 4 }}>Variants</div>
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+        <Block title="Variants">
+          <div className="apb-chips">
             {idea.variants.map((v, i) => <ResourceChip key={`${v.resource_ref}-${i}`} refId={v.resource_ref} suffix={v.format} title={v.note ? `${v.resource_ref} — ${v.note}` : undefined} />)}
           </div>
-        </div>
+        </Block>
       )}
       {(idea.decisions?.length ?? 0) > 0 && (
-        <div>
-          <div className="text-eyebrow" style={{ marginBottom: 4 }}>Decisions</div>
+        <Block title="Decisions">
           <DecisionRows decisions={idea.decisions!} />
-        </div>
+        </Block>
       )}
       {idea.why && (
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
-          <span style={{ color: 'var(--color-ink-dim)' }}>why · </span>{idea.why}
-        </div>
+        <Block title="Why">
+          <p className="apb-prose apb-muted">{idea.why}</p>
+        </Block>
       )}
       {idea.sources.length > 0 && (
-        <div>
-          <div className="text-eyebrow" style={{ marginBottom: 4 }}>Sources</div>
-          <div className="text-micro" style={{ display: 'flex', gap: '2px 10px', flexWrap: 'wrap', minWidth: 0 }}>
+        <Block title="Sources">
+          <div className="apb-sources">
             {idea.sources.map((s) => (
               /^https?:\/\//.test(s)
-                ? <a key={s} href={s} target="_blank" rel="noreferrer noopener" className="link-accent" title={s}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: 3, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                ? <a key={s} href={s} target="_blank" rel="noreferrer noopener" className="link-accent apb-source" title={s}>
                     <Icon name="globe" size={11} />{host(s)}
                   </a>
-                : <span key={s} style={{ color: 'var(--color-ink-muted)' }}>{s}</span>
+                : <span key={s} className="apb-muted">{s}</span>
             ))}
           </div>
-        </div>
+        </Block>
       )}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '10px 12px', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline)' }}>
+      <Fact title="Reviewer">
         {r ? (
           <>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>reviewer</span>
-              {r.verdict && <Badge tone={VERDICT_TONE[r.verdict] ?? 'neutral'} title="Idea reviewer verdict">{r.verdict}</Badge>}
-            </div>
+            {r.verdict && <div><Badge tone={VERDICT_TONE[r.verdict] ?? 'neutral'} title="Idea reviewer verdict">{r.verdict}</Badge></div>}
             {r.scores && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0, 1fr))', gap: 6, maxWidth: 360 }}>
+              <div className="apb-scores">
                 {SCORES.map((s) => <ScoreMeter key={s.key} label={s.label} title={s.title} value={r.scores?.[s.key]} />)}
               </div>
             )}
             {(r.comment || r.reason_code) && (
-              <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
-                {r.reason_code && <span className="chip" style={{ fontSize: 10, marginRight: 6 }}>{r.reason_code}</span>}
+              <p className="apb-prose apb-muted">
+                {r.reason_code && <span className="chip mono apb-code">{r.reason_code}</span>}
                 {r.comment}
-              </div>
+              </p>
             )}
           </>
-        ) : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>not reviewed yet</span>}
-      </div>
-      <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+        ) : <span className="text-micro apb-dim">Not reviewed yet.</span>}
+      </Fact>
+      <div className="text-micro mono tabular-nums apb-dim apb-ids">
         <span>expires {fmtDate(idea.expiresAt)}</span>
         <span title={idea.id}>id {idea.id.slice(0, 8)}</span>
       </div>
