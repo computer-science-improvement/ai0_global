@@ -54,7 +54,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - a success ends the block;
     - `assessUrl` on an `unreachable` host returns `preflight_host_blocked`.
 
-- [ ] **T2 Per-host egress proxy** (FR-003, A29; was T3)
+- [x] **T2 Per-host egress proxy** (FR-003, A29; was T3)
   - **What:**
     - The `EGRESS_PROXY_URL` catalog row (secret, `apply: 'live'`, help ends with "http or https proxy only.") and the `EGRESS_PROXY_HOSTS` row (list, live).
     - `egressProxyFor(host, env)`:
