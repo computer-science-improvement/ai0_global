@@ -101,6 +101,8 @@ Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "De
 
 - [x] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
 - [ ] C5 Chat & artifacts: chat, artifacts (+ chat/*, artifacts/*, nav/NeedsYou).
+
+- [x] C5 Chat & artifacts: chat, artifacts (+ chat/*, artifacts/*, nav/NeedsYou).
 - [ ] C6 Data, ads & public: data, data_.$key, ads, landing (admin), login, report.$token, app.tsx auth screens, NotFound (+ data/*, landing admin cards).
 
 ---
@@ -198,6 +200,11 @@ B3 Agent detail (worktree `wf_a4c40803-5b3-3`, base `ad17cb89`), done:
 - C4.4 `4106fa6f` settings: underline tabs, setting groups as flush panels with counted tabs, sessions as rows, navigation constructor tuned in `settings.css`.
 - `routes/app.agent.tsx` is redirect-only and was not touched.
 - Checked under Node 20 after every commit: `tsc --noEmit` clean, 398 node tests pass (no new pure logic, so no new tests), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass is the lead's.
+
+### C5 Chat & artifacts (branch `worktree-wf_6e3bf934-224-5`, base `8f674e50`)
+- C5.1 `9cbc568f` chat + NeedsYou: `chat.css` and `needs-you.css`, token-only layout, button-disclosure approval strip, flush amber NeedsYou panel, card dialogs on `.inset` / `.code-block` / `.chip-toggle`.
+- C5.2 `78074cba` artifacts page + panel: `PageHeader`, chip-toggle type filter, `SegmentedTabs` with counts, flush rules / memory / version rows.
+- Checked under Node 20: `tsc --noEmit` clean, 398 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass is the lead's.
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -509,3 +516,25 @@ Area files: `components/agents-list/agents-list.css`, `components/strategies/mig
   - `AgentGlyph` is called with a numeric `size={28}` on child rows; B3 owns `components/agents/*` and may change the signature.
   - The `.navc-*` copy in `index.css` is now partly overridden by `settings.css`; the lead can fold the overrides back and delete the duplicate rules.
   - `CompactCard` dialogs (DM threads and pending actions) keep their own footer via `dialog.actions`; only their bodies were restyled.
+
+### C5
+Restyle only: no endpoint, search param, route, data flow or keyboard behaviour changed. `app.setup.tsx` and `app.steering.tsx` are redirect-only and untouched. No file outside C5's ownership was edited (apart from this file).
+
+- **Where the CSS lives, and why artifacts have none.** `components/chat/chat.css` (chat page, menus, tool chips, card dialogs) is imported by `routes/app.chat.tsx` and by `nav/NeedsYou.tsx`; `components/nav/needs-you.css` by `NeedsYou.tsx`. `tsx --test` cannot import `.css`, and `SlashMenu`, `ArtifactChip`, `ArtifactList` (and through it `ArtifactPanel`) are loaded by node tests (`lib/align.test.ts`, `launch.test.ts`, `sysadmin-audit.test.ts`). So those components import no CSS: the menus rely on `chat.css` being loaded by the page that renders them, and the artifacts components use only global classes from `index.css` (inline styles for layout). Overrides of global classes in the area files use compound or element selectors (`h1.chat-title`, `textarea.chat-input`, `.hub-glyph.chat-glyph`, `div.chat-text`, `.input-field.chat-channel`, `.inset.example-item`) so they win regardless of chunk load order.
+- **Local helpers worth promoting to `index.css` / `ui/*` if a second page needs them:** `.chat-suggest` (empty-state suggestion button), `.verdict` plus `.chip-toggle.is-bad` (a two-way good / bad toggle), `.chat-menu*` (an anchored pick list with keyboard highlight), `.chat-item` (selectable list item with an accent bar), `.chat-sched-list`, and the NeedsYou panel (a flush panel with an amber 30% border, for "a human has to act").
+- **Chat layout.** The 3-column grid, the full-bleed layout, the scroll containers, the composer keyboard handling and the Mention / Slash menus stay. The h1 stays a compact `text-subhead` (`h1.chat-title`), no `PageHeader`. The composer has a `:focus-within` accent ring. Escape now closes the chat-list drawer (new, small), and the drawer enters with `anim-fade-up` (`anim-slide-left` drifts in from the wrong side at 16px).
+- **`ApprovalStrip` is a button disclosure** (`aria-expanded`, `aria-controls`, rotating chevron) instead of `<details>`. `ToolChips` use `aria-expanded` and a `role="img"` status.
+- **Chat list.** The delete-chat button is now `btn-act btn-act-danger hover-reveal` (shown on hover / focus, always visible on touch); it was always visible. Scheduled posts are rows in one hairline group, not a stack of cards, and their format is a neutral `Badge`.
+- **Tones.** `DRAFT_TONE` (DraftCard) now derives from `publicationTone` (`lib/status-tone.ts`), so a `scheduled` draft is neutral where it was warning, as the status map says. `ACTION_TONE` (ActionCard, what kind of change a proposal is) and `artifactTone` (`lib/artifacts.ts`, artifact lifecycle) are separate domains with their own words and were left alone.
+- **NeedsYou.** Now a flush `SectionCard`-style panel (`panel is-section is-flush`) with rows. The severity label "Info" became "FYI" because it uses `SeverityPill` instead of a local map. The `More` line is a `.panel-foot` with a `.panel-link`. `CardOpener` and `chatsWaiting` are unchanged.
+- **Card dialogs** (`ActionCard`, `DraftCard`, `ContentExamplesCard`): key / value facts are `.card-kv` with a `.text-overline` key, payloads are `.inset`, code is `.code-block`, quotes are `.card-quote`, mono is `.mono`. The good / bad verdict toggle is a `role="group"` of two `chip-toggle` buttons.
+- **Left on purpose.** `TelegramPreview` and `RichMessageView` keep their `<details>` (Telegram's own rich-message blocks and the fallback disclosure) and their colours (they imitate Telegram, per the design language's per-destination tint rule). `onMouseEnter` in `MentionMenu` / `SlashMenu` stays: it only sets the keyboard-highlight index, not a style.
+- **`ArtifactPanel.GenericActions`:** the first non-danger action is `btn-primary`, the others `btn-secondary`, danger stays a ghost in the danger colour (the old code painted all of them the same).
+- **Artifacts page.** `PageHeader` with a shorter subtitle and Setup from history (secondary) / New steering (primary); no eyebrow. The type filter is `chip-toggle` buttons with a mono count; the status filter is `SegmentedTabs` with counts. Both counts come from `useArtifacts({ agent, limit: 200 })`, which is the list's own cache entry when no type is picked, so it costs no extra request; they are left out if the endpoint fails (the list shows its error). `ArtifactList` props and `MAKE_HINT` are unchanged (it is also the Agent page's Artifacts tab).
+- **Verification.** Node 20.19.6: dashboard `tsc --noEmit` clean, 398 node tests pass, `vite build` builds (chat and NeedsYou area CSS appear as their own chunks). An SSR smoke render of `ToolChips` and `SlashMenu` gave the expected markup. Not done (lead's): the browser checklist below.
+- **Browser checklist for the lead (mock API, 1280 and 375, reduced motion):**
+  - `/app/chat`: three columns; list drawer at 375 (Escape closes it); artifact panel as a sheet; composer focus ring; `@` and `/` menus (keyboard highlight, mobile variant); ApprovalStrip disclosure; empty state with suggestions; delete button reveal on hover and focus; no page-wide horizontal scroll.
+  - NeedsYou on `/app/chat` and `/app/agents` (amber border, FYI pill, More line).
+  - `/app/artifacts`: type chips, status tabs with counts, agent select pushed right, empty states for a type and for "Needs you", the card dialog with the panel (rules, memory, versions, diff, actions), `?open=type:id` and `?type=` deep links.
+  - The Agent page Artifacts tab (same list).
+  - A dialog from `ActionCard`, `DraftCard` and `ContentExamplesCard` (`.card-kv`, `.inset`, the verdict toggle, warnings).

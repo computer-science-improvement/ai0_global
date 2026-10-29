@@ -63,9 +63,9 @@ function show(v: unknown): string {
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(84px, 120px) 1fr', gap: 10, alignItems: 'baseline' }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{label}</span>
-      <span className="text-body-sm" style={{ color: 'var(--color-ink)', minWidth: 0, overflowWrap: 'anywhere' }}>{children}</span>
+    <div className="card-kv">
+      <span className="text-overline">{label}</span>
+      <span className="text-body-sm card-kv-body">{children}</span>
     </div>
   );
 }
@@ -112,7 +112,7 @@ function CreateAgentView({ p }: { p: Record<string, unknown> }) {
         <span style={{ fontWeight: 500 }}>{str(p.emoji) ?? '📣'} {str(p.name) ?? '—'}</span>
         {handle && <span style={{ color: 'var(--color-ink-muted)' }}> · @{handle}</span>}
       </Row>
-      <Row label="Resource"><code style={{ fontSize: 12 }}>{str(p.resource_ref) ?? (str(p.network_id) ? `network:${p.network_id}` : '—')}</code></Row>
+      <Row label="Resource"><code className="mono text-micro">{str(p.resource_ref) ?? (str(p.network_id) ? `network:${p.network_id}` : '—')}</code></Row>
       {str(profile.topic) && <Row label="Topic">{profile.topic as string}</Row>}
       {who && <Row label="Audience">{who}</Row>}
       {strs(profile.goals).length > 0 && <Row label="Goals"><GoalChips goals={strs(profile.goals)} /></Row>}
@@ -156,7 +156,7 @@ function OwnerRuleView({ p }: { p: Record<string, unknown> }) {
         <Row label="Your words">
           <span style={{ display: 'grid', gap: 4 }}>
             {quotes.map((q, i) => (
-              <span key={i} style={{ color: 'var(--color-ink-muted)', borderLeft: '2px solid var(--color-hairline)', paddingLeft: 8 }}><LongText text={q} /></span>
+              <span key={i} className="card-quote"><LongText text={q} /></span>
             ))}
           </span>
         </Row>
@@ -297,7 +297,7 @@ function UpdateAgentView({ p }: { p: Record<string, unknown> }) {
         const text = show(v);
         return (
           <Row key={k} label={k.replace(/_/g, ' ')}>
-            <span style={{ fontFamily: /^[[{]/.test(text) ? 'var(--font-mono)' : undefined }}>{text}</span>
+            <span className={/^[[{]/.test(text) ? 'mono' : undefined}>{text}</span>
           </Row>
         );
       })}
@@ -311,7 +311,7 @@ function WriteSkillView({ p }: { p: Record<string, unknown> }) {
   return (
     <>
       <Row label="Skill">
-        <code style={{ fontSize: 12 }}>{str(p.name) ?? '—'}</code>
+        <code className="mono text-micro">{str(p.name) ?? '—'}</code>
         {str(p.handle) && <span style={{ color: 'var(--color-ink-muted)' }}> · @{p.handle as string}</span>}
         {p.inline === true && <> <Badge>always in context</Badge></>}
       </Row>
@@ -323,14 +323,10 @@ function WriteSkillView({ p }: { p: Record<string, unknown> }) {
       )}
       {body && (
         <div>
-          <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+          <span className="text-overline">
             Body · {body.length.toLocaleString('en-US')} chars
           </span>
-          <pre className="text-micro" style={{
-            margin: '6px 0 0', padding: 10, maxHeight: 360, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-            background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-            color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
-          }}>{body}</pre>
+          <pre className="code-block" style={{ marginTop: 6, maxHeight: 360, overflow: 'auto' }}>{body}</pre>
         </div>
       )}
     </>
@@ -344,11 +340,7 @@ function UpdateArtifactView({ p }: { p: Record<string, unknown> }) {
       {str(p.title) && <Row label="Artifact">{p.title as string}</Row>}
       {str(p.reason) && <Row label="Why"><LongText text={p.reason as string} /></Row>}
       <Row label="Change">
-        <pre className="text-micro" style={{
-          margin: 0, padding: 10, maxHeight: 280, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-          background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-          color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
-        }}>{JSON.stringify(p.patch ?? {}, null, 2)}</pre>
+        <pre className="code-block" style={{ maxHeight: 280, overflow: 'auto' }}>{JSON.stringify(p.patch ?? {}, null, 2)}</pre>
       </Row>
       <Row label="Then">the artifact gets a new version; the change is checked again at Apply</Row>
     </>
@@ -430,7 +422,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 560, minWidth: 0 }}>
       <CompactCard hint="Open the card" attention={pending} focused={focusedId === a.id}
         top={<>
-          <span className="section-glyph" style={{ width: 22, height: 22 }}><Icon name={meta.icon} size={12} /></span>
+          <Icon name={meta.icon} size={13} />
           <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{meta.label}</span>
           <Badge tone={ACTION_TONE[a.status] ?? 'neutral'}>{pending ? 'needs your confirmation' : a.status}</Badge>
         </>}
@@ -455,10 +447,10 @@ export function ActionCard({ action }: { action: PendingAction }) {
           actions: pending ? (close) => (
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
               <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginRight: 'auto' }}>Nothing changes until you apply</span>
-              <button className="btn-secondary" disabled={decide.isPending} onClick={() => run('discard', close)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <button className="btn-secondary" disabled={decide.isPending} onClick={() => run('discard', close)}>
                 <Icon name="x" size={14} /> Discard
               </button>
-              <button className="btn-primary" disabled={decide.isPending} onClick={() => run('apply', close)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <button className="btn-primary" disabled={decide.isPending} onClick={() => run('apply', close)}>
                 <Icon name="check" size={14} /> Apply
               </button>
             </div>
@@ -508,10 +500,7 @@ function ActionDetails({ a, pending, createdHandle, error, examples }: {
       <p className="text-body-sm" style={{ margin: '0 0 10px', color: 'var(--color-ink)', lineHeight: 1.5, overflowWrap: 'anywhere' }}>{a.summary}</p>
 
       {BOXED.has(a.kind) && (
-        <div style={{
-          display: 'flex', flexDirection: 'column', gap: 6, padding: 12,
-          background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)',
-        }}>
+        <div className="inset" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <PayloadView action={a} />
         </div>
       )}

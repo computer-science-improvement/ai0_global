@@ -14,6 +14,7 @@ import { Modal } from '../Modal';
 import { Field } from '../ui/primitives';
 import type { Tone } from '../ui/primitives';
 import { sanitizeTelegramHtml } from '../../lib/tg-html';
+import { publicationTone } from '../../lib/status-tone';
 import { TelegramPreview } from './TelegramPreview';
 import { CriticBlock } from '../critic/CriticBlock';
 import { CriticBadge } from '../editor/SlotPlan';
@@ -22,8 +23,10 @@ import { KYIV_TZ, fmtKyiv, inputToApi, nextRoundHourKyiv, toKyivInput } from '..
 import { useDraftAction } from '../../api/chat';
 import type { EditorDraft, EditorDraftStatus } from '../../api/types';
 
+/** A draft's status reads like the same word of a scheduled post: tones come from the one status map. */
 export const DRAFT_TONE: Record<EditorDraftStatus, Tone> = {
-  draft: 'neutral', scheduled: 'warning', published: 'success', failed: 'danger', canceled: 'neutral',
+  draft: 'neutral', scheduled: publicationTone('pending'), published: publicationTone('sent'),
+  failed: publicationTone('failed'), canceled: publicationTone('canceled'),
 };
 
 const STATUS_LABEL: Record<EditorDraftStatus, string> = {
@@ -50,10 +53,10 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
       top={<>
         <Badge tone={DRAFT_TONE[draft.status]}>{STATUS_LABEL[draft.status]}</Badge>
         <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{draft.channelKey}</span>
-        {draft.spec.format && <span className="chip" style={{ fontSize: 11 }}>{draft.spec.format}</span>}
+        {draft.spec.format && <span className="chip">{draft.spec.format}</span>}
       </>}
       meta={draft.status === 'scheduled'
-        ? <span className="tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)</span>
+        ? <span className="mono tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)</span>
         : done && draft.publishedPostId != null ? `post #${draft.publishedPostId}` : undefined}
       title={title}
       body={text || undefined}
@@ -82,19 +85,19 @@ function DraftDetails({ draft }: { draft: EditorDraft }) {
         <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{draft.channelKey}</span>
         {draft.spec.format && <span className="chip">{draft.spec.format}</span>}
         {draft.status === 'scheduled' && (
-          <span className="text-micro tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
             <Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)
           </span>
         )}
         {done && draft.publishedPostId != null && (
-          <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>post #{draft.publishedPostId}</span>
+          <span className="text-micro mono" style={{ color: 'var(--color-ink-muted)' }}>post #{draft.publishedPostId}</span>
         )}
       </div>
 
       {draft.render?.messages.length
         ? <TelegramPreview messages={draft.render.messages} channelTitle={draft.render.channelTitle} channelKey={draft.channelKey} time={postTime} />
         : (
-          <div style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', padding: 12 }}>
+          <div className="inset">
             {preview
               ? <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
                   dangerouslySetInnerHTML={{ __html: preview }} />
@@ -168,23 +171,19 @@ function DraftActions({ draft, onDone }: { draft: EditorDraft; onDone: () => voi
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
       {draft.status !== 'canceled' && (
-        <button className="btn-ghost" disabled={busy} onClick={cancel}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+        <button className="btn-ghost" disabled={busy} onClick={cancel} style={{ color: 'var(--color-danger)', marginRight: 'auto' }}>
           <Icon name="ban" size={14} /> {draft.status === 'scheduled' ? 'Cancel post' : 'Discard'}
         </button>
       )}
       <button className="btn-secondary" disabled={busy || !lintOk} onClick={review}
-        title="Ask the pre-publish critic for scores and notes (advisory; it costs one LLM call)"
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        title="Ask the pre-publish critic for scores and notes (advisory; it costs one LLM call)">
         <Icon name="sparkles" size={14} /> {draft.critic ? 'Check again' : 'Check with critic'}
       </button>
-      <button className="btn-secondary" disabled={busy || !lintOk} onClick={() => setScheduling(true)}
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <button className="btn-secondary" disabled={busy || !lintOk} onClick={() => setScheduling(true)}>
         <Icon name="calendar" size={14} /> {draft.status === 'scheduled' ? 'Reschedule' : 'Schedule'}
       </button>
       <button className="btn-primary" disabled={busy || !lintOk} onClick={publish}
-        title={lintOk ? 'Publish now (all guards apply)' : 'Fix the lint errors first'}
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        title={lintOk ? 'Publish now (all guards apply)' : 'Fix the lint errors first'}>
         <Icon name="rocket" size={14} /> Publish now
       </button>
 
@@ -218,7 +217,7 @@ function ScheduleModal({ draft, onClose, onSubmit, busy }: {
         Code publishes it at this time without the LLM, even when the editor is off. At least 2 minutes ahead, at most 60 days.
       </p>
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Close</button>
+        <button className="btn-ghost" onClick={onClose}>Close</button>
         <button className="btn-primary" disabled={busy || !value} onClick={() => onSubmit(inputToApi(value))}>Schedule</button>
       </div>
     </Modal>

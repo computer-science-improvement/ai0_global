@@ -35,9 +35,9 @@ export function ArtifactList({ filter, view = 'all', focus, empty }: {
   const all = q.data?.rows ?? [];
   const rows = all.filter((r) => inView(view, r.status));
   if (q.error) return <div className="callout-danger">{describeError(q.error)}</div>;
-  if (!q.data) return <div className="panel compose-rise" style={{ height: 160, opacity: 0.55 }} />;
+  if (!q.data) return <div className="panel is-section compose-rise" style={{ height: 160, opacity: 0.55 }} aria-busy="true" aria-label="Loading artifacts" />;
   if (!rows.length && all.length) {
-    return <EmptyState icon="check" title={view === 'needs-you' ? 'Nothing waits for you' : 'Nothing here'} note={`${all.length} artifact${all.length === 1 ? '' : 's'} in the other views.`} />;
+    return <EmptyState tone={view === 'needs-you' ? 'clear' : 'neutral'} icon="check" title={view === 'needs-you' ? 'Nothing waits for you' : 'Nothing here'} note={`${all.length} artifact${all.length === 1 ? '' : 's'} in the other views.`} />;
   }
   if (!rows.length) {
     const t = filter.type;
@@ -65,15 +65,15 @@ function ArtifactCard({ r, focused, delay }: { r: ArtifactRow; focused: boolean;
       attention={r.status === 'ready' || r.status === 'pending_owner'}
       top={(
         <>
-          <span className="chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name={meta.icon} size={12} />{meta.label}</span>
+          <span className="chip" style={{ gap: 4 }}><Icon name={meta.icon} size={12} />{meta.label}</span>
           <Badge tone={artifactTone(r.status)}>{statusLabel(r.status)}</Badge>
         </>
       )}
-      meta={when(r.updatedAt)}
+      meta={<span className="mono">{when(r.updatedAt)}</span>}
       title={r.title}
       body={r.summary || null}
       extra={(
-        <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+        <span className="text-micro mono" style={{ color: 'var(--color-ink-muted)' }}>
           {[agent, target && target !== agent ? target : null, r.version != null ? `v${r.version}` : null].filter(Boolean).join(' · ')}
         </span>
       )}
@@ -105,7 +105,7 @@ function OpenInChat({ r, onDone }: { r: ArtifactRow; onDone: () => void }) {
   return (
     <>
       <button type="button" className="btn-ghost" onClick={onDone}>Close</button>
-      <button type="button" className="btn-secondary" onClick={open} disabled={q.isLoading} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <button type="button" className="btn-secondary" onClick={open} disabled={q.isLoading}>
         <Icon name="chat" size={14} /> {q.data?.chatId ? 'Open in chat' : 'Ask in a new chat'}
       </button>
     </>
