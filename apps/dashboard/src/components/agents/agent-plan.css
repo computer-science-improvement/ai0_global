@@ -1,2 +1,305 @@
 /* Spec 078 wave D1: the agent page's Plan, Schedule, Promo, Loadout and In force tabs. Prefix apl-.
-   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests). */
+   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests). Tokens only, no literal colours;
+   hover is CSS; motion durations are the --dur-* tokens (reduced motion is handled globally at the end of index.css). */
+
+/* ── Shared bits ─────────────────────────────────────────────────────────────────────────────────── */
+.apl-dim { color: var(--color-ink-dim); }
+.apl-muted { color: var(--color-ink-muted); }
+.apl-prewrap { white-space: pre-wrap; overflow-wrap: anywhere; }
+/* A placeholder panel while a tab loads (the height is inline: it follows the tab). */
+.panel.apl-skeleton { opacity: 0.55; }
+/* A line of explanation under a panel title or above its rows. */
+.apl-section-hint { margin: 0 0 12px; max-width: 760px; color: var(--color-ink-dim); }
+
+/* ── Plan: toolbar (day picker, zone, counts) ───────────────────────────────────────────────────── */
+.apl-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.input-field.apl-date { width: 150px; padding: 6px 10px; font-size: 13px; color-scheme: dark; }
+.apl-day { color: var(--color-ink); font-weight: 500; }
+.apl-day-sub { margin-left: 6px; font-weight: 400; color: var(--color-ink-dim); }
+.apl-zone { display: inline-flex; align-items: center; gap: 4px; color: var(--color-ink-dim); }
+.apl-counts { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-left: auto; }
+.apl-hint { margin: 12px 2px 0; color: var(--color-ink-dim); }
+
+/* The plan stamp ("Planned at … by …") and the planner's rationale, in one panel above the day. */
+.panel.apl-stamp { display: grid; gap: 10px; min-width: 0; margin-bottom: 16px; padding: 14px 20px; }
+.apl-rationale { display: flex; align-items: flex-start; gap: 10px; min-width: 0; padding-top: 10px; border-top: 1px solid var(--color-hairline); }
+.apl-rationale-icon { display: inline-flex; margin-top: 2px; color: var(--color-accent); }
+.apl-rationale-body { flex: 1; min-width: 0; }
+.apl-rationale-text { margin: 0; color: var(--color-ink); white-space: pre-wrap; }
+.btn-ghost.apl-readall { margin: 4px 0 0 -12px; }
+.apl-rationale-full { margin: 0; color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* ── Plan: the day timeline (wide). Positions are inline (left / top / width / height): they are the time axis. ── */
+.panel.apl-tl { padding: 12px 16px; overflow: hidden; }
+.apl-tl-grid { position: relative; display: grid; }
+.apl-axis { position: relative; }
+.apl-tick { position: absolute; transform: translateX(-2px); font-size: 11px; line-height: 1; color: var(--color-ink-dim); }
+.apl-tick.is-next { color: var(--color-ink-muted); }
+
+.apl-lane-label {
+  display: flex; flex-direction: column; justify-content: center; gap: 2px; min-width: 0;
+  border-top: 1px solid var(--color-hairline);
+}
+.apl-lane-count { font-size: 11px; color: var(--color-ink-dim); }
+.apl-lane-clock { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--color-ink-dim); }
+.apl-lane { position: relative; border-top: 1px solid var(--color-hairline); }
+.apl-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: color-mix(in srgb, var(--color-hairline) 60%, transparent); }
+.apl-gridline.is-midnight { background: var(--color-hairline-strong); }
+.apl-now { position: absolute; top: 0; bottom: 0; width: 2px; background: color-mix(in srgb, var(--color-accent) 60%, transparent); }
+
+/* A slot: its status mark, the treatment letter, the time(s) and the topic. */
+.apl-pill {
+  position: absolute; z-index: 1; box-sizing: border-box;
+  display: flex; align-items: center; gap: 4px; padding: 0 6px;
+  background: var(--color-surface-2); color: var(--color-ink);
+  border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-sm);
+  font: inherit; font-size: 11px; text-align: left; cursor: pointer;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+.apl-pill:hover { background: var(--color-surface-3); }
+.apl-pill.is-active { background: var(--color-surface-3); border-color: var(--color-accent); }
+.apl-pill.is-dim { opacity: 0.55; text-decoration: line-through; }
+.apl-pill-live { display: inline-flex; flex: none; color: var(--color-accent); }
+.apl-pill-time { flex: none; font-size: 11px; font-weight: 600; }
+.apl-pill-kyiv { flex: none; font-size: 11px; color: var(--color-ink-dim); }
+.apl-pill-topic { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-muted); }
+
+/* U / D / A: how a resource got the idea. */
+.apl-treat {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 16px; height: 16px; box-sizing: border-box;
+  background: var(--color-surface-3); border: 1px solid var(--color-hairline); border-radius: var(--radius-xs);
+  font-family: var(--font-mono); font-feature-settings: normal; font-size: 11px; font-weight: 700; line-height: 1;
+  color: var(--color-accent);
+}
+.apl-treat.is-unique { color: var(--color-ink-muted); }
+
+/* Source -> derived connectors drawn over the lanes. */
+.apl-links { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; z-index: 2; }
+.apl-link { fill: none; stroke: var(--color-accent); stroke-width: 1.2; stroke-dasharray: 4 3; opacity: 0.55; }
+.apl-link.is-hot { stroke-width: 1.8; stroke-dasharray: none; opacity: 0.95; }
+.apl-arrow { fill: var(--color-accent); }
+
+/* ── Plan: the day as rows (narrow screens) ───────────────────────────────────────────────────────── */
+.apl-lanes { display: flex; flex-direction: column; gap: 16px; }
+.panel-row.apl-slot { flex-wrap: nowrap; align-items: flex-start; gap: 12px; }
+.apl-slot-time { flex: 0 0 56px; display: flex; flex-direction: column; gap: 2px; font-size: 13px; font-weight: 600; color: var(--color-ink); }
+.apl-slot-kyiv { font-size: 11px; font-weight: 400; color: var(--color-ink-dim); }
+.apl-slot-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.apl-slot-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.apl-slot-topic { color: var(--color-ink); --clamp: 2; }
+.apl-slot-desc { display: block; }
+.apl-slot-chev { display: inline-flex; flex: none; margin-top: 2px; color: var(--color-ink-dim); }
+
+/* ── Plan: a slot in its dialog, and the per-idea decisions ───────────────────────────────────────── */
+.apl-detail { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.apl-detail-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.apl-detail-res { display: inline-flex; min-width: 0; }
+.apl-detail-topic { color: var(--color-ink); font-weight: 500; overflow-wrap: anywhere; }
+.apl-detail-error { overflow-wrap: anywhere; }
+.apl-detail-decs { display: flex; flex-direction: column; gap: 6px; }
+.apl-treatment { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+.apl-treatment-why { flex: 1 1 180px; min-width: 0; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.apl-related { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: var(--color-ink-dim); }
+.btn-tiny.apl-jump { gap: 5px; max-width: 100%; }
+.apl-jump-label { display: inline-flex; min-width: 0; }
+
+.apl-decs { display: flex; flex-direction: column; gap: 6px; }
+.apl-dec { display: grid; grid-template-columns: minmax(0, 150px) auto minmax(0, 1fr); gap: 8px; align-items: baseline; }
+.apl-dec.is-skip { opacity: 0.85; }
+.apl-dec-res { display: inline-flex; min-width: 0; }
+.apl-dec-reason { min-width: 0; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.apl-dec-code { margin-left: 6px; }
+.apl-dec-by { margin-left: 6px; color: var(--color-ink-dim); }
+.apl-dec-counts { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+
+@media (max-width: 600px) {
+  .panel.apl-stamp { padding: 12px 16px; }
+  .panel.apl-tl { padding: 12px; }
+  .apl-dec { grid-template-columns: minmax(0, 1fr) auto; }
+  .apl-dec-reason { grid-column: 1 / -1; }
+}
+
+/* ── Schedule: toolbar, the note and the legend ───────────────────────────────────────────────────── */
+.apl-bar-end { display: inline-flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.apl-note { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 8px; color: var(--color-ink-muted); }
+.apl-note-icon { display: inline-flex; flex: none; margin-top: 1px; }
+.apl-note-text { min-width: 0; }
+.apl-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 12px; }
+.apl-key { display: inline-flex; align-items: center; gap: 4px; color: var(--color-ink-muted); }
+.apl-key.is-warning { color: var(--color-warning); }
+.apl-key.is-danger { color: var(--color-danger); }
+.apl-key.is-accent { color: var(--color-accent); }
+
+/* ── Schedule: the week (wide). Hairlines, not hairline-soft: the soft one is invisible on a panel. ───── */
+.panel.apl-week { padding: 0; overflow-x: auto; }
+.apl-week-grid { display: grid; }
+.apl-week-head {
+  padding: 10px 8px; border-bottom: 1px solid var(--color-hairline); border-left: 1px solid var(--color-hairline);
+  font-size: 12px; font-weight: 500; color: var(--color-ink-muted);
+}
+.apl-week-head.is-corner { padding: 10px 12px; border-left: 0; color: var(--color-ink-dim); }
+.apl-week-head.is-today { color: var(--color-accent); }
+.apl-week-lane { padding: 10px 12px; border-bottom: 1px solid var(--color-hairline); }
+.apl-week-cell {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 6px;
+  border-bottom: 1px solid var(--color-hairline); border-left: 1px solid var(--color-hairline);
+}
+.apl-week-head.is-today, .apl-week-cell.is-today { background: color-mix(in srgb, var(--color-accent) 4%, transparent); }
+.apl-week-lane.is-last, .apl-week-cell.is-last { border-bottom: 0; }
+
+.apl-lane-head { min-width: 0; }
+.apl-lane-tz { margin-top: 2px; font-size: 11px; color: var(--color-ink-dim); }
+
+/* An entry of the grid: what it is (the edge colour and icon), when, and the status mark of its slot on the right. */
+.apl-entry {
+  --apl-tint: var(--color-ink-dim);
+  display: block; min-width: 0; padding: 4px 6px;
+  background: color-mix(in srgb, var(--color-ink) 4%, transparent);
+  border-left: 2px solid var(--apl-tint); border-radius: var(--radius-sm);
+  color: inherit; text-decoration: none;
+  transition: background var(--dur-fast) ease;
+}
+.apl-entry.is-accent { --apl-tint: var(--color-accent); }
+.apl-entry.is-warning { --apl-tint: var(--color-warning); }
+.apl-entry.is-danger { --apl-tint: var(--color-danger); }
+.apl-entry.is-blackout { background: var(--color-danger-soft); }
+a.apl-entry:hover { background: var(--color-surface-3); }
+.apl-entry-line { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.apl-entry-icon { display: inline-flex; flex: none; color: var(--apl-tint); }
+.apl-entry-time { flex: none; font-size: 11px; font-weight: 500; color: var(--color-ink); }
+.apl-entry-mark { display: inline-flex; flex: none; margin-left: auto; }
+.apl-entry-title { margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-muted); }
+
+/* ── Schedule: the week as one panel per day (narrow) ─────────────────────────────────────────────── */
+.apl-days { display: flex; flex-direction: column; gap: 16px; }
+.panel-row.apl-day-lane { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 8px; }
+.apl-day-entries { display: flex; flex-direction: column; gap: 4px; }
+
+/* ── Schedule: series and rules as rows ───────────────────────────────────────────────────────────── */
+.apl-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px; align-items: start; margin-top: 20px; }
+.panel-row.apl-item { align-items: flex-start; flex-wrap: nowrap; }
+.apl-item-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.apl-item.is-off .apl-item-main { opacity: 0.6; }
+.apl-item-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-item-name { color: var(--color-ink); font-weight: 600; overflow-wrap: anywhere; }
+.apl-item-meta { color: var(--color-ink-muted); }
+.apl-item-rule { color: var(--color-ink); overflow-wrap: anywhere; }
+.apl-item-brief { color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.apl-item-where { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: var(--color-ink-dim); }
+.apl-item-actions { display: flex; flex: none; gap: 6px; }
+
+/* ── Schedule: the rule and series forms ──────────────────────────────────────────────────────────── */
+.input-field.apl-fill { width: 100%; box-sizing: border-box; }
+.input-field.apl-textarea { min-height: 72px; resize: vertical; font-family: inherit; }
+.apl-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.apl-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.apl-problems { margin-top: 8px; }
+.apl-problems ul { margin: 0; padding-left: 18px; }
+.apl-check { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+.apl-check input { accent-color: var(--color-accent); }
+
+@media (max-width: 600px) {
+  .panel-row.apl-item { flex-wrap: wrap; }
+}
+
+/* ── Promo and Loadout: a column of panels ────────────────────────────────────────────────────────── */
+.apl-stack { display: flex; flex-direction: column; gap: 16px; }
+.apl-flat { margin: 0; }
+.apl-ink { color: var(--color-ink); }
+.apl-chips-top { margin-top: 10px; }
+.apl-hint-top { margin: 8px 0 0; }
+/* A line of explanation between a flush panel's head and its rows. */
+.apl-intro { margin: 0; padding: 0 20px 12px; color: var(--color-ink-dim); }
+.apl-head-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ── Promo: pairs, promo slots, tracked links ─────────────────────────────────────────────────────── */
+.apl-route { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; max-width: 100%; }
+.apl-rel { font-weight: 500; color: var(--color-ink); }
+.apl-rel.is-high { color: var(--color-success); }
+.apl-rel.is-low { color: var(--color-danger); }
+.apl-rel-of { font-weight: 400; color: var(--color-ink-dim); }
+.apl-td-pair { max-width: 360px; }
+.apl-td-when { white-space: nowrap; color: var(--color-ink-muted); }
+.panel-row.apl-pairrow { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 4px; }
+.apl-pairrow-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--color-ink-muted); }
+
+.panel-row.apl-promo { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 8px; }
+.apl-promo-top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-promo-date { font-size: 12px; font-weight: 500; white-space: nowrap; color: var(--color-ink); }
+.apl-promo-rel { margin-left: auto; white-space: nowrap; color: var(--color-ink-dim); }
+.apl-promo-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; min-width: 0; }
+.apl-promo-post { color: var(--color-ink-dim); overflow-wrap: anywhere; }
+.btn-tiny.apl-promo-preview { gap: 5px; margin-left: auto; }
+.apl-promo-error { color: var(--color-danger); overflow-wrap: anywhere; }
+.apl-url { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.apl-preview { white-space: pre-wrap; word-break: break-word; line-height: 1.5; color: var(--color-ink); }
+
+.panel-row.apl-linkrow { flex-wrap: nowrap; align-items: center; gap: 16px; }
+.apl-linkrow-main { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.apl-linkrow-top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-linkrow-count { flex: none; text-align: right; }
+.apl-count { font-size: 20px; font-weight: 600; line-height: 1.1; color: var(--color-ink); }
+
+/* ── Loadout: suggestions, tools, skills, rules ───────────────────────────────────────────────────── */
+.panel-row.apl-sugg, .panel-row.apl-tool { align-items: flex-start; flex-wrap: nowrap; gap: 16px; }
+.apl-sugg-main, .apl-tool-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.apl-sugg-head, .apl-tool-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-tool-name { font-size: 13px; font-weight: 600; color: var(--color-ink); overflow-wrap: anywhere; }
+.apl-sugg-reason { color: var(--color-ink-muted); --clamp: 2; }
+.apl-tool-desc { color: var(--color-ink-muted); --clamp: 1; }
+.apl-tool-meta { display: flex; flex-wrap: wrap; gap: 6px; color: var(--color-ink-dim); }
+.apl-tool.is-off .apl-tool-main { opacity: 0.62; }
+.apl-tool-side { display: flex; flex: none; align-items: center; gap: 8px; margin-left: auto; }
+.apl-tool-lock { display: inline-flex; color: var(--color-ink-dim); }
+
+.apl-tools-sum { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 0 20px 8px; }
+.apl-group {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; padding: 10px 20px;
+  border-top: 1px solid var(--color-hairline); background: color-mix(in srgb, var(--color-ink) 3%, transparent);
+}
+.apl-group-title { margin: 0; }
+.apl-stats { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--color-ink); }
+.apl-confirm-note { margin: 0 0 8px; color: var(--color-ink-muted); }
+.apl-confirm-list { margin: 0; padding-left: 18px; color: var(--color-ink-dim); }
+.panel-row.apl-rule { gap: 12px; }
+.apl-rule-label { min-width: 130px; font-weight: 500; color: var(--color-ink); }
+.apl-rule-link { margin-left: auto; }
+
+@media (max-width: 600px) {
+  .apl-intro, .apl-tools-sum, .apl-group { padding-left: 16px; padding-right: 16px; }
+  .panel-row.apl-sugg { flex-wrap: wrap; }
+  .panel-row.apl-linkrow { flex-wrap: wrap; }
+  .apl-rule-link { margin-left: 0; width: 100%; }
+}
+
+/* ── In force (active effects): a row per paused resource or directive in effect ─────────────────── */
+.apl-nowrap { white-space: nowrap; }
+.apl-pad { padding: 0 20px 12px; }
+.apl-effects-skeleton { height: 56px; margin: 0 20px 16px; border-radius: var(--radius-md); background: var(--color-surface-1); opacity: 0.6; }
+.panel-row.apl-effect { align-items: flex-start; flex-wrap: nowrap; gap: 12px; }
+.apl-effect-icon { display: inline-flex; flex: none; margin-top: 3px; color: var(--color-ink-dim); }
+.apl-effect-icon.is-warning { color: var(--color-warning); }
+.apl-effect-main { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.apl-effect-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.apl-effect-text { color: var(--color-ink); overflow-wrap: anywhere; }
+.apl-effect-note { color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.apl-effect-side { display: flex; flex: none; align-items: center; gap: 12px; margin-left: auto; }
+.apl-until { text-align: right; color: var(--color-ink-muted); white-space: nowrap; }
+
+/* ── The news watch of a resource (NewsWatchView / NewsWatchEditor) ───────────────────────────────── */
+.apl-nw-view { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-nw-when { color: var(--color-ink-muted); }
+.apl-nw { display: flex; flex-direction: column; gap: 8px; }
+.apl-nw-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-nw-word { color: var(--color-ink-dim); }
+.input-field.apl-nw-sel { flex: 1 1 72px; min-width: 0; }
+.apl-nw-err { color: var(--color-danger); }
+
+@media (max-width: 600px) {
+  .apl-pad { padding: 0 16px 12px; }
+  .apl-effects-skeleton { margin: 0 16px 16px; }
+  .panel-row.apl-effect { flex-wrap: wrap; }
+  .apl-effect-side { margin-left: 26px; flex-wrap: wrap; }
+  .apl-until { text-align: left; }
+}

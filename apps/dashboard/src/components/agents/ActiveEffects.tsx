@@ -1,12 +1,13 @@
-// "Active effects" on an orchestrator's Overview (spec 025 FR-019): what MANAGER
+// "Active effects" of an agent (spec 025 FR-019), the In force tab: what MANAGER
 // directives have changed for it right now — resources paused (with the end
 // date and a Lift button), series paused until a date, experiment quotas with
 // their deadline and progress, and playbook versions a directive wrote.
-// Card-rows (apps/dashboard/CLAUDE.md): identity left, dates and the action right.
+// Rows in a flush panel (apps/dashboard/CLAUDE.md): identity left, dates and the action right.
+// Spec 078 D1.4: the look is agent-plan.css (prefix apl-).
 
 import { Link } from '@tanstack/react-router';
 import { useMemo } from 'react';
-import { SectionCard } from '../ui/primitives';
+import { EmptyState, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
 import { TableAction } from '../ui/table';
@@ -23,13 +24,9 @@ const EFFECT_ICON: Record<ActiveEffect['kind'], IconName> = {
   playbook: 'logs', card: 'settings', series: 'pause', experiment: 'sparkles', strategy: 'book', other: 'agents',
 };
 
-const row = {
-  display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' as const, padding: '10px 12px', minWidth: 0,
-};
-
 function DirectiveLink({ id }: { id: string }) {
   return (
-    <Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives', directive: id }} className="link-accent text-micro" style={{ whiteSpace: 'nowrap' }}>
+    <Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives', directive: id }} className="link-accent text-micro apl-nowrap">
       directive →
     </Link>
   );
@@ -53,22 +50,22 @@ export function useLiftAction(p: ResourcePause) {
   return { onLift, pending: lift.isPending };
 }
 
-function PauseRow({ p, delay }: { p: ResourcePause; delay: number }) {
+function PauseRow({ p }: { p: ResourcePause }) {
   const { onLift, pending } = useLiftAction(p);
   return (
-    <div className="card row-lift compose-rise" style={{ ...row, animationDelay: `${delay}ms` }}>
-      <span style={{ color: 'var(--color-warning)', display: 'inline-flex' }} aria-hidden><Icon name="pause" size={14} /></span>
-      <div style={{ flex: '1 1 220px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', minWidth: 0 }}>
+    <div className="panel-row apl-effect">
+      <span className="apl-effect-icon is-warning" aria-hidden><Icon name="pause" size={14} /></span>
+      <div className="apl-effect-main">
+        <div className="apl-effect-head">
           <ResourceChip refId={p.resourceRef} />
           <Badge tone="warning">paused</Badge>
           {p.directiveId && <DirectiveLink id={p.directiveId} />}
         </div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{p.reason}</div>
+        <div className="text-caption apl-effect-note">{p.reason}</div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
-        <div className="text-micro tabular-nums" style={{ textAlign: 'right', color: 'var(--color-ink-muted)' }} title={fmtDate(p.until)}>
-          until {shortDate(p.until)}<div style={{ color: 'var(--color-ink-dim)' }}>{timeLeft(p.until)}</div>
+      <div className="apl-effect-side">
+        <div className="text-micro mono apl-until" title={fmtDate(p.until)}>
+          until {shortDate(p.until)}<div className="apl-dim">{timeLeft(p.until)}</div>
         </div>
         <TableAction icon="play" label="Lift" title="Lift the pause now" disabled={pending} onClick={onLift} />
       </div>
@@ -76,35 +73,35 @@ function PauseRow({ p, delay }: { p: ResourcePause; delay: number }) {
   );
 }
 
-function EffectRow({ e, handle, delay }: { e: ActiveEffect; handle: string; delay: number }) {
+function EffectRow({ e, handle }: { e: ActiveEffect; handle: string }) {
   const d = e.directive;
   const v = verificationChip(d);
   const detail = (d.verification?.detail ?? null) as { done?: number; planned?: number; slots?: number } | null;
   return (
-    <div className="card row-lift compose-rise" style={{ ...row, animationDelay: `${delay}ms` }}>
-      <span style={{ color: 'var(--color-ink-dim)', display: 'inline-flex' }} aria-hidden><Icon name={EFFECT_ICON[e.kind]} size={14} /></span>
-      <div style={{ flex: '1 1 220px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', minWidth: 0 }}>
-          <span className="chip" style={{ fontSize: 11 }}>{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>
-          {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">DIRECTIVE</Badge>}
+    <div className="panel-row apl-effect">
+      <span className="apl-effect-icon" aria-hidden><Icon name={EFFECT_ICON[e.kind]} size={14} /></span>
+      <div className="apl-effect-main">
+        <div className="apl-effect-head">
+          <span className="chip">{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>
+          {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">directive</Badge>}
           {v && <Badge tone={v.tone} title={v.title}>{v.label}</Badge>}
           <DirectiveLink id={d.id} />
         </div>
-        <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{e.text}</div>
+        <div className="text-body-sm apl-effect-text">{e.text}</div>
         {e.kind === 'experiment' && detail?.slots != null && (
-          <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>
+          <div className="text-micro tabular-nums apl-effect-note">
             {detail.done ?? 0} of {detail.slots} published · {detail.planned ?? 0} planned
           </div>
         )}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
+      <div className="apl-effect-side">
         {e.until && (
-          <div className="text-micro tabular-nums" style={{ textAlign: 'right', color: 'var(--color-ink-muted)' }} title={fmtDate(e.until)}>
-            {e.kind === 'experiment' ? 'by' : 'until'} {shortDate(e.until)}<div style={{ color: 'var(--color-ink-dim)' }}>{timeLeft(e.until)}</div>
+          <div className="text-micro mono apl-until" title={fmtDate(e.until)}>
+            {e.kind === 'experiment' ? 'by' : 'until'} {shortDate(e.until)}<div className="apl-dim">{timeLeft(e.until)}</div>
           </div>
         )}
         {e.version != null && (
-          <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'playbook' }} className="link-accent text-micro" style={{ whiteSpace: 'nowrap' }}>
+          <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'playbook' }} className="link-accent text-micro apl-nowrap">
             playbook v{e.version} →
           </Link>
         )}
@@ -122,21 +119,16 @@ export function ActiveEffects({ agent, delay }: { agent: { id: string; handle: s
   const n = effects.length + pauses.length;
   const err = dq.error ?? pq.error;
   return (
-    <SectionCard title="Active effects" icon="radar" delay={delay} style={{ marginBottom: 16 }}
-      action={n > 0 ? <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{n} active</span> : undefined}>
-      {err && <div className="callout-danger" style={{ marginBottom: 8 }}>{errorText(err)}</div>}
-      {loading && <div style={{ height: 56, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', opacity: 0.6 }} />}
+    <SectionCard title="Active effects" icon="radar" flush delay={delay}
+      action={n > 0 ? <span className="text-micro mono apl-dim">{n} active</span> : undefined}>
+      {err && <div className="apl-pad"><div className="callout-danger">{errorText(err)}</div></div>}
+      {loading && <div className="apl-effects-skeleton" aria-hidden />}
       {!loading && n === 0 && !err && (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-dim)' }}>
-          Nothing in force. Directives and followed advice from @manager that pause a resource or a series, change the playbook or open an experiment quota show up here until they end.
-        </p>
+        <EmptyState icon="radar" title="Nothing in force"
+          note="Directives and followed advice from @manager that pause a resource or a series, change the playbook or open an experiment quota show up here until they end." />
       )}
-      {n > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {pauses.map((p, i) => <PauseRow key={`p-${p.id}`} p={p} delay={i * 30} />)}
-          {effects.map((e, i) => <EffectRow key={e.directive.id} e={e} handle={agent.handle} delay={(pauses.length + i) * 30} />)}
-        </div>
-      )}
+      {pauses.map((p) => <PauseRow key={`p-${p.id}`} p={p} />)}
+      {effects.map((e) => <EffectRow key={e.directive.id} e={e} handle={agent.handle} />)}
     </SectionCard>
   );
 }
