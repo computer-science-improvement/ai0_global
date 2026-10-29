@@ -608,7 +608,7 @@ function HistoryCard({ rows, onOpen }: { rows: PlaybookRow[]; onOpen: (r: Playbo
     <SectionCard title="History" icon="history" flush delay={60}
       action={<span className="text-micro mono apb-dim">{sorted.length} version{sorted.length === 1 ? '' : 's'}</span>}>
       {sorted.map((r) => (
-        <button key={r.id} type="button" className="panel-row apb-hist" onClick={() => onOpen(r)} aria-label={`Open playbook v${r.version}`}>
+        <button key={r.id} type="button" className="panel-row apb-hist" onClick={() => onOpen(r)}>
           <span className="apb-hist-ver mono">v{r.version}</span>
           <Badge tone={PLAYBOOK_TONE[r.status]}>{r.status.replace('_', ' ')}</Badge>
           <span className="chip">{r.createdBy}</span>

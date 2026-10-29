@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
 import { NetworkHealthView } from '../components/health/NetworkHealthView';
+import { DigestSection } from '../components/health/DigestSection';
 import { OwnerBotSection } from '../components/health/OwnerBotSection';
 import { useNetworkHealth } from '../api/health';
 import { fmtRelative } from '../lib/format';
@@ -19,6 +20,8 @@ function HealthPage() {
     <div>
       <PageHeader eyebrow={eyebrow} title="Network health" subtitle="Connections, sources, budget headroom and stuck work across every channel" />
       <NetworkHealthView />
+      {/* Its own endpoint: the digest shows even when the health checks above could not load. */}
+      <DigestSection delay={210} />
       <OwnerBotSection delay={240} />
     </div>
   );

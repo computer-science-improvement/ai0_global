@@ -282,7 +282,7 @@ export function DigestSection({ delay = 0 }: { delay?: number }) {
         <StatTile label="Quality flags" value={s.qualityFlagged}
           delta={s.qualityFlagged ? (s.qualityFlagged === 1 ? 'resource flagged' : 'resources flagged') : 'none flagged'} deltaTone={s.qualityFlagged ? 'danger' : 'success'} />
         <StatTile label="Open directives" value={s.open}
-          delta={<Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={tabSearch('directives')} className="hd-link">{awaitingLine(s.awaiting)} →</Link>}
+          delta={<Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={tabSearch('directives')} className={`hd-link${s.awaiting ? ' is-warn' : ''}`}>{awaitingLine(s.awaiting)} →</Link>}
           deltaTone={s.awaiting ? 'warning' : 'neutral'} />
         <StatTile label="Agents spent today" value={`$${s.spentTodayUsd.toFixed(2)}`}
           delta={<Link to="/app/spend" className="hd-link">AI spend →</Link>} />

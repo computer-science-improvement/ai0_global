@@ -17,7 +17,10 @@
 .hd-count.is-warn { color: var(--color-warning); }
 
 /* A link in the delta line of a stat tile. */
-.hd-link { color: var(--color-accent); text-decoration: none; }
+.hd-link { position: relative; color: var(--color-accent); text-decoration: none; }
+.hd-link.is-warn { color: var(--color-warning); }
+/* The delta line is 16px tall: the hit area reaches 44px. */
+.hd-link::after { content: ''; position: absolute; inset: -14px -4px; }
 .hd-link:hover { text-decoration: underline; }
 .hd-link:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
 
