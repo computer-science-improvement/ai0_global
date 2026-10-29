@@ -194,6 +194,12 @@ import { AUDIT_SERVICE, AuditController } from './sysadmin/audit.controller';
 import { AuditTick } from './sysadmin/audit-schedule';
 import { auditAdapter, auditTitle } from './sysadmin/audit-artifact';
 import { playbookPort, retireMemoryPort } from './sysadmin/audit-ports';
+import { loadChannelFacts, resolveChannelKey } from './readiness/facts';
+import { closedSlotsPort, readinessFixPorts } from './readiness/readiness-ports';
+import { READINESS_SERVICE, ReadinessController } from './readiness/readiness.controller';
+import { ReadinessRepository } from './readiness/readiness.repository';
+import { ReadinessService } from './readiness/readiness.service';
+import { ReadinessWorker } from './readiness/readiness.worker';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
 import { refName, SteeringRepository } from './steering/steering.repository';
@@ -449,6 +455,8 @@ const LAUNCH: { svc?: LaunchService } = {};
 const LOADOUT_REGISTRY: { reg?: Pick<LoadoutRegistry, 'all'> } = {};
 /** Spec 055: the audit service, bound late (the chat's /audit command is built before it). */
 const AUDIT: { svc?: AuditService } = {};
+/** Spec 072: the channel doctor, bound late (073's run-time check and the launch and owner-bot cards reach it through here). */
+const READINESS: { svc?: ReadinessService } = {};
 
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
@@ -2107,6 +2115,46 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      // Spec 072: the channel doctor (checks in code at no cost, a stored result per channel, a sweep every ten minutes, closed-list fixes).
+      provide: READINESS_SERVICE,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, EDITOR_OPS, SCHEDULE_INFRA, AGENTS_SERVICE],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, infra: AgentInfra, ops: EditorOpsService, schedule: ScheduleService, agentsSvc: AgentsService,
+      ): ReadinessService => {
+        const logger = new Logger('Readiness');
+        const conflicts = configConflictsOf(pool, repos, infra);
+        const pauseRepo = new SeriesPausesRepository(pool);
+        const pauseActions = new SeriesPauseActions({ pool, repo: pauseRepo, profiles: infra.profiles });
+        const svc = new ReadinessService({
+          repo: new ReadinessRepository(pool),
+          resolveKey: (key) => resolveChannelKey(pool, key),
+          load: (key, now) => loadChannelFacts(pool, key, { now }),
+          identity: async (key) => {
+            const card = await repos.channels.get(key);
+            if (!card) return null;
+            const orch = await infra.agents.findTop('orchestrator', 'resource', resourceRef('telegram', key));
+            return { mode: card.mode, agent: orch?.handle ?? null };
+          },
+          slots24h: closedSlotsPort(pool),
+          fixes: readinessFixPorts({
+            agents: infra.agents,
+            patchSkill: (handle, name, patch) => agentsSvc.patchSkill(handle, name, patch),
+            retireMemory: retireMemoryPort(repos.memory),
+            applyConflicts: (orch, o) => conflicts.apply(orch, o && (o.codes || o.ref) ? (c) => (!o.codes || o.codes.includes(c.code)) && (!o.ref || c.ref === o.ref) : undefined),
+            channels: repos.channels,
+            upsertChannel: (key, patch) => ops.upsertChannel(key, patch),
+            pauses: { get: (id) => pauseRepo.get(id), resume: (id, via) => pauseActions.resume(id, via) },
+            schedule,
+          }),
+          // READINESS_AUTO_FIX is live: read on every recheck. Anything but off/false/0/no is on.
+          autoFix: () => !['off', 'false', '0', 'no'].includes((cfg.get<string>('READINESS_AUTO_FIX') ?? '').trim().toLowerCase()),
+          log: (m) => logger.log(m),
+        });
+        READINESS.svc = svc;
+        return svc;
+      },
+    },
+    {
       // Spec 052: channel launch (brief + references → plan → checklist → Start into approval → graduation).
       provide: LAUNCH_SERVICE,
       inject: [
@@ -2493,6 +2541,7 @@ export const EDITOR_PROVIDERS = [
     SteeringWorker,
     LaunchWorker,
     AuditWorker,
+    ReadinessWorker,
     ListResyncWorker,
     EditorCron,
     AgentsUpkeep,
@@ -2503,7 +2552,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController, ReadinessController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
