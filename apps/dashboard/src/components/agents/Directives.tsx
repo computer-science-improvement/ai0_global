@@ -4,13 +4,14 @@
 // executor's change and its verification, resolution, the owner's decision, the evaluated outcome — and the owner's
 // Approve / Decline while a structural directive awaits them, Uphold / Accept refusal / Discuss while a contested one
 // does. Both lists share a binding + kind filter kept in the URL (?binding=&kind=).
+// Spec 078 D3: the look is classes (amg-* in agent-manager.css) — facts in an .inset with overline keys, reason codes as
+// mono chips, the owner's decisions as real buttons in the dialog footer. Same data, mutations and links.
 
 import { Link } from '@tanstack/react-router';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { EmptyState, type Tone } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
-import { RowActions, TableAction } from '../ui/table';
 import { CompactCard } from '../ui/CompactCard';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { toast } from '../ui/Toast';
@@ -100,29 +101,32 @@ function entriesOf(v: unknown, max = 8): Array<[string, unknown]> {
   return e.filter(([, x]) => x !== undefined).slice(0, max);
 }
 
-function KeyValues({ label, value }: { label: string; value: unknown }) {
-  const e = entriesOf(value);
-  if (!e.length) return null;
+/** One fact of a directive: an overline key, then the value. */
+function Fact({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="text-micro" style={{ display: 'flex', gap: '3px 10px', flexWrap: 'wrap', alignItems: 'center', minWidth: 0 }}>
-      <span style={{ color: 'var(--color-ink-dim)' }}>{label}</span>
-      {e.map(([k, x], i) => (
-        <span key={`${k}-${i}`} style={{ display: 'inline-flex', gap: 4, alignItems: 'center', minWidth: 0, maxWidth: '100%' }}>
-          {k && <span style={{ color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }}>{k.replace(/_/g, ' ')}</span>}
-          {typeof x === 'string' && REF_RE.test(x)
-            ? <ResourceChip refId={x} />
-            : <span className="tabular-nums" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{fmtValue(x)}</span>}
-        </span>
-      ))}
+    <div className="amg-line">
+      <span className="text-overline amg-key">{label}</span>
+      <div className="text-micro amg-val">{children}</div>
     </div>
   );
 }
 
-function Line({ label, children }: { label: string; children: ReactNode }) {
+function KeyValues({ label, value }: { label: string; value: unknown }) {
+  const e = entriesOf(value);
+  if (!e.length) return null;
   return (
-    <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', minWidth: 0 }}>
-      <span style={{ color: 'var(--color-ink-dim)' }}>{label} · </span>{children}
-    </div>
+    <Fact label={label}>
+      <div className="amg-pairs">
+        {e.map(([k, x], i) => (
+          <span key={`${k}-${i}`} className="amg-pair">
+            {k && <span className="amg-dim amg-nowrap">{k.replace(/_/g, ' ')}</span>}
+            {typeof x === 'string' && REF_RE.test(x)
+              ? <ResourceChip refId={x} />
+              : <span className="tabular-nums amg-wrap">{fmtValue(x)}</span>}
+          </span>
+        ))}
+      </div>
+    </Fact>
   );
 }
 
@@ -132,14 +136,15 @@ export function ExpectedLine({ d }: { d: Directive }) {
   if (!x) return null;
   const up = x.direction === 'up';
   return (
-    <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', minWidth: 0 }}>
-      <span style={{ color: 'var(--color-ink-dim)' }}>expected</span>
-      <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{metricLabel(x.metric)}</span>
-      <span style={{ color: up ? 'var(--color-success)' : 'var(--color-danger)', fontWeight: 600 }} aria-label={up ? 'up' : 'down'}>{up ? '↑' : '↓'}</span>
-      <span className="tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>≥ {x.min_change_pct}%</span>
-      {x.resource_ref && <ResourceChip refId={x.resource_ref} />}
-      {d.reviewAt && <span style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(d.reviewAt)}>· review {fmtDate(d.reviewAt).replace(/ \d{4},.*$/, '')}</span>}
-    </div>
+    <Fact label="expected">
+      <div className="amg-expected">
+        <span className="amg-ink amg-metric">{metricLabel(x.metric)}</span>
+        <span className={`amg-arrow ${up ? 'is-up' : 'is-down'}`} aria-label={up ? 'up' : 'down'}>{up ? '↑' : '↓'}</span>
+        <span className="tabular-nums">≥ {x.min_change_pct}%</span>
+        {x.resource_ref && <ResourceChip refId={x.resource_ref} />}
+        {d.reviewAt && <span className="amg-dim" title={fmtDate(d.reviewAt)}>· review {fmtDate(d.reviewAt).replace(/ \d{4},.*$/, '')}</span>}
+      </div>
+    </Fact>
   );
 }
 
@@ -151,22 +156,22 @@ function OutcomeBlock({ d }: { d: Directive }) {
   const ch = o?.changePct;
   const good = d.expected ? (d.expected.direction === 'up' ? (ch ?? 0) > 0 : (ch ?? 0) < 0) : (ch ?? 0) > 0;
   return (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', padding: '7px 10px', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)' }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>outcome</span>
+    <div className="inset amg-outcome">
+      <span className="text-overline">outcome</span>
       {(before != null || after != null) && (
-        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>
-          {d.expected && <span style={{ color: 'var(--color-ink-dim)' }}>{metricLabel(d.expected.metric)} </span>}
-          {fmtValue(before)} → <span style={{ color: 'var(--color-ink)' }}>{fmtValue(after)}</span>
+        <span className="text-micro tabular-nums amg-muted">
+          {d.expected && <span className="amg-dim">{metricLabel(d.expected.metric)} </span>}
+          {fmtValue(before)} → <span className="amg-ink">{fmtValue(after)}</span>
         </span>
       )}
       {ch != null && (
-        <span className="text-micro tabular-nums" style={{ fontWeight: 600, color: ch === 0 ? 'var(--color-ink-dim)' : good ? 'var(--color-success)' : 'var(--color-danger)' }}>
+        <span className={`text-micro mono tabular-nums amg-change ${ch === 0 ? 'is-flat' : good ? 'is-good' : 'is-bad'}`}>
           {fmtPct(ch)}
         </span>
       )}
       {o.after?.stale && <Badge tone="neutral" title="The metric had no fresh data at evaluation">stale</Badge>}
       {o.confounders?.length ? (
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }} title="Other changes in the same window">
+        <span className="text-micro amg-dim amg-wrap" title="Other changes in the same window">
           confounders: {o.confounders.join(', ')}
         </span>
       ) : null}
@@ -184,21 +189,20 @@ function ContestBlock({ d }: { d: Directive }) {
     : c.verified === 'unverified' ? { tone: 'warning' as Tone, label: 'not checked by code' }
     : { tone: 'danger' as Tone, label: 'check failed' };
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 5, padding: '8px 10px', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-2)',
-      border: '1px solid var(--color-warning-soft)', minWidth: 0 }}>
-      <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-        <span style={{ color: 'var(--color-warning)', display: 'inline-flex' }}><Icon name="warning" size={12} /></span>
-        <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{d.to ? `@${d.to}` : 'The orchestrator'} contests</span>
-        {reason && <span className="chip" style={{ fontSize: 10 }} title={reason.layer}>{reason.label}</span>}
-        {reason && <span style={{ color: 'var(--color-ink-dim)' }}>{reason.layer}</span>}
-        {d.contestedAt && <span style={{ color: 'var(--color-ink-dim)', marginLeft: 'auto' }} title={fmtDate(d.contestedAt)}>{fmtRelative(d.contestedAt)}</span>}
+    <div className="inset amg-contest">
+      <div className="text-micro amg-contest-head">
+        <span className="amg-warn amg-icon"><Icon name="warning" size={12} /></span>
+        <span className="amg-ink amg-contest-who">{d.to ? `@${d.to}` : 'The orchestrator'} contests</span>
+        {reason && <span className="chip mono" title={reason.layer}>{reason.label}</span>}
+        {reason && <span className="amg-dim">{reason.layer}</span>}
+        {d.contestedAt && <span className="mono amg-dim amg-push" title={fmtDate(d.contestedAt)}>{fmtRelative(d.contestedAt)}</span>}
       </div>
-      {d.resolution && <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{d.resolution}</div>}
+      {d.resolution && <div className="text-micro amg-muted amg-wrap amg-pre">{d.resolution}</div>}
       {c && check && (
-        <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', minWidth: 0 }}>
+        <div className="text-micro amg-contest-check">
           <Badge tone={check.tone}>{check.label}</Badge>
-          <span style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', minWidth: 0 }}>{c.detail}</span>
-          {c.rule_ids?.length ? <span style={{ color: 'var(--color-ink-dim)' }}>rules {c.rule_ids.map((r) => `#${r}`).join(', ')}</span> : null}
+          <span className="amg-muted amg-wrap">{c.detail}</span>
+          {c.rule_ids?.length ? <span className="amg-dim mono">rules {c.rule_ids.map((r) => `#${r}`).join(', ')}</span> : null}
           {c.resource_ref && <ResourceChip refId={c.resource_ref} />}
         </div>
       )}
@@ -216,7 +220,7 @@ function ContestActions({ d, onDone }: { d: Directive; onDone?: () => void }) {
     const ok = decision === 'uphold'
       ? await confirm(`uphold the ${kind} directive to ${who}`, {
           danger: false, confirmLabel: 'Uphold',
-          details: <div className="callout-warning" style={{ flexDirection: 'column', gap: 4 }}>
+          details: <div className="callout-warning amg-callout-col">
             <strong>The executor applies it now, over {who}’s refusal.</strong>
             <span className="text-micro">Your rules are not checked again (you decide), but health and capability guards still are: if the change cannot apply now, nothing happens and the directive stays contested.</span>
           </div>,
@@ -238,14 +242,18 @@ function ContestActions({ d, onDone }: { d: Directive; onDone?: () => void }) {
   };
   const discuss = `@manager about your ${kind} directive to ${who} that it contests (${d.id.slice(0, 8)}): `;
   return (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-      <Link to="/app/chat" search={{ q: discuss }} className="btn-act" style={{ width: 'auto', gap: 6, padding: '0 10px', textDecoration: 'none' }}
-        title="Open the chat with @manager about this directive">
+    <div className="amg-actions-split">
+      <Link to="/app/chat" search={{ q: discuss }} className="btn-ghost" title="Open the chat with @manager about this directive">
         <Icon name="chat" size={14} /> Discuss
       </Link>
-      <RowActions danger={<TableAction icon="x" danger label="Accept refusal" title="Accept the orchestrator’s refusal" disabled={decide.isPending} onClick={() => run('accept-refusal')} />}>
-        <TableAction icon="check" label="Uphold" title="Uphold the directive — the executor applies it" disabled={decide.isPending} onClick={() => run('uphold')} />
-      </RowActions>
+      <div className="amg-actions">
+        <button type="button" className="btn-secondary" title="Accept the orchestrator’s refusal" disabled={decide.isPending} onClick={() => run('accept-refusal')}>
+          <Icon name="x" size={14} /> Accept refusal
+        </button>
+        <button type="button" className="btn-primary" title="Uphold the directive — the executor applies it" disabled={decide.isPending} onClick={() => run('uphold')}>
+          <Icon name="check" size={14} /> Uphold
+        </button>
+      </div>
     </div>
   );
 }
@@ -259,7 +267,7 @@ function OwnerActions({ d, onDone }: { d: Directive; onDone?: () => void }) {
     const ok = decision === 'approve'
       ? await confirm(`approve the ${target}`, {
           danger: false, confirmLabel: 'Approve',
-          details: <div className="callout-warning" style={{ flexDirection: 'column', gap: 4 }}>
+          details: <div className="callout-warning amg-callout-col">
             <strong>It is delivered to {d.to ? `@${d.to}` : 'the orchestrator'} on its next run.</strong>
             <span className="text-micro">Structural changes (cross-promo, pausing, strategy) act on real resources{d.shadow ? ' — this one is in shadow mode' : ''}.</span>
           </div>,
@@ -272,9 +280,14 @@ function OwnerActions({ d, onDone }: { d: Directive; onDone?: () => void }) {
     });
   };
   return (
-    <RowActions danger={<TableAction icon="x" danger label="Decline" title="Decline" disabled={decide.isPending} onClick={() => act('decline')} />}>
-      <TableAction icon="check" label="Approve" title="Approve" disabled={decide.isPending} onClick={() => act('approve')} />
-    </RowActions>
+    <div className="amg-actions">
+      <button type="button" className="btn-secondary" title="Decline this directive" disabled={decide.isPending} onClick={() => act('decline')}>
+        <Icon name="x" size={14} /> Decline
+      </button>
+      <button type="button" className="btn-primary" title="Approve: it is delivered to the orchestrator on its next run" disabled={decide.isPending} onClick={() => act('approve')}>
+        <Icon name="check" size={14} /> Approve
+      </button>
+    </div>
   );
 }
 
@@ -292,53 +305,58 @@ function DirectiveDetails({ d, show }: { d: Directive; show: 'to' | 'from' }) {
   const change = describeChange(d.change);
   const unscored = d.status === 'evaluated' ? unscoredReason(d) : null;
   const who = show === 'to' ? d.to : d.from;
+  const params = d.params && Object.keys(d.params).length ? d.params : null;
+  const execFailed = !!d.execError && (d.status === 'accepted' || d.status === 'failed');
+  const hasFacts = !!(d.rationale || d.expected || params || entriesOf(d.evidence).length || change || execFailed);
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
-      <div style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap' }}>
+    <div className="amg-stack">
+      <div className="amg-badges">
         {d.binding === 'advice'
           ? <Badge tone="neutral" title="Advice: the orchestrator may follow or decline it">advice</Badge>
-          : <Badge tone="warning" title="Binding directive: the orchestrator carries it out, or contests it to you citing your rules or safety">DIRECTIVE</Badge>}
+          : <Badge tone="warning" title="Binding directive: the orchestrator carries it out, or contests it to you citing your rules or safety">directive</Badge>}
         <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>
         {d.structural && <Badge tone="warning" title="Structural: needs the owner's approval">structural</Badge>}
         {d.shadow && <Badge tone="neutral" title="Filed while the manager was in shadow mode">shadow</Badge>}
         {vchip && <Badge tone={vchip.tone} title={vchip.title}>{vchip.label}</Badge>}
         {d.outcome && <Badge tone={OUTCOME_TONE[d.outcome]}>{OUTCOME_LABEL[d.outcome]}</Badge>}
         {who && (
-          <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)' }}>
+          <span className="text-micro mono amg-dim amg-push">
             {show === 'to' ? 'to ' : 'from '}
             <Link to="/app/agents/$handle" params={{ handle: who }} className="link-accent">@{who}</Link>
           </span>
         )}
       </div>
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{d.body}</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
-        {d.rationale && <Line label="why">{d.rationale}</Line>}
-        <ExpectedLine d={d} />
-        <KeyValues label="params" value={d.params && Object.keys(d.params).length ? d.params : null} />
-        <KeyValues label="evidence" value={d.evidence} />
-        {change && <Line label="change">{change}</Line>}
-        {d.execError && (d.status === 'accepted' || d.status === 'failed') && (
-          <div className="text-micro" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>
-            <span style={{ color: 'var(--color-ink-dim)' }}>executor · </span>{d.execError}
-            {d.execAttempts ? <span style={{ color: 'var(--color-ink-dim)' }}> · {d.execAttempts} attempt{d.execAttempts === 1 ? '' : 's'}</span> : null}
-          </div>
-        )}
-      </div>
+      <div className="text-body-sm amg-ink amg-wrap amg-pre">{d.body}</div>
+      {hasFacts && (
+        <div className="inset amg-facts">
+          {d.rationale && <Fact label="why">{d.rationale}</Fact>}
+          <ExpectedLine d={d} />
+          <KeyValues label="params" value={params} />
+          <KeyValues label="evidence" value={d.evidence} />
+          {change && <Fact label="change">{change}</Fact>}
+          {execFailed && (
+            <Fact label="executor">
+              <span className="amg-danger">{d.execError}</span>
+              {d.execAttempts ? <span className="amg-dim"> · {d.execAttempts} attempt{d.execAttempts === 1 ? '' : 's'}</span> : null}
+            </Fact>
+          )}
+        </div>
+      )}
       <ContestBlock d={d} />
       {(d.reasonKind || d.ownerDecision || (d.resolution && !d.verification?.contest && !contested)) && (
-        <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-muted)', minWidth: 0 }}>
+        <div className="text-micro amg-resolution">
           {d.ownerDecision && OWNER_DECISION[d.ownerDecision] && <Badge tone={OWNER_DECISION[d.ownerDecision].tone} title={OWNER_DECISION[d.ownerDecision].title}>{OWNER_DECISION[d.ownerDecision].label}</Badge>}
-          {d.reasonKind && !d.verification?.contest && <span className="chip" style={{ fontSize: 10 }}>{d.reasonKind.replace(/_/g, ' ')}</span>}
-          {d.resolution && !d.verification?.contest && !(d.ownerDecision === 'declined' && d.resolution === 'owner declined') && <span style={{ overflowWrap: 'anywhere' }}>{d.resolution}</span>}
+          {d.reasonKind && !d.verification?.contest && <span className="chip mono">{d.reasonKind.replace(/_/g, ' ')}</span>}
+          {d.resolution && !d.verification?.contest && !(d.ownerDecision === 'declined' && d.resolution === 'owner declined') && <span className="amg-wrap">{d.resolution}</span>}
         </div>
       )}
       <OutcomeBlock d={d} />
       {unscored && (
-        <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', color: 'var(--color-ink-muted)' }}>
+        <div className="text-micro amg-muted amg-note">
           <Icon name="info" size={12} /><span>{unscored}</span>
         </div>
       )}
-      <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+      <div className="text-micro mono tabular-nums amg-dim amg-meta">
         <span>filed {fmtDate(d.createdAt)}</span>
         {d.reviewAt && <span>review {fmtDate(d.reviewAt)}</span>}
         <span title={d.id}>id {d.id.slice(0, 8)}</span>
@@ -362,14 +380,14 @@ export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', show
   return (
     <CompactCard id={`directive-${d.id}`} delay={delay} focused={focused} attention={needsYou} hint="Open the directive"
       top={<>
-        {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">DIRECTIVE</Badge>}
-        {d.kind !== 'advice' && <span className="chip" style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>}
+        {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">directive</Badge>}
+        {d.kind !== 'advice' && <span className="chip mono amg-nowrap">{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>}
         {statusBadge && <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>}
         {d.outcome && <Badge tone={OUTCOME_TONE[d.outcome]}>{OUTCOME_LABEL[d.outcome]}</Badge>}
       </>}
       meta={<span title={fmtDate(d.createdAt)}>{fmtRelative(d.createdAt)}</span>}
       body={<>
-        {who && <span style={{ color: 'var(--color-ink-dim)' }}>{show === 'to' ? '→ ' : '← '}@{who} · </span>}
+        {who && <span className="amg-dim"><span className="mono">{show === 'to' ? '→ ' : '← '}@{who}</span> · </span>}
         {d.body}
       </>}
       note={needsYou ? (contested ? `${who ? `@${who}` : 'The orchestrator'} contests it — your call` : 'Needs your approval') : undefined}
@@ -379,7 +397,7 @@ export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', show
         body: () => <DirectiveDetails d={d} show={show} />,
         actions: needsYou ? (close) => d.status === 'awaiting_owner'
           ? <OwnerActions d={d} onDone={close} />
-          : <div style={{ flex: 1 }}><ContestActions d={d} onDone={close} /></div> : undefined,
+          : <ContestActions d={d} onDone={close} /> : undefined,
       }} />
   );
 }
@@ -398,30 +416,28 @@ export function DirectiveFilterBar({ filters, onChange, trailing }: {
   const [open, setOpen] = useState(filters.kinds.length > 0);
   const kindsLabel = filters.kinds.length === 0 ? 'all' : filters.kinds.length === 1 ? DIRECTIVE_KIND_LABEL[filters.kinds[0]] : `${filters.kinds.length} selected`;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
-        <SegmentedTabs size="sm" value={filters.binding ?? 'all'} options={BINDING_OPTIONS}
+    <div className="amg-filters">
+      <div className="amg-toolbar">
+        <SegmentedTabs size="sm" ariaLabel="Directive type" value={filters.binding ?? 'all'} options={BINDING_OPTIONS}
           onChange={(v) => onChange({ ...filters, binding: v === 'all' ? undefined : v })} />
-        <button type="button" className="btn-tiny" aria-expanded={open} aria-controls="directive-kind-filter" onClick={() => setOpen((v) => !v)}
-          style={{ gap: 5, color: filters.kinds.length ? 'var(--color-ink)' : undefined }}>
+        <button type="button" className="btn-secondary btn-sm" aria-expanded={open} aria-controls="directive-kind-filter" onClick={() => setOpen((v) => !v)}>
           Kind · {kindsLabel}
-          <Icon name={open ? 'chevron-up' : 'chevron-down'} size={11} />
+          <Icon name={open ? 'chevron-up' : 'chevron-down'} size={12} />
         </button>
         {hasFilters(filters) && (
-          <button type="button" className="btn-tiny" onClick={() => onChange({ kinds: [] })} title="Show every directive">
-            <Icon name="x" size={11} /> Clear
+          <button type="button" className="btn-ghost" onClick={() => onChange({ kinds: [] })} title="Show every directive">
+            <Icon name="x" size={12} /> Clear
           </button>
         )}
         {trailing}
       </div>
       {open && (
-        <div id="directive-kind-filter" role="group" aria-label="Directive kinds" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        <div id="directive-kind-filter" role="group" aria-label="Directive kinds" className="amg-kinds">
           {DIRECTIVE_KINDS.map((k) => {
             const on = filters.kinds.includes(k);
             return (
-              <button key={k} type="button" aria-pressed={on} className={`chip${on ? ' is-active' : ''}`} onClick={() => onChange(toggleKind(filters, k))}
-                style={{ border: 0, cursor: 'pointer', font: 'inherit', fontSize: 12, minHeight: 28, padding: '3px 10px', gap: 4 }}>
-                {on && <Icon name="check" size={11} />}
+              <button key={k} type="button" aria-pressed={on} className="chip-toggle" onClick={() => onChange(toggleKind(filters, k))}>
+                {on && <Icon name="check" size={12} />}
                 {DIRECTIVE_KIND_LABEL[k]}
               </button>
             );
@@ -447,10 +463,10 @@ export function ManagerDirectives({ focus, filters, onFilters }: { focus?: strin
   }, [focus, all]);
 
   const bar = <DirectiveFilterBar filters={filters} onChange={onFilters}
-    trailing={q.data ? <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', marginLeft: 'auto' }}>{all.length} shown</span> : undefined} />;
+    trailing={q.data ? <span className="amg-count amg-push">{all.length} shown</span> : undefined} />;
 
   if (q.error) return <NetworkError error={q.error} />;
-  if (!q.data) return <div className="panel compose-rise" style={{ height: 160, opacity: 0.55 }} />;
+  if (!q.data) return <div className="amg-skeleton" aria-hidden />;
   if (!all.length) {
     return (
       <div>
@@ -467,14 +483,13 @@ export function ManagerDirectives({ focus, filters, onFilters }: { focus?: strin
     return (
       <div>
         {bar}
-        <div style={{ overflowX: 'auto', maxWidth: '100%', paddingBottom: 6 }}>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start', minWidth: 'min-content' }}>
+        <div className="amg-board-scroll">
+          <div className="amg-board">
             {groups.map((g) => (
-              <section key={g.key} aria-label={g.label}
-                style={{ flex: g.items.length ? '1 0 280px' : '0 0 150px', maxWidth: 380, display: 'flex', flexDirection: 'column', gap: 8, padding: 8, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline)' }}>
+              <section key={g.key} aria-label={g.label} className={`amg-col${g.items.length ? '' : ' is-empty'}`}>
                 <ColumnHead label={g.label} n={g.items.length} note={g.note} warn={g.key === 'awaiting' && g.items.length > 0} />
                 {g.items.length === 0
-                  ? <div className="text-micro" style={{ color: 'var(--color-ink-dim)', padding: '10px 4px' }}>—</div>
+                  ? <div className="text-micro amg-dim amg-col-empty">—</div>
                   : g.items.map((d, i) => <DirectiveCard key={d.id} d={d} delay={Math.min(i, 8) * 25} focused={d.id === focus} />)}
               </section>
             ))}
@@ -487,13 +502,13 @@ export function ManagerDirectives({ focus, filters, onFilters }: { focus?: strin
   return (
     <div>
       {bar}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div className="amg-groups">
         {groups.filter((g) => g.items.length > 0).map((g) => {
           const closed = g.key === 'closed';
           return (
-            <section key={g.key} aria-label={g.label} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <section key={g.key} aria-label={g.label} className="amg-group">
               <ColumnHead label={g.label} n={g.items.length} note={g.note} warn={g.key === 'awaiting'}
-                action={closed ? <button type="button" className="btn-tiny" aria-expanded={showClosed} onClick={() => setShowClosed((v) => !v)}>{showClosed ? 'Hide' : 'Show'}</button> : undefined} />
+                action={closed ? <button type="button" className="btn-ghost" aria-expanded={showClosed} onClick={() => setShowClosed((v) => !v)}>{showClosed ? 'Hide' : 'Show'}</button> : undefined} />
               {(!closed || showClosed) && g.items.map((d, i) => <DirectiveCard key={d.id} d={d} delay={Math.min(i, 8) * 25} focused={d.id === focus} />)}
             </section>
           );
@@ -505,11 +520,11 @@ export function ManagerDirectives({ focus, filters, onFilters }: { focus?: strin
 
 function ColumnHead({ label, n, note, warn, action }: { label: string; n: number; note: string; warn?: boolean; action?: ReactNode }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '2px 4px' }} title={note}>
-      {warn && <span style={{ color: 'var(--color-warning)', display: 'inline-flex' }}><Icon name="warning" size={13} /></span>}
-      <span className="text-eyebrow" style={{ color: warn ? 'var(--color-warning)' : undefined }}>{label}</span>
-      <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{n}</span>
-      {action && <span style={{ marginLeft: 'auto' }}>{action}</span>}
+    <div className="amg-colhead" title={note}>
+      {warn && <span className="amg-warn amg-icon"><Icon name="warning" size={13} /></span>}
+      <span className={`text-overline${warn ? ' is-warn' : ''}`}>{label}</span>
+      <span className="amg-count">{n}</span>
+      {action && <span className="amg-push">{action}</span>}
     </div>
   );
 }
@@ -529,20 +544,20 @@ export function AgentInbox({ handle, filters, onFilters }: { handle: string; fil
   if (q.error) return <NetworkError error={q.error} />;
   return (
     <div>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>
-        <SegmentedTabs size="sm" value={filter} onChange={setFilter}
-          options={[{ key: 'open', label: q.data ? `Open · ${open.length}` : 'Open' }, { key: 'all', label: q.data ? `All · ${all.length}` : 'All' }]} />
-        <Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }} className="link-accent text-micro">
+      <div className="amg-toolbar is-spaced">
+        <SegmentedTabs size="sm" ariaLabel="Directives shown" value={filter} onChange={setFilter}
+          options={[{ key: 'open', label: 'Open', count: q.data ? open.length : undefined }, { key: 'all', label: 'All', count: q.data ? all.length : undefined }]} />
+        <Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }} className="link-accent text-caption">
           All directives on @manager →
         </Link>
       </div>
       <DirectiveFilterBar filters={filters} onChange={onFilters} />
-      {!q.data && <div className="panel compose-rise" style={{ height: 140, opacity: 0.55 }} />}
+      {!q.data && <div className="amg-skeleton is-short" aria-hidden />}
       {q.data && shown.length === 0 && (
         <EmptyState icon="inbox" title={hasFilters(filters) ? 'Nothing matches these filters' : filter === 'open' ? 'No open directives' : 'No directives yet'}
           note="Directives (binding) and advice (optional) from @manager land here: the orchestrator accepts a directive or contests it to you; it follows advice or declines it. Structural ones wait for you first." />
       )}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', gap: 8, alignItems: 'start' }}>
+      <div className="compact-grid">
         {shown.map((d, i) => <DirectiveCard key={d.id} d={d} delay={Math.min(i, 12) * 25} show="from" showStatus />)}
       </div>
     </div>

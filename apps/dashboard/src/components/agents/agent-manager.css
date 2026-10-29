@@ -66,3 +66,66 @@
 .amg-critic-notes { font-size: 13px; line-height: 1.5; color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
 .amg-critic-issues { display: grid; gap: 6px; }
 .amg-critic-issue { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 6px; overflow-wrap: anywhere; line-height: 1.5; }
+
+/* ── Directives: the filter bar, the board, the dialog body ──────────────────────────────────────── */
+.amg-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; min-width: 0; }
+.amg-toolbar.is-spaced { margin-bottom: 10px; }
+.amg-filters { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.amg-kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+.amg-kinds .chip-toggle { min-height: 32px; padding: 0 10px; font-size: 12px; gap: 5px; }
+
+/* The board: a column per stage on a wide screen (scrolls sideways when they do not fit), a stack of groups below 1100px. */
+.amg-board-scroll { overflow-x: auto; max-width: 100%; padding-bottom: 6px; }
+.amg-board { display: flex; align-items: flex-start; gap: 12px; min-width: min-content; }
+.amg-col {
+  flex: 1 0 280px; max-width: 380px; display: flex; flex-direction: column; gap: 8px; padding: 8px;
+  border-radius: var(--radius-lg); background: var(--color-surface-1); border: 1px solid var(--color-hairline);
+}
+.amg-col.is-empty { flex: 0 0 150px; }
+.amg-col-empty { padding: 10px 4px; }
+.amg-groups { display: flex; flex-direction: column; gap: 16px; }
+.amg-group { display: flex; flex-direction: column; gap: 8px; }
+.amg-colhead { display: flex; align-items: center; gap: 8px; padding: 2px 4px; min-height: 28px; }
+.amg-colhead .text-overline.is-warn { color: var(--color-warning); }
+
+/* Dialog body of one directive. */
+.amg-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.amg-badges > .amg-push { min-width: 0; }
+.amg-facts { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.amg-line { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; min-width: 0; }
+.amg-key { padding-top: 1px; }
+.amg-val { min-width: 0; line-height: 1.45; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.amg-pairs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-width: 0; }
+.amg-pair { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; }
+.amg-expected { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.amg-metric { font-weight: 500; }
+.amg-arrow { font-weight: 600; }
+.amg-arrow.is-up { color: var(--color-success); }
+.amg-arrow.is-down { color: var(--color-danger-ink); }
+.inset.amg-outcome { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 10px 14px; }
+.amg-change { font-weight: 600; }
+.amg-change.is-good { color: var(--color-success); }
+.amg-change.is-bad { color: var(--color-danger-ink); }
+.amg-change.is-flat { color: var(--color-ink-dim); }
+.inset.amg-contest {
+  display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 12px 14px;
+  background: color-mix(in srgb, var(--color-warning) 6%, var(--color-surface-1));
+  border-color: color-mix(in srgb, var(--color-warning) 30%, transparent);
+}
+.amg-contest-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.amg-contest-who { font-weight: 500; }
+.amg-contest-check { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; min-width: 0; }
+.amg-resolution { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; color: var(--color-ink-muted); }
+.amg-note { display: flex; align-items: center; gap: 6px; }
+.amg-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+
+/* Dialog footer: the owner's decisions are real buttons (Discuss on the left when the orchestrator contests). */
+.amg-actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.amg-actions-split { flex: 1; display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.callout-warning.amg-callout-col { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+@media (max-width: 600px) {
+  .amg-line { grid-template-columns: minmax(0, 1fr); }
+  .amg-actions, .amg-actions-split { justify-content: stretch; }
+  .amg-actions > button, .amg-actions-split > a { flex: 1 1 auto; justify-content: center; }
+}
