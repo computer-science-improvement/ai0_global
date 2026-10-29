@@ -4,6 +4,7 @@
 // since spec 034, the content-quality checklist the manager answered per resource.
 // Each run is a compact card (verdict, date, the first lines of the summary, counts);
 // a click opens a dialog with the full summary, the checklist and the directive links.
+// Spec 078 D3: the timeline, the checklist rows and the directive chips are classes (amg-* in agent-manager.css).
 
 import { Link } from '@tanstack/react-router';
 import { useMemo } from 'react';
@@ -21,20 +22,21 @@ import { CHECK_ITEM_LABEL, type QualityCheckEntry } from '../../lib/quality-view
 function QualityCheckList({ items }: { items: QualityCheckEntry[] }) {
   const issues = items.filter((x) => x.status === 'issue').length;
   return (
-    <div>
-      <div className="text-eyebrow" style={{ marginBottom: 6 }}>
-        Quality check · {issues} issue{issues === 1 ? '' : 's'} on {items.length} resource{items.length === 1 ? '' : 's'}
+    <div className="amg-section">
+      <div className="amg-sechead">
+        <span className="text-overline">Quality check</span>
+        <span className="amg-count">{issues} issue{issues === 1 ? '' : 's'} on {items.length} resource{items.length === 1 ? '' : 's'}</span>
       </div>
-      <div style={{ display: 'grid', gap: 8 }}>
+      <div className="inset amg-rows">
         {items.map((x) => (
-          <div key={x.resource_ref} className="text-micro" style={{ minWidth: 0 }}>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div key={x.resource_ref} className="panel-row amg-qrow">
+            <div className="amg-qrow-top">
               <Badge tone={x.status === 'issue' ? 'warning' : 'success'}>{x.status === 'issue' ? 'issue' : 'ok'}</Badge>
-              <span style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{x.resource_ref}</span>
-              {x.issues.map((i) => <span key={i} className="chip" style={{ fontSize: 10 }}>{CHECK_ITEM_LABEL[i] ?? i.replace(/_/g, ' ')}</span>)}
+              <span className="text-micro mono amg-ink amg-wrap">{x.resource_ref}</span>
+              {x.issues.map((i) => <span key={i} className="chip mono">{CHECK_ITEM_LABEL[i] ?? i.replace(/_/g, ' ')}</span>)}
             </div>
-            <div style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', marginTop: 2 }}>{x.evidence}</div>
-            {x.note && <div style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere', marginTop: 2 }}>Note: {x.note}</div>}
+            <div className="text-micro amg-muted amg-wrap">{x.evidence}</div>
+            {x.note && <div className="text-micro amg-dim amg-wrap">Note: {x.note}</div>}
           </div>
         ))}
       </div>
@@ -42,14 +44,10 @@ function QualityCheckList({ items }: { items: QualityCheckEntry[] }) {
   );
 }
 
-const VERDICT: Record<ReviewVerdict, { tone: Tone; label: string; dot: string }> = {
-  continue:   { tone: 'success', label: 'continue',   dot: 'var(--color-success)' },
-  directives: { tone: 'accent',  label: 'directives', dot: 'var(--color-accent)' },
-  skipped:    { tone: 'neutral', label: 'skipped',    dot: 'var(--color-ink-dim)' },
-};
-
-const DOT_TONE: Record<Tone, string> = {
-  success: 'var(--color-success)', warning: 'var(--color-warning)', danger: 'var(--color-danger)', accent: 'var(--color-accent)', neutral: 'var(--color-ink-dim)',
+const VERDICT: Record<ReviewVerdict, { tone: Tone; label: string }> = {
+  continue:   { tone: 'success', label: 'continue' },
+  directives: { tone: 'accent',  label: 'directives' },
+  skipped:    { tone: 'neutral', label: 'skipped' },
 };
 
 export function ManagerReviews() {
@@ -58,7 +56,7 @@ export function ManagerReviews() {
   const byId = useMemo(() => new Map((dq.data?.directives ?? []).map((d) => [d.id, d])), [dq.data]);
 
   if (q.error) return <NetworkError error={q.error} />;
-  if (!q.data) return <div className="panel compose-rise" style={{ height: 160, opacity: 0.55 }} />;
+  if (!q.data) return <div className="amg-skeleton" aria-hidden />;
   const reviews = q.data.reviews;
   if (!reviews.length) {
     return <EmptyState icon="history" title="No manager runs yet"
@@ -66,17 +64,14 @@ export function ManagerReviews() {
   }
 
   return (
-    <ol style={{ listStyle: 'none', margin: 0, padding: 0, position: 'relative' }}>
+    <ol className="amg-tl" aria-label="Manager runs, newest first">
       {reviews.map((r, i) => {
         const v = VERDICT[r.verdict] ?? VERDICT.skipped;
         const last = i === reviews.length - 1;
         return (
-          <li key={r.id} style={{ display: 'grid', gridTemplateColumns: '18px minmax(0, 1fr)', gap: 10 }}>
-            <div aria-hidden style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-              {!last && <span style={{ position: 'absolute', top: 18, bottom: -14, width: 1, background: 'var(--color-hairline)' }} />}
-              <span style={{ marginTop: 14, width: 9, height: 9, borderRadius: 'var(--radius-pill)', background: v.dot, boxShadow: '0 0 0 3px var(--color-canvas)' }} />
-            </div>
-            <div style={{ paddingBottom: 10, minWidth: 0 }}>
+          <li key={r.id} className={`amg-tl-item${last ? ' is-last' : ''}`}>
+            <div aria-hidden className="amg-tl-rail"><span className={`amg-dot amg-tl-dot is-${v.tone}`} /></div>
+            <div className="amg-tl-card">
               <ReviewCard r={r} byId={byId} delay={Math.min(i, 12) * 25} />
             </div>
           </li>
@@ -103,11 +98,11 @@ function ReviewCard({ r, byId, delay }: { r: ManagerReview; byId: Map<string, Di
     <CompactCard delay={delay} hint="Open the review"
       top={<>
         <Badge tone={v.tone}>{v.label}</Badge>
-        <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{fmtDate(r.createdAt)}</span>
+        <span className="text-micro mono amg-muted">{fmtDate(r.createdAt)}</span>
       </>}
       meta={fmtRelative(r.createdAt)}
-      body={r.summary ? <span style={{ color: r.verdict === 'skipped' ? 'var(--color-ink-muted)' : 'var(--color-ink)' }}>{r.summary}</span> : undefined}
-      extra={counts ? <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{counts}</span> : undefined}
+      body={r.summary ? <span className={r.verdict === 'skipped' ? 'amg-muted' : 'amg-ink'}>{r.summary}</span> : undefined}
+      extra={counts ? <span className="amg-count">{counts}</span> : undefined}
       dialog={{
         size: 'lg', icon: 'history', title: `Manager run · ${v.label}`,
         subtitle: `${fmtDate(r.createdAt)} · ${fmtRelative(r.createdAt)}${counts ? ` · ${counts}` : ''}`,
@@ -118,26 +113,25 @@ function ReviewCard({ r, byId, delay }: { r: ManagerReview; byId: Map<string, Di
 
 function ReviewDetails({ r, byId }: { r: ManagerReview; byId: Map<string, Directive> }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
+    <div className="amg-stack is-roomy">
       {r.summary
-        ? <div className="text-body-sm" style={{ color: r.verdict === 'skipped' ? 'var(--color-ink-muted)' : 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{r.summary}</div>
-        : <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>No summary.</div>}
+        ? <div className={`text-body-sm amg-wrap amg-pre ${r.verdict === 'skipped' ? 'amg-muted' : 'amg-ink'}`}>{r.summary}</div>
+        : <div className="text-micro amg-dim">No summary.</div>}
       {r.qualityCheck && r.qualityCheck.length > 0 && <QualityCheckList items={r.qualityCheck} />}
       {r.directiveIds.length > 0 && (
-        <div>
-          <div className="text-eyebrow" style={{ marginBottom: 6 }}>Directives filed</div>
-          <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+        <div className="amg-section">
+          <div className="amg-sechead"><span className="text-overline">Directives filed</span></div>
+          <div className="amg-chips">
             {r.directiveIds.map((id) => {
               const d = byId.get(id);
               return (
                 <Link key={id} to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives', directive: id }}
-                  className="chip" title={d ? `${DIRECTIVE_STATUS_LABEL[d.status]} — ${d.body}` : 'Open on the Directives board'}
-                  style={{ fontSize: 11, gap: 5, textDecoration: 'none', maxWidth: '100%', minWidth: 0 }}>
-                  <span aria-hidden style={{ width: 6, height: 6, borderRadius: 'var(--radius-pill)', flexShrink: 0, background: d ? DOT_TONE[DIRECTIVE_STATUS_TONE[d.status]] : 'var(--color-ink-dim)' }} />
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  className="chip mono amg-dchip" title={d ? `${DIRECTIVE_STATUS_LABEL[d.status]} — ${d.body}` : 'Open on the Directives board'}>
+                  <span aria-hidden className={`amg-dot${d ? ` is-${DIRECTIVE_STATUS_TONE[d.status]}` : ''}`} />
+                  <span className="amg-trunc">
                     {d ? `${DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}${d.to ? ` → @${d.to}` : ''}` : `directive ${id.slice(0, 6)}`}
                   </span>
-                  <Icon name="chevron-right" size={11} />
+                  <Icon name="chevron-right" size={12} />
                 </Link>
               );
             })}

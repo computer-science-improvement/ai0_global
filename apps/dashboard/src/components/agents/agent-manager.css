@@ -129,3 +129,56 @@
   .amg-actions, .amg-actions-split { justify-content: stretch; }
   .amg-actions > button, .amg-actions-split > a { flex: 1 1 auto; justify-content: center; }
 }
+
+/* ── Manager reviews: a timeline of runs, the quality checklist, the directive chips ─────────────── */
+.amg-tl { list-style: none; margin: 0; padding: 0; }
+.amg-tl-item { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; }
+.amg-tl-rail { position: relative; display: flex; justify-content: center; }
+.amg-tl-rail::before { content: ''; position: absolute; top: 18px; bottom: -14px; width: 1px; background: var(--color-hairline); }
+.amg-tl-item.is-last .amg-tl-rail::before { display: none; }
+.amg-tl-dot { position: relative; margin-top: 14px; box-shadow: 0 0 0 3px var(--color-canvas); }
+.amg-tl-card { min-width: 0; padding-bottom: 10px; }
+
+.amg-stack.is-roomy { gap: 16px; }
+.amg-section { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.amg-sechead { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
+.inset.amg-rows { padding: 0; overflow: hidden; }
+.amg-rows > .panel-row { padding: 10px 14px; }
+.panel-row.amg-qrow { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 4px; }
+.amg-qrow-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.amg-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip.amg-dchip { position: relative; gap: 6px; max-width: 100%; min-width: 0; text-decoration: none; color: var(--color-ink-muted); }
+.chip.amg-dchip::after { content: ''; position: absolute; inset: -6px 0; }
+.chip.amg-dchip:hover { color: var(--color-ink); }
+.amg-dchip .amg-dot { width: 6px; height: 6px; }
+
+/* ── Post audit (health → resource) and feed fit ─────────────────────────────────────────────────── */
+.amg-audit { display: grid; gap: 8px; min-width: 0; }
+.amg-audit-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.amg-inline { display: inline-flex; align-items: center; gap: 5px; }
+.amg-refs { display: flex; flex-wrap: wrap; gap: 2px 8px; min-width: 0; }
+.amg-ref { display: inline-flex; align-items: center; gap: 3px; min-width: 0; overflow-wrap: anywhere; }
+.amg-codegroup { min-width: 0; }
+.amg-sum {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; min-width: 0; min-height: 36px;
+  list-style: none; cursor: pointer; border-radius: var(--radius-sm);
+}
+.amg-sum::-webkit-details-marker { display: none; }
+.amg-sum:hover { background: color-mix(in srgb, var(--color-ink) 2.5%, transparent); }
+.amg-sum-title { font-weight: 500; min-width: 0; }
+.amg-chev { display: inline-flex; flex: none; color: var(--color-ink-dim); transition: transform var(--dur-base) var(--ease-out); }
+.amg-codegroup[open] > .amg-sum .amg-chev { transform: rotate(90deg); }
+.amg-codegroup-body { display: grid; gap: 6px; min-width: 0; padding: 4px 0 4px 20px; }
+.amg-fixlabel { color: var(--color-accent); font-weight: 500; }
+.amg-code { font-size: 11px; color: var(--color-ink-dim); }
+.amg-issue {
+  display: grid; gap: 4px; min-width: 0; padding: 8px 10px;
+  border-radius: var(--radius-md); background: var(--color-surface-1); border: 1px solid var(--color-hairline);
+}
+.amg-issue-head { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
+.amg-quote { border-left: 2px solid var(--color-hairline-strong); padding-left: 8px; }
+.amg-feeds { display: grid; gap: 4px; min-width: 0; }
+.amg-feed { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; min-width: 0; }
+.amg-feed-share { text-align: right; color: var(--color-ink-muted); }
+.amg-feed-share.is-bad { color: var(--color-danger-ink); }
+.amg-feed-badge { grid-column: 1 / -1; }
