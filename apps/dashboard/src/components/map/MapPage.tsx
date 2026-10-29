@@ -113,7 +113,7 @@ export function MapPage() {
   }, [snap, layout, viewport]);
 
   if (q.isLoading) {
-    return <div className="map-root"><div className="map-empty"><p className="text-caption" role="status" style={{ color: 'var(--color-ink-muted)' }}>Loading the map…</p></div></div>;
+    return <div className="map-root"><div className="map-empty"><p className="text-caption ink-muted" role="status">Loading the map…</p></div></div>;
   }
   if (!snap || !layout) {
     return (

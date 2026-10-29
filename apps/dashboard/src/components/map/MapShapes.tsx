@@ -149,7 +149,7 @@ export function BuildingShape({ res, pos, beacon, selected, showMeta, onSelect, 
         </g>
       )}
       {res.paused && (
-        <g transform={`translate(${-BUILDING_R + 4} ${-BUILDING_R + 4})`} style={{ color: 'var(--color-ink)' }}>
+        <g transform={`translate(${-BUILDING_R + 4} ${-BUILDING_R + 4})`} className="map-ico-ink">
           <circle r={8.5} style={{ fill: 'var(--color-surface-3)', stroke: 'var(--color-hairline-strong)' }} />
           <g transform="translate(-5 -5)"><Icon name="pause" size={10} strokeWidth={2.4} /></g>
         </g>
@@ -195,7 +195,7 @@ export function StructureShape({ item, pos, beacon, selected, showMeta, onSelect
         <g transform="translate(-10 -10)" style={{ color: item.active ? meta.tint : 'var(--color-ink-dim)' }}><Icon name={meta.icon} size={20} strokeWidth={1.9} /></g>
       </g>
       {item.isDefault && (
-        <g transform={`translate(${-r + 2} ${-r + 2})`} style={{ color: 'var(--color-warning)' }}>
+        <g className="ink-warning" transform={`translate(${-r + 2} ${-r + 2})`}>
           <circle r={7.5} style={{ fill: 'var(--color-surface-3)', stroke: 'var(--color-hairline-strong)' }} />
           <g transform="translate(-4.5 -4.5)"><Icon name="star" size={9} strokeWidth={2.6} /></g>
         </g>
@@ -263,7 +263,7 @@ export function UnitShape({ unit, pos, selected, label, onSelect, face, shaking,
           <circle r={UNIT_R - 0.5} style={{ fill: 'var(--color-surface-2)' }} />
           {face}
         </g>
-        <g transform={`translate(${UNIT_R - 3} ${UNIT_R - 3})`} style={{ color: 'var(--color-canvas)' }}>
+        <g transform={`translate(${UNIT_R - 3} ${UNIT_R - 3})`} className="map-ico-canvas">
           <circle r={6.5} style={{ fill: st.color }} />
           <g transform="translate(-4.5 -4.5)"><Icon name={st.icon} size={9} strokeWidth={2.8} /></g>
         </g>
@@ -309,7 +309,7 @@ export function RoadShape({ road, from, to, selected, onSelect, children }: Road
       <path d={g.d} className="map-road" strokeWidth={selected ? width + 1.2 : width} strokeDasharray={meta.dash || undefined}
         style={{ stroke: meta.color }} markerEnd={`url(#map-arrow-${road.kind})`} />
       {road.past && (() => { const m = g.at(0.5); return (
-        <g transform={`translate(${m.x} ${m.y})`} style={{ color: 'var(--color-danger)' }} pointerEvents="none">
+        <g className="ink-danger" transform={`translate(${m.x} ${m.y})`} pointerEvents="none">
           <circle r={8} style={{ fill: 'var(--color-surface-2)', stroke: 'var(--color-danger)' }} strokeWidth={1.4} />
           <g transform="translate(-5 -5)"><Icon name="ban" size={10} strokeWidth={2.6} /></g>
         </g>
