@@ -7,7 +7,7 @@ import { Link } from '@tanstack/react-router';
 import { SectionCard, EmptyState, Field } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
-import { ActionsTh, RowActions, TableAction } from '../ui/table';
+import { RowActions, TableAction } from '../ui/table';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
@@ -15,7 +15,7 @@ import {
   SPEND_PROVIDERS, useBudgets, useDeleteBudget, useSaveBudget,
   type BudgetInput, type BudgetScopeKind, type BudgetStatus,
 } from '../../api/spend';
-import { barPct, budgetBadge, budgetBarColor, fmtUsd, parseUsd } from '../../lib/spend';
+import { barPct, budgetBadge, budgetBarColor, fmtUsd, parseUsd, type BudgetStateLike } from '../../lib/spend';
 
 const KINDS: Array<{ key: BudgetScopeKind; label: string; hint: string }> = [
   { key: 'global',         label: 'Total (all AI calls)', hint: 'one per deployment' },
@@ -44,11 +44,17 @@ function toInput(d: Draft): BudgetInput | string {
   return { ...(d.id != null ? { id: d.id } : {}), scopeKind: d.scopeKind, scopeKey, dailyUsd: daily, monthlyUsd: monthly, alertPct, enforce: d.enforce };
 }
 
-function Bar({ b }: { b: BudgetStatus }) {
+/** Today's spend against the daily cap: "$1.20 / $3.00" over a 6px meter coloured by the cap's state. */
+function Meter({ label, spent, cap, state, title }: { label: string; spent: number; cap: number | null; state: BudgetStateLike; title?: string }) {
   return (
-    <div role="meter" aria-label={`${b.label} today`} aria-valuemin={0} aria-valuemax={b.dailyUsd ?? 0} aria-valuenow={b.spentTodayUsd}
-      style={{ height: 6, borderRadius: 3, background: 'var(--color-surface-3)', overflow: 'hidden', minWidth: 80 }}>
-      <div style={{ height: '100%', width: `${barPct(b.spentTodayUsd, b.dailyUsd)}%`, background: budgetBarColor(b.state), borderRadius: 3 }} />
+    <div className="spend-today" title={title}>
+      <div className="spend-today-line">
+        <span className="mono tabular-nums" style={{ color: 'var(--color-ink)' }}>{fmtUsd(spent)}</span>
+        <span className="mono tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>/ {cap == null ? 'no daily cap' : fmtUsd(cap)}</span>
+      </div>
+      <div className="spend-bar" role="meter" aria-label={`${label} today`} aria-valuemin={0} aria-valuemax={cap ?? 0} aria-valuenow={spent}>
+        <span className="anim-grow-x" style={{ width: `${barPct(spent, cap)}%`, ['--bar' as string]: budgetBarColor(state) }} />
+      </div>
     </div>
   );
 }
@@ -102,8 +108,8 @@ function BudgetModal({ initial, before, onClose }: { initial: Draft; before: Bud
         <input type="checkbox" checked={d.enforce} onChange={(e) => setD((x) => ({ ...x, enforce: e.target.checked }))} />
         Block calls over the daily cap (off = alert only)
       </label>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+      <div className="modal-foot">
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={save.isPending} onClick={submit}>{save.isPending ? 'Saving…' : 'Save'}</button>
       </div>
     </Modal>
@@ -135,98 +141,93 @@ export function BudgetsTab() {
   return (
     <>
       {d && d.blocking.length > 0 && (
-        <div className="callout-danger" style={{ marginBottom: 12 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, marginBottom: 6 }}>
-            <Icon name="ban" size={14} /> Blocking AI calls now (until Kyiv midnight or a higher cap)
+        <div className="callout-danger" style={{ marginBottom: 12, alignItems: 'flex-start' }}>
+          <span style={{ display: 'inline-flex', paddingTop: 2 }}><Icon name="ban" size={16} /></span>
+          <div style={{ minWidth: 0 }}>
+            <div className="text-heading-md" style={{ marginBottom: 6 }}>Blocking AI calls now (until Kyiv midnight or a higher cap)</div>
+            {d.blocking.map((b) => (
+              <div key={`${b.kind}:${b.id}`} className="text-micro mono tabular-nums">
+                {b.label}: {fmtUsd(b.spentUsd)} of {fmtUsd(b.capUsd)}
+              </div>
+            ))}
           </div>
-          {d.blocking.map((b) => (
-            <div key={`${b.kind}:${b.id}`} className="text-micro tabular-nums">
-              {b.label}: {fmtUsd(b.spentUsd)} of {fmtUsd(b.capUsd)}
-            </div>
-          ))}
         </div>
       )}
 
-      <SectionCard icon="spend" title="Caps"
-        action={<button type="button" className="btn-primary" onClick={() => setModal({ initial: EMPTY, before: null })}><Icon name="plus" size={13} /> Add cap</button>}
+      <SectionCard title="Caps" flush delay={0}
+        action={<button type="button" className="btn-primary btn-sm" onClick={() => setModal({ initial: EMPTY, before: null })}><Icon name="plus" size={13} /> Add cap</button>}
         style={{ marginBottom: 12 }}>
-        {q.error && !d && <div className="callout-danger">{describeError(q.error)}</div>}
-        {!d && !q.error && <div aria-busy style={{ height: 160, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', opacity: 0.6 }} />}
-        {d && d.rows.length === 0 && <EmptyState icon="spend" title="No caps" note="The built-in caps are created when the automation service starts." />}
-        {d && d.rows.length > 0 && (
-          <div className="table-wrap">
-            <table className="table">
-              <thead><tr>
-                <th>Scope</th><th className="num">Spent today</th><th className="num">Daily cap</th><th style={{ minWidth: 100 }}>Today</th>
-                <th className="num">This month</th><th className="num">Monthly cap</th><th className="num">Alert at</th><th>State</th><ActionsTh />
-              </tr></thead>
-              <tbody>
-                {d.rows.map((b) => {
-                  const badge = budgetBadge(b.state, b.enforce);
-                  return (
-                    <tr key={b.id}>
-                      <td>
-                        <div style={{ color: 'var(--color-ink)' }}>{b.label}</div>
-                        <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                          {b.scopeKind}{b.scopeKey ? ` · ${b.scopeKey}` : ''}{b.seededFrom ? ` · built-in (${b.seededFrom})` : ''}
-                        </div>
-                        {b.resources && b.resources.length > 0 && (
-                          <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 2 }}>
-                            {b.resources.map((r) => `${r.ref} ${fmtUsd(r.spentUsd)}`).join(' · ')}
-                          </div>
-                        )}
-                      </td>
-                      <td className="num" title={b.scopeKind === 'resource' && b.scopeKey === '*' ? 'The resource that spent most today' : undefined}>{fmtUsd(b.spentTodayUsd)}</td>
-                      <td className="num">{b.dailyUsd == null ? '—' : fmtUsd(b.dailyUsd)}</td>
-                      <td><Bar b={b} /></td>
-                      <td className="num">{b.scopeKind === 'resource' && b.scopeKey === '*' ? '—' : fmtUsd(b.spentMonthUsd)}</td>
-                      <td className="num">{b.monthlyUsd == null ? '—' : fmtUsd(b.monthlyUsd)}</td>
-                      <td className="num">{b.alertPct}%</td>
-                      <td>{badge ? <Badge tone={badge.tone}>{badge.label}</Badge> : <Badge tone="success">OK</Badge>}</td>
-                      <td style={{ textAlign: 'right' }}>
-                        <RowActions danger={b.seededFrom ? undefined : <TableAction action="delete" onClick={() => remove(b)} />}>
-                          <TableAction action="edit" onClick={() => setModal({ initial: fromRow(b), before: b })} />
-                          <TableAction icon={b.enforce ? 'unlock' : 'lock'} title={b.enforce ? 'Make alert only' : 'Block over cap'} onClick={() => toggleEnforce(b)} />
-                        </RowActions>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+        {q.error && !d && (
+          <div className="spend-pad">
+            <div className="callout-danger">
+              <Icon name="warning" size={16} />
+              <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{describeError(q.error)}</span>
+            </div>
           </div>
         )}
-        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>
-          Daily caps reset at Kyiv midnight. Monthly caps are tracked here but do not block calls. Built-in caps can be edited or made alert only, not deleted.
-        </p>
+        {!d && !q.error && <div className="spend-pad"><div className="inset" aria-busy style={{ height: 120, opacity: 0.6 }} /></div>}
+        {d && d.rows.length === 0 && <EmptyState icon="spend" title="No caps" note="The built-in caps are created when the automation service starts." />}
+        {d && d.rows.map((b) => {
+          const badge = budgetBadge(b.state, b.enforce);
+          const everyResource = b.scopeKind === 'resource' && b.scopeKey === '*';
+          return (
+            <div key={b.id} className="panel-row">
+              <div className="spend-id">
+                <div className="text-body-sm" style={{ fontWeight: 600, overflowWrap: 'anywhere' }}>{b.label}</div>
+                <div className="mono text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>
+                  {b.scopeKind}{b.scopeKey ? ` · ${b.scopeKey}` : ''}{b.seededFrom ? ` · built-in (${b.seededFrom})` : ''}
+                </div>
+                {b.resources && b.resources.length > 0 && (
+                  <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 2, overflowWrap: 'anywhere' }}>
+                    {b.resources.map((r) => `${r.ref} ${fmtUsd(r.spentUsd)}`).join(' · ')}
+                  </div>
+                )}
+              </div>
+              <Meter label={b.label} spent={b.spentTodayUsd} cap={b.dailyUsd} state={b.state}
+                title={everyResource ? 'The resource that spent most today' : undefined} />
+              <div className="spend-fact">
+                <span className="text-overline">This month</span>
+                <span className="mono tabular-nums">
+                  {everyResource ? '—' : fmtUsd(b.spentMonthUsd)}
+                  {b.monthlyUsd != null && <span style={{ color: 'var(--color-ink-dim)' }}> / {fmtUsd(b.monthlyUsd)}</span>}
+                </span>
+              </div>
+              <div className="spend-fact is-narrow">
+                <span className="text-overline">Alert at</span>
+                <span className="mono tabular-nums">{b.alertPct}%</span>
+              </div>
+              <span className="spend-state">{badge ? <Badge tone={badge.tone}>{badge.label}</Badge> : <Badge tone="success">OK</Badge>}</span>
+              <RowActions danger={b.seededFrom ? undefined : <TableAction action="delete" onClick={() => remove(b)} />}>
+                <TableAction action="edit" onClick={() => setModal({ initial: fromRow(b), before: b })} />
+                <TableAction icon={b.enforce ? 'unlock' : 'lock'} title={b.enforce ? 'Make alert only' : 'Block over cap'} onClick={() => toggleEnforce(b)} />
+              </RowActions>
+            </div>
+          );
+        })}
+        <div className="panel-foot">
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+            Daily caps reset at Kyiv midnight. Monthly caps are tracked here but do not block calls. Built-in caps can be edited or made alert only, not deleted.
+          </span>
+        </div>
       </SectionCard>
 
       {d && d.agentCaps.length > 0 && (
-        <SectionCard icon="agents" title="Per-agent caps">
-          <div className="table-wrap">
-            <table className="table">
-              <thead><tr><th>Agent</th><th className="num">Spent today</th><th className="num">Daily cap</th><th style={{ minWidth: 100 }}>Today</th><th>State</th></tr></thead>
-              <tbody>
-                {d.agentCaps.map((a) => {
-                  const badge = budgetBadge(a.state, true);
-                  return (
-                    <tr key={a.agentId}>
-                      <td><Link to="/app/agents/$handle" params={{ handle: a.handle }} className="link-accent">@{a.handle}</Link></td>
-                      <td className="num">{fmtUsd(a.spentUsd)}</td>
-                      <td className="num">{fmtUsd(a.capUsd)}</td>
-                      <td>
-                        <div style={{ height: 6, borderRadius: 3, background: 'var(--color-surface-3)', overflow: 'hidden' }}>
-                          <div style={{ height: '100%', width: `${barPct(a.spentUsd, a.capUsd)}%`, background: budgetBarColor(a.state), borderRadius: 3 }} />
-                        </div>
-                      </td>
-                      <td>{badge ? <Badge tone={badge.tone}>{badge.label}</Badge> : <Badge tone="success">OK</Badge>}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+        <SectionCard title="Per-agent caps" flush delay={40}>
+          {d.agentCaps.map((a) => {
+            const badge = budgetBadge(a.state, true);
+            return (
+              <div key={a.agentId} className="panel-row">
+                <div className="spend-id">
+                  <Link to="/app/agents/$handle" params={{ handle: a.handle }} className="link-accent mono">@{a.handle}</Link>
+                </div>
+                <Meter label={`@${a.handle}`} spent={a.spentUsd} cap={a.capUsd} state={a.state} />
+                <span className="spend-state">{badge ? <Badge tone={badge.tone}>{badge.label}</Badge> : <Badge tone="success">OK</Badge>}</span>
+              </div>
+            );
+          })}
+          <div className="panel-foot">
+            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Per-agent caps always block; change them on the agent's page.</span>
           </div>
-          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>Per-agent caps always block; change them on the agent's page.</p>
         </SectionCard>
       )}
 

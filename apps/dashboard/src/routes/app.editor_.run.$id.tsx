@@ -2,12 +2,13 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
 import { useCrumbs } from '../nav/hooks';
-import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
+import { SectionCard, StatStrip, StatTile, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
 import { Modal } from '../components/Modal';
 import { describeError } from '../components/ui/Toast';
-import { JsonBlock, RUN_TONE, fmtDuration, fmtUsd } from '../components/editor/EditorUi';
+import { JsonBlock, RUN_TONE, fmtDuration, fmtUsd, runStatusLabel } from '../components/editor/EditorUi';
+import '../components/editor/editor.css';
 import { useEditorRun } from '../api/editor';
 import { fmtDate } from '../lib/format';
 import type { EditorRunStep } from '../api/types';
@@ -33,26 +34,34 @@ function EditorRunPage() {
           ...(run.channelKey ? [{ label: run.channelKey, to: '/app/editor/$channel', params: { channel: run.channelKey } }] : []),
           ...(run.slotId ? [{ label: 'Slot', to: '/app/editor/slot/$id', params: { id: run.slotId } }] : []),
         ]}
-        title={`${run.role} run`} subtitle={`${fmtDate(run.startedAt)} · ${run.model}`} />
+        eyebrow={<>{run.channelKey && <span className="no-caps">{run.channelKey} · </span>}{fmtDate(run.startedAt)}</>}
+        title={`${run.role} run`}
+        subtitle={<span className="mono text-caption">{run.model}</span>} />
 
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 16 }}>
-        <Badge tone={RUN_TONE[run.status]}>{run.status}</Badge>
-        {run.error && <span className="text-micro" style={{ color: 'var(--color-danger)' }}>{run.error}</span>}
+        <Badge tone={RUN_TONE[run.status]}>{runStatusLabel(run.status)}</Badge>
+      </div>
+      {run.error && (
+        <div className="callout-danger" style={{ marginBottom: 16 }}>
+          <Icon name="warning" size={16} />
+          <span className="mono text-caption" style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{run.error}</span>
+        </div>
+      )}
+
+      <div className="compose-rise" style={{ marginBottom: 16 }}>
+        <StatStrip label="Run numbers">
+          <StatTile label="Steps" value={run.steps} delta={`${toolCalls.length} tool calls · ${toolCalls.filter((s) => s.isError).length} errors`} />
+          <StatTile label="Tokens" value={(run.promptTokens + run.completionTokens).toLocaleString()} delta={`${run.promptTokens.toLocaleString()} in · ${run.completionTokens.toLocaleString()} out`} />
+          <StatTile label="Cost" value={fmtUsd(run.costUsd)} />
+          <StatTile label="Duration" value={fmtDuration(run.startedAt, run.finishedAt)} />
+        </StatStrip>
       </div>
 
-      <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-        <StatTile label="Steps" value={run.steps} icon="logs" delta={`${toolCalls.length} tool calls · ${toolCalls.filter((s) => s.isError).length} errors`} />
-        <StatTile label="Tokens" value={(run.promptTokens + run.completionTokens).toLocaleString()} icon="analytics" delta={`${run.promptTokens.toLocaleString()} in · ${run.completionTokens.toLocaleString()} out`} />
-        <StatTile label="Cost" value={fmtUsd(run.costUsd)} icon="analytics" accent />
-        <StatTile label="Duration" value={fmtDuration(run.startedAt, run.finishedAt)} icon="calendar" />
-      </div>
-
-      <SectionCard title="Trace" icon="logs" delay={40}>
+      <SectionCard title="Trace" flush delay={40}
+        action={steps.length > 0 ? <span className="mono text-caption" style={{ color: 'var(--color-ink-muted)' }}>{steps.length} step{steps.length === 1 ? '' : 's'}</span> : undefined}>
         {steps.length === 0
-          ? <EmptyState icon="logs" title="No steps recorded" />
-          : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {steps.map((s) => <StepRow key={s.id} step={s} />)}
-            </div>}
+          ? <EmptyState icon="logs" title="No steps recorded" note="The run ended before its first model turn." />
+          : steps.map((s) => <StepRow key={s.id} step={s} />)}
       </SectionCard>
     </div>
   );
@@ -68,7 +77,7 @@ function errorExcerpt(step: EditorRunStep): string | null {
   return text.replace(/\s+/g, ' ').trim().slice(0, 240) || null;
 }
 
-/** A trace step as a compact row; a click opens its args and result (or the model message) in a dialog. */
+/** A trace step as a row of the timeline (index, dot on the spine, what happened); a click opens its args and result (or the model message) in a dialog. */
 function StepRow({ step }: { step: EditorRunStep }) {
   const [open, setOpen] = useState(false);
   const tokens = (step.promptTokens ?? 0) + (step.completionTokens ?? 0);
@@ -79,36 +88,38 @@ function StepRow({ step }: { step: EditorRunStep }) {
   const stats = `${tokens ? `${tokens.toLocaleString()} tok · ` : ''}${step.costUsd != null ? `${fmtUsd(step.costUsd)} · ` : ''}${step.durationMs != null ? `${step.durationMs} ms` : ''}`;
   const excerpt = errorExcerpt(step);
   const name = step.toolName ?? 'model turn';
+  const kind = step.type === 'llm' ? 'model turn' : step.isError ? 'tool error' : 'tool call';
 
   return (
     <>
-      <button type="button" className="card row-lift" onClick={() => setOpen(true)} aria-haspopup="dialog" title="Open the step"
-        style={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%', padding: '10px 14px', color: 'inherit', cursor: 'pointer', textAlign: 'left', font: 'inherit',
-          boxShadow: step.isError ? 'inset 0 0 0 1px var(--color-danger-soft)' : undefined }}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', minWidth: 0 }}>
-          <span className="tabular-nums text-micro" style={{ width: 24, color: 'var(--color-ink-dim)' }}>#{step.idx}</span>
-          <Badge tone={step.type === 'llm' ? 'neutral' : step.isError ? 'danger' : 'success'}>{step.type === 'llm' ? 'llm' : step.isError ? 'error' : 'tool'}</Badge>
-          <span className="text-body-sm" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</span>
-          <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, minWidth: 0 }}>{summary}</span>
-          <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }}>{stats}</span>
+      <button type="button" className={`panel-row trace-row${step.isError ? ' is-error' : ''}`} onClick={() => setOpen(true)} aria-haspopup="dialog" title="Open the step">
+        <span className="mono tabular-nums trace-idx">#{step.idx}</span>
+        <span className={`trace-dot${step.type === 'tool' ? (step.isError ? ' is-error' : ' is-tool') : ''}`} role="img" aria-label={kind} />
+        <span className="trace-main">
+          <span className="trace-title">
+            <Badge tone={step.type === 'llm' ? 'neutral' : step.isError ? 'danger' : 'success'}>{step.type === 'llm' ? 'llm' : step.isError ? 'error' : 'tool'}</Badge>
+            <span className="text-body-sm" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</span>
+          </span>
+          {summary && <span className="text-micro clamp" style={{ ['--clamp' as string]: 1, marginTop: 3, color: 'var(--color-ink-muted)' }}>{summary}</span>}
+          {excerpt && <span className="text-micro clamp" style={{ ['--clamp' as string]: 2, marginTop: 3, color: 'var(--color-danger)' }}>{excerpt}</span>}
+        </span>
+        <span className="trace-stats mono tabular-nums">
+          {stats}
           <Icon name="chevron-right" size={14} />
         </span>
-        {excerpt && (
-          <span className="text-micro clamp" style={{ ['--clamp' as string]: 1, color: 'var(--color-danger)', paddingLeft: 34 }}>{excerpt}</span>
-        )}
       </button>
       <Modal open={open} onClose={() => setOpen(false)} size="xl" icon="logs" title={`#${step.idx} · ${name}`}
-        subtitle={`${step.type === 'llm' ? 'model turn' : step.isError ? 'tool call · error' : 'tool call'}${stats ? ` · ${stats}` : ''}`}>
+        subtitle={`${kind}${stats ? ` · ${stats}` : ''}`}>
         {open && (
-          <div style={{ display: 'grid', gridTemplateColumns: step.type === 'tool' ? 'repeat(auto-fit, minmax(280px, 1fr))' : '1fr', gap: 10, minWidth: 0 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: step.type === 'tool' ? 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))' : '1fr', gap: 12, minWidth: 0 }}>
             {step.type === 'tool' && (
               <div style={{ minWidth: 0 }}>
-                <div className="text-eyebrow" style={{ marginBottom: 6 }}>Args</div>
+                <div className="text-overline" style={{ marginBottom: 6 }}>Args</div>
                 <JsonBlock value={step.input} />
               </div>
             )}
             <div style={{ minWidth: 0 }}>
-              <div className="text-eyebrow" style={{ marginBottom: 6 }}>{step.type === 'tool' ? 'Result' : 'Message'}</div>
+              <div className="text-overline" style={{ marginBottom: 6 }}>{step.type === 'tool' ? 'Result' : 'Message'}</div>
               <JsonBlock value={step.output} />
             </div>
           </div>

@@ -1,14 +1,16 @@
 // Editorial card form (spec 006 T010). Creates a card (mode approve, spec 031) or edits an
 // existing one. The server validates with the same constraints as the
-// editor_channels table and its errors are shown inline.
+// editor_channels table and its errors are shown inline. A long form, so it opens as a side sheet (a bottom sheet on a phone).
 
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import { Modal } from '../Modal';
 import { Field } from '../ui/primitives';
+import { Icon } from '../ui/Icon';
 import { TableAction } from '../ui/table';
 import { describeError } from '../ui/Toast';
 import { useUpsertEditorCard } from '../../api/editor';
 import type { EditorCard, EditorCardFields, EditorFormat, EditorSource } from '../../api/types';
+import './editor.css';
 
 const FORMATS: EditorFormat[] = ['text', 'photo', 'album', 'poll', 'quiz', 'video', 'carousel', 'longread'];
 
@@ -88,8 +90,8 @@ function Num({ value, onChange, step = 1, min, max }: { value: string; onChange:
 
 function Group({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div style={{ borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 14, marginTop: 4 }}>
-      <div className="text-eyebrow" style={{ marginBottom: 10, color: 'var(--color-ink-muted)' }}>{title}</div>
+    <div className="form-group">
+      <div className="text-overline form-group-title">{title}</div>
       {children}
     </div>
   );
@@ -113,7 +115,7 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
   };
 
   return (
-    <Modal open={open} onClose={onClose} size="lg" icon="sparkles"
+    <Modal open={open} onClose={onClose} size="drawer" icon="sparkles"
       title={isNew ? 'New channel card' : `Edit card · ${card.channelKey}`}
       subtitle={isNew ? 'Created in approval mode: the agent writes posts, but each one waits for your approval.' : 'What the editor agents know about this channel.'}>
       {isNew && (
@@ -201,18 +203,18 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
       <Group title="Sources">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 10 }}>
           {f.sources.map((s, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: '110px 100px 1fr 32px', gap: 8, alignItems: 'center' }}>
-              <input className="input-field" style={inputStyle} placeholder="id" value={s.id} onChange={(e) => setSource(i, { id: e.target.value })} />
-              <select className="input-field" style={inputStyle} value={s.kind} onChange={(e) => setSource(i, { kind: e.target.value as EditorSource['kind'] })}>
+            <div key={i} className="source-row">
+              <input className="input-field source-id" aria-label="Source id" placeholder="id" value={s.id} onChange={(e) => setSource(i, { id: e.target.value })} />
+              <select className="input-field source-kind" aria-label="Source kind" value={s.kind} onChange={(e) => setSource(i, { kind: e.target.value as EditorSource['kind'] })}>
                 <option value="rss">rss</option><option value="url">url</option><option value="library">library</option><option value="api">api</option>
               </select>
-              <input className="input-field" style={inputStyle} placeholder={SOURCE_PLACEHOLDER[s.kind]} value={s.ref} onChange={(e) => setSource(i, { ref: e.target.value })} />
+              <input className="input-field source-ref" aria-label="Source reference" placeholder={SOURCE_PLACEHOLDER[s.kind]} value={s.ref} onChange={(e) => setSource(i, { ref: e.target.value })} />
               <TableAction action="delete" title="Remove source" onClick={() => set('sources', f.sources.filter((_, j) => j !== i))} />
             </div>
           ))}
         </div>
-        <button type="button" className="btn-tiny" onClick={() => set('sources', [...f.sources, { id: `src${f.sources.length + 1}`, kind: 'rss', ref: '' }])}>
-          + Add source
+        <button type="button" className="btn-secondary btn-sm" onClick={() => set('sources', [...f.sources, { id: `src${f.sources.length + 1}`, kind: 'rss', ref: '' }])}>
+          <Icon name="plus" size={13} /> Add source
         </button>
       </Group>
 
@@ -234,7 +236,7 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
 
       {upsert.error && <div className="callout-danger" style={{ marginTop: 8 }}>{describeError(upsert.error)}</div>}
       <div className="modal-foot">
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={upsert.isPending || !f.key.trim()} onClick={submit}>
           {upsert.isPending ? 'Saving…' : isNew ? 'Create card' : 'Save card'}
         </button>

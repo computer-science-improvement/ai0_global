@@ -84,8 +84,8 @@ function PriceModal({ initial, editing, onClose }: { initial: Draft; editing: Pr
         <Field label="Effective from" hint="Kyiv day"><input type="date" className="input-field" value={d.effectiveFrom} onChange={set('effectiveFrom')} style={{ width: '100%' }} /></Field>
       </div>
       <Field label="Note"><input className="input-field" value={d.note} onChange={set('note')} maxLength={200} placeholder="Source of the price" style={{ width: '100%' }} /></Field>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+      <div className="modal-foot">
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={save.isPending} onClick={submit}>{save.isPending ? 'Saving…' : 'Save'}</button>
       </div>
     </Modal>
@@ -113,7 +113,7 @@ function RepricePanel({ maxDays }: { maxDays: number }) {
       <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>Reprice estimates for the last</span>
       <input className="input-field" inputMode="numeric" aria-label="Days" value={days} onChange={(e) => setDays(e.target.value)} style={{ width: 64 }} />
       <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>days (max {maxDays})</span>
-      <button type="button" className="btn-secondary" disabled={!valid || reprice.isPending} onClick={run}>
+      <button type="button" className="btn-secondary btn-sm" disabled={!valid || reprice.isPending} onClick={run}>
         <Icon name="refresh" size={13} /> {reprice.isPending ? 'Repricing…' : 'Reprice'}
       </button>
     </div>
@@ -135,24 +135,32 @@ export function PricesTab() {
   return (
     <>
       {q.data && q.data.unpriced.length > 0 && (
-        <div className="callout-warning" style={{ marginBottom: 12 }}>
-          <div style={{ marginBottom: 6 }}>These models were called without a price in the last 30 days, so their cost is unknown:</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-            {q.data.unpriced.map((u) => (
-              <button key={`${u.provider}/${u.model}`} type="button" className="btn-tiny" title={`${u.calls} calls · add a price`}
-                onClick={() => setModal({ initial: toDraft({ provider: u.provider as SpendProvider, model: u.model }, today), editing: null })}>
-                <Icon name="plus" size={11} /> {u.provider}/{u.model} · {u.calls}
-              </button>
-            ))}
+        <div className="callout-warning" style={{ marginBottom: 12, alignItems: 'flex-start' }}>
+          <span style={{ display: 'inline-flex', paddingTop: 2 }}><Icon name="warning" size={16} /></span>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ marginBottom: 8 }}>These models were called without a price in the last 30 days, so their cost is unknown:</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {q.data.unpriced.map((u) => (
+                <button key={`${u.provider}/${u.model}`} type="button" className="btn-secondary btn-sm" title={`${u.calls} calls · add a price`}
+                  onClick={() => setModal({ initial: toDraft({ provider: u.provider as SpendProvider, model: u.model }, today), editing: null })}>
+                  <Icon name="plus" size={12} /> {u.provider}/{u.model} · {u.calls}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
 
-      <SectionCard icon="spend" title="Price table"
-        action={<button type="button" className="btn-primary" onClick={() => setModal({ initial: toDraft({}, today), editing: null })}><Icon name="plus" size={13} /> Add price</button>}
+      <SectionCard title="Price table" delay={0}
+        action={<button type="button" className="btn-primary btn-sm" onClick={() => setModal({ initial: toDraft({}, today), editing: null })}><Icon name="plus" size={13} /> Add price</button>}
         style={{ marginBottom: 12 }}>
-        {q.error && !q.data && <div className="callout-danger">{describeError(q.error)}</div>}
-        {!q.data && !q.error && <div aria-busy style={{ height: 160, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', opacity: 0.6 }} />}
+        {q.error && !q.data && (
+          <div className="callout-danger">
+            <Icon name="warning" size={16} />
+            <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{describeError(q.error)}</span>
+          </div>
+        )}
+        {!q.data && !q.error && <div className="inset" aria-busy style={{ height: 160, opacity: 0.6 }} />}
         {q.data && q.data.rows.length === 0 && <EmptyState icon="spend" title="No prices yet" note="Without a price, calls are recorded as unpriced (tokens are still counted)." />}
         {q.data && q.data.rows.length > 0 && (
           <div className="table-wrap">
@@ -164,17 +172,17 @@ export function PricesTab() {
               </tr></thead>
               <tbody>
                 {q.data.rows.map((p) => (
-                  <tr key={`${p.provider}/${p.model}/${p.effectiveFrom}`} style={{ opacity: p.current || p.scheduled ? 1 : 0.6 }}>
+                  <tr key={`${p.provider}/${p.model}/${p.effectiveFrom}`} className={p.current || p.scheduled ? undefined : 'is-superseded'}>
                     <td>{p.provider}</td>
-                    <td style={{ color: 'var(--color-ink)' }}>{p.model}</td>
+                    <td className="mono">{p.model}</td>
                     <td className="num">${p.inPerM}</td>
                     <td className="num">${p.outPerM}</td>
                     <td className="num">{perM(p.cachedReadPerM)}</td>
                     <td className="num">{perM(p.cachedWritePerM)}</td>
                     <td className="num">{p.perRequestUsd == null ? '—' : `$${p.perRequestUsd}`}</td>
-                    <td className="tabular-nums">{p.effectiveFrom}</td>
+                    <td className="mono tabular-nums" style={{ whiteSpace: 'nowrap' }}>{p.effectiveFrom}</td>
                     <td>{p.current ? <Badge tone="success">Current</Badge> : p.scheduled ? <Badge tone="warning">Scheduled</Badge> : <Badge tone="neutral">Superseded</Badge>}</td>
-                    <td className="text-micro" style={{ color: 'var(--color-ink-dim)', maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={p.note ?? ''}>{p.note ?? ''}</td>
+                    <td className="meta" style={{ maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={p.note ?? ''}>{p.note ?? ''}</td>
                     <td style={{ textAlign: 'right' }}>
                       <RowActions danger={<TableAction action="delete" onClick={() => remove(p)} />}>
                         <TableAction action="edit" onClick={() => setModal({ initial: toDraft(p, today), editing: p })} />
@@ -191,7 +199,7 @@ export function PricesTab() {
         </p>
       </SectionCard>
 
-      <SectionCard icon="refresh" title="Reprice estimates">
+      <SectionCard title="Reprice estimates" delay={40}>
         <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '0 0 10px' }}>
           Historical rows are never repriced on their own. After fixing a price, re-cost the calls that were estimated or unpriced.
         </p>

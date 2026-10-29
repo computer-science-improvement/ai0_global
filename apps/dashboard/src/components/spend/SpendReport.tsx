@@ -4,7 +4,7 @@
 
 import { Fragment, useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { SectionCard, EmptyState, StatTile } from '../ui/primitives';
+import { SectionCard, EmptyState, StatStrip, StatTile } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { TableAction } from '../ui/table';
@@ -40,11 +40,11 @@ function RowCells({ r }: { r: SpendRow }) {
   return (
     <>
       <td className="num">{r.calls.toLocaleString('en-US')}</td>
-      <td className="num" style={{ color: r.errors ? 'var(--color-danger)' : undefined }}>{r.errors ? r.errors.toLocaleString('en-US') : '—'}</td>
+      <td className={`num${r.errors ? ' spend-err' : ''}`}>{r.errors ? r.errors.toLocaleString('en-US') : '—'}</td>
       <td className="num" title={r.tokensIn.toLocaleString('en-US')}>{fmtTokens(r.tokensIn)}</td>
       <td className="num" title={r.tokensOut.toLocaleString('en-US')}>{fmtTokens(r.tokensOut)}</td>
       <td className="num" title={r.tokensCached.toLocaleString('en-US')}>{fmtTokens(r.tokensCached)}</td>
-      <td className="num" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{fmtUsd(r.costUsd)}</td>
+      <td className="num spend-usd">{fmtUsd(r.costUsd)}</td>
       <td className="num">{r.pct.toFixed(1)}%</td>
       <td className="num">{r.avgLatencyMs == null ? '—' : `${(r.avgLatencyMs / 1000).toFixed(1)}s`}</td>
       <td>
@@ -60,13 +60,13 @@ function RowCells({ r }: { r: SpendRow }) {
 function AgentRoles({ q, agentId }: { q: SpendQuery; agentId: string }) {
   const roles = useSpendBreakdown({ ...q, groupBy: 'role', agent: agentId });
   if (!roles.data) {
-    return <tr><td colSpan={11} className="text-micro" style={{ color: 'var(--color-ink-dim)', paddingLeft: 32 }}>{roles.error ? describeError(roles.error) : 'Loading roles…'}</td></tr>;
+    return <tr className="spend-role-row"><td colSpan={11} className="spend-role-label meta">{roles.error ? describeError(roles.error) : 'Loading roles…'}</td></tr>;
   }
   return (
     <>
       {roles.data.rows.map((r) => (
-        <tr key={`${agentId}:${r.key}`} style={{ background: 'var(--color-surface-1)' }}>
-          <td style={{ paddingLeft: 32, color: 'var(--color-ink-muted)' }}>↳ {r.label}</td>
+        <tr key={`${agentId}:${r.key}`} className="spend-role-row">
+          <td className="spend-role-label">↳ {r.label}</td>
           <RowCells r={r} />
           <td />
         </tr>
@@ -119,17 +119,17 @@ export function SpendReport({ search, setSearch }: { search: SpendSearch; setSea
 
   return (
     <>
-      <SectionCard icon="calendar" title="Range and filters" style={{ marginBottom: 12 }}>
+      <SectionCard title="Range and filters" delay={0} style={{ marginBottom: 12 }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center', marginBottom: 10 }}>
           <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
-            <SegmentedTabs size="sm" value={rangeTab} onChange={pickRange} options={RANGE_TABS} />
+            <SegmentedTabs size="sm" value={rangeTab} onChange={pickRange} options={RANGE_TABS} ariaLabel="Range" />
           </div>
           {rangeTab === 'custom' && (
             <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
               <input type="date" className="input-field" aria-label="From (Kyiv day)" value={from} max={today} onChange={(e) => setFrom(e.target.value)} style={{ width: 150 }} />
               <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>to</span>
               <input type="date" className="input-field" aria-label="To (Kyiv day)" value={to} max={today} onChange={(e) => setTo(e.target.value)} style={{ width: 150 }} />
-              <button type="button" className="btn-secondary" disabled={!!rangeError} onClick={() => setSearch({ from, to, range: undefined })}>Apply</button>
+              <button type="button" className="btn-secondary btn-sm" disabled={!!rangeError} onClick={() => setSearch({ from, to, range: undefined })}>Apply</button>
               {rangeError && <span className="text-micro" style={{ color: 'var(--color-warning)' }}>{rangeError}</span>}
             </div>
           )}
@@ -146,67 +146,79 @@ export function SpendReport({ search, setSearch }: { search: SpendSearch; setSea
             <option value="">All providers</option>
             {SPEND_PROVIDERS.map((p) => <option key={p} value={p}>{p}</option>)}
           </select>
-          <label className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-ink-muted)', cursor: 'pointer' }}>
-            <input type="checkbox" checked={!!search.shadow} onChange={(e) => setSearch({ shadow: e.target.checked || undefined })} />
-            Shadow runs only
-          </label>
         </div>
-        {filtered && (
-          <button type="button" className="btn-tiny" style={{ marginTop: 10 }}
-            onClick={() => setSearch({ agent: undefined, feature: undefined, provider: undefined, shadow: undefined })}>
-            <Icon name="x" size={11} /> Clear filters
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', marginTop: 10 }}>
+          <button type="button" className="chip-toggle" aria-pressed={!!search.shadow}
+            onClick={() => setSearch({ shadow: search.shadow ? undefined : true })}>
+            Shadow runs only
           </button>
-        )}
+          {filtered && (
+            <button type="button" className="btn-ghost btn-sm"
+              onClick={() => setSearch({ agent: undefined, feature: undefined, provider: undefined, shadow: undefined })}>
+              <Icon name="x" size={12} /> Clear filters
+            </button>
+          )}
+        </div>
       </SectionCard>
 
-      {data.error && !d && <div className="callout-danger" style={{ marginBottom: 12 }}>{describeError(data.error)}</div>}
+      {data.error && !d && (
+        <div className="callout-danger" style={{ marginBottom: 12 }}>
+          <Icon name="warning" size={16} />
+          <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{describeError(data.error)}</span>
+        </div>
+      )}
 
-      <div className="stat-grid" style={{ marginBottom: 12 }}>
-        <StatTile icon="spend" label="Spend" value={t ? fmtUsd(t.costUsd) : '—'} delta={d ? `${d.from} – ${d.to}` : undefined} />
-        <StatTile icon="analytics" label="Calls" value={t ? t.calls.toLocaleString('en-US') : '—'}
-          delta={t ? `${t.errors.toLocaleString('en-US')} errors` : undefined} deltaTone={t?.errors ? 'danger' : 'neutral'} />
-        <StatTile icon="database" label="Tokens in / out" value={t ? `${fmtTokens(t.tokensIn)} / ${fmtTokens(t.tokensOut)}` : '—'}
-          delta={t ? `${fmtTokens(t.tokensCached)} cached` : undefined} />
-        <StatTile icon="info" label="Estimated" value={t ? fmtUsd(t.estimatedUsd) : '—'}
-          delta={t ? `${t.unpricedCalls} unpriced call${t.unpricedCalls === 1 ? '' : 's'}` : undefined} deltaTone={t?.unpricedCalls ? 'warning' : 'neutral'} />
-        <StatTile icon="eye" label="Shadow spend" value={t ? fmtUsd(t.shadowUsd) : '—'} delta="included in the total" />
+      <div className="compose-rise" style={{ marginBottom: 12, animationDelay: '40ms' }}>
+        <StatStrip label="Spend numbers">
+          <StatTile label="Spend" value={t ? fmtUsd(t.costUsd) : '—'} delta={d ? `${d.from} – ${d.to}` : undefined} />
+          <StatTile label="Calls" value={t ? t.calls.toLocaleString('en-US') : '—'}
+            delta={t ? `${t.errors.toLocaleString('en-US')} errors` : undefined} deltaTone={t?.errors ? 'danger' : 'neutral'} />
+          <StatTile label="Tokens in / out" value={t ? `${fmtTokens(t.tokensIn)} / ${fmtTokens(t.tokensOut)}` : '—'}
+            delta={t ? `${fmtTokens(t.tokensCached)} cached` : undefined} />
+          <StatTile label="Estimated" value={t ? fmtUsd(t.estimatedUsd) : '—'}
+            delta={t ? `${t.unpricedCalls} unpriced call${t.unpricedCalls === 1 ? '' : 's'}` : undefined} deltaTone={t?.unpricedCalls ? 'warning' : 'neutral'} />
+          <StatTile label="Shadow spend" value={t ? fmtUsd(t.shadowUsd) : '—'} delta="included in the total" />
+        </StatStrip>
       </div>
 
       {d && (d.partial || d.truncated || (t?.noUsageCalls ?? 0) > 0) && (
         <div className="callout-warning" style={{ marginBottom: 12 }}>
-          {d.partial && <div>Raw rows are kept {d.retentionDays} days; this view reads raw rows, so days before that are missing.</div>}
-          {d.truncated && <div>Showing the top 500 rows; export the CSV for all of them.</div>}
-          {(t?.noUsageCalls ?? 0) > 0 && <div>{t!.noUsageCalls} call{t!.noUsageCalls === 1 ? '' : 's'} without usage (the provider returned no token counts).</div>}
+          <Icon name="warning" size={16} />
+          <div style={{ display: 'grid', gap: 4, minWidth: 0 }}>
+            {d.partial && <div>Raw rows are kept {d.retentionDays} days; this view reads raw rows, so days before that are missing.</div>}
+            {d.truncated && <div>Showing the top 500 rows; export the CSV for all of them.</div>}
+            {(t?.noUsageCalls ?? 0) > 0 && <div>{t!.noUsageCalls} call{t!.noUsageCalls === 1 ? '' : 's'} without usage (the provider returned no token counts).</div>}
+          </div>
         </div>
       )}
 
-      <SectionCard icon="analytics" title="Daily spend"
+      <SectionCard title="Daily spend" delay={80}
         action={<SegmentedTabs size="sm" value={q.stackBy!} onChange={(v) => setSearch({ stackBy: v === 'provider' ? undefined : v })}
-          options={[{ key: 'provider', label: 'By provider' }, { key: 'feature', label: 'By feature' }]} />}
+          options={[{ key: 'provider', label: 'By provider' }, { key: 'feature', label: 'By feature' }]} ariaLabel="Stack the chart" />}
         style={{ marginBottom: 12 }}>
         {!d
-          ? <div aria-busy style={{ height: 240, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', opacity: 0.6 }} />
+          ? <div className="inset" aria-busy style={{ height: 240, opacity: 0.6 }} />
           : d.totals.calls === 0
             ? <EmptyState icon="spend" title="No AI calls in this range" note={filtered ? 'Try clearing the filters.' : 'Calls appear here within 5 minutes of being made.'} />
             : <SpendChart chart={d.chart} />}
       </SectionCard>
 
-      <SectionCard icon="logs" title="Breakdown"
+      <SectionCard title="Breakdown" delay={120}
         action={
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-            <button type="button" className="btn-tiny" disabled={!!busy} onClick={() => exportCsv(groupBy)} title="The rows below as CSV (same columns)">
-              <Icon name="download" size={12} /> {busy === groupBy ? 'Exporting…' : 'Export CSV'}
+            <button type="button" className="btn-secondary btn-sm" disabled={!!busy} onClick={() => exportCsv(groupBy)} title="The rows below as CSV (same columns)">
+              <Icon name="download" size={13} /> {busy === groupBy ? 'Exporting…' : 'Export CSV'}
             </button>
-            <button type="button" className="btn-tiny" disabled={!!busy} onClick={() => exportCsv('raw')} title="Every ledger row in the range (no prompts or outputs)">
-              <Icon name="download" size={12} /> {busy === 'raw' ? 'Exporting…' : 'Raw rows'}
+            <button type="button" className="btn-secondary btn-sm" disabled={!!busy} onClick={() => exportCsv('raw')} title="Every ledger row in the range (no prompts or outputs)">
+              <Icon name="download" size={13} /> {busy === 'raw' ? 'Exporting…' : 'Raw rows'}
             </button>
           </div>
         }>
-        <div style={{ maxWidth: '100%', overflowX: 'auto', marginBottom: 10 }}>
-          <SegmentedTabs size="sm" value={groupBy} onChange={(v) => { setOpen(new Set()); setSearch({ groupBy: v === 'day' ? undefined : v }); }} options={GROUP_TABS} />
+        <div style={{ maxWidth: '100%', overflowX: 'auto', marginBottom: 12 }}>
+          <SegmentedTabs size="sm" value={groupBy} onChange={(v) => { setOpen(new Set()); setSearch({ groupBy: v === 'day' ? undefined : v }); }} options={GROUP_TABS} ariaLabel="Group by" />
         </div>
         {!d
-          ? <div aria-busy style={{ height: 160, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', opacity: 0.6 }} />
+          ? <div className="inset" aria-busy style={{ height: 160, opacity: 0.6 }} />
           : d.rows.length === 0
             ? <EmptyState icon="logs" title="Nothing to break down" />
             : (

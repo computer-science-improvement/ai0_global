@@ -1,0 +1,57 @@
+/* Area styles of /app/logs (spec 078 C3): the activity feed as a day-grouped timeline in Kyiv time.
+   Imported by routes/app.logs.tsx only. (Not a `logs/` folder: apps/dashboard/.gitignore ignores anything named logs.) Colours are tokens only; the running mark pulses through StatusMark, so there is
+   nothing animated here. */
+
+/* One day of events: a heading, then the rows. overflow keeps a hovered row inside the panel's corners. */
+.log-group { overflow: hidden; }
+.log-group + .log-group > .log-day { border-top: 1px solid var(--color-hairline); }
+.log-day {
+  display: flex; align-items: baseline; gap: 10px; padding: 8px 20px;
+  background: color-mix(in srgb, var(--color-ink) 3%, transparent);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.log-day-count { margin-left: auto; font-size: 12px; color: var(--color-ink-dim); }
+
+/* One event: [time] [mark on the spine] [what happened] [chevron when it expands to a trace]. */
+/* Every row is the first child of its own .log-ev, so the .panel-row:first-child reset would drop every hairline: put it back. */
+.log-ev > .panel-row.log-row { border-top: 1px solid var(--color-hairline); }
+.log-ev:first-child > .panel-row.log-row { border-top: 0; }
+.panel-row.log-row {
+  position: relative; display: grid; grid-template-columns: 44px 14px minmax(0, 1fr) auto; gap: 12px; align-items: start;
+  width: 100%;
+}
+.panel-row.log-row::before {
+  content: ''; position: absolute; left: calc(20px + 44px + 12px + 6px); top: 0; bottom: 0; width: 2px;
+  background: var(--color-hairline);
+}
+.log-ev:first-child > .panel-row.log-row::before { top: 22px; }
+.log-ev:last-child > .panel-row.log-row::before { bottom: calc(100% - 22px); }
+.log-ev:only-child > .panel-row.log-row::before { display: none; }
+.log-time { padding-top: 2px; font-size: 12px; color: var(--color-ink-dim); text-align: right; }
+.log-mark { position: relative; z-index: 1; display: inline-flex; margin-top: 3px; background: var(--color-surface-2); border-radius: 50%; }
+.log-main { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.log-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.log-channel { color: var(--color-ink); font-weight: 600; overflow-wrap: anywhere; }
+.log-strategy { font-size: 12px; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.log-detail { color: var(--color-ink-muted); }
+.log-detail.is-error { color: var(--color-danger); }
+.log-chevron { display: inline-flex; padding-top: 3px; color: var(--color-ink-dim); transition: transform var(--dur-fast) var(--ease-out); }
+.log-row[aria-expanded='true'] .log-chevron { transform: rotate(90deg); }
+
+/* The execution trace of an expanded run, indented under the event's text. */
+.log-trace { display: flex; flex-direction: column; gap: 10px; padding: 0 20px 14px calc(20px + 44px + 12px + 14px + 12px); }
+.log-trace-note { font-size: 12px; color: var(--color-ink-dim); }
+.log-step-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.log-step-service { font-size: 14px; font-weight: 500; color: var(--color-ink); overflow-wrap: anywhere; }
+.log-step-action { font-size: 12px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+.log-step-ms { margin-left: auto; font-size: 12px; color: var(--color-ink-dim); white-space: nowrap; }
+.log-step-body { margin: 2px 0 0 18px; font-size: 12px; overflow-wrap: anywhere; }
+.log-step-body.is-error { color: var(--color-danger); white-space: pre-wrap; }
+.log-step-body.is-detail { color: var(--color-ink-muted); }
+
+@media (max-width: 600px) {
+  .log-day { padding: 8px 16px; }
+  .panel-row.log-row { grid-template-columns: 40px 14px minmax(0, 1fr) auto; gap: 10px; }
+  .panel-row.log-row::before { left: calc(16px + 40px + 10px + 6px); }
+  .log-trace { padding: 0 16px 14px calc(16px + 40px + 10px + 14px + 10px); }
+}
