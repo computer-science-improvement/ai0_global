@@ -54,6 +54,9 @@ import { budgetSnapshot } from '../spend/spend.service';
 import { SpendRepository } from '../spend/spend.repository';
 import { sourcesToReplaceBlock } from './sources/source-health.service';
 import { SOURCE_CHANGE_KIND } from './sources/source-change';
+import { sourceProberOf } from './sources/probe';
+import { SourceProbeWorker } from './sources/source-probe.worker';
+import { SourcesController } from './sources/sources.controller';
 import { buildRoleTools, STORY_KPI_SAMPLE_FILTER } from './tools/role-tools';
 import { StoryRegistry } from './story/story.repository';
 import { StoryContextService } from './story/story-service';
@@ -1200,6 +1203,7 @@ export const EDITOR_PROVIDERS = [
           pauses: new PlannerPauseView(new SeriesPausesRepository(pool)),   // spec 060: paused series + last skip reasons for the planners
           unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
           nextRow: nextRowPort(pool),   // spec 071: the next row of an in-order dataset (series note + not_next_in_order guard)
+          probe: sourceProberOf(pool),   // spec 076 FR-004: a new or changed feed series is read by the server when it is saved
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
         registerScheduleActions(infra.actions, svc);
@@ -1291,6 +1295,7 @@ export const EDITOR_PROVIDERS = [
             pool, docs, actions: infra.actions, hosts, env,
             schedule, agents: infra.agents, skills: infra.skills, handles: async () => (await infra.agents.list()).map((a) => a.handle),
             pauses: new SeriesPausesRepository(pool),
+            probe: sourceProberOf(pool, env),   // spec 076 A16: `reach` in the preview
           }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
@@ -1910,6 +1915,7 @@ export const EDITOR_PROVIDERS = [
           enabled: () => isEnabled(cfg),
           log: (m) => logger.warn(m),
           styleProposal: (ref) => proposeStyle(pool, ref),
+          probe: sourceProberOf(pool),   // spec 076 FR-004: a new or changed feed / page source is read on save
         });
       },
     },
@@ -2495,6 +2501,7 @@ export const EDITOR_PROVIDERS = [
     LaunchWorker,
     AuditWorker,
     ListResyncWorker,
+    SourceProbeWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,
@@ -2504,7 +2511,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController, SourcesController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

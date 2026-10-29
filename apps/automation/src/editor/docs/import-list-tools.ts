@@ -15,6 +15,7 @@ import {
 } from './import-list';
 import { importCaps, pagingPreview } from './json-pages';
 import { buildBundle, thenLine, type BundleDeps } from './import-bundle';
+import { importReach, type ReachProbe } from '../sources/import-reach';
 
 /** Spec 069 FR-002: the routing sentence of `import_list` (it leads the description; the rest is unchanged). */
 export const IMPORT_ROUTING = 'Коли власник каже "бери з X" / "не бери Y" або просить змінити джерело контенту — виклич import_list із series (серія, яку привʼязати до датасету) і stop_using (чого не брати; його словами), а зайві скіли про старе джерело вимкни через disable_skills: це одна картка, власник лише ставить позначки й тисне Apply; якщо серію поставив на паузу код (мертві дні), та сама картка її відновить (пункт «Resume», позначений) — окремо відновлювати не треба; паузу самого каналу картка лише пропонує, без позначки, і якщо такий пункт є на картці, скажи власнику його позначити: канал на паузі не планується зовсім, разом із серією, привʼязаною цією карткою; ніколи не пиши скіл про джерело контенту.';
@@ -40,6 +41,10 @@ export interface ImportToolDeps {
   handles?:  BundleDeps['handles'];
   /** Wave fix 068 × 069: the open pauses of the card's channel (the card resumes the pause of the series it rebinds). */
   pauses?:   BundleDeps['pauses'];
+  /** Spec 076 A16: the server's read of the page (`sourceProberOf`); without it the preview has no `reach`. */
+  probe?:    ReachProbe;
+  /** The clock `reach` measures a document's age by (tests). */
+  now?:      () => Date;
 }
 
 /** The weekly job and `resync_import` re-read lists unless the owner switched it off. */
@@ -84,7 +89,12 @@ export function buildImportListTools(d: ImportToolDeps): EditorTool[] {
         throw err;
       }
       const paging = doc.kind === 'json' ? pagingPreview(doc, { pages: i.pages, caps: importCaps(d.env) }) : null;
-      const preview = previewOf(plan, i.sample, !!existing, i.dataset, paging);
+      const base = previewOf(plan, i.sample, !!existing, i.dataset, paging);
+      // Spec 076 A16: can the server read this page again? An uploaded page, or one the probe cannot read, is re-synced by hand.
+      const reached = await importReach(doc, plan.url, d.probe, d.now?.());
+      const preview = reached
+        ? { ...base, reach: reached.reach, ...(reached.line ? { notes: [...(base.notes ?? []), reached.line] } : {}) }
+        : base;
       if (!plan.rows.length) return { error: 'nothing_to_import', details: 'no entry has everything a post needs; change the mapping, level or filter', preview };
       const { rows: dup } = await d.pool.query(
         `SELECT id FROM pending_actions WHERE kind = $1 AND status = 'pending' AND payload->>'url' = $2 AND payload->>'dataset' = $3 LIMIT 1`,

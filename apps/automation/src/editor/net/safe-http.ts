@@ -46,7 +46,7 @@ function parseProxyUrl(raw: string): AxiosProxyConfig | null {
 }
 
 /** The hosts of `EGRESS_PROXY_HOSTS`: lower-cased, without a leading `www.`. */
-function proxyHosts(raw: string | undefined): string[] {
+export function proxyHosts(raw: string | undefined): string[] {
   return (raw ?? '').split(',').map((h) => h.trim().toLowerCase().replace(/^www\./, '')).filter(Boolean);
 }
 

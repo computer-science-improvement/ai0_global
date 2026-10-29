@@ -233,7 +233,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - The 065, 066 and 070 import tests stay green.
   - **Done when:** an uploaded import never triggers a live fetch, and the owner is told to upload again.
 
-- [ ] **T7 Probe triggers, the worker and the sources controller** (FR-004, FR-008 endpoints, L7, A3, A16, A18, A26, A30)
+- [x] **T7 Probe triggers, the worker and the sources controller** (FR-004, FR-008 endpoints, L7, A3, A16, A18, A26, A30)
   - **What:**
     - `sources/sources.controller.ts` (`@Controller('api/editor/sources')`, `TrackingAuthGuard`; deps per A30), with four endpoints:
       - `POST probe`;
@@ -398,7 +398,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T4 `3260597d` — guarded live scan, the $0 all-unreachable skip, pre-flight feed hints.
 - T5 `ccb89849` — source health covers every source (playbook series, runway, probe), host notes through the note gate, the `resync_failed` note.
 - T6a `1f0b39f2` — `docFromBody` out of `fetchLive`, `origin: 'upload'` docs kept 7 days, `uploadPage`, the 12 MB body middleware, nginx 12m.
-- T6b — (commit hash filled in the next commit) import marks (`uploaded`, `auto_resync: false`), `upload_expired`, `resync_manual`, and `uploadPage` with `dataset` re-syncing from memory.
+- T6b `8f4e8859` — import marks (`uploaded`, `auto_resync: false`), `upload_expired`, `resync_manual`, and `uploadPage` with `dataset` re-syncing from memory.
+- T7 — (commit hash filled in the next commit) `SourceProbeWorker` (daily + paused re-probe), `SourcesController` (`probe`, `upload`, `drop`, `proxy-host`), `source-fixes.ts`, background probes on card save and series bind, `reach` in the `import_list` preview; host notes move from `toReplaceToday` to the worker.
 
 ## Deltas from the spec
 
@@ -427,3 +428,10 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
   - `ListImportOptions` is exported (the upload tests read the stored marks); `RESYNC_MANUAL_DETAILS` and `UPLOAD_EXPIRED_MESSAGE` are exported from `docs/import-list.ts`, so the tool, the card handler and the worker say the same words.
   - `runImport` forces `fresh: false` for an uploaded payload, whatever the caller passed, and stores `auto_resync: false` for it even when the Apply handler passes `autoResync: true`.
   - `uploadPage` checks the dataset (`not_available` without the database, `no_list_import`, `url_mismatch`) before it parses or stores anything, so a refused upload leaves nothing in the store. A failed re-sync answers `{ error: <class of the failure>, details }` (the class is the part before the first colon: `no_entries`, `upload_expired`, ...) and the page stays stored.
+- **T7.**
+  - Background probes follow the lead decision I18, not FR-004's wording: a save or a bind passes `maxAgeMs` of 24 h and never `force`, so the launch's own probe is not repeated. The button and the 6-hourly job are the forced paths.
+  - Three small files beyond the task's list. `sources/probe-triggers.ts` holds the pure parts of A30 (`changedCardSources`, `changedSeriesFeeds`, `probeInBackground`) so both services share one tested rule. `sources/import-reach.ts` holds the four cases of A16 as a pure function. `net/safe-http.ts` exports `proxyHosts`, which `source-fixes.ts` uses to read `EGRESS_PROXY_HOSTS` the way the proxy does.
+  - `EditorOpsDeps.probe` and `ScheduleServiceDeps.probe` are typed `BackgroundProbe` (`(url, { kind, maxAgeMs }) => Promise<unknown>`), not `SourceProber`. A `SourceProber` is assignable to it, and a test fake needs no overload cast. `ImportToolDeps.probe` is typed `ReachProbe` for the same reason, and `ImportToolDeps.now` is a clock for the age of a document.
+  - `proxy-host` also takes an optional `kind` for the forced probe it runs after adding the host, and answers `{ hosts, applied, probe }`. `drop` answers the `FixResult`.
+  - `net/host-strikes.061.pg.test.ts` changed: the note it asserted from `toReplaceToday` now comes from `noteStruckHosts` (A26), and a new assertion says the replacement run writes no host note.
+  - `editor.module.test.ts` needed no stub, as the task said.

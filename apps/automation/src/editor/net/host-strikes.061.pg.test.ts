@@ -136,7 +136,7 @@ test('the daily note over the real tables: one inbox note for the struck playboo
   assert.deepEqual((await notes())[0].parts, ['refused', 'strikes:4', 'since:never']);
   // Gated once: the same streak says nothing new. (The new code never sets noted_at, so the host is still in `struck()`.)
   assert.deepEqual(await svc.noteStruckHosts(card, null), []);
-  // The daily run entry point does the same and never fails the run.
+  // Spec 076 A26: the agent's daily replacement run no longer writes host notes (SourceProbeWorker does, every morning).
   assert.deepEqual(await svc.toReplaceToday(card, null), []);
   assert.equal((await notes()).length, 1);
   // A success, then three more strikes: a new streak, so a new `since:` part and a new note.
@@ -145,6 +145,8 @@ test('the daily note over the real tables: one inbox note for the struck playboo
   for (let i = 0; i < 3; i++) { await hosts.record('marktechpost.com', 'refused', 403); await expire(); }
   await hosts.record('marktechpost.com', 'refused', 403);
   await svc.toReplaceToday(card, null);
+  assert.equal((await notes()).length, 1, 'the replacement run says nothing about the new streak');
+  await svc.noteStruckHosts(card, null);
   const later = await notes();
   assert.equal(later.length, 2);
   assert.match(later[1].parts[2], /^since:\d{8}T\d{4}$/);
@@ -156,6 +158,6 @@ test('the daily note over the real tables: one inbox note for the struck playboo
   const own = await svc.forCard(card);
   assert.deepEqual(own.sources.map((s) => [s.id, s.state]), [['playbook:marktechpost.com', 'blocked']]);
   assert.deepEqual([own.sources[0].blocked?.host, own.sources[0].blocked?.reason, own.sources[0].blocked?.strikes], ['marktechpost.com/feed', 'feed_refused', 0]);
-  await svc.toReplaceToday(card, null);
+  await svc.noteStruckHosts(card, null);
   assert.equal((await notes()).length, 2, 'a feed\'s own refusal carries no strike, so no owner note');
 });

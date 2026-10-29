@@ -211,9 +211,10 @@ export class SourceHealthService {
   /**
    * The sources the agent's daily run is asked to replace today: those needing a replacement that were not asked about
    * this week. Each gets one owner Inbox note ("… is failing; the agent looks for a replacement"), at most weekly.
+   * The notes about struck hosts are not written here since spec 076 A26: `SourceProbeWorker` writes them every morning, for every
+   * active card, whether or not the agent proposes source changes (SOURCE_PROPOSALS).
    */
   async toReplaceToday(card: EditorCard, agentId: string | null): Promise<SourceHealth[]> {
-    await this.noteStruckHosts(card, agentId).catch(() => null);
     const need = await this.needingReplacement(card);
     if (!need.length || !this.d.pool) return need;
     const refs = need.map((h) => `${card.channelKey}/${h.id}`);

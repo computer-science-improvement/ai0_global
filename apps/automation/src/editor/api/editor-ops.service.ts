@@ -15,6 +15,7 @@ import { previewWithoutRun, type SlotPreview } from '../roles/preview-run';
 import { mergeCard } from './card-input';
 import type { StyleProposal } from '../post/style/style-proposal';
 import { errText } from '../../common/err-text';
+import { changedCardSources, probeInBackground, type BackgroundProbe } from '../sources/probe-triggers';
 
 export interface EditorOpsDeps {
   channels: Pick<EditorChannelsRepository, 'get' | 'list' | 'upsert'>;
@@ -30,6 +31,8 @@ export interface EditorOpsDeps {
   log?:     (msg: string) => void;
   /** Spec 037 FR-008: the style bootstrap proposal of a resource (read-only; absent = 503). */
   styleProposal?: (ref: string) => Promise<StyleProposal>;
+  /** Spec 076 FR-004: the server reads each new or changed feed / page source of a saved card in the background (the save does not wait). */
+  probe?: BackgroundProbe;
 }
 
 export interface RunOptions { wait?: boolean }
@@ -159,7 +162,10 @@ export class EditorOpsService {
     if (unknownSkills.length || unknownTools.length) {
       throw new BadRequestException({ error: 'invalid_card', unknownSkills, unknownTools });
     }
-    return this.d.channels.upsert(merged.card);
+    const saved = await this.d.channels.upsert(merged.card);
+    // Spec 076 FR-004 / A30: only a source that is new or changed against the card as it was; a mode-only save probes nothing.
+    probeInBackground(this.d.probe, changedCardSources(existing?.sources, merged.card.sources), this.d.log);
+    return saved;
   }
 
   // ── plans and slots ───────────────────────────────────────────────────────
