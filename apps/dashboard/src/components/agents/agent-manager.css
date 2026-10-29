@@ -93,7 +93,7 @@
 .amg-badges > .amg-push { min-width: 0; }
 .amg-facts { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .amg-line { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; min-width: 0; }
-.amg-key { padding-top: 1px; }
+.amg-key { min-width: 0; overflow-wrap: anywhere; }
 .amg-val { min-width: 0; line-height: 1.45; color: var(--color-ink-muted); overflow-wrap: anywhere; }
 .amg-pairs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-width: 0; }
 .amg-pair { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; }
