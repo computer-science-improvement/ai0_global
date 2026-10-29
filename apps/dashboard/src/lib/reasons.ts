@@ -68,7 +68,7 @@ export const REASONS: readonly ReasonView[] = [
   { code: 'superseded', en: 'Replaced by a newer plan' },
   { code: 'mode_changed', en: 'Channel mode changed' },
   { code: 'draft_canceled', en: 'Draft canceled' },
-  { code: 'series_paused', en: 'Series paused', fix: { en: 'Resume the series when its material is back.' }, link: '/app/agents/:agent?tab=schedule' },
+  { code: 'series_paused', en: 'Series paused', fix: { en: 'Resume the series once the cause of the pause is fixed.' }, link: '/app/agents/:agent?tab=schedule' },
   { code: 'rejected_by_owner', en: 'Rejected by you' },
   { code: 'resource_paused', en: 'Resource paused', fix: { en: 'Resume the resource to plan posts for it again.' }, link: '/app/agents/:agent' },
   { code: 'agent_paused', en: 'Agent paused', fix: { en: 'Resume the agent so that its slots run again.' }, link: '/app/agents/:agent' },

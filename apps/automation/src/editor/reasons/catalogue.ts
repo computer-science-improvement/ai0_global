@@ -131,7 +131,7 @@ export const REASONS: ReasonEntry[] = [
   { code: 'mode_changed', kind: 'skip', en: 'Channel mode changed', uk: 'Режим каналу змінено' },
   { code: 'draft_canceled', kind: 'skip', en: 'Draft canceled', uk: 'Чернетку скасовано' },
   { code: 'series_paused', kind: 'skip', en: 'Series paused', uk: 'Серію призупинено',
-    fix: { en: 'Resume the series when its material is back.', uk: 'Відновіть серію, коли зʼявиться матеріал.' }, link: '/app/agents/:agent?tab=schedule' },
+    fix: { en: 'Resume the series once the cause of the pause is fixed.', uk: 'Відновіть серію, коли причину паузи усунуто.' }, link: '/app/agents/:agent?tab=schedule' },
   { code: 'rejected_by_owner', kind: 'skip', en: 'Rejected by you', uk: 'Відхилено вами' },
   { code: 'resource_paused', kind: 'skip', en: 'Resource paused', uk: 'Ресурс призупинено',
     fix: { en: 'Resume the resource to plan posts for it again.', uk: 'Відновіть ресурс, щоб для нього знову планувались пости.' }, link: '/app/agents/:agent' },

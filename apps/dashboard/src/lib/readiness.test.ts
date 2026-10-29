@@ -99,6 +99,11 @@ test('S6: a finding is labelled from the reason mirror (lib/reasons.ts); a code 
   assert.equal(findingHint({ ...low, fix: fixOf('Do it') }), null);
   assert.equal(findingHint(f('auto_fixed', 'info')), null);
   assert.equal(findingHint(f('not_in_the_mirror', 'warn')), null);
+  // W1 integration review: a pause of an unreachable source has no Fix, so its row shows the shared skip entry's line, which
+  // must not name one cause (060 pauses for no material and for an unreachable source alike).
+  const paused = findingHint(f('series_paused', 'info'));
+  assert.equal(paused, 'Resume the series once the cause of the pause is fixed.');
+  assert.doesNotMatch(paused!, /material/);
 });
 
 test('fixToasts: what was applied, then the refusal in the server\'s words; an empty request says so', () => {
