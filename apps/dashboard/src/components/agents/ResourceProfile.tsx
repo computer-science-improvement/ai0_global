@@ -1,4 +1,4 @@
-// "Resource" section of an orchestrator's Overview tab (spec 018 FR-006): the
+// "Resource" section of an orchestrator's Settings leaf (spec 018 FR-006): the
 // resource's health (bot access, token state) and its profile — topic,
 // audience, goals in priority order, tone, taboo, sources, ads policy — that is
 // always in the agent's prompt. Edit opens a form with every field; the server
@@ -6,6 +6,7 @@
 // Spec 024 FR-011: the resource's time zone (searchable IANA list, default
 // Europe/Kyiv) and quiet hours; for a Telegram channel both belong to the
 // channel card and are shown read-only with a link to it.
+// Spec 078 D4: facts with overline keys, the form in a drawer, goals as chip-toggles. Styles in agent-settings.css (ast-).
 
 import { Link } from '@tanstack/react-router';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from 'react';
@@ -44,7 +45,7 @@ export function useResourceClock(handle: string, ref: string | null, profile: Re
 
 /** "Europe/Kyiv · now 16:04" */
 function ZoneNow({ tz }: { tz: string }) {
-  return <span className="tabular-nums">{tz}{tz !== KYIV_TZ ? <span style={{ color: 'var(--color-ink-dim)' }}> · now {formatIn(new Date(), tz)} (Kyiv {formatIn(new Date(), KYIV_TZ)})</span> : <span style={{ color: 'var(--color-ink-dim)' }}> · now {formatIn(new Date(), tz)}</span>}</span>;
+  return <span className="tabular-nums">{tz}{tz !== KYIV_TZ ? <span className="ast-dim"> · now {formatIn(new Date(), tz)} (Kyiv {formatIn(new Date(), KYIV_TZ)})</span> : <span className="ast-dim"> · now {formatIn(new Date(), tz)}</span>}</span>;
 }
 
 export const HEALTH: Record<HealthState, { tone: Tone; label: string }> = {
@@ -69,20 +70,21 @@ export function HealthBadge({ health }: { health: ResourceHealth | null }) {
   return <Badge tone={h.tone} title={`checked ${fmtDate(health.checkedAt)}`}>{h.label}</Badge>;
 }
 
+/** One fact: an overline key over its value. */
 function Meta({ label, children, wide }: { label: string; children: ReactNode; wide?: boolean }) {
   return (
-    <div style={{ minWidth: 0, gridColumn: wide ? '1 / -1' : undefined }}>
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>{label}</div>
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', minWidth: 0, overflowWrap: 'anywhere' }}>{children}</div>
+    <div className={`ast-fact${wide ? ' is-wide' : ''}`}>
+      <span className="text-overline">{label}</span>
+      <div className="ast-fact-value">{children}</div>
     </div>
   );
 }
 
 function Chips({ items, empty = '—' }: { items: string[]; empty?: string }) {
-  if (!items.length) return <span style={{ color: 'var(--color-ink-dim)' }}>{empty}</span>;
+  if (!items.length) return <span className="ast-dim">{empty}</span>;
   return (
-    <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>
-      {items.map((x, i) => <span key={`${x}-${i}`} className="chip" style={{ maxWidth: '100%', overflowWrap: 'anywhere' }}>{x}</span>)}
+    <span className="ast-chips">
+      {items.map((x, i) => <span key={`${x}-${i}`} className="chip">{x}</span>)}
     </span>
   );
 }
@@ -94,11 +96,11 @@ export function ResourceSection({ handle }: { handle: string }) {
   const d = q.data;
 
   const actions = (
-    <span style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap' }}>
-      <button type="button" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setDetails(true)}>
+    <span className="ast-actions">
+      <button type="button" className="btn-ghost btn-sm" onClick={() => setDetails(true)}>
         <Icon name="info" size={14} /> Details
       </button>
-      <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
+      <button type="button" className="btn-secondary btn-sm" onClick={() => setEditing(true)}>
         <Icon name="pencil" size={14} /> Edit
       </button>
     </span>
@@ -106,18 +108,18 @@ export function ResourceSection({ handle }: { handle: string }) {
 
   return (
     <SectionCard title="Resource" icon="globe" delay={20} style={{ marginBottom: 16 }} action={d?.profile ? actions : undefined}>
-      {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
-      {!d && !q.error && <div style={{ height: 80, opacity: 0.5 }} className="panel" />}
+      {q.error && <div className="callout-danger" role="alert">{describeError(q.error)}</div>}
+      {!d && !q.error && <div className="ast-skeleton" aria-busy="true" />}
       {d && (
         <>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14, minWidth: 0 }}>
-            {d.ref && <code className="chip" style={{ fontSize: 12, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }} title={d.ref}>{d.ref}</code>}
+          <div className="ast-head">
+            {d.ref && <code className="chip mono ast-ref" title={d.ref}>{d.ref}</code>}
             <HealthBadge health={d.health} />
             {d.health && (
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(d.health.checkedAt)}>checked {fmtRelative(d.health.checkedAt)}</span>
+              <span className="text-micro mono ast-dim" title={fmtDate(d.health.checkedAt)}>checked {fmtRelative(d.health.checkedAt)}</span>
             )}
             {d.health?.detail && (
-              <span className="text-micro clamp" style={{ color: 'var(--color-ink-muted)', flex: '1 1 100%', ['--clamp' as string]: 1 } as CSSProperties} title={d.health.detail}>{d.health.detail}</span>
+              <span className="text-micro clamp ast-detail" title={d.health.detail}>{d.health.detail}</span>
             )}
           </div>
 
@@ -125,11 +127,11 @@ export function ResourceSection({ handle }: { handle: string }) {
             <EmptyState icon="globe" title="The resource is not described yet"
               note={<>The profile tells the agent what the resource is about, who reads it and what counts as success. You can also ask <strong>@ai0</strong> in the chat to draft it — it proposes a card you apply.</>}
               action={
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <button type="button" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
+                <div className="ast-empty-actions">
+                  <button type="button" className="btn-primary" onClick={() => setEditing(true)}>
                     <Icon name="pencil" size={14} /> Describe the resource
                   </button>
-                  <Link to="/app/chat" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>
+                  <Link to="/app/chat" className="btn-secondary">
                     <Icon name="chat" size={14} /> Ask @ai0 in chat
                   </Link>
                 </div>
@@ -139,15 +141,15 @@ export function ResourceSection({ handle }: { handle: string }) {
       )}
       {details && d?.profile && (
         <Modal open onClose={() => setDetails(false)} size="lg" icon="globe" title="Resource profile" subtitle={d.ref ?? undefined}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+          <div className="ast-head">
             <HealthBadge health={d.health} />
-            {d.health && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>checked {fmtDate(d.health.checkedAt)}</span>}
-            {d.health?.detail && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', flex: '1 1 100%' }}>{d.health.detail}</span>}
+            {d.health && <span className="text-micro mono ast-dim">checked {fmtDate(d.health.checkedAt)}</span>}
+            {d.health?.detail && <span className="text-micro ast-detail">{d.health.detail}</span>}
           </div>
           <ProfileView handle={handle} refName={d.ref} p={d.profile} updatedAt={d.updatedAt} />
           <div className="modal-foot">
-            <button type="button" className="btn-secondary" onClick={() => setDetails(false)}>Close</button>
-            <button type="button" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => { setDetails(false); setEditing(true); }}>
+            <button type="button" className="btn-ghost" onClick={() => setDetails(false)}>Close</button>
+            <button type="button" className="btn-primary" onClick={() => { setDetails(false); setEditing(true); }}>
               <Icon name="pencil" size={14} /> Edit
             </button>
           </div>
@@ -162,12 +164,12 @@ export function ResourceSection({ handle }: { handle: string }) {
 function ProfileSummary({ handle, refName, p, updatedAt }: { handle: string; refName: string | null; p: ResourceProfile; updatedAt: string | null }) {
   const clock = useResourceClock(handle, refName, p);
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '14px 18px' }}>
-      <Meta label="Topic" wide><span className="clamp" style={{ ['--clamp' as string]: 2 } as CSSProperties} title={p.topic}>{p.topic}</span></Meta>
+    <div className="ast-facts">
+      <Meta label="Topic" wide><span className="clamp ast-topic" title={p.topic}>{p.topic}</span></Meta>
       <Meta label="Language"><span className="chip">{p.language}</span></Meta>
       <Meta label="Goals (by priority)"><GoalChips goals={p.goals} /></Meta>
       <Meta label={clock.telegram ? 'Time zone (channel card)' : 'Time zone'}><ZoneNow tz={clock.timezone} /></Meta>
-      {updatedAt && <div className="text-micro" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-dim)' }} title={fmtDate(updatedAt)}>updated {fmtRelative(updatedAt)} · audience, tone, taboo, sources and the rest in Details</div>}
+      {updatedAt && <div className="text-micro ast-dim ast-facts-foot" title={fmtDate(updatedAt)}>updated <span className="mono">{fmtRelative(updatedAt)}</span> · audience, tone, taboo, sources and the rest in Details</div>}
     </div>
   );
 }
@@ -177,26 +179,26 @@ function ProfileView({ handle, refName, p, updatedAt }: { handle: string; refNam
   const aud = [p.audience.who, p.audience.age, p.audience.region].filter(Boolean).join(' · ');
   const clock = useResourceClock(handle, refName, p);
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '14px 18px' }}>
+    <div className="inset ast-facts is-roomy">
       <Meta label="Topic" wide>{p.topic}</Meta>
       <Meta label="Audience">{aud || '—'}</Meta>
       <Meta label="Language"><span className="chip">{p.language}</span></Meta>
       <Meta label="Goals (by priority)"><GoalChips goals={p.goals} /></Meta>
-      <Meta label="Tone">{p.tone || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}</Meta>
-      <Meta label="Frequency">{p.frequency_hint || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}</Meta>
+      <Meta label="Tone">{p.tone || <span className="ast-dim">—</span>}</Meta>
+      <Meta label="Frequency">{p.frequency_hint || <span className="ast-dim">—</span>}</Meta>
       <Meta label={clock.telegram ? 'Time zone (channel card)' : 'Time zone'}><ZoneNow tz={clock.timezone} /></Meta>
       <Meta label={clock.telegram ? 'Quiet hours (channel card)' : 'Quiet hours'}><span className="tabular-nums">{fmtQuiet(clock.quiet)} {zoneLabel(clock.timezone)}</span></Meta>
       <Meta label="Ads">
         {p.ads_allowed.allowed
-          ? <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}><Badge tone="success">allowed</Badge><Chips items={p.ads_allowed.categories} empty="any category" /></span>
+          ? <span className="ast-inline"><Badge tone="success">allowed</Badge><Chips items={p.ads_allowed.categories} empty="any category" /></span>
           : <Badge tone="neutral">not allowed</Badge>}
       </Meta>
       {clock.telegram && <Meta label="News watch" wide><NewsWatchView w={p.news_watch} /></Meta>}
       <Meta label="Taboo" wide><Chips items={p.taboo} empty="none" /></Meta>
       <Meta label="Sources" wide><Chips items={p.sources} empty="none" /></Meta>
       <Meta label="Examples" wide><Chips items={p.examples} empty="none" /></Meta>
-      {p.notes && <Meta label="Notes" wide><span style={{ whiteSpace: 'pre-wrap' }}>{p.notes}</span></Meta>}
-      {updatedAt && <div className="text-micro" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-dim)' }} title={fmtDate(updatedAt)}>updated {fmtRelative(updatedAt)}</div>}
+      {p.notes && <Meta label="Notes" wide><span className="ast-pre">{p.notes}</span></Meta>}
+      {updatedAt && <div className="text-micro ast-dim ast-facts-foot" title={fmtDate(updatedAt)}>updated <span className="mono">{fmtRelative(updatedAt)}</span></div>}
     </div>
   );
 }
@@ -301,7 +303,7 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
     else if (!hit) unmatched.push(`${path || 'body'}: ${i.message}`);
   }
   const errs = { ...(tried ? local : {}), ...server };
-  const err = (k: keyof Form) => errs[k] && <div className="text-micro" role="alert" style={{ color: 'var(--color-danger)', marginTop: 4 }}>{errs[k]}</div>;
+  const err = (k: keyof Form) => errs[k] && <div className="text-micro ast-error" role="alert">{errs[k]}</div>;
 
   const toggleGoal = (g: KpiGoal) => set('goals', f.goals.includes(g) ? f.goals.filter((x) => x !== g) : [...f.goals, g]);
 
@@ -326,11 +328,11 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
   };
 
   return (
-    <Modal open onClose={onClose} size="lg" icon="globe" title={initial ? 'Edit resource profile' : 'Describe the resource'}
+    <Modal open onClose={onClose} size="drawer" icon="globe" title={initial ? 'Edit resource profile' : 'Describe the resource'}
       subtitle={refName ? `${refName} · always in the agent's prompt` : "Always in the agent's prompt"}>
       <div ref={formRef}>
       <Field label="Topic" hint={`${f.topic.trim().length} / 300 · what the resource is about`}>
-        <textarea className="input-field" style={{ ...input, minHeight: 64, resize: 'vertical', fontFamily: 'inherit' }} value={f.topic} maxLength={300}
+        <textarea className="input-field ast-textarea" style={input} value={f.topic} maxLength={300}
           placeholder="What the resource is about: topics, format, what sets it apart…" onChange={(e) => set('topic', e.target.value)} />
         {err('topic')}
       </Field>
@@ -351,19 +353,16 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
       </div>
 
       <Field label="Goals" hint="click in priority order · 1–4">
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }} role="group" aria-label="Goals">
+        <div className="ast-goals" role="group" aria-label="Goals">
           {KPI_GOALS.map((g) => {
             const n = f.goals.indexOf(g);
             const on = n >= 0;
             return (
-              <button key={g} type="button" aria-pressed={on} onClick={() => toggleGoal(g)} className={`chip${on ? ' is-active' : ''}`}
-                aria-label={`${GOAL_LABEL[g]} — ${GOAL_NOTE[g]}${on ? ` (priority ${n + 1})` : ''}`} style={{ gap: 6, cursor: 'pointer', border: 0, padding: '5px 10px', fontSize: 12.5 }}>
-                <span className="tabular-nums" style={{
-                  display: 'inline-grid', placeItems: 'center', width: 16, height: 16, borderRadius: 'var(--radius-pill)', fontSize: 10, fontWeight: 700,
-                  background: on ? 'var(--color-accent)' : 'var(--color-surface-2)', color: on ? 'var(--color-on-accent)' : 'var(--color-ink-dim)',
-                }}>{on ? n + 1 : '+'}</span>
+              <button key={g} type="button" aria-pressed={on} onClick={() => toggleGoal(g)} className="chip-toggle"
+                aria-label={`${GOAL_LABEL[g]} — ${GOAL_NOTE[g]}${on ? ` (priority ${n + 1})` : ''}`}>
+                <span className="ast-goal-n tabular-nums" aria-hidden>{on ? n + 1 : '+'}</span>
                 {GOAL_LABEL[g]}
-                <span style={{ color: 'var(--color-ink-dim)', fontWeight: 400 }}>· {GOAL_NOTE[g]}</span>
+                <span className="ast-dim">· {GOAL_NOTE[g]}</span>
               </button>
             );
           })}
@@ -384,9 +383,9 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
 
       {clock.telegram ? (
         <Field label="Time zone and quiet hours" hint="set on the channel card">
-          <div className="text-body-sm" style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink)' }}>
+          <div className="text-body-sm ast-zone-row">
             <ZoneNow tz={clock.timezone} />
-            <span className="tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>quiet {fmtQuiet(clock.quiet)}</span>
+            <span className="tabular-nums ast-muted">quiet {fmtQuiet(clock.quiet)}</span>
             {clock.channel && (
               <Link to="/app/editor/$channel" params={{ channel: clock.channel }} className="link-accent text-micro">Change on the channel card →</Link>
             )}
@@ -399,20 +398,20 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
               placeholder={KYIV_TZ} aria-label="Time zone" onChange={(e) => set('timezone', e.target.value)} />
             <datalist id="resource-tz-list">{zones.map((z) => <option key={z} value={z} />)}</datalist>
             {isValidZone(f.timezone.trim() || KYIV_TZ) && (
-              <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
+              <div className="text-micro tabular-nums ast-dim ast-under">
                 now {formatIn(new Date(), f.timezone.trim() || KYIV_TZ)} there · Kyiv {formatIn(new Date(), KYIV_TZ)}
               </div>
             )}
             {err('timezone')}
           </Field>
           <Field label="Quiet hours" hint="no posts between · empty = 23:00 → 08:00">
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-              <select className="input-field tabular-nums" aria-label="Quiet hours start" value={f.quietStart} onChange={(e) => set('quietStart', e.target.value)} style={{ flex: 1, minWidth: 0 }}>
+            <div className="ast-quiet">
+              <select className="input-field tabular-nums" aria-label="Quiet hours start" value={f.quietStart} onChange={(e) => set('quietStart', e.target.value)}>
                 <option value="">default</option>
                 {Array.from({ length: 24 }, (_, h) => <option key={h} value={String(h)}>{pad2(h)}:00</option>)}
               </select>
-              <span style={{ color: 'var(--color-ink-dim)' }}>→</span>
-              <select className="input-field tabular-nums" aria-label="Quiet hours end" value={f.quietEnd} onChange={(e) => set('quietEnd', e.target.value)} style={{ flex: 1, minWidth: 0 }}>
+              <span className="ast-dim" aria-hidden>→</span>
+              <select className="input-field tabular-nums" aria-label="Quiet hours end" value={f.quietEnd} onChange={(e) => set('quietEnd', e.target.value)}>
                 <option value="">default</option>
                 {Array.from({ length: 24 }, (_, h) => <option key={h} value={String(h)}>{pad2(h)}:00</option>)}
               </select>
@@ -443,7 +442,7 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
       </Field>
 
       <Field label="Ads">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div className="ast-stack">
           <Toggle checked={f.adsAllowed} onChange={(v) => set('adsAllowed', v)} label={f.adsAllowed ? 'Ads allowed' : 'No ads'} />
           {f.adsAllowed && (
             <ChipInput values={f.adCategories} onChange={(v) => set('adCategories', v)} max={20} maxLen={60} placeholder="education (empty = any category)" label="category" />
@@ -453,23 +452,23 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
       </Field>
 
       <Field label="Notes" hint={`optional · ${f.notes.trim().length} / 800`}>
-        <textarea className="input-field" style={{ ...input, minHeight: 64, resize: 'vertical', fontFamily: 'inherit' }} value={f.notes} maxLength={800}
+        <textarea className="input-field ast-textarea" style={input} value={f.notes} maxLength={800}
           onChange={(e) => set('notes', e.target.value)} />
         {err('notes')}
       </Field>
 
       {(unmatched.length > 0 || (put.error && !body?.issues?.length)) && (
-        <div className="callout-danger" style={{ marginBottom: 8, flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
+        <div className="callout-danger ast-issues" role="alert">
           {unmatched.length ? unmatched.map((u) => <span key={u} className="text-micro">{u}</span>) : <span className="text-micro">{describeError(put.error)}</span>}
         </div>
       )}
       {tried && (Object.keys(errs).length > 0 || !!nwError) && (
-        <div className="text-micro" style={{ color: 'var(--color-danger)', marginBottom: 4 }}>Fix the highlighted fields.</div>
+        <div className="text-micro ast-error">Fix the highlighted fields.</div>
       )}
       </div>
 
       <div className="modal-foot">
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={put.isPending} onClick={save}>{put.isPending ? 'Saving…' : 'Save resource'}</button>
       </div>
     </Modal>
@@ -506,12 +505,11 @@ export function ChipInput({ values, onChange, max, maxLen, minLen = 1, placehold
   };
   return (
     <div>
-      <div className="input-field" style={{ ...input, display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center', padding: '6px 8px', minHeight: 40 }}>
+      <div className="input-field ast-chipinput">
         {values.map((v) => (
-          <span key={v} className="chip" style={{ gap: 4, paddingRight: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}>
+          <span key={v} className="chip ast-chipinput-chip">
             {v}
-            <button type="button" aria-label={`Remove ${v}`} title="Remove" onClick={() => onChange(values.filter((x) => x !== v))}
-              style={{ background: 'none', border: 0, color: 'var(--color-ink-dim)', cursor: 'pointer', display: 'inline-flex', padding: 2 }}>
+            <button type="button" className="ast-chipinput-x" aria-label={`Remove ${v}`} title="Remove" onClick={() => onChange(values.filter((x) => x !== v))}>
               <Icon name="x" size={12} />
             </button>
           </span>
@@ -524,9 +522,9 @@ export function ChipInput({ values, onChange, max, maxLen, minLen = 1, placehold
           }}
           disabled={values.length >= max} aria-label={`Add ${label}`}
           placeholder={values.length ? '' : placeholder}
-          style={{ flex: '1 1 120px', minWidth: 80, border: 0, outline: 'none', background: 'transparent', color: 'var(--color-ink)', font: 'inherit', fontSize: 13, padding: '2px 0' }} />
+          className="ast-chipinput-field" />
       </div>
-      {hint && <div className="text-micro" style={{ color: 'var(--color-warning)', marginTop: 4 }}>{hint}</div>}
+      {hint && <div className="text-micro ast-hint">{hint}</div>}
     </div>
   );
 }

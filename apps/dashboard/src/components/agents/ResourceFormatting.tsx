@@ -1,9 +1,10 @@
-// "Formatting" section of an orchestrator's Overview tab (spec 024 FR-013):
+// "Formatting" section of an orchestrator's Settings leaf (spec 024 FR-013):
 // how posts are presented on each resource of the agent's network —
 // format_prefs the agents evolve themselves (update_resource_format, at most 3
 // changes per resource a day). The owner edits the same fields and locks any of
 // them (a locked field is read-only to agents); every change is a version with
 // who, when, why and the diff. Platform hard limits stay in code.
+// Spec 078 D4: a flush panel with a row per resource, the edit form in a drawer, locks as amber toggles. Styles: agent-settings.css (ast-).
 
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -12,6 +13,7 @@ import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
+import { RowActions, TableAction } from '../ui/table';
 import { ChipInput } from './ResourceProfile';
 import { PlatformIcon } from './NetworkUi';
 import { StyleSheetEditor } from './StyleSheetEditor';
@@ -39,69 +41,61 @@ export function FormattingSection({ handle }: { handle: string }) {
   const d = q.data;
 
   return (
-    <SectionCard title="Formatting" icon="wrench" delay={30} style={{ marginBottom: 16 }}>
-      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: '0 0 12px' }}>
+    <SectionCard title="Formatting" icon="wrench" flush delay={30} style={{ marginBottom: 16 }}>
+      <p className="text-body-sm ast-intro">
         How posts look on each resource. The agent adjusts these itself from results (at most {d?.changesPerDay ?? 3} changes per resource a day);
         lock a field to keep it yours. Platform limits are always enforced by code.
       </p>
-      {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
-      {!d && !q.error && <div style={{ height: 80, opacity: 0.5 }} className="panel" />}
+      {q.error && <div className="panel-row"><div className="callout-danger ast-grow" role="alert">{describeError(q.error)}</div></div>}
+      {!d && !q.error && <div className="panel-row"><div className="ast-skeleton ast-grow" aria-busy="true" /></div>}
       {d && !d.resources.length && <EmptyState icon="wrench" title="No resources to format" note="This agent has no resource of its own." />}
-      {d && d.resources.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {d.resources.map((r) => {
-            const l = label(r.ref);
-            // Humour and slang are always shown in one chip (unset = off, spec 034).
-            const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && k !== 'style' && !AUDIENCE_FIELDS.includes(k) && r.formatPrefs[k] !== undefined);
-            const voiceLocked = r.locks.includes('humor') || r.locks.includes('slang');
-            const audienceLocked = AUDIENCE_FIELDS.some((k) => r.locks.includes(k));
-            return (
-              <div key={r.ref} className="card row-lift" style={{ padding: '10px 12px', display: 'flex', gap: 12, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-                <div style={{ flex: '1 1 260px', minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
-                    <PlatformIcon platform={l.platform} />
-                    <strong className="text-body-sm" title={l.title} style={{ overflowWrap: 'anywhere' }}>{r.title ?? l.label}</strong>
-                    <Badge tone={r.changesToday >= d.changesPerDay ? 'warning' : 'neutral'} title="Agent changes today (resource time zone)">
-                      {r.changesToday}/{d.changesPerDay} today
-                    </Badge>
-                    {r.locks.length > 0 && <Badge tone="accent">{r.locks.length} locked</Badge>}
-                  </div>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
-                    <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
-                      title="Humour and slang are off unless you allow them; agents cannot turn them on">
-                      {voiceLocked && <Icon name="lock" size={11} />}
-                      <span style={{ color: 'var(--color-ink-dim)' }}>Voice:</span> {voiceSummary(r.formatPrefs)}
-                    </span>
-                    <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
-                      title="Polls and questions to readers are capped; plans and posts over the cap are refused. Agents can only lower the caps">
-                      {audienceLocked && <Icon name="lock" size={11} />}
-                      <span style={{ color: 'var(--color-ink-dim)' }}>Audience asks:</span> {audienceSummary(r.formatPrefs, r.audience)}
-                    </span>
-                    <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
-                      title="The style sheet (yours only); unset fields use the defaults">
-                      <span style={{ color: 'var(--color-ink-dim)' }}>Style:</span> {styleSummary(r.style?.effective ?? r.formatPrefs.style)}
-                    </span>
-                  </div>
-                  {/* The fields set beyond the three summaries: a count here, the values in the edit dialog. */}
-                  <span className="text-micro clamp" style={{ color: 'var(--color-ink-dim)', ['--clamp' as string]: 1 } as CSSProperties}
-                    title={set.length ? set.map((k) => `${r.locks.includes(k) ? '🔒 ' : ''}${FORMAT_LABEL[k]}: ${formatValue(k, r.formatPrefs[k])}`).join('\n') : undefined}>
-                    {set.length
-                      ? `+${set.length} more ${set.length === 1 ? 'field' : 'fields'} set: ${set.map((k) => FORMAT_LABEL[k].toLowerCase()).join(', ')}`
-                      : "Other fields not set — the agent's judgement"}
-                  </span>
-                </div>
-                <button type="button" className="btn-act" aria-label={`Edit formatting of ${l.label}`} title="Edit" onClick={() => setEditing(r)}>
-                  <Icon name="pencil" size={14} />
-                </button>
+      {d && d.resources.map((r) => {
+        const l = label(r.ref);
+        // Humour and slang are always shown in one chip (unset = off, spec 034).
+        const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && k !== 'style' && !AUDIENCE_FIELDS.includes(k) && r.formatPrefs[k] !== undefined);
+        const voiceLocked = r.locks.includes('humor') || r.locks.includes('slang');
+        const audienceLocked = AUDIENCE_FIELDS.some((k) => r.locks.includes(k));
+        return (
+          <div key={r.ref} className="panel-row ast-res">
+            <div className="ast-res-main">
+              <div className="ast-res-title">
+                <PlatformIcon platform={l.platform} />
+                <strong className="ast-res-name" title={l.title}>{r.title ?? l.label}</strong>
+                <Badge tone={r.changesToday >= d.changesPerDay ? 'warning' : 'neutral'} title="Agent changes today (resource time zone)">
+                  {r.changesToday}/{d.changesPerDay} today
+                </Badge>
+                {r.locks.length > 0 && <Badge tone="warning" title="Fields only you can change">{r.locks.length} locked</Badge>}
               </div>
-            );
-          })}
-        </div>
-      )}
+              <div className="ast-res-chips">
+                <span className="chip" title="Humour and slang are off unless you allow them; agents cannot turn them on">
+                  {voiceLocked && <Icon name="lock" size={11} />}
+                  <span className="ast-dim">Voice:</span> {voiceSummary(r.formatPrefs)}
+                </span>
+                <span className="chip" title="Polls and questions to readers are capped; plans and posts over the cap are refused. Agents can only lower the caps">
+                  {audienceLocked && <Icon name="lock" size={11} />}
+                  <span className="ast-dim">Audience asks:</span> {audienceSummary(r.formatPrefs, r.audience)}
+                </span>
+                <span className="chip" title="The style sheet (yours only); unset fields use the defaults">
+                  <span className="ast-dim">Style:</span> {styleSummary(r.style?.effective ?? r.formatPrefs.style)}
+                </span>
+              </div>
+              {/* The fields set beyond the three summaries: a count here, the values in the edit dialog. */}
+              <span className="text-micro clamp ast-dim ast-res-more"
+                title={set.length ? set.map((k) => `${r.locks.includes(k) ? '🔒 ' : ''}${FORMAT_LABEL[k]}: ${formatValue(k, r.formatPrefs[k])}`).join('\n') : undefined}>
+                {set.length
+                  ? `+${set.length} more ${set.length === 1 ? 'field' : 'fields'} set: ${set.map((k) => FORMAT_LABEL[k].toLowerCase()).join(', ')}`
+                  : "Other fields not set — the agent's judgement"}
+              </span>
+            </div>
+            <RowActions>
+              <TableAction action="edit" title={`Edit formatting of ${l.label}`} onClick={() => setEditing(r)} />
+            </RowActions>
+          </div>
+        );
+      })}
       {d && (
-        <div style={{ marginTop: 12 }}>
-          <button type="button" className="btn-ghost" onClick={() => setShowHistory(true)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <div className="panel-foot">
+          <button type="button" className="btn-ghost btn-sm" onClick={() => setShowHistory(true)}>
             <Icon name="history" size={14} /> Change history ({d.history.length})
           </button>
         </div>
@@ -111,7 +105,7 @@ export function FormattingSection({ handle }: { handle: string }) {
           subtitle="Who changed what, when and why — the agent's changes and yours">
           <History items={d.history} label={(ref) => label(ref).label} />
           <div className="modal-foot">
-            <button type="button" className="btn-secondary" onClick={() => setShowHistory(false)}>Close</button>
+            <button type="button" className="btn-ghost" onClick={() => setShowHistory(false)}>Close</button>
           </div>
         </Modal>
       )}
@@ -126,21 +120,21 @@ function who(v: FormatVersion): string {
 }
 
 function History({ items, label }: { items: FormatVersion[]; label: (ref: string) => string }) {
-  if (!items.length) return <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 8 }}>No changes yet.</div>;
+  if (!items.length) return <div className="text-micro ast-dim">No changes yet.</div>;
   return (
-    <ol style={{ listStyle: 'none', padding: 0, margin: '8px 0 0', display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <ol className="ast-history">
       {items.map((v) => (
-        <li key={v.id} className="panel" style={{ padding: '8px 10px' }}>
-          <div className="text-micro" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', color: 'var(--color-ink-muted)' }}>
+        <li key={v.id} className="inset ast-version">
+          <div className="text-micro ast-version-head">
             <Badge tone={v.changedBy === 'agent' ? 'accent' : 'neutral'}>{who(v)}</Badge>
-            <span style={{ overflowWrap: 'anywhere' }}>{label(v.resourceRef)}</span>
-            <span title={fmtDate(v.createdAt)}>· {fmtRelative(v.createdAt)}</span>
-            <span>· v{v.version}</span>
+            <span className="ast-wrap">{label(v.resourceRef)}</span>
+            <span className="mono ast-dim" title={fmtDate(v.createdAt)}>{fmtRelative(v.createdAt)}</span>
+            <span className="mono ast-dim">v{v.version}</span>
           </div>
-          {v.reason && <div className="text-body-sm" style={{ marginTop: 4, overflowWrap: 'anywhere' }}>{v.reason}</div>}
-          <ul style={{ margin: '4px 0 0', paddingLeft: 16 }}>
+          {v.reason && <div className="text-body-sm ast-wrap">{v.reason}</div>}
+          <ul className="ast-diff">
             {Object.entries(v.diff).map(([k, x]) => (
-              <li key={k} className="text-micro" style={{ overflowWrap: 'anywhere' }}>{diffLine(k, x.from, x.to)}</li>
+              <li key={k} className="text-micro ast-wrap">{diffLine(k, x.from, x.to)}</li>
             ))}
           </ul>
         </li>
@@ -160,9 +154,8 @@ function diffLine(key: string, from: unknown, to: unknown): ReactNode {
 
 function LockToggle({ field, locked, onChange }: { field: FormatPrefField; locked: boolean; onChange: (v: boolean) => void }) {
   return (
-    <button type="button" className="btn-act" aria-pressed={locked} onClick={() => onChange(!locked)}
-      aria-label={`${locked ? 'Unlock' : 'Lock'} ${FORMAT_LABEL[field]}`} title={locked ? 'Locked: the agent cannot change it' : 'Unlocked: the agent may change it'}
-      style={{ flexShrink: 0, color: locked ? 'var(--color-accent)' : 'var(--color-ink-dim)' }}>
+    <button type="button" className="btn-act ast-lock" aria-pressed={locked} onClick={() => onChange(!locked)}
+      aria-label={`${locked ? 'Unlock' : 'Lock'} ${FORMAT_LABEL[field]}`} title={locked ? 'Locked: the agent cannot change it' : 'Unlocked: the agent may change it'}>
       <Icon name={locked ? 'lock' : 'unlock'} size={14} />
     </button>
   );
@@ -170,9 +163,9 @@ function LockToggle({ field, locked, onChange }: { field: FormatPrefField; locke
 
 function Row({ field, locked, onLock, children }: { field: FormatPrefField; locked: boolean; onLock: (v: boolean) => void; children: ReactNode }) {
   return (
-    <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-      <div style={{ flex: 1, minWidth: 0 }}>{children}</div>
-      <div style={{ paddingTop: 24 }}><LockToggle field={field} locked={locked} onChange={onLock} /></div>
+    <div className="ast-lockrow">
+      <div className="ast-lockrow-field">{children}</div>
+      <div className="ast-lockrow-lock"><LockToggle field={field} locked={locked} onChange={onLock} /></div>
     </div>
   );
 }
@@ -213,7 +206,7 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
   };
 
   return (
-    <Modal open onClose={onClose} size="lg" icon="wrench" title="Edit formatting" subtitle={`${title} · empty = the agent's judgement · lock = the agent cannot change it`}>
+    <Modal open onClose={onClose} size="drawer" icon="wrench" title="Edit formatting" subtitle={`${title} · empty = the agent's judgement · lock = the agent cannot change it`}>
       <StyleSheetEditor resource={resource} form={sf} onChange={(v) => { setSf(v); if (put.error) put.reset(); }}
         vocabulary={vocab} onVocabulary={(v) => { setVocab(v); setVocabTouched(true); }} />
       <Row field="tone" locked={is('tone')} onLock={lock('tone')}>
@@ -324,16 +317,16 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
       </Row>
       <Row field="notes" locked={is('notes')} onLock={lock('notes')}>
         <Field label="Notes" hint={`${f.notes.trim().length} / 1000`}>
-          <textarea className="input-field" style={{ ...input, minHeight: 64, resize: 'vertical', fontFamily: 'inherit' }} value={f.notes} maxLength={1000} onChange={(e) => set('notes', e.target.value)} />
+          <textarea className="input-field ast-textarea" style={input} value={f.notes} maxLength={1000} onChange={(e) => set('notes', e.target.value)} />
         </Field>
       </Row>
       {put.error && (
-        <div className="callout-danger" style={{ marginBottom: 8, flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
+        <div className="callout-danger ast-issues" role="alert">
           {issues.length ? issues.map((x) => <span key={x} className="text-micro">{x}</span>) : <span className="text-micro">{describeError(put.error)}</span>}
         </div>
       )}
       <div className="modal-foot">
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={put.isPending || upsertCard.isPending} onClick={save}>{put.isPending || upsertCard.isPending ? 'Saving…' : 'Save formatting'}</button>
       </div>
     </Modal>
