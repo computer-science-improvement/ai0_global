@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useAddMtprotoSession } from '../../api/mtproto-sessions';
 import { Modal } from '../Modal';
-import { Icon } from '../Icon';
+import { Icon } from '../ui/Icon';
 import { Field } from '../ui/primitives';
+import './connections.css';
 
 interface Props {
   open:    boolean;
@@ -61,8 +62,8 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
           placeholder="Paste the StringSession"
           autoComplete="off"
           spellCheck={false}
-          className="input-field"
-          style={{ width: '100%', minHeight: 96, fontFamily: 'var(--font-mono, monospace)', WebkitTextSecurity: 'disc' } as React.CSSProperties}
+          className="input-field conn-secret"
+          style={{ width: '100%', minHeight: 96 }}
         />
       </Field>
 
@@ -76,9 +77,7 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
           <option value="tracker">Tracker — stats / competitor tracking</option>
           <option value="agent">Agent — read-only DM triage (SP1)</option>
         </select>
-        <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-          Agent = read-only DM triage; Tracker = stats/competitor tracking.
-        </p>
+        <span className="conn-field-note">Agent = read-only DM triage; Tracker = stats/competitor tracking.</span>
       </Field>
 
       <div style={{ display: 'flex', gap: 12 }}>
@@ -103,27 +102,25 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
               placeholder="from my.telegram.org"
               autoComplete="off"
               spellCheck={false}
-              className="input-field"
-              style={{ width: '100%', fontFamily: 'var(--font-mono, monospace)', WebkitTextSecurity: 'disc' } as React.CSSProperties}
+              className="input-field conn-secret"
+              style={{ width: '100%' }}
             />
           </Field>
         </div>
       </div>
 
       {!apiIdValid && (
-        <p className="text-micro" style={{ color: 'var(--color-danger)', margin: '-4px 0 10px' }}>
-          API ID must be numeric.
-        </p>
+        <p className="conn-form-error" role="alert" style={{ marginTop: -4 }}>API ID must be numeric.</p>
       )}
       {credsHalfFilled && (
-        <p className="text-micro" style={{ color: 'var(--color-danger)', margin: '-4px 0 10px' }}>
+        <p className="conn-form-error" role="alert" style={{ marginTop: -4 }}>
           Provide both API ID and API hash, or leave both empty to use the <code>.env</code> credentials.
         </p>
       )}
 
-      <div className="callout-warning" style={{ marginBottom: 16 }}>
+      <div className="inset conn-hint">
         <Icon name="info" size={14} />
-        <span className="text-micro">
+        <span>
           The session string and API hash are encrypted on save — never stored in
           plaintext, logged, or shown again. The API ID/hash come from{' '}
           <b>my.telegram.org</b>; leave them empty to reuse the <code>.env</code>{' '}
@@ -134,13 +131,13 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
       </div>
 
       {create.error && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
+        <p className="conn-form-error" role="alert">
           {(create.error as Error).message}
         </p>
       )}
 
       <div className="modal-foot">
-        <button onClick={onClose} className="btn-secondary">Cancel</button>
+        <button onClick={onClose} className="btn-ghost">Cancel</button>
         <button
           onClick={submit}
           disabled={!canSubmit}

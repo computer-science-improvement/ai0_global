@@ -19,6 +19,12 @@ import { BotsManager } from '../components/connections/BotsManager';
 import { TelegraphManager } from '../components/connections/TelegraphManager';
 import { MetaAccountsManager } from '../components/connections/MetaAccountsManager';
 import { TikTokAccountsManager } from '../components/connections/TikTokAccountsManager';
+import { useMtprotoSessions } from '../api/mtproto-sessions';
+import { useBots } from '../api/bots';
+import { useTelegraphAccounts } from '../api/telegraph';
+import { useMetaAccounts } from '../api/meta-accounts';
+import { useTikTokAccounts } from '../api/tiktok-accounts';
+import { connectionCounts } from '../lib/connection-counts';
 
 type Section = 'telegram' | 'meta' | 'tiktok';
 
@@ -77,18 +83,35 @@ function ConnectionsPage() {
   const tgTab: TelegramTab = TELEGRAM_TABS.some((o) => o.key === tab) ? (tab as TelegramTab) : 'sessions';
   const metaTab: MetaTab   = META_TABS.some((o) => o.key === tab) ? (tab as MetaTab) : 'facebook';
 
+  // The numbers on the tabs come from the lists the managers load anyway (same query keys, so no extra requests).
+  const sessions = useMtprotoSessions();
+  const bots = useBots();
+  const telegraph = useTelegraphAccounts();
+  const meta = useMetaAccounts();
+  const tiktokAccounts = useTikTokAccounts();
+  const counts = connectionCounts({ sessions: sessions.data, bots: bots.data, telegraph: telegraph.data, meta: meta.data, tiktok: tiktokAccounts.data });
+  const total = counts.telegram != null && counts.meta != null && counts.tiktok != null ? counts.telegram + counts.meta + counts.tiktok : null;
+  const eyebrow = total == null ? undefined
+    : `${total} ${total === 1 ? 'connection' : 'connections'}${counts.problems ? ` · ${counts.problems} with errors` : ''}`;
+
   return (
     <div>
-      <PageHeader title="Connections" subtitle={SUBTITLE[section]} />
+      <PageHeader eyebrow={eyebrow} title="Connections" subtitle={SUBTITLE[section]} />
 
-      <div style={{ overflowX: 'auto', marginBottom: 18, paddingBottom: 2 }}>
-        <SegmentedTabs value={section} onChange={setSection} options={SECTIONS} />
+      <div style={{ marginBottom: 18 }}>
+        <SegmentedTabs
+          value={section} onChange={setSection} ariaLabel="Provider"
+          options={SECTIONS.map((o) => ({ ...o, count: counts[o.key] }))}
+        />
       </div>
 
       {section === 'telegram' && (
         <div>
-          <div style={{ overflowX: 'auto', marginBottom: 20, paddingBottom: 2 }}>
-            <SegmentedTabs value={tgTab} onChange={setTab} options={TELEGRAM_TABS} size="sm" />
+          <div style={{ marginBottom: 20 }}>
+            <SegmentedTabs
+              value={tgTab} onChange={setTab} variant="underline" ariaLabel="Telegram connections"
+              options={TELEGRAM_TABS.map((o) => ({ ...o, count: counts[o.key] }))}
+            />
           </div>
           {tgTab === 'sessions'  && <SessionsPanel />}
           {tgTab === 'bots'      && <BotsManager />}
@@ -98,8 +121,11 @@ function ConnectionsPage() {
 
       {section === 'meta' && (
         <div>
-          <div style={{ overflowX: 'auto', marginBottom: 20, paddingBottom: 2 }}>
-            <SegmentedTabs value={metaTab} onChange={setTab} options={META_TABS} size="sm" />
+          <div style={{ marginBottom: 20 }}>
+            <SegmentedTabs
+              value={metaTab} onChange={setTab} variant="underline" ariaLabel="Meta platforms"
+              options={META_TABS.map((o) => ({ ...o, count: counts[o.key] }))}
+            />
           </div>
           <MetaAccountsManager platform={metaTab} />
         </div>

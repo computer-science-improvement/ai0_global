@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useCreateTelegraphAccount } from '../api/telegraph';
 import { Modal } from './Modal';
-import { Icon } from './Icon';
+import { Icon } from './ui/Icon';
 import { Field } from './ui/primitives';
+import './connections/connections.css';
 
 interface Props {
   open:    boolean;
@@ -93,23 +94,23 @@ export function AddTelegraphAccountModal({ open, onClose }: Props) {
         />
       </Field>
 
-      <div className="callout-warning" style={{ marginBottom: 16 }}>
+      <div className="inset conn-hint">
         <Icon name="info" size={14} />
-        <span className="text-micro">
+        <span>
           {token.trim()
-            ? <>The token is encrypted on save — it is never stored in plaintext or shown again. Click <b>Verify</b> after saving. Mint a token via <code style={{ color: 'var(--color-ink)' }}>api.telegra.ph/createAccount</code>.</>
-            : <>Put the Telegraph access token into <code style={{ color: 'var(--color-ink)' }}>.env</code> as <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || 'TELEGRAPH_ACCESS_TOKEN'}=…</code> and restart automation. Then click <b>Verify</b>. Or paste the token value above to store it encrypted. Mint a token via <code style={{ color: 'var(--color-ink)' }}>api.telegra.ph/createAccount</code>.</>}
+            ? <>The token is encrypted on save — it is never stored in plaintext or shown again. Click <b>Verify</b> after saving. Mint a token via <code>api.telegra.ph/createAccount</code>.</>
+            : <>Put the Telegraph access token into <code>.env</code> as <code>{tokenEnv || 'TELEGRAPH_ACCESS_TOKEN'}=…</code> and restart automation. Then click <b>Verify</b>. Or paste the token value above to store it encrypted. Mint a token via <code>api.telegra.ph/createAccount</code>.</>}
         </span>
       </div>
 
       {create.error && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
+        <p className="conn-form-error" role="alert">
           {(create.error as Error).message}
         </p>
       )}
 
       <div className="modal-foot">
-        <button onClick={onClose} className="btn-secondary">Cancel</button>
+        <button onClick={onClose} className="btn-ghost">Cancel</button>
         <button
           onClick={submit}
           disabled={!accountId || !hasSecret || create.isPending}

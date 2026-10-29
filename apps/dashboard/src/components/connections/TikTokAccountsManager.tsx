@@ -5,6 +5,9 @@
 import { useState } from 'react';
 import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
+import { EmptyState } from '../ui/primitives';
+import { TableAction, RowActions } from '../ui/table';
+import { ConnAdd, ConnError, ConnPanel, ConnRow, ConnState } from './ConnUi';
 import { useConfirm } from '../ui/ConfirmDialog';
 import {
   useTikTokAccounts, useToggleTikTokAccount, useDeleteTikTokAccount, startTikTokOAuth,
@@ -29,48 +32,38 @@ export function TikTokAccountsManager({ notice }: { notice?: 'connected' | 'erro
   const accounts = data ?? [];
 
   return (
-    <div>
+    <>
       {notice === 'connected' && (
-        <div className="card" style={{ marginBottom: 16, padding: 12 }}>
-          <Badge tone="success">TikTok account connected</Badge>
+        <div className="callout-success" role="status" style={{ marginBottom: 16 }}>
+          <Icon name="check" size={14} />
+          <span className="text-body-sm">TikTok account connected</span>
         </div>
       )}
       {notice === 'error' && (
-        <div className="callout-warning" style={{ marginBottom: 16 }}>
+        <div className="callout-danger" role="alert" style={{ marginBottom: 16 }}>
           <Icon name="info" size={14} />
-          <span className="text-micro">TikTok connection failed — try again.</span>
+          <span className="text-body-sm">TikTok connection failed — try again.</span>
         </div>
       )}
 
-      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
-        <div>
-          <h2 className="text-eyebrow" style={{ margin: 0 }}>TikTok</h2>
-          <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            Connected creator accounts. Tokens are stored securely and refreshed automatically.
-          </p>
-        </div>
-        <button onClick={connect} disabled={connecting} className="btn-primary" style={{ gap: 6 }}>
-          <Icon name="tiktok" size={14} /> {connecting ? 'Redirecting…' : 'Connect TikTok'}
-        </button>
-      </div>
+      <ConnPanel
+        title="TikTok"
+        note="Connected creator accounts. Tokens are stored securely and refreshed automatically."
+        add={<ConnAdd icon="tiktok" onClick={connect} disabled={connecting}>{connecting ? 'Redirecting…' : 'Connect TikTok'}</ConnAdd>}
+      >
+        <ConnError error={connectError} />
+        <ConnState loading={isLoading} error={error} />
 
-      {connectError && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>{connectError}</p>
-      )}
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-      {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
+        {!isLoading && accounts.length === 0 && (
+          <EmptyState
+            icon="tiktok"
+            title="No TikTok accounts yet"
+            note="Connect one to publish carousels."
+          />
+        )}
 
-      {!isLoading && accounts.length === 0 && (
-        <div className="card" style={{ textAlign: 'center', padding: 40 }}>
-          <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            No TikTok accounts yet — connect one to publish carousels.
-          </p>
-        </div>
-      )}
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {accounts.map(a => (
-          <AccountCard
+          <AccountRow
             key={a.id}
             account={a}
             onToggle={async () => {
@@ -84,55 +77,34 @@ export function TikTokAccountsManager({ notice }: { notice?: 'connected' | 'erro
             }}
           />
         ))}
-      </div>
-    </div>
+      </ConnPanel>
+    </>
   );
 }
 
-function AccountCard({ account: a, onToggle, onDelete }: {
+function AccountRow({ account: a, onToggle, onDelete }: {
   account: TikTokAccount; onToggle: () => void; onDelete: () => void;
 }) {
   return (
-    <div className="card" style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}>
-      <Avatar url={a.avatar_url} />
-      <div style={{ flex: 1, minWidth: 200 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
-            {a.display_name ?? a.username ?? a.open_id}
-          </span>
-          {a.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{a.username}</span>}
-          {!a.active && <Badge tone="neutral">inactive</Badge>}
-        </div>
-        <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
-          {a.last_refreshed_at && <>token refreshed {fmtDate(a.last_refreshed_at)}</>}
-        </div>
-        <div style={{ marginTop: 8 }}>
-          {a.refresh_error
-            ? <Badge tone="danger"><span title={a.refresh_error}>{a.refresh_error.slice(0, 48)}</span></Badge>
-            : <Badge tone="success">connected</Badge>}
-        </div>
+    <ConnRow
+      lead={a.avatar_url ? <img src={a.avatar_url} alt="" width={36} height={36} /> : <Icon name="tiktok" size={16} />}
+      actions={
+        <RowActions danger={<TableAction action="delete" onClick={onDelete} />}>
+          <TableAction action={a.active ? 'pause' : 'enable'} onClick={onToggle} />
+        </RowActions>
+      }
+    >
+      <div className="conn-title">
+        <span className="conn-name">{a.display_name ?? a.username ?? a.open_id}</span>
+        {a.username && <span className="conn-handle">@{a.username}</span>}
+        {a.refresh_error
+          ? <Badge tone="danger" title={a.refresh_error}>{a.refresh_error.slice(0, 48)}</Badge>
+          : <Badge tone="success">connected</Badge>}
+        {!a.active && <Badge tone="neutral">inactive</Badge>}
       </div>
-      <div style={{ display: 'inline-flex', gap: 6 }}>
-        <button onClick={onToggle} className="btn-tiny">{a.active ? 'Pause' : 'Activate'}</button>
-        <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Delete</button>
-      </div>
-    </div>
-  );
-}
-
-function Avatar({ url }: { url: string | null }) {
-  const size = 48;
-  if (url) {
-    return <img src={url} alt="" width={size} height={size}
-      style={{ borderRadius: 999, objectFit: 'cover', flexShrink: 0 }} />;
-  }
-  return (
-    <div style={{
-      width: size, height: size, borderRadius: 999, flexShrink: 0,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'var(--color-surface-3)', color: 'var(--color-ink-muted)',
-    }}>
-      <Icon name="tiktok" size={22} />
-    </div>
+      {a.last_refreshed_at && (
+        <div className="conn-sub">token refreshed <span className="mono">{fmtDate(a.last_refreshed_at)}</span></div>
+      )}
+    </ConnRow>
   );
 }

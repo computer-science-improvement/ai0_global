@@ -1,0 +1,122 @@
+/* Connections, Groups and the Meta account page (spec 078 C2).
+   Entity lists (bots, sessions, Telegraph, Meta and TikTok accounts) are rows of a flush panel: the row itself is the shared
+   `.panel-row`; these classes only lay out what is inside it. Tokens only, no literal colours. */
+
+/* ── A manager's panel: a one-line note under the head, load / error lines ──────────────────────────── */
+.conn-note {
+  margin: -6px 0 0; padding: 0 20px 14px; max-width: 780px;
+  font-size: 13px; line-height: 1.5; color: var(--color-ink-muted);
+}
+.conn-note b { color: var(--color-ink); font-weight: 600; }
+.conn-code { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink); }
+.conn-state { margin: 0; padding: 16px 20px; font-size: 14px; color: var(--color-ink-muted); border-top: 1px solid var(--color-hairline); }
+.conn-pad { padding: 0 20px 16px; }
+.conn-pad > .callout-danger { margin: 0; }
+.conn-error { margin: 0; padding: 0 20px 12px; font-size: 13px; color: var(--color-danger-ink); }
+
+/* ── One connection row ───────────────────────────────────────────────────────────────────────────── */
+.conn-row { align-items: center; }
+.conn-row.is-link { cursor: pointer; }
+.conn-lead {
+  flex: none; width: 36px; height: 36px; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md); background: var(--color-surface-3);
+  border: 1px solid var(--color-hairline); color: var(--color-ink-muted);
+}
+.conn-lead > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* The identity block: glyph + title / meta lines. It is a plain div, or a link to the account's page (Meta). */
+.conn-ident { flex: 1 1 280px; min-width: 0; display: flex; align-items: flex-start; gap: 14px; color: inherit; text-decoration: none; }
+.conn-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.conn-title { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.conn-name { min-width: 0; overflow-wrap: anywhere; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); }
+.conn-name-btn { padding: 0; border: 0; background: none; font: inherit; text-align: left; color: inherit; cursor: pointer; }
+.conn-name-btn:hover { text-decoration: underline; }
+.conn-handle { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink-muted); }
+/* The muted line under the title: env names, ids, last verify. */
+.conn-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; min-width: 0; font-size: 12px; color: var(--color-ink-dim); }
+.conn-sub .mono { color: var(--color-ink-muted); }
+.conn-sub a, .conn-sub button { font: inherit; }
+.conn-stat { flex: none; min-width: 84px; text-align: right; }
+.conn-stat-value { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; color: var(--color-ink); }
+.conn-stat-label { font-size: 12px; color: var(--color-ink-dim); }
+.conn-stat-delta { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink-muted); }
+.conn-stat-delta.is-up { color: var(--color-success); }
+.conn-stat-delta.is-down { color: var(--color-danger-ink); }
+.conn-actions { flex: none; margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.conn-actions-err { max-width: 240px; text-align: right; font-size: 12px; color: var(--color-danger-ink); }
+
+/* Key / value facts under an identity (the MTProto session row). */
+.conn-facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 6px; }
+.conn-fact { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.conn-fact-v { font-size: 13px; color: var(--color-ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.conn-fact-v.is-dim { color: var(--color-ink-dim); }
+.conn-fact-v.is-muted { color: var(--color-ink-muted); }
+
+/* Token line of a Meta row: type badge, a toned expiry with a dot, the first scopes. */
+.conn-token { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 4px; font-size: 12px; color: var(--color-ink-dim); }
+.conn-token-expiry { display: inline-flex; align-items: center; gap: 6px; }
+.conn-token-expiry.is-ok { color: var(--color-success); }
+.conn-token-expiry.is-warn { color: var(--color-warning); }
+.conn-token-expiry.is-bad { color: var(--color-danger-ink); font-weight: 500; }
+.conn-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.conn-link-btn { padding: 0; border: 0; background: none; font: inherit; color: var(--color-accent); text-decoration: underline; cursor: pointer; }
+.conn-scopes { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; }
+.conn-scope { font-family: var(--font-mono); font-feature-settings: normal; font-size: 11px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--color-surface-3); color: var(--color-ink-muted); }
+
+/* ── Add-account dialogs: the "where does the secret go" note ─────────────────────────────────────── */
+.conn-hint { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; color: var(--color-ink-muted); }
+.conn-hint > svg { flex: none; margin-top: 2px; color: var(--color-ink-dim); }
+.conn-hint code { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink); }
+.conn-hint b { color: var(--color-ink); font-weight: 600; }
+.conn-field-note { display: block; margin-top: 4px; font-size: 12px; color: var(--color-ink-dim); }
+.conn-field-note.is-error { color: var(--color-danger-ink); }
+.conn-form-error { margin: 0 0 12px; font-size: 14px; color: var(--color-danger-ink); }
+.conn-secret { font-family: var(--font-mono); font-feature-settings: normal; -webkit-text-security: disc; }
+
+/* ── Phones: the row's numbers and actions drop under the identity, left aligned ──────────────────── */
+@media (max-width: 600px) {
+  .conn-stat { text-align: left; }
+  .conn-actions { margin-left: 0; align-items: flex-start; width: 100%; }
+  .conn-actions-err { text-align: left; }
+  .conn-note { padding-left: 16px; padding-right: 16px; }
+  .conn-state { padding-left: 16px; padding-right: 16px; }
+  .conn-pad { padding-left: 16px; padding-right: 16px; }
+  .conn-error { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ── Groups page: intro, composer, the cards of .group-card (index.css) with their rails of ports ─────── */
+.grp-intro { margin: 0 0 16px; max-width: 760px; font-size: 13px; line-height: 1.6; color: var(--color-ink-muted); }
+.grp-intro b { color: var(--color-ink); font-weight: 600; }
+.grp-compose { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 14px 16px; }
+.grp-state { margin: 0 0 12px; font-size: 14px; color: var(--color-ink-muted); }
+.grp-list { display: flex; flex-direction: column; gap: 14px; }
+.grp-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.grp-name { color: var(--color-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.grp-linked { margin-top: 2px; font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink-dim); }
+.grp-linked.is-full { color: var(--color-success); }
+.grp-source { display: flex; align-items: center; gap: 8px; }
+.group-card .group-port-head { font-family: var(--font-mono); font-feature-settings: normal; letter-spacing: 0.08em; }
+.grp-source-tag { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; color: var(--color-accent); font-weight: 600; }
+.grp-port-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink); font-weight: 500; }
+.grp-port-none { margin-top: auto; font-size: 12px; color: var(--color-ink-dim); }
+.callout-warning.grp-warn { margin-top: 8px; padding: 8px 10px; gap: 8px; align-items: flex-start; font-size: 12px; }
+.callout-warning.grp-warn > svg { flex: none; margin-top: 1px; }
+/* The remove control of a filled port: a 28px target (a 44px hit area through ::after), always shown on touch. */
+.group-card .group-x { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; flex: none; }
+.group-card .group-x::after { content: ''; position: absolute; inset: -8px; }
+/* Phones: name and the delete control share the first line, the source picker / "independent" tag drop under them. */
+@media (max-width: 600px) {
+  .grp-source { width: 100%; justify-content: space-between; }
+  .grp-head > .grp-source, .grp-head > .chip { order: 3; }
+}
+
+/* ── Meta account page: toned follower changes in the stat tiles, the scopes block of the token panel ── */
+.meta-delta.is-up { color: var(--color-success); }
+.meta-delta.is-down { color: var(--color-danger-ink); }
+.meta-scopes { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-hairline-soft); }
+
+/* Notes inside the delete-confirm dialogs (they render in a portal, so the classes are plain, not nested). */
+.conn-dialog-note { margin: 0 0 8px; color: var(--color-ink-muted); }
+.conn-dialog-note.is-flush { margin: 0; }
+.conn-dialog-strong { color: var(--color-ink); }
+.conn-dialog-dim { color: var(--color-ink-dim); }
