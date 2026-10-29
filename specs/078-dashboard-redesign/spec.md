@@ -1,6 +1,6 @@
 # 078 — Dashboard redesign
 
-Status: in progress · Linear AI0-249 · Builds on 027 (navigation), 060 (series pauses, inbox note actions), 012 (owner bot) · No migrations
+Status: done · Linear AI0-249 · Builds on 027 (navigation), 060 (series pauses, inbox note actions), 012 (owner bot) · No migrations
 
 ## Why
 

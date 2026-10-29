@@ -104,7 +104,7 @@ All route files are in `src/routes/`.
 | `/app/editor/run/$id` | "&lt;role&gt; run" | `app.editor_.run.$id.tsx` | `EditorRunPage` |
 | `/app/editor/slot/$id` | the slot topic | `app.editor_.slot.$id.tsx` | `EditorSlotPage` |
 | `/app/graph` | Channel graph | `app.graph.tsx` | `GraphPage` |
-| `/app/health` | Network health | `app.health.tsx` | inline `HealthPage`, rendering `NetworkHealthView` and `OwnerBotSection` (`src/components/health/`) |
+| `/app/health` | Network health | `app.health.tsx` | inline `HealthPage`, rendering `NetworkHealthView`, `DigestSection` (the KPI digest, its own endpoint) and `OwnerBotSection` (`src/components/health/`) |
 | `/app/landing` | Landing | `app.landing.tsx` | `LandingAdminPage` |
 | `/app/logs` | Logs | `app.logs.tsx` | `LogsPage` |
 | `/app/map` | Network map (h1 in `components/map/MapHud.tsx:46`) | `app.map.tsx` | `MapPage` (`src/components/map/MapPage.tsx`) |
@@ -185,11 +185,12 @@ These render outside `AppShell`, with no sidebar and no session check.
   - line 99: `--color-danger-ink`;
   - lines 102–112: the shadow and motion tokens (new in 078).
 - **In practice the app does not use Tailwind utilities.**
-  - Styling is inline `style={{ … var(--color-…) }}` objects (2,030 occurrences in 167 of 232 `.tsx` files; about 3,300 before the redesign) plus hand-written classes in `index.css` and in the per-area stylesheets below.
+  - Styling is hand-written classes in `index.css` and in the per-area stylesheets below. Inline `style=` remains for layout and for values computed from data (972 occurrences in 152 of 233 `.tsx` files; about 3,300 before the redesign). Waves D and E1 of spec 078 moved the static inline colours, sizes and radii into classes.
+  - One-off text colour: the ink helpers `.ink-muted`, `.ink-dim`, `.ink-accent`, `.ink-warning`, `.ink-danger`, `.ink-success` (`index.css`, after `.text-eyebrow`).
   - The rule in `apps/dashboard/CLAUDE.md` is that inline styles are for layout only; colour, type and borders belong in classes.
   - Tailwind utility classes appear in `Pagination.tsx` and the four chart wrappers (`h-64 w-full`).
 - **The rules for using tokens** are in `apps/dashboard/CLAUDE.md` ("General": always CSS variables, never hard-coded hex except small per-destination tints).
-- **Per-area stylesheets.** Spec 078 moved most page styling out of inline `<style>` blocks into 30 CSS files next to the components. Each is imported by the component that uses it. Line counts:
+- **Per-area stylesheets.** Spec 078 moved most page styling out of inline `<style>` blocks and inline styles into 38 CSS files next to the components. Most are imported by the component or route that uses them. The files of components that node tests load (they cannot import CSS) are imported once by the `/app` layout, `routes/app.tsx`: `auth.css`, the four agent tab files, `approvals.css`, `digest.css`, `editor.css`, `artifacts.css`, `agents-ui.css`, `inbox.css`. `main.tsx` imports `index.css` before the router, so an area rule wins over a global rule of the same specificity. Line counts:
 
 | Area | File (under `src/components/`) | Lines |
 |---|---|---|
@@ -197,15 +198,22 @@ These render outside `AppShell`, with no sidebar and no session check.
 | Today | `today/today.css` | 154 |
 | Inbox | `inbox/inbox.css` | 76 |
 | Calendar | `calendar/calendar.css` | 124 |
-| Agent page | `agents/agent-detail.css` | 88 |
+| Agent page | `agents/agent-detail.css` | 89 |
+| Agent tabs: plan, schedule, promo, loadout, in force | `agents/agent-plan.css` (`apl-`) | 305 |
+| Agent tabs: playbook, ideas, skills, memory | `agents/agent-playbook.css` (`apb-`) | 271 |
+| Manager, reviews, directives, proposal cards | `agents/agent-manager.css` (`amg-`) | 260 |
+| Agent settings leaf | `agents/agent-settings.css` (`ast-`) | 119 |
+| Shared agent controls (toggle, radio, time input) | `agents/agents-ui.css` | 32 |
+| Approvals | `approvals/approvals.css` (`appr-`) | 109 |
+| Artifacts | `artifacts/artifacts.css` | 7 |
 | Agents list | `agents-list/agents-list.css` | 27 |
 | Strategies (migration notice) | `strategies/migration.css` | 28 |
 | Channels | `channels/channels.css` (also imported by several other areas) | 244 |
 | Connections | `connections/connections.css` | 122 |
 | Data | `data/data.css` | 128 |
 | DM inbox | `dm/dm.css` | 45 |
-| Editor | `editor/editor.css` | 62 |
-| Network health | `health/health.css` | 75 |
+| Editor | `editor/editor.css` | 85 |
+| Network health | `health/health.css`, `health/digest.css` (`hd-`) | 75, 82 |
 | Models | `models/models.css`, `models/model-select.css` | 57, 31 |
 | Settings | `settings/settings.css` | 84 |
 | Spend | `spend/spend.css` | 32 |
@@ -288,7 +296,7 @@ Hex colours that live outside the tokens (allowed as per-destination tints, plus
 
 At 600px and below, `.text-display-xl` becomes 40, `-lg` 32, `-md` 25 and `.text-headline` 19.
 
-The contract in `apps/dashboard/CLAUDE.md` is that the smallest type is 11px and sizes are whole pixels. The code does not fully follow it: 27 `font-size` declarations in 13 files are below 11px (`map.css` 6, `AgentPlan.tsx` 6, `PostAuditNotes.tsx` 4, `Directives.tsx` 2, `sidebar.css` 1, and one each in `ApprovalFindings`, `ResourceProfile`, `PlaybookEditor`, `NetworkUi`, `ManagerReviews`, `AgentSkills`, `AgentPlaybook` and `AgentIdeas`), and 16 declarations in 6 files use half pixels.
+The contract in `apps/dashboard/CLAUDE.md` is that the smallest type is 11px and sizes are whole pixels. After waves D and E1 the only sizes below 11px are three SVG glyph labels in `map.css` (`.map-mode-pill text`, `.map-level-badge text`, `.map-emoji-badge text`: text drawn inside fixed badge geometry, scaled with the map).
 
 ### 2.4 Radii
 
@@ -437,7 +445,7 @@ Shared components that sit next to `ui/` but are primitives in practice:
 | Inbox | `InboxPage`, `InboxList`, `InboxDetail`, `NoteActions` (master and detail; a bottom sheet at 860px and below) | `inbox/` |
 | Calendar | `CalendarPage`, `WeekGrid` (5-day window), `ComposerDrawer`, `useMinute` | `calendar/` |
 | Agent page | `AgentTabs`, `AgentHeader`, `AgentSettings`, `ActiveEffects`; tab list in `lib/agent-tabs.ts` | `agents/` |
-| Network health | `NetworkHealthView`, `OwnerBotSection` | `health/` |
+| Network health | `NetworkHealthView`, `DigestSection` (KPI digest: strip, resource cards, answers to @manager), `OwnerBotSection` | `health/` |
 | Lists | `ChannelRow` | `ChannelRow.tsx:20` |
 | | `ApprovalList` / `ApprovalCard` | `approvals/ApprovalList.tsx:29`, `approvals/ApprovalCard.tsx:71` |
 | | `DirectiveCard` (the reference `CompactCard`) | `agents/Directives.tsx:354` |

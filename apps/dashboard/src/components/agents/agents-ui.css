@@ -26,6 +26,7 @@ input.agent-radio { accent-color: var(--color-accent); }
 
 /* A link that keeps the colour of the text around it (the Models link in a field hint). */
 .link-inherit { color: inherit; }
+.link-inherit:hover { opacity: 0.85; } /* the dim a bare text link gets (index.css `a:not([class])`) */
 
 /* The post times of an agent: a chip's remove button and the time input. */
 .time-remove { display: inline-flex; padding: 2px; background: none; border: 0; color: var(--color-ink-dim); cursor: pointer; }

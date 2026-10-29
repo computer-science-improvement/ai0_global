@@ -1042,6 +1042,7 @@ The dashboard and the landing page have a new look: dark panels with hairlines, 
 - **Calendar** (`/app/calendar`) is new. It shows a week of agent slots and your own posts.
   - **Add** opens the composer as a side sheet (`?compose=new&channel=&day=`). A post opens with `?compose=edit&post=`.
   - "Ask the agent" adds a one-off pin to the agent's schedule. The toast's Undo withdraws it.
+- **The network KPI digest** (per-resource KPIs, anomalies, quality flags, open directives, the answers to `@manager`) was a card on the old Overview. It is now at the bottom of **Health** (`/app/health`), after Stuck work; it reads its own endpoint, so it shows even when the health checks above fail. On a phone only flagged resources show until you open the rest.
 - **Redirects** keep old links working: `/app/strategies*` → Agents, `/app/bots` and `/app/telegraph` → Connections, `/app/agent` → DM, `/app/setup` and `/app/steering` → Artifacts.
 - **Landing (`/`)**: a new hero with an orbit of the network's agents and an agent log built from the public pulse.
   - The sections and anchors are unchanged, and so are the lead-form and CTA tracking.

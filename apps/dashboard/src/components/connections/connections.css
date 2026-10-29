@@ -125,4 +125,4 @@
 
 /* A compact select inside a row, and an input whose value failed validation. */
 .input-field.conn-select-sm { padding: 5px 10px; font-size: 13px; }
-.input-field.is-invalid { border-color: var(--color-danger); }
+.input-field.is-invalid, .input-field.is-invalid:hover:not(:disabled):not(:focus) { border-color: var(--color-danger); }

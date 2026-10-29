@@ -821,7 +821,7 @@ a.panel-row, button.panel-row { width: 100%; color: inherit; font: inherit; text
   color: var(--color-ink);
   border: 1px solid var(--color-hairline);
   border-radius: var(--radius-sm);
-  padding: 6px 8px; font-size: 12.5px;
+  padding: 6px 8px; font-size: 13px;
   transition: border-color 0.12s ease;
 }
 .group-assign:hover  { border-color: var(--color-hairline-strong); }
@@ -1255,7 +1255,7 @@ ul.tg-rich-list { list-style: disc; }
 .cmdk-item.is-active { background: var(--color-surface-3); color: var(--color-ink); }
 .cmdk-icon { display: inline-flex; flex: none; }
 .cmdk-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-.cmdk-label { font-size: 13.5px; color: var(--color-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmdk-label { font-size: 14px; color: var(--color-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cmdk-detail { font-size: 11px; color: var(--color-ink-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cmdk-tag { font-size: 11px; color: var(--color-ink-dim); border: 1px dashed var(--color-hairline-strong); border-radius: var(--radius-pill); padding: 0 6px; flex: none; }
 .cmdk-kind { font-size: 11px; color: var(--color-ink-dim); flex: none; min-width: 40px; text-align: right; }
@@ -1277,7 +1277,7 @@ ul.tg-rich-list { list-style: disc; }
 .md-h1 { font-size: 1.2em; }
 .md-h2 { font-size: 1.1em; }
 .md-h3 { font-size: 1em; }
-.md-pre { margin: 0 0 8px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--color-surface-2); border: 1px solid var(--color-hairline); overflow-x: auto; white-space: pre; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; word-break: normal; }
+.md-pre { margin: 0 0 8px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--color-surface-2); border: 1px solid var(--color-hairline); overflow-x: auto; white-space: pre; font-family: var(--font-mono); font-size: 12px; line-height: 1.5; word-break: normal; }
 .md-quote { margin: 0 0 8px; padding: 2px 0 2px 12px; border-left: 3px solid var(--color-hairline-strong); color: var(--color-ink-muted); }
 .md-hr { border: 0; border-top: 1px solid var(--color-hairline); margin: 10px 0; }
 .md-table-wrap { max-width: 100%; overflow-x: auto; margin: 0 0 8px; border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); -webkit-overflow-scrolling: touch; }
