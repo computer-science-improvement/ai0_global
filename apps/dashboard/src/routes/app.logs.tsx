@@ -237,7 +237,7 @@ function LogsPage() {
         {range === 'custom' && (
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
             <input type="date" aria-label="From" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field" style={selectStyle} />
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>→</span>
+            <span className="text-micro ink-dim">→</span>
             <input type="date" aria-label="To" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field" style={selectStyle} />
           </span>
         )}
@@ -266,7 +266,7 @@ function LogsPage() {
           <Icon name="warning" size={16} />
           <div style={{ flex: '1 1 220px', minWidth: 0 }}>
             <div className="text-heading-md">Couldn’t load activity</div>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2, overflowWrap: 'anywhere' }}>{(q.error as Error).message}</div>
+            <div className="text-body-sm ink-muted" style={{ marginTop: 2, overflowWrap: 'anywhere' }}>{(q.error as Error).message}</div>
           </div>
           <button className="btn-secondary btn-sm" onClick={() => q.refetch()}>
             <Icon name="refresh" size={13} /> Retry
@@ -285,14 +285,14 @@ function LogsPage() {
       {!q.isLoading && !q.error && items.length > 0 && (
         <>
           <SectionCard title="Activity" flush delay={40}
-            action={<span className="mono text-caption" style={{ color: 'var(--color-ink-dim)' }}>Kyiv time</span>}>
+            action={<span className="mono text-caption ink-dim">Kyiv time</span>}>
             {groups.map((g, gi) => {
               const heading = dayHeading(g.day, today);
               return (
                 <div key={`${g.day}-${gi}`} className="log-group">
                   <div className="log-day">
                     <span className="text-overline">{heading}</span>
-                    {(heading === 'Today' || heading === 'Yesterday') && <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{fmtDayShort(g.day)}</span>}
+                    {(heading === 'Today' || heading === 'Yesterday') && <span className="mono text-micro ink-dim">{fmtDayShort(g.day)}</span>}
                     <span className="log-day-count mono tabular-nums">{g.items.length}</span>
                   </div>
                   <div>

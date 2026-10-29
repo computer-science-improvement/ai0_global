@@ -52,7 +52,7 @@ export function SidebarItem({ item, collapsed, active, pinned, badge, onNavigate
   const count = badge && badge.count > 0 ? badge.count : 0;
   const shown = badgeText(count);
   const tone = badge?.tone ?? 'accent';
-  const toneVar = tone === 'danger' ? 'var(--color-danger)' : tone === 'warning' ? 'var(--color-warning)' : 'var(--color-accent)';
+  const toneDot = tone === 'danger' ? 'is-danger' : tone === 'warning' ? 'is-warning' : 'is-accent';
   const title = collapsed
     ? `${item.label}${count ? ` (${badge!.title})` : ''}`
     : item.unavailable ? 'This page no longer exists' : undefined;
@@ -61,8 +61,8 @@ export function SidebarItem({ item, collapsed, active, pinned, badge, onNavigate
     <>
       <span style={{ position: 'relative', display: 'inline-flex' }}>
         <Icon name={item.icon} size={16} />
-        {collapsed && count > 0 && <span className="nav-dot" aria-hidden style={{ background: toneVar }} />}
-        {collapsed && !count && item.isNew && <span className="nav-dot" aria-hidden style={{ background: 'var(--color-accent)' }} />}
+        {collapsed && count > 0 && <span className={`nav-dot ${toneDot}`} aria-hidden />}
+        {collapsed && !count && item.isNew && <span className="nav-dot is-accent" aria-hidden />}
       </span>
       {!collapsed && <span className="nav-label">{item.label}</span>}
       {!collapsed && item.isNew && !count && <span className="nav-new" title="New page since you last edited the menu">new</span>}

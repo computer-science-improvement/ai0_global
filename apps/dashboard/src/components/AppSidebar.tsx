@@ -170,7 +170,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
 
   const moreTitle = hiddenRollup ? `More tools. Needs attention:\n${hiddenRollup.title}` : 'More tools';
   const moreDot = hiddenRollup && (
-    <span className="nav-dot" aria-hidden style={{ background: hiddenRollup.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)' }} />
+    <span className={`nav-dot ${hiddenRollup.tone === 'danger' ? 'is-danger' : 'is-warning'}`} aria-hidden />
   );
   const moreSr = hiddenRollup && <span className="sr-only">. Needs attention: {hiddenRollup.title}</span>;
 

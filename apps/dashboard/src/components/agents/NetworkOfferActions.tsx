@@ -45,7 +45,7 @@ export function NetworkOfferActions({ groupId, handle, onDone }: { groupId: stri
     const ok = await confirm('switch this network to independent resources', {
       danger: false, confirmLabel: 'Switch to independent',
       details: (
-        <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
+        <p className="text-body-sm ink-muted" style={{ margin: 0, lineHeight: 1.5 }}>
           Each member becomes its own resource: the agent decides per post whether to duplicate, adapt, write a unique post
           or skip. {SWITCH_CONFIRM_NOTE} The change applies from the next plan day.
         </p>

@@ -122,3 +122,7 @@
 .conn-dialog-note.is-flush { margin: 0; }
 .conn-dialog-strong { color: var(--color-ink); }
 .conn-dialog-dim { color: var(--color-ink-dim); }
+
+/* A compact select inside a row, and an input whose value failed validation. */
+.input-field.conn-select-sm { padding: 5px 10px; font-size: 13px; }
+.input-field.is-invalid { border-color: var(--color-danger); }

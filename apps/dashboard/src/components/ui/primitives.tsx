@@ -27,7 +27,7 @@ export function Field({ label, hint, children, style }: {
     <div style={{ marginBottom: 16, ...style }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
         <span className="text-eyebrow">{label}</span>
-        {hint && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{hint}</span>}
+        {hint && <span className="text-micro ink-dim">{hint}</span>}
       </div>
       {children}
     </div>
@@ -126,7 +126,7 @@ export function SectionCard({ title, icon, action, children, style, delay, inter
     >
       <div className={flush ? 'panel-head' : 'section-head'}>
         {icon && <span className="section-glyph"><Icon name={icon} size={15} /></span>}
-        <h2 className="text-heading-md" style={{ margin: 0, color: 'var(--color-ink)' }}>
+        <h2 className="text-heading-md" style={{ margin: 0 }}>
           {title}
         </h2>
         {action && <div style={{ marginLeft: 'auto' }}>{action}</div>}

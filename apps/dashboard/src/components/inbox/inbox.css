@@ -74,3 +74,6 @@
 .inbox-tech .code-block { margin-top: 4px; }
 
 @media (max-width: 600px) { .inbox-detail-title { font-size: 20px; } }
+
+/* NoteActions (shared by the inbox and Today's "Needs you"; routes/app.tsx loads this file for it): the small action size. */
+.btn-primary.note-act, .btn-secondary.note-act, .btn-ghost.note-act { font-size: 12px; }

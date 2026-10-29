@@ -49,14 +49,14 @@ function ComposePage() {
       {/* Contextual hint band: sets expectations before the form. */}
       <div className="inset compose-rise"
         style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '12px 16px', marginBottom: 24, animationDelay: '80ms' }}>
-        <span style={{ display: 'inline-flex', color: 'var(--color-accent)', marginTop: 1, flexShrink: 0 }}>
+        <span className="ink-accent" style={{ display: 'inline-flex', marginTop: 1, flexShrink: 0 }}>
           <Icon name="info" size={16} />
         </span>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)', minWidth: 0 }}>
+        <span className="text-body-sm ink-muted" style={{ minWidth: 0 }}>
           Edit the message on the left and preview the rendered Telegram bubble on the right.
-          {' '}Formatting accepts Telegram HTML: <code style={{ color: 'var(--color-ink)' }}>&lt;b&gt;</code>,{' '}
-          <code style={{ color: 'var(--color-ink)' }}>&lt;i&gt;</code>,{' '}
-          <code style={{ color: 'var(--color-ink)' }}>&lt;a href&gt;</code>.
+          {' '}Formatting accepts Telegram HTML: <code className="pc-code">&lt;b&gt;</code>,{' '}
+          <code className="pc-code">&lt;i&gt;</code>,{' '}
+          <code className="pc-code">&lt;a href&gt;</code>.
         </span>
       </div>
 
@@ -70,10 +70,10 @@ function ComposePage() {
       {loading ? (
         <div className="panel compose-rise" aria-busy="true"
           style={{ display: 'flex', alignItems: 'center', gap: 10, animationDelay: '120ms' }}>
-          <span style={{ display: 'inline-flex', color: 'var(--color-ink-dim)' }}>
+          <span className="ink-dim" style={{ display: 'inline-flex' }}>
             <Icon name="refresh" size={16} />
           </span>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
+          <span className="text-body-sm ink-muted">
             Loading post…
           </span>
         </div>

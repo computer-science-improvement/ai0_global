@@ -106,19 +106,19 @@ export function NeedsYouList({ needs, now, delay }: { needs: NeedsYou; now: Date
             note="The server did not answer. The rest of the page still works."
             action={<Button type="button" variant="secondary" size="sm" onClick={needs.retry}>Try again</Button>} />
         ) : !needs.loaded ? (
-          <p className="text-caption" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center', color: 'var(--color-ink-muted)' }}>Loading what needs you…</p>
+          <p className="text-caption ink-muted" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center' }}>Loading what needs you…</p>
         ) : (
           <EmptyState tone="clear" title="All clear for today" note="Agents keep working. New decisions will show up here." />
         )
       )}
       {needs.failed && queues && (
-        <div className="panel-foot text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+        <div className="panel-foot text-micro ink-muted">
           Notes could not be loaded.
           <Button type="button" variant="ghost" size="sm" onClick={needs.retry}>Try again</Button>
         </div>
       )}
       {needs.openCount > rows.length && (
-        <div className="panel-foot text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+        <div className="panel-foot text-micro ink-muted">
           {needs.openCount - rows.length} more {needs.openCount - rows.length === 1 ? 'note needs' : 'notes need'} you in the inbox.
         </div>
       )}

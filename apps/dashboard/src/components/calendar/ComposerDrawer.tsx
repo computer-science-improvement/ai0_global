@@ -188,7 +188,7 @@ export function ComposerDrawer(p: ComposerDrawerProps) {
 function Waiting() {
   return (
     <div className="pc-body" role="status" aria-busy>
-      <p className="pc-note" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>
+      <p className="pc-note is-muted">Loading…</p>
     </div>
   );
 }

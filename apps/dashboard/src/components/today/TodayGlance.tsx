@@ -69,7 +69,7 @@ export function TodayGlance({ day, delay }: { day: TodayDay; delay?: number }) {
             <Button type="button" variant="secondary" size="sm" onClick={() => { void day.plansQ.refetch(); }}>Try again</Button>
           </div>
         ) : day.loading ? (
-          <p className="text-caption" role="status" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Loading today's slots…</p>
+          <p className="text-caption ink-muted" role="status" style={{ margin: 0 }}>Loading today's slots…</p>
         ) : (
           <>
             <SlotRing summary={day.summary} />

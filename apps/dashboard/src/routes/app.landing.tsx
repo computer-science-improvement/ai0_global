@@ -181,8 +181,8 @@ function PageSetup(): JSX.Element {
             <div className="callout-danger" role="alert">
               <Icon name="warning" size={16} />
               <div>
-                <div className="text-body" style={{ fontWeight: 500 }}>Couldn’t load landing resources</div>
-                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
+                <div className="text-body ld-callout-title">Couldn’t load landing resources</div>
+                <div className="text-body-sm ink-muted" style={{ marginTop: 2 }}>
                   {(error as Error).message}
                 </div>
               </div>

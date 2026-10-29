@@ -108,7 +108,7 @@ function AgentPage() {
       {tab === 'approvals' && d.channelKey && <ApprovalStatsPanel channel={d.channelKey} />}
       {tab === 'approvals' && (d.channelKey
         ? <ApprovalList filter={{ channel: d.channelKey }} emptyNote={`When @${orchestrator} is in approval mode, its posts wait here until they are published.`} />
-        : <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>This agent has no Telegram channel.</div>)}
+        : <div className="text-micro ink-muted">This agent has no Telegram channel.</div>)}
       {tab === 'reviews' && <ManagerReviews />}
       {tab === 'directives' && <ManagerDirectives focus={directive} filters={filters} onFilters={setFilters} />}
       {tab === 'artifacts' && (

@@ -89,7 +89,7 @@ export function InboxDetail({ item, group, agent, tree, variant, busy, onMarkDon
               </button>
             ))}
           </div>
-          {group.items.length > 8 && <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 6 }}>{`and ${group.items.length - 8} older`}</div>}
+          {group.items.length > 8 && <div className="text-micro ink-dim" style={{ marginTop: 6 }}>{`and ${group.items.length - 8} older`}</div>}
         </div>
       )}
 

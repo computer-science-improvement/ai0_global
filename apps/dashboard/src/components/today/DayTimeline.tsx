@@ -79,7 +79,7 @@ export function DayTimeline({ day, now, delay }: { day: TodayDay; now: Date; del
   if (day.loading) {
     return (
       <SectionCard title="Today's schedule" flush delay={delay} action={action}>
-        <p className="text-caption" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center', color: 'var(--color-ink-muted)' }}>Loading today's schedule…</p>
+        <p className="text-caption ink-muted" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center' }}>Loading today's schedule…</p>
       </SectionCard>
     );
   }

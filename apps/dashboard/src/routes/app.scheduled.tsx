@@ -12,6 +12,7 @@ import { useConfirm } from '../components/ui/ConfirmDialog';
 import { fmtDate } from '../lib/format';
 import { publicationLabel, publicationTone } from '../lib/status-tone';
 import type { ScheduledPost } from '../api/types';
+import '../components/calendar/calendar.css';
 
 export const Route = createFileRoute('/app/scheduled')({ component: ScheduledPage });
 
@@ -76,7 +77,7 @@ function ScheduledPage() {
 
       {data && data.length > 0 && (
         <SectionCard title="Queue" flush delay={60}
-          action={<span className="mono text-caption tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>{data.length} post{data.length === 1 ? '' : 's'}</span>}>
+          action={<span className="mono text-caption tabular-nums ink-muted">{data.length} post{data.length === 1 ? '' : 's'}</span>}>
           {data.map((p) => (
             <PostRow
               key={p.id}
@@ -110,8 +111,8 @@ function PostRow({
 
       {/* Time: the primary anchor. */}
       <div style={{ flex: '0 0 152px', minWidth: 0 }}>
-        <div className="mono text-caption tabular-nums" style={{ color: 'var(--color-ink)' }}>{fmtDate(p.scheduledAt)}</div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 2 }}>
+        <div className="mono text-caption tabular-nums">{fmtDate(p.scheduledAt)}</div>
+        <div className="text-micro ink-dim" style={{ marginTop: 2 }}>
           {p.sender === 'bot' ? 'Bot' : 'MTProto'}
         </div>
       </div>
@@ -121,15 +122,15 @@ function PostRow({
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
             <Icon name="telegram" size={12} />
-            <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, overflowWrap: 'anywhere' }}>{channelLabel(p.channelId)}</span>
+            <span className="text-body-sm sched-channel" style={{ overflowWrap: 'anywhere' }}>{channelLabel(p.channelId)}</span>
           </span>
           <Badge tone={publicationTone(p.status)}>{publicationLabel(p.status)}</Badge>
         </div>
-        <div className="text-body-sm clamp" style={{ ['--clamp' as string]: 2, marginTop: 4, color: plainText ? 'var(--color-ink-muted)' : 'var(--color-ink-dim)' }}>
+        <div className={`text-body-sm clamp ${plainText ? 'ink-muted' : 'ink-dim'}`} style={{ ['--clamp' as string]: 2, marginTop: 4 }}>
           {plainText || 'No text'}
         </div>
         {p.error && (
-          <div className="text-micro clamp" title={p.error} style={{ ['--clamp' as string]: 2, marginTop: 4, color: 'var(--color-danger)' }}>
+          <div className="text-micro clamp ink-danger" title={p.error} style={{ ['--clamp' as string]: 2, marginTop: 4 }}>
             {p.error}
           </div>
         )}

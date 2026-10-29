@@ -22,7 +22,7 @@ export function PageHeader({ title, subtitle, eyebrow, actions, crumbs }: {
         <div style={{ minWidth: 0 }}>
           {eyebrow && <div className="text-overline" style={{ marginBottom: 8 }}>{eyebrow}</div>}
           <h1 className="page-title" style={{ margin: 0 }}>{title}</h1>
-          {subtitle && <p className="text-body" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>{subtitle}</p>}
+          {subtitle && <p className="text-body ink-muted" style={{ margin: '6px 0 0' }}>{subtitle}</p>}
         </div>
         {actions && <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{actions}</div>}
       </header>

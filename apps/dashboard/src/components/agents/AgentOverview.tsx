@@ -193,8 +193,8 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
 function Meta({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div style={{ minWidth: 0 }}>
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>{label}</div>
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', minWidth: 0, overflowWrap: 'anywhere' }}>{children}</div>
+      <div className="text-micro ink-dim" style={{ marginBottom: 3 }}>{label}</div>
+      <div className="text-body-sm" style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{children}</div>
     </div>
   );
 }
@@ -207,7 +207,7 @@ export function AgentProfileCard({ data }: { data: AgentDetail }) {
   const defaultModel = useModelCatalog().data?.defaultModel;
   const model = ownModelIn(a, ws);
   const times = [...(a.schedule.times ?? [])].sort();
-  const dim = (t: string) => <span style={{ color: 'var(--color-ink-dim)' }}>{t}</span>;
+  const dim = (t: string) => <span className="ink-dim">{t}</span>;
   return (
     <SectionCard title="Profile" icon="pencil" delay={40}
       action={
@@ -236,8 +236,8 @@ export function AgentProfileCard({ data }: { data: AgentDetail }) {
       </div>
       {a.description && (
         <div style={{ marginTop: 12 }}>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Description</div>
-          <div className="text-body-sm clamp" style={{ color: 'var(--color-ink-muted)', ['--clamp' as string]: 2 } as CSSProperties} title={a.description}>{a.description}</div>
+          <div className="text-micro ink-dim" style={{ marginBottom: 3 }}>Description</div>
+          <div className="text-body-sm clamp ink-muted" style={{ ['--clamp' as string]: 2 } as CSSProperties} title={a.description}>{a.description}</div>
         </div>
       )}
       <AgentEditDialog data={data} open={editing} onClose={() => setEditing(false)} />
@@ -294,7 +294,7 @@ function ProfileForm({ data, ws, onClose }: { data: AgentDetail; ws: Workspace; 
     } catch { /* shown inline */ }
   };
 
-  const err = (k: keyof Form) => errors[k] && <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 4 }}>{errors[k]}</div>;
+  const err = (k: keyof Form) => errors[k] && <div className="text-micro ink-danger" style={{ marginTop: 4 }}>{errors[k]}</div>;
 
   return (
     <>
@@ -305,11 +305,11 @@ function ProfileForm({ data, ws, onClose }: { data: AgentDetail; ws: Workspace; 
         </Field>
         <Field label="Handle" hint={f.handle.trim().replace(/^@/, '').toLowerCase() !== a.handle ? 'old handle stays an alias for 30 days' : undefined}>
           <div style={{ position: 'relative' }}>
-            <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-ink-dim)' }}>@</span>
+            <span className="ink-dim" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)' }}>@</span>
             <input className="input-field" style={{ ...input, paddingLeft: 28 }} value={f.handle} maxLength={33} autoCapitalize="none" spellCheck={false}
               onChange={(e) => { set('handle', e.target.value.toLowerCase()); if (patch.error) patch.reset(); }} />
           </div>
-          {handleErr && <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 4 }}>{handleErr}</div>}
+          {handleErr && <div className="text-micro ink-danger" style={{ marginTop: 4 }}>{handleErr}</div>}
         </Field>
         <Field label="Emoji">
           <input className="input-field" style={input} value={f.emoji} maxLength={8} placeholder="🚀" onChange={(e) => set('emoji', e.target.value)} />
@@ -322,7 +322,7 @@ function ProfileForm({ data, ws, onClose }: { data: AgentDetail; ws: Workspace; 
         {err('description')}
       </Field>
       <div style={grid}>
-        <Field label="Model" hint={<>{WORKSPACE_LABEL[ws]} workspace · all agents: <Link to="/app/models" style={{ color: 'inherit' }}>Models</Link></>}>
+        <Field label="Model" hint={<>{WORKSPACE_LABEL[ws]} workspace · all agents: <Link to="/app/models" className="link-inherit">Models</Link></>}>
           <ModelSelect value={f.model.trim() || null} onChange={(m) => set('model', m ?? '')} ariaLabel="Agent model"
             defaultLabel={data.parent ? `Inherit from @${data.parent.handle}` : `Default (${defaultModel ?? 'global default'})`} />
           {err('model')}
@@ -345,18 +345,17 @@ function ProfileForm({ data, ws, onClose }: { data: AgentDetail; ws: Workspace; 
       {!scheduleEditable(a) && <PlanTimes channelKey={data.channelKey} />}
       {scheduleEditable(a) && <Field label="Schedule" hint="Kyiv time · up to 8 runs a day">
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-          {f.times.length === 0 && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>role default</span>}
+          {f.times.length === 0 && <span className="text-micro ink-dim">role default</span>}
           {f.times.map((t) => (
             <span key={t} className="chip tabular-nums" style={{ gap: 4, paddingRight: 4 }}>
               {t}
-              <button type="button" aria-label={`Remove ${t}`} title="Remove" onClick={() => set('times', f.times.filter((x) => x !== t))}
-                style={{ background: 'none', border: 0, color: 'var(--color-ink-dim)', cursor: 'pointer', display: 'inline-flex', padding: 2 }}>
+              <button className="time-remove" type="button" aria-label={`Remove ${t}`} title="Remove" onClick={() => set('times', f.times.filter((x) => x !== t))}>
                 <Icon name="x" size={12} />
               </button>
             </span>
           ))}
           <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
-            <input type="time" className="input-field" style={{ width: 120, padding: '6px 10px', fontSize: 13, colorScheme: 'dark' }} value={time} onChange={(e) => setTime(e.target.value)}
+            <input type="time" className="input-field time-input" value={time} onChange={(e) => setTime(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') addTime(); }} />
             <button type="button" className="btn-tiny" disabled={!TIME_RE.test(time) || f.times.includes(time) || f.times.length >= 8} onClick={addTime}>
               <Icon name="plus" size={12} /> Add
@@ -391,7 +390,7 @@ function PlanTimesNote({ channelKey }: { channelKey: string | null }) {
   const ch = useEditorChannel(channelKey ?? '');
   const c = ch.data;
   return (
-    <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }} data-testid="plan-times">
+    <div className="text-body-sm ink-muted" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }} data-testid="plan-times">
       <Icon name="clock" size={13} />
       {c
         ? <span>{planScheduleNote({ planHour: c.planHour, timezone: c.timezone, approval: c.mode === 'approve', batchHour: 20 })}</span>
@@ -419,7 +418,7 @@ function ArtifactsLine({ handle, targetRef }: { handle: string; targetRef: strin
     rules?.live ? `Owner rules: ${rules.summary.replace(/ rules?$/, '')}` : 'No owner rules',
   ];
   return (
-    <div className="text-body-sm compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)', flexWrap: 'wrap' }}>
+    <div className="text-body-sm compose-rise ink-muted" style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
       <Icon name="layers" size={14} />
       <span>{parts.join(' · ')}</span>
       <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'artifacts' }} className="link-accent">Artifacts →</Link>

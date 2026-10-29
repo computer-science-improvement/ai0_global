@@ -26,7 +26,7 @@ export function ActivityList({ now, delay }: { now: Date; delay?: number }) {
       {q.isError && !snap ? (
         <EmptyState icon="warning" title="Live activity is unavailable" note="The map feed did not answer. The page asks again in a moment." />
       ) : q.isLoading ? (
-        <p className="text-caption" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center', color: 'var(--color-ink-muted)' }}>Loading activity…</p>
+        <p className="text-caption ink-muted" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center' }}>Loading activity…</p>
       ) : rows.length === 0 ? (
         <EmptyState icon="radar" title="Nothing has happened in the last 24 hours" note="Runs, posts and decisions of your agents show up here as they happen." />
       ) : (

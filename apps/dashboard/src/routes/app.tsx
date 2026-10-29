@@ -14,6 +14,8 @@ import '../components/health/digest.css';
 // Spec 078 wave E: area stylesheets of components that node tests load (no CSS import of their own).
 import '../components/editor/editor.css';
 import '../components/artifacts/artifacts.css';
+import '../components/agents/agents-ui.css';
+import '../components/inbox/inbox.css';
 
 // Layout route for the entire authenticated app (everything under /app).
 // The guard runs in the router, before anything renders (spec 028 FR-011): the

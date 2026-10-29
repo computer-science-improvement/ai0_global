@@ -71,7 +71,7 @@ export function Modal({ open, onClose, title, subtitle, icon, size = 'md', child
                 <h2 className="modal-title">{title}</h2>
               )}
               {subtitle && (
-                <p className="text-micro" style={{ margin: '3px 0 0', color: 'var(--color-ink-muted)' }}>
+                <p className="text-micro ink-muted" style={{ margin: '3px 0 0' }}>
                   {subtitle}
                 </p>
               )}
