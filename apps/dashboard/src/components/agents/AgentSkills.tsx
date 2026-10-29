@@ -1,9 +1,10 @@
 // Skills tab of /app/agents/$handle (spec 017 FR-011): grouped skill list with
 // toggles, the skill editor (lint errors inline, safety confirm), versions with
 // a line diff and rollback, reset/delete and lock.
+// Spec 078 D2: a skill is a row of a flush panel; the editor and the versions are dialogs; classes of agent-playbook.css (apb-).
 
 import { Link } from '@tanstack/react-router';
-import { Fragment, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { Fragment, useMemo, useState, type ReactNode } from 'react';
 import { SectionCard, EmptyState, Field } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
@@ -25,7 +26,6 @@ const ORIGIN_TONE: Record<SkillOrigin, 'accent' | 'neutral' | 'success'> = {
 };
 const OUTCOME_TONE = { pending: 'warning', kept: 'success', rolled_back: 'danger', superseded: 'neutral', probing: 'warning', rejected: 'danger' } as const;
 const AUTHOR_TONE = { repo: 'neutral', owner: 'success', agent: 'warning' } as const;
-const mono = 'var(--font-mono)';
 
 type EditTarget = { entry: AgentSkillEntry | null };
 
@@ -48,29 +48,27 @@ export function AgentSkills({ data }: { data: AgentDetail }) {
   ];
 
   if (skills.error) return <div className="callout-danger">{describeError(skills.error)}</div>;
-  if (!skills.data) return <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />;
+  if (!skills.data) return <div className="apb-skeleton" style={{ height: 120 }} aria-hidden />;
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap', alignItems: 'center' }}>
-        <input className="input-field" style={{ flex: 1, minWidth: 180, padding: '8px 12px', fontSize: 13 }} placeholder="Filter skills…" value={q} onChange={(e) => setQ(e.target.value)} />
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{list.filter((e) => e.enabled).length} of {list.length} enabled</span>
-        <button className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing({ entry: null })}>
+    <div className="apb-stack">
+      <div className="apb-toolbar">
+        <input className="input-field apb-search" placeholder="Filter skills…" aria-label="Filter skills" value={q} onChange={(e) => setQ(e.target.value)} />
+        <span className="text-micro mono apb-dim">{list.filter((e) => e.enabled).length} of {list.length} enabled</span>
+        <button type="button" className="btn-primary btn-sm" onClick={() => setEditing({ entry: null })}>
           <Icon name="plus" size={14} /> New skill
         </button>
       </div>
 
       {groups.map((g, gi) => (g.items.length > 0 || (gi === 0 && !q)) && (
-        <SectionCard key={g.title} title={`${g.title} · ${g.items.length}`} icon={g.icon} delay={gi * 40} style={{ marginBottom: 16 }}>
-          <p className="text-micro" style={{ margin: '-4px 0 12px', color: 'var(--color-ink-dim)' }}>{g.note}</p>
+        <SectionCard key={g.title} title={`${g.title} · ${g.items.length}`} icon={g.icon} flush delay={gi * 40}>
+          <p className="apb-group-note">{g.note}</p>
           {g.items.length === 0
             ? <EmptyState icon="pencil" title="No own skills yet" note="Write a skill for this agent, or edit a built-in to override it." />
-            : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {g.items.map((e, i) => (
-                  <SkillRow key={e.skill.id} entry={e} data={data} delay={Math.min(i, 12) * 25}
-                    onEdit={() => setEditing({ entry: e })} onVersions={() => setVersionsOf(e)} />
-                ))}
-              </div>}
+            : g.items.map((e) => (
+              <SkillRow key={e.skill.id} entry={e} data={data}
+                onEdit={() => setEditing({ entry: e })} onVersions={() => setVersionsOf(e)} />
+            ))}
         </SectionCard>
       ))}
       {q && filtered.length === 0 && <EmptyState icon="discovery" title="No skills match" />}
@@ -81,8 +79,9 @@ export function AgentSkills({ data }: { data: AgentDetail }) {
   );
 }
 
-function SkillRow({ entry: e, data, delay, onEdit, onVersions }: {
-  entry: AgentSkillEntry; data: AgentDetail; delay: number; onEdit: () => void; onVersions: () => void;
+/** One skill as a row of its group's flush panel: name and badges, the description, a meta line; the switches and actions on the right. */
+function SkillRow({ entry: e, data, onEdit, onVersions }: {
+  entry: AgentSkillEntry; data: AgentDetail; onEdit: () => void; onVersions: () => void;
 }) {
   const handle = data.agent.handle;
   const s = e.skill;
@@ -96,64 +95,62 @@ function SkillRow({ entry: e, data, delay, onEdit, onVersions }: {
     const reset = e.origin === 'override';
     const ok = await confirm(reset ? `reset “${s.name}” to the built-in default` : `delete the skill “${s.name}”`, {
       confirmLabel: reset ? 'Reset' : 'Delete',
-      details: reset ? <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The override and its versions are removed; the agent goes back to the built-in text.</p> : undefined,
+      details: reset ? <p className="text-micro apb-note">The override and its versions are removed; the agent goes back to the built-in text.</p> : undefined,
     });
     if (ok) del.mutate(s.name, { onSuccess: () => toast.success(reset ? `${s.name} reset to default` : `${s.name} deleted`) });
   };
 
   return (
-    <div className="card row-lift compose-rise" style={{ padding: '11px 14px', animationDelay: `${delay}ms`, opacity: e.enabled ? 1 : 0.62 }}>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-        <div style={{ flex: 1, minWidth: 200 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
-            <span style={{ fontFamily: mono, fontSize: 13, color: 'var(--color-ink)', fontWeight: 600, overflowWrap: 'anywhere' }}>{s.name}</span>
-            <Badge tone={ORIGIN_TONE[e.origin]}>{e.origin}</Badge>
-            {s.safety && <Badge tone="danger" title="System safety skill — agents can never change it">safety</Badge>}
-            {s.locked && <Badge tone="neutral" title="Locked by the owner — agents cannot edit it"><Icon name="lock" size={10} /> locked</Badge>}
-            {e.pending && <Badge tone="warning" title="An agent-written version is waiting for its 7-day KPI review">pending review</Badge>}
-            {e.probing && <Badge tone="warning" title="A newer edit of this skill is being tried on recent posts; the text below stays live until the probe decides">probing</Badge>}
-            {e.baseChanged && <Badge tone="warning" title="The built-in this override is based on changed in the repository">base changed</Badge>}
-          </div>
-          <div className="text-body-sm clamp" title={s.description} style={{ ['--clamp' as string]: 1, color: 'var(--color-ink-muted)', marginBottom: 6 }}>{s.description}</div>
-          <div className="text-micro" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', color: 'var(--color-ink-dim)' }}>
-            <span className="tabular-nums">v{s.currentVersion}{s.baseVersion != null ? ` · base v${s.baseVersion}` : ''}</span>
-            <span>·</span>
-            <span title={fmtDate(s.updatedAt)}>{s.createdBy} · {fmtRelative(s.updatedAt)}</span>
-            <span>·</span>
-            <span className="tabular-nums">{s.body.length.toLocaleString()} chars</span>
-            {s.appliesTo.map((r) => <span key={r} className="chip" style={{ fontSize: 10, padding: '0 6px' }}>{r}</span>)}
-          </div>
+    <div className={`panel-row apb-skill${e.enabled ? '' : ' is-off'}`}>
+      <div className="apb-skill-main">
+        <div className="apb-skill-title">
+          <span className="apb-skill-name mono">{s.name}</span>
+          <Badge tone={ORIGIN_TONE[e.origin]}>{e.origin}</Badge>
+          {s.safety && <Badge tone="danger" title="System safety skill — agents can never change it">safety</Badge>}
+          {s.locked && <Badge tone="neutral" title="Locked by the owner — agents cannot edit it"><Icon name="lock" size={10} /> locked</Badge>}
+          {e.pending && <Badge tone="warning" title="An agent-written version is waiting for its 7-day KPI review">pending review</Badge>}
+          {e.probing && <Badge tone="warning" title="A newer edit of this skill is being tried on recent posts; the text below stays live until the probe decides">probing</Badge>}
+          {e.baseChanged && <Badge tone="warning" title="The built-in this override is based on changed in the repository">base changed</Badge>}
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end', marginLeft: 'auto' }}>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-            <Toggle label="Enabled" checked={e.enabled} disabled={busy} onChange={(v) => toggle.mutate({ name: s.name, enabled: v })} />
-            <Toggle label="Always in context" checked={e.inline} disabled={busy || !e.enabled}
-              title={s.body.length > SKILL_MAX_INLINE_BODY ? `Over ${SKILL_MAX_INLINE_BODY} chars — would stay on demand` : 'Always in context (otherwise loaded on demand)'}
-              onChange={(v) => toggle.mutate({ name: s.name, inline: v })} />
-          </div>
-          <RowActions danger={
-            e.origin === 'override' ? <TableAction icon="refresh" danger title="Reset to default" disabled={busy} onClick={remove} />
-            : e.origin === 'own' ? <TableAction action="delete" disabled={busy} onClick={remove} />
-            : undefined
-          }>
-            {e.origin === 'inherited'
-              ? data.parent && (
-                <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} search={{ tab: 'skills' }} className="btn-act" title={`Edit in @${data.parent.handle}`} aria-label={`Edit in @${data.parent.handle}`}>
-                  <Icon name="pencil" size={14} />
-                </Link>
-              )
-              : <TableAction action="edit" title={e.origin === 'builtin' || e.origin === 'global' ? 'Edit (creates an override)' : 'Edit'} onClick={onEdit} />}
-            <TableAction icon="history" title="Versions" onClick={onVersions} />
-            {agentScoped && (
-              <TableAction icon={s.locked ? 'unlock' : 'lock'} title={s.locked ? 'Unlock (agents may edit it again)' : 'Lock (agents may not edit it)'} disabled={busy}
-                onClick={() => toggle.mutate({ name: s.name, locked: !s.locked })} />
-            )}
-          </RowActions>
+        <div className="clamp apb-skill-desc" title={s.description}>{s.description}</div>
+        <div className="text-micro apb-skill-meta">
+          <span className="mono tabular-nums">v{s.currentVersion}{s.baseVersion != null ? ` · base v${s.baseVersion}` : ''}</span>
+          <span aria-hidden>·</span>
+          <span title={fmtDate(s.updatedAt)}>{s.createdBy} · <span className="mono">{fmtRelative(s.updatedAt)}</span></span>
+          <span aria-hidden>·</span>
+          <span className="mono tabular-nums">{s.body.length.toLocaleString()} chars</span>
+          {s.appliesTo.map((r) => <span key={r} className="chip mono">{r}</span>)}
         </div>
       </div>
+      <div className="apb-skill-side">
+        <div className="apb-skill-toggles">
+          <Toggle label="Enabled" checked={e.enabled} disabled={busy} onChange={(v) => toggle.mutate({ name: s.name, enabled: v })} />
+          <Toggle label="Always in context" checked={e.inline} disabled={busy || !e.enabled}
+            title={s.body.length > SKILL_MAX_INLINE_BODY ? `Over ${SKILL_MAX_INLINE_BODY} chars — would stay on demand` : 'Always in context (otherwise loaded on demand)'}
+            onChange={(v) => toggle.mutate({ name: s.name, inline: v })} />
+        </div>
+        <RowActions danger={
+          e.origin === 'override' ? <TableAction icon="refresh" danger title="Reset to default" disabled={busy} onClick={remove} />
+          : e.origin === 'own' ? <TableAction action="delete" disabled={busy} onClick={remove} />
+          : undefined
+        }>
+          {e.origin === 'inherited'
+            ? data.parent && (
+              <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} search={{ tab: 'skills' }} className="btn-act" title={`Edit in @${data.parent.handle}`} aria-label={`Edit in @${data.parent.handle}`}>
+                <Icon name="pencil" size={14} />
+              </Link>
+            )
+            : <TableAction action="edit" title={e.origin === 'builtin' || e.origin === 'global' ? 'Edit (creates an override)' : 'Edit'} onClick={onEdit} />}
+          <TableAction icon="history" title="Versions" onClick={onVersions} />
+          {agentScoped && (
+            <TableAction icon={s.locked ? 'unlock' : 'lock'} title={s.locked ? 'Unlock (agents may edit it again)' : 'Lock (agents may not edit it)'} disabled={busy}
+              onClick={() => toggle.mutate({ name: s.name, locked: !s.locked })} />
+          )}
+        </RowActions>
+      </div>
       {e.baseChanged && (
-        <div className="callout-warning" style={{ marginTop: 10, padding: '8px 12px' }}>
-          <span style={{ display: 'inline-flex', flexShrink: 0, marginTop: 1 }}><Icon name="warning" size={14} /></span>
+        <div className="callout-warning apb-skill-alert">
+          <Icon name="warning" size={14} />
           <span className="text-micro">The built-in <code>{s.name}</code> changed in the repository since this override was written (base v{s.baseVersion ?? '?'}). Review the override, or reset to default to take the new text.</span>
         </div>
       )}
@@ -212,7 +209,7 @@ function SkillEditorModal({ data, entry, existing, onClose }: {
         const ok = await confirm(`change the safety skill “${skillName}”`, {
           confirmLabel: 'Save anyway',
           details: (
-            <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
+            <div className="callout-warning apb-callout-col">
               <strong>This is a system safety skill.</strong>
               <span className="text-micro">It keeps the agents inside the publishing guards. Agents can never change it; an owner override applies to @{handle} only. Make sure the new text keeps every safety rule.</span>
             </div>
@@ -226,71 +223,67 @@ function SkillEditorModal({ data, entry, existing, onClose }: {
   };
 
   const toggleRole = (r: string) => setAppliesTo((xs) => (xs.includes(r) ? xs.filter((x) => x !== r) : [...xs, r]));
-  const countTone = body.length > SKILL_MAX_BODY || (inline && body.length > SKILL_MAX_INLINE_BODY) ? 'var(--color-danger)' : 'var(--color-ink-dim)';
-  const ta: CSSProperties = {
-    width: '100%', boxSizing: 'border-box', minHeight: 320, resize: 'vertical', fontFamily: mono, fontSize: 12.5, lineHeight: 1.55,
-  };
+  const overLimit = body.length > SKILL_MAX_BODY || (inline && body.length > SKILL_MAX_INLINE_BODY);
 
   return (
     <Modal open onClose={onClose} size="xl" icon="pencil" title={isNew ? 'New skill' : `Edit · ${entry!.skill.name}`} subtitle={subtitle}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', columnGap: 14 }}>
+      <div className="apb-fields">
         <Field label="Name" hint={isNew ? 'a–z, 0–9, - · 3–48' : 'read-only'}>
-          <input className="input-field" style={{ width: '100%', boxSizing: 'border-box', fontFamily: mono, fontSize: 13 }} value={name} readOnly={!isNew} disabled={!isNew}
+          <input className="input-field apb-input apb-mono" value={name} readOnly={!isNew} disabled={!isNew}
             spellCheck={false} autoCapitalize="none" placeholder="my-skill" onChange={(e) => setName(e.target.value.toLowerCase())} />
-          {isNew && name && !NAME_RE.test(name.trim()) && <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 4 }}>3–48 chars: a–z, 0–9 and -</div>}
-          {clash && <div className="text-micro" style={{ color: 'var(--color-warning)', marginTop: 4 }}>
+          {isNew && name && !NAME_RE.test(name.trim()) && <div className="text-micro apb-bad apb-gap-top-sm">3–48 chars: a–z, 0–9 and -</div>}
+          {clash && <div className="text-micro apb-warn apb-gap-top-sm">
             {clash.origin === 'builtin' || clash.origin === 'global' ? 'A shared skill has this name — saving creates an override.' : 'This agent already has a skill with this name — saving writes a new version.'}
           </div>}
         </Field>
         <Field label="Description" hint={`${description.trim().length} / 300 · min 10`}>
-          <input className="input-field" style={{ width: '100%', boxSizing: 'border-box' }} value={description} maxLength={300} onChange={(e) => setDescription(e.target.value)} />
+          <input className="input-field apb-input" value={description} maxLength={300} onChange={(e) => setDescription(e.target.value)} />
         </Field>
       </div>
       <Field label="Applies to" hint="roles that load this skill">
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        <div className="apb-chips">
           {SKILL_ROLES.map((r) => (
-            <button key={r} type="button" className={`chip${appliesTo.includes(r) ? ' is-active' : ''}`} aria-pressed={appliesTo.includes(r)}
-              onClick={() => toggleRole(r)} style={{ cursor: 'pointer', border: 0 }}>{r}</button>
+            <button key={r} type="button" className="chip-toggle mono" aria-pressed={appliesTo.includes(r)} onClick={() => toggleRole(r)}>{r}</button>
           ))}
         </div>
       </Field>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+      <div className="apb-body-head">
         <span className="text-eyebrow">Body</span>
-        <span className="text-micro tabular-nums" style={{ color: countTone }}>
+        <span className={`text-micro mono tabular-nums ${overLimit ? 'apb-bad' : 'apb-dim'}`}>
           {body.length.toLocaleString()} / {SKILL_MAX_BODY.toLocaleString()}{inline ? ` · always-in-context limit ${SKILL_MAX_INLINE_BODY.toLocaleString()}` : ''}
         </span>
-        <button type="button" className="btn-tiny" style={{ marginLeft: 'auto' }} onClick={() => setPreview((v) => !v)}>
+        <button type="button" className="btn-tiny" onClick={() => setPreview((v) => !v)}>
           <Icon name="eye" size={12} />&nbsp;{preview ? 'Hide preview' : 'Preview'}
         </button>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: preview ? 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))' : '1fr', gap: 12 }}>
-        <textarea className="input-field" style={ta} value={body} spellCheck={false} onChange={(e) => { setBody(e.target.value); setLintErrors(null); }} />
+      <div className={`apb-editor${preview ? ' has-preview' : ''}`}>
+        <textarea className="input-field apb-body-input" aria-label="Skill body" value={body} spellCheck={false} onChange={(e) => { setBody(e.target.value); setLintErrors(null); }} />
         {preview && (
-          <div style={{ minHeight: 320, maxHeight: 520, overflow: 'auto', padding: '10px 14px', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-1)' }}>
-            {body.trim() ? <MarkdownPreview text={body} /> : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Preview appears here.</span>}
+          <div className="inset apb-preview" aria-label="Preview">
+            {body.trim() ? <MarkdownPreview text={body} /> : <span className="text-micro apb-dim">Preview appears here.</span>}
           </div>
         )}
       </div>
 
       {lintErrors && lintErrors.length > 0 && (
-        <div className="callout-danger" style={{ marginTop: 12, flexDirection: 'column', gap: 6 }}>
+        <div className="callout-danger apb-callout-col apb-gap-top">
           <strong className="text-body-sm">The skill linter refused this text</strong>
-          <ul style={{ margin: 0, paddingLeft: 18, listStyle: 'disc' }}>
+          <ul className="apb-list">
             {lintErrors.map((e, i) => (
-              <li key={i} className="text-micro">
-                <code>{e.code}</code>{e.hard ? <Badge tone="danger" style={{ marginLeft: 6 }}>hard</Badge> : null} — {e.message}
+              <li key={i}>
+                <code className="mono">{e.code}</code>{e.hard ? <> <Badge tone="danger">hard</Badge></> : null} — {e.message}
               </li>
             ))}
           </ul>
-          {!forceable && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>Fix the text — these checks cannot be overridden.</span>}
+          {!forceable && <span className="text-micro apb-muted">Fix the text — these checks cannot be overridden.</span>}
         </div>
       )}
       {put.error && !lintErrors && errorBody(put.error)?.error !== 'safety_skill' && (
-        <div className="callout-danger" style={{ marginTop: 12 }}>{describeError(put.error)}</div>
+        <div className="callout-danger apb-gap-top">{describeError(put.error)}</div>
       )}
 
-      <div className="modal-foot" style={{ flexWrap: 'wrap' }}>
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+      <div className="modal-foot apb-foot">
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         {forceable && <button type="button" className="btn-danger" disabled={put.isPending} onClick={() => save(true)}>Save anyway</button>}
         <button type="button" className="btn-primary" disabled={put.isPending || errors.length > 0} onClick={() => save(false)}>
           {put.isPending ? 'Saving…' : isNew ? 'Create skill' : shared ? 'Save override' : 'Save version'}
@@ -306,11 +299,11 @@ function MarkdownPreview({ text }: { text: string }) {
   const lines = text.split('\n');
   let list: { ordered: boolean; items: string[] } | null = null;
   let para: string[] = [];
-  const flushPara = () => { if (para.length) { out.push(<p key={out.length} style={{ margin: '0 0 8px' }}>{inline(para.join(' '))}</p>); para = []; } };
+  const flushPara = () => { if (para.length) { out.push(<p key={out.length} className="apb-md-p">{inline(para.join(' '))}</p>); para = []; } };
   const flushList = () => {
     if (!list) return;
     const Tag = list.ordered ? 'ol' : 'ul';
-    out.push(<Tag key={out.length} style={{ margin: '0 0 8px', paddingLeft: 20, listStyle: list.ordered ? 'decimal' : 'disc' }}>{list.items.map((t, i) => <li key={i}>{inline(t)}</li>)}</Tag>);
+    out.push(<Tag key={out.length} className="apb-md-list">{list.items.map((t, i) => <li key={i}>{inline(t)}</li>)}</Tag>);
     list = null;
   };
   for (let i = 0; i < lines.length; i++) {
@@ -319,15 +312,14 @@ function MarkdownPreview({ text }: { text: string }) {
       flushPara(); flushList();
       const code: string[] = [];
       for (i++; i < lines.length && !lines[i].trim().startsWith('```'); i++) code.push(lines[i]);
-      out.push(<pre key={out.length} style={{ margin: '0 0 8px', padding: 8, background: 'var(--color-canvas)', borderRadius: 'var(--radius-sm)', fontFamily: mono, fontSize: 11.5, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{code.join('\n')}</pre>);
+      out.push(<pre key={out.length} className="code-block apb-md-pre">{code.join('\n')}</pre>);
       continue;
     }
     const h = /^(#{1,6})\s+(.*)$/.exec(line);
     const li = /^\s*([-*+]|\d+[.)])\s+(.*)$/.exec(line);
     if (h) {
       flushPara(); flushList();
-      const size = [17, 15, 14, 13, 13, 13][h[1].length - 1];
-      out.push(<div key={out.length} style={{ fontSize: size, fontWeight: 600, color: 'var(--color-ink)', margin: '10px 0 6px' }}>{inline(h[2])}</div>);
+      out.push(<div key={out.length} className={`apb-md-h is-h${h[1].length}`}>{inline(h[2])}</div>);
     } else if (li) {
       flushPara();
       const ordered = /\d/.test(li[1]);
@@ -336,7 +328,7 @@ function MarkdownPreview({ text }: { text: string }) {
       list.items.push(li[2]);
     } else if (line.startsWith('>')) {
       flushPara(); flushList();
-      out.push(<blockquote key={out.length} style={{ margin: '0 0 8px', paddingLeft: 10, borderLeft: '2px solid var(--color-hairline-strong)', color: 'var(--color-ink-muted)' }}>{inline(line.replace(/^>\s?/, ''))}</blockquote>);
+      out.push(<blockquote key={out.length} className="apb-md-quote">{inline(line.replace(/^>\s?/, ''))}</blockquote>);
     } else if (!line.trim()) {
       flushPara(); flushList();
     } else {
@@ -345,14 +337,14 @@ function MarkdownPreview({ text }: { text: string }) {
     }
   }
   flushPara(); flushList();
-  return <div className="text-body-sm" style={{ color: 'var(--color-ink)', lineHeight: 1.55, overflowWrap: 'anywhere' }}>{out}</div>;
+  return <div className="apb-md">{out}</div>;
 }
 
 function inline(s: string): ReactNode[] {
   return s.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**') && part.length > 4) return <strong key={i}>{part.slice(2, -2)}</strong>;
     if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
-      return <code key={i} style={{ fontFamily: mono, fontSize: '0.92em', background: 'var(--color-surface-3)', padding: '0 4px', borderRadius: 4 }}>{part.slice(1, -1)}</code>;
+      return <code key={i} className="apb-md-code">{part.slice(1, -1)}</code>;
     }
     return <Fragment key={i}>{part}</Fragment>;
   });
@@ -390,26 +382,18 @@ export function DiffView({ from, to }: { from: string; to: string }) {
     if (!keep[i]) {
       let k = i; while (k < lines.length && !keep[k]) k++;
       if (k - i < 3) { for (let j = i; j < k; j++) keep[j] = true; i--; continue; }
-      rows.push(<div key={`gap${i}`} style={{ color: 'var(--color-ink-dim)', padding: '2px 8px' }}>⋯ {k - i} unchanged</div>);
+      rows.push(<div key={`gap${i}`} className="apb-diff-line is-gap">⋯ {k - i} unchanged</div>);
       i = k - 1; continue;
     }
     const l = lines[i];
     rows.push(
-      <div key={i} style={{
-        padding: '0 8px', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere',
-        background: l.t === '+' ? 'var(--color-success-soft)' : l.t === '-' ? 'var(--color-danger-soft)' : undefined,
-        color: l.t === '+' ? 'var(--color-success)' : l.t === '-' ? 'var(--color-danger)' : 'var(--color-ink-muted)',
-      }}>{l.t} {l.s || ' '}</div>,
+      <div key={i} className={`apb-diff-line${l.t === '+' ? ' is-add' : l.t === '-' ? ' is-del' : ''}`}>{l.t} {l.s || ' '}</div>,
     );
   }
   return (
     <div>
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 4 }}>{changed === 0 ? 'Body unchanged' : `${changed} changed line${changed === 1 ? '' : 's'}`}</div>
-      {changed > 0 && (
-        <div style={{ fontFamily: mono, fontSize: 11.5, lineHeight: 1.5, maxHeight: 320, overflow: 'auto', background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)', padding: '4px 0' }}>
-          {rows}
-        </div>
-      )}
+      <div className="text-micro apb-dim apb-diff-head">{changed === 0 ? 'Body unchanged' : `${changed} changed line${changed === 1 ? '' : 's'}`}</div>
+      {changed > 0 && <div className="code-block apb-diff">{rows}</div>}
     </div>
   );
 }
@@ -418,7 +402,7 @@ function VersionsModal({ entry, onClose }: { entry: AgentSkillEntry; onClose: ()
   const q = useSkillVersions(entry.skill.id);
   const rollback = useRollbackSkill();
   const confirm = useConfirm();
-  const [open, setOpen] = useState<number | null>(null);
+  const [diffOf, setDiffOf] = useState<number | null>(null);
   const [probeOf, setProbeOf] = useState<number | null>(null);
   const skill = q.data?.skill ?? entry.skill;
   const versions = [...(q.data?.versions ?? [])].sort((a, b) => b.version - a.version);
@@ -428,66 +412,74 @@ function VersionsModal({ entry, onClose }: { entry: AgentSkillEntry; onClose: ()
   const wasLive = (x: SkillVersion) => x.outcome !== 'probing' && x.outcome !== 'rejected';
   const prevOf = (v: SkillVersion) => (wasLive(v) ? versions.find((x) => x.version < v.version && wasLive(x)) : versions.find((x) => x.version === skill.currentVersion));
   const probeV = probeOf != null ? versions.find((x) => x.version === probeOf) ?? null : null;
+  const diffV = diffOf != null ? versions.find((x) => x.version === diffOf) ?? null : null;
+  const diffPrev = diffV ? prevOf(diffV) : undefined;
 
   return (
     <>
     <Modal open onClose={onClose} size="lg" icon="history" title={`Versions · ${skill.name}`}
       subtitle={`Current v${skill.currentVersion}${canRollback ? '' : skill.scope === 'builtin' ? ' · built-in skills change only in the repository' : ' · roll back from the orchestrator'}`}>
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
-      {!q.data && !q.error && <div className="panel" style={{ height: 80, opacity: 0.5 }} />}
+      {!q.data && !q.error && <div className="apb-skeleton" style={{ height: 80 }} aria-hidden />}
       {q.data && versions.length === 0 && <EmptyState icon="history" title="No versions recorded" />}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {versions.map((v) => {
-          const current = v.version === skill.currentVersion;
-          const prev = prevOf(v);
-          const expanded = open === v.version;
-          return (
-            <div key={v.id} className="card" style={{ padding: '10px 14px', boxShadow: current ? 'inset 0 0 0 1px var(--color-accent)' : undefined }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>v{v.version}</span>
-                {current && <Badge tone="accent">current</Badge>}
-                <Badge tone={AUTHOR_TONE[v.author]}>{v.author}</Badge>
-                {v.outcome && v.outcome !== 'probing' && v.outcome !== 'rejected' && <Badge tone={OUTCOME_TONE[v.outcome] ?? 'neutral'} title={v.reviewAt ? `review ${fmtDate(v.reviewAt)}` : undefined}>{v.outcome.replace('_', ' ')}</Badge>}
-                {(() => { const pb = probeBadge(v); return pb ? <Badge tone={pb.tone} title={pb.title}>{pb.label}</Badge> : null; })()}
-                <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{fmtDate(v.createdAt)}</span>
-                <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
-                  {(hasProbeDetails(v) || v.outcome === 'probing' || v.outcome === 'rejected') && (
-                    <TableAction icon="eye" title="Probe: old and new text side by side" onClick={() => setProbeOf(v.version)} />
-                  )}
-                  <TableAction icon={expanded ? 'chevron-up' : 'chevron-down'} title={expanded ? 'Hide diff' : prev ? `Diff vs v${prev.version}` : 'Show text'} onClick={() => setOpen(expanded ? null : v.version)} />
-                  {canRollback && !current && v.outcome !== 'probing' && (
-                    <TableAction icon="refresh" title={`Roll back to v${v.version}`} disabled={rollback.isPending}
-                      onClick={async () => {
-                        if (await confirm(`roll “${skill.name}” back to v${v.version}`, { danger: false, confirmLabel: 'Roll back', details: (
-                          <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>A new version v{Math.max(...versions.map((x) => x.version)) + 1} is created with the text of v{v.version}; history is kept.</p>
-                        ) })) rollback.mutate({ id: skill.id, version: v.version });
-                      }} />
-                  )}
-                </span>
+      {versions.length > 0 && (
+        <div className="panel is-flush">
+          {versions.map((v) => {
+            const current = v.version === skill.currentVersion;
+            const prev = prevOf(v);
+            return (
+              <div key={v.id} className={`panel-row apb-version${current ? ' is-selected' : ''}`}>
+                <div className="apb-version-line">
+                  <span className="apb-ver mono tabular-nums">v{v.version}</span>
+                  {current && <Badge tone="accent">current</Badge>}
+                  <Badge tone={AUTHOR_TONE[v.author]}>{v.author}</Badge>
+                  {v.outcome && v.outcome !== 'probing' && v.outcome !== 'rejected' && <Badge tone={OUTCOME_TONE[v.outcome] ?? 'neutral'} title={v.reviewAt ? `review ${fmtDate(v.reviewAt)}` : undefined}>{v.outcome.replace('_', ' ')}</Badge>}
+                  {(() => { const pb = probeBadge(v); return pb ? <Badge tone={pb.tone} title={pb.title}>{pb.label}</Badge> : null; })()}
+                  <span className="text-micro mono tabular-nums apb-dim">{fmtDate(v.createdAt)}</span>
+                  <span className="apb-actions apb-version-actions">
+                    {(hasProbeDetails(v) || v.outcome === 'probing' || v.outcome === 'rejected') && (
+                      <TableAction icon="eye" title="Probe: old and new text side by side" onClick={() => setProbeOf(v.version)} />
+                    )}
+                    <TableAction icon="logs" title={prev ? `Diff vs v${prev.version}` : 'Show text'} onClick={() => setDiffOf(v.version)} />
+                    {canRollback && !current && v.outcome !== 'probing' && (
+                      <TableAction icon="refresh" title={`Roll back to v${v.version}`} disabled={rollback.isPending}
+                        onClick={async () => {
+                          if (await confirm(`roll “${skill.name}” back to v${v.version}`, { danger: false, confirmLabel: 'Roll back', details: (
+                            <p className="text-micro apb-note">A new version v{Math.max(...versions.map((x) => x.version)) + 1} is created with the text of v{v.version}; history is kept.</p>
+                          ) })) rollback.mutate({ id: skill.id, version: v.version });
+                        }} />
+                    )}
+                  </span>
+                </div>
+                {(v.reason || v.reviewAt) && (
+                  <div className="text-micro apb-muted">
+                    {v.reason}{v.reviewAt && v.outcome === 'pending' ? ` · KPI review ${fmtDate(v.reviewAt)}` : ''}
+                  </div>
+                )}
+                {probeSummary(v.probe) && (
+                  <div className="text-micro apb-muted">Probe: {probeSummary(v.probe)}</div>
+                )}
               </div>
-              {(v.reason || v.reviewAt) && (
-                <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4 }}>
-                  {v.reason}{v.reviewAt && v.outcome === 'pending' ? ` · KPI review ${fmtDate(v.reviewAt)}` : ''}
-                </div>
-              )}
-              {probeSummary(v.probe) && (
-                <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>Probe: {probeSummary(v.probe)}</div>
-              )}
-              {expanded && (
-                <div style={{ marginTop: 8 }}>
-                  {prev
-                    ? <DiffView from={prev.body} to={v.body} />
-                    : <pre style={{ margin: 0, fontFamily: mono, fontSize: 11.5, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', maxHeight: 320, overflow: 'auto', background: 'var(--color-canvas)', padding: 8, borderRadius: 'var(--radius-sm)', color: 'var(--color-ink-muted)' }}>{v.body}</pre>}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
       <div className="modal-foot">
-        <button type="button" className="btn-secondary" onClick={onClose}>Close</button>
+        <button type="button" className="btn-ghost" onClick={onClose}>Close</button>
       </div>
     </Modal>
+    {diffV && (
+      <Modal open onClose={() => setDiffOf(null)} size="lg" icon="logs"
+        title={diffPrev ? `v${diffV.version} vs v${diffPrev.version}` : `Text of v${diffV.version}`}
+        subtitle={`${skill.name} · ${diffV.author} · ${fmtDate(diffV.createdAt)}`}>
+        {diffPrev
+          ? <DiffView from={diffPrev.body} to={diffV.body} />
+          : <pre className="code-block apb-text">{diffV.body}</pre>}
+        <div className="modal-foot">
+          <button type="button" className="btn-ghost" onClick={() => setDiffOf(null)}>Close</button>
+        </div>
+      </Modal>
+    )}
     {probeV && (
       <SkillProbeDialog skillId={skill.id} skillName={skill.name} version={probeV}
         newest={canAdoptAnyway(probeV, versions)} onClose={() => setProbeOf(null)} />

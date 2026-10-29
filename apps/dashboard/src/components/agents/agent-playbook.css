@@ -153,9 +153,95 @@
 .apb-code { margin-right: 6px; }
 .apb-ids { display: flex; flex-wrap: wrap; gap: 4px 12px; }
 
+/* ── Skills tab ───────────────────────────────────────────────────────────────────────────────────── */
+.apb-bad { color: var(--color-danger-ink); }
+.apb-gap-top-sm { margin-top: 4px; }
+.apb-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.input-field.apb-search { flex: 1 1 200px; min-width: 0; padding: 8px 12px; font-size: 13px; }
+.apb-group-note { margin: 0; padding: 0 20px 12px; font-size: 13px; color: var(--color-ink-dim); }
+
+/* A skill: name + badges, one line of description, a meta line; the switches and actions on the right. */
+.apb-skill { align-items: flex-start; gap: 10px 16px; }
+.apb-skill.is-off { opacity: 0.62; }
+.apb-skill-main { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.apb-skill-title { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; min-width: 0; }
+.apb-skill-name { font-size: 13px; font-weight: 600; color: var(--color-ink); overflow-wrap: anywhere; }
+.apb-skill-desc { font-size: 14px; color: var(--color-ink-muted); --clamp: 1; }
+.apb-skill-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; color: var(--color-ink-dim); }
+.apb-skill-meta .chip { padding: 0 8px; font-size: 11px; }
+.apb-skill-side { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.apb-skill-toggles { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 14px; }
+.apb-skill-alert { flex: 1 1 100%; align-items: flex-start; padding: 10px 14px; }
+.apb-skill-alert > svg { flex: none; margin-top: 2px; color: var(--color-warning); }
+.apb-skill-alert code { font-family: var(--font-mono); font-size: 12px; }
+
+/* The skill editor. */
+.apb-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); column-gap: 14px; }
+.input-field.apb-input { width: 100%; box-sizing: border-box; }
+.input-field.apb-mono { font-family: var(--font-mono); font-feature-settings: normal; font-size: 13px; }
+.apb-body-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 6px; }
+.apb-body-head .btn-tiny { margin-left: auto; }
+.apb-editor { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.apb-editor.has-preview { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.input-field.apb-body-input {
+  width: 100%; box-sizing: border-box; min-height: 320px; resize: vertical;
+  font-family: var(--font-mono); font-feature-settings: normal; font-size: 13px; line-height: 1.55;
+}
+.apb-preview { min-height: 320px; max-height: 520px; overflow: auto; padding: 12px 14px; }
+
+/* The markdown preview of the body. */
+.apb-md { font-size: 14px; line-height: 1.55; color: var(--color-ink); overflow-wrap: anywhere; }
+.apb-md-p { margin: 0 0 8px; }
+.apb-md-list { margin: 0 0 8px; padding-left: 20px; }
+ul.apb-md-list { list-style: disc; }
+ol.apb-md-list { list-style: decimal; }
+.code-block.apb-md-pre { margin: 0 0 8px; }
+.apb-md-h { margin: 10px 0 6px; font-size: 13px; font-weight: 600; color: var(--color-ink); }
+.apb-md-h.is-h1 { font-size: 18px; }
+.apb-md-h.is-h2 { font-size: 15px; }
+.apb-md-h.is-h3 { font-size: 14px; }
+.apb-md-quote { margin: 0 0 8px; padding-left: 10px; border-left: 2px solid var(--color-hairline-strong); color: var(--color-ink-muted); }
+.apb-md-code { padding: 0 4px; border-radius: var(--radius-xs); background: var(--color-surface-3); font-family: var(--font-mono); font-feature-settings: normal; font-size: 13px; }
+
+/* A line diff (also the artifact panel's): the darkest code surface, + lines green, − lines red. */
+.apb-diff-head { margin-bottom: 6px; }
+.code-block.apb-diff { padding: 4px 0; max-height: 320px; overflow: auto; white-space: normal; }
+.code-block.apb-text { max-height: 420px; overflow: auto; }
+.apb-diff-line { padding: 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.apb-diff-line.is-add { background: var(--color-success-soft); color: var(--color-success); }
+.apb-diff-line.is-del { background: var(--color-danger-soft); color: var(--color-danger-ink); }
+.apb-diff-line.is-gap { padding-top: 2px; padding-bottom: 2px; color: var(--color-ink-dim); }
+
+/* Versions of a skill (rows of a flush panel inside the dialog). */
+.panel-row.apb-version { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 4px; }
+.apb-version-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.apb-ver { font-size: 14px; font-weight: 600; color: var(--color-ink); }
+.apb-version-actions { margin-left: auto; }
+
+/* The probe dialog: a post written twice, old text beside new. */
+.apb-sample { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 12px 14px; }
+.apb-sample-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.apb-sample-topic { flex: 1 1 120px; min-width: 0; color: var(--color-ink); --clamp: 1; }
+.apb-sides { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.apb-side { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.apb-side-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; }
+.apb-side-title { font-weight: 600; color: var(--color-ink); }
+.apb-post {
+  max-height: 220px; overflow: auto; padding: 10px 12px;
+  background: var(--color-canvas); border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+  font-size: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.apb-italic { font-style: italic; }
+.apb-judge { display: grid; gap: 2px; font-size: 12px; color: var(--color-ink-muted); }
+.apb-judge > div { overflow-wrap: anywhere; }
+.apb-wrap { overflow-wrap: anywhere; }
+
 @media (max-width: 600px) {
   .apb-mode { width: 100%; }
   .apb-weight { grid-template-columns: minmax(0, 72px) minmax(0, 1fr) 54px 30px; gap: 6px; }
+  .apb-group-note { padding: 0 16px 12px; }
+  .apb-skill-side { margin-left: 0; align-items: flex-start; width: 100%; }
+  .apb-skill-toggles { justify-content: flex-start; }
 }
 @media (max-width: 480px) {
   .apb-fact-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
