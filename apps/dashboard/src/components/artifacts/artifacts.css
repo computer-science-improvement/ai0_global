@@ -1,0 +1,6 @@
+/*
+ * Spec 078 wave E: the few classes of the artifact panel, chip and list. ArtifactPanel / ArtifactChip / ArtifactList are loaded
+ * by node tests, which cannot import CSS, so routes/app.tsx imports this file for them. Tokens only.
+ */
+.art-ink { color: var(--color-ink); }
+.text-body-sm.art-version { font-weight: 600; }

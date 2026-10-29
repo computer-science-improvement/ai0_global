@@ -186,7 +186,7 @@ function MemorySection({ channelKey }: { channelKey: string }) {
                       </div>
                     ),
                     actions: (close) => (
-                      <button type="button" className="btn-ghost ed-retire" disabled={retire.isPending} onClick={() => onRetire(close)}
+                      <button type="button" className="btn-ghost ink-danger" disabled={retire.isPending} onClick={() => onRetire(close)}
                         style={{ marginRight: 'auto' }}>
                         <Icon name="trash" size={14} /> Retire
                       </button>

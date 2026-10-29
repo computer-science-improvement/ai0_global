@@ -52,11 +52,11 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
     <CompactCard id={`draft-${draft.id}`} hint="Open the draft" attention={!done && errors > 0} style={{ maxWidth: 560 }}
       top={<>
         <Badge tone={DRAFT_TONE[draft.status]}>{STATUS_LABEL[draft.status]}</Badge>
-        <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{draft.channelKey}</span>
+        <span className="text-caption card-label">{draft.channelKey}</span>
         {draft.spec.format && <span className="chip">{draft.spec.format}</span>}
       </>}
       meta={draft.status === 'scheduled'
-        ? <span className="mono tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)</span>
+        ? <span className="mono tabular-nums ink-warning" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)</span>
         : done && draft.publishedPostId != null ? `post #${draft.publishedPostId}` : undefined}
       title={title}
       body={text || undefined}
@@ -82,15 +82,15 @@ function DraftDetails({ draft }: { draft: EditorDraft }) {
     <div style={{ minWidth: 0 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
         <Badge tone={DRAFT_TONE[draft.status]}>{STATUS_LABEL[draft.status]}</Badge>
-        <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{draft.channelKey}</span>
+        <span className="text-caption card-label">{draft.channelKey}</span>
         {draft.spec.format && <span className="chip">{draft.spec.format}</span>}
         {draft.status === 'scheduled' && (
-          <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          <span className="text-micro mono tabular-nums ink-warning" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
             <Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)
           </span>
         )}
         {done && draft.publishedPostId != null && (
-          <span className="text-micro mono" style={{ color: 'var(--color-ink-muted)' }}>post #{draft.publishedPostId}</span>
+          <span className="text-micro mono ink-muted">post #{draft.publishedPostId}</span>
         )}
       </div>
 
@@ -99,9 +99,9 @@ function DraftDetails({ draft }: { draft: EditorDraft }) {
         : (
           <div className="inset">
             {preview
-              ? <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
+              ? <div className="text-body-sm card-text" style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}
                   dangerouslySetInnerHTML={{ __html: preview }} />
-              : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Preview unavailable — fix the errors below.</span>}
+              : <span className="text-micro ink-dim">Preview unavailable — fix the errors below.</span>}
           </div>
         )}
 
@@ -113,7 +113,7 @@ function DraftDetails({ draft }: { draft: EditorDraft }) {
       {(draft.lint?.warnings.length ?? 0) > 0 && (
         <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
           {draft.lint!.warnings.map((w, i) => (
-            <span key={i} className="text-micro" style={{ color: 'var(--color-warning)' }}>⚠ {w.message}</span>
+            <span key={i} className="text-micro ink-warning">⚠ {w.message}</span>
           ))}
         </div>
       )}
@@ -140,7 +140,7 @@ function DraftActions({ draft, onDone }: { draft: EditorDraft; onDone: () => voi
     const ok = await confirm(`publish "${title}" to ${draft.channelKey} now`, {
       danger: false, confirmLabel: 'Publish now',
       details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+        <p className="text-micro ink-muted" style={{ margin: 0}}>
           The post goes to the real channel right away. Lint, the channel pause and the 7-day source dedup still apply.
           {draft.status === 'scheduled' ? ' The scheduled copy is canceled.' : ''}
         </p>
@@ -171,7 +171,7 @@ function DraftActions({ draft, onDone }: { draft: EditorDraft; onDone: () => voi
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
       {draft.status !== 'canceled' && (
-        <button className="btn-ghost" disabled={busy} onClick={cancel} style={{ color: 'var(--color-danger)', marginRight: 'auto' }}>
+        <button className="btn-ghost ink-danger" disabled={busy} onClick={cancel} style={{ marginRight: 'auto' }}>
           <Icon name="ban" size={14} /> {draft.status === 'scheduled' ? 'Cancel post' : 'Discard'}
         </button>
       )}
@@ -213,7 +213,7 @@ function ScheduleModal({ draft, onClose, onSubmit, busy }: {
         <input className="input-field" type="datetime-local" value={value} min={min} step={300}
           onChange={(e) => setValue(e.target.value)} style={{ width: '100%', colorScheme: 'dark' }} />
       </Field>
-      <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+      <p className="text-micro ink-muted" style={{ margin: 0}}>
         Code publishes it at this time without the LLM, even when the editor is off. At least 2 minutes ahead, at most 60 days.
       </p>
       <div className="modal-foot">

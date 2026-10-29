@@ -35,7 +35,7 @@ function ExampleItem({ n, e, choice, onChange, pending, channelTitle, channelKey
   return (
     <div className="inset example-item">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-        <span className="text-caption" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>Example {n}</span>
+        <span className="text-caption card-label">Example {n}</span>
         <span className="chip">{e.format}</span>
         {edited && <span className="chip">edited</span>}
         <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6, alignItems: 'center' }}>
@@ -54,10 +54,10 @@ function ExampleItem({ n, e, choice, onChange, pending, channelTitle, channelKey
       ) : (
         <TelegramPreview messages={messages} channelTitle={channelTitle} channelKey={channelKey} time="example" />
       )}
-      {e.why && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>Why it fits: {e.why}</span>}
+      {e.why && <span className="text-micro ink-muted" style={{ overflowWrap: 'anywhere' }}>Why it fits: {e.why}</span>}
       {/* Lint notes describe the text as written; an edit is checked again on Apply. */}
       {!edited && e.notes.map((note, i) => (
-        <span key={i} className="text-micro" style={{ color: 'var(--color-warning)', overflowWrap: 'anywhere' }}>⚠ {note}</span>
+        <span key={i} className="text-micro ink-warning" style={{ overflowWrap: 'anywhere' }}>⚠ {note}</span>
       ))}
       {pending && choice.verdict === 'bad' && (
         <input className="input-field" aria-label={`Why example ${n} is bad`} placeholder="Why is it bad? (optional, the writer and the critic read it)"
@@ -85,7 +85,7 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
       </div>
       {payload.warnings.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
-          <span className="text-caption" style={{ fontWeight: 600, color: 'var(--color-ink)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <span className="text-caption card-label" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             <Icon name="warning" size={14} /> Warnings: posts to avoid
           </span>
           {payload.warnings.map((w, i) => {
@@ -95,8 +95,8 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
                 <input type="checkbox" checked={keep} disabled={!pending} aria-label={`Keep warning: ${w.pattern}`}
                   onChange={(ev) => onChange({ ...state, keep: state.keep.map((x, k) => (k === i ? ev.target.checked : x)) })} style={{ marginTop: 3 }} />
                 <span style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
-                  <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, overflowWrap: 'anywhere' }}>{w.pattern}</span>
-                  <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{w.why}</span>
+                  <span className="text-body-sm card-label" style={{ overflowWrap: 'anywhere' }}>{w.pattern}</span>
+                  <span className="text-micro ink-muted" style={{ overflowWrap: 'anywhere' }}>{w.why}</span>
                   <span className="text-body-sm card-quote is-bad" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{w.bad_example}</span>
                 </span>
               </label>
@@ -105,7 +105,7 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
         </div>
       )}
       {pending && (
-        <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-dim)' }}>
+        <p className="text-micro ink-dim" style={{ margin: '10px 0 0'}}>
           Apply saves {count.good} good and {count.bad} bad examples to @{payload.handle || 'the agent'}&apos;s playbook. The writer follows the good ones; the critic checks posts against both.
         </p>
       )}

@@ -73,7 +73,7 @@ function ArtifactCard({ r, focused, delay }: { r: ArtifactRow; focused: boolean;
       title={r.title}
       body={r.summary || null}
       extra={(
-        <span className="text-micro mono" style={{ color: 'var(--color-ink-muted)' }}>
+        <span className="text-micro mono ink-muted">
           {[agent, target && target !== agent ? target : null, r.version != null ? `v${r.version}` : null].filter(Boolean).join(' · ')}
         </span>
       )}

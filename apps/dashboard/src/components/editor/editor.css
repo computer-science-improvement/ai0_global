@@ -83,5 +83,3 @@
 .text-body-sm.ed-name { font-weight: 600; }
 .ed-figure { font-weight: 600; }
 .text-body-sm.ed-memory-text { color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }
-/* Retire: a ghost button in the danger colour, which keeps it on hover. */
-.btn-ghost.ed-retire, .btn-ghost.ed-retire:hover:not(:disabled) { color: var(--color-danger); }

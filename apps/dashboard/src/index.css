@@ -178,6 +178,8 @@ html, body {
 .ink-warning { color: var(--color-warning); }
 .ink-danger  { color: var(--color-danger); }
 .ink-success { color: var(--color-success); }
+/* The one place a helper meets a class that sets colour: a ghost button in the danger colour keeps it on hover (Retire, Cancel). */
+.btn-ghost.ink-danger, .btn-ghost.ink-danger:hover:not(:disabled) { color: var(--color-danger); }
 
 /* Single chromatic accent — links and focus only. Only a bare text link dims on hover: buttons, tabs and nav rows
    are <a> elements too and have their own hover. */
