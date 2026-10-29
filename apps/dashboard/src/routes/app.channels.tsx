@@ -6,9 +6,11 @@ import { useBots } from '../api/bots';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
+import { ErrorCallout, ListSkeleton, SearchField } from '../components/channels/ChannelsUi';
 import { Icon } from '../components/Icon';
+import { Icon as UiIcon } from '../components/ui/Icon';
 import { PageHeader } from '../components/ui/PageHeader';
-import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
+import { SectionCard, StatStrip, StatTile, EmptyState } from '../components/ui/primitives';
 
 const PAGE_SIZE = 50;
 
@@ -59,114 +61,59 @@ function ChannelsPage() {
   return (
     <div>
       <PageHeader
+        eyebrow="Network · owned"
         title="My channels"
         subtitle="Owned channels you publish into. Each row shows its bound bot, poll tier, and legacy strategy bindings."
         actions={<>
           {/* Spec 042 / 048: set an own channel's agent up from its last 20 posts — /setup in the chat. */}
-          <Link to="/app/chat" search={{ q: '/setup ' }} className="btn-secondary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center', flexShrink: 0, textDecoration: 'none' }}>
+          <Link to="/app/chat" search={{ q: '/setup ' }} className="btn-secondary">
             <Icon name="sparkle" size={14} /> Setup from history
           </Link>
-          <button
-            onClick={() => setModalOpen(true)}
-            className="btn-primary"
-            style={{ gap: 6, display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}
-          >
+          <button type="button" onClick={() => setModalOpen(true)} className="btn-primary">
             <Icon name="plus" size={14} /> Add channel
           </button>
         </>}
       />
 
-      {/* Filter bar — search field with an inline glyph, the active bot filter
-          (removable), and a live result count anchored to the right. */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18, flexWrap: 'wrap' }}>
-        <div style={{ position: 'relative', flex: 1, minWidth: 220, maxWidth: 360 }}>
-          <span
-            style={{
-              position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
-              display: 'inline-flex', color: 'var(--color-ink-dim)', pointerEvents: 'none',
-            }}
-          >
-            <Icon name="discovery" size={15} />
-          </span>
-          <input
-            value={q}
-            onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
-            placeholder="Search channels…"
-            className="input-field"
-            style={{ width: '100%', paddingLeft: 36 }}
-          />
-          {q && (
-            <button
-              onClick={() => setSearch({ q: '', page: 1 })}
-              className="btn-icon"
-              title="Clear search"
-              style={{
-                position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)',
-                width: 24, height: 24, color: 'var(--color-ink-muted)',
-              }}
-            >
-              <Icon name="x" size={12} />
-            </button>
-          )}
-        </div>
+      {/* Search, the active bot filter (removable) and the result count. */}
+      <div className="ch-toolbar">
+        <SearchField
+          value={q}
+          onChange={(v) => setSearch({ q: v, page: 1 })}
+          placeholder="Search channels…"
+          label="Search channels"
+        />
         {botFilter && (
-          <span
-            className="chip is-active"
-            style={{ cursor: 'pointer', gap: 6 }}
-            onClick={() => setSearch({ bot: undefined, page: 1 })}
+          <button
+            type="button"
+            className="chip-toggle"
+            aria-pressed="true"
             title="Clear bot filter"
+            aria-label={`Clear bot filter: ${botFilter.username ?? botFilter.bot_id}`}
+            onClick={() => setSearch({ bot: undefined, page: 1 })}
           >
-            <Icon name="bots" size={11} />
+            <Icon name="bots" size={12} />
             bot: {botFilter.username ?? botFilter.bot_id}
-            <Icon name="x" size={11} style={{ marginLeft: 2 }} />
-          </span>
+            <UiIcon name="x" size={12} />
+          </button>
         )}
         {data && (
-          <span
-            className="text-micro"
-            style={{
-              marginLeft: 'auto', color: 'var(--color-ink-dim)',
-              fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap',
-            }}
-          >
+          <span className="ch-count mono">
             {total === 1 ? '1 channel' : `${total.toLocaleString()} channels`}
           </span>
         )}
       </div>
 
       {isLoading && (
-        <div
-          className="card"
-          style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'var(--color-ink-muted)' }}
-        >
-          <span style={{ display: 'inline-flex', color: 'var(--color-ink-dim)' }}>
-            <Icon name="refresh" size={15} />
-          </span>
-          <span className="text-body-sm">Loading channels…</span>
-        </div>
+        <SectionCard title="My channels" flush>
+          <ListSkeleton />
+        </SectionCard>
       )}
 
-      {error && (
-        <div
-          className="card"
-          style={{ display: 'flex', alignItems: 'flex-start', gap: 10, borderColor: 'var(--color-danger-soft)' }}
-        >
-          <span style={{ display: 'inline-flex', color: 'var(--color-danger)', flexShrink: 0, marginTop: 1 }}>
-            <Icon name="warning" size={16} />
-          </span>
-          <div>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
-              Couldn’t load channels
-            </div>
-            <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
-              {(error as Error).message}
-            </div>
-          </div>
-        </div>
-      )}
+      {error && <ErrorCallout title="Couldn’t load channels" message={(error as Error).message} />}
 
       {isEmpty && (
-        <SectionCard title="My channels" icon="channels" delay={40}>
+        <SectionCard title="My channels" delay={40}>
           <EmptyState
             icon="channels"
             title={filtered ? 'No channels match your filters' : 'No channels yet'}
@@ -174,12 +121,12 @@ function ChannelsPage() {
               ? 'Try a different search term or clear the bot filter to see everything.'
               : 'Add a channel to start scheduling and publishing content into it.'}
             action={filtered ? (
-              <button onClick={() => setSearch({ q: '', bot: undefined, page: 1 })} className="btn-secondary" style={{ gap: 6 }}>
-                <Icon name="x" size={13} /> Clear filters
+              <button type="button" onClick={() => setSearch({ q: '', bot: undefined, page: 1 })} className="btn-secondary">
+                <UiIcon name="x" size={14} /> Clear filters
               </button>
             ) : (
-              <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
-                <Icon name="plus" size={13} /> Add channel
+              <button type="button" onClick={() => setModalOpen(true)} className="btn-primary">
+                <UiIcon name="plus" size={14} /> Add channel
               </button>
             )}
           />
@@ -188,39 +135,30 @@ function ChannelsPage() {
 
       {data && !isEmpty && (
         <>
-          <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-            <StatTile
-              label={filtered ? 'On this page' : 'Channels'}
-              value={showing.toLocaleString()}
-              icon="channels"
-              accent
-            />
-            <StatTile
-              label="Need a bot"
-              value={needsBot.toLocaleString()}
-              icon="warning"
-              delta={needsBot > 0 ? 'Can’t publish' : 'All wired'}
-              deltaTone={needsBot > 0 ? 'warning' : 'success'}
-            />
-            <StatTile
-              label="Paused"
-              value={paused.toLocaleString()}
-              icon="pause"
-              delta={paused > 0 ? 'Publishing held' : 'All live'}
-              deltaTone={paused > 0 ? 'warning' : 'success'}
-            />
-          </div>
-
-          <SectionCard title="My channels" icon="channels" delay={60}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {data.items.map((c, i) => (
-                <div key={c.id} className="row-lift compose-rise" style={{ animationDelay: `${Math.min(i, 12) * 28}ms` }}>
-                  <ChannelRow c={c} />
-                </div>
-              ))}
+          <div className="ch-stack">
+            <div className="compose-rise">
+              <StatStrip label="Channels on this page">
+                <StatTile label={filtered ? 'On this page' : 'Channels'} value={showing.toLocaleString()} />
+                <StatTile
+                  label="Need a bot"
+                  value={needsBot.toLocaleString()}
+                  delta={needsBot > 0 ? 'Can’t publish' : 'All wired'}
+                  deltaTone={needsBot > 0 ? 'warning' : 'success'}
+                />
+                <StatTile
+                  label="Paused"
+                  value={paused.toLocaleString()}
+                  delta={paused > 0 ? 'Publishing held' : 'All live'}
+                  deltaTone={paused > 0 ? 'warning' : 'success'}
+                />
+              </StatStrip>
             </div>
-            <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
-          </SectionCard>
+
+            <SectionCard title="My channels" flush delay={60}>
+              {data.items.map((c) => <ChannelRow key={c.id} c={c} />)}
+            </SectionCard>
+          </div>
+          <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
         </>
       )}
 

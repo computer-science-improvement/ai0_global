@@ -9,6 +9,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { trackingApi, PatchChannelInput } from '../api/tracking';
 import { useBots, useSetDefaultBot } from '../api/bots';
 import { Modal } from './Modal';
+import { SegmentedTabs } from './SegmentedTabs';
+import { ErrorCallout } from './channels/ChannelsUi';
 import { Field } from './ui/primitives';
 import type { TrackedChannel } from '../api/types';
 
@@ -18,6 +20,20 @@ interface Props {
   onClose: () => void;
 }
 
+type Kind = 'public' | 'private' | '';
+type Tier = 'hot' | 'warm' | 'cold';
+
+const KIND_OPTIONS: { key: Kind; label: string }[] = [
+  { key: '',        label: '— none —' },
+  { key: 'public',  label: 'public' },
+  { key: 'private', label: 'private' },
+];
+const TIER_OPTIONS: { key: Tier; label: string }[] = [
+  { key: 'hot',  label: 'hot' },
+  { key: 'warm', label: 'warm' },
+  { key: 'cold', label: 'cold' },
+];
+
 export function EditChannelModal({ channel, open, onClose }: Props) {
   const qc        = useQueryClient();
   const { data: bots } = useBots();
@@ -25,10 +41,10 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
   const [title,         setTitle]         = useState<string>(channel.title ?? '');
   const [botId,         setBotId]         = useState<string | null>(channel.botId ?? null);
   const [isMine,        setIsMine]        = useState<boolean>(channel.isMine);
-  const [pollTier,      setPollTier]      = useState<'hot' | 'warm' | 'cold'>(channel.pollTier);
+  const [pollTier,      setPollTier]      = useState<Tier>(channel.pollTier);
   const [channelKey,    setChannelKey]    = useState<string>(channel.channelKey ?? '');
-  const [tgChatId,      setTgChatId]      = useState<string>((channel as any).tgChatId ?? '');
-  const [kind,          setKind]          = useState<'public' | 'private' | ''>((channel.kind as any) ?? '');
+  const [tgChatId,      setTgChatId]      = useState<string>(channel.tgChatId ?? '');
+  const [kind,          setKind]          = useState<Kind>((channel.kind as Kind | null | undefined) ?? '');
   const [publishPaused, setPublishPaused] = useState<boolean>(channel.publishPaused ?? false);
 
   useEffect(() => {
@@ -38,8 +54,8 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
       setIsMine(channel.isMine);
       setPollTier(channel.pollTier);
       setChannelKey(channel.channelKey ?? '');
-      setTgChatId((channel as any).tgChatId ?? '');
-      setKind((channel.kind as any) ?? '');
+      setTgChatId(channel.tgChatId ?? '');
+      setKind((channel.kind as Kind | null | undefined) ?? '');
       setPublishPaused(channel.publishPaused ?? false);
     }
   }, [open, channel]);
@@ -66,6 +82,8 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
     });
   };
 
+  const selectedBot = bots?.find(b => b.id === botId) ?? null;
+
   return (
     <Modal
       open={open}
@@ -85,12 +103,12 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
       </Field>
 
       <Field label="Bot">
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <select
             value={botId ?? ''}
             onChange={e => setBotId(e.target.value || null)}
             className="input-field"
-            style={{ flex: 1, minWidth: 0 }}
+            style={{ flex: '1 1 200px', minWidth: 0 }}
           >
             <option value="">— none —</option>
             {bots?.map(b => (
@@ -99,21 +117,16 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
               </option>
             ))}
           </select>
-          {(() => {
-            const selectedBot = bots?.find(b => b.id === botId) ?? null;
-            return (
-              <button
-                type="button"
-                onClick={() => { if (botId) setDefaultBot.mutate({ id: botId, default: true }); }}
-                disabled={!selectedBot || selectedBot.is_default || setDefaultBot.isPending}
-                className="btn-secondary"
-                style={{ whiteSpace: 'nowrap' }}
-                title="Make the selected bot the default fallback publisher for channels with no bot."
-              >
-                Set default bot
-              </button>
-            );
-          })()}
+          <button
+            type="button"
+            onClick={() => { if (botId) setDefaultBot.mutate({ id: botId, default: true }); }}
+            disabled={!selectedBot || selectedBot.is_default || setDefaultBot.isPending}
+            className="btn-secondary"
+            style={{ whiteSpace: 'nowrap' }}
+            title="Make the selected bot the default fallback publisher for channels with no bot."
+          >
+            Set default bot
+          </button>
         </div>
       </Field>
 
@@ -122,7 +135,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
           value={channelKey}
           onChange={e => setChannelKey(e.target.value)}
           placeholder="@my_channel"
-          className="input-field"
+          className="input-field mono"
           style={{ width: '100%' }}
         />
       </Field>
@@ -132,39 +145,17 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
           value={tgChatId}
           onChange={e => setTgChatId(e.target.value)}
           placeholder="-1003984251759"
-          className="input-field"
-          style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
+          className="input-field mono"
+          style={{ width: '100%' }}
         />
       </Field>
 
       <Field label="Kind">
-        <div className="tabs-pill" style={{ width: 'fit-content' }}>
-          {(['', 'public', 'private'] as const).map(k => (
-            <button
-              key={k || 'none'}
-              type="button"
-              onClick={() => setKind(k)}
-              className={`tabs-pill-item${kind === k ? ' is-selected' : ''}`}
-            >
-              {k || '— none —'}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs<Kind> value={kind} onChange={setKind} options={KIND_OPTIONS} ariaLabel="Channel kind" />
       </Field>
 
       <Field label="Poll tier">
-        <div className="tabs-pill" style={{ width: 'fit-content' }}>
-          {(['hot', 'warm', 'cold'] as const).map(t => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setPollTier(t)}
-              className={`tabs-pill-item${pollTier === t ? ' is-selected' : ''}`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs<Tier> value={pollTier} onChange={setPollTier} options={TIER_OPTIONS} ariaLabel="Poll tier" />
       </Field>
 
       <Field label="Publishing">
@@ -173,9 +164,9 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
             type="checkbox"
             checked={publishPaused}
             onChange={e => setPublishPaused(e.target.checked)}
-            style={{ accentColor: 'var(--color-accent)' }}
+            className="ch-check"
           />
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+          <span className="text-body-sm ch-ink">
             Pause publishing — strategies & forwards into this channel are blocked at publish time
           </span>
         </label>
@@ -187,23 +178,19 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
             type="checkbox"
             checked={isMine}
             onChange={e => setIsMine(e.target.checked)}
-            style={{ accentColor: 'var(--color-accent)' }}
+            className="ch-check"
           />
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+          <span className="text-body-sm ch-ink">
             Mine — this is one of my own channels (its agent publishes here)
           </span>
         </label>
       </Field>
 
-      {save.error && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
-          {(save.error as Error).message}
-        </p>
-      )}
+      {save.error && <ErrorCallout title="Couldn’t save the channel" message={(save.error as Error).message} />}
 
       <div className="modal-foot">
-        <button onClick={onClose} className="btn-secondary">Cancel</button>
-        <button onClick={submit} disabled={save.isPending} className="btn-primary">
+        <button type="button" onClick={onClose} className="btn-ghost">Cancel</button>
+        <button type="button" onClick={submit} disabled={save.isPending} className="btn-primary">
           {save.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>

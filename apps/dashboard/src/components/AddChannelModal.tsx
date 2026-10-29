@@ -17,10 +17,24 @@ import { trackingApi, CreateFullChannelInput } from '../api/tracking';
 import { useBots, useSetDefaultBot } from '../api/bots';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
+import { SegmentedTabs } from './SegmentedTabs';
+import { ErrorCallout } from './channels/ChannelsUi';
+import { Badge } from './ui/Badge';
 import { Field } from './ui/primitives';
 import { CHANNEL_KIND_HELP, POLL_TIER_HELP, CHANNEL_FLAG_HELP } from '../lib/labels';
 
 type Kind = 'public' | 'private';
+type Tier = 'hot' | 'warm' | 'cold';
+
+const KIND_OPTIONS: { key: Kind; label: string }[] = [
+  { key: 'private', label: 'private' },
+  { key: 'public',  label: 'public' },
+];
+const TIER_OPTIONS: { key: Tier; label: string }[] = [
+  { key: 'hot',  label: 'hot' },
+  { key: 'warm', label: 'warm' },
+  { key: 'cold', label: 'cold' },
+];
 
 export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
   open: boolean;
@@ -35,7 +49,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
   const [chatId,     setChatId]     = useState('');
   const [title,      setTitle]      = useState('');
   const [botId,      setBotId]      = useState<string>('');
-  const [pollTier,   setPollTier]   = useState<'hot' | 'warm' | 'cold'>('warm');
+  const [pollTier,   setPollTier]   = useState<Tier>('warm');
 
   // Re-sync sensible defaults whenever the modal (re)opens. External tracking
   // is almost always a public @username, so default kind follows ownership.
@@ -59,7 +73,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
     onSuccess: (res) => {
       qc.invalidateQueries({ queryKey: ['channels'] });
       reset(); onClose();
-      navigate({ to: '/app/channels/$id' as any, params: { id: res.id } as any });
+      navigate({ to: '/app/channels/$id', params: { id: res.id } });
     },
   });
 
@@ -70,7 +84,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
     onSuccess: (channel) => {
       qc.invalidateQueries({ queryKey: ['channels'] });
       reset(); onClose();
-      navigate({ to: '/app/channels/$id' as any, params: { id: channel.id } as any });
+      navigate({ to: '/app/channels/$id', params: { id: channel.id } });
     },
   });
 
@@ -111,18 +125,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
     <Modal open={open} onClose={onClose} title="Add channel" icon="channels" size="lg">
       <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <Field label="Kind" hint={`${CHANNEL_KIND_HELP.public} vs ${CHANNEL_KIND_HELP.private}`}>
-          <div className="tabs-pill" style={{ width: 'fit-content' }}>
-            {(['private', 'public'] as Kind[]).map(k => (
-              <button
-                key={k}
-                type="button"
-                onClick={() => setKind(k)}
-                className={`tabs-pill-item${kind === k ? ' is-selected' : ''}`}
-              >
-                {k}
-              </button>
-            ))}
-          </div>
+          <SegmentedTabs<Kind> value={kind} onChange={setKind} options={KIND_OPTIONS} ariaLabel="Channel kind" />
         </Field>
 
         {kind === 'public' ? (
@@ -143,8 +146,8 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
               value={chatId}
               onChange={e => setChatId(e.target.value)}
               placeholder="-1003984251759"
-              className="input-field"
-              style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
+              className="input-field mono"
+              style={{ width: '100%' }}
             />
           </Field>
         )}
@@ -160,12 +163,12 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
         </Field>
 
         <Field label="Bot" hint="Telegram bot account that will publish content to this channel. If none is chosen, the default bot is used as a fallback.">
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <select
               value={botId}
               onChange={e => setBotId(e.target.value)}
               className="input-field"
-              style={{ flex: 1, minWidth: 0 }}
+              style={{ flex: '1 1 200px', minWidth: 0 }}
             >
               <option value="">— none —</option>
               {bots?.map(b => (
@@ -188,49 +191,29 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
         </Field>
 
         <Field label="Poll tier" hint={`hot: ${POLL_TIER_HELP.hot} · warm: ${POLL_TIER_HELP.warm} · cold: ${POLL_TIER_HELP.cold}`}>
-          <div className="tabs-pill" style={{ width: 'fit-content' }}>
-            {(['hot', 'warm', 'cold'] as const).map(t => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setPollTier(t)}
-                className={`tabs-pill-item${pollTier === t ? ' is-selected' : ''}`}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
+          <SegmentedTabs<Tier> value={pollTier} onChange={setPollTier} options={TIER_OPTIONS} ariaLabel="Poll tier" />
         </Field>
 
         <Field label="Ownership" hint={`mine: ${CHANNEL_FLAG_HELP.mine}`}>
-          <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'not-allowed', opacity: 0.85 }}>
-            <input
-              type="checkbox"
-              checked={forcedMine}
-              disabled
-              readOnly
-              style={{ accentColor: 'var(--color-accent)' }}
-            />
-            <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+          {/* Fixed by the page that opened the dialog, so it is read-only. */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            <Badge tone={forcedMine ? 'success' : 'neutral'}>{forcedMine ? 'mine' : 'external'}</Badge>
+            <span className="text-body-sm ch-muted">
               {forcedMine
-                ? 'Mine — strategies can publish into this channel'
-                : 'External — tracked only; strategies will not publish here'}
+                ? 'Strategies can publish into this channel'
+                : 'Tracked only; strategies will not publish here'}
             </span>
-          </label>
+          </div>
         </Field>
 
-        {error && (
-          <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: 0 }}>
-            {error.message}
-          </p>
-        )}
+        {error && <ErrorCallout title="Couldn’t add the channel" message={error.message} style={{ marginBottom: 0 }} />}
 
         <div className="modal-foot">
-          <button type="button" onClick={onClose} className="btn-secondary">Cancel</button>
+          <button type="button" onClick={onClose} className="btn-ghost">Cancel</button>
           <button type="submit" disabled={!valid || pending} className="btn-primary">
             {pending ? 'Adding…' : (
               <>
-                <Icon name="plus" size={14} style={{ marginRight: 4 }} />
+                <Icon name="plus" size={14} />
                 Add
               </>
             )}

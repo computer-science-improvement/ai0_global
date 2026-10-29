@@ -1,3 +1,8 @@
+// The filter bar of the channel graph: a date range, the minimum edge weight, the link kinds (an on/off chip each) and
+// whether my own channels are included. Controlled by the page; the graph is re-queried when a filter changes.
+
+import './channels/channels.css';
+
 interface Props {
   from: string; to: string; minWeight: number; kinds: string[]; includeMine: boolean;
   onChange: (patch: Partial<{ from: string; to: string; minWeight: number; kinds: string[]; includeMine: boolean }>) => void;
@@ -10,9 +15,9 @@ export function GraphFilters({ from, to, minWeight, kinds, includeMine, onChange
     onChange({ kinds: kinds.includes(k) ? kinds.filter((x) => x !== k) : [...kinds, k] });
   };
   return (
-    <div style={{ marginBottom: 12, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, fontSize: 14 }}>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)' }}>
-        From
+    <div className="panel gr-filters compose-rise" role="group" aria-label="Graph filters">
+      <label className="gr-field">
+        <span className="text-eyebrow">From</span>
         <input
           type="date"
           value={from}
@@ -20,8 +25,8 @@ export function GraphFilters({ from, to, minWeight, kinds, includeMine, onChange
           className="input-field"
         />
       </label>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)' }}>
-        To
+      <label className="gr-field">
+        <span className="text-eyebrow">To</span>
         <input
           type="date"
           value={to}
@@ -29,48 +34,47 @@ export function GraphFilters({ from, to, minWeight, kinds, includeMine, onChange
           className="input-field"
         />
       </label>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)' }}>
-        Min weight
-        <input
-          type="range"
-          min={1}
-          max={10}
-          value={minWeight}
-          onChange={(e) => onChange({ minWeight: parseInt(e.target.value, 10) })}
-        />
-        <span style={{ width: 24, textAlign: 'center', color: 'var(--color-ink)' }}>{minWeight}</span>
+      <label className="gr-field gr-wide">
+        <span className="text-eyebrow">Min weight</span>
+        <span className="gr-range">
+          <input
+            type="range"
+            min={1}
+            max={10}
+            value={minWeight}
+            onChange={(e) => onChange({ minWeight: parseInt(e.target.value, 10) })}
+          />
+          <span className="mono gr-range-value">{minWeight}</span>
+        </span>
       </label>
-      <div style={{ display: 'flex', gap: 4 }}>
-        {ALL_KINDS.map((k) => {
-          const active = kinds.length === 0 || kinds.includes(k);
-          return (
-            <button
-              key={k}
-              onClick={() => toggleKind(k)}
-              style={{
-                borderRadius: 'var(--radius-pill)',
-                padding: '4px 12px',
-                fontSize: 13,
-                cursor: 'pointer',
-                border: active ? 'none' : '1px solid var(--color-hairline)',
-                background: active ? 'var(--color-surface-2)' : 'transparent',
-                color: active ? 'var(--color-ink)' : 'var(--color-ink-muted)',
-                transition: 'background 0.15s, color 0.15s',
-              }}
-            >
-              {k}
-            </button>
-          );
-        })}
+      <div className="gr-field gr-wide">
+        <span className="text-eyebrow">Link kinds</span>
+        <div className="gr-kinds" role="group" aria-label="Link kinds">
+          {ALL_KINDS.map((k) => {
+            // No kind picked = every kind shown.
+            const active = kinds.length === 0 || kinds.includes(k);
+            return (
+              <button
+                key={k}
+                type="button"
+                className="chip-toggle mono"
+                aria-pressed={active}
+                onClick={() => toggleKind(k)}
+              >
+                {k}
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <label style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)', cursor: 'pointer' }}>
-        <input
-          type="checkbox"
-          checked={includeMine}
-          onChange={(e) => onChange({ includeMine: e.target.checked })}
-        />
+      <button
+        type="button"
+        className="chip-toggle gr-mine gr-wide"
+        aria-pressed={includeMine}
+        onClick={() => onChange({ includeMine: !includeMine })}
+      >
         Include mine
-      </label>
+      </button>
     </div>
   );
 }

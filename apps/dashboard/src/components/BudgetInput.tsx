@@ -1,3 +1,5 @@
+import './channels/channels.css';
+
 interface Props {
   /** Budget in kopecks (internal). */
   value:    number;
@@ -8,7 +10,7 @@ interface Props {
 export function BudgetInput({ value, onChange }: Props) {
   const uah = value / 100;
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div className="rec-budget">
       <input
         type="number"
         min={1}
@@ -18,10 +20,10 @@ export function BudgetInput({ value, onChange }: Props) {
           const n = parseFloat(e.target.value);
           onChange(Number.isFinite(n) ? Math.round(n * 100) : 0);
         }}
-        className="input-field"
-        style={{ width: 128, textAlign: 'right' }}
+        aria-label="Budget in UAH"
+        className="input-field mono"
       />
-      <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>UAH</span>
+      <span className="text-body-sm ch-muted">UAH</span>
     </div>
   );
 }

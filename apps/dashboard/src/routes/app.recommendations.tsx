@@ -4,10 +4,12 @@ import { BudgetInput } from '../components/BudgetInput';
 import { EditThemesModal } from '../components/EditThemesModal';
 import { RecommendationsTable } from '../components/RecommendationsTable';
 import { TargetChannelPicker } from '../components/TargetChannelPicker';
-import { Icon } from '../components/Icon';
+import { ErrorCallout, ListSkeleton, SectionCaption } from '../components/channels/ChannelsUi';
+import { Icon } from '../components/ui/Icon';
 import { PageHeader } from '../components/ui/PageHeader';
-import { EmptyState, SectionCard, StatusDot } from '../components/ui/primitives';
+import { EmptyState, SectionCard } from '../components/ui/primitives';
 import { useChannelThemes, useRecommendations } from '../api/discovery';
+import '../components/channels/channels.css';
 
 export const Route = createFileRoute('/app/recommendations')({
   component: RecommendationsPage,
@@ -26,184 +28,108 @@ function RecommendationsPage() {
   return (
     <div>
       <PageHeader
+        eyebrow="Insights · ads"
         title="Recommendations"
         subtitle="Channels worth buying ads on, sorted by theme overlap → ROI → price."
       />
 
-      {/* ── Control panel ────────────────────────────────────────── */}
-      <SectionCard title="Find placements" icon="discovery" delay={40} style={{ marginBottom: 20 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 20, alignItems: 'start' }}>
-          <div>
-            <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
-              Target channel
-            </label>
-            <TargetChannelPicker value={targetId} onChange={setTargetId} />
-            {targetId && (
-              <button
-                onClick={() => setEditOpen(true)}
-                className="link-accent text-micro"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 5,
-                  marginTop: 8,
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: 0,
-                }}
-              >
-                <Icon name="pencil" size={12} />
-                Edit themes ({targetThemes?.length ?? 0})
-              </button>
-            )}
-          </div>
-          <div>
-            <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
-              Budget
-            </label>
-            <BudgetInput value={budget} onChange={setBudget} />
-          </div>
-          <div>
-            <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
-              Sort
-            </label>
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '8px 12px',
-                borderRadius: 'var(--radius-md)',
-                background: 'var(--color-surface-2)',
-                border: '1px solid var(--color-hairline-soft)',
-              }}
-            >
-              <span style={{ display: 'inline-flex', color: 'var(--color-accent)' }}>
-                <Icon name="sparkle" size={13} />
-              </span>
-              <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                theme match → ROI → price
-              </span>
+      <div className="ch-stack">
+        {/* ── Controls ─────────────────────────────────────────────── */}
+        <SectionCard title="Find placements" delay={40}>
+          <div className="rec-controls">
+            <div>
+              <label>
+                <span className="text-eyebrow">Target channel</span>
+                <TargetChannelPicker value={targetId} onChange={setTargetId} />
+              </label>
+              {targetId && (
+                <button type="button" onClick={() => setEditOpen(true)} className="btn-ghost btn-sm rec-edit">
+                  <Icon name="pencil" size={14} />
+                  Edit themes ({targetThemes?.length ?? 0})
+                </button>
+              )}
             </div>
+            <label>
+              <span className="text-eyebrow">Budget</span>
+              <BudgetInput value={budget} onChange={setBudget} />
+            </label>
           </div>
-        </div>
 
-        {targetThemes && targetThemes.length > 0 && (
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 6,
-              alignItems: 'center',
-              marginTop: 16,
-              paddingTop: 16,
-              borderTop: '1px solid var(--color-hairline-soft)',
-            }}
-          >
-            <span className="text-micro" style={{ color: 'var(--color-ink-muted)', marginRight: 2 }}>
-              Target themes
-            </span>
-            {targetThemes.map(t => (
-              <span key={t} className="chip is-active">{t}</span>
-            ))}
-          </div>
-        )}
-      </SectionCard>
-
-      {/* ── Result count ─────────────────────────────────────────── */}
-      {recs.data && resultCount > 0 && (
-        <div
-          className="compose-rise"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 7,
-            marginBottom: 12,
-            animationDelay: '60ms',
-          }}
-        >
-          <StatusDot tone="accent" size={7} />
-          <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-            {resultCount} channel{resultCount === 1 ? '' : 's'} match your budget &amp; themes
-          </span>
-        </div>
-      )}
-
-      {/* ── States ───────────────────────────────────────────────── */}
-      {recs.isLoading && (
-        <SectionCard title="Computing recommendations…" icon="refresh" delay={60}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {[0, 1, 2, 3].map(i => (
-              <div
-                key={i}
-                style={{
-                  height: 40,
-                  borderRadius: 'var(--radius-md)',
-                  background: 'var(--color-surface-2)',
-                  border: '1px solid var(--color-hairline-soft)',
-                  opacity: 0.6 - i * 0.1,
-                }}
-              />
-            ))}
-          </div>
+          {targetThemes && targetThemes.length > 0 && (
+            <div className="rec-themes">
+              <span className="text-overline rec-themes-key">Target themes</span>
+              {targetThemes.map(t => (
+                <span key={t} className="chip is-active">{t}</span>
+              ))}
+            </div>
+          )}
         </SectionCard>
-      )}
 
-      {recs.error && (
-        <div className="compose-rise">
-          <EmptyState
-            icon="warning"
-            title="Failed to load recommendations"
-            note="Something went wrong while computing placements. Try again in a moment."
+        {/* ── Results ──────────────────────────────────────────────── */}
+        {!targetId ? (
+          <div className="panel compose-rise" style={{ animationDelay: '80ms' }}>
+            <EmptyState
+              icon="recommendations"
+              title="Pick a target channel"
+              note="Choose one of your channels above and the best ad placements for it appear here."
+            />
+          </div>
+        ) : budget <= 0 ? (
+          <div className="panel compose-rise" style={{ animationDelay: '80ms' }}>
+            <EmptyState
+              icon="recommendations"
+              title="Enter a budget"
+              note="Set a budget above zero to see the placements it can buy."
+            />
+          </div>
+        ) : recs.isLoading ? (
+          <SectionCard title="Placements" flush delay={80} action={<SectionCaption>computing…</SectionCaption>}>
+            <ListSkeleton rows={4} />
+          </SectionCard>
+        ) : recs.error ? (
+          <ErrorCallout
+            title="Couldn’t compute recommendations"
+            message={(recs.error as Error).message}
+            style={{ marginBottom: 0 }}
           />
-        </div>
-      )}
+        ) : recs.data ? (
+          <>
+            {recs.data.warning && (
+              <div className="callout-warning compose-rise" role="status" style={{ marginBottom: 0 }}>
+                <Icon name="info" size={18} />
+                <div className="text-body-sm" style={{ flex: '1 1 260px', minWidth: 0 }}>{recs.data.warning}</div>
+              </div>
+            )}
 
-      {recs.data?.warning && (
-        <div
-          className="panel compose-rise"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            marginBottom: 16,
-            borderColor: 'var(--color-warning-soft)',
-          }}
-        >
-          <span style={{ display: 'inline-flex', color: 'var(--color-warning)' }}>
-            <Icon name="info" size={16} />
-          </span>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-            {recs.data.warning}
-          </span>
-        </div>
-      )}
-
-      {/* ── Empty state ──────────────────────────────────────────── */}
-      {recs.data && resultCount === 0 && (
-        <div className="compose-rise" style={{ animationDelay: '60ms' }}>
-          <EmptyState
-            icon="recommendations"
-            title={targetId ? 'No matching channels' : 'Pick a target channel'}
-            note={
-              targetId
-                ? 'Try widening the budget or editing the target themes to broaden the overlap.'
-                : 'Choose a channel above and we’ll surface the best ad placements for it.'
-            }
-          />
-        </div>
-      )}
-
-      {/* ── Results table ────────────────────────────────────────── */}
-      {recs.data && resultCount > 0 && (
-        <div className="compose-rise" style={{ animationDelay: '80ms' }}>
-          <RecommendationsTable
-            items={recs.data.recommendations}
-            targetThemes={recs.data.targetThemes}
-          />
-        </div>
-      )}
+            {resultCount === 0 ? (
+              <div className="panel compose-rise" style={{ animationDelay: '80ms' }}>
+                <EmptyState
+                  icon="recommendations"
+                  title="No matching channels"
+                  note="Try widening the budget or editing the target themes to broaden the overlap."
+                  action={
+                    <button type="button" className="btn-secondary btn-sm" onClick={() => setEditOpen(true)}>
+                      <Icon name="pencil" size={14} />
+                      Edit themes
+                    </button>
+                  }
+                />
+              </div>
+            ) : (
+              <SectionCard
+                title="Placements"
+                delay={80}
+                action={<SectionCaption>{resultCount} channel{resultCount === 1 ? '' : 's'}</SectionCaption>}
+              >
+                <RecommendationsTable
+                  items={recs.data.recommendations}
+                  targetThemes={recs.data.targetThemes}
+                />
+              </SectionCard>
+            )}
+          </>
+        ) : null}
+      </div>
 
       {targetId && editOpen && (
         <EditThemesModal

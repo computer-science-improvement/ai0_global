@@ -1,10 +1,13 @@
 // Cross-post management for one channel — on the channel detail page (moved from the removed strategy page, spec 023 phase B).
-// Lists the channel's Meta cross-post targets and lets the operator add /
-// toggle / remove them. Cross-posting fires after the channel's Telegram posts.
+// A flush panel: one row per Meta cross-post target (toggle / remove), and a footer to add one.
+// Cross-posting fires after the channel's Telegram posts.
 
 import { useState } from 'react';
 import { Icon, type IconName } from './ui/Icon';
 import { Badge } from './ui/Badge';
+import { SectionCard, EmptyState } from './ui/primitives';
+import { TableAction } from './ui/table';
+import { SectionCaption } from './channels/ChannelsUi';
 import { useConfirm } from './ui/ConfirmDialog';
 import { useMetaAccounts } from '../api/meta-accounts';
 import {
@@ -21,7 +24,11 @@ const PLATFORMS: ReadonlyArray<{ key: MetaPlatform; label: string; icon: IconNam
   { key: 'threads',   label: 'Threads',   icon: 'threads' },
 ];
 
-export function CrosspostSection({ channelId }: { channelId: string }) {
+export function CrosspostSection({ channelId, delay }: {
+  channelId: string;
+  /** Entrance delay of the panel (ms). */
+  delay?: number;
+}) {
   const confirm  = useConfirm();
   const accounts = useMetaAccounts();
   const targets  = useCrossposts(channelId);
@@ -54,49 +61,52 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
   };
 
   return (
-    <div>
-      <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 10px' }}>
+    <SectionCard
+      title={<>Cross-posts <SectionCaption>Meta copies of this channel&apos;s posts</SectionCaption></>}
+      flush
+      delay={delay}
+    >
+      <p className="ch-note">
         After each Telegram post, this channel reposts to the selected Meta accounts.
         <b> duplicate</b> — the same content; <b>teaser</b> — a short teaser + link to the post.
       </p>
 
       {/* Existing targets */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
-        {(targets.data ?? []).map(t => {
-          const meta = PLATFORMS.find(p => p.key === t.platform)!;
-          return (
-            <div key={t.id} style={{
-              display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px',
-              background: 'var(--color-surface-2)', borderRadius: 'var(--radius-md)',
-            }}>
-              <Icon name={meta.icon} size={14} />
-              <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{accountLabel(t.meta_account_id)}</span>
-              <Badge tone="neutral">{CROSSPOST_MODE_LABEL[t.mode] ?? t.mode}</Badge>
-              {!t.enabled && <Badge tone="warning">disabled</Badge>}
-              <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
-                <button className="btn-tiny" onClick={() => toggle.mutate({ id: t.id, enabled: !t.enabled })}>
-                  {t.enabled ? 'Disable' : 'Enable'}
-                </button>
-                <button className="btn-tiny-danger" onClick={async () => {
+      {(targets.data ?? []).map(t => {
+        const meta = PLATFORMS.find(p => p.key === t.platform) ?? PLATFORMS[0];
+        return (
+          <div key={t.id} className="panel-row">
+            <Icon name={meta.icon} size={16} />
+            <span className="ch-xp-name">{accountLabel(t.meta_account_id)}</span>
+            <Badge tone="neutral">{CROSSPOST_MODE_LABEL[t.mode] ?? t.mode}</Badge>
+            {!t.enabled && <Badge tone="warning">disabled</Badge>}
+            <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
+              <button type="button" className="btn-tiny" onClick={() => toggle.mutate({ id: t.id, enabled: !t.enabled })}>
+                {t.enabled ? 'Disable' : 'Enable'}
+              </button>
+              <TableAction
+                action="delete"
+                title="Delete cross-post target"
+                onClick={async () => {
                   if (await confirm(`remove cross-posting ${meta.label} → ${accountLabel(t.meta_account_id)}`)) remove.mutate(t.id);
-                }}>Delete</button>
-              </span>
-            </div>
-          );
-        })}
-        {targets.data && targets.data.length === 0 && (
-          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>No cross-posting targets yet.</p>
-        )}
-      </div>
+                }}
+              />
+            </span>
+          </div>
+        );
+      })}
+      {targets.data && targets.data.length === 0 && (
+        <EmptyState icon="connections" title="No cross-posting targets yet" note="Pick a platform and an account below to add one." />
+      )}
 
       {/* Add a target */}
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-        <select className="input-field" style={{ padding: '6px 10px', fontSize: 13 }}
+      <div className="panel-foot">
+        <select className="input-field ch-select" aria-label="Platform"
           value={platform} onChange={e => { setPlatform(e.target.value as MetaPlatform); setAccountId(''); }}>
           {PLATFORMS.map(p => <option key={p.key} value={p.key}>{p.label}</option>)}
         </select>
 
-        <select className="input-field" style={{ padding: '6px 10px', fontSize: 13, minWidth: 160 }}
+        <select className="input-field ch-select" aria-label="Account" style={{ minWidth: 160 }}
           value={accountId} onChange={e => setAccountId(e.target.value)}>
           <option value="">{platformAccounts.length ? 'Select an account…' : 'No connected accounts'}</option>
           {platformAccounts.map(a => (
@@ -104,24 +114,22 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
           ))}
         </select>
 
-        <select className="input-field" style={{ padding: '6px 10px', fontSize: 13 }}
+        <select className="input-field ch-select" aria-label="Mode"
           value={effMode} disabled={igForcesDuplicate} onChange={e => setMode(e.target.value as CrosspostMode)}>
           <option value="mirror">{CROSSPOST_MODE_LABEL['mirror']}</option>
           <option value="teaser">teaser</option>
         </select>
 
-        <button className="btn-primary" disabled={!accountId || create.isPending} onClick={add}>
+        <button type="button" className="btn-secondary btn-sm" disabled={!accountId || create.isPending} onClick={add}>
           {create.isPending ? 'Adding…' : 'Add'}
         </button>
+        {igForcesDuplicate && (
+          <p className="ch-note-inline">
+            Instagram supports only <b>duplicate</b> (an image is required; links in captions aren&apos;t clickable).
+          </p>
+        )}
+        {create.error && <p className="ch-form-error ch-note-inline">{(create.error as Error).message}</p>}
       </div>
-      {igForcesDuplicate && (
-        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 6 }}>
-          Instagram supports only <b>duplicate</b> (an image is required; links in captions aren't clickable).
-        </p>
-      )}
-      {create.error && (
-        <p className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 6 }}>{(create.error as Error).message}</p>
-      )}
-    </div>
+    </SectionCard>
   );
 }

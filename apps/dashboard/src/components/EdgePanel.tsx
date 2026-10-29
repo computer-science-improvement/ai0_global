@@ -1,17 +1,23 @@
 // apps/dashboard/src/components/EdgePanel.tsx
 //
-// Side-sheet that opens when an edge label / chip on the graph is clicked.
+// Side sheet that opens when an edge label / chip on the graph is clicked.
 // Shows every post in `sourceId` that mentioned `targetUsername`, rendered
 // to read like Telegram: full text (no line clamp), preserved whitespace,
-// auto-linked @mentions and URLs, full engagement meta line, "Open in
-// Telegram" deep-link to the original message.
+// auto-linked @mentions and URLs, the engagement numbers, and an "Open in
+// Telegram" deep-link to the original message. A drawer on the shared Modal
+// (right sheet; a bottom sheet on phones).
 
 import { useQuery } from '@tanstack/react-query';
 import { trackingApi } from '../api/tracking';
+import { channelName } from '../lib/channel-view';
 import { fmtRelative, fmtNumber } from '../lib/format';
-import { ChannelAvatar } from './ChannelAvatar';
-import { Icon } from './Icon';
+import { Modal } from './Modal';
+import { ErrorCallout, LoadingNote } from './channels/ChannelsUi';
+import { Badge } from './ui/Badge';
+import { Icon } from './ui/Icon';
+import { EmptyState } from './ui/primitives';
 import type { TrackedPost, TrackedChannel } from '../api/types';
+import './channels/channels.css';
 
 interface Props {
   sourceId:       string;
@@ -33,59 +39,29 @@ export function EdgePanel({ sourceId, targetUsername, onClose }: Props) {
     queryFn:  () => trackingApi.edgePosts(sourceId, targetUsername),
   });
 
-  return (
-    <div
-      style={{
-        position: 'fixed', inset: '0 0 0 auto', zIndex: 50,
-        display: 'flex', flexDirection: 'column',
-        width: '100%', maxWidth: 560,
-        background: 'var(--color-surface-1)',
-        borderLeft: '1px solid var(--color-hairline)',
-        boxShadow: '-16px 0 48px rgba(0,0,0,0.50)',
-      }}
-    >
-      <header
-        style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: 20,
-          borderBottom: '1px solid var(--color-hairline-soft)',
-        }}
-      >
-        <div style={{ minWidth: 0 }}>
-          <div className="text-eyebrow" style={{ marginBottom: 4 }}>
-            Posts referencing
-          </div>
-          <h3 className="text-headline" style={{ margin: 0 }}>@{targetUsername}</h3>
-          {channelQ.data && (
-            <div className="text-caption" style={{ marginTop: 6, color: 'var(--color-ink-muted)' }}>
-              from {channelQ.data.title ?? channelQ.data.channelKey ?? channelQ.data.username ?? sourceId.slice(0, 8)}
-            </div>
-          )}
-        </div>
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          className="btn-icon"
-          style={{ width: 32, height: 32 }}
-        >
-          <Icon name="x" size={16} />
-        </button>
-      </header>
+  const source = channelQ.data;
+  const posts = postsQ.data?.items ?? [];
 
-      <div style={{ flex: 1, overflowY: 'auto', padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {postsQ.isLoading && (
-          <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>
+  return (
+    <Modal
+      open
+      onClose={onClose}
+      size="drawer"
+      icon="graph"
+      title={`Posts referencing @${targetUsername}`}
+      subtitle={source ? `from ${channelName(source, sourceId.slice(0, 8))}` : undefined}
+    >
+      <div className="gr-posts">
+        {postsQ.isLoading && <LoadingNote note="Loading posts…" />}
+        {postsQ.error && <ErrorCallout title="Couldn’t load the posts" message={(postsQ.error as Error).message} style={{ marginBottom: 0 }} />}
+        {postsQ.data && posts.length === 0 && (
+          <EmptyState icon="channels" title="No posts found" note="No post in this channel references this target." />
         )}
-        {postsQ.data && postsQ.data.items.length === 0 && (
-          <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-            No posts found referencing this target.
-          </p>
-        )}
-        {postsQ.data?.items.map((p) => (
-          <PostCard key={p.id} post={p} channel={channelQ.data ?? null} />
+        {posts.map((p) => (
+          <PostCard key={p.id} post={p} channel={source ?? null} />
         ))}
       </div>
-    </div>
+    </Modal>
   );
 }
 
@@ -93,90 +69,42 @@ export function EdgePanel({ sourceId, targetUsername, onClose }: Props) {
 
 function PostCard({ post, channel }: { post: TrackedPost; channel: TrackedChannel | null }) {
   const tgLink = buildTelegramLink(channel, post.tgMessageId);
+  const stats: Array<[string, number | null]> = [
+    ['views', post.views],
+    ['forwards', post.forwards],
+    ['reactions', post.reactionsTotal],
+    ['comments', post.commentsCount],
+  ];
   return (
-    <article
-      style={{
-        background: 'var(--color-surface-2)',
-        borderRadius: 'var(--radius-md)',
-        padding: 14,
-      }}
-    >
-      {/* Channel-row header — small avatar + name + relative date, mirrors
-          how Telegram itself heads each post. */}
-      <header style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-        <ChannelAvatar
-          name={channel?.title ?? channel?.username ?? channel?.channelKey ?? '?'}
-          size={28}
-        />
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <div className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-            {channel?.title ?? channel?.channelKey ?? channel?.username ?? '—'}
-          </div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-            {fmtRelative(post.postedAt)}
-            {tgLink && (
-              <>
-                {' · '}
-                <a href={tgLink} target="_blank" rel="noopener noreferrer" className="link-accent">
-                  Open in Telegram ↗
-                </a>
-              </>
-            )}
-          </div>
-        </div>
+    <article className="inset gr-post">
+      <header className="gr-post-head">
+        <span className="mono">{fmtRelative(post.postedAt)}</span>
+        <span className="gr-post-links">
+          {post.hasMedia && <Badge tone="neutral"><Icon name="image" size={11} /> media</Badge>}
+          {tgLink && (
+            <a href={tgLink} target="_blank" rel="noopener noreferrer" className="link-accent gr-post-link">
+              Open in Telegram
+              <Icon name="external" size={12} />
+            </a>
+          )}
+        </span>
       </header>
-
-      {post.hasMedia && (
-        <div
-          className="text-micro"
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            padding: '4px 10px',
-            background: 'var(--color-surface-1)',
-            borderRadius: 'var(--radius-sm)',
-            color: 'var(--color-ink-muted)',
-            marginBottom: 10,
-          }}
-        >
-          📎 media attached
-        </div>
-      )}
 
       {post.text ? (
         <PostBody text={post.text} />
       ) : (
-        <p className="text-body-sm" style={{ color: 'var(--color-ink-dim)', margin: 0, fontStyle: 'italic' }}>
+        <p className="gr-post-text is-empty">
           {post.hasMedia ? '(no caption)' : '(empty post)'}
         </p>
       )}
 
       {/* Engagement footer — only render the values we actually have. */}
-      <footer
-        style={{
-          marginTop: 10,
-          paddingTop: 10,
-          borderTop: '1px solid var(--color-hairline-soft)',
-          display: 'flex', flexWrap: 'wrap', gap: 14,
-        }}
-      >
-        <Stat label="👁 views"    value={post.views} />
-        <Stat label="↺ forwards" value={post.forwards} />
-        <Stat label="❤ reactions" value={post.reactionsTotal} />
-        <Stat label="💬 comments" value={post.commentsCount} />
+      <footer className="gr-post-stats mono">
+        {stats.map(([label, value]) => value == null ? null : (
+          <span key={label}><b>{fmtNumber(value)}</b> {label}</span>
+        ))}
       </footer>
     </article>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: number | null }) {
-  if (value == null) return null;
-  return (
-    <span
-      className="text-micro"
-      style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}
-    >
-      {label} <span style={{ color: 'var(--color-ink)' }}>{fmtNumber(value)}</span>
-    </span>
   );
 }
 
@@ -191,16 +119,7 @@ function Stat({ label, value }: { label: string; value: number | null }) {
 function PostBody({ text }: { text: string }) {
   const segments = autolinkSegments(text);
   return (
-    <p
-      className="text-body"
-      style={{
-        margin: 0,
-        color: 'var(--color-ink)',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word',
-        lineHeight: 1.5,
-      }}
-    >
+    <p className="gr-post-text">
       {segments.map((seg, i) => {
         if (seg.kind === 'text') return <span key={i}>{seg.text}</span>;
         return (

@@ -89,7 +89,7 @@ Owns: `routes/index.tsx`, `routes/white-label.tsx`, `components/landing/*` excep
 ## Wave C (parallel, after B is merged) — pages without a prototype
 Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "Design language" (A1.5). Frozen: `ui/*`, `index.css`, `SegmentedTabs`, `Modal`, `Pagination`, `nav/*`, `AppSidebar`, `AppShell`, chart files, `GraphCanvas`, `agents/AgentsUi`, `approvals/*`, `overview/*`, `today/*`, `inbox/*`, `calendar/*`, `landing/*` public parts. Page CSS goes into an area file (e.g. `components/connections/connections.css`).
 
-- [ ] C1 Channels & intelligence: channels, channels_.$id, tracked, analytics, discovery, recommendations, graph (+ their owned components per brief §5).
+- [x] C1 Channels & intelligence: channels, channels_.$id, tracked, analytics, discovery, recommendations, graph (+ their owned components per brief §5).
 - [ ] C2 Connections, health & map HUD: connections, connections_.groups, connections_.meta_.$accountId, health, map HUD only.
 - [ ] C3 Publishing & spend: editor, editor_.$channel, editor_.run.$id, editor_.slot.$id, scheduled, compose, logs, spend.
 - [ ] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
@@ -158,6 +158,14 @@ B3 Agent detail (worktree `wf_a4c40803-5b3-3`, base `ad17cb89`), done:
 - `4acd5df4` B5.2 sections: role explorer, loop ring and guard track, approval deck, ad steps, shadow/live demo, network card hover.
 - `01f907b9` B5.3 motion rules, no "| DEV" on channel names, CSS lint tests.
 - Checked under Node 20: `tsc --noEmit` clean, 439 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass (and the 375px pass) is the lead's.
+
+### C1 Channels & intelligence (branch `worktree-wf_6e3bf934-224-1`, base `8f674e50`), done
+- C1.1 `8a619ff3` channels, tracked: page header, stat strip, channel rows in a flush panel, search and bot filter, Add / Edit modals on SegmentedTabs; `lib/channel-view.ts` (+ tests), `components/channels/` (area CSS, `ChannelsUi`).
+- C1.2 `e535cc55` channel detail: entity header, stat strip, setup facts, flush panels for forward routes, cross-posts and posts; ROI panel frameless.
+- C1.3 `246219e4` analytics, discovery: platform tabs with counts, stat strips, chart panels, ROI in a panel; discovery queue as flush rows.
+- C1.4 `98ddf3e2` recommendations, graph: controls panel and placements table; filter bar on chip toggles; channel dialog and edge sheet on Modal.
+- C1.5 (this commit): the last inline colours moved to classes; this status and the deltas below.
+- Checked under Node 20: `tsc --noEmit` clean, 402 node tests pass (4 new in `lib/channel-view.test.ts`), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. In the browser on the mock (private port, GET only): every C1 page at 375px has no page-wide horizontal scroll; a stubbed 404 on `/tracking/*` and a stubbed empty payload both render the error callout or the empty state on all seven routes; channel dialog, edge sheet and the recommendations result table were driven with stubbed `fetch` (no POST reached the mock).
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -374,3 +382,26 @@ Landing (`/`), built from `research/landing.md` and `Main.dc.html` as a layout a
   - With the channels failed, every own post landed in "Other channels" labelled "0 channels without an agent": a banner says the channels did not load (Try again), and a row that holds only posts reads "Your posts".
   - Landing under reduced motion: the agent log kept its 196px masked window over a list that no longer scrolls, and its aria-hidden loop copy showed; now the log shows whole, once.
   - Landing orbit: a tile that mounted after its ring started spinning kept a tilted label; each tile's counter-rotation is put on its ring's clock (`getAnimations`) when the tiles change.
+
+### C1
+Restyle only: data flow, endpoints, routes and search params are unchanged. The exceptions are listed under "Behaviour that differs".
+- **Area file and shared parts.** All page CSS is `components/channels/channels.css` (prefixes `ch-`, `ent-`, `roi`, `rec-`, `gr-`). `components/channels/ChannelsUi.tsx` holds `SearchField`, `ListSkeleton`, `ErrorCallout`, `LoadingNote`, `SectionCaption` and `ChannelGlyph`. `lib/channel-view.ts` (+ 4 tests) holds `TRACKING_META`, `channelInitial`, `channelName`. Worth promoting to `ui/` if other batches want them: `SearchField`, `ListSkeleton`, `ErrorCallout` (the "failed load" callout, red, with what failed and why) and `ChannelGlyph`.
+- **Entity header is local.** `components/channels/ChannelHeader.tsx` (64px glyph, title with badges, about, one mono meta line, actions) is presentational; the page owns mutations and confirmations. If B3 or another entity page ends up with the same shape it can become a shared primitive.
+- **Glyph.** Channel rows use the neutral `ChannelGlyph` (initial on `.hub-glyph.is-neutral`, mono) instead of `ChannelAvatar`: the avatar's palette is rgba and hex literals and the file is frozen. `ChannelGlyph` takes an optional `src` (recommendation photos) and falls back to the initial if the photo fails. `ChannelAvatar` is now used only by `post/PostComposer`. SectionCards on these pages pass no `icon` (no glyph tile), as in the prototype.
+- **Two local tone maps, three entries each, because `lib/status-tone.ts` is frozen and has neither:** `runTone` (legacy strategy last run: ok green, error red, anything else neutral, in the channel page) and `CONFIDENCE_TONE` (ROI low / medium / high, in `RoiPanel`). Both are categories, not statuses of the app. If a later batch wants them shared, move them to `status-tone.ts`.
+- **Framing moved to the callers.** `RoiPanel` has no frame; the channel page, Analytics and `ChannelDialog` wrap it in a SectionCard. `ForwardRoutesPanel` and `CrosspostSection` render their own flush SectionCard (they take `delay`).
+- **Channel page.** The error state has an "All channels" button, not "Back to channels": `nav/registry.test.ts` (FR-013) forbids `Back to ` and `← ` on detail pages. The page's own shadowing `StatStrip` function was removed in favour of the primitive. Tier change and pause / resume keep their confirmations.
+- **Tracked.** The tracking-state legend row is gone (each Badge has the explanation as its title). On Channels the `?bot=` filter is a removable `chip-toggle` beside the search field.
+- **Add / Edit channel modals.** The `tabs-pill` markup is `SegmentedTabs`; Cancel is `btn-ghost`; errors are `ErrorCallout`; the `as any` link casts are removed (the typed `Link` compiles).
+- **Behaviour that differs from before (all small, none touch data):**
+  - Recommendations with no target channel (the query is disabled) rendered nothing under the controls; it now shows "Pick a target channel", and with a zero budget "Enter a budget". The "Sort" box is gone (the order is fixed and named in the page subtitle). With zero results, "Edit themes" is offered as the next action. `TargetChannelPicker` stays a disabled select while loading or after an error (it was a text line, so the form jumped).
+  - `ChannelDialog` linked to a literal `/channels/${id}` (not a route; the page is `/app/channels/$id`); it is a typed `Link` now, with an "Open on Telegram" button beside it.
+  - `ChannelDialog` and `EdgePanel` are on `Modal` (`lg` and `drawer`), so they close with Escape and the backdrop and become a bottom sheet on phones. The hand-rolled fixed sheets did none of that. `EdgePanel` dropped the repeated per-post avatar (the source channel is the subtitle) and its emoji stats (mono "views / forwards / reactions / comments").
+  - Graph: the layout switch moved into the `PageHeader` actions; the nodes / edges `Metric` pair is a two-tile `StatStrip`. Link kinds are `chip-toggle[aria-pressed]`; with no kind picked every chip is pressed, as before.
+- **Graph colours.** `GraphCanvas` is untouched. Its `themeColors()` reads `--color-ink`, `--color-ink-muted`, `--color-accent`, `--color-surface-2`, `--color-hairline-strong` and `--color-canvas`; all six still exist in `index.css`, and nodes, labels and the frame render in the new palette on the mock. The `?synthetic=` harness is unchanged.
+- **Left as is:**
+  - Error callouts print `Error.message`, which for an API error is the JSON body (`{"message":"..."}`). `api/client.ts` is read-only here; parsing the message there once would fix every page.
+  - Analytics picks the channel or account with a native select (many options), next to the Telegram / Meta tabs.
+  - The recommendations table is a real table: at 375px it scrolls inside its own frame (the shared `ActionsTh` is 240px wide).
+  - A failed "Track" in the recommendations table shows nothing (unchanged; the button is disabled for private invite links).
+  - On a phone the Discovery search field sits on its own line in the panel head.
