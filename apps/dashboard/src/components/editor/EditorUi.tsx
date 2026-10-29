@@ -12,6 +12,8 @@ import { StatusMark } from '../ui/StatusMark';
 import { TableAction, RowActions } from '../ui/table';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { useConfirm } from '../ui/ConfirmDialog';
+import { useStartGuard } from '../readiness/useStartGuard';
+import { isStartMove } from '../../lib/readiness';
 import { useRunSlot, useSetEditorMode, useSkipSlot } from '../../api/editor';
 import type { Tone } from '../ui/primitives';
 import type { EditorMode, EditorRunStatus, EditorSlot, EditorSlotStatus } from '../../api/types';
@@ -95,10 +97,18 @@ export const MODE_OPTIONS = [
  */
 export function ModeSwitch({ channelKey, mode, title }: { channelKey: string; mode: EditorMode; title?: string | null }) {
   const setMode = useSetEditorMode();
+  const guard = useStartGuard();
   const [goLive, setGoLive] = useState(false);
+  const [checking, setChecking] = useState(false);
 
   const onChange = async (next: EditorMode) => {
-    if (next === mode || setMode.isPending) return;
+    if (next === mode || setMode.isPending || checking) return;
+    // Spec 072 A23: a channel that starts posting is first looked at by the doctor; open blockers need "Start anyway".
+    if (isStartMove(mode, next)) {
+      setChecking(true);
+      const go = await guard.confirmStart(channelKey).finally(() => setChecking(false));
+      if (!go) return;
+    }
     if (next === 'live') { setGoLive(true); return; }
     setMode.mutate({ key: channelKey, mode: next });
   };

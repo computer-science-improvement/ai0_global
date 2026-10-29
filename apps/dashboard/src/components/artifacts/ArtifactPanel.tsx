@@ -22,6 +22,9 @@ import { ProposalBody } from '../setup/SetupProposalDialog';
 import { SteeringActions, SteeringDetails } from '../steering/SteeringCard';
 import { DiffView } from '../agents/AgentSkills';
 import { LaunchBody } from '../launch/LaunchBody';
+import { blockerDetails, useStartGuard } from '../readiness/useStartGuard';
+import type { ReadinessView } from '../../api/readiness';
+import { START_ANYWAY } from '../../lib/readiness';
 import { AuditBody } from '../sysadmin/AuditBody';
 
 /** The API refusal as one line: the type's reasons when there is a list. */
@@ -273,6 +276,8 @@ const CONFIRM: Record<string, string> = {
 function GenericActions({ d }: { d: ArtifactDetail }) {
   const act = useArtifactAction();
   const confirm = useConfirm();
+  const guard = useStartGuard();
+  const [checking, setChecking] = useState(false);
   if (d.row.type === 'setup' || d.row.type === 'steering') return null;
   const actions = d.actions.filter((a) => a.key !== 'edit' && a.path);
   if (!actions.length) return null;
@@ -280,13 +285,24 @@ function GenericActions({ d }: { d: ArtifactDetail }) {
   const main = actions.find((a) => !a.danger);
   const run = async (a: ArtifactAction) => {
     const ask = a.danger ? `${a.label.toLowerCase()} — ${d.row.title}` : CONFIRM[`${d.row.type}:${a.key}`];
-    if (ask && !(await confirm(ask, { confirmLabel: a.label }))) return;
+    if (ask) {
+      // Spec 072 A23: the Start of a launch looks at the doctor first; open blockers are listed and the button says "Start anyway".
+      let blocked: ReadinessView | null = null;
+      if (d.row.type === 'launch' && a.key === 'start' && d.row.channel) {
+        setChecking(true);
+        blocked = await guard.check(d.row.channel).finally(() => setChecking(false));
+      }
+      const ok = blocked
+        ? await confirm(ask, { confirmLabel: START_ANYWAY, details: blockerDetails(blocked, true) })
+        : await confirm(ask, { confirmLabel: a.label });
+      if (!ok) return;
+    }
     act.mutate(a, { onSuccess: () => toast.success(`${a.label}: done`), onError: (e) => toast.error(refusal(e)) });
   };
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {actions.map((a) => (
-        <button key={a.key} type="button" className={a.danger ? 'btn-ghost ink-danger' : a === main ? 'btn-primary' : 'btn-secondary'} disabled={act.isPending} onClick={() => run(a)}>{a.label}</button>
+        <button key={a.key} type="button" className={a.danger ? 'btn-ghost ink-danger' : a === main ? 'btn-primary' : 'btn-secondary'} disabled={act.isPending || checking} onClick={() => run(a)}>{a.label}</button>
       ))}
     </div>
   );

@@ -108,6 +108,25 @@ export function splitLink(link: string): { to: string; search: Record<string, st
 
 export const START_ANYWAY = 'Start anyway';
 
+/** Is this mode change the channel starting to post? Only off or shadow to approve or live; approve to live is a step up, not a start. */
+export const isStartMove = (from: string, to: string): boolean => (from === 'off' || from === 'shadow') && (to === 'approve' || to === 'live');
+
+/**
+ * The result worth a "Start anyway": the fresh view when it has open blockers; null when it has none or the look failed
+ * (a check that cannot be read must never stop the owner, so a failure asks nothing extra).
+ */
+export async function blockedView(load: () => Promise<ReadinessView>): Promise<ReadinessView | null> {
+  try {
+    const view = await load();
+    return view && view.blockers > 0 ? view : null;
+  } catch {
+    return null;
+  }
+}
+
+/** The one line above the list when a confirm has its own text (the launch Start): "The readiness check found 2 open blockers:". */
+export const blockerIntro = (n: number): string => `The readiness check found ${plural(n, 'open blocker', 'open blockers')}:`;
+
 /** The confirm's action: `start @x with 2 open blockers` (the dialog says "Are you sure you want to …?"). */
 export const startPhrase = (target: string, n: number): string => `start ${target} with ${plural(n, 'open blocker', 'open blockers')}`;
 

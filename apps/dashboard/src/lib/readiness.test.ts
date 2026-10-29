@@ -6,8 +6,8 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { ReadinessFinding, ReadinessView } from '../api/readiness';
 import {
-  FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockerLines, bodyLine, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix, isFreshWindow,
-  last24hLine, parseReadinessFlag, readinessLink, readinessPath, sectionsOf, splitLink, startPhrase,
+  FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockedView, blockerIntro, blockerLines, bodyLine, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix,
+  isFreshWindow, isStartMove, last24hLine, parseReadinessFlag, readinessLink, readinessPath, sectionsOf, splitLink, startPhrase,
 } from './readiness';
 
 const f = (code: string, severity: ReadinessFinding['severity'], over: Partial<ReadinessFinding> = {}): ReadinessFinding => ({
@@ -140,7 +140,28 @@ test('blockerLines: up to five open blockers by title, then "…and N more"', ()
   assert.deepEqual(blockerLines({ findings: [f('e', 'error'), f('e2', 'error')] }, 2), ['Title of e — label of e', 'Title of e2 — label of e2']);
 });
 
-// ── where it is wired (T8b) ──────────────────────────────────────────────────
+test('isStartMove: only off or shadow to approve or live starts posting', () => {
+  for (const from of ['off', 'shadow']) for (const to of ['approve', 'live']) assert.equal(isStartMove(from, to), true, `${from} → ${to}`);
+  for (const [from, to] of [['approve', 'live'], ['live', 'approve'], ['live', 'off'], ['approve', 'shadow'], ['off', 'shadow'], ['shadow', 'off'], ['off', 'off'], ['live', 'live']]) {
+    assert.equal(isStartMove(from, to), false, `${from} → ${to}`);
+  }
+});
+
+test('blockerIntro: the line above the list of a confirm that has its own text', () => {
+  assert.equal(blockerIntro(1), 'The readiness check found 1 open blocker:');
+  assert.equal(blockerIntro(3), 'The readiness check found 3 open blockers:');
+});
+
+test('blockedView: the view only when blockers are open; no blockers or a failed look asks nothing extra', async () => {
+  const view = (blockers: number) => ({ channelKey: '@x', blockers, findings: [] }) as unknown as ReadinessView;
+  assert.equal((await blockedView(async () => view(2)))?.blockers, 2);
+  assert.equal(await blockedView(async () => view(0)), null);
+  assert.equal(await blockedView(async () => { throw new Error('504'); }), null);
+  assert.equal(await blockedView(() => { throw new Error('thrown before a promise'); }), null);
+  assert.equal(await blockedView(async () => undefined as unknown as ReadinessView), null);
+});
+
+// ── where it is wired (T8b, T9) ──────────────────────────────────────────────────
 
 const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.meta.url)), 'utf8');
 
@@ -151,6 +172,20 @@ test('the panel is placed on the Overview, the editor page and the started launc
   assert.ok(launch.includes('started && v.channelKey') && launch.includes('whenMissing="empty"'), 'only after Start, with the empty state on a 404');
   const route = read('../routes/app.agents_.$handle.tsx');
   assert.ok(route.includes('parseReadinessFlag(s.readiness)') && route.includes('focusReadiness={!!search.readiness}'));
+});
+
+test('Start anyway sits in both mode switches and in the launch Start; none of them imports the queryClient singleton (A24)', () => {
+  const editor = read('../components/editor/EditorUi.tsx');
+  const agents = read('../components/agents/AgentsUi.tsx');
+  const artifacts = read('../components/artifacts/ArtifactPanel.tsx');
+  assert.ok(editor.includes('isStartMove(mode, next)') && editor.includes('guard.confirmStart(channelKey)'));
+  assert.ok(agents.includes('channel && isStartMove(agent.mode, next)') && agents.includes('guard.confirmStart(channel)'));
+  assert.ok(artifacts.includes("a.key === 'start'") && artifacts.includes('guard.check(d.row.channel)') && artifacts.includes('START_ANYWAY'));
+  const guard = read('../components/readiness/useStartGuard.tsx');
+  assert.ok(guard.includes('useQueryClient()') && guard.includes('staleTime: 0') && guard.includes('fresh: true'));
+  for (const [name, src] of Object.entries({ editor, agents, artifacts, guard, panel: read('../components/readiness/ReadinessPanel.tsx') })) {
+    assert.ok(!/import \{[^}]*\bqueryClient\b[^}]*\} from '[./]+\/router'/.test(src), `${name} reads the client through useQueryClient`);
+  }
 });
 
 test('a successful change opens the fresh window and invalidates the results before the badges early return, except for the doctor\'s own mutations', () => {
