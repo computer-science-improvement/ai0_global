@@ -626,7 +626,7 @@ config_replan_capped: {
 
 **A27. Fixtures follow the contract (item 27, accepted).**
 - No file named `readiness/fixtures/ai0-global.json` exists.
-- **The hard gate** for "no false work on @ai0_global" is synthetic. Build it from 072's `readiness/fixtures/onboarding-1027.ts` @ai0_global facts: the card, the active playbook, no open pause. Run it once with `appliedHash === hash` and once as a baseline.
+- **The hard gate** for "no false work on @ai0_global" is synthetic. Build it from 072's @ai0_global facts, `ai0GlobalFacts()` in `readiness/fixtures/onboarding-1027-facts.ts` (renamed at the W1 merge; `readiness/fixtures/onboarding-1027.ts` is 073's fixture and has no @ai0_global): the card, the active playbook, no open pause. Run it once with `appliedHash === hash` and once as a baseline.
 - **A second test** replays the lead's `readiness/fixtures/stage-<channel>.json` for @ai0_global (find it with `ls apps/automation/src/editor/readiness/fixtures/stage-*.json`). Its shape is raw API responses: `{ channel_key, captured_at, channel, schedule, skills, rules, series_pauses, datasets }`. Use `test.skip('stage fixture absent')` when the file is missing.
 
 **A28. The repair's skip code is classed as config (item 28, accepted in part).**

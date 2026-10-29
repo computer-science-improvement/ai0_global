@@ -239,7 +239,7 @@ Build on W1 merged (073 → 072 → 076). Read the spec's «Amendments after the
   - **What.**
     - `config-repair/replay.074.test.ts`:
       - the @ai0_prompts_dev and @pdr_dev_channel replays of 10-27;
-      - @ai0_global with no false work, on a synthetic fixture built from 072's `readiness/fixtures/onboarding-1027.ts` (equal hashes, and a baseline);
+      - @ai0_global with no false work, on a synthetic fixture built from 072's `ai0GlobalFacts()` in `readiness/fixtures/onboarding-1027-facts.ts` (equal hashes, and a baseline);
       - plus a `test.skip('stage fixture absent')` replay of the lead's `readiness/fixtures/stage-<channel>.json` for @ai0_global (A27).
     - **Runbook § 34 "Changes take effect by themselves (spec 074)"** in `docs/runbooks/agent-platform.md`. Place it after § 33 and before 076's § 36; 075 adds § 35 (A25). It covers:
       - what repairs by itself and when: the 10-minute sweep, owner saves, Resume, change_source, and views that never act;
