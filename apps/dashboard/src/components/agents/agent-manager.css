@@ -1,2 +1,68 @@
 /* Spec 078 wave D3: directives, reviews, post audit, network, critic, audit, launch, setup and steering cards. Prefix amg-.
-   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests). */
+   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests).
+   The shared parts (panels, insets, rows, chips, buttons, callouts, tabs) are index.css; this file lays out what is inside
+   them. Tokens only; the one literal colour is the per-destination tint of a platform glyph. */
+
+/* ── Small helpers (text tone, wrapping) ──────────────────────────────────────────────────────────── */
+.amg-dim { color: var(--color-ink-dim); }
+.amg-muted { color: var(--color-ink-muted); }
+.amg-ink { color: var(--color-ink); }
+.amg-danger { color: var(--color-danger-ink); }
+.amg-warn { color: var(--color-warning); }
+.amg-ok { color: var(--color-success); }
+.amg-wrap { overflow-wrap: anywhere; min-width: 0; }
+.amg-pre { white-space: pre-wrap; }
+.amg-nowrap { white-space: nowrap; }
+.amg-trunc { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.amg-push { margin-left: auto; }
+.amg-stack { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.amg-icon { display: inline-flex; flex: none; }
+/* A mono count or id line: "12 shown", "2 issues on 3 resources". */
+.amg-count { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--color-ink-dim); }
+.amg-skeleton { height: 160px; border-radius: var(--radius-xl); background: color-mix(in srgb, var(--color-ink) 3%, transparent); }
+.amg-skeleton.is-short { height: 140px; }
+.amg-skeleton.is-line { height: 40px; border-radius: var(--radius-md); }
+
+/* ── Network bits (NetworkUi): platform glyph, resource label and chip, score meter, weight bar ───── */
+.amg-plat { display: inline-flex; flex-shrink: 0; color: var(--color-ink-muted); }
+/* Per-destination tints: the only added colour, purely for scannability (same as the groups page). */
+.amg-plat.is-telegram  { color: #229ED9; }
+.amg-plat.is-facebook  { color: #4a7dff; }
+.amg-plat.is-instagram { color: #e1497f; }
+.amg-plat.is-threads   { color: #c7c7c7; }
+.amg-plat.is-tiktok    { color: #25d8d0; }
+.amg-plat.is-youtube   { color: #ff4e45; }
+
+.amg-res { display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
+.amg-res-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-muted); }
+.amg-res-name.is-strong { color: var(--color-ink); font-weight: 500; }
+.chip.amg-reschip { gap: 5px; max-width: 100%; min-width: 0; }
+.amg-reschip-suffix { white-space: nowrap; color: var(--color-ink-dim); }
+
+.amg-score { display: inline-flex; flex-direction: column; gap: 3px; min-width: 0; }
+.amg-score-label { font-size: 11px; line-height: 1.2; color: var(--color-ink-dim); white-space: nowrap; }
+.amg-score-bar { display: inline-flex; gap: 2px; }
+.amg-score-seg { width: 8px; height: 4px; border-radius: var(--radius-pill); background: var(--color-surface-3); }
+.amg-score-seg.is-bad { background: var(--color-danger); }
+.amg-score-seg.is-mid { background: var(--color-warning); }
+.amg-score-seg.is-good { background: var(--color-success); }
+
+.amg-weight { display: grid; grid-template-columns: minmax(0, 92px) 1fr 40px; gap: 8px; align-items: center; }
+.amg-weight-track { height: 6px; border-radius: var(--radius-pill); background: var(--color-surface-3); overflow: hidden; }
+.amg-weight-fill { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--color-accent); }
+.amg-weight-val { text-align: right; }
+
+/* A status dot (a review on its timeline, a directive in a chip). */
+.amg-dot { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--color-ink-dim); }
+.amg-dot.is-success { background: var(--color-success); }
+.amg-dot.is-warning { background: var(--color-warning); }
+.amg-dot.is-danger  { background: var(--color-danger); }
+.amg-dot.is-accent  { background: var(--color-accent); }
+
+/* ── The critic's verdict (CriticBlock): an inset under a post ───────────────────────────────────── */
+.inset.amg-critic { display: grid; gap: 8px; min-width: 0; margin-top: 10px; padding: 12px 14px; }
+.amg-critic-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.amg-critic-scores { display: flex; flex-wrap: wrap; gap: 4px; }
+.amg-critic-notes { font-size: 13px; line-height: 1.5; color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.amg-critic-issues { display: grid; gap: 6px; }
+.amg-critic-issue { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 6px; overflow-wrap: anywhere; line-height: 1.5; }

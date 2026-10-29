@@ -1,6 +1,7 @@
 // Shared bits of the network tabs on /app/agents/$handle (spec 020): platform
 // glyphs with a small per-destination tint, resource chips, status tones,
 // a 1–5 score meter, the "no network" handling and date helpers.
+// Spec 078 D3: the look is classes (amg-* in agent-manager.css; the per-destination tints live there too).
 
 import type { CSSProperties, ReactNode } from 'react';
 import { Icon, type IconName } from '../ui/Icon';
@@ -8,16 +9,6 @@ import { EmptyState, type Tone } from '../ui/primitives';
 import { describeError } from '../ui/Toast';
 import { errorBody } from '../../api/agents';
 import { parseRef, useResourceLabels, type IdeaOrigin, type IdeaStatus, type NetworkMode, type Platform, type PlaybookStatus } from '../../api/network';
-
-// Per-destination tint — the only added colour, purely for scannability (same as the groups page).
-export const PLATFORM_TINT: Record<Platform, string> = {
-  telegram:  '#229ED9',
-  facebook:  '#4a7dff',
-  instagram: '#e1497f',
-  threads:   '#c7c7c7',
-  tiktok:    '#25d8d0',
-  youtube:   '#ff4e45',
-};
 
 export const PLATFORM_LABEL: Record<Platform, string> = {
   telegram: 'Telegram', facebook: 'Facebook', instagram: 'Instagram', threads: 'Threads', tiktok: 'TikTok', youtube: 'YouTube',
@@ -46,11 +37,11 @@ export const ORIGIN_LABEL: Record<IdeaOrigin, string> = {
   orchestrator: 'orchestrator', series: 'series', directive: 'directive', owner: 'owner', trend: 'trend',
 };
 
-/** A platform glyph in its tint. */
+/** A platform glyph in its tint (the per-destination colour is the `.amg-plat.is-<platform>` class). */
 export function PlatformIcon({ platform, size = 14, style }: { platform: Platform | null; size?: number; style?: CSSProperties }) {
   return (
     <span aria-label={platform ? PLATFORM_LABEL[platform] : 'resource'} title={platform ? PLATFORM_LABEL[platform] : undefined}
-      style={{ display: 'inline-flex', color: platform ? PLATFORM_TINT[platform] : 'var(--color-ink-muted)', flexShrink: 0, ...style }}>
+      className={`amg-plat${platform ? ` is-${platform}` : ''}`} style={style}>
       <Icon name={platform ? PLATFORM_ICON[platform] : 'globe'} size={size} />
     </span>
   );
@@ -61,11 +52,9 @@ export function ResourceLabel({ refId, strong = false, extra }: { refId: string;
   const label = useResourceLabels();
   const l = label(refId);
   return (
-    <span title={l.title} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, minWidth: 0, maxWidth: '100%' }}>
+    <span title={l.title} className="amg-res">
       <PlatformIcon platform={l.platform} />
-      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: strong ? 'var(--color-ink)' : 'var(--color-ink-muted)', fontWeight: strong ? 500 : undefined }}>
-        {l.label}
-      </span>
+      <span className={`amg-res-name${strong ? ' is-strong' : ''}`}>{l.label}</span>
       {extra}
     </span>
   );
@@ -76,29 +65,26 @@ export function ResourceChip({ refId, suffix, title }: { refId: string; suffix?:
   const label = useResourceLabels();
   const l = label(refId);
   return (
-    <span className="chip" title={title ?? l.title} style={{ gap: 5, maxWidth: '100%', minWidth: 0 }}>
+    <span className="chip amg-reschip" title={title ?? l.title}>
       <PlatformIcon platform={l.platform} size={12} />
-      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{l.label}</span>
-      {suffix != null && <span style={{ color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }}>· {suffix}</span>}
+      <span className="amg-trunc">{l.label}</span>
+      {suffix != null && <span className="amg-reschip-suffix">· {suffix}</span>}
     </span>
   );
 }
 
 export const platformOf = (ref: string) => parseRef(ref).platform;
 
-const SCORE_TONE = (n: number) => (n <= 2 ? 'var(--color-danger)' : n === 3 ? 'var(--color-warning)' : 'var(--color-success)');
+const SCORE_TONE = (n: number) => (n <= 2 ? 'bad' : n === 3 ? 'mid' : 'good');
 
 /** A 1–5 meter: five tiny segments, coloured by the score. */
 export function ScoreMeter({ label, value, title }: { label: string; value: number | undefined; title?: string }) {
   const v = typeof value === 'number' ? Math.max(0, Math.min(5, Math.round(value))) : 0;
   return (
-    <span title={`${title ?? label}: ${typeof value === 'number' ? `${value}/5` : 'not scored'}`}
-      style={{ display: 'inline-flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)', fontSize: 10, whiteSpace: 'nowrap' }}>{label}</span>
-      <span style={{ display: 'inline-flex', gap: 2 }} aria-hidden>
-        {[1, 2, 3, 4, 5].map((i) => (
-          <span key={i} style={{ width: 8, height: 4, borderRadius: 2, background: i <= v ? SCORE_TONE(v) : 'var(--color-surface-3)' }} />
-        ))}
+    <span title={`${title ?? label}: ${typeof value === 'number' ? `${value}/5` : 'not scored'}`} className="amg-score">
+      <span className="amg-score-label">{label}</span>
+      <span className="amg-score-bar" aria-hidden>
+        {[1, 2, 3, 4, 5].map((i) => <span key={i} className={`amg-score-seg${i <= v ? ` is-${SCORE_TONE(v)}` : ''}`} />)}
       </span>
     </span>
   );
@@ -108,12 +94,10 @@ export function ScoreMeter({ label, value, title }: { label: string; value: numb
 export function WeightBar({ label, value, max = 1 }: { label: string; value: number; max?: number }) {
   const pct = max > 0 ? Math.max(0, Math.min(100, (value / max) * 100)) : 0;
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 92px) 1fr 34px', gap: 8, alignItems: 'center' }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={label}>{label}</span>
-      <span style={{ height: 6, borderRadius: 3, background: 'var(--color-surface-3)', overflow: 'hidden' }}>
-        <span style={{ display: 'block', height: '100%', width: `${pct}%`, background: 'var(--color-accent)', opacity: value > 0 ? 0.85 : 0, borderRadius: 3 }} />
-      </span>
-      <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)', textAlign: 'right' }}>{value.toFixed(2)}</span>
+    <div className="amg-weight">
+      <span className="text-micro amg-muted amg-trunc" title={label}>{label}</span>
+      <span className="amg-weight-track"><span className="amg-weight-fill" style={{ width: `${pct}%` }} /></span>
+      <span className="text-micro mono tabular-nums amg-muted amg-weight-val">{value.toFixed(2)}</span>
     </div>
   );
 }
