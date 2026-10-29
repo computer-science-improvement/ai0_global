@@ -13,7 +13,7 @@ test('the prefill is the /align command for the agent, a slash command the serve
 });
 
 test('both "Resolve in one card" links use it, not a free-text message to the agent', () => {
-  for (const f of ['../components/agents/AgentOverview.tsx', '../components/agents/AgentMemoryHistory.tsx']) {
+  for (const f of ['../components/readiness/ReadinessPanel.tsx', '../components/agents/AgentMemoryHistory.tsx']) {
     const src = readFileSync(fileURLToPath(new URL(f, import.meta.url)), 'utf8');
     assert.ok(src.includes('alignPrompt('), f);
     assert.ok(!src.includes('fix config conflicts'), `${f} no longer sends the free-text request`);

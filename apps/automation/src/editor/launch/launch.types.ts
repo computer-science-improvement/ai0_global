@@ -37,6 +37,13 @@ export interface LaunchGraduation {
   stats?:           unknown;
   /** The channel was switched back to off after Start (shown as paused; the launch keeps running). */
   paused?:          boolean;
+  /**
+   * Spec 072 FR-011: the criteria are met and the setting is `auto`, but the channel has open readiness blockers, so the switch to
+   * Live waits. Cleared (null) by the next check that does not hold, and by every graduation write that ends the wait.
+   */
+  heldBy?:          'readiness' | null;
+  /** The number of blockers when it was held; null = the count could not be read. */
+  heldBlockers?:    number | null;
 }
 
 /** One promo filed for the launch (FR-004). */

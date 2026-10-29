@@ -45,6 +45,8 @@ const BOT_OK: LaunchBotState = { state: 'ok', detail: '@ai0_bot can post', bot: 
 function service(o: {
   turns?: ConstructorParameters<typeof FakeLlm>[0]; card?: EditorCard | null; bot?: LaunchBotState; refuse?: Record<string, string>; now?: () => Date;
   failStep?: 'playbook';
+  /** Spec 072: wires the readiness recheck at Start and the blocker count of the graduation check. */
+  readiness?: boolean;
 } = {}) {
   const now = o.now ?? (() => NOW);
   const box = {
@@ -52,6 +54,9 @@ function service(o: {
     env: {} as Record<string, string>, mode: 'approve' as ChannelMode,
     facts: { decisions: [], critic: { pass: 0, revise: 0, reject: 0 }, usable: true } as GraduationFacts,
     candidates: [] as PromoCandidate[],
+    /** Spec 072: the open readiness blockers the graduation check reads; 'throws' = the read fails. */
+    blockers: 0 as number | 'throws',
+    recheckFails: false,
   };
   const repo = new MemoryLaunchRepo(now);
   const sets = new Map<string, SteeringSet>();
@@ -110,7 +115,9 @@ function service(o: {
       mode: async () => box.mode,
       goLive: async (key) => { calls.push(['goLive', key]); box.mode = 'live'; },
       note: async (l) => { calls.push(['note', l.channelKey]); },
+      ...(o.readiness ? { blockers: async () => { if (box.blockers === 'throws') throw new Error('readiness unavailable'); return box.blockers; } } : {}),
     },
+    ...(o.readiness ? { readiness: { recheck: async (key: string, reason: 'start') => { calls.push(['readiness', key, reason]); if (box.recheckFails) throw new Error('doctor down'); } } } : {}),
     now,
   };
   return { svc: new LaunchService(d), repo, sets, calls, llm, box };
@@ -454,9 +461,9 @@ test('graduation: the criteria from Start (days, approved, clean, recent rejecti
   assert.deepEqual(fail({ usable: false }), ['usable']);
 });
 
-async function runningLaunch() {
+async function runningLaunch(o: Parameters<typeof service>[0] = {}) {
   let t = NOW;
-  const tt = await readyLaunch({ bot: BOT_OK, now: () => t });
+  const tt = await readyLaunch({ bot: BOT_OK, now: () => t, ...o });
   await tt.svc.start(tt.repo.rows[0].id);
   await tt.svc.idle();
   assert.equal(tt.repo.rows[0].status, 'running');
@@ -604,4 +611,257 @@ test('promo: with no source that fits the step says why', async () => {
   const step = (await svc.view(repo.rows[0])).checklist.find((x) => x.key === 'cross_promo')!;
   assert.equal(step.state, 'skipped');
   assert.equal(step.detail, 'No other own Telegram channel to promote from');
+});
+
+// ── spec 072 T7: readiness in the launch card, at Start and in the graduation ─────────────────────────────────────────
+
+const startRows = (l: { id: string }, summary = 'Кавовий канал для початківців', bot: LaunchBotState = BOT_OK) =>
+  [{ id: l.id, channel_key: KEY, summary, start_requested: false, bot_state: bot, updated_at: NOW }];
+
+test('readiness card: a Start card without blockers is as before; with blockers it names them and the confirm asks to start anyway', async () => {
+  const { svc, repo } = await readyLaunch({ bot: BOT_OK });
+  const l = repo.rows[0];
+  const rows = startRows(l);
+  let summary: { count: number; first: string } | null = null;
+  const src = launchSource({ pool: { query: async () => ({ rows }) } as any, launches: svc, readiness: { blockers: async () => summary } });
+  let [card] = await src.waiting(NOW);
+  assert.equal(card.buttons[0].confirm, 'Так, запустити');
+  assert.doesNotMatch(card.body ?? '', /Готовність/);
+
+  summary = { count: 2, first: 'Скіл велить брати матеріал не з того джерела, яке вимагає серія' };
+  [card] = await src.waiting(NOW);
+  assert.match(card.body ?? '', /Готовність: 2 блокери — Скіл велить брати матеріал не з того джерела, яке вимагає серія\. Старт можливий, але ці слоти пропустяться\./);
+  assert.equal(card.buttons[0].key, 'start');
+  assert.equal(card.buttons[0].confirm, 'Так, запустити попри блокери');
+
+  summary = { count: 5, first: 'x' };
+  [card] = await src.waiting(NOW);
+  assert.match(card.body ?? '', /Готовність: 5 блокерів — x\./);
+  summary = { count: 1, first: 'x' };
+  [card] = await src.waiting(NOW);
+  assert.match(card.body ?? '', /Готовність: 1 блокер — x\./);
+  await svc.idle();
+});
+
+test('readiness card: with a long summary and long texts the Start card still ends with what Start does, inside 600 characters', async () => {
+  const { svc, repo } = await readyLaunch({ bot: NO_BOT });
+  const rows = startRows(repo.rows[0], 'Дуже довгий опис плану запуску. '.repeat(40), NO_BOT);
+  const src = launchSource({
+    pool: { query: async () => ({ rows }) } as any, launches: svc,
+    readiness: { blockers: async () => ({ count: 12, first: 'Дуже довгий опис причини блокера, що не вміщується в один рядок картки. '.repeat(3) }) },
+  });
+  const [card] = await src.waiting(NOW);
+  assert.ok((card.body ?? '').length <= 600, `body is ${card.body?.length} characters`);
+  assert.match(card.body ?? '', /Старт застосує план і переведе канал у режим схвалення/);
+  assert.match(card.body ?? '', /Додайте @ai0_bot в @coffee_home адміністратором/);
+  await svc.idle();
+});
+
+test('readiness card: act(start) adds the open blocker count of the stored row; no blockers or no wiring says nothing more', async () => {
+  for (const [stored, want] of [
+    [{ count: 3, first: 'x' }, /^✅ Запущено: пости чекають вашого схвалення\. Відкритих блокерів: 3 · /],
+    [null, /^✅ Запущено: пости чекають вашого схвалення · /],
+  ] as const) {
+    const { svc, repo } = await readyLaunch({ bot: BOT_OK });
+    const rows = startRows(repo.rows[0]);
+    let reads = 0;
+    const src = launchSource({
+      pool: { query: async () => ({ rows }) } as any, launches: svc, readiness: { blockers: async () => { reads++; return stored; } },
+    });
+    const [card] = await src.waiting(NOW);
+    const readsAtCard = reads;
+    assert.match(await src.act(card.refId, 'start'), want);
+    assert.equal(reads - readsAtCard, 1, 'the stored row is read once after Start');
+    await svc.idle();
+  }
+  {
+    const { svc, repo } = await readyLaunch({ bot: BOT_OK });
+    const rows = startRows(repo.rows[0]);
+    const src = launchSource({ pool: { query: async () => ({ rows }) } as any, launches: svc });
+    const [card] = await src.waiting(NOW);
+    assert.match(await src.act(card.refId, 'start'), /^✅ Запущено: пости чекають вашого схвалення · /);
+    await svc.idle();
+  }
+});
+
+test('readiness card: a read that fails leaves the card and the outcome of Start as they were', async () => {
+  const { svc, repo } = await readyLaunch({ bot: BOT_OK });
+  const rows = startRows(repo.rows[0]);
+  const src = launchSource({
+    pool: { query: async () => ({ rows }) } as any, launches: svc, readiness: { blockers: async () => { throw new Error('db down'); } },
+  });
+  const [card] = await src.waiting(NOW);
+  assert.equal(card.buttons[0].confirm, 'Так, запустити');
+  assert.doesNotMatch(card.body ?? '', /Готовність/);
+  assert.match(await src.act(card.refId, 'start'), /^✅ Запущено: пости чекають вашого схвалення · /);
+  await svc.idle();
+});
+
+test('readiness start: Start runs one recheck with the reason start beside the plan; a failing recheck does not fail Start', async () => {
+  {
+    const { svc, repo, calls } = await readyLaunch({ bot: BOT_OK, readiness: true });
+    const r = await svc.start(repo.rows[0].id);
+    await svc.idle();
+    assert.equal(r.started, true);
+    assert.deepEqual(calls.filter((c) => c[0] === 'readiness'), [['readiness', KEY, 'start']]);
+    assert.ok(calls.some((c) => c[0] === 'plan'), 'planAhead still runs');
+    await svc.start(repo.rows[0].id);
+    await svc.idle();
+    assert.equal(calls.filter((c) => c[0] === 'readiness').length, 1, 'a second Start does not recheck again');
+  }
+  {
+    const t = await readyLaunch({ bot: BOT_OK, readiness: true });
+    t.box.recheckFails = true;
+    const r = await t.svc.start(t.repo.rows[0].id);
+    await t.svc.idle();
+    assert.equal(r.started, true);
+    assert.equal(t.repo.rows[0].status, 'running');
+  }
+  {
+    const { svc, repo, calls } = await readyLaunch({ bot: BOT_OK });
+    await svc.start(repo.rows[0].id);
+    await svc.idle();
+    assert.ok(!calls.some((c) => c[0] === 'readiness'), 'not wired: no recheck');
+  }
+});
+
+test('readiness graduation (auto): blockers hold the switch and store heldBy; at 0 it goes live and heldBy is reset', async () => {
+  const { svc, repo, calls, box, at } = await runningLaunch({ readiness: true });
+  box.env.LAUNCH_GRADUATION = 'auto';
+  box.facts = meets();
+  box.blockers = 2;
+  at(8 * 86_400_000);
+  await run(svc);
+  let l = repo.rows[0];
+  assert.equal(l.status, 'running');
+  assert.equal(l.graduation.heldBy, 'readiness');
+  assert.equal(l.graduation.heldBlockers, 2);
+  assert.ok(l.graduation.stats, 'the stats are stored');
+  assert.equal(l.graduation.checkedAt, new Date(NOW.getTime() + 8 * 86_400_000).toISOString());
+  assert.equal(l.graduation.proposedAt, null);
+  assert.ok(!calls.some((c) => c[0] === 'goLive'), 'nothing changes the channel mode');
+  assert.equal(box.mode, 'approve');
+  const step = (await svc.view(l)).checklist.find((x) => x.key === 'graduation')!;
+  assert.equal(step.state, 'waiting');
+  assert.equal(step.detail, 'Waiting: 2 readiness blockers');
+
+  // The next check inside the hour does not look again.
+  box.blockers = 0;
+  at(8 * 86_400_000 + 10 * 60_000);
+  await run(svc);
+  assert.equal(repo.rows[0].graduation.heldBy, 'readiness');
+
+  // Blockers fell to 1 after the hour: still held, the count follows.
+  box.blockers = 1;
+  at(8 * 86_400_000 + GRADUATION_CHECK_MS + 1);
+  await run(svc);
+  l = repo.rows[0];
+  assert.equal(l.graduation.heldBy, 'readiness');
+  assert.equal(l.graduation.heldBlockers, 1);
+  assert.equal((await svc.view(l)).checklist.find((x) => x.key === 'graduation')!.detail, 'Waiting: 1 readiness blocker');
+
+  box.blockers = 0;
+  at(8 * 86_400_000 + 2 * GRADUATION_CHECK_MS + 2);
+  await run(svc);
+  l = repo.rows[0];
+  assert.equal(l.status, 'graduated');
+  assert.equal(l.graduation.by, 'auto');
+  assert.equal(l.graduation.heldBy, null);
+  assert.equal(l.graduation.heldBlockers, null);
+  assert.deepEqual(calls.filter((c) => c[0] === 'goLive'), [['goLive', KEY]]);
+});
+
+test('readiness graduation (auto): the hold ends when the criteria stop being met, and when the owner goes live', async () => {
+  {
+    const { svc, repo, box, at } = await runningLaunch({ readiness: true });
+    box.env.LAUNCH_GRADUATION = 'auto';
+    box.facts = meets();
+    box.blockers = 3;
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.equal(repo.rows[0].graduation.heldBy, 'readiness');
+    box.facts = { decisions: [], critic: { pass: 0, revise: 0, reject: 0 }, usable: true };
+    at(8 * 86_400_000 + GRADUATION_CHECK_MS + 1);
+    await run(svc);
+    assert.equal(repo.rows[0].graduation.heldBy, null, 'not due: nothing to hold');
+    assert.equal(repo.rows[0].graduation.heldBlockers, null);
+  }
+  {
+    const { svc, repo, calls, box, at } = await runningLaunch({ readiness: true });
+    box.env.LAUNCH_GRADUATION = 'auto';
+    box.facts = meets();
+    box.blockers = 3;
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.equal(repo.rows[0].graduation.heldBy, 'readiness');
+    await svc.goLive(repo.rows[0].id);
+    const l = repo.rows[0];
+    assert.equal(l.status, 'graduated');
+    assert.equal(l.graduation.by, 'owner');
+    assert.equal(l.graduation.heldBy, null);
+    assert.equal(l.graduation.heldBlockers, null);
+    assert.deepEqual(calls.filter((c) => c[0] === 'goLive'), [['goLive', KEY]], 'the owner may go live with blockers open');
+  }
+  {
+    const { svc, repo, box, at } = await runningLaunch({ readiness: true });
+    box.env.LAUNCH_GRADUATION = 'auto';
+    box.facts = meets();
+    box.blockers = 3;
+    at(8 * 86_400_000);
+    await run(svc);
+    box.mode = 'live';
+    at(8 * 86_400_000 + GRADUATION_CHECK_MS + 1);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'graduated');
+    assert.equal(repo.rows[0].graduation.by, 'owner_elsewhere');
+    assert.equal(repo.rows[0].graduation.heldBy, null);
+  }
+});
+
+test('readiness graduation (auto): a blocker count that cannot be read holds the switch and is not read as zero', async () => {
+  const { svc, repo, calls, box, at } = await runningLaunch({ readiness: true });
+  box.env.LAUNCH_GRADUATION = 'auto';
+  box.facts = meets();
+  box.blockers = 'throws';
+  at(8 * 86_400_000);
+  await run(svc);
+  const l = repo.rows[0];
+  assert.equal(l.status, 'running');
+  assert.equal(l.graduation.heldBy, 'readiness');
+  assert.equal(l.graduation.heldBlockers, null);
+  assert.ok(!calls.some((c) => c[0] === 'goLive'));
+  assert.equal((await svc.view(l)).checklist.find((x) => x.key === 'graduation')!.detail, 'Waiting: readiness blockers');
+});
+
+test('readiness graduation (propose and off): blockers change nothing; without the wiring auto switches as before', async () => {
+  {
+    const { svc, repo, calls, box, at } = await runningLaunch({ readiness: true });
+    box.facts = meets();
+    box.blockers = 4;
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.ok(repo.rows[0].graduation.proposedAt, 'propose still proposes');
+    assert.equal(repo.rows[0].graduation.heldBy ?? null, null);
+    assert.ok(!calls.some((c) => c[0] === 'goLive'));
+  }
+  {
+    const { svc, repo, box, at } = await runningLaunch({ readiness: true });
+    box.env.LAUNCH_GRADUATION = 'off';
+    box.facts = meets();
+    box.blockers = 4;
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'running');
+    assert.equal(repo.rows[0].graduation.heldBy ?? null, null);
+    assert.match((await svc.view(repo.rows[0])).checklist.find((x) => x.key === 'graduation')!.detail ?? '', /Automatic graduation is off; all criteria met/);
+  }
+  {
+    const { svc, repo, calls, box, at } = await runningLaunch();
+    box.env.LAUNCH_GRADUATION = 'auto';
+    box.facts = meets();
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'graduated');
+    assert.deepEqual(calls.filter((c) => c[0] === 'goLive'), [['goLive', KEY]]);
+  }
 });

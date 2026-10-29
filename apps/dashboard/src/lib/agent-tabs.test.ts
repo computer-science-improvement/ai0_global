@@ -168,13 +168,16 @@ test('every ?tab= link to an agent page in the dashboard names a leaf', () => {
   for (const l of links) assert.ok(isAgentTab(l.tab), `${l.file.replace(SRC, '')}: ?tab=${l.tab}`);
   const names = new Set(links.map((l) => l.tab));
   // The agent's own Inbox leaf lost its only deep link with the old Overview network-health table (spec 078); the tab bar reaches it.
-  for (const t of ['skills', 'loadout', 'memory', 'artifacts', 'playbook', 'directives', 'schedule', 'promo']) assert.ok(names.has(t), `${t} is linked somewhere`);
+  // Memory lost its only link here with the Overview's conflicts line (spec 072): the Readiness row of a config conflict gets
+  // `?tab=memory` from the server, and the next test checks the backend names it.
+  for (const t of ['skills', 'loadout', 'artifacts', 'playbook', 'directives', 'schedule', 'promo']) assert.ok(names.has(t), `${t} is linked somewhere`);
 });
 
 test('the links the backend writes into notes and maps name a leaf', { skip: !existsSync(join(REPO, 'apps/automation/src')) }, () => {
   const links = agentTabLinks(walk(join(REPO, 'apps/automation/src')));
   assert.ok(links.length >= 1, `the scan found backend links (${links.length})`);
   for (const l of links) assert.ok(isAgentTab(l.tab), `${l.file.replace(REPO, '')}: ?tab=${l.tab}`);
+  assert.ok(links.some((l) => l.tab === 'memory'), 'a config conflict links to the Memory tab (spec 072 reason catalogue)');
 });
 
 test('the route accepts exactly the leaves of this module', () => {

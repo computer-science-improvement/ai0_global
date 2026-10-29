@@ -9,10 +9,12 @@ import { Field } from '../ui/primitives';
 import { Modal } from '../Modal';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { useConfirm } from '../ui/ConfirmDialog';
+import { useStartGuard } from '../readiness/useStartGuard';
 import { describeError, toast } from '../ui/Toast';
 import { MODE_LABEL, MODE_OPTIONS, MODE_TONE, RUN_TONE } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { followedMode, followsText, followsTitle } from '../../lib/agent-mode';
+import { isStartMove } from '../../lib/readiness';
 import { AutonomyDialog } from '../approvals/AutonomyDialog';
 import { usePatchAgent, type Agent, type AgentActivity, type AgentKind, type AgentMode, type AgentNode } from '../../api/agents';
 
@@ -96,11 +98,20 @@ export function LastRun({ activity }: { activity: AgentActivity | null }) {
  */
 export function AgentModeSwitch({ agent, size = 'sm' }: { agent: Pick<Agent, 'handle' | 'mode' | 'scopeId' | 'kind' | 'name'>; size?: 'sm' | 'lg' }) {
   const confirm = useConfirm();
+  const guard = useStartGuard();
   const patch = usePatchAgent(agent.handle);
   const [goLive, setGoLive] = useState(false);
+  const [checking, setChecking] = useState(false);
   const channel = agent.kind === 'orchestrator' && agent.scopeId?.startsWith('telegram:') ? agent.scopeId.slice('telegram:'.length) : null;
   const onChange = async (next: AgentMode) => {
-    if (next === agent.mode || patch.isPending) return;
+    if (next === agent.mode || patch.isPending || checking) return;
+    // Spec 072 A23: the orchestrator of a Telegram channel starting to post is first looked at by the doctor; open blockers need
+    // "Start anyway". Any other agent (a role, @manager) has no channel check and behaves as before.
+    if (channel && isStartMove(agent.mode, next)) {
+      setChecking(true);
+      const go = await guard.confirmStart(channel).finally(() => setChecking(false));
+      if (!go) return;
+    }
     if (next === 'live' && channel) { setGoLive(true); return; }
     if (next === 'live') {
       const ok = await confirm(`switch @${agent.handle} to LIVE`, {

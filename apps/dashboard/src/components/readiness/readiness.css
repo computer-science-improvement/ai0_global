@@ -1,0 +1,31 @@
+/* Spec 072 FR-008: the Readiness panel (one compact card + a details dialog). Prefix rdy-. Colour only through tokens and the ink helpers. */
+
+.rdy-skeleton { height: 96px; opacity: 0.55; }
+/* A wrapper for pages that stack blocks with margins: no result means an empty wrapper, and an empty wrapper leaves no gap. */
+.rdy-slot { margin-bottom: 16px; min-width: 0; }
+.rdy-slot:empty { display: none; }
+.rdy-stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.rdy-lead { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rdy-wrap { overflow-wrap: anywhere; min-width: 0; }
+
+.rdy-section { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.rdy-sechead { display: flex; align-items: baseline; gap: 8px; }
+.rdy-h { margin: 0; }
+.rdy-count { font-family: var(--font-mono); font-size: 12px; font-variant-numeric: tabular-nums; color: var(--color-ink-dim); }
+
+/* A finding: severity badge, the server's title and detail, and the buttons on the right (under the text on phones). */
+.rdy-row { align-items: flex-start; flex-wrap: wrap; gap: 8px 12px; }
+.rdy-badge { flex: none; padding-top: 1px; }
+.rdy-main { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.rdy-title { font-weight: 500; overflow-wrap: anywhere; }
+.rdy-side { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 6px; margin-left: auto; }
+.rdy-side .btn-tiny { white-space: nowrap; }
+.rdy-meta { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+.rdy-fixline { display: inline-flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
+
+.rdy-24h { white-space: normal; overflow-wrap: anywhere; }
+.rdy-none { padding: 4px 0; }
+
+@media (max-width: 520px) {
+  .rdy-side { margin-left: 0; justify-content: flex-start; width: 100%; }
+}

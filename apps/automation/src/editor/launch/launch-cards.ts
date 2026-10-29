@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import type { CardSource, WaitingItem } from '../owner-bot/card-sources';
-import { kyivTime } from '../owner-bot/owner-text';
+import { clip, kyivTime, plural } from '../owner-bot/owner-text';
 import type { LaunchBotState } from './launch.types';
 import { graduationLineUk, SNOOZE_DAYS, SNOOZE_MORE_APPROVED, type GraduationStats } from './launch-graduation';
 
@@ -19,10 +19,22 @@ export interface LaunchCardDeps {
     notYet(id: string): Promise<unknown>;
     check(id: string): Promise<{ launch: { status: string; channelKey: string; bot: LaunchBotState | null } }>;
   };
+  /**
+   * Spec 072 FR-010: the channel's open readiness blockers, read from the stored row (null = none, or not known). A Start card
+   * with blockers says so and asks «Так, запустити попри блокери»; the card text is fixed when the card is made, so a card made
+   * before a blocker appeared does not mention it (the outcome of Start does, A31).
+   */
+  readiness?: { blockers(channelKey: string): Promise<{ count: number; first: string } | null> };
 }
 
 export const launchPath = (id: string) => `/app/artifacts?type=launch&open=launch:${id}`;
 const at = (outcome: string) => `${outcome} · ${kyivTime(new Date())}`;
+
+/** The readiness line of a Start card (FR-010). */
+export function readinessLineUk(b: { count: number; first: string }): string {
+  const first = clip(b.first.trim().replace(/\.+$/, ''), 90);
+  return `Готовність: ${b.count} ${plural(b.count, 'блокер', 'блокери', 'блокерів')} — ${first}${first.endsWith('…') ? '' : '.'} Старт можливий, але ці слоти пропустяться.`;
+}
 
 /** The bot's state in one Ukrainian line. */
 export function botLineUk(key: string, b: LaunchBotState | null): string {
@@ -35,6 +47,14 @@ export function botLineUk(key: string, b: LaunchBotState | null): string {
 }
 
 export function launchSource(d: LaunchCardDeps): CardSource {
+  /** A31: the open blockers in the stored row of the launch's channel; 0 when unknown (the outcome then says nothing about them). */
+  const openBlockers = async (id: string): Promise<number> => {
+    if (!d.readiness) return 0;
+    try {
+      const { rows } = await d.pool.query(`SELECT channel_key FROM channel_launches WHERE id = $1`, [id]);
+      return rows[0] ? ((await d.readiness.blockers(rows[0].channel_key))?.count ?? 0) : 0;
+    } catch { return 0; }
+  };
   return {
     kind: 'launch', emoji: '🚀', label: 'Запуск каналу',
     async waiting() {
@@ -44,6 +64,12 @@ export function launchSource(d: LaunchCardDeps): CardSource {
           WHERE status = 'ready'
              OR (status = 'running' AND graduation->>'proposedAt' IS NOT NULL AND graduation->>'decidedAt' IS NULL)
           ORDER BY updated_at`);
+      // FR-010: the stored readiness row of each channel with a ready plan (never a recheck); a failed read leaves the card as it was.
+      const blockerOf = new Map<string, { count: number; first: string } | null>();
+      if (d.readiness) {
+        const keys = [...new Set<string>(rows.filter((r: any) => r.status !== 'running').map((r: any) => r.channel_key))];
+        await Promise.all(keys.map(async (k) => blockerOf.set(k, await d.readiness!.blockers(k).catch(() => null))));
+      }
       return rows.map((r: any): WaitingItem => {
         if (r.status === 'running') {
           const st = r.graduation?.stats as GraduationStats | undefined;
@@ -65,13 +91,15 @@ export function launchSource(d: LaunchCardDeps): CardSource {
             buttons: [{ key: 'check', label: 'Перевірити' }, { key: 'open', label: 'Відкрити' }],
           };
         }
+        const blockers = blockerOf.get(r.channel_key) ?? null;
         return {
           refId: `${r.id}:start`, title: `${r.channel_key}: план запуску готовий`,
-          body: [r.summary ? String(r.summary).slice(0, 600) : null, botLineUk(r.channel_key, bot),
+          // With blockers the summary is shortened so the readiness line fits the card (600 characters).
+          body: [r.summary ? String(r.summary).slice(0, blockers ? 240 : 600) : null, blockers ? readinessLineUk(blockers) : null, botLineUk(r.channel_key, bot),
             'Старт застосує план і переведе канал у режим схвалення: пости чекатимуть вашого «так».'].filter(Boolean).join('\n\n'),
           path: launchPath(r.id), critical: false, since: new Date(r.updated_at),
           buttons: [
-            { key: 'start', label: 'Старт', confirm: 'Так, запустити' },
+            { key: 'start', label: 'Старт', confirm: blockers ? 'Так, запустити попри блокери' : 'Так, запустити' },
             ...(botOk ? [] : [{ key: 'check', label: 'Перевірити бота' }]),
             { key: 'open', label: 'Відкрити' },
           ],
@@ -82,7 +110,10 @@ export function launchSource(d: LaunchCardDeps): CardSource {
       const id = refId.split(':')[0];
       if (key === 'start') {
         const r = await d.launches.start(id);
-        return at(r.started ? '✅ Запущено: пости чекають вашого схвалення' : '⏳ Старт прийнято: запущу, щойно бот стане адміністратором');
+        if (!r.started) return at('⏳ Старт прийнято: запущу, щойно бот стане адміністратором');
+        // A31: the stored row, read once after Start (the recheck Start began may not have finished; the row is the last known one).
+        const open = await openBlockers(id);
+        return at(`✅ Запущено: пости чекають вашого схвалення${open ? `. Відкритих блокерів: ${open}` : ''}`);
       }
       if (key === 'check') {
         const { launch } = await d.launches.check(id);

@@ -1,6 +1,6 @@
 # 072 — Channel doctor and Readiness
 
-Status: draft · Builds on 055 (sysadmin audit: `Finding`, closed-list fixes), 047 (config conflicts), 052 (launch), 060/068 (series pauses), 069 (skill source/origin guards), 071 (rounds), 078 (dashboard) · Migration 097
+Status: done · Builds on 055 (sysadmin audit: `Finding`, closed-list fixes), 047 (config conflicts), 052 (launch), 060/068 (series pauses), 069 (skill source/origin guards), 071 (rounds), 078 (dashboard) · Migration 097
 Linear AI0-250 · Wave 7, W1: built in parallel with 073 and 076, merged 073 → 072 → 076. Runbook § 32. Mock port 3172.
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.

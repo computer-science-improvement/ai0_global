@@ -1,0 +1,105 @@
+import type { EditorCard } from '../../card';
+import { PlaybookSchema, SeriesSchema, type Playbook, type Series } from '../../network/playbook';
+import { makeCard } from '../../post/testing/fixtures';
+import { deriveFacts, seriesOn, sourceRefsOf, type RawFacts } from '../facts';
+import type { ChannelFacts, DatasetFact, SkillFact } from '../facts.types';
+
+/**
+ * Spec 072 test fixtures: small `ChannelFacts` built through the real `deriveFacts`, so the derived fields (series, bindings,
+ * effective tools, conflict input) are the ones production code makes. Used by the check, doctor, hash and overlay tests.
+ */
+export const CH = '@fx072';
+export const REF = `telegram:${CH}`;
+export const NOW = new Date('2026-10-20T10:00:00.000Z');
+
+export const mkSeries = (over: Record<string, unknown> = {}): Series => SeriesSchema.parse({
+  name: 'Daily tip', cadence: 'daily@10:00', resource_ref: REF, format: 'text', brief: 'A short tip for the channel readers', ...over,
+});
+
+/** The brief of the real «Prompt» series of @ai0_prompts_dev (playbook 14b879 v2, field value copied from the 10-26 export). */
+export const PROMPT_BRIEF = 'Фото-результат, рядок «💬 Prompt:», текст промпту, модель, розмір і один хештег.';
+
+/** The «Prompt» series as the acceptance fixture has it: the name and brief are real, the library source and `required` are synthetic (A2). */
+export const promptSeries = (over: Record<string, unknown> = {}): Series => mkSeries({
+  name: 'Prompt', brief: PROMPT_BRIEF, cadence: 'daily@12:00,20:00', format: 'photo', source: { kind: 'library', table: 'prompts' }, source_mode: 'required', origin: 'owner', locked: true, ...over,
+});
+
+export const mkPlaybook =(series: Series[] = [], over: Record<string, unknown> = {}): Playbook => PlaybookSchema.parse({
+  platforms: [{ resource_ref: REF, role: 'core', formats: { text: 1 }, per_day: { min: 1, max: 3 } }], series, ...over,
+});
+
+export const mkSkill = (over: Partial<SkillFact> = {}): SkillFact => ({
+  id: 'sk1', name: 'plain-skill', description: 'A plain skill', body: 'Write short posts.', version: 1, inline: false,
+  origin: 'agent', scope: 'agent', safety: false, agentId: 'a1', ...over,
+} as SkillFact);
+
+export const mkDataset = (over: Partial<Omit<DatasetFact, 'boundBy' | 'seriesPerDay'>> = {}): Omit<DatasetFact, 'boundBy' | 'seriesPerDay'> => ({
+  id: 'ds1', key: 'tips', entity: 'tip', version: 1, roles: { title: 'text' }, reusePolicy: { kind: 'never' }, postRequires: [['text']],
+  fillRate: null, rows: 100, notPostable: 0, unusedPostable: 100, used28: 0, ...over,
+});
+
+export interface FactsInit {
+  /** Another channel than `@fx072`; its agent handle is `agentHandle` (default: the key without `@`, dashes as underscores). */
+  channelKey?:    string;
+  agentHandle?:   string;
+  card?:          Partial<EditorCard>;
+  playbook?:      Playbook | null;
+  pendingPlaybook?: ChannelFacts['pendingPlaybook'];
+  /** Raw datasets: `boundBy` and `seriesPerDay` are derived. */
+  datasets?:      Array<Omit<DatasetFact, 'boundBy' | 'seriesPerDay'>>;
+  skills?:        SkillFact[];
+  rules?:         ChannelFacts['rules'];
+  steering?:      ChannelFacts['steering'];
+  pins?:          ChannelFacts['pins'];
+  pauses?:        ChannelFacts['pauses'];
+  loadoutTools?:  string[] | null;
+  profile?:       ChannelFacts['profile'];
+  group?:         ChannelFacts['group'];
+  launch?:        ChannelFacts['launch'];
+  planned?:       ChannelFacts['planned'];
+  slots24h?:      ChannelFacts['slots24h'];
+  sources?:       RawFacts['sources'];
+  conflictBase?:  Partial<ChannelFacts['conflictBase']>;
+  now?:           Date;
+}
+
+/** A healthy channel: a shadow card, a playbook without series, no sources. Override only what a test is about. */
+export function makeFacts(i: FactsInit = {}): ChannelFacts {
+  const channelKey = i.channelKey ?? CH;
+  const ref = `telegram:${channelKey}`;
+  const card = { ...makeCard({ channelKey, toolsAllow: null, ...i.card }), createdAt: new Date('2026-09-01T00:00:00.000Z') };
+  const playbook = i.playbook === undefined ? mkPlaybook() : i.playbook;
+  const series = seriesOn(playbook, ref);
+  const sources = i.sources ?? sourceRefsOf(card, series).map((r) => ({ url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: null, lastSuccessAt: null }));
+  return deriveFacts({
+    now: i.now ?? NOW, channelKey, resourceRef: ref, card,
+    agent: { id: 'a1', handle: i.agentHandle ?? (i.channelKey ? channelKey.replace(/^@/, '').replace(/-/g, '_') : 'fx072'), mode: card.mode },
+    chain: { orchestratorId: 'a1', executorId: 'a2' },
+    profile: i.profile === undefined ? { topic: 'Space', language: 'uk', formatPrefs: {}, full: null } : i.profile,
+    group: i.group ?? null,
+    resources: [{ ref, platform: 'telegram' }],
+    playbook: playbook ? { id: 'pb1', version: 3, body: playbook } : null,
+    pendingPlaybook: i.pendingPlaybook ?? null,
+    pins: i.pins ?? [],
+    skills: i.skills ?? [],
+    rules: i.rules ?? [],
+    steering: i.steering ?? [],
+    datasets: i.datasets ?? [],
+    pauses: i.pauses ?? [],
+    sources,
+    loadoutTools: i.loadoutTools ?? null,
+    conflictBase: { rules: [], refs: [ref], others: [], ...i.conflictBase },
+    launch: i.launch ?? null,
+    planned: i.planned ?? [],
+    slots24h: i.slots24h ?? [],
+  });
+}
+
+/** Freezes a value and everything inside it (dates are left as they are). */
+export function deepFreeze<T>(v: T): T {
+  if (v && typeof v === 'object' && !(v instanceof Date) && !Object.isFrozen(v)) {
+    Object.freeze(v);
+    for (const x of Object.values(v as Record<string, unknown>)) deepFreeze(x);
+  }
+  return v;
+}
