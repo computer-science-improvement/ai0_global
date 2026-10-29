@@ -512,13 +512,18 @@ export class EditorPlansRepository {
     }
   }
 
-  /** Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). */
+  /**
+   * Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). Spec 073
+   * FR-004: only slots of a channel that is not off — an off channel's slot stays `planned` (then `skipStale` /
+   * the scheduler close it as `mode_changed`) instead of being claimed, dropped by the scheduler and swept as «stuck».
+   */
   async claimDue(now: Date, limit: number): Promise<EditorSlot[]> {
     const { rows } = await this.pool.query(
       `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, retry_at = NULL, updated_at = now()
         WHERE id IN (
           SELECT s.id FROM editor_slots s
            WHERE s.status = 'planned' AND s.kind = 'content' AND COALESCE(s.retry_at, s.scheduled_at) <= $1 AND ${DERIVED_READY}
+             AND EXISTS (SELECT 1 FROM editor_channels c WHERE c.channel_key = s.channel_key AND c.mode <> 'off')
            ORDER BY COALESCE(s.retry_at, s.scheduled_at)
            LIMIT $2
            FOR UPDATE OF s SKIP LOCKED)
@@ -573,11 +578,18 @@ export class EditorPlansRepository {
           AND EXISTS (SELECT 1 FROM editor_slots src WHERE src.id = d.derived_from_slot_id
                          AND src.status IN ('planned','running','awaiting_approval','approved'))`,
       [new Date(now.getTime() - maxLateMs)]);
+    // Spec 073 FR-004: a slot of a channel the owner switched off says so (`mode_changed`), not «missed its window».
+    // A deleted channel has no row: its slots fall to the stale line below.
+    const off = await this.pool.query(
+      `UPDATE editor_slots s SET status = 'skipped', error = 'mode_changed', updated_at = now()
+        WHERE s.status = 'planned' AND s.kind = 'content' AND COALESCE(s.retry_at, s.scheduled_at) < $1
+          AND EXISTS (SELECT 1 FROM editor_channels c WHERE c.channel_key = s.channel_key AND c.mode = 'off')`,
+      [new Date(now.getTime() - maxLateMs)]);
     const { rowCount } = await this.pool.query(
       `UPDATE editor_slots SET status = 'skipped', error = 'stale: missed its time window', updated_at = now()
         WHERE status = 'planned' AND kind = 'content' AND COALESCE(retry_at, scheduled_at) < $1`,
       [new Date(now.getTime() - maxLateMs)]);
-    return (rowCount ?? 0) + (derived?.rowCount ?? 0);
+    return (rowCount ?? 0) + (derived?.rowCount ?? 0) + (off?.rowCount ?? 0);
   }
 
   /** Slots stuck in running (process crash mid-run) → failed. */

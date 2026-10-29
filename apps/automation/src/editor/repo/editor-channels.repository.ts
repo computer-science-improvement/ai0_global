@@ -243,6 +243,14 @@ export class EditorChannelsRepository {
             JSON.stringify({ audit: 'mode_change', from: previousMode, to: c.mode })]);
         // Spec 031: leaving approval for shadow/off drops the posts that still wait (nothing may go out).
         if (from === 'approve' && (c.mode === 'off' || c.mode === 'shadow')) await dropWaitingPosts(client, c.channelKey);
+        // Spec 073 FR-004: switching an off channel back on must not run what was planned while it was off — the slots
+        // whose time has passed are closed (`mode_changed`); the ones still ahead stay.
+        if (previousMode === 'off' && c.mode !== 'off') {
+          await client.query(
+            `UPDATE editor_slots SET status = 'skipped', error = 'mode_changed', updated_at = now()
+              WHERE channel_key = $1 AND status = 'planned' AND kind = 'content' AND COALESCE(retry_at, scheduled_at) <= now()`,
+            [c.channelKey]);
+        }
       }
       await client.query('COMMIT');
       return { card: rowToCard(rows[0]), previousMode };

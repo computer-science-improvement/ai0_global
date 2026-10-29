@@ -209,7 +209,9 @@ export class EditorScheduler {
     const rest = early.length < CLAIM_BATCH ? await this.d.plans.claimDue(now, CLAIM_BATCH - early.length) : [];
     const due: EditorSlot[] = [];
     for (const s of [...early, ...rest]) {
-      if (!byKey.has(s.channelKey)) continue;
+      // Spec 073 FR-004: `claimDue` leaves an off channel's slots alone, so this is the owner switching the channel off
+      // between the card read and the claim: close the slot with the NOT_A_MISS reason, never leave it running.
+      if (!byKey.has(s.channelKey)) { await this.skip(s, 'mode_changed'); continue; }
       if (paused.has(slotRef(s))) { await this.skipPaused(s); continue; }
       const broken = await this.unavailable(s);
       if (broken) await this.skip(s, broken);

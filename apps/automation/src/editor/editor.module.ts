@@ -2175,7 +2175,7 @@ export const EDITOR_PROVIDERS = [
             add: (i) => new NetworkRepository(pool).addIdea({ ...i, sources: [], origin: 'owner', status: 'accepted' }),
           },
           setMode: async (key, mode) => {
-            await ops.upsertChannel(key, { mode });
+            await ops.upsertChannel(key, { mode }, { replan: false }); // Start plans by itself (spec 073 L6, FR-006)
             const orch = await orchOf(key);
             if (orch && orch.mode !== mode) await infra.agents.update(orch.id, { mode, shadowUntil: null });
           },

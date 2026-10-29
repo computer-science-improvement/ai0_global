@@ -37,7 +37,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `silent/fallback-ladder.073.test.ts` (each failure kind: a fixable and a non-fixable critic reject, lint, a guard); update `silent/pass-row.071.test.ts` :97-100 (`passed` is `[]`) and :129 (false) (A35). The loops at :101 and :158 and the `not_next_in_order` cases stay.
   - Done when: a failed quiz series slot never gets a `lighter_format` or evergreen step, and a `quiz_answer_mismatch` leaves the row unpassed.
 
-- [ ] **T4 Mode off is off (FR-004; A25, A44, L6).**
+- [x] **T4 Mode off is off (FR-004; A25, A44, L6).**
   - What:
     - `claimDue` checks the channel's mode;
     - the scheduler skips a slot it cannot run with `mode_changed`;
