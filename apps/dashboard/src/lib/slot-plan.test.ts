@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  canPreview, feedsOf, liveLine, upcomingName, upcomingTitle, plannedAtLine, plannedEveningBefore, planScheduleNote, previewCostHint, previewFootnote, previewRunning,
+  canPreview, feedsOf, liveLine, plannedAtLine, plannedEveningBefore, planScheduleNote, previewCostHint, previewFootnote, previewRunning,
   runLabel, siteList, siteName, skipReason, type SlotPreviewView,
 } from './slot-plan';
 
@@ -89,14 +89,7 @@ test('the Preview button: only fixed planned content slots; a running preview is
   assert.match(previewFootnote(preview(), KYIV), /^Dry run at 09:15 Kyiv · \$0\.0061 · nothing was published/);
 });
 
-test('feeds of a card and the Overview Upcoming rows: a live slot reads as its fetch-and-write, a news-watch slot as its item', () => {
+test('feeds of a card: the sources a feed-backed card reads', () => {
   assert.deepEqual(feedsOf({ sources: [{ id: 'f1', kind: 'rss', ref: 'https://a.example/rss' }, { id: 'l1', kind: 'library', ref: 'recipes' }] }), { f1: 'https://a.example/rss' });
   assert.deepEqual(feedsOf(null), {});
-  const base = { kind: 'slot' as const, name: 'Fresh story from pravda.com.ua', format: 'photo', resourceRef: 'telegram:@news', agent: 'news', owner: false };
-  assert.equal(upcomingName({ ...base, topicMode: 'live', live }), 'Live: fetch pravda.com.ua, feed1, nasa_apod API → freshest → photo');
-  assert.equal(upcomingName({ ...base, topicMode: 'live', live: { ...live, origin: 'news_watch', item: { url: 'https://x.example/a', title: 'Comet passes Earth' } } }), 'Live: Comet passes Earth');
-  assert.equal(upcomingName({ ...base, name: 'How to read a bill', topicMode: 'fixed' }), 'How to read a bill');
-  assert.match(upcomingTitle({ ...base, topicMode: 'live', live }), /^Live slot · telegram:@news · @news · fetch pravda\.com\.ua.* \(≤ 6 h\) → write photo$/);
-  assert.equal(upcomingTitle({ ...base, kind: 'pin', owner: true }), 'Pinned post · telegram:@news · @news · set by you');
-  assert.equal(upcomingTitle({ ...base, topicMode: 'fixed' }), 'Planned slot · telegram:@news · @news');
 });

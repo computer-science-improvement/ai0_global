@@ -184,28 +184,3 @@ export function previewFootnote(p: SlotPreviewView, tz: string): string {
   const when = p.finishedAt ?? p.startedAt;
   return `Dry run at ${formatIn(when, tz)} ${zoneLabel(tz)} · ${money(p.costUsd)} · nothing was published or stored for the slot; the real post is written at the slot time.`;
 }
-
-// ── the Overview's Upcoming card (spec 034 FR-012) ────────────────────────────
-
-interface UpcomingLike {
-  kind: 'series' | 'pin' | 'slot'; name: string; format: string | null; resourceRef: string; agent: string; owner: boolean;
-  topicMode?: 'fixed' | 'live'; live?: LiveSpecView;
-}
-
-/** The row text: a live slot's call without the time ("Live: fetch pravda.com.ua → freshest → photo"), else the name. */
-export function upcomingName(u: UpcomingLike): string {
-  if (u.topicMode === 'live' && u.live) {
-    const item = u.live.item?.title;
-    return item ? `Live: ${item}` : `Live: fetch ${siteList(u.live.sources)} → freshest → ${u.format ?? 'post'}`;
-  }
-  return u.name;
-}
-
-/** The row tooltip: what it is, where, whose. */
-export function upcomingTitle(u: UpcomingLike): string {
-  const what = u.kind === 'pin' ? 'Pinned post' : u.kind === 'series' ? 'Series' : u.topicMode === 'live' ? 'Live slot' : 'Planned slot';
-  const call = u.topicMode === 'live' && u.live
-    ? ` · fetch ${siteList(u.live.sources)} → pick the freshest item (≤ ${u.live.max_age_hours} h) → write ${u.format ?? 'a post'}`
-    : '';
-  return `${what} · ${u.resourceRef} · @${u.agent}${u.owner ? ' · set by you' : ''}${call}`;
-}

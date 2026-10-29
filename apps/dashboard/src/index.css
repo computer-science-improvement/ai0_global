@@ -147,7 +147,7 @@ html, body {
 .text-body-sm     { font-size: 14px; font-weight: 500; line-height: 1.40; letter-spacing: -0.14px; }
 .text-caption     { font-size: 13px; font-weight: 500; line-height: 1.20; letter-spacing: -0.13px; }
 .text-micro       { font-size: 12px; font-weight: 400; line-height: 1.20; letter-spacing: -0.12px; }
-/* Panel / dialog-section title tier (SectionCard, Panel, Placeholder). */
+/* Panel / dialog-section title tier (SectionCard, dialog sections). */
 .text-heading-md  { font-size: 15px; font-weight: 600; line-height: 1.30; letter-spacing: -0.01em; }
 
 /* Monospace voice: handles (@x), times and relative ages, counts, kind codes, ids, technical details.
