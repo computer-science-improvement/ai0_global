@@ -135,7 +135,7 @@ const usd = (n: number) => `$${n.toFixed(2)}`;
 const CONNECTION_TEXT: Record<BadConnectionState, string> = {
   token_invalid: 'token does not work', no_access: 'no access', rate_limited: 'rate-limited', token_expiring: 'token expires soon',
 };
-const SOURCE_TEXT: Record<string, string> = { blocked: 'blocked', failing: 'failing', exhausted: 'nothing new' };
+const SOURCE_TEXT: Record<string, string> = { blocked: 'blocked', failing: 'failing', exhausted: 'nothing new', ok: 'the server cannot read it', unused: 'the server cannot read it' };
 
 /**
  * The "Network health" section of the weekly owner report (spec 012 renders the report; this is its section).

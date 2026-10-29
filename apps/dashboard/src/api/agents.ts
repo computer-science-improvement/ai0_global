@@ -300,16 +300,34 @@ export function useAgentConfigConflicts(handle: string) {
 
 /** Spec 049 FR-003: how one source of the channel card behaved over the window. */
 export type SourceState = 'blocked' | 'failing' | 'exhausted' | 'ok' | 'unused';
+/** Spec 076: why a read from the server failed (`unreachable` is not here: it is a host block, not a probe class). */
+export type ProbeFailureClass = 'timeout' | 'refused' | 'tls' | 'dns' | 'http' | 'empty' | 'invalid';
+/** Spec 076: the latest read of an `rss` / `url` source from the SERVER (`null` = never read). */
+export interface SourceProbe {
+  ok: boolean; failure_class: ProbeFailureClass | null; status: number | null; kind: 'rss' | 'page';
+  items: number; newest_at: string | null; checked_at: string; via_proxy: boolean; detail: string;
+}
+/** Spec 076 A23: material left of a dataset source. `days` is null for a dataset that repeats in rounds. */
+export interface SourceRunway { unposted: number | null; days: number | null; rounds: boolean }
 export interface SourceHealth {
   id: string; kind: 'rss' | 'url' | 'library' | 'api'; ref: string; state: SourceState;
   calls: number; ok: number; empty: number; errors: number; successRate: number | null;
   lastOkAt: string | null; lastError: { at: string; code: string; details: string | null } | null;
-  blocked: { host: string; reason: string; statusCode: number | null; until: string; failures: number } | null;
+  blocked: { host: string; reason: string; statusCode: number | null; until: string; failures: number; strikes?: number } | null;
   slotsLost: number; detail: string;
+  // Spec 076 (A23): optional, so a report from an older server still renders.
+  /** `playbook`: a feed the playbook reads that the card does not list, or a dataset / api a series names. Absent = a card source. */
+  origin?: 'card' | 'playbook';
+  probe?: SourceProbe | null;
+  runway?: SourceRunway | null;
 }
 export interface SourceHealthReport {
   channelKey: string | null; days: number; sources: SourceHealth[];
   otherHosts: Array<{ host: string; reason: string; statusCode: number | null; until: string; calls: number }>;
+  /** Spec 076: the card and its playbook name no source at all. */
+  noSources?: boolean;
+  /** Spec 076: an egress proxy is configured, so "Route via proxy" can work. */
+  proxyConfigured?: boolean;
 }
 
 export function useAgentSources(handle: string) {

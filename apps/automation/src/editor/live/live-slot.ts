@@ -140,9 +140,22 @@ export interface LiveScan {
   items:         LiveCandidate[];
   feedsRead:     number;
   feedsFailed:   number;
+  /** Spec 076 A20: of `feedsFailed`, the feeds a block or a network failure (timeout, reset, DNS, TLS) stopped. Read as 0 when absent. */
+  feedsUnreachable?: number;
+  /** Spec 076 A20: the sources that are pages (`url`), which the writer can still open with web_fetch. Read as 0 when absent. */
+  pageSources?:  number;
   /** api:… sources the code does not read — the agent reads them with fetch_api. */
   otherSources:  string[];
   dropped:       { old: number; undated: number; posted: number; similar: number };
+}
+
+/**
+ * Spec 076 FR-007: every feed of a live slot is blocked or timing out, and nothing else could supply an item (no page source the
+ * writer can open, no api source), so the slot skips at $0. A scan without the new fields (a typed fake) never skips.
+ */
+export function feedsAllUnreachable(scan: LiveScan): boolean {
+  const unreachable = scan.feedsUnreachable ?? 0;
+  return scan.feedsRead === 0 && unreachable > 0 && unreachable === scan.feedsFailed && (scan.pageSources ?? 0) === 0 && !scan.otherSources.length;
 }
 
 /** Why a scan found nothing (Ukrainian, for the slot error and the trace). */

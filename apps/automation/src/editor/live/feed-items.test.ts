@@ -51,7 +51,7 @@ test('filterFresh: since_hours drops old and undated items; the ledger and the 7
 test('liveFeeds resolves card ids, feed:<id> and URLs; api sources are left to the agent', () => {
   const card = [{ id: 'f1', kind: 'rss' as const, ref: 'https://e.example/rss' }, { id: 'lib', kind: 'library' as const, ref: 'recipes' }];
   assert.deepEqual(liveFeeds(['f1', 'feed:f1', 'https://x.example/rss', 'api:nasa_apod', 'lib'], card), {
-    feeds: [{ url: 'https://e.example/rss', id: 'f1' }, { url: 'https://x.example/rss', id: 'https://x.example/rss' }],
+    feeds: [{ url: 'https://e.example/rss', id: 'f1', kind: 'rss' }, { url: 'https://x.example/rss', id: 'https://x.example/rss', kind: 'rss' }],
     other: ['api:nasa_apod', 'lib'],
   });
 });

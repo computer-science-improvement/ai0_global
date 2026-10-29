@@ -16,6 +16,7 @@ import { mergeCard } from './card-input';
 import type { StyleProposal } from '../post/style/style-proposal';
 import { conflictNote, newConflictsOf, type ConflictNote } from '../rules/config-conflicts';
 import { errText } from '../../common/err-text';
+import { changedCardSources, probeInBackground, type BackgroundProbe } from '../sources/probe-triggers';
 
 export interface EditorOpsDeps {
   channels: Pick<EditorChannelsRepository, 'get' | 'list' | 'upsert'>;
@@ -35,6 +36,8 @@ export interface EditorOpsDeps {
   lint?: (text: string, channelKey: string) => Promise<Array<{ code: string; detail: string }>>;
   /** Spec 073 FR-012: the channel's rules-vs-config conflicts (`ConfigConflictsService.forAgent`); absent = none are reported. */
   conflicts?: (channelKey: string) => Promise<ConflictNote[]>;
+  /** Spec 076 FR-004: the server reads each new or changed feed / page source of a saved card in the background (the save does not wait). */
+  probe?: BackgroundProbe;
 }
 
 export interface RunOptions { wait?: boolean }
@@ -170,6 +173,8 @@ export class EditorOpsService {
       throw new BadRequestException({ error: 'invalid_card', unknownSkills, unknownTools });
     }
     const saved = await this.d.channels.upsert(merged.card);
+    // Spec 076 FR-004 / A30: only a source that is new or changed against the card as it was; a mode-only save probes nothing.
+    probeInBackground(this.d.probe, changedCardSources(existing?.sources, merged.card.sources), this.d.log);
     if (opts.replan !== false) await this.replanAfterSwitchOn(saved.card, saved.previousMode);
     return saved;
   }

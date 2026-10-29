@@ -17,17 +17,25 @@ import type { CardSource } from '../card';
  * (`feed_missing`: 400 / 404 / 410) is a flat day on the feed address and never touches the host's pages; a host-wide
  * `refused` row (a page answered 403) does not stop fetch_feed. A connection reset (socket hang up, TLS cut off before the
  * handshake) is tried once more after a second, then recorded as a `timeout`: an hour, no strike.
+ *
+ * Spec 076 FR-002: a host that only times out never reached the strikes (the zakon.rada.gov.ua geoblock: every read timed out,
+ * no owner note, a paid run per slot). Three counted timeouts in a sliding 14 days become an `unreachable` strike: 1 d, 3 d,
+ * 7 d like a refusal; a successful fetch ends it. The owner hears of the first `unreachable` strike (a refusal still needs three).
  */
 export const HOST_BLOCK_HOURS = 24;
 /** Block length by strike (spec 061 FR-004): the 3rd and every later strike is the cap. */
 export const STRIKE_BLOCK_HOURS = [24, 72, 168] as const;
 export const TIMEOUT_BLOCK_HOURS = 1;
+/** Spec 076 FR-002: this many counted timeouts (each at least an hour after the last) make a host `unreachable`. */
+export const UNREACHABLE_TIMEOUTS = 3;
+/** The timeout count is a sliding window on the row's last failure: a host quiet for this long starts over. */
+export const UNREACHABLE_WINDOW_DAYS = 14;
 /** A host struck this many times in a row is raised to the owner (one note, `change_source` card for a card source). */
 export const STRIKES_FOR_OWNER = 3;
 export const REFUSAL_STATUSES = new Set([401, 403, 451, 429]);
 
 /** `feed_*` reasons block fetch_feed only; the others block every page fetch of the host (and `refused` spares the host's feeds). */
-export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'timeout' | 'feed_unparseable' | 'feed_too_large' | 'feed_refused' | 'feed_missing';
+export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'timeout' | 'unreachable' | 'feed_unparseable' | 'feed_too_large' | 'feed_refused' | 'feed_missing';
 /** A feed answers with one of these: it is the feed that refuses (`feed_refused`) or is gone (`feed_missing`). */
 export const FEED_REFUSED_STATUSES = new Set([401, 403, 429, 451]);
 export const FEED_MISSING_STATUSES = new Set([400, 404, 410]);
@@ -42,14 +50,36 @@ export interface HostBlock {
 export interface HostFailures {
   blocked(host: string, use: 'page' | 'feed'): Promise<HostBlock | null>;
   record(host: string, reason: HostFailureReason, statusCode?: number | null): Promise<void>;
-  /** A page of this host answered: its strikes start over (spec 061 FR-004). */
-  succeeded?(host: string): Promise<void>;
+  /**
+   * A fetch of this host worked: its timeouts start over and a `timeout` / `unreachable` block ends. A page also ends the
+   * strikes of a refusal streak (spec 061 FR-004); a feed does not (spec 076 A2: a working feed says nothing about the pages).
+   */
+  succeeded?(host: string, use?: 'page' | 'feed'): Promise<void>;
 }
 
-/** The block a failure leaves: the strikes after it and when it ends; `keep` = an active longer block stays as it is. */
-export interface NextBlock { strikes: number; until: Date; keep: boolean }
+/**
+ * The block a failure leaves: the strikes after it, when it ends and the timeout count; `keep` = an active longer block
+ * keeps its reason and status code. `reason` is what the row stores (a counted timeout may become `unreachable`).
+ */
+export interface NextBlock {
+  strikes:       number;
+  until:         Date;
+  keep:          boolean;
+  reason:        HostFailureReason;
+  timeouts:      number;
+  timeoutsSince: Date | null;
+}
 
-export interface PrevBlock { reason: string; blockedUntil: Date; strikes: number }
+/** The previous row. The timeout fields are read as 0 / null when absent (a row from before migration 100). */
+export interface PrevBlock {
+  reason:         string;
+  blockedUntil:   Date;
+  strikes:        number;
+  timeouts?:      number;
+  timeoutsSince?: Date | null;
+  /** The row's last failure of any reason: the 14-day window slides on it (spec 076 A7). */
+  lastAt?:        Date | null;
+}
 
 /** Block length in hours for the n-th strike in a row (1 d, 3 d, then 7 d). */
 export const strikeHours = (strikes: number): number => STRIKE_BLOCK_HOURS[Math.min(Math.max(strikes, 1), STRIKE_BLOCK_HOURS.length) - 1];
@@ -59,21 +89,45 @@ export const strikeHours = (strikes: number): number => STRIKE_BLOCK_HOURS[Math.
  * ended is the next strike (1 d, 3 d, 7 d); a failure inside a block is the same strike. A timeout blocks for an hour and
  * adds no strike, and never shortens a longer block. Feed failures (`feed_*`, spec 070) stay a flat day on their own
  * address and leave the strikes alone: a dead feed reaches the owner through source health, not through strikes.
+ *
+ * Spec 076 FR-002: a timeout (also a reset that survived its retry) is counted. The 3rd counted timeout is an `unreachable`
+ * strike (1 d, then 3 d, then 7 d; the next timeout after a block, with no success between, is the next strike); below 3 it
+ * stays a one-hour block. A timeout inside an active `timeout` / `unreachable` block is the same attempt and counts nothing
+ * (so counted timeouts are at least an hour apart, and an `unreachable` strike is never downgraded); inside a longer block of
+ * another reason that block is kept. The count restarts when the row's last failure is over `UNREACHABLE_WINDOW_DAYS` old.
+ * Refusals, DNS, TLS and feed failures leave the count alone.
  */
 export function nextBlock(prev: PrevBlock | null, reason: HostFailureReason, now: Date): NextBlock {
   const at = (hours: number) => new Date(now.getTime() + hours * 3_600_000);
   const prevStrikes = prev?.strikes ?? 0;
+  const timeouts = prev?.timeouts ?? 0;
+  const timeoutsSince = prev?.timeoutsSince ?? null;
   const active = !!prev && prev.blockedUntil.getTime() > now.getTime();
-  if (reason.startsWith('feed_')) return { strikes: prevStrikes, until: at(HOST_BLOCK_HOURS), keep: false };
+  if (reason.startsWith('feed_')) return { strikes: prevStrikes, until: at(HOST_BLOCK_HOURS), keep: false, reason, timeouts, timeoutsSince };
   if (reason === 'timeout') {
-    if (active && prev!.reason !== 'timeout' && prev!.blockedUntil.getTime() - now.getTime() > TIMEOUT_BLOCK_HOURS * 3_600_000) {
-      return { strikes: prevStrikes, until: prev!.blockedUntil, keep: true };
+    if (active && (prev!.reason === 'timeout' || prev!.reason === 'unreachable')) {
+      const hour = at(TIMEOUT_BLOCK_HOURS);
+      const until = prev!.blockedUntil.getTime() > hour.getTime() ? prev!.blockedUntil : hour;
+      return { strikes: prevStrikes, until, keep: prev!.reason === 'unreachable', reason: prev!.reason as HostFailureReason, timeouts, timeoutsSince };
     }
-    return { strikes: prevStrikes, until: at(TIMEOUT_BLOCK_HOURS), keep: false };
+    if (active && prev!.blockedUntil.getTime() - now.getTime() > TIMEOUT_BLOCK_HOURS * 3_600_000) {
+      return { strikes: prevStrikes, until: prev!.blockedUntil, keep: true, reason: prev!.reason as HostFailureReason, timeouts, timeoutsSince };
+    }
+    const lastAt = prev?.lastAt ?? null;
+    const restart = !lastAt || now.getTime() - lastAt.getTime() > UNREACHABLE_WINDOW_DAYS * 86_400_000;
+    const count = restart ? 1 : timeouts + 1;
+    const since = restart || !timeoutsSince ? now : timeoutsSince;
+    if (count >= UNREACHABLE_TIMEOUTS) {
+      const strikes = prevStrikes + 1;
+      return { strikes, until: at(strikeHours(strikes)), keep: false, reason: 'unreachable', timeouts: count, timeoutsSince: since };
+    }
+    return { strikes: prevStrikes, until: at(TIMEOUT_BLOCK_HOURS), keep: false, reason: 'timeout', timeouts: count, timeoutsSince: since };
   }
-  if (active && prev!.reason !== 'timeout') return { strikes: Math.max(prevStrikes, 1), until: prev!.blockedUntil, keep: true };
+  if (active && prev!.reason !== 'timeout') {
+    return { strikes: Math.max(prevStrikes, 1), until: prev!.blockedUntil, keep: true, reason: prev!.reason as HostFailureReason, timeouts, timeoutsSince };
+  }
   const strikes = prevStrikes + 1;
-  return { strikes, until: at(strikeHours(strikes)), keep: false };
+  return { strikes, until: at(strikeHours(strikes)), keep: false, reason, timeouts, timeoutsSince };
 }
 
 /** The host of a URL, without `www.` (null for a non-URL). */
@@ -171,6 +225,7 @@ const REASON_TEXT: Record<HostFailureReason, string> = {
   dns:              'домен не знаходиться (DNS)',
   tls:              'помилка TLS-сертифіката',
   timeout:          'сайт не відповів вчасно',
+  unreachable:      'сайт недоступний із сервера (тайм-аути поспіль)',
   feed_unparseable: 'стрічка не читається як RSS/Atom',
   feed_too_large:   'стрічка більша за 2 МБ',
   feed_refused:     'стрічка відмовляє в доступі',
@@ -209,30 +264,48 @@ export class PgHostFailures implements HostFailures {
   async record(host: string, reason: HostFailureReason, statusCode: number | null = null): Promise<void> {
     const t = this.now();
     try {
-      const { rows } = await this.pool.query(`SELECT reason, blocked_until, strikes FROM source_host_failures WHERE host = $1`, [host]);
+      const { rows } = await this.pool.query(
+        `SELECT reason, blocked_until, strikes, consecutive_timeouts, timeouts_since, last_at FROM source_host_failures WHERE host = $1`, [host]);
       const p = rows[0];
-      const prev: PrevBlock | null = p ? { reason: p.reason, blockedUntil: new Date(p.blocked_until), strikes: Number(p.strikes ?? 0) } : null;
+      const prev: PrevBlock | null = p ? {
+        reason: p.reason, blockedUntil: new Date(p.blocked_until), strikes: Number(p.strikes ?? 0),
+        timeouts: Number(p.consecutive_timeouts ?? 0), timeoutsSince: p.timeouts_since ? new Date(p.timeouts_since) : null,
+        lastAt: p.last_at ? new Date(p.last_at) : null,
+      } : null;
       const next = nextBlock(prev, reason, t);
       const active = !!prev && prev.blockedUntil.getTime() > t.getTime();
       // A timeout inside a longer block (or a repeat inside one) keeps its reason and end; the row only notes the new attempt.
       await this.pool.query(
-        `INSERT INTO source_host_failures (host, reason, status_code, first_at, last_at, blocked_until, strikes) VALUES ($1, $2, $3, $4, $4, $5, $6)
+        `INSERT INTO source_host_failures (host, reason, status_code, first_at, last_at, blocked_until, strikes, consecutive_timeouts, timeouts_since)
+           VALUES ($1, $2, $3, $4, $4, $5, $6, $9, $10)
          ON CONFLICT (host) DO UPDATE SET
            reason = CASE WHEN $8 THEN source_host_failures.reason ELSE EXCLUDED.reason END,
            status_code = CASE WHEN $8 THEN source_host_failures.status_code ELSE EXCLUDED.status_code END,
            last_at = EXCLUDED.last_at,
            blocked_until = EXCLUDED.blocked_until,
            strikes = $6,
+           consecutive_timeouts = $9,
+           timeouts_since = $10,
            failures = CASE WHEN $7 THEN source_host_failures.failures + 1 ELSE 1 END,
            first_at = CASE WHEN $7 THEN source_host_failures.first_at ELSE EXCLUDED.first_at END`,
-        [host, reason, statusCode, t, next.until, next.strikes, active, next.keep],
+        [host, next.reason, statusCode, t, next.until, next.strikes, active, next.keep, next.timeouts, next.timeoutsSince],
       );
-    } catch { /* never stops a fetch (e.g. before migration 094) */ }
+    } catch { /* never stops a fetch (e.g. before migrations 094 / 100) */ }
   }
 
-  /** A fetch of the host worked: the strikes start over and the next streak gets its own owner note. */
-  async succeeded(host: string): Promise<void> {
-    await this.pool.query(`UPDATE source_host_failures SET strikes = 0, noted_at = NULL WHERE host = $1 AND strikes > 0`, [host]).catch(() => {});
+  /**
+   * A fetch of the host worked (spec 076 A2): the timeout count starts over, `last_success_at` is written and an active `timeout` /
+   * `unreachable` block ends. A page also starts the strikes over (and the next streak gets its own owner note); a feed does so
+   * only for a `timeout` / `unreachable` streak, so a working feed never wipes the page refusals of its host. One UPDATE, no SELECT.
+   */
+  async succeeded(host: string, use: 'page' | 'feed' = 'page'): Promise<void> {
+    await this.pool.query(
+      `UPDATE source_host_failures SET
+         consecutive_timeouts = 0, timeouts_since = NULL, last_success_at = $2::timestamptz,
+         strikes  = CASE WHEN $3::text = 'page' OR reason IN ('timeout','unreachable') THEN 0    ELSE strikes  END,
+         noted_at = CASE WHEN $3::text = 'page' OR reason IN ('timeout','unreachable') THEN NULL ELSE noted_at END,
+         blocked_until = CASE WHEN reason IN ('timeout','unreachable') AND blocked_until > $2::timestamptz THEN $2::timestamptz ELSE blocked_until END
+       WHERE host = $1`, [host, this.now(), use]).catch(() => {});
   }
 }
 

@@ -1,5 +1,7 @@
 import type { CardSource } from '../card';
 import { feedKey, hostOf } from '../net/host-failures';
+import type { ProbeSummary } from './probe';
+import { SERIES_SOURCE_PREFIX } from './playbook-feeds';
 
 /**
  * Spec 049 FR-003: how each source of a channel card actually behaves — read from the run trace (`editor_run_steps`,
@@ -45,9 +47,22 @@ export interface HostBlockRow {
 
 export type SourceState = 'blocked' | 'failing' | 'exhausted' | 'ok' | 'unused';
 
+/** Spec 076 A23: the material a dataset source has left on the channel's resource (from the catalog overview). */
+export interface SourceRunway {
+  /** Rows not yet posted here (null = unknown). */
+  unposted: number | null;
+  /** Days of material at the current pace; null for a dataset that repeats in rounds, or when nothing uses it. */
+  days:     number | null;
+  /** The dataset repeats in rounds, so it never runs out. */
+  rounds:   boolean;
+}
+
 export interface SourceHealth {
   id:          string;
-  /** `playbook` - a feed the orchestrator's playbook reads that the card does not list (spec 061 FR-004). Absent = a card source. */
+  /**
+   * `playbook` - a feed the orchestrator's playbook reads that the card does not list (spec 061 FR-004), or (spec 076 A23) a
+   * dataset / api a playbook series names (`id = series:<name>`). Absent = a card source.
+   */
   origin?:     'card' | 'playbook';
   kind:        CardSource['kind'];
   ref:         string;
@@ -65,6 +80,10 @@ export interface SourceHealth {
   slotsLost:   number;
   /** One English line for the dashboard, the agent's prompt and the report. */
   detail:      string;
+  /** Spec 076: the latest read of an `rss` / `url` source from the server (null = never read); absent on a report from before it. */
+  probe?:      ProbeSummary | null;
+  /** Spec 076 A23: material left of a `library` source; null for the other kinds. */
+  runway?:     SourceRunway | null;
 }
 
 export interface SourceHealthReport {
@@ -73,6 +92,10 @@ export interface SourceHealthReport {
   sources:    SourceHealth[];
   /** Hosts outside the card's sources that the channel's runs hit while they are blocked. */
   otherHosts: Array<{ host: string; reason: string; statusCode: number | null; until: string; calls: number }>;
+  /** Spec 076: the card and its playbook name no source at all - the channel writes from its brief only. */
+  noSources:  boolean;
+  /** Spec 076: an egress proxy is configured (the panel offers "Route via proxy" only then). */
+  proxyConfigured: boolean;
 }
 
 const str = (v: unknown): string | null => (typeof v === 'string' ? v : null);
@@ -164,12 +187,17 @@ export function sourceHealthOf(s: CardSource, steps: SourceStep[], blocks: HostB
 
 const STATE_ORDER: Record<SourceState, number> = { blocked: 0, failing: 1, exhausted: 2, ok: 3, unused: 4 };
 
+/** Worst first (a failed server read counts as trouble inside the `ok` / `unused` groups). */
+export function orderSources(list: SourceHealth[]): SourceHealth[] {
+  const bad = (h: SourceHealth) => (h.probe && !h.probe.ok ? 0 : 1);
+  return [...list].sort((a, b) => STATE_ORDER[a.state] - STATE_ORDER[b.state] || bad(a) - bad(b) || b.errors - a.errors);
+}
+
 /** The report of a channel: every card source (worst first) and the blocked hosts its runs hit outside them. */
 export function sourceHealthReport(
   channelKey: string, sources: CardSource[], steps: SourceStep[], blocks: HostBlockRow[], now: Date, days = SOURCE_HEALTH_DAYS,
 ): SourceHealthReport {
-  const health = sources.map((s) => sourceHealthOf(s, steps, blocks, now, days))
-    .sort((a, b) => STATE_ORDER[a.state] - STATE_ORDER[b.state] || b.errors - a.errors);
+  const health = orderSources(sources.map((s) => sourceHealthOf(s, steps, blocks, now, days)));
   const own = new Set(sources.flatMap((s) => [hostOf(s.ref), s.kind === 'rss' ? feedKey(s.ref) : null]).filter(Boolean) as string[]);
   const hits = new Map<string, number>();
   for (const st of steps) {
@@ -183,18 +211,41 @@ export function sourceHealthReport(
     .map((b) => ({ host: b.host, reason: b.reason, statusCode: b.statusCode, until: b.until.toISOString(), calls: hits.get(b.host)! }))
     .sort((a, b) => b.calls - a.calls)
     .slice(0, 10);
-  return { channelKey, days, sources: health, otherHosts };
+  return { channelKey, days, sources: health, otherHosts, noSources: sources.length === 0, proxyConfigured: false };
 }
 
-/** Sources the owner should see as not working: blocked, failing or exhausted. */
-export const isTroubled = (h: SourceHealth): boolean => h.state === 'blocked' || h.state === 'failing' || h.state === 'exhausted';
+/** Sources the owner should see as not working: blocked, failing or exhausted, or the server's own read of the address failed (spec 076 A22). */
+export const isTroubled = (h: SourceHealth): boolean =>
+  h.state === 'blocked' || h.state === 'failing' || h.state === 'exhausted' || (!!h.probe && !h.probe.ok);
+
+/** A dataset source of a playbook series whose rows are all posted and that does not repeat in rounds (spec 076 A22). */
+export const isSeriesExhausted = (h: Pick<SourceHealth, 'id' | 'kind' | 'runway'>): boolean =>
+  h.kind === 'library' && h.id.startsWith(SERIES_SOURCE_PREFIX) && !!h.runway && !h.runway.rounds && h.runway.unposted === 0;
+
+/**
+ * Spec 076: the health row with the server's latest read of its address and the material left. A failed read adds a line to
+ * `detail`; a series library source with no unposted rows and no rounds is `exhausted` (unless a worse state already holds).
+ */
+export function withReach(h: SourceHealth, o: { probe?: ProbeSummary | null; runway?: SourceRunway | null }): SourceHealth {
+  const probe = (h.kind === 'rss' || h.kind === 'url') ? (o.probe ?? null) : null;
+  const runway = h.kind === 'library' ? (o.runway ?? null) : null;
+  let out: SourceHealth = { ...h, probe, runway };
+  if (probe && !probe.ok) out = { ...out, detail: `${out.detail}; the server could not read it (${probe.failure_class ?? 'error'}: ${probe.detail})` };
+  if (isSeriesExhausted(out) && out.state !== 'blocked' && out.state !== 'failing') {
+    out = { ...out, state: 'exhausted', detail: 'no unposted rows left' };
+  }
+  return out;
+}
 
 /**
  * Sources worth a replacement: failing or exhausted, or blocked again and again (one 24-hour block is a blip — a site
- * that refused twice in a row, or a block on top of failed reads, is not).
+ * that refused twice in a row, or a block on top of failed reads, is not). An `unreachable` block (spec 076: three timeouts
+ * in a row, at least two hours of failures) counts at its first strike.
  */
 export const needsReplacement = (h: SourceHealth): boolean =>
-  h.state === 'failing' || h.state === 'exhausted' || (h.state === 'blocked' && h.blocked?.reason !== 'timeout' && ((h.blocked?.failures ?? 1) >= 2 || (h.blocked?.strikes ?? 0) >= 2 || h.errors >= FAILING_MIN_ERRORS));
+  h.state === 'failing' || h.state === 'exhausted'
+  || (h.state === 'blocked' && h.blocked?.reason !== 'timeout'
+    && ((h.blocked?.failures ?? 1) >= 2 || (h.blocked?.strikes ?? 0) >= 2 || h.errors >= FAILING_MIN_ERRORS || h.blocked?.reason === 'unreachable'));
 
 /** The hosts and feed addresses a card's sources (and the steps' urls) can be blocked under. */
 export function blockKeys(sources: CardSource[], steps: SourceStep[]): string[] {

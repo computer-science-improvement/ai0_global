@@ -54,6 +54,9 @@ import { budgetSnapshot } from '../spend/spend.service';
 import { SpendRepository } from '../spend/spend.repository';
 import { sourcesToReplaceBlock } from './sources/source-health.service';
 import { SOURCE_CHANGE_KIND } from './sources/source-change';
+import { sourceProberOf } from './sources/probe';
+import { SourceProbeWorker } from './sources/source-probe.worker';
+import { SourcesController } from './sources/sources.controller';
 import { buildRoleTools, STORY_KPI_SAMPLE_FILTER } from './tools/role-tools';
 import { StoryRegistry } from './story/story.repository';
 import { StoryContextService } from './story/story-service';
@@ -1234,6 +1237,7 @@ export const EDITOR_PROVIDERS = [
           pauses: new PlannerPauseView(new SeriesPausesRepository(pool)),   // spec 060: paused series + last skip reasons for the planners
           unposted: unpostedPort(pool),
           nextRow: nextRowPort(pool),   // spec 071: the next row of an in-order dataset (series note + not_next_in_order guard)
+          probe: sourceProberOf(pool),   // spec 076 FR-004: a new or changed feed series is read by the server when it is saved
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
         registerScheduleActions(infra.actions, svc);
@@ -1325,6 +1329,7 @@ export const EDITOR_PROVIDERS = [
             pool, docs, actions: infra.actions, hosts, env,
             schedule, agents: infra.agents, skills: infra.skills, handles: async () => (await infra.agents.list()).map((a) => a.handle),
             pauses: new SeriesPausesRepository(pool),
+            probe: sourceProberOf(pool, env),   // spec 076 A16: `reach` in the preview
           }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
@@ -1693,7 +1698,7 @@ export const EDITOR_PROVIDERS = [
           // Spec 034 FR-010: a live slot's feeds are read by code first (fresh, unposted, not a repeat).
           live: {
             scan: async (slot, card) => slot.liveSpec
-              ? scanLive({ pool }, { spec: slot.liveSpec, resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, card: card.sources, now: new Date(), excludeSlotId: slot.id })
+              ? scanLive({ pool, hosts: new PgHostFailures(pool) }, { spec: slot.liveSpec, resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, card: card.sources, now: new Date(), excludeSlotId: slot.id })
               : null,
           },
           // Spec 034 FR-004: the pre-publish critic of every executor run (live, shadow, approval write-ahead).
@@ -1798,6 +1803,7 @@ export const EDITOR_PROVIDERS = [
         // Spec 034 FR-011: news resources check their feeds on a cadence and add live slots for fresh items (no LLM).
         const newsWatch = new NewsWatchService({
           pool, profile: async (ref) => (await infra.profiles.get(ref))?.profile ?? null, log: (m) => logger.warn(m),
+          hosts: new PgHostFailures(pool),   // spec 076 A19: the news watch reads through the same guarded reader as the live scan
         });
         // Spec 037 FR-010: silent-day notes (dark_day, series_missed, critic_reject_streak), once per resource per day.
         const silent = new SilentDaysWatch({
@@ -1954,6 +1960,7 @@ export const EDITOR_PROVIDERS = [
           // Spec 073 FR-012: the memory form lints a rule and reports the conflicts it causes, as the Rules artifact does.
           lint: channelRuleLint(infra),
           conflicts: channelConflictNotes(pool, repos, infra),
+          probe: sourceProberOf(pool),   // spec 076 FR-004: a new or changed feed / page source is read on save
         });
       },
     },
@@ -2591,6 +2598,7 @@ export const EDITOR_PROVIDERS = [
     AuditWorker,
     ReadinessWorker,
     ListResyncWorker,
+    SourceProbeWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,
@@ -2600,7 +2608,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController, ReadinessController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController, ReadinessController, SourcesController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

@@ -50,7 +50,7 @@ const isNotFound = (r: unknown): boolean => isFetchFailure(r) && /^status (404|4
 const MD_IMAGES_MAX = 10;
 
 /** Is this response a markdown file? By content type, or a plain-text answer for a `.md` path, or raw GitHub content of one. */
-function isMarkdown(res: SafeGetResult, asked: string): boolean {
+function isMarkdown(res: Pick<SafeGetResult, 'url' | 'contentType'>, asked: string): boolean {
   if (/markdown/i.test(res.contentType)) return true;
   const plain = !res.contentType || /text\/plain/i.test(res.contentType);
   return plain && (isMarkdownPath(res.url) || isMarkdownPath(asked));
@@ -83,44 +83,57 @@ async function fetchLive(url: string, d: FetchDocDeps): Promise<FetchedDoc | Fet
   }
   if (!res) res = await get(url);
   if (isFetchFailure(res)) return res;
+  const base = { url, fetched_url: fetchedUrl ?? (res.url !== url && isRawGithub(res.url) ? res.url : null), final_url: res.url };
+  const doc = docFromBody(base, res, url);
+  if (isFetchFailure(doc)) return doc;
+  return { doc: d.docs.put(doc), cached: false };
+}
+
+/** Where a document came from, as the store keeps it. */
+export interface DocBase { url: string; fetched_url: string | null; final_url: string }
+
+/**
+ * Spec 076 FR-005: the parse of a fetched (or uploaded) body, apart from the fetch. A fetch and an upload of the same page
+ * give the same document, so the doc id, the sections and every `list_ref` built from them are the same too. `asked` is the
+ * address the body belongs to (a `.md` path makes a plain-text body markdown).
+ */
+export function docFromBody(base: DocBase, res: Pick<SafeGetResult, 'url' | 'contentType' | 'body'>, asked: string): NewDoc | FetchFailure {
   const jsonType = isJsonContentType(res.contentType);
   if (!jsonType && !/html|xml|text/i.test(res.contentType) && res.contentType) return { error: 'unsupported_content', details: res.contentType };
 
-  const base = { url, fetched_url: fetchedUrl ?? (res.url !== url && isRawGithub(res.url) ? res.url : null), final_url: res.url };
-  let doc: NewDoc;
   // Spec 066 FR-001: JSON by its content type, or a plain-text / untyped body that parses as an object or an array.
   const plainBody = !res.contentType || /text\/plain/i.test(res.contentType);
-  const json = jsonType || (plainBody && !isMarkdown(res, url)) ? parseJsonBody(res.body) : null;
+  const json = jsonType || (plainBody && !isMarkdown(res, asked)) ? parseJsonBody(res.body) : null;
   if (jsonType && json === null) return { error: 'unsupported_content', details: 'invalid JSON' };
   if (json !== null) {
     const j = buildJsonDoc(json);
-    doc = { ...base, kind: 'json', title: null, description: null, image: null, images: [], published_at: null, text: j.text, sections: j.sections, json: j.json };
-  } else if (isMarkdown(res, url)) {
+    return { ...base, kind: 'json', title: null, description: null, image: null, images: [], published_at: null, text: j.text, sections: j.sections, json: j.json };
+  }
+  if (isMarkdown(res, asked)) {
     const md = parseMarkdown(res.body, res.url);
     const heading = md.sections.find((s) => s.level === 1) ?? md.sections.find((s) => s.level > 0);
     const pictures = md.sections.flatMap((s) => s.images.map((i) => i.src)).filter((s) => !isBadgeImage(s));
-    doc = {
+    return {
       ...base, kind: 'markdown', title: heading?.heading || null, description: null,
       image: pictures[0] ?? null, images: [...new Set(pictures)].slice(0, MD_IMAGES_MAX), published_at: null,
       text: md.text, sections: md.sections,
     };
-  } else if (/html|xml/i.test(res.contentType) || !res.contentType) {
+  }
+  if (/html|xml/i.test(res.contentType) || !res.contentType) {
     const x = extractPageFull(res.body, res.url);
-    doc = {
+    return {
       ...base, kind: 'html',
       title: x.page.title, description: x.page.description, image: x.page.image, images: x.page.images, published_at: x.page.published_at,
       ...(x.page.primary_links ? { primary_links: x.page.primary_links } : {}),
       text: x.fullText, sections: x.sections,
     };
-  } else {
-    // Plain text that is not markdown: kept as it is, newlines included, as one section.
-    const text = res.body.replace(/\r\n?/g, '\n');
-    doc = {
-      ...base, kind: 'text', title: null, description: null, image: null, images: [], published_at: null, text,
-      sections: text.trim() ? [{ heading: '', level: 1, start: 0, end: text.length, images: [], links: [], code_blocks: [] }] : [],
-    };
   }
-  return { doc: d.docs.put(doc), cached: false };
+  // Plain text that is not markdown: kept as it is, newlines included, as one section.
+  const text = res.body.replace(/\r\n?/g, '\n');
+  return {
+    ...base, kind: 'text', title: null, description: null, image: null, images: [], published_at: null, text,
+    sections: text.trim() ? [{ heading: '', level: 1, start: 0, end: text.length, images: [], links: [], code_blocks: [] }] : [],
+  };
 }
 
 /** The hint a large document's answer ends with (Ukrainian, like the rest of the agent-facing text). */

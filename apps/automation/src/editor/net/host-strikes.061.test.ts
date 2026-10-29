@@ -17,6 +17,7 @@ import {
 } from './host-failures';
 import { playbookSources } from '../sources/playbook-feeds';
 import { SourceHealthService } from '../sources/source-health.service';
+import type { StruckHost } from '../sources/source-health.repository';
 import { needsReplacement, sourceHealthOf, type HostBlockRow } from '../sources/source-health';
 
 const T0 = new Date('2026-10-20T08:00:00Z');
@@ -208,18 +209,31 @@ test('spec 070 source health: a dead feed reaches the owner as failing (3 failed
   assert.equal(needsReplacement(noBlock), true);
 });
 
-function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; struck?: Array<HostBlockRow & { notedAt: Date | null }>; noted?: Set<string>; posts?: any[] }) {
+/** A struck row as the repository returns it (spec 076 adds the timeout count and the last success). */
+const struckRow = (host: string, o: Partial<HostBlockRow> & { timeouts?: number; timeoutsSince?: Date | null; lastSuccessAt?: Date | null } = {}) =>
+  ({ ...block(host, o), notedAt: null, timeouts: 0, timeoutsSince: null, lastSuccessAt: null, ...o }) as StruckHost;
+
+function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; struck?: StruckHost[]; posts?: any[] }) {
   const posts = o.posts ?? [];
-  const noted = o.noted ?? new Set<string>();
+  // The note gate in miniature (spec 076 A9): a note with the same subject and parts as one already stored is not posted again.
+  const seen = new Set<string>();
   const svc = new SourceHealthService({
     repo: {
       steps: async () => [], blocks: async () => [],
       playbookOf: async () => o.playbook ?? null,
       struck: async (keys: string[]) => (o.struck ?? []).filter((b) => keys.includes(b.host)),
-      claimNote: async (host: string) => { if (noted.has(host)) return false; noted.add(host); return true; },
     },
     channels: { get: async () => o.card }, now: () => T0,
-    inbox: { post: async (i: any) => { posts.push(i); return 1; } },
+    inbox: {
+      post: async (i: any) => { posts.push(i); return 1; },
+      postOnce: async (i: any) => {
+        const key = `${i.gate.subject}|${i.gate.parts.join(',')}`;
+        if (seen.has(key)) return null;
+        seen.add(key);
+        posts.push(i);
+        return posts.length;
+      },
+    },
   });
   return { svc, posts };
 }
@@ -233,27 +247,48 @@ test('source health lists the playbook feeds of the orchestrator, tagged; they a
   assert.deepEqual(await svc.needingReplacement(card), []);
 });
 
-test('the third strike on a playbook feed is one owner note in Ukrainian (once per streak); a card source says the agent looks for a replacement', async () => {
+test('the third strike on a playbook feed is one owner note (the English text is stored, the Ukrainian one is the alert; gated once); a card source says the agent looks for a replacement', async () => {
   const card = makeCard({ channelKey: '@ai0_global', sources: [FEED] });
   const playbook = { series: [{ name: 'AI news', source: { kind: 'feed', ref: 'https://www.marktechpost.com/feed/' } }], rules: [] };
   const struck = [
-    { ...block('marktechpost.com', { strikes: 3, until: plus(T0, 160) }), notedAt: null },
-    { ...block('theverge.com', { strikes: 4, until: plus(T0, 160) }), notedAt: null },
-    { ...block('elsewhere.example', { strikes: 3 }), notedAt: null },
+    struckRow('marktechpost.com', { strikes: 3, until: plus(T0, 160) }),
+    struckRow('theverge.com', { strikes: 4, until: plus(T0, 160) }),
+    struckRow('elsewhere.example', { strikes: 3 }),
+    struckRow('young.example', { strikes: 2 }),
   ];
-  const noted = new Set<string>();
-  const { svc, posts } = service({ card, playbook, struck, noted });
-  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), ['marktechpost.com', 'theverge.com']);
+  const { svc, posts } = service({ card, playbook, struck });
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), ['marktechpost.com', 'theverge.com'], 'a host the channel does not use, and a refusal at strike 2, are not noted');
   assert.equal(posts.length, 2);
-  assert.equal(posts[0].title, 'marktechpost.com відмовляє нам 3 рази поспіль — прибрати з плейбука @ai0_global?');
+  assert.equal(posts[0].title, 'marktechpost.com refuses the server');
+  assert.equal(posts[0].alert.title, 'marktechpost.com відмовляє серверу');
   assert.equal(posts[0].severity, 'action');
+  assert.equal(posts[0].refType, 'host');
   assert.equal(posts[0].refId, '@ai0_global/marktechpost.com');
-  assert.match(posts[0].body, /заблоковано до 2026-10-27/);
-  assert.match(posts[0].body, /прибери її з плейбука/);
-  assert.match(posts[1].title, /^theverge\.com відмовляє нам 4 рази поспіль — прибрати з джерел @ai0_global \(картка каналу\)\?$/);
-  assert.match(posts[1].body, /агент шукає заміну/);
-  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), [], 'claimed once — no second note');
+  assert.equal(posts[0].gate.subject, 'host_struck:@ai0_global/marktechpost.com');
+  assert.deepEqual(posts[0].gate.parts, ['refused', 'strikes:3', 'since:never']);
+  assert.match(posts[0].body, /Refused 3 times in a row \(status 403\); blocked until 2026-10-27 00:00 UTC\./);
+  assert.match(posts[0].body, /The address is in the channel's playbook: remove it there/);
+  assert.match(posts[0].alert.body, /Відмов поспіль: 3 \(status 403\); заблоковано до 2026-10-27 00:00 UTC\./);
+  assert.match(posts[0].alert.body, /прибери її з плейбука/);
+  assert.equal(posts[1].title, 'theverge.com refuses the server');
+  assert.match(posts[1].body, /A card source: the channel agent looks for a replacement/);
+  assert.match(posts[1].alert.body, /агент шукає заміну/);
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), [], 'gated once — no second note for the same streak');
   assert.equal(posts.length, 2);
+});
+
+test('spec 076 A9/A10: an unreachable host is noted at its first strike, with the timeouts since a date; the last reason decides', async () => {
+  const card = makeCard({ channelKey: '@chan', sources: [FEED] });
+  const unreachable = struckRow('theverge.com', {
+    reason: 'unreachable', statusCode: null, strikes: 1, until: plus(T0, 20), timeouts: 3, timeoutsSince: new Date('2026-10-18T07:30:00Z'), lastSuccessAt: new Date('2026-10-12T09:41:00Z'),
+  });
+  const { svc, posts } = service({ card, struck: [unreachable, struckRow('marktechpost.com', { reason: 'timeout', strikes: 3 }), struckRow('dns.example', { reason: 'dns', strikes: 2 })] });
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), ['theverge.com'], 'a timeout row sitting on old strikes, and a DNS failure at strike 2, are not noted');
+  assert.equal(posts[0].title, 'theverge.com cannot be reached from the server');
+  assert.equal(posts[0].body.startsWith('Timed out 3 times in a row since 2026-10-18; blocked until 2026-10-21 04:00 UTC. Route it through the proxy, upload the page, or remove the source.'), true, posts[0].body);
+  assert.equal(posts[0].alert.title, 'theverge.com недоступний із сервера');
+  assert.equal(posts[0].alert.body.startsWith('Тайм-аутів поспіль: 3 (з 2026-10-18); наступна спроба після 2026-10-21 04:00 UTC. Відкрий джерела каналу: проксі, завантажити сторінку або прибрати джерело.'), true, posts[0].alert.body);
+  assert.deepEqual(posts[0].gate.parts, ['unreachable', 'strikes:1', 'since:20261012T0941'], 'the streak starts at the last success');
 });
 
 test('without the repository hooks or the inbox the note step does nothing', async () => {

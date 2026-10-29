@@ -110,6 +110,19 @@
 .ast-src-stats { flex: none; margin-left: auto; min-width: 90px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
 .ast-src-rate { font-size: 15px; font-weight: 600; color: var(--color-ink); }
 .panel-foot.ast-hosts { align-items: flex-start; flex-direction: column; gap: 8px; }
+/* Spec 076: the owner's tools under a source (test, details, proxy, upload, remove); a channel with no sources is one two-line row. */
+.ast-src-actions { margin-top: 4px; max-width: 100%; }
+.panel-row.ast-nosrc { align-items: flex-start; }
+
+/* Spec 076: the details dialog of a source's server read and the dialog that uploads a saved page. */
+.ast-probe-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; margin-bottom: 12px; }
+.ast-probe-note { margin-top: 12px; }
+.ast-fact-value.mono { font-size: 13px; }
+.ast-titles { margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 2px; }
+.ast-titles > li { min-width: 0; overflow-wrap: anywhere; }
+.ast-fill { width: 100%; box-sizing: border-box; }
+.ast-paste { min-height: 140px; resize: vertical; font-family: var(--font-mono); font-size: 13px; line-height: 1.45; }
+.ast-up-result { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 
 /* ── Phones: panel padding follows index.css's 16px; the numbers of a source drop under it ── */
 @media (max-width: 600px) {

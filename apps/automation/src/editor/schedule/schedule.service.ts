@@ -27,6 +27,7 @@ import { slotSeriesOf } from '../post/polls/poll-cap-guard';
 import type { SlotConfigCtx } from '../readiness/slot-config';
 import { resolveContentRef } from '../../data/data-refs';
 import { LIVE_DEFAULT_MAX_AGE_HOURS, seriesLiveSources, type TopicMode } from '../live/live-slot';
+import { changedSeriesFeeds, probeInBackground, type BackgroundProbe } from '../sources/probe-triggers';
 
 /** Spec 034 FR-010: a series (or pin) with a feed source runs as a live slot. */
 export function seriesTopicMode(src: SeriesSource | null): TopicMode {
@@ -75,6 +76,8 @@ export interface ScheduleServiceDeps {
   /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
   pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
   now?:     () => Date;
+  /** Spec 076 FR-004: the server reads a new or changed feed series source in the background when the owner saves it. */
+  probe?:   BackgroundProbe;
 }
 
 export const SCHEDULE_MAX_DAYS = 14;
@@ -722,10 +725,13 @@ export class ScheduleService {
     if (o.expectBefore !== undefined && prep.before !== o.expectBefore) {
       return { error: 'stale', details: `series "${prep.fields.name}" changed since this card was proposed`, status: 409 } as Fail;
     }
+    // Spec 076 A30: "new or changed" is against the playbook as it was, read before the line below overwrites it.
+    const playbookBefore = this.playbookOf(sc);
     const pb = await this.d.network.insertPlaybook({
       agentId: sc.agent.id, status: 'active', brief: null, body: prep.body, createdBy: 'owner',
       rationale: `Owner (${o.source}): ${prep.diff}`,
     });
+    probeInBackground(this.d.probe, changedSeriesFeeds(playbookBefore, prep.body, sc.card.sources), undefined);
     sc.net.playbook = prep.body;
     sc.net.playbookVersion = pb.version;
     return { ok: true as const, version: pb.version, diff: prep.diff, series: prep.body.series.find((s) => s.name === prep.fields.name) ?? null };

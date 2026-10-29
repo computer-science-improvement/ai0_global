@@ -10,6 +10,8 @@ import type { DocSection, RawSection, StoredDoc } from './doc-types';
  * `DOC_STALE_MAX_HOURS` old: `get(doc_id)` and `keptByUrl(url)` still return it (a doc_id names the latest kept copy of its
  * address, so read_doc / find_in_doc / import_list keep working), `fresh(url)` does not (that is the fetch cache), and a
  * fetch that fails because the site is down can answer with the kept copy.
+ *
+ * Spec 076 FR-005: a page the owner uploaded (`origin: 'upload'`) is fresh for the whole stale lifetime: nothing can fetch it again.
  */
 export const DOC_STORE_MAX = 100;
 export const DOC_STORE_DEFAULT_HOURS = 6;
@@ -74,10 +76,15 @@ export class DocStore {
     return this.touch(this.peek(id));
   }
 
-  /** The copy of an address that is within the lifetime (the fetch cache); a stale copy is not returned. */
+  /**
+   * The copy of an address that is within the lifetime (the fetch cache); a stale copy is not returned. Spec 076: an uploaded
+   * page is the only copy there is (the server cannot fetch it), so it stays fresh for `DOC_STALE_MAX_HOURS`.
+   */
   fresh(url: string): StoredDoc | null {
     const doc = this.peek(docIdOf(url));
-    return doc && this.now() - doc.fetched_at <= this.ttlMs ? this.touch(doc) : null;
+    if (!doc) return null;
+    const lifetime = doc.origin === 'upload' ? this.staleMs : this.ttlMs;
+    return this.now() - doc.fetched_at <= lifetime ? this.touch(doc) : null;
   }
 
   /** Any kept copy of an address, fresh or stale: what a failed fetch can fall back to. */

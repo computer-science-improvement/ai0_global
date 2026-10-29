@@ -200,6 +200,9 @@ export const SETTINGS: readonly SettingDef[] = [
   { key: 'TIKTOK_CLIENT_SECRET', group: 'integrations', label: 'TikTok client secret', help: 'TikTok app secret.', type: 'secret', default: '', apply: 'live' },
   { key: 'TIKTOK_REDIRECT_URI', group: 'integrations', label: 'TikTok redirect URI', help: 'Must match the redirect URI registered in the TikTok app.', type: 'url', default: '', apply: 'live' },
   { key: 'TIKTOK_SCOPES', group: 'integrations', label: 'TikTok scopes', help: 'Permissions asked when an account is connected.', type: 'list', default: 'user.info.basic,video.publish', apply: 'live', pattern: /^[a-z][a-z0-9._]{2,60}$/ },
+  // Spec 076 FR-003: a proxy for reading the sources of sites that block the server's country. Read on every request by safe-http only.
+  { key: 'EGRESS_PROXY_URL', group: 'integrations', label: 'Source proxy URL', help: 'Proxy for reading the sources of the hosts below (sites that block the server\'s country), as http://user:pass@host:port. Model, Telegram and Meta traffic never use it. http or https proxy only.', type: 'secret', default: '', apply: 'live' },
+  { key: 'EGRESS_PROXY_HOSTS', group: 'integrations', label: 'Hosts read through the proxy', help: 'Hosts (and their subdomains) read through the proxy above.', type: 'list', default: '', apply: 'live', pattern: /^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$/i },
 
   // ── Payments ───────────────────────────────────────────────────────────────
   { key: 'LIQPAY_PUBLIC_KEY', group: 'payments', label: 'LiqPay public key', help: 'Ad orders are paid through LiqPay.', type: 'string', default: '', apply: 'live', pattern: /^[A-Za-z0-9_-]{4,120}$/ },

@@ -2,6 +2,7 @@
 // budget headroom today and work that got stuck. Each section is a flush panel of rows, worst first; a clear section
 // says so in one line. Rows link to where the problem is fixed (Connections, the agent page, the slot).
 // Spec 078 C2: a StatStrip on top, rows with severity pills, a 6px meter per budget line. Styles in health.css.
+// Spec 076: a source row also says what the server's own read of it found, and an unreachable host is labelled so.
 
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
@@ -12,6 +13,7 @@ import { Icon, type IconName } from '../ui/Icon';
 import { describeError } from '../ui/Toast';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { tabSearch, type AgentTab } from '../../lib/agent-tabs';
+import { INK_OF_TONE, isReadFromServer, probeLine, probeTone, sourceBadge } from '../../lib/source-probe';
 import type { BudgetState } from '../../api/spend';
 import {
   useNetworkHealth, type BadConnectionState, type NetworkHealth, type BudgetLine, type ConnectionIssue, type SourceIssue, type StuckGroup, type StuckItem, type StuckKind,
@@ -49,8 +51,8 @@ const CONNECTION_SECTION: Record<string, 'telegram' | 'meta' | 'tiktok'> = { tel
 const PLATFORM_ICON: Record<string, IconName> = { telegram: 'telegram', instagram: 'instagram', facebook: 'facebook', threads: 'threads', tiktok: 'tiktok', youtube: 'youtube' };
 
 /** One problem as a row of a flush panel: a 36px glyph, the title with its severity pill and badges, meta and detail lines, links on the right. */
-function Row({ icon, title, badges, meta, detail, right }: {
-  icon: IconName; title: ReactNode; badges?: ReactNode; meta?: ReactNode; detail?: string | null; right?: ReactNode;
+function Row({ icon, title, badges, meta, detail, foot, right }: {
+  icon: IconName; title: ReactNode; badges?: ReactNode; meta?: ReactNode; detail?: string | null; foot?: ReactNode; right?: ReactNode;
 }) {
   return (
     <div className="panel-row hl-row">
@@ -62,6 +64,7 @@ function Row({ icon, title, badges, meta, detail, right }: {
         </div>
         {meta && <div className="hl-meta truncate">{meta}</div>}
         {detail && <div className="hl-detail clamp" title={detail}>{detail}</div>}
+        {foot}
       </div>
       {right && <div className="hl-right">{right}</div>}
     </div>
@@ -118,7 +121,10 @@ function SourcesSection({ rows, delay }: { rows: SourceIssue[]; delay: number })
       {!rows.length ? <Clear>Every channel's sources answered in the last 14 days.</Clear> : (
         <>
           {rows.map((s) => {
-            const st = SOURCE[s.state] ?? { label: s.state, sev: 'info' as Sev };
+            const base = SOURCE[s.state] ?? { label: s.state, sev: 'info' as Sev };
+            // The server's own view can be worse than the agent's: an unreachable host, or a read that failed on a source that looked fine.
+            const worse = sourceBadge(s);
+            const st = worse ? { label: worse.label, sev: (worse.tone === 'danger' ? 'critical' : 'action') as Sev } : base;
             return (
               <Row key={`${s.channelKey}/${s.id}`} icon="radar" title={<>{s.channelKey} · {s.id}</>}
                 badges={<>
@@ -127,6 +133,8 @@ function SourcesSection({ rows, delay }: { rows: SourceIssue[]; delay: number })
                 </>}
                 meta={<span title={s.ref}>{s.kind} · {s.ref}</span>}
                 detail={s.detail}
+                foot={isReadFromServer(s) && s.probe !== undefined
+                  ? <div className={`text-micro mono ${INK_OF_TONE[probeTone(s.probe)]}`} style={{ overflowWrap: 'anywhere' }}>{probeLine(s.probe)}</div> : undefined}
                 right={<>
                   <span className="hl-rate">{s.successRate === null ? '—' : `${Math.round(s.successRate * 100)}%`}</span>
                   <span className="hl-sub">{s.calls ? `${s.ok}/${s.calls} reads` : 'no reads'}</span>

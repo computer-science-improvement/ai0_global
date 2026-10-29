@@ -8,10 +8,22 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import { SourceHealthRepository } from './source-health.repository';
 import { DECLINED_DAYS, SourceHealthService } from './source-health.service';
 import { SOURCE_CHANGE_KIND, type CandidateDeps } from './source-change';
+import { sourceProberOf } from './probe';
+import { PgSourceProbes } from './source-probes.repository';
+import { catalogOverview } from '../tools/catalog-context';
 
-/** Spec 049 FR-003: the source health service over the run trace and the blocked hosts. */
-export function sourceHealthOf(pool: Pool, channels: { get(key: string): Promise<EditorCard | null> }, inbox?: Pick<OwnerInbox, 'post'>): SourceHealthService {
-  return new SourceHealthService({ repo: new SourceHealthRepository(pool), channels, pool, ...(inbox ? { inbox } : {}) });
+/**
+ * Spec 049 FR-003: the source health service over the run trace and the blocked hosts.
+ * Spec 076 A23: it also reads the catalog overview (the runway of a dataset source), the stored server probes and the settings
+ * (the egress proxy), all from the same pool, so its callers do not change. `inbox` needs `postOnce` for the host notes.
+ */
+export function sourceHealthOf(pool: Pool, channels: { get(key: string): Promise<EditorCard | null> }, inbox?: Pick<OwnerInbox, 'post' | 'postOnce'>): SourceHealthService {
+  return new SourceHealthService({
+    repo: new SourceHealthRepository(pool), channels, pool, ...(inbox ? { inbox } : {}),
+    runway: async (resourceRef) => (await catalogOverview(pool, { resource: resourceRef })).datasets,
+    probes: new PgSourceProbes(pool),
+    env: (k) => process.env[k],
+  });
 }
 
 /** Spec 049 FR-004: how a candidate source is read before the owner sees it. */
@@ -31,6 +43,8 @@ export function candidateDeps(pool: Pick<Pool, 'query'>, env: (k: string) => str
       return rows[0] ? { active: rows[0].status === 'active', rows: Number(rows[0].n) } : null;
     },
     ...(hosts ? { hosts } : {}),
+    // Spec 076: a feed or page candidate is read by the probe (cache, host record, what the server saw as evidence).
+    probe: sourceProberOf(pool, env),
   };
 }
 

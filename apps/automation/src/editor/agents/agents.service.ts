@@ -381,7 +381,7 @@ export class AgentsService {
     const orch = await this.orchestratorOf(await this.require(handle));
     const key = telegramKeyOf(orch);
     const report = key && this.d.sourceHealth ? await this.d.sourceHealth(key) : null;
-    return report ?? { channelKey: key, days: 0, sources: [], otherHosts: [] };
+    return report ?? { channelKey: key, days: 0, sources: [], otherHosts: [], noSources: false, proxyConfigured: false };
   }
 
   /** Spec 060 FR-001: the series of the agent's channel the breaker (or the owner) paused, and the last resumed ones. */

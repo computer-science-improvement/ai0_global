@@ -75,6 +75,8 @@ export interface ImportPayload {
   expected:   number;
   /** A page cut into records by a line pattern (spec 070). */
   split_on?:  string;
+  /** Spec 076 FR-005: the page was uploaded by the owner, so Apply reads the kept upload and never the site; the import is re-synced by hand. */
+  uploaded?:  boolean;
 }
 
 export class PlanError extends Error {
@@ -371,11 +373,12 @@ export function previewOf(plan: ImportPlan, sample: number, datasetExists: boole
   };
 }
 
-export function payloadOf(plan: ImportPlan, dataset: string, pages?: number): ImportPayload {
+export function payloadOf(plan: ImportPlan, dataset: string, pages?: number, o?: { uploaded?: boolean }): ImportPayload {
   return {
     url: plan.url, dataset, level: plan.level, mapping: plan.mapping, ...(plan.filter ? { filter: plan.filter } : {}),
     required: plan.required, new_schema: plan.newSchema, ...(pages !== undefined ? { pages } : {}), expected: plan.rows.length,
     ...(plan.split_on !== undefined ? { split_on: plan.split_on } : {}),
+    ...(o?.uploaded ? { uploaded: true } : {}),
   };
 }
 
@@ -427,8 +430,14 @@ export interface ImportResult {
   note?:             string;
 }
 
-/** Stored on the import row so a re-sync can run the same extraction again. */
-interface ListImportOptions { url: string; level: number; mapping: Record<string, string>; filter?: ListFilter; required: PostRequires; pages?: number; auto_resync: boolean; split_on?: string }
+/** Stored on the import row so a re-sync can run the same extraction again. `uploaded` (spec 076): read from a page the owner uploaded, re-synced only by uploading again. */
+export interface ListImportOptions { url: string; level: number; mapping: Record<string, string>; filter?: ListFilter; required: PostRequires; pages?: number; auto_resync: boolean; split_on?: string; uploaded?: boolean }
+
+/** Spec 076 A15(b): the answer of a re-sync that is asked for an uploaded import. */
+export const RESYNC_MANUAL_DETAILS = 'imported from an uploaded page: upload the page again';
+
+/** Spec 076 A15(c): what Apply says when the page it was uploaded as is no longer in memory (the store is lost on a restart). */
+export const UPLOAD_EXPIRED_MESSAGE = 'upload_expired: the uploaded page is gone (a restart or the 100-page limit); upload it again';
 
 const argsOf = (p: ImportPayload): PlanArgs => ({
   dataset: p.dataset, mapping: p.mapping, level: p.level, filter: p.filter, required: p.required,
@@ -449,7 +458,13 @@ async function knownRefs(pool: Pick<Pool, 'query'>, dataset: string, refs: strin
  * by page (see `readPages`); an `incremental` run (the re-sync) stops after the first page that adds nothing new.
  */
 export async function runImport(d: ImportDeps, p: ImportPayload, by: string, o: { fresh?: boolean; autoResync?: boolean; incremental?: boolean } = {}): Promise<ImportResult> {
-  const fetched = await fetchDocument(p.url, { docs: d.docs, http: d.http, hosts: d.hosts, sources: d.sources, fresh: o.fresh });
+  // Spec 076 A15(c): an uploaded page is read from memory only. When it is gone the owner is told to upload it again, and the
+  // run never falls through to a fetch (which would fail with the geoblock the upload was made to get around).
+  if (p.uploaded) {
+    const kept = d.docs.keptByUrl(p.url);
+    if (!kept || kept.origin !== 'upload') throw new Error(UPLOAD_EXPIRED_MESSAGE);
+  }
+  const fetched = await fetchDocument(p.url, { docs: d.docs, http: d.http, hosts: d.hosts, sources: d.sources, fresh: p.uploaded ? false : o.fresh });
   if (isFetchFailure(fetched)) throw new Error(`${fetched.error}: ${fetched.details}`);
   const store = new DataStore(d.pool);
   let schema = await store.getSchema(p.dataset);
@@ -490,8 +505,9 @@ export async function runImport(d: ImportDeps, p: ImportPayload, by: string, o: 
   const report = await new DataImportService(d.pool).importRows(p.dataset, plan.rows, { createdBy: by });
   const options: ListImportOptions = {
     url: p.url, level: plan.level, mapping: plan.mapping, ...(plan.filter ? { filter: plan.filter } : {}), required: p.required,
-    ...(p.pages !== undefined ? { pages: p.pages } : {}), auto_resync: o.autoResync ?? true,
+    ...(p.pages !== undefined ? { pages: p.pages } : {}), auto_resync: p.uploaded ? false : (o.autoResync ?? true),
     ...(p.split_on !== undefined ? { split_on: p.split_on } : {}),
+    ...(p.uploaded ? { uploaded: true } : {}),
   };
   const changed = (report.inserted ?? 0) + (report.updated ?? 0);
   if (!changed && report.import_id && !created) {
@@ -519,11 +535,26 @@ export async function listImports(pool: Pick<Pool, 'query'>, dataset?: string): 
   return rows.map((r: any) => ({ import_id: r.import_id, dataset: r.dataset, options: r.options }));
 }
 
-/** Re-read the list of a dataset and add its new or changed entries (a new undoable import; none when nothing changed). A paged source is read from page 1 until a page adds nothing new. */
-export async function resyncDataset(d: ImportDeps, li: StoredListImport, by: string): Promise<ImportResult> {
+/**
+ * Re-read the list of a dataset and add its new or changed entries (a new undoable import; none when nothing changed). A paged
+ * source is read from page 1 until a page adds nothing new.
+ *
+ * Spec 076 A15: an import made from an uploaded page is never read from the site. `fromUpload` runs it against the page the owner
+ * has just uploaded (kept in the DocStore) and marks the latest import `uploaded`, `auto_resync: false` even when nothing changed
+ * (a run that changes nothing leaves no import row of its own); without `fromUpload` such an import is refused (`resync_manual`).
+ */
+export async function resyncDataset(d: ImportDeps, li: StoredListImport, by: string, opts: { fromUpload?: boolean } = {}): Promise<ImportResult> {
   const o = li.options;
-  return runImport(d, {
+  if (o.uploaded && !opts.fromUpload) throw new Error(`resync_manual: ${RESYNC_MANUAL_DETAILS}`);
+  const result = await runImport(d, {
     url: o.url, dataset: li.dataset, level: o.level, mapping: o.mapping, filter: o.filter, required: o.required, ...(o.pages !== undefined ? { pages: o.pages } : {}),
     new_schema: null, expected: 0, ...(o.split_on !== undefined ? { split_on: o.split_on } : {}),
-  }, by, { fresh: true, autoResync: o.auto_resync, incremental: true });
+    ...(opts.fromUpload ? { uploaded: true } : {}),
+  }, by, opts.fromUpload ? { fresh: false, autoResync: false, incremental: true } : { fresh: true, autoResync: o.auto_resync, incremental: true });
+  if (opts.fromUpload) {
+    await d.pool.query(
+      `UPDATE data_imports SET options = jsonb_set(options, '{list_import}', (options->'list_import') || '{"uploaded":true,"auto_resync":false}'::jsonb)
+        WHERE id = $1 AND options ? 'list_import'`, [li.import_id]);
+  }
+  return result;
 }

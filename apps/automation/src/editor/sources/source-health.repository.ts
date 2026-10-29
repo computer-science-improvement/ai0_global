@@ -1,6 +1,19 @@
 import type { Pool } from 'pg';
 import { SOURCE_TOOLS, type HostBlockRow, type SourceStep } from './source-health';
 
+/** A struck host with what a note about it says (spec 076 adds the last three fields). */
+export type StruckHost = HostBlockRow & {
+  /** Blocks in a row (always set here: the query reads the column). */
+  strikes:       number;
+  notedAt:       Date | null;
+  /** Counted timeouts in a row (`unreachable` rows). */
+  timeouts:      number;
+  /** When the timeouts began. */
+  timeoutsSince: Date | null;
+  /** The last read that worked; the start of the current streak, so a recovery makes the next note new. */
+  lastSuccessAt: Date | null;
+};
+
 /** Spec 049 FR-003: the run-trace and blocked-host rows the source health is computed from. */
 export class SourceHealthRepository {
   constructor(private readonly pool: Pick<Pool, 'query'>) {}
@@ -44,17 +57,24 @@ export class SourceHealthRepository {
     }
   }
 
-  /** Hosts struck `min` times in a row that the owner was not told about yet (spec 061 FR-004). */
-  async struck(keys: string[], min: number): Promise<Array<HostBlockRow & { notedAt: Date | null }>> {
+  /**
+   * Hosts struck `min` times in a row (spec 061 FR-004) that the 061 code has not already told the owner about (`noted_at` is
+   * set only by that code and cleared by a success: spec 076 A9 keeps the filter, so a legacy-noted host stays quiet until it
+   * recovers). Spec 076 adds the timeout count and the last success, which the note's text and its `since:` part read.
+   */
+  async struck(keys: string[], min: number): Promise<StruckHost[]> {
     if (!keys.length) return [];
     try {
       const { rows } = await this.pool.query(
-        `SELECT host, reason, status_code, blocked_until, failures, strikes, noted_at FROM source_host_failures
+        `SELECT host, reason, status_code, blocked_until, failures, strikes, noted_at, consecutive_timeouts, timeouts_since, last_success_at
+           FROM source_host_failures
           WHERE host = ANY($1) AND strikes >= $2 AND noted_at IS NULL AND position('/' in host) = 0`, [keys, min]);
       return rows.map((r: any) => ({ host: r.host, reason: r.reason, statusCode: r.status_code ?? null, until: new Date(r.blocked_until),
-        failures: Number(r.failures ?? 1), strikes: Number(r.strikes ?? 0), notedAt: r.noted_at ? new Date(r.noted_at) : null }));
+        failures: Number(r.failures ?? 1), strikes: Number(r.strikes ?? 0), notedAt: r.noted_at ? new Date(r.noted_at) : null,
+        timeouts: Number(r.consecutive_timeouts ?? 0), timeoutsSince: r.timeouts_since ? new Date(r.timeouts_since) : null,
+        lastSuccessAt: r.last_success_at ? new Date(r.last_success_at) : null }));
     } catch {
-      return [];
+      return []; // before migration 100
     }
   }
 

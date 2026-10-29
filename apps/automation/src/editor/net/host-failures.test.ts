@@ -280,7 +280,7 @@ test('PgHostFailures: blocked reads the live window; a feed reason does not bloc
   row = { host: 'x.com', reason: 'refused', status_code: 403, blocked_until: '2026-10-17T10:00:00Z' };
   assert.equal((await h.blocked('x.com', 'page'))?.reason, 'refused');
   assert.equal(await h.blocked('x.com', 'feed'), null);
-  for (const reason of ['dns', 'tls', 'timeout']) {
+  for (const reason of ['dns', 'tls', 'timeout', 'unreachable']) {
     row = { host: 'x.com', reason, status_code: null, blocked_until: '2026-10-17T10:00:00Z' };
     assert.equal((await h.blocked('x.com', 'feed'))?.reason, reason, `${reason} blocks feeds`);
     assert.equal((await h.blocked('x.com', 'page'))?.reason, reason);
@@ -292,15 +292,15 @@ test('PgHostFailures: blocked reads the live window; a feed reason does not bloc
   await h.record('x.com', 'refused', 403);
   const ins = calls.at(-1)!;
   assert.match(ins.sql, /ON CONFLICT \(host\) DO UPDATE/);
-  // [host, reason, status, at, until, strikes, in an active block, keep the old block] — the first strike is a day (spec 061 FR-004).
-  assert.deepEqual(ins.params, ['x.com', 'refused', 403, now, new Date('2026-10-17T10:00:00Z'), 1, false, false]);
+  // [host, reason, status, at, until, strikes, in an active block, keep the old block, timeouts, timeouts since] — the first strike is a day (spec 061 FR-004).
+  assert.deepEqual(ins.params, ['x.com', 'refused', 403, now, new Date('2026-10-17T10:00:00Z'), 1, false, false, 0, null]);
   // Spec 070: a feed's own refusal is a flat day on its address, whatever came before; the strikes of the row stay as they are.
   row = { reason: 'feed_refused', blocked_until: '2026-10-15T10:00:00Z', strikes: 0 };
   await h.record('x.com/feed', 'feed_refused', 403);
-  assert.deepEqual(calls.at(-1)!.params, ['x.com/feed', 'feed_refused', 403, now, new Date('2026-10-17T10:00:00Z'), 0, false, false]);
+  assert.deepEqual(calls.at(-1)!.params, ['x.com/feed', 'feed_refused', 403, now, new Date('2026-10-17T10:00:00Z'), 0, false, false, 0, null]);
   row = { reason: 'feed_missing', blocked_until: '2026-10-15T10:00:00Z', strikes: 0 };
   await h.record('x.com/feed', 'feed_missing', 404);
-  assert.deepEqual(calls.at(-1)!.params, ['x.com/feed', 'feed_missing', 404, now, new Date('2026-10-17T10:00:00Z'), 0, false, false], 'a repeat the next day is a day again, not a longer block');
+  assert.deepEqual(calls.at(-1)!.params, ['x.com/feed', 'feed_missing', 404, now, new Date('2026-10-17T10:00:00Z'), 0, false, false, 0, null], 'a repeat the next day is a day again, not a longer block');
   // A failing read never stops a fetch.
   const broken = new PgHostFailures({ query: async () => { throw new Error('relation does not exist'); } } as any);
   assert.equal(await broken.blocked('x.com', 'page'), null);
