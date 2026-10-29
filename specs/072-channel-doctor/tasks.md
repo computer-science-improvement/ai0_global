@@ -126,13 +126,34 @@ Base: `feat/editor-agent` at the commit your prompt names. One commit per task, 
   - Tests: `lib/readiness.test.ts` (`startPhrase` singular and plural, up to 5 lines and "…and N more", label "Start anyway"); `tsc`, `build`.
   - Done when: with 0 blockers, or when the readiness fetch fails, both switches and Start behave exactly as before.
 
-- [ ] **T10 Docs and close-out**
+- [x] **T10 Docs and close-out**
   - What: runbook § 32 "Channel readiness (spec 072)" in `docs/runbooks/agent-platform.md` (what it checks, the codes table in short, the two auto-safe fixes and `READINESS_AUTO_FIX`, Fix all's scope, the owner-bot card, Start anyway, the graduation wait, how to read `channel_readiness` with SQL); `specs/README.md` row 072; this spec's Status → done; fill «Status» and «Deltas from the spec» below (the `skill-warnings.ts` exports, the stale launch card, the lead's mirror switch, and anything else that differs).
   - Files: `docs/runbooks/agent-platform.md`, `specs/README.md`, `specs/072-channel-doctor/spec.md`, `specs/072-channel-doctor/tasks.md`.
   - Tests: none new; the full unit suite, the touched PG files, dashboard checks.
   - Done when: README row reads `| 072 | [Channel doctor and Readiness](072-channel-doctor/spec.md): … (AI0-250) | P1 | 055, 047, 052, 060, 068, 069, 071 | DONE (migration 097) |`.
 
 ## Status
+
+Done 2026-10-29, branch `worktree-wf_77f463e3-89e-2` (base `ae131b3b` on `feat/editor-agent`), one commit per task, migration 097 only, runbook § 32, Linear AI0-250.
+
+| Task | Commit |
+|---|---|
+| T1 shared fix runner, the `channel` area, new fix kinds | `7e2e7a9b` |
+| T2 migration 097 and the scratch-database helper | `f07f84d4` |
+| T3 codes, facts types and the facts loader | `f09fa19a` |
+| T4a doctor, source contradiction, series and material checks | `f7def5ee` |
+| T4b tools, config, pauses and launch checks | `4c2dcca5` |
+| T5 acceptance replays of the 2026-10-27 onboarding | `cf7ef5a2` |
+| T6 ReadinessService, repository, worker, API, setting | `e583e40c` |
+| T7 owner bot, launch and graduation | `85858cc5` |
+| T8a dashboard: the Readiness panel on the Overview | `972b2557` |
+| T8b dashboard: editor page, launch panel, deep link, after-save recheck | `a6c80471` |
+| T9 dashboard: Start anyway | `633b1ee3` |
+| T10 docs and close-out | the commit that adds this table |
+
+Checks at close-out (Node 20.19.6): `apps/automation` `npm test` 4378 tests, 3879 pass, 0 fail, 499 skipped (the PG files, which need the scratch server); `npm run build` clean; `npm run lint` 0 errors, 40 warnings (the baseline); the four readiness PG files (`facts.072`, `readiness.072`, `readiness-cards.072`, `readiness-migration.072`) 22 of 22 on the scratch server, each in its own throwaway database. `apps/dashboard` `npx tsc --noEmit` clean, `npm test` 646 of 646, `npm run build` clean (with `VITE_ALLOW_DEV_AUTH=true`, see T8a). Browser check of T8b and T9 on a throwaway mock (port 3172, never committed) at 1280 px and 375 px.
+
+What the lead wires at merge (nothing here changes without it): 073's `SOURCE_READ_TOOLS` for the local `SOURCE_TOOLS` map and 073's reason catalogue for the copy in `readiness/codes.ts` (T1, T4b); the `ConfigSeam` functions of 073 (T4b); 075's `bind_dataset` and `dataset_patch` fix kinds, already named in `FIX_ALL_EXCLUDED_KINDS` (T1, T8a); 076's `source_probe_failed` finding and host note, already left out of the readiness card (T7); 074 writing `applied_hash` (migration 097 leaves it empty).
 
 ## Deltas from the spec
 
@@ -232,3 +253,9 @@ Written task by task; the list is appended to as each task lands.
 - The launch Start in `GenericActions` keeps its own confirm text and `danger` default; with blockers the same confirm gets the intro line «The readiness check found N open blockers:», the list, and the button label "Start anyway" instead of "Start". The channel is `d.row.channel` of the launch row. Buttons of the panel are disabled while the look runs.
 - With no blockers, or when the read fails (a 404, a timeout), no extra dialog is shown and nothing is delayed beyond the look itself. The look uses `fetchQuery`, which does not retry.
 - Browser check on the throwaway mock (blockers and 404 modes): off to In approval showed the confirm with the three blockers; Cancel left the mode off; "Start anyway" made it approve; the launch Start showed the intro, the list and "Start anyway" and then posted to the start route; with the 404 mode the switch changed at once and no dialog opened. Each look was a `GET …/readiness?fresh=1`. The mock was stopped and is not in the repository.
+
+**T10**
+- Runbook § 32 (`docs/runbooks/agent-platform.md`): the codes are a table by group, not one row per code (the panel shows each code's title and detail, and the catalogue in `readiness/codes.ts` is the one place for the texts). The two SQL snippets were run on a throwaway database of the scratch server (a one-off script outside the repository created it, applied migration 097, ran them and dropped it) before they went in; the stored findings name the code in `check`, the API calls it `code`, and the runbook says so.
+- `specs/README.md`: row 072 reads as the task gives it. The row no longer lists 073 as a dependency: the build order merges 073 first, but nothing of 072 imports 073 at runtime (it has its own copies of the catalogue entry shape and the tool map until the lead swaps them). The note on migration numbers also got «097 spec 072 (channel_readiness: apply before deploying the code that reads it)», which nobody else had claimed there.
+- For the lead, gathered from the tasks above (none of it is needed for 072 to work on its own): swap the `ReasonEntry` copy in `readiness/codes.ts` for 073's and append `DOCTOR_REASONS` to `REASONS` (T3); `SOURCE_TOOLS` for 073's `SOURCE_READ_TOOLS` (T4b); the `ConfigSeam` functions and `isRepairable` (T4b); `skill-warnings.ts` got only the two `export` keywords and `judgePair` in `source-contradiction.ts` is the one per-pair judge (T4a); the Start card made before a blocker appeared stays as it was made, A31 accepted (T7); the dashboard panel shows the server's strings only, so the lead may switch it to the 073 mirror (A17, T8a); the Fix-all label list can name a label that 075's excluded kinds will not apply once 075 merges (T8a); `readiness.css` is imported by `routes/app.tsx` (T8b); `FIX_ALL_EXCLUDED_KINDS` already names 075's two kinds.
+- Not done on purpose, as the spec says: no code changes a channel's mode; Start is never blocked; `applied_hash` is never written (spec 074 does that).

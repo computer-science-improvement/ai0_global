@@ -1059,3 +1059,98 @@ The dashboard and the landing page have a new look: dark panels with hairlines, 
 - Tests:
   - Dashboard: `nav/migrate.test.ts`, `nav/registry.test.ts`, `nav/badges.test.ts`, `lib/today.test.ts`, `lib/inbox-*.test.ts`, `lib/calendar.test.ts`, `lib/agent-tabs.test.ts`, `lib/landing-*.test.ts`, `lib/status-tone.test.ts`.
   - Backend: `editor/series-pause/inbox-actions.078.test.ts` and `inbox-actions.078.pg.test.ts`.
+
+## 32. Channel readiness (spec 072)
+
+One check of the whole channel, at $0 (no model call), that names what keeps it from posting. On 2026-10-27 two channels went days with nothing posted and the cause was found by hand: a skill that sent the writer to another source than the series reads, a dataset with no series, a used-up dataset, a bot that was no admin. The **channel doctor** looks for exactly such things, stores what it found as coded **findings**, and shows them in a **Readiness** card. It never changes a channel's mode by itself and never blocks Start.
+
+**Needs**
+
+- Migration `097_channel_readiness.sql` (down: `down/097_channel_readiness.down.sql`; it drops the table, nothing else). It creates `channel_readiness`, one row per channel card.
+- `EDITOR_ENABLED=true` for the ten-minute sweep (the same switch as the editor's own jobs). Without it the panel and the buttons still work; only the sweep and the owner-bot card stop.
+- One setting, **Settings → Configuration → Readiness: fix two safe things by itself** (`READINESS_AUTO_FIX`, default on, live). Off = the doctor only reports.
+- Nothing else to deploy or enable. The dashboard shows the card as soon as the API answers; on an older automation image the card is simply not drawn (a 404 draws nothing on the Overview and the editor page, and «Readiness is not available» in the launch panel).
+
+**What it checks** (every finding has a code, a title, a detail that names the skill / dataset / series, a link to the page that fixes it, and when there is one a fix label)
+
+| Group | Codes | Looks at |
+|---|---|---|
+| Source and series | `series_source_contradicted`, `origin_original_with_source`, `skill_prescribes_source`, `dataset_without_series`, `series_source_not_required` | the series' source against enabled skills, owner rules and steering lines; datasets on the card that no series posts from; series that only «suggest» their source |
+| Material | `dataset_post_requires_missing`, `dataset_low_fill`, `material_exhausted`, `material_low`, `dataset_order_random` | the rows a dataset can still post (`post_requires`, rounds, reuse), thin text, used-up material |
+| Tools | `tools_missing_for_source` | the card's tool list and the agent's loadout against what the series' source needs (`query_data`, `fetch_feed`, `web_fetch`, `fetch_api`) |
+| Config | `hashtag_min_without_vocabulary`, `config_conflict`, `formats_diverge` | owner rules against the card (one finding per rule and code), hashtag minimum with no vocabulary, formats the card and the playbook disagree on; spec 073 adds its pre-flight problems here |
+| Pauses | `series_paused`, `series_paused_by_owner`, `pause_cause_gone` | a paused series, one the owner paused (never offered a Resume), and one whose cause (no material) is gone |
+| Launch and playbook | `playbook_draft_waiting`, `bot_not_admin` | a playbook draft that has waited over a day for your decision; the launch's bot cannot post (not an admin of the channel, or its token is no longer accepted) |
+| Code's own | `auto_fixed` | an info row «Fixed by code» for a fix applied by itself, kept 24 h |
+
+Severity is the doctor's: an **error** is a blocker (it stops posts or makes them wrong), a **warning** is worth a look, **info** is for the record. Counts of blockers and warnings never include `auto_fixed` rows. The titles and the owner-bot lines are one catalogue (`readiness/codes.ts`, `DOCTOR_REASONS`); change a text there, not in the dashboard.
+
+**When it runs**
+
+| Reason | Trigger | Applies the two safe fixes | Can stamp a card |
+|---|---|---|---|
+| `view` | a plain `GET` whose stored row is 60 s old or older (or missing), or `?fresh=1` | no | no |
+| `owner` | the Recheck button, `POST …/readiness/recheck` | yes | yes |
+| `sweep` | every 10 minutes, for cards in `approve` or `live` and channels with an open launch (`ready`, `running`); one at a time, never two sweeps at once | yes | yes |
+| `start` | a launch starts (in the background, beside the first plan) | yes | yes |
+| `fix` | after Fix / Fix all | no | yes |
+| `config_skip` | reserved for spec 073: a skip with class `config` | no | yes |
+
+«Can stamp a card» means the result may write `notified_blockers` for the owner-bot card (see below); a `view` never does. A card in `off` or `shadow` is checked when someone opens it, never by the sweep, and is never auto-fixed or announced. Every change the dashboard makes (any successful save) makes its next five seconds of Readiness reads ask for `?fresh=1`, so the card never shows the state from before the save.
+
+**The two things code fixes by itself** (a closed list, `AUTO_SAFE_FIX_KINDS`; a test fails if it changes)
+
+1. `tools_allow_add`: the series' source needs a read tool that the card's list lacks, so the tool is added to the card's list (and only then, when the loadout is not the cause).
+2. `hashtag_min_zero`: the channel has no hashtag vocabulary but asks for a minimum above zero, so the minimum becomes 0.
+
+Each applied fix is logged once and shows in the panel as **Fixed by code** for 24 hours. Every other fix is one tap.
+
+**The Readiness card**
+
+- On the agent's **Overview** (above «Today, step by step»), on the **editor page** (between the numbers and the Card block) and in the **launch panel** (above the checklist, after Start). The card shows the count, the first blocker, the last 24 hours («6 planned · 2 published · 1 waiting · 3 skipped (2 lint, 1 config)») and, when something can be fixed in one tap, «Fix all can resolve N».
+- The dialog lists **Blockers**, **Warnings**, **Info** and **Fixed by code** as rows: the server's title and detail, since when, **Open** (the page that fixes it), **Fix** (the one fix of that row, after a confirm), and **Resolve in one card** on a `config_conflict` row (prefills `/align @handle` in the chat). **Recheck** looks again now. **Fix all** (only when something can be fixed) confirms with the list of fixes and applies every open error and warning that has one.
+- **Fix all's scope.** Info rows keep their own Fix button («Resume the series»). Kinds that need your eyes on one row (spec 075's `bind_dataset` and `dataset_patch`, once they exist) are never in Fix all, neither in the dashboard nor in the owner bot's «Виправити все».
+- `/app/agents/<handle>?tab=overview&readiness=1` opens the dialog on arrival (the owner-bot card links there).
+
+**Start anyway**
+
+Nothing blocks a start. Going from `off` or `shadow` to `approve` or `live` (the mode switch on the editor page and on the agent page) and the **Start** of a launch first ask for a fresh result. With open blockers the confirm reads «start @x with 3 open blockers», lists up to five, and its button is **Start anyway**; the Live path then opens the autonomy dialog as before. With no blockers, or when the result cannot be read, nothing extra is asked. The owner-bot Start card says «Готовність: N блокер(и) — …» and its confirm is «Так, запустити попри блокери».
+
+**The owner-bot card**
+
+- One card per set of blockers: «@x: 2 блокери готовності», up to five lines, the number of one-tap fixes, and the buttons «Виправити все» (after «Так, виправити»), «Перевірити», «Відкрити».
+- A blocker counts for the card only after it has stood across two checks at least **five minutes** apart, so one passing state never sends a card. At most **one new card per channel per 24 hours**; a different set of blockers is a new card, and zero blockers closes it.
+- Left out of the card on purpose, because something else already tells you: `source_probe_failed` (spec 076), the pause findings (`series_paused`, `series_paused_by_owner`, `pause_cause_gone`; spec 060's card), and `bot_not_admin` while a launch is open (the launch card waits for the bot). They are still findings in the panel and still counted as blockers.
+
+**Graduation waits**
+
+When `LAUNCH_GRADUATION` is `auto` and a launched channel meets the criteria, it does not go live while Readiness has open blockers (or when the count cannot be read: never read as 0). The launch's `graduation.heldBy` is `readiness`, the panel's graduation step says «Waiting: N readiness blockers», and the next hourly check switches it once there are none. `propose` and `off` are unchanged, and you can always press **Go live** yourself.
+
+**API** (all under the editor's auth, `/api/editor/channels/:key/…`; the key is the card's spelling, `%40` for `@`; no card = 404 `channel_not_found`)
+
+- `GET …/readiness[?fresh=1]`: the stored row (under 60 s old) or a new look. Fields: `channelKey`, `agent`, `mode`, `checkedAt`, `blockers`, `warnings`, `infos`, `fixable`, `findings[]` (`key`, `code`, `severity`, `title`, `detail`, `subject`, `link`, `firstSeenAt`, `fix {label, auto}`), `last24h`, `topFix`.
+- `POST …/readiness/recheck`: reason `owner`; answers the new view.
+- `POST …/readiness/fix` with `{codes?, keys?}`: none = Fix all, `codes` = every open finding with those codes, `keys` = those findings only (a key that is no longer open comes back in `failed` as `finding_gone`). Answers `{applied, failed, view}`.
+
+**Reading the stored result**
+
+```sql
+-- every channel with open blockers, oldest check first
+SELECT channel_key, blockers, warnings, checked_at, notified_at,
+       (SELECT string_agg(f->>'check', ', ') FROM jsonb_array_elements(findings) f WHERE f->>'severity' = 'error' AND f->>'check' <> 'auto_fixed') AS blocker_codes
+FROM channel_readiness WHERE blockers > 0 ORDER BY checked_at;
+
+-- one channel in full
+SELECT jsonb_pretty(findings) FROM channel_readiness WHERE channel_key = '@pdr_dev_channel';
+```
+
+The stored findings name the code in `check` (the API calls it `code`). `config_hash` is a hash of the config parts only (never counts, pauses, slots or timestamps), so it changes only when a setting does. `applied_hash` stays empty until spec 074 writes it. `notified_blockers` is the sorted set the last card named.
+
+**Troubleshooting**
+
+- A channel is stuck with a blocker that looks fixed: press **Recheck** (the stored row is up to ten minutes old for a card in `approve` or `live`, and never refreshed for `off` or `shadow` until opened).
+- No owner-bot card although the panel shows a blocker: the blocker is younger than five minutes, a card for this channel already went out in the last 24 hours, the channel is in `off` or `shadow` and not launching, or the blocker is one of the codes left out above.
+- «Fix all» is missing: nothing open has a one-tap fix, or what is open is info, or a kind excluded from Fix all. Use the row's own button or the **Open** link.
+- A fix is refused with `fix_unavailable`, `owner_pause`, `already_resumed`, `agent_not_found` or `nothing_to_apply`: the state changed since the last look (or the pause is yours; a pause you made is never lifted by a fix). Recheck.
+- Auto-fix does nothing: `READINESS_AUTO_FIX` is off, or the channel is not in `approve` or `live` (and has no open launch). A card with no tool list at all is refused (`nothing_to_apply`) and never written.
+- Tests: in `apps/automation/src/editor/readiness/`: `doctor.072.test.ts`, `source-contradiction.072.test.ts`, `checks/*.072.test.ts`, `codes.072.test.ts`, `config-hash.072.test.ts`, `apply-overlay.072.test.ts`, `auto-fix.072.test.ts`, `onboarding-1027.072.test.ts` (the replay of the 2026-10-27 onboarding: it names the causes of @ai0_prompts_dev and @pdr_dev_channel and finds no error on @ai0_global), `readiness.service.072.test.ts`, `readiness.worker.072.test.ts`, `readiness.controller.072.test.ts`, `view.072.test.ts`, `readiness-cards.072.test.ts`, `readiness-ports.072.test.ts`; against Postgres `facts.072.pg.test.ts`, `readiness.072.pg.test.ts`, `readiness-cards.072.pg.test.ts`, `readiness-migration.072.pg.test.ts`; in `editor/launch/`: `launch.052.test.ts` (the Start card and the graduation hold); in the dashboard `lib/readiness.test.ts`, `lib/align.test.ts`, `lib/agent-tabs.test.ts`.
