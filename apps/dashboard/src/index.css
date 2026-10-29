@@ -170,6 +170,15 @@ html, body {
   color: var(--color-ink-muted);
 }
 
+/* Ink helpers: one-off text colour where an area class would hold a single property. Not for an element whose
+   own class already sets `color` (that rule would win and the helper would do nothing). */
+.ink-muted   { color: var(--color-ink-muted); }
+.ink-dim     { color: var(--color-ink-dim); }
+.ink-accent  { color: var(--color-accent); }
+.ink-warning { color: var(--color-warning); }
+.ink-danger  { color: var(--color-danger); }
+.ink-success { color: var(--color-success); }
+
 /* Single chromatic accent — links and focus only. Only a bare text link dims on hover: buttons, tabs and nav rows
    are <a> elements too and have their own hover. */
 a { color: var(--color-accent); }
