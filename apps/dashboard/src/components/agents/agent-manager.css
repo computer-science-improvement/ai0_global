@@ -227,3 +227,34 @@
   .panel-row.amg-post { flex-wrap: wrap; }
   .amg-post-text { flex-basis: 100%; order: 3; }
 }
+
+/* ── Setup from history (SetupProposalDialog / ProposalBody): metrics inset, a block per section ── */
+.amg-p { margin: 0; }
+.amg-note.is-top { align-items: flex-start; }
+.amg-note.is-top > .amg-icon { margin-top: 1px; }
+.inset.amg-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px 16px; }
+.amg-mcell { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+.amg-setup-section {
+  padding: 14px 16px; border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); min-width: 0;
+  transition: border-color var(--dur-base) ease, background var(--dur-base) ease;
+}
+.amg-setup-section.is-picked {
+  border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+}
+.amg-setup-head { display: flex; align-items: flex-start; gap: 12px; }
+.amg-check { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--color-accent); cursor: pointer; }
+.amg-setup-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.amg-setup-title { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.amg-setup-label { font-size: 14px; font-weight: 600; color: var(--color-ink); }
+.amg-setup-label.is-pick { cursor: pointer; }
+.amg-now-proposed { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; margin-top: 2px; }
+.amg-rows-col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.amg-dl { margin: 0; display: grid; gap: 4px; }
+.amg-dlrow dt { display: inline; color: var(--color-ink-dim); }
+.amg-dlrow dd { display: inline; margin: 0; }
+.amg-posts-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; max-width: 100%; }
+.amg-postlist { list-style: none; margin: 0; padding: 0 0 0 4px; display: grid; gap: 4px; min-width: 0; max-width: 100%; }
+.amg-postlist-row { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.modal-foot.amg-foot-split { justify-content: space-between; flex-wrap: wrap; }

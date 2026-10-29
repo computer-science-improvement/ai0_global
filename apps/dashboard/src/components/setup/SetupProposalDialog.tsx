@@ -16,6 +16,8 @@ import {
 // Spec 042 FR-008: one proposal per channel. Six sections, each "now → proposed" with the posts it rests on;
 // the owner ticks the sections to apply. Sections changed since the analysis are refused by the server and
 // shown inline; locked formatting fields and series are kept.
+// Spec 078 D3: classes (amg-* in agent-manager.css) — an inset of facts, sections as bordered blocks with a picked
+// state, overline keys for Now / Proposed, real buttons in the footer. Same mutations, checks and confirm dialogs.
 
 export function SetupProposalDialog({ id, onClose }: { id: string | null; onClose: () => void }) {
   const q = useSetupProposal(id);
@@ -25,7 +27,7 @@ export function SetupProposalDialog({ id, onClose }: { id: string | null; onClos
     <Modal open={!!id} onClose={onClose} size="lg" icon="sparkles" title={title}
       subtitle={v ? `${v.posts.length} posts read · ${new Date(v.proposal.createdAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}` : undefined}>
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
-      {!v && !q.error && <div className="panel" style={{ height: 160, opacity: 0.55 }} />}
+      {!v && !q.error && <div className="amg-skeleton" aria-hidden />}
       {v && <ProposalBody v={v} onClose={onClose} />}
     </Modal>
   );
@@ -98,10 +100,10 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
   };
 
   return (
-    <div style={{ display: 'grid', gap: 14 }}>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+    <div className="amg-stack">
+      <div className="amg-badges">
         <Badge tone={st.tone} title={st.hint}>{st.label}</Badge>
-        {p.costUsd > 0 && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>analysis cost {fmtUsd(p.costUsd)}</span>}
+        {p.costUsd > 0 && <span className="text-micro mono amg-muted">analysis cost {fmtUsd(p.costUsd)}</span>}
         {p.runId && <Link to="/app/editor/run/$id" params={{ id: p.runId }} className="link-accent text-micro">Open the run</Link>}
       </div>
 
@@ -109,8 +111,8 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
         <div className="callout-warning"><Icon name="clock" size={16} /><div>The agent is reading the posts. This takes a minute; the dialog updates by itself.</div></div>
       )}
       {p.status === 'expired' && (
-        <div className="text-body-sm" style={{ display: 'flex', gap: 8, alignItems: 'flex-start', color: 'var(--color-ink-muted)' }}>
-          <span style={{ flex: '0 0 auto', marginTop: 2 }}><Icon name="clock" size={14} /></span><span>{expiredText(p.reason)}</span>
+        <div className="text-body-sm amg-muted amg-note is-top">
+          <span className="amg-icon"><Icon name="clock" size={14} /></span><span>{expiredText(p.reason)}</span>
         </div>
       )}
       {(p.status === 'failed' || p.status === 'no_access' || p.status === 'too_few_posts') && (
@@ -118,9 +120,9 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
       )}
 
       {p.metrics && <MetricsStrip m={p.metrics} />}
-      {p.sections?.summary && <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>{p.sections.summary}</p>}
+      {p.sections?.summary && <p className="text-body-sm amg-ink amg-pre amg-p">{p.sections.summary}</p>}
       {v.kept.length > 0 && reviewable && (
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 6, alignItems: 'center' }}>
+        <div className="text-micro amg-muted amg-note">
           <Icon name="lock" size={12} /> <span>Locked by you and kept as is: {v.kept.join(', ')}.</span>
         </div>
       )}
@@ -131,7 +133,7 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
           changed={changed.has(s)} failed={failed?.section === s ? failed.error : null} />
       ))}
 
-      <div className="modal-foot" style={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
+      <div className="modal-foot amg-foot-split">
         <div>
           {['ready', 'partially_applied', 'queued', 'failed', 'no_access', 'too_few_posts'].includes(p.status) && (
             <button type="button" className="btn-secondary" disabled={discard.isPending} onClick={doDiscard}
@@ -140,17 +142,15 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
             </button>
           )}
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button type="button" className="btn-secondary" onClick={onClose}>Close</button>
+        <div className="amg-actions">
+          <button type="button" className="btn-ghost" onClick={onClose}>Close</button>
           {p.status === 'expired' && (
-            <button type="button" className="btn-primary" disabled={analyze.isPending} onClick={() => void doAnalyzeAgain()}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-primary" disabled={analyze.isPending} onClick={() => void doAnalyzeAgain()}>
               <Icon name="refresh" size={14} /> {analyze.isPending ? 'Queuing…' : 'Analyze again'}
             </button>
           )}
           {reviewable && (
-            <button type="button" className="btn-primary" disabled={!picked.size || apply.isPending} onClick={doApply}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-primary" disabled={!picked.size || apply.isPending} onClick={doApply}>
               <Icon name="check" size={14} /> {apply.isPending ? 'Applying…' : `Apply selected (${picked.size})`}
             </button>
           )}
@@ -171,11 +171,11 @@ function MetricsStrip({ m }: { m: ChannelMetrics }) {
     ['Formats', mix || '—'],
   ];
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 8 }}>
+    <div className="inset amg-metrics">
       {items.map(([k, val]) => (
-        <div key={k} style={{ background: 'var(--color-surface-1)', borderRadius: 'var(--radius-md, 8px)', padding: '8px 10px', minWidth: 0 }}>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{k}</div>
-          <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{val}</div>
+        <div key={k} className="amg-mcell">
+          <span className="text-overline">{k}</span>
+          <span className="text-body-sm amg-ink amg-wrap">{val}</span>
         </div>
       ))}
     </div>
@@ -194,44 +194,41 @@ function SectionBlock({ section, v, reviewable, state, checked, onToggle, change
   const canPick = reviewable && state === 'pending';
   const boxId = `setup-${section}`;
   return (
-    <section style={{ border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md, 8px)', padding: 12 }}>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-        {canPick && (
-          <input id={boxId} type="checkbox" checked={checked} onChange={onToggle}
-            style={{ marginTop: 3, width: 16, height: 16, accentColor: 'var(--color-accent)' }} />
-        )}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-            <label htmlFor={canPick ? boxId : undefined} style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-ink)', cursor: canPick ? 'pointer' : 'default' }}>
+    <section className={`amg-setup-section${canPick && checked ? ' is-picked' : ''}`}>
+      <div className="amg-setup-head">
+        {canPick && <input id={boxId} type="checkbox" className="amg-check" checked={checked} onChange={onToggle} />}
+        <div className="amg-setup-main">
+          <div className="amg-setup-title">
+            <label htmlFor={canPick ? boxId : undefined} className={`amg-setup-label${canPick ? ' is-pick' : ''}`}>
               {SECTION_LABEL[section]}
             </label>
             {state === 'applied' && <Badge tone="success">applied</Badge>}
             {state === 'skipped' && <Badge>skipped</Badge>}
             {changed && <Badge tone="danger" title="This section was edited after the analysis">changed since analysis</Badge>}
           </div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>{SECTION_HINT[section]}</div>
-          {failed && <div className="callout-danger" style={{ marginTop: 8 }}><Icon name="warning" size={14} /><div>{failed}</div></div>}
+          <div className="text-micro amg-muted">{SECTION_HINT[section]}</div>
+          {failed && <div className="callout-danger"><Icon name="warning" size={14} /><div>{failed}</div></div>}
           {changed && canPick && (
-            <div className="text-micro" style={{ marginTop: 6, color: checked ? 'var(--color-warning)' : 'var(--color-ink-muted)' }}>
+            <div className={`text-micro ${checked ? 'amg-warn' : 'amg-muted'}`}>
               {checked
                 ? 'Applying replaces what changed after the analysis (Now) with the proposal.'
                 : 'Edited after the analysis. Tick it to replace that change with the proposal, skip it, or run the analysis again.'}
             </div>
           )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 10, marginTop: 10 }}>
+          <div className="amg-now-proposed">
             <Rows title="Now" rows={now} empty="Not set" muted />
             <Rows title="Proposed" rows={proposed} empty="—" />
           </div>
 
           {s[section].evidence?.note && (
-            <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)', display: 'flex', gap: 6, alignItems: 'flex-start' }}>
-              <span style={{ flex: '0 0 auto', marginTop: 1 }}><Icon name="hint" size={12} /></span><span>{s[section].evidence.note}</span>
+            <div className="text-micro amg-muted amg-note is-top">
+              <span className="amg-icon"><Icon name="hint" size={12} /></span><span>{s[section].evidence.note}</span>
             </div>
           )}
           {posts.length > 0 && (
-            <div style={{ marginTop: 6 }}>
-              <button type="button" className="btn-tiny" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+            <div className="amg-posts-wrap">
+              <button type="button" className="btn-ghost" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
                 <Icon name={open ? 'chevron-up' : 'chevron-down'} size={12} /> {posts.length} post{posts.length === 1 ? '' : 's'} behind this
               </button>
               {open && <PostList posts={posts} />}
@@ -245,16 +242,16 @@ function SectionBlock({ section, v, reviewable, state, checked, onToggle, change
 
 function Rows({ title, rows, empty, muted = false }: { title: string; rows: Row[]; empty: string; muted?: boolean }) {
   return (
-    <div style={{ minWidth: 0 }}>
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 4 }}>{title}</div>
+    <div className="amg-rows-col">
+      <div className="text-overline">{title}</div>
       {rows.length === 0
-        ? <div className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>{empty}</div>
+        ? <div className="text-body-sm amg-dim">{empty}</div>
         : (
-          <dl style={{ margin: 0, display: 'grid', gap: 4 }}>
+          <dl className="amg-dl">
             {rows.map((r, i) => (
-              <div key={`${r.label}-${i}`} className="text-body-sm" style={{ color: muted ? 'var(--color-ink-muted)' : 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>
-                <dt style={{ display: 'inline', color: 'var(--color-ink-dim)' }}>{r.label}: </dt>
-                <dd style={{ display: 'inline', margin: 0 }}>{r.value}</dd>
+              <div key={`${r.label}-${i}`} className={`text-body-sm amg-dlrow amg-wrap amg-pre ${muted ? 'amg-muted' : 'amg-ink'}`}>
+                <dt>{r.label}: </dt>
+                <dd>{r.value}</dd>
               </div>
             ))}
           </dl>
@@ -265,14 +262,14 @@ function Rows({ title, rows, empty, muted = false }: { title: string; rows: Row[
 
 function PostList({ posts }: { posts: SetupPostRef[] }) {
   return (
-    <ul style={{ listStyle: 'none', margin: '6px 0 0', padding: 0, display: 'grid', gap: 4 }}>
+    <ul className="amg-postlist">
       {posts.map((x) => (
-        <li key={x.key} className="text-micro" style={{ display: 'flex', gap: 8, alignItems: 'baseline', minWidth: 0 }}>
-          <span style={{ color: 'var(--color-ink-dim)', fontVariantNumeric: 'tabular-nums', flex: '0 0 auto' }}>{x.key}</span>
-          <a href={x.link} target="_blank" rel="noreferrer" className="link-accent" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
+        <li key={x.key} className="text-micro amg-postlist-row">
+          <span className="mono tabular-nums amg-dim amg-nowrap">{x.key}</span>
+          <a href={x.link} target="_blank" rel="noreferrer" className="link-accent amg-trunc">
             {x.firstLine || (x.mediaType ? `[${x.mediaType}]` : 'Open post')}
           </a>
-          {x.views != null && <span style={{ color: 'var(--color-ink-dim)', flex: '0 0 auto' }}>{x.views.toLocaleString('en-GB')} views</span>}
+          {x.views != null && <span className="mono amg-dim amg-nowrap">{x.views.toLocaleString('en-GB')} views</span>}
         </li>
       ))}
     </ul>
