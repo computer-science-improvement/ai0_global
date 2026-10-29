@@ -1190,9 +1190,12 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: SCHEDULE_INFRA,
-      inject: [DB_POOL, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA],
-      useFactory: (pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => {
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA],
+      useFactory: (pool: Pool, cfg: ConfigService, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => {
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const svc = new ScheduleService({
+          // Spec 073 A22: a format that needs hosting (a carousel) is producible only when the hosting is configured; the plan skeleton reads this.
+          formatOk: (f) => formatAvailable(f, env).ok,
           pool, rules: new ScheduleRepository(pool), network: new NetworkRepository(pool), agents: infra.agents,
           card: (k) => repos.channels.get(k), plans: repos.plans, inbox: infra.inbox,
           time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),

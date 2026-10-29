@@ -147,7 +147,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
     - the @pdr and @prompts replays on `onboarding-1027.ts`.
   - Done when: a Prompt slot with PromptHero hints runs on `data://prompts/<next>` without a publish-time `series_source_mismatch`, and a slot of a removed series costs $0.
 
-- [ ] **T13 `checkPlanSkeleton` (FR-011 without its alert bullet; A1, A8, A22, A54, L2, L3).**
+- [x] **T13 `checkPlanSkeleton` (FR-011 without its alert bullet; A1, A8, A22, A54, L2, L3).**
   - What:
     - `readiness/plan-skeleton.ts`: `checkPlanSkeleton(card, playbook, series, resources, day?)`, `SkeletonResource.tz?`, `producibleFormats`, `SKELETON_CODES` (A8, A22);
     - `ScheduleServiceDeps.formatOk?`, wired in `editor.module.ts` as `(f) => formatAvailable(f, env).ok` (A22);

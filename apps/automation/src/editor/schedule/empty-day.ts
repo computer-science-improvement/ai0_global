@@ -67,6 +67,20 @@ export function skippedSeriesPlaceholders(plan: PlanLike, ctx: PlanScheduleCtx, 
   ];
 }
 
+/**
+ * Spec 073 A54: one config placeholder per series instance the skeleton check excluded (`ctx.excluded`), at the instance's time, with
+ * the error `<code>: <detail>` (`series_format_unavailable` or `series_in_quiet_hours`; both are in `EMPTY_DAY_ERROR_RE`). Both
+ * validators add them to `empty`, so the owner sees the series that cannot go out (`series_missed`) and the breaker ignores it (config).
+ */
+export function excludedPlaceholders(ctx: Pick<PlanScheduleCtx, 'excluded' | 'series'>, anchorRef: string): EmptyDaySlot[] {
+  return (ctx.excluded ?? []).map((e) => ({
+    scheduledAt: e.at, resourceRef: e.resourceRef === anchorRef ? null : e.resourceRef,
+    format: ctx.series.find((s) => s.name === e.series && s.resource_ref === e.resourceRef)?.format ?? 'text',
+    topic: `Порожній випуск: ${e.series}`.slice(0, 300), sourceHints: [`series:${e.series}`], seriesName: e.series,
+    error: `${e.code}: ${e.detail}`.slice(0, 500),
+  }));
+}
+
 /** The placeholder of a `short_day`: one per resource per day, at the later of now and the start of the plan day there. */
 export function shortDayPlaceholder(o: {
   resourceRef: string | null; tz: string; planDate: string; now: Date; cause: ShortDayCause; reason: string;

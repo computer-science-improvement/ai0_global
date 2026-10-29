@@ -15,7 +15,8 @@ import { Playbook, validatePlaybook } from '../network/playbook';
 import { instancesOn, parseCadence, SeriesSourceCatalog, seriesSourceLabel, type SeriesSource } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
-import { minAfterPauses, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { type ExcludedInstance, minAfterPauses, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { checkPlanSkeleton, EXCLUDING_CODES, skeletonResourcesWith } from '../readiness/plan-skeleton';
 import type { ScheduleRepository } from './schedule.repository';
 import {
   blackoutAt, pinInstant, ruleDto, ruleLabel, ruleOn, ruleProblems, ruleToInput, ScheduleRule, ScheduleRuleInput, ScheduleRulePatch, shiftDate, weekdayOf,
@@ -66,6 +67,11 @@ export interface ScheduleServiceDeps {
    * the dataset is not an in-order cycle dataset or nothing is left. A cycle dataset with nothing left rolls to the next round first.
    */
   nextRow?: (resourceRef: string, dataset: string, category: string | null, o?: { roll?: boolean }) => Promise<string | null>;
+  /**
+   * Spec 073 A22: can this format be produced here right now? (`formatAvailable(f, env).ok`: a carousel needs slide hosting.) The
+   * service has no env of its own; absent = every format the platform implements.
+   */
+  formatOk?: (format: string) => boolean;
   /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
   pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
   now?:     () => Date;
@@ -191,10 +197,39 @@ export class ScheduleService {
     const series = (net?.playbook ? normalizePlaybook(net.playbook).series : []).filter((s) => clocks[s.resource_ref]);
     // Spec 060: paused series are not planned or required; the last skip reasons per series go to the planner.
     const view = this.d.pauses ? await this.d.pauses.forChannel(card.channelKey, now).catch(() => null) : null;
+    const excluded = this.excludedInstances(card, net, clocks, series, planDate, view?.paused ?? []);
     return {
       planDate, defaultRef: anchorRef, now, clocks, rules, pins, series, checkSlotSeries: scope === 'single',
       ...(view ? { paused: view.paused, recentSkips: view.recentSkips } : {}),
+      ...(excluded.length ? { excluded } : {}),
     };
+  }
+
+  /**
+   * Spec 073 FR-011 / A8 / A54: the day's series instances that cannot be planned because of their setup (a format this resource cannot
+   * produce, a time inside its quiet hours). `checkPlanSkeleton` with the day gives one problem per instance with `at`; the planner
+   * leaves them out, and each becomes a config placeholder. A paused series is not due, so it is not excluded either. Never throws:
+   * a check that cannot run excludes nothing.
+   */
+  private excludedInstances(
+    card: EditorCard, net: NetworkCtx | null, clocks: PlanScheduleCtx['clocks'], series: PlanScheduleCtx['series'], planDate: string, paused: PausedSeriesCtx[],
+  ): ExcludedInstance[] {
+    if (!net || !series.length) return [];
+    try {
+      const resources = skeletonResourcesWith(card, net.resources.filter((r) => clocks[r.ref]), this.d.formatOk);
+      const out: ExcludedInstance[] = [];
+      for (const p of checkPlanSkeleton(card, net.playbook, series, resources, planDate)) {
+        if (!EXCLUDING_CODES.has(p.code) || !p.series || !p.at) continue;
+        const s = series.find((x) => x.name === p.series);
+        if (!s || paused.some((x) => x.name === s.name)) continue;
+        const at = new Date(p.at);
+        if (out.some((e) => e.series === s.name && e.at.getTime() === at.getTime())) continue;   // one reason per instance: the first code wins
+        out.push({ series: s.name, resourceRef: s.resource_ref, at, code: p.code, detail: p.detail });
+      }
+      return out;
+    } catch {
+      return [];
+    }
   }
 
   /**

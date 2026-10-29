@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { REASONS, reasonFor, reasonOfError, reasonText } from './catalogue';
 import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
+import { SKELETON_CODES } from '../readiness/plan-skeleton';
 import { CONTENT_FAILURE_CODES, SKIP_GROUPS, SKIP_SLOT_CAUSES, isNotAMiss, isOwnerDecision, skipGroupOf } from '../silent/skip-reasons';
 import { PREFLIGHT_CODES } from '../preflight/slot-preflight';
 import { EMPTY_DAY_ERROR_RE } from '../schedule/empty-day';
@@ -53,6 +54,7 @@ const COVERED: Array<[string, readonly string[]]> = [
   ['SKIP_GROUPS', SKIP_GROUPS],
   ['CONTENT_FAILURE_CODES', CONTENT_FAILURE_CODES],
   ['CONFIG_FAILURE_CODES', CONFIG_FAILURE_CODES],
+  ['SKELETON_CODES', SKELETON_CODES],
   ['the config warning that is never a slot error', ['series_rate_over_card_max']],
   ['SKIP_SLOT_CAUSES', SKIP_SLOT_CAUSES],
   ['PREFLIGHT_CODES', PREFLIGHT_CODES],
