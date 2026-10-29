@@ -5,9 +5,10 @@
 // Compact: the pending version is a one-line card whose dialog holds the review, the
 // diff, the brief, the full version and Approve / Reject; each platform section, series
 // and example post is a compact card whose dialog has the rest.
+// Spec 078 D2: classes of agent-playbook.css (prefix apb-); the layout of a tab is a stack of panels.
 
 import { Link } from '@tanstack/react-router';
-import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { EmptyState, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
@@ -29,9 +30,6 @@ import { PlaybookEditor } from './PlaybookEditor';
 /** Spec 034 FR-007: more enabled formats than this in one section is flagged (the server warns too). */
 const MAX_FITTING_FORMATS = 4;
 
-const eyebrow: CSSProperties = { color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10, marginBottom: 6 };
-const btn: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6 };
-
 export function AgentPlaybook({ handle, orchestrator }: { handle: string; orchestrator: string }) {
   const net = useAgentNetwork(handle);
   const pb = usePlaybook(handle);
@@ -40,27 +38,27 @@ export function AgentPlaybook({ handle, orchestrator }: { handle: string; orches
   const [viewing, setViewing] = useState<PlaybookRow | null>(null);
 
   if (pb.error) return <NetworkError error={pb.error} />;
-  if (!pb.data) return <div className="panel compose-rise" style={{ height: 160, opacity: 0.55 }} />;
+  if (!pb.data) return <div className="apb-skeleton" style={{ height: 160 }} aria-hidden />;
   const { active, pending, history } = pb.data;
 
   const rebuildBtn = (
-    <button type="button" className="btn-secondary" style={btn} onClick={() => setRebuilding(true)}>
+    <button type="button" className="btn-secondary" onClick={() => setRebuilding(true)}>
       <Icon name="sparkles" size={14} /> Rebuild from brief
     </button>
   );
 
   return (
-    <div>
+    <div className="apb-stack">
       <NetworkHeader handle={handle} orchestrator={orchestrator} net={net.data ?? null} error={net.error} hasActive={!!active} />
 
       {pending && <PendingCard row={pending} active={active} />}
 
       {active ? (
         <SectionCard
-          title={<span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>Active playbook <Badge tone="success">v{active.version}</Badge></span>}
-          icon="logs" delay={40} style={{ marginBottom: 16 }}
+          title={<span className="apb-title">Active playbook <Badge tone="success">v{active.version}</Badge></span>}
+          icon="logs" delay={40}
           action={(
-            <span style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+            <span className="apb-actions">
               <button type="button" className="btn-act" title="Rebuild from brief" aria-label="Rebuild from brief" onClick={() => setRebuilding(true)}>
                 <Icon name="sparkles" size={14} />
               </button>
@@ -74,7 +72,7 @@ export function AgentPlaybook({ handle, orchestrator }: { handle: string; orches
           <PlaybookView body={active.body} />
         </SectionCard>
       ) : (
-        <div className="compose-rise" style={{ marginBottom: 16 }}>
+        <div className="compose-rise">
           <EmptyState icon="logs" title={pending ? 'No active playbook yet' : 'No playbook yet'}
             note={pending
               ? 'Approve the pending version above to make it active, or rebuild it from a new brief.'
@@ -96,11 +94,11 @@ export function AgentPlaybook({ handle, orchestrator }: { handle: string; orches
 
 function VersionMeta({ row }: { row: PlaybookRow }) {
   return (
-    <div className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '-4px 0 14px', display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+    <div className="apb-meta">
       <span>by {row.createdBy}</span>
-      <span>·</span>
-      <span title={fmtDate(row.createdAt)}>{fmtRelative(row.createdAt)}</span>
-      {row.rationale && <><span>·</span><span style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{row.rationale}</span></>}
+      <span aria-hidden>·</span>
+      <span className="mono" title={fmtDate(row.createdAt)}>{fmtRelative(row.createdAt)}</span>
+      {row.rationale && <><span aria-hidden>·</span><span className="apb-meta-why">{row.rationale}</span></>}
     </div>
   );
 }
@@ -108,33 +106,29 @@ function VersionMeta({ row }: { row: PlaybookRow }) {
 // ── network header + mode switch ──
 
 function NetworkHeader({ handle, orchestrator, net, error, hasActive }: { handle: string; orchestrator: string; net: AgentNetwork | null; error: unknown; hasActive: boolean }) {
-  if (error) return <div style={{ marginBottom: 16 }}><NetworkError error={error} /></div>;
-  if (!net) return <div className="panel compose-rise" style={{ height: 88, opacity: 0.55, marginBottom: 16 }} />;
+  if (error) return <NetworkError error={error} />;
+  if (!net) return <div className="apb-skeleton" style={{ height: 88 }} aria-hidden />;
   const grouped = !!net.groupId && net.mode !== 'single';
   return (
-    <section className="panel compose-rise" style={{ marginBottom: 16 }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
-        <span className="section-glyph"><Icon name="agents" size={15} /></span>
-        <div style={{ flex: '1 1 220px', minWidth: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            <h2 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.01em' }}>
-              {grouped ? net.groupName ?? 'Network' : 'No network'}
-            </h2>
-            <Badge tone={NETWORK_MODE_TONE[net.mode]}>{NETWORK_MODE_LABEL[net.mode]}</Badge>
-          </div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4 }}>
-            {grouped
-              ? net.mode === 'independent'
-                ? <>Each member is its own resource; the orchestrator of <strong style={{ color: 'var(--color-ink)' }}>{net.anchor}</strong> decides per post: duplicate, adapt, unique or skip.{net.autoDuplicateActive !== false ? ' Telegram posts are still auto-duplicated today.' : ''}</>
-                : <>Telegram posts of <strong style={{ color: 'var(--color-ink)' }}>{net.anchor}</strong> are auto-duplicated to the group.</>
-              : <>{net.anchor} is not in an account group. <Link to="/app/connections/groups" className="link-accent">Add it to a group</Link> to plan a network.</>}
-          </div>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 10 }}>
-            {net.resources.map((r) => <ResourceChip key={r.ref} refId={r.ref} />)}
-          </div>
+    <section className="panel is-section compose-rise apb-net" aria-label="Network">
+      <span className="section-glyph"><Icon name="agents" size={15} /></span>
+      <div className="apb-net-main">
+        <div className="apb-title">
+          <h2 className="text-heading-md">{grouped ? net.groupName ?? 'Network' : 'No network'}</h2>
+          <Badge tone={NETWORK_MODE_TONE[net.mode]}>{NETWORK_MODE_LABEL[net.mode]}</Badge>
         </div>
-        <NetworkModeSwitch handle={handle} orchestrator={orchestrator} net={net} hasActive={hasActive} grouped={grouped} />
+        <p className="apb-net-text">
+          {grouped
+            ? net.mode === 'independent'
+              ? <>Each member is its own resource; the orchestrator of <strong>{net.anchor}</strong> decides per post: duplicate, adapt, unique or skip.{net.autoDuplicateActive !== false ? ' Telegram posts are still auto-duplicated today.' : ''}</>
+              : <>Telegram posts of <strong>{net.anchor}</strong> are auto-duplicated to the group.</>
+            : <>{net.anchor} is not in an account group. <Link to="/app/connections/groups" className="link-accent">Add it to a group</Link> to plan a network.</>}
+        </p>
+        <div className="apb-chips">
+          {net.resources.map((r) => <ResourceChip key={r.ref} refId={r.ref} />)}
+        </div>
       </div>
+      <NetworkModeSwitch handle={handle} orchestrator={orchestrator} net={net} hasActive={hasActive} grouped={grouped} />
     </section>
   );
 }
@@ -150,7 +144,7 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
       ? await confirm(`switch «${name}» to independent`, {
         danger: false, confirmLabel: 'Switch to independent',
         details: (
-          <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
+          <div className="callout-warning apb-callout-col">
             <strong>Each member becomes its own resource; @{orchestrator} decides per post: duplicate, adapt, unique or skip.</strong>
             <span className="text-micro">In shadow the agent records decisions as previews and auto-duplication continues; it stops from the next plan day once the agent is live with an active playbook.{hasActive ? '' : ' Until a playbook is approved only Telegram is planned.'}</span>
           </div>
@@ -158,7 +152,7 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
       })
       : await confirm(`switch «${name}» to auto-duplicate (legacy)`, {
         danger: false, confirmLabel: 'Auto-duplicate',
-        details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The orchestrator stops planning the other platforms; Telegram posts are auto-duplicated to the group again from the next plan day.</p>,
+        details: <p className="text-micro apb-note">The orchestrator stops planning the other platforms; Telegram posts are auto-duplicated to the group again from the next plan day.</p>,
       });
     if (!ok) return;
     set.mutate(mode, {
@@ -179,14 +173,14 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
   };
   const noNet = grouped ? null : 'This channel is not in an account group';
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'flex-start' }}>
-      <span className="text-micro" style={eyebrow}>Network mode</span>
-      <div className="tabs-pill" role="tablist" title={noNet ?? undefined}>
+    <div className="apb-mode">
+      <span className="text-overline">Network mode</span>
+      <div className="tabs-pill" role="tablist" aria-label="Network mode" title={noNet ?? undefined}>
         {opt('legacy_duplicate', 'Auto-duplicate (legacy)', noNet)}
         {opt('independent', 'Independent', noNet)}
       </div>
       {grouped && !hasActive && net.mode === 'independent' && (
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>no active playbook: Telegram only</span>
+        <span className="text-micro apb-dim">no active playbook: Telegram only</span>
       )}
     </div>
   );
@@ -200,29 +194,50 @@ function PendingCard({ row, active }: { row: PlaybookRow; active: PlaybookRow | 
   const changes = diff.reduce((n, g) => n + g.changes.length, 0);
   const review = row.review;
   return (
-    <div style={{ marginBottom: 16 }}>
-      <CompactCard delay={20} attention hint="Open the pending version"
-        top={<>
-          <Badge tone="warning">v{row.version}</Badge>
-          <Badge tone="warning">awaiting approval</Badge>
-          {review && <Badge tone={review.verdict === 'ok' ? 'success' : 'warning'} title="Playbook reviewer verdict">reviewer: {review.verdict === 'ok' ? 'ok' : 'concerns'}</Badge>}
-        </>}
-        meta={<span title={fmtDate(row.createdAt)}>{fmtRelative(row.createdAt)}</span>}
-        title={`Playbook v${row.version} awaiting approval`}
-        body={row.rationale || undefined} lines={1}
-        extra={(
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-            by {row.createdBy}
-            {' · '}{review ? `${review.comments.length} reviewer comment${review.comments.length === 1 ? '' : 's'}` : 'no review yet'}
-            {' · '}{active ? `${changes} change${changes === 1 ? '' : 's'} vs v${active.version}` : 'first version'}
-          </span>
-        )}
-        dialog={{
-          size: 'xl', icon: 'inbox', title: `Pending playbook v${row.version}`,
-          subtitle: `awaiting approval · by ${row.createdBy} · ${fmtDate(row.createdAt)}`,
-          body: () => <PendingDetails row={row} active={active} />,
-          actions: (close) => <PendingActions row={row} active={active} onDone={close} />,
-        }} />
+    <CompactCard delay={20} attention hint="Open the pending version"
+      top={<>
+        <Badge tone="warning">v{row.version}</Badge>
+        <Badge tone="warning">awaiting approval</Badge>
+        {review && <Badge tone={review.verdict === 'ok' ? 'success' : 'warning'} title="Playbook reviewer verdict">reviewer: {review.verdict === 'ok' ? 'ok' : 'concerns'}</Badge>}
+      </>}
+      meta={<span className="mono" title={fmtDate(row.createdAt)}>{fmtRelative(row.createdAt)}</span>}
+      title={`Playbook v${row.version} awaiting approval`}
+      body={row.rationale || undefined} lines={1}
+      extra={(
+        <span className="text-micro apb-dim">
+          by {row.createdBy}
+          {' · '}{review ? `${review.comments.length} reviewer comment${review.comments.length === 1 ? '' : 's'}` : 'no review yet'}
+          {' · '}{active ? `${changes} change${changes === 1 ? '' : 's'} vs v${active.version}` : 'first version'}
+        </span>
+      )}
+      dialog={{
+        size: 'xl', icon: 'inbox', title: `Pending playbook v${row.version}`,
+        subtitle: `awaiting approval · by ${row.createdBy} · ${fmtDate(row.createdAt)}`,
+        body: () => <PendingDetails row={row} active={active} />,
+        actions: (close) => <PendingActions row={row} active={active} onDone={close} />,
+      }} />
+  );
+}
+
+/** A titled inset of a dialog: an overline key over its content (the reviewer's verdict, the changes). */
+export function Fact({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="inset apb-fact">
+      <h3 className="text-overline">{title}</h3>
+      {children}
+    </div>
+  );
+}
+
+/** A titled block of a dialog or of the playbook view: an overline head (with an optional action) over its content. */
+export function Block({ title, action, children }: { title: ReactNode; action?: ReactNode; children: ReactNode }) {
+  return (
+    <div className="apb-block">
+      <div className="apb-block-head">
+        <h3 className="text-overline">{title}</h3>
+        {action}
+      </div>
+      {children}
     </div>
   );
 }
@@ -230,21 +245,18 @@ function PendingCard({ row, active }: { row: PlaybookRow; active: PlaybookRow | 
 function PendingDetails({ row, active }: { row: PlaybookRow; active: PlaybookRow | null }) {
   const diff = diffPlaybooks(active?.body, row.body);
   return (
-    <div>
-      {row.rationale && <p className="text-body-sm" style={{ margin: '0 0 12px', color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{row.rationale}</p>}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 14, marginBottom: 14 }}>
-        <div className="card" style={{ padding: '12px 14px', minWidth: 0 }}>
-          <div className="text-micro" style={eyebrow}>Reviewer</div>
-          <ReviewBlock review={row.review} />
-        </div>
-        <div className="card" style={{ padding: '12px 14px', minWidth: 0 }}>
-          <div className="text-micro" style={eyebrow}>{active ? `Changes vs v${active.version}` : 'Contents'}</div>
+    <div className="apb-col">
+      {row.rationale && <p className="apb-prose">{row.rationale}</p>}
+      <div className="apb-split">
+        <Fact title="Reviewer"><ReviewBlock review={row.review} /></Fact>
+        <Fact title={active ? `Changes vs v${active.version}` : 'Contents'}>
           <DiffSummary groups={diff} empty={active ? 'Same as the active version.' : 'First version.'} />
-        </div>
+        </Fact>
       </div>
       {row.brief && <BriefBlock brief={row.brief} />}
-      <div className="text-micro" style={eyebrow}>The full v{row.version}</div>
-      <PlaybookView body={row.body} />
+      <Block title={`The full v${row.version}`}>
+        <PlaybookView body={row.body} />
+      </Block>
     </div>
   );
 }
@@ -256,7 +268,7 @@ function PendingActions({ row, active, onDone }: { row: PlaybookRow; active: Pla
     const ok = decision === 'approve'
       ? await confirm(`approve playbook v${row.version}`, {
         danger: false, confirmLabel: 'Approve',
-        details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>It becomes the active playbook at once{active ? `; v${active.version} is superseded` : ''}. The next plan follows it.</p>,
+        details: <p className="text-micro apb-note">It becomes the active playbook at once{active ? `; v${active.version} is superseded` : ''}. The next plan follows it.</p>,
       })
       : await confirm(`reject playbook v${row.version}`, { confirmLabel: 'Reject' });
     if (!ok) return;
@@ -267,10 +279,10 @@ function PendingActions({ row, active, onDone }: { row: PlaybookRow; active: Pla
   };
   return (
     <>
-      <button type="button" className="btn-secondary" style={{ ...btn, color: 'var(--color-danger)' }} disabled={decide.isPending} onClick={() => go('reject')}>
+      <button type="button" className="btn-secondary apb-reject" disabled={decide.isPending} onClick={() => go('reject')}>
         <Icon name="x" size={14} /> Reject
       </button>
-      <button type="button" className="btn-primary" style={btn} disabled={decide.isPending} onClick={() => go('approve')}>
+      <button type="button" className="btn-primary" disabled={decide.isPending} onClick={() => go('approve')}>
         <Icon name="check" size={14} /> Approve
       </button>
     </>
@@ -280,43 +292,42 @@ function PendingActions({ row, active, onDone }: { row: PlaybookRow; active: Pla
 /** The owner's brief of a version (shown in full inside a dialog). */
 function BriefBlock({ brief }: { brief: string }) {
   return (
-    <div style={{ marginBottom: 14 }}>
-      <div className="text-micro" style={eyebrow}>Brief</div>
-      <p className="text-body-sm" style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', color: 'var(--color-ink)' }}>{brief}</p>
-    </div>
+    <Block title="Brief">
+      <p className="apb-prose">{brief}</p>
+    </Block>
   );
 }
 
 function ReviewBlock({ review }: { review: PlaybookRow['review'] }) {
-  if (!review) return <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>No review yet.</span>;
+  if (!review) return <span className="text-micro apb-dim">No review yet.</span>;
   return (
-    <div>
+    <div className="apb-review">
       <Badge tone={review.verdict === 'ok' ? 'success' : 'warning'}>{review.verdict === 'ok' ? 'ok' : 'concerns'}</Badge>
       {review.comments.length > 0 ? (
-        <ul style={{ margin: '8px 0 0', paddingLeft: 16, listStyle: 'disc', display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {review.comments.map((c, i) => <li key={i} className="text-micro" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', lineHeight: 1.5 }}>{c}</li>)}
+        <ul className="apb-list">
+          {review.comments.map((c, i) => <li key={i}>{c}</li>)}
         </ul>
-      ) : <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 6 }}>No comments.</div>}
+      ) : <span className="text-micro apb-dim">No comments.</span>}
     </div>
   );
 }
 
-const MARK = { added: { c: '+', color: 'var(--color-success)' }, removed: { c: '−', color: 'var(--color-danger)' }, changed: { c: '~', color: 'var(--color-warning)' } } as const;
+const MARK = { added: '+', removed: '−', changed: '~' } as const;
 
 export function DiffSummary({ groups, empty }: { groups: DiffGroup[]; empty: string }) {
-  if (!groups.length) return <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{empty}</span>;
+  if (!groups.length) return <span className="text-micro apb-dim">{empty}</span>;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div className="apb-diff-groups">
       {groups.map((g) => (
-        <div key={g.key} style={{ minWidth: 0 }}>
-          <div className="text-body-sm" style={{ marginBottom: 3 }}>
-            {g.refId ? <ResourceLabel refId={g.refId} strong /> : <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{g.title}</span>}
+        <div key={g.key} className="apb-diff-group">
+          <div className="apb-diff-title">
+            {g.refId ? <ResourceLabel refId={g.refId} strong /> : <span>{g.title}</span>}
           </div>
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <ul className="apb-diff-list">
             {g.changes.map((c, i) => (
-              <li key={i} className="text-micro" style={{ display: 'flex', gap: 6, color: 'var(--color-ink-muted)', minWidth: 0 }}>
-                <span aria-label={c.kind} style={{ color: MARK[c.kind].color, fontWeight: 600, width: 10, flexShrink: 0, textAlign: 'center' }}>{MARK[c.kind].c}</span>
-                <span style={{ overflowWrap: 'anywhere', minWidth: 0 }}>{c.text}</span>
+              <li key={i}>
+                <span className={`apb-diff-mark is-${c.kind}`} aria-label={c.kind}>{MARK[c.kind]}</span>
+                <span className="apb-diff-text">{c.text}</span>
               </li>
             ))}
           </ul>
@@ -333,7 +344,7 @@ const ROLE_TONE: Record<string, 'success' | 'accent' | 'neutral' | 'warning'> = 
 function RoleChip({ role }: { role: string }) {
   if (role.startsWith('funnel_to:')) {
     return (
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, minWidth: 0, maxWidth: '100%' }}>
+      <span className="apb-funnel">
         <Badge tone="neutral">funnel →</Badge>
         <ResourceChip refId={role.slice('funnel_to:'.length)} />
       </span>
@@ -342,11 +353,12 @@ function RoleChip({ role }: { role: string }) {
   return <Badge tone={ROLE_TONE[role] ?? 'neutral'}>{role}</Badge>;
 }
 
+/** One key / value line of a facts inset: an overline key and the value. */
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '78px minmax(0, 1fr)', gap: 8, alignItems: 'baseline' }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{label}</span>
-      <span style={{ color: 'var(--color-ink)', minWidth: 0, overflowWrap: 'anywhere', fontSize: 12.5, lineHeight: 1.45 }}>{children}</span>
+    <div className="apb-fact-row">
+      <span className="text-overline">{label}</span>
+      <span className="apb-fact-value">{children}</span>
     </div>
   );
 }
@@ -368,12 +380,12 @@ function PlatformCard({ s, delay }: { s: PlaybookPlatform; delay: number }) {
   return (
     <CompactCard delay={delay} hint="Open the section"
       top={<>
-        <span style={{ flex: '1 1 auto', minWidth: 0, display: 'flex' }}><ResourceLabel refId={s.resource_ref} strong /></span>
+        <span className="apb-grow"><ResourceLabel refId={s.resource_ref} strong /></span>
         <RoleChip role={s.role} />
       </>}
       body={<span className="tabular-nums">{formatsLine(s.formats)}</span>} lines={1}
       extra={(
-        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>
+        <span className="text-micro tabular-nums apb-dim">
           {perDayLabel(s)} post{s.per_day.max === 1 ? '' : 's'}/day · {hours ? `${hours} best hour${hours === 1 ? '' : 's'}` : 'any hour'}
         </span>
       )}
@@ -391,44 +403,43 @@ function PlatformDetails({ s }: { s: PlaybookPlatform }) {
   const reasons = enabled.filter((f) => s.format_reasons?.[f]).map((f) => [f, s.format_reasons![f]] as const);
   const hp = s.hashtag_policy ?? { vocab: [], min: 0, max: 0 };
   return (
-    <div style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', minWidth: 0 }}>
-        <span style={{ flex: '1 1 auto', minWidth: 0, display: 'flex' }}><ResourceLabel refId={s.resource_ref} strong /></span>
+    <div className="apb-col">
+      <div className="apb-lead">
+        <span className="apb-grow"><ResourceLabel refId={s.resource_ref} strong /></span>
         <RoleChip role={s.role} />
       </div>
-      <div>
-        <div className="text-micro" style={eyebrow}>Formats</div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 5, maxWidth: 420 }}>
-          {formats.length ? formats.map(([f, v]) => <WeightBar key={f} label={f} value={v} />) : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>none</span>}
+      <Block title="Formats">
+        <div className="apb-weights">
+          {formats.length ? formats.map(([f, v]) => <WeightBar key={f} label={f} value={v} />) : <span className="text-micro apb-dim">none</span>}
         </div>
         {/* Spec 034 FR-007: why each format fits; more than 4 enabled formats is flagged. */}
         {enabled.length > MAX_FITTING_FORMATS && (
-          <div className="text-micro" style={{ marginTop: 6, color: 'var(--color-warning)' }}>
+          <div className="text-micro apb-warn apb-gap-top">
             ⚠ {enabled.length} formats enabled: keep the {MAX_FITTING_FORMATS} or fewer that fit the topic and audience
           </div>
         )}
         {reasons.length > 0 && (
-          <ul style={{ margin: '8px 0 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <ul className="apb-reasons">
             {reasons.map(([f, r]) => (
-              <li key={f} className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
-                <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{f}</span>: {r}
+              <li key={f} className="text-micro">
+                <span className="apb-ink">{f}</span>: {r}
               </li>
             ))}
           </ul>
         )}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      </Block>
+      <div className="inset apb-facts">
         <Row label="Per day"><span className="tabular-nums">{perDayLabel(s)} posts</span></Row>
         <Row label="Best hours">
           {s.best_hours?.length
-            ? <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>{[...s.best_hours].sort((a, b) => a - b).map((h) => <span key={h} className="chip tabular-nums" style={{ fontSize: 11 }}>{hourLabel(h)}</span>)}</span>
-            : <span style={{ color: 'var(--color-ink-dim)' }}>any</span>}
+            ? <span className="apb-chips">{[...s.best_hours].sort((a, b) => a - b).map((h) => <span key={h} className="chip mono tabular-nums">{hourLabel(h)}</span>)}</span>
+            : <span className="apb-dim">any</span>}
         </Row>
-        {s.tone && <Row label="Tone"><span style={{ color: 'var(--color-ink-muted)' }}>{s.tone}</span></Row>}
+        {s.tone && <Row label="Tone"><span className="apb-muted">{s.tone}</span></Row>}
         <Row label="Hashtags">
-          <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap', alignItems: 'center' }}>
-            {hp.vocab.map((t) => <span key={t} className="chip" style={{ fontSize: 11 }}>{t}</span>)}
-            <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{hp.max === 0 ? 'none' : `${hp.min}–${hp.max} per post`}</span>
+          <span className="apb-chips">
+            {hp.vocab.map((t) => <span key={t} className="chip">{t}</span>)}
+            <span className="text-micro tabular-nums apb-dim">{hp.max === 0 ? 'none' : `${hp.min}–${hp.max} per post`}</span>
           </span>
         </Row>
         {s.link_policy && <Row label="Links">{s.link_policy}</Row>}
@@ -441,72 +452,77 @@ function PlatformDetails({ s }: { s: PlaybookPlatform }) {
 /** A series as a compact card: name, cadence, resource, active; the dialog has the full brief. */
 function SeriesCard({ s, delay }: { s: PlaybookSeries; delay: number }) {
   return (
-    <CompactCard delay={delay} hint="Open the series" style={{ opacity: s.active ? 1 : 0.6 }}
-      top={<>
-        {s.active ? <Badge tone="success">active</Badge> : <Badge tone="neutral">paused</Badge>}
-        <span className="chip tabular-nums" style={{ fontSize: 11 }}><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
-      </>}
-      title={s.name}
-      body={s.brief || undefined} lines={1}
-      extra={<span style={{ display: 'flex', minWidth: 0 }}><ResourceChip refId={s.resource_ref} suffix={s.format} /></span>}
-      dialog={{
-        size: 'md', icon: 'history', title: s.name, subtitle: `${fmtCadence(s.cadence)} · ${s.active ? 'active' : 'paused'}`,
-        body: () => (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-              {s.active ? <Badge tone="success">active</Badge> : <Badge tone="neutral">paused</Badge>}
-              <span className="chip tabular-nums"><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
-              <ResourceChip refId={s.resource_ref} suffix={s.format} />
+    // The wrapper carries the dim of a paused series: the card's own entrance animation ends at full opacity.
+    <div className={s.active ? undefined : 'apb-paused'}>
+      <CompactCard delay={delay} hint="Open the series"
+        top={<>
+          {s.active ? <Badge tone="success">active</Badge> : <Badge tone="neutral">paused</Badge>}
+          <span className="chip mono tabular-nums"><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
+        </>}
+        title={s.name}
+        body={s.brief || undefined} lines={1}
+        extra={<span className="apb-row"><ResourceChip refId={s.resource_ref} suffix={s.format} /></span>}
+        dialog={{
+          size: 'md', icon: 'history', title: s.name, subtitle: `${fmtCadence(s.cadence)} · ${s.active ? 'active' : 'paused'}`,
+          body: () => (
+            <div className="apb-col">
+              <div className="apb-chips">
+                {s.active ? <Badge tone="success">active</Badge> : <Badge tone="neutral">paused</Badge>}
+                <span className="chip mono tabular-nums"><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
+                <ResourceChip refId={s.resource_ref} suffix={s.format} />
+              </div>
+              <Block title="Brief">
+                <p className="apb-prose">{s.brief || '—'}</p>
+              </Block>
             </div>
-            <div>
-              <div className="text-micro" style={eyebrow}>Brief</div>
-              <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{s.brief || '—'}</p>
-            </div>
-          </div>
-        ),
-      }} />
+          ),
+        }} />
+    </div>
   );
 }
 
 // Pillar segments: the accent at decreasing strength, so the bar stays one hue.
 const PILLAR_ALPHA = [0.95, 0.72, 0.52, 0.38, 0.27, 0.19, 0.14, 0.1];
+/** The CSS variables of pillar i: its share (the flex weight) and its accent strength; `.apb-pillar` paints from them. */
+const pillarVars = (share: number, i: number) => ({
+  ['--apb-share' as string]: share,
+  ['--apb-alpha' as string]: `${Math.round(PILLAR_ALPHA[i % PILLAR_ALPHA.length] * 100)}%`,
+});
 
 export function PlaybookView({ body }: { body: Playbook }) {
-  const total = body.pillars.reduce((s, p) => s + p.share, 0) || 1;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-      <div className="compact-grid">
-        {body.platforms.map((s, i) => <PlatformCard key={s.resource_ref} s={s} delay={i * 30} />)}
-      </div>
+    <div className="apb-view">
+      <Block title={`Resources · ${body.platforms.length}`}>
+        <div className="compact-grid">
+          {body.platforms.map((s, i) => <PlatformCard key={s.resource_ref} s={s} delay={i * 30} />)}
+        </div>
+      </Block>
 
       {body.series.length > 0 && (
-        <div>
-          <div className="text-micro" style={eyebrow}>Series</div>
+        <Block title={`Series · ${body.series.length}`}>
           <div className="compact-grid">
             {body.series.map((s, i) => <SeriesCard key={s.name} s={s} delay={Math.min(i, 12) * 25} />)}
           </div>
-        </div>
+        </Block>
       )}
 
       {body.pillars.length > 0 && (
-        <div>
-          <div className="text-micro" style={eyebrow}>Topic pillars</div>
-          <div style={{ display: 'flex', height: 8, borderRadius: 4, overflow: 'hidden', background: 'var(--color-surface-3)', gap: 2 }} aria-hidden>
+        <Block title="Topic pillars">
+          <div className="apb-bar" aria-hidden>
             {body.pillars.map((p, i) => (
-              <span key={p.name} title={`${p.name} · ${p.share}%`}
-                style={{ width: `${(p.share / total) * 100}%`, background: `color-mix(in srgb, var(--color-accent) ${Math.round(PILLAR_ALPHA[i % PILLAR_ALPHA.length] * 100)}%, transparent)` }} />
+              <span key={p.name} className="apb-pillar" title={`${p.name} · ${p.share}%`} style={pillarVars(p.share, i)} />
             ))}
           </div>
-          <div style={{ display: 'flex', gap: '4px 14px', flexWrap: 'wrap', marginTop: 8 }}>
+          <div className="apb-legend">
             {body.pillars.map((p, i) => (
-              <span key={p.name} className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-ink-muted)' }}>
-                <span style={{ width: 8, height: 8, borderRadius: 2, background: `color-mix(in srgb, var(--color-accent) ${Math.round(PILLAR_ALPHA[i % PILLAR_ALPHA.length] * 100)}%, transparent)` }} />
-                <span style={{ color: 'var(--color-ink)' }}>{p.name}</span>
-                <span className="tabular-nums">{p.share}%</span>
+              <span key={p.name} className="text-micro apb-legend-item">
+                <span className="apb-swatch apb-pillar" style={pillarVars(p.share, i)} />
+                <span className="apb-ink">{p.name}</span>
+                <span className="mono tabular-nums">{p.share}%</span>
               </span>
             ))}
           </div>
-        </div>
+        </Block>
       )}
 
       {body.rules.length > 0 && <RulesList rules={body.rules} />}
@@ -520,12 +536,11 @@ export function PlaybookView({ body }: { body: Playbook }) {
 function ExamplesList({ examples }: { examples: PlaybookExample[] }) {
   const sorted = [...examples].sort((a, b) => Number(a.verdict === 'bad') - Number(b.verdict === 'bad'));
   return (
-    <div>
-      <div className="text-micro" style={eyebrow}>Example posts · {examples.filter((e) => e.verdict === 'good').length} good, {examples.filter((e) => e.verdict === 'bad').length} to avoid</div>
+    <Block title={`Example posts · ${examples.filter((e) => e.verdict === 'good').length} good, ${examples.filter((e) => e.verdict === 'bad').length} to avoid`}>
       <div className="compact-grid">
         {sorted.map((e, i) => <ExampleCard key={i} e={e} delay={Math.min(i, 12) * 25} />)}
       </div>
-    </div>
+    </Block>
   );
 }
 
@@ -536,25 +551,24 @@ function ExampleCard({ e, delay }: { e: PlaybookExample; delay: number }) {
     <CompactCard delay={delay} hint="Open the example post"
       top={<>
         <Badge tone={good ? 'success' : 'danger'}>{good ? 'good' : 'avoid'}</Badge>
-        <span className="chip" style={{ fontSize: 11 }}>{e.format}</span>
+        <span className="chip mono">{e.format}</span>
         {e.resource_ref && <ResourceChip refId={e.resource_ref} />}
       </>}
       body={e.text}
       dialog={{
         size: 'lg', icon: 'logs', title: good ? 'Example post' : 'Post to avoid', subtitle: `${e.format}${e.resource_ref ? ` · ${e.resource_ref}` : ''}`,
         body: () => (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="apb-col">
+            <div className="apb-chips">
               <Badge tone={good ? 'success' : 'danger'}>{good ? 'good' : 'avoid'}</Badge>
-              <span className="chip">{e.format}</span>
+              <span className="chip mono">{e.format}</span>
               {e.resource_ref && <ResourceChip refId={e.resource_ref} />}
             </div>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{e.text}</div>
+            <p className="apb-prose">{e.text}</p>
             {e.note && (
-              <div>
-                <div className="text-micro" style={eyebrow}>Note</div>
-                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{e.note}</div>
-              </div>
+              <Block title="Note">
+                <p className="apb-prose apb-muted">{e.note}</p>
+              </Block>
             )}
           </div>
         ),
@@ -567,25 +581,22 @@ function RulesList({ rules }: { rules: string[] }) {
   const [open, setOpen] = useState(false);
   const long = rules.some((r) => r.length > 180 || r.includes('\n'));
   const list = (clamp: boolean) => (
-    <ol style={{ margin: 0, paddingLeft: 20, listStyle: 'decimal', display: 'flex', flexDirection: 'column', gap: 4 }}>
+    <ol className={`apb-rules${clamp ? '' : ' is-full'}`}>
       {rules.map((r, i) => (
-        <li key={i} className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: clamp ? undefined : 'pre-wrap' }}>
+        <li key={i}>
           {clamp ? <span className="clamp" title={r}>{r}</span> : r}
         </li>
       ))}
     </ol>
   );
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-        <div className="text-micro" style={eyebrow}>Rules</div>
-        {long && <button type="button" className="btn-tiny" style={{ marginLeft: 'auto' }} onClick={() => setOpen(true)}>All rules</button>}
-      </div>
+    <Block title={`Rules · ${rules.length}`}
+      action={long ? <button type="button" className="btn-tiny" onClick={() => setOpen(true)}>All rules</button> : undefined}>
       {list(true)}
       <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="logs" title="Rules" subtitle={`${rules.length} rule${rules.length === 1 ? '' : 's'}`}>
         {list(false)}
       </Modal>
-    </div>
+    </Block>
   );
 }
 
@@ -594,21 +605,17 @@ function RulesList({ rules }: { rules: string[] }) {
 function HistoryCard({ rows, onOpen }: { rows: PlaybookRow[]; onOpen: (r: PlaybookRow) => void }) {
   const sorted = [...rows].sort((a, b) => b.version - a.version);
   return (
-    <SectionCard title="History" icon="history" delay={60}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {sorted.map((r, i) => (
-          <button key={r.id} type="button" className="card row-lift compose-rise" onClick={() => onOpen(r)}
-            style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', textAlign: 'left', cursor: 'pointer', color: 'inherit', font: 'inherit', width: '100%', flexWrap: 'wrap', animationDelay: `${i * 25}ms` }}>
-            <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)', width: 32 }}>v{r.version}</span>
-            <Badge tone={PLAYBOOK_TONE[r.status]}>{r.status.replace('_', ' ')}</Badge>
-            <span className="chip" style={{ fontSize: 11 }}>{r.createdBy}</span>
-            <span className="text-micro" style={{ flex: '1 1 160px', minWidth: 0, color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={r.rationale ?? undefined}>
-              {r.rationale ?? '—'}
-            </span>
-            <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }}>{fmtDate(r.createdAt)}</span>
-          </button>
-        ))}
-      </div>
+    <SectionCard title="History" icon="history" flush delay={60}
+      action={<span className="text-micro mono apb-dim">{sorted.length} version{sorted.length === 1 ? '' : 's'}</span>}>
+      {sorted.map((r) => (
+        <button key={r.id} type="button" className="panel-row apb-hist" onClick={() => onOpen(r)} aria-label={`Open playbook v${r.version}`}>
+          <span className="apb-hist-ver mono">v{r.version}</span>
+          <Badge tone={PLAYBOOK_TONE[r.status]}>{r.status.replace('_', ' ')}</Badge>
+          <span className="chip">{r.createdBy}</span>
+          <span className="apb-hist-note clamp" title={r.rationale ?? undefined}>{r.rationale ?? '—'}</span>
+          <span className="apb-hist-date mono">{fmtDate(r.createdAt)}</span>
+        </button>
+      ))}
     </SectionCard>
   );
 }
@@ -618,22 +625,18 @@ function HistoryModal({ row, history, onClose }: { row: PlaybookRow; history: Pl
   return (
     <Modal open onClose={onClose} size="xl" icon="logs" title={`Playbook v${row.version}`}
       subtitle={`${row.status.replace('_', ' ')} · by ${row.createdBy} · ${fmtDate(row.createdAt)}${row.decidedAt ? ` · decided ${fmtDate(row.decidedAt)}` : ''}`}>
-      {row.rationale && <p className="text-body-sm" style={{ margin: '0 0 12px', color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>{row.rationale}</p>}
-      {row.brief && <BriefBlock brief={row.brief} />}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 12, marginBottom: 16 }}>
-        {row.review && (
-          <div className="card" style={{ padding: '12px 14px', minWidth: 0 }}>
-            <div className="text-micro" style={eyebrow}>Reviewer</div>
-            <ReviewBlock review={row.review} />
-          </div>
-        )}
-        <div className="card" style={{ padding: '12px 14px', minWidth: 0 }}>
-          <div className="text-micro" style={eyebrow}>{prev ? `Changes vs v${prev.version}` : 'Changes'}</div>
-          <DiffSummary groups={diffPlaybooks(prev?.body, row.body)} empty={prev ? `Same as v${prev.version}.` : 'First version.'} />
+      <div className="apb-col">
+        {row.rationale && <p className="apb-prose">{row.rationale}</p>}
+        {row.brief && <BriefBlock brief={row.brief} />}
+        <div className="apb-split">
+          {row.review && <Fact title="Reviewer"><ReviewBlock review={row.review} /></Fact>}
+          <Fact title={prev ? `Changes vs v${prev.version}` : 'Changes'}>
+            <DiffSummary groups={diffPlaybooks(prev?.body, row.body)} empty={prev ? `Same as v${prev.version}.` : 'First version.'} />
+          </Fact>
         </div>
+        <PlaybookView body={row.body} />
       </div>
-      <PlaybookView body={row.body} />
-      <div className="modal-foot"><button type="button" className="btn-secondary" onClick={onClose}>Close</button></div>
+      <div className="modal-foot"><button type="button" className="btn-ghost" onClick={onClose}>Close</button></div>
     </Modal>
   );
 }
@@ -653,18 +656,17 @@ function RebuildModal({ handle, hasActive, onClose }: { handle: string; hasActiv
   return (
     <Modal open onClose={onClose} size="lg" icon="sparkles" title="Rebuild from brief"
       subtitle="The orchestrator drafts a new playbook version in the background; the reviewer checks it and it waits here for your approval.">
-      <label className="text-eyebrow" htmlFor="pb-brief" style={{ display: 'block', marginBottom: 6 }}>Brief</label>
-      <textarea id="pb-brief" className="input-field" value={brief} maxLength={4000} onChange={(e) => setBrief(e.target.value)}
-        placeholder="E.g. more short videos on TikTok, fact carousels on Instagram, a weekly digest in Telegram every Sunday…"
-        style={{ width: '100%', boxSizing: 'border-box', minHeight: 140, resize: 'vertical', fontFamily: 'inherit' }} />
-      <div className="text-micro" style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginTop: 6, color: 'var(--color-ink-dim)', flexWrap: 'wrap' }}>
+      <label className="text-eyebrow apb-label" htmlFor="pb-brief">Brief</label>
+      <textarea id="pb-brief" className="input-field apb-textarea" value={brief} maxLength={4000} onChange={(e) => setBrief(e.target.value)}
+        placeholder="E.g. more short videos on TikTok, fact carousels on Instagram, a weekly digest in Telegram every Sunday…" />
+      <div className="text-micro apb-count apb-dim">
         <span>Leave empty to rebuild from the channel card's brief{hasActive ? ' and the current playbook' : ''}.</span>
-        <span className="tabular-nums">{brief.length} / 4000</span>
+        <span className="mono tabular-nums">{brief.length} / 4000</span>
       </div>
-      {rebuild.error && <div className="callout-danger" style={{ marginTop: 10 }}>{errorText(rebuild.error)}</div>}
+      {rebuild.error && <div className="callout-danger apb-gap-top">{errorText(rebuild.error)}</div>}
       <div className="modal-foot">
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
-        <button type="button" className="btn-primary" style={btn} disabled={rebuild.isPending} onClick={start}>
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
+        <button type="button" className="btn-primary" disabled={rebuild.isPending} onClick={start}>
           <Icon name="sparkles" size={14} /> {rebuild.isPending ? 'Starting…' : 'Start rebuild'}
         </button>
       </div>

@@ -1,5 +1,6 @@
 // Memory (read-only) and History (runs with a `before` cursor) tabs of
 // /app/agents/$handle.
+// Spec 078 D2: classes of agent-playbook.css (prefix apb-).
 
 import { Link } from '@tanstack/react-router';
 import { SectionCard, EmptyState } from '../ui/primitives';
@@ -26,14 +27,12 @@ function ConfigConflicts({ handle }: { handle: string }) {
   if (!list.length) return null;
   const who = q.data?.handle ?? handle;
   return (
-    <div className="callout-warning" style={{ marginBottom: 12 }}>
-      <div style={{ fontWeight: 600, marginBottom: 6 }}>
-        Not aligned with your rules · {list.length}
-      </div>
-      <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 4 }}>
-        {list.map((c) => <li key={c.key} className="text-body-sm" style={{ overflowWrap: 'anywhere' }}>{c.detail}</li>)}
+    <div className="callout-warning apb-callout-col">
+      <strong>Not aligned with your rules · {list.length}</strong>
+      <ul className="apb-list">
+        {list.map((c) => <li key={c.key}>{c.detail}</li>)}
       </ul>
-      <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+      <div className="text-micro apb-muted apb-callout-foot">
         One card resolves them; untick what you want to keep before Apply.
         <Link to="/app/chat" search={{ q: alignPrompt(who) } as any} className="link-accent">Resolve in one card</Link>
       </div>
@@ -58,7 +57,7 @@ function RetireRule({ channelKey, entry, handle, onDone }: { channelKey: string;
     });
   };
   return (
-    <button type="button" className="btn-secondary" disabled={retire.isPending} onClick={onClick} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+    <button type="button" className="btn-secondary" disabled={retire.isPending} onClick={onClick}>
       <Icon name="trash" size={14} /> Retire rule
     </button>
   );
@@ -71,71 +70,73 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
   return (
     <SectionCard title={`Memory${q.data ? ` · ${memory.length}` : ''}`} icon="bots" delay={0}
       action={key ? (
-        <Link to="/app/editor/$channel" params={{ channel: key }} className="btn-tiny" style={{ textDecoration: 'none', gap: 6 }}>
+        <Link to="/app/editor/$channel" params={{ channel: key }} className="btn-secondary btn-sm">
           <Icon name="pencil" size={12} /> Manage memory
         </Link>
       ) : undefined}>
-      <ConfigConflicts handle={data.agent.handle} />
-      {memory.some((m) => m.lint?.length) && (
-        <div className="callout-warning" style={{ marginBottom: 12 }}>
-          {memory.filter((m) => m.lint?.length).length} owner rule{memory.filter((m) => m.lint?.length).length === 1 ? '' : 's'} need fixing — the agent cannot follow them as written. Open one to see why and retire it; then tell the agent the rule itself.
-        </div>
-      )}
-      {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
-      {!q.data && !q.error && <div className="panel" style={{ height: 80, opacity: 0.5 }} />}
-      {q.data && memory.length === 0 && (
-        <EmptyState icon="bots" title="No memory yet"
-          note={key ? 'Owner rules and the reviewer’s weekly insights for this resource appear here.' : 'Memory is kept per Telegram resource; this agent has none.'} />
-      )}
-      {memory.length > 0 && (
-        <div className="compact-grid">
-          {memory.map((m, i) => {
-            const who = m.createdBy === 'owner' ? 'owner' : 'reviewer';
-            // Spec 059: a line written after a probe rejection or a KPI rollback says why, from its evidence.
-            const why = memoryWhy(m.evidence);
-            const badges = (
-              <>
-                <Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge>
-                <Badge tone={m.createdBy === 'owner' ? 'success' : 'neutral'} title={m.createdBy === 'owner' ? 'Written by you' : 'Learned by the weekly reviewer'}>{who}</Badge>
-                {m.lint?.length ? <Badge tone="danger" title={m.lint.map((x) => x.detail).join('; ')}>needs fixing</Badge> : null}
-              </>
-            );
-            return (
-              <CompactCard key={m.id} delay={Math.min(i, 12) * 25} hint="Open the memory entry"
-                top={badges}
-                meta={<span className="tabular-nums">{fmtDate(m.createdAt)}</span>}
-                body={m.text}
-                note={m.lint?.length ? m.lint.map((x) => LINT_LABEL[x.code] ?? x.code).join(' · ') : why ?? undefined}
-                dialog={{
-                  size: 'md', icon: 'bots', title: `Memory ${m.kind}`, subtitle: `${who} · ${fmtDate(m.createdAt)}`,
-                  body: () => (
-                    <div style={{ minWidth: 0 }}>
-                      <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>{badges}</div>
-                      <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.55 }}>{m.text}</div>
-                      {why && <div className="text-micro" style={{ marginTop: 10, color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}><strong>Why:</strong> {why}</div>}
-                      {m.lint?.length ? (
-                        <div className="callout-danger" style={{ marginTop: 12 }}>
-                          <div style={{ fontWeight: 600, marginBottom: 4 }}>The agent cannot follow this rule as written</div>
-                          <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 2 }}>
-                            {m.lint.map((x, j) => <li key={j} className="text-body-sm"><strong>{LINT_LABEL[x.code] ?? x.code}:</strong> {x.detail}</li>)}
-                          </ul>
-                        </div>
-                      ) : null}
-                    </div>
-                  ),
-                  actions: key ? (close) => (
-                    <>
-                    {m.lint?.length ? <RetireRule channelKey={key} entry={m} handle={data.agent.handle} onDone={close} /> : null}
-                    <Link to="/app/editor/$channel" params={{ channel: key }} className="btn-secondary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                      <Icon name="pencil" size={14} /> Manage memory
-                    </Link>
-                    </>
-                  ) : undefined,
-                }} />
-            );
-          })}
-        </div>
-      )}
+      <div className="apb-col">
+        <ConfigConflicts handle={data.agent.handle} />
+        {memory.some((m) => m.lint?.length) && (
+          <div className="callout-warning">
+            {memory.filter((m) => m.lint?.length).length} owner rule{memory.filter((m) => m.lint?.length).length === 1 ? '' : 's'} need fixing — the agent cannot follow them as written. Open one to see why and retire it; then tell the agent the rule itself.
+          </div>
+        )}
+        {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
+        {!q.data && !q.error && <div className="apb-skeleton" style={{ height: 80 }} aria-hidden />}
+        {q.data && memory.length === 0 && (
+          <EmptyState icon="bots" title="No memory yet"
+            note={key ? 'Owner rules and the reviewer’s weekly insights for this resource appear here.' : 'Memory is kept per Telegram resource; this agent has none.'} />
+        )}
+        {memory.length > 0 && (
+          <div className="compact-grid">
+            {memory.map((m, i) => {
+              const who = m.createdBy === 'owner' ? 'owner' : 'reviewer';
+              // Spec 059: a line written after a probe rejection or a KPI rollback says why, from its evidence.
+              const why = memoryWhy(m.evidence);
+              const badges = (
+                <>
+                  <Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge>
+                  <Badge tone={m.createdBy === 'owner' ? 'success' : 'neutral'} title={m.createdBy === 'owner' ? 'Written by you' : 'Learned by the weekly reviewer'}>{who}</Badge>
+                  {m.lint?.length ? <Badge tone="danger" title={m.lint.map((x) => x.detail).join('; ')}>needs fixing</Badge> : null}
+                </>
+              );
+              return (
+                <CompactCard key={m.id} delay={Math.min(i, 12) * 25} hint="Open the memory entry"
+                  top={badges}
+                  meta={<span className="mono tabular-nums">{fmtDate(m.createdAt)}</span>}
+                  body={m.text}
+                  note={m.lint?.length ? m.lint.map((x) => LINT_LABEL[x.code] ?? x.code).join(' · ') : why ?? undefined}
+                  dialog={{
+                    size: 'md', icon: 'bots', title: `Memory ${m.kind}`, subtitle: `${who} · ${fmtDate(m.createdAt)}`,
+                    body: () => (
+                      <div className="apb-col">
+                        <div className="apb-chips">{badges}</div>
+                        <p className="apb-prose">{m.text}</p>
+                        {why && <p className="text-micro apb-muted apb-wrap"><strong>Why:</strong> {why}</p>}
+                        {m.lint?.length ? (
+                          <div className="callout-danger apb-callout-col">
+                            <strong>The agent cannot follow this rule as written</strong>
+                            <ul className="apb-list">
+                              {m.lint.map((x, j) => <li key={j}><strong>{LINT_LABEL[x.code] ?? x.code}:</strong> {x.detail}</li>)}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </div>
+                    ),
+                    actions: key ? (close) => (
+                      <>
+                      {m.lint?.length ? <RetireRule channelKey={key} entry={m} handle={data.agent.handle} onDone={close} /> : null}
+                      <Link to="/app/editor/$channel" params={{ channel: key }} className="btn-secondary">
+                        <Icon name="pencil" size={14} /> Manage memory
+                      </Link>
+                      </>
+                    ) : undefined,
+                  }} />
+              );
+            })}
+          </div>
+        )}
+      </div>
     </SectionCard>
   );
 }
@@ -148,9 +149,9 @@ export function AgentHistory({ data }: { data: AgentDetail }) {
 
   return (
     <SectionCard title="Run history" icon="history" delay={0}
-      action={showAgent ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>includes the role agents</span> : undefined}>
+      action={showAgent ? <span className="text-micro apb-dim">includes the role agents</span> : undefined}>
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
-      {!q.data && !q.error && <div className="panel" style={{ height: 80, opacity: 0.5 }} />}
+      {!q.data && !q.error && <div className="apb-skeleton" style={{ height: 80 }} aria-hidden />}
       {q.data && runs.length === 0 && <EmptyState icon="logs" title="No runs yet" note="Runs appear here after the agent’s first scheduled run or “Run now”." />}
       {runs.length > 0 && (
         <div className="table-wrap">
@@ -168,19 +169,19 @@ export function AgentHistory({ data }: { data: AgentDetail }) {
             <tbody>
               {runs.map((r) => (
                 <tr key={r.id}>
-                  <td className="tabular-nums" style={{ whiteSpace: 'nowrap' }}>{fmtDate(r.startedAt)}</td>
-                  <td style={{ whiteSpace: 'nowrap' }}>
+                  <td className="tabular-nums apb-nowrap">{fmtDate(r.startedAt)}</td>
+                  <td className="apb-nowrap">
                     {r.role}
                     {showAgent && r.agentId && handleOf.get(r.agentId) && r.agentId !== data.agent.id && (
-                      <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>@{handleOf.get(r.agentId)}</div>
+                      <div className="text-micro mono apb-dim">@{handleOf.get(r.agentId)}</div>
                     )}
                   </td>
                   <td><Badge tone={RUN_TONE[r.status]}>{r.status}</Badge></td>
                   <td className="num">{r.steps}</td>
                   <td className="num">{fmtUsd(r.costUsd)}</td>
                   <td className="num">{fmtDuration(r.startedAt, r.finishedAt)}</td>
-                  <td className="text-micro" style={{ color: 'var(--color-danger)', maxWidth: 260 }} title={r.error ?? undefined}>
-                    {r.error ? (r.error.length > 90 ? `${r.error.slice(0, 90)}…` : r.error) : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+                  <td className="text-micro apb-run-error" title={r.error ?? undefined}>
+                    {r.error ? (r.error.length > 90 ? `${r.error.slice(0, 90)}…` : r.error) : <span className="apb-dim">—</span>}
                   </td>
                   <td style={{ textAlign: 'right' }}>
                     <Link to="/app/editor/run/$id" params={{ id: r.id }} className="btn-act" title="Open trace" aria-label="Open trace">
@@ -194,8 +195,8 @@ export function AgentHistory({ data }: { data: AgentDetail }) {
         </div>
       )}
       {q.hasNextPage && (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 12 }}>
-          <button className="btn-secondary" disabled={q.isFetchingNextPage} onClick={() => q.fetchNextPage()}>
+        <div className="apb-more">
+          <button type="button" className="btn-ghost" disabled={q.isFetchingNextPage} onClick={() => q.fetchNextPage()}>
             {q.isFetchingNextPage ? 'Loading…' : 'Load more'}
           </button>
         </div>
