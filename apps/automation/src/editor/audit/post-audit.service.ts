@@ -169,7 +169,9 @@ export class PostAuditService {
     const { rows } = await this.d.pool.query(
       `SELECT ${SLOT_REF} AS ref, s.id::text AS id, s.channel_key, s.post_spec, s.topic, s.topic_mode,
               COALESCE(pp.posted_at, s.scheduled_at) AS at, pp.message_id, pp.channel_id,
-              COALESCE(to_jsonb(s) -> 'sources', s.critic -> 'sources') AS sources
+              COALESCE(to_jsonb(s) -> 'sources', s.critic -> 'sources') AS sources,
+              (s.series_name IS NOT NULL OR s.schedule_rule_id IS NOT NULL
+               OR EXISTS (SELECT 1 FROM jsonb_array_elements_text(COALESCE(s.source_hints, '[]'::jsonb)) h WHERE h LIKE 'series:%')) AS exempt
          FROM editor_slots s
          LEFT JOIN published_posts pp ON pp.id = s.published_post_id
         WHERE s.kind = 'content' AND s.post_spec IS NOT NULL AND s.status IN ${OUT}
@@ -187,6 +189,8 @@ export class PostAuditService {
       const messageId = r.message_id == null ? null : Number(r.message_id);
       // Spec 037 T7: the message id orders posts of the same instant (a poll right under its intro).
       if (messageId != null) post.messageIds = [messageId];
+      // Spec 073 FR-001: a series instance or a pin is the schedule's, not an improvised poll — the poll cap skips it.
+      if (r.exempt) post.pollCapExempt = true;
       out.push({
         post, kind: 'slot', postId: r.id, slotId: r.id, channelKey: r.channel_key, messageId,
         url: telegramPostUrl(r.channel_id ?? r.channel_key, messageId), sources: parseSources(r.sources),

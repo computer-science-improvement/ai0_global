@@ -163,6 +163,8 @@ export interface PostRow {
   slotId: string; at: Date; status: string; format: string; text: string; written: boolean; sourceUrl?: string | null;
   /** Spec 037 T10: an evergreen post (post_spec story.kind) — the fallback ladder's last step. */
   evergreen?: boolean;
+  /** Spec 073 FR-001: a series instance or a pin — the poll cap does not count it (`polls_over_cap`). */
+  exempt?: boolean;
 }
 export interface OwnerRow { slotId: string; at: Date; outcome: 'clean' | 'edited' | 'rejected'; reason: string | null; edit: string | null }
 /** Spec 037 FR-010: one content slot of the window, any status (planned vs out). */
@@ -253,7 +255,9 @@ export function assembleQuality(i: {
   const posts = [...i.posts].sort((a, b) => b.at.getTime() - a.at.getTime());
   const written = posts.filter((p) => p.written);
   const pollCount = posts.filter((p) => isPollFormat(p.format)).length;
-  const pollsOver = i.caps.pollsPerWeek != null && pollCount > i.caps.pollsPerWeek;
+  // The cap is for improvised polls; a series instance or a pin is exempt (spec 073), though it stays in the format mix above.
+  const cappedPolls = posts.filter((p) => isPollFormat(p.format) && !p.exempt).length;
+  const pollsOver = i.caps.pollsPerWeek != null && cappedPolls > i.caps.pollsPerWeek;
   let withQ = 0; let overQ = 0; const qExamples: string[] = [];
   for (const p of written) {
     const qs = readerQuestions(p.text);
@@ -418,7 +422,9 @@ export class SqlQuality {
     const { rows: posts } = await this.pool.query(
       `SELECT ${REF} AS ref, s.id::text AS id, s.status, s.format, s.scheduled_at AS at, s.post_spec, s.rendered_preview,
               COALESCE(s.post_spec->'source'->>'url', s.platform_spec->'source'->>'url') AS source_url,
-              COALESCE(s.post_spec->'story'->>'kind' = 'evergreen', false) AS evergreen
+              COALESCE(s.post_spec->'story'->>'kind' = 'evergreen', false) AS evergreen,
+              (s.series_name IS NOT NULL OR s.schedule_rule_id IS NOT NULL
+               OR EXISTS (SELECT 1 FROM jsonb_array_elements_text(COALESCE(s.source_hints, '[]'::jsonb)) h WHERE h LIKE 'series:%')) AS exempt
          FROM editor_slots s
         WHERE s.kind = 'content' AND ${REF} = ANY($1::text[]) AND s.scheduled_at >= $2 AND s.scheduled_at < $3
           AND s.status NOT IN ('skipped','failed','expired')
@@ -429,6 +435,7 @@ export class SqlQuality {
         slotId: r.id, at: new Date(r.at), status: r.status, format: r.format, written, text: written ? slotText(r.post_spec, r.rendered_preview) : '',
         sourceUrl: written ? r.source_url ?? null : null,
         ...(r.evergreen ? { evergreen: true } : {}),
+        ...(r.exempt ? { exempt: true } : {}),
       });
     }
     const { rows: owner } = await this.pool.query(

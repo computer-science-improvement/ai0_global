@@ -46,6 +46,20 @@ function quality(): ResourceQuality {
   });
 }
 
+test('quality block: a quiz series (and a pin) is exempt from the weekly poll cap — spec 073 FR-001', () => {
+  const base = { critic: [] as CriticRow[], owner: [] as OwnerRow[], caps: audienceCaps(null) };
+  const poll = (id: string, h: number, extra: Partial<PostRow> = {}): PostRow => ({ ...post(id, h, 'quiz', 'Питання вікторини'), ...extra });
+  const daily = [poll('q1', 1, { exempt: true }), poll('q2', 25, { exempt: true }), poll('q3', 49, { exempt: true }), poll('q4', 73, { exempt: true })];
+  const q = assembleQuality({ ...base, posts: daily });
+  assert.equal(q.polls.over, false, 'a daily quiz series does not raise polls_over_cap');
+  assert.equal(q.polls.count, 4, 'the format mix still counts every poll');
+  assert.ok(!q.flags.includes('polls_over_cap'));
+  const mixed = assembleQuality({ ...base, posts: [...daily, poll('i1', 2), poll('i2', 3)] });
+  assert.equal(mixed.polls.over, true, 'two improvised polls over the default cap of 1 still raise it');
+  assert.equal(mixed.polls.count, 6);
+  assert.ok(mixed.flags.includes('polls_over_cap'));
+});
+
 test('quality block: critic counts, pass rate, means, notes; polls vs cap; reader questions; owner; samples; flags', () => {
   const q = quality();
   assert.deepEqual([q.critic.pass, q.critic.revise, q.critic.reject, q.critic.failed, q.critic.total], [2, 1, 1, 1, 5]);

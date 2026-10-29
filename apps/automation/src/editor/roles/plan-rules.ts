@@ -151,7 +151,7 @@ export function validatePlan(
     });
   });
   if (schedule) errors.push(...planScheduleErrors(plan, schedule, schedule.defaultRef));
-  if (pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ format: s.format, series: s.series ?? null, sourceHints: s.source_hints })), pollCap, schedule?.series));
+  if (pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ format: s.format, series: s.series ?? null, sourceHints: s.source_hints })), pollCap));
 
   if (errors.length) return { ok: false, errors };
   const empty = schedule ? skippedSeriesPlaceholders(plan, schedule, schedule.defaultRef) : [];

@@ -84,6 +84,7 @@ test('SqlPollCaps: caps from the profile, the 7-day window, statuses and the rep
   const mine = ctx.recent.filter((r) => r.resourceRef === REF);
   assert.equal(mine.length, 4, JSON.stringify(ctx.recent));
   assert.deepEqual(mine.map((r) => r.series).filter(Boolean), ['ПДР щодня']);
+  assert.ok(mine.every((r) => r.pin === false), 'no schedule rule among them: no pins (spec 073)');
   assert.equal(ctx.recent.filter((r) => r.resourceRef === IG).length, 1);
 
   // The owner makes the channel a quiz resource: no default cap; then sets one explicitly.
@@ -92,17 +93,18 @@ test('SqlPollCaps: caps from the profile, the 7-day window, statuses and the rep
   await profiles.patchFormat(REF, { polls_per_week: 5 }, { by: 'owner' });
   assert.equal((await caps.load({ refs: [REF], planDate: PLAN_DATE, tz: TZ })).caps[REF], 5);
 
-  // validatePlan with the loaded context: 4 counted (one of them an owner/migration series → exempt with the series list).
+  // validatePlan with the loaded context: 4 rows in the window, one of them a series instance (spec 073 FR-001: exempt by its own mark) → 3 count.
   const card = (await channels.get(CH))!;
   const now = zonedToUtc(PLAN_DATE, '07:00', TZ);
   const p = { rationale: 'Ще два опитування', slots: [
     { time: '13:00', format: 'poll', topic: 'Улюблена планета', source_hints: [], is_experiment: false },
     { time: '16:00', format: 'quiz', topic: 'Найбільша планета', source_hints: [], is_experiment: false },
+    { time: '19:00', format: 'poll', topic: 'Улюблений телескоп', source_hints: [], is_experiment: false },
   ] };
   const full = await caps.load({ refs: [REF], planDate: PLAN_DATE, tz: TZ, defaultRef: REF });
   const v = validatePlan(p, { ...card, postsPerDayMin: 1 }, PLAN_DATE, now, [], undefined, [], full);
   assert.equal(v.ok, false);
-  assert.match((v as { errors: string[] }).errors.join('\n'), /було б 6 \(уже 4, у плані 2\) — ліміт ресурсу 5 на тиждень/);
+  assert.match((v as { errors: string[] }).errors.join('\n'), /було б 6 \(уже 3, у плані 3\) — ліміт ресурсу 5 на тиждень/);
 });
 
 test('the Telegram card carries the reader-question cap: news topic → 0, owner override → 2', { skip }, async () => {

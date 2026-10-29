@@ -42,17 +42,18 @@ export const pollsCheck: IntegrityCheck = {
  * `poll_cap_reached` on a timeline (the export audit, the golden set): polls + quizzes over `polls_per_week` in any 7
  * local days, counting the earlier posts of `ctx.previous`. Before publishing the publish guard counts the real
  * published, waiting and approved posts (post/polls/poll-cap-guard.ts, `checkPublishGuards` and the chat), so lintPost
- * skips it.
+ * skips it. Spec 073 FR-001: a series instance or a pin (`pollCapExempt`) is neither checked nor counted.
  */
 export const pollCapCheck: IntegrityCheck = {
   id: 'poll-cap',
   codes: ['poll_cap_reached'],
   run: (post, ctx) => {
     if (!post.poll && !(post.format && isPollFormat(post.format))) return [];
+    if (post.pollCapExempt) return [];
     const cap = ctx.card?.pollsPerWeek === undefined ? DEFAULT_POLLS_PER_WEEK : ctx.card.pollsPerWeek;
     if (cap === null) return [];
     const tz = post.timezone;
-    const days = (ctx.previous ?? []).filter((p) => p.poll || (p.format && isPollFormat(p.format))).map((p) => localDayIndex(new Date(p.publishedAt), tz));
+    const days = (ctx.previous ?? []).filter((p) => (p.poll || (p.format && isPollFormat(p.format))) && !p.pollCapExempt).map((p) => localDayIndex(new Date(p.publishedAt), tz));
     const before = maxPollsInWindow(days, localDayIndex(new Date(post.publishedAt), tz));
     if (before + 1 <= cap) return [];
     return [{

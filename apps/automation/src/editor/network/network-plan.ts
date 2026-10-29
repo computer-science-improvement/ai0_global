@@ -232,7 +232,7 @@ export function validateNetworkPlan(
   }
   // Spec 023 FR-004: series, pins, blackouts and frequency rules.
   if (o.schedule) errors.push(...planScheduleErrors(plan, o.schedule, o.schedule.defaultRef));
-  if (o.pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ resourceRef: s.resource_ref, format: s.format, series: s.series ?? null })), o.pollCap, net.playbook.series));
+  if (o.pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ resourceRef: s.resource_ref, format: s.format, series: s.series ?? null })), o.pollCap));
   if (errors.length) return { ok: false, errors };
   const empty = o.schedule ? skippedSeriesPlaceholders(plan, o.schedule, o.schedule.defaultRef) : [];
   for (const sd of shortDays.values()) {

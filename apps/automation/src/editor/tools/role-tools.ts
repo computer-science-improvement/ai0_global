@@ -225,8 +225,7 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   }
   // Spec 037 T7: polls + quizzes over polls_per_week on what is really out, waiting or approved (live, approval, shadow).
   const polls = !ledger ? null : await pollCapGuard(d.pool, {
-    channelKey, format: spec.format, at, timezone: card.timezone, cap: card.pollsPerWeek, slotId, series: slotSeriesOf(slot),
-    playbookSeries: (ctx.extras?.network as NetworkCtx | undefined)?.playbook?.series,
+    channelKey, format: spec.format, at, timezone: card.timezone, cap: card.pollsPerWeek, slotId, series: slotSeriesOf(slot), pin: !!slot.scheduleRuleId,
   });
   if (polls) return polls;
   // Spec 037 T2: one story, one post (the resource's 14 days, the network's 24 h); warnings go to the critic.

@@ -4,7 +4,7 @@ One commit per task, in this order. T1–T6 are the quick wins; they ship value 
 
 The tasks follow the spec's section "Amendments after the builder check". `A<n>` and `L<n>` refer to its items; where the body of the spec differs, the amendment wins.
 
-- [ ] **T1 Poll cap exempts series and pins (FR-001; A2, A23, A33, A45, A52).**
+- [x] **T1 Poll cap exempts series and pins (FR-001; A2, A23, A33, A45, A52).**
   - What:
     - exemption by the slot's mark (series or pin) at plan and publish; `pin` in both poll-cap SQLs (`SqlPollCaps.load`, `loadPollPosts`); `playbookSeries` and `exemptSeries` go;
     - `checkPublishGuards` adds only `pin: !!slot.scheduleRuleId`, because it already passes `series` (A52). `chat/drafts.service.ts` is not edited (A2);
