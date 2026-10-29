@@ -155,6 +155,35 @@ Checks at close-out (Node 20.19.6): `apps/automation` `npm test` 4378 tests, 387
 
 What the lead wires at merge (nothing here changes without it): 073's `SOURCE_READ_TOOLS` for the local `SOURCE_TOOLS` map and 073's reason catalogue for the copy in `readiness/codes.ts` (T1, T4b); the `ConfigSeam` functions of 073 (T4b); 075's `bind_dataset` and `dataset_patch` fix kinds, already named in `FIX_ALL_EXCLUDED_KINDS` (T1, T8a); 076's `source_probe_failed` finding and host note, already left out of the readiness card (T7); 074 writing `applied_hash` (migration 097 leaves it empty).
 
+### Integration (lead merge)
+
+W1 integrated on `worktree-wf_bbd31fba-ce1-1` (from `ae131b3b`): `533a2688` merge 073, `3debdb28` merge 072, `81c0e0b7` the 072×073 seams (S1–S7), `74c28183` merge 076, `ed1bac18` the 076 seams (S8–S11). Checks after the last seam (Node 20.19.6): automation `npm test` 4840 tests, 4286 pass, 0 fail, 554 skipped (PG); `npm run build` clean; `npm run lint` 0 errors, 40 warnings (the baseline); `tsc --noEmit` clean; the PG suite 553 tests on the scratch server, 546 pass in the parallel run and every failure green when rerun alone (`playbook-examples.pg` on a fresh database of its own, since `t046` holds agents another run left for its channel); dashboard `tsc` clean, `npm test` 685 of 685, `VITE_ALLOW_DEV_AUTH=true npm run build` clean.
+
+Wired for 072:
+- **073's config skips recheck the doctor (S1).** The runner's `onConfigSkip` is `configSkipRecheck` (`readiness/readiness-ports.ts`), one `config_skip` recheck that does nothing while the service is absent. 073's own once-a-day config note is gone.
+- **One reason catalogue (S2).** `readiness/codes.ts` imports `ReasonEntry` and `reasonFor` from `reasons/catalogue.ts`. Every doctor code is a catalogue entry of kind `doctor` and is in the dashboard mirror. `series_paused` shares 060's entry, with the pause link overridden.
+- **073's source-to-tool map (S3).** `checks/tools.ts` reads `SOURCE_READ_TOOLS`. The doctor's slot context is passed without tools, so `tools_missing_for_source` stays the doctor's own.
+- **The config seam (S4).** `checks/config.ts` `configSeam` runs `checkPlanSkeleton` and `checkSlotConfig`:
+  - a repairable problem (`isRepairable`, `AUTO_SAFE_RUN_REPAIRS`) is info;
+  - `config_series_gone` is info;
+  - `series_rate_over_card_max` is a warning;
+  - every other problem is an error;
+  - `preflight_no_material` is left to the material check.
+- **The facts loader (S4).** It fills `resources[].formats` and `tz` through `skeletonResourcesOf`, and reads `ScheduleService.slotConfigContext` (read-only) once per series.
+- **One judge (S4).** `judgePair` calls 073's `seriesSourceConflict`. The judge now also reads «бери з X, а не з Y» (`BUT_NOT_RE` in `agents/skill-warnings.ts`).
+- **`poll_series_over_cap` is gone (S5)** from every list, check and test.
+- **Dashboard (S6).** The Readiness panel and the Start-anyway lines take their titles and hints from the 073 mirror `lib/reasons.ts`. `ReadinessFinding.fix` gains `inFixAll`, so the Fix all confirm lists only what Fix all applies.
+- **Runbook (S7).** § 32 then § 33; README rows and the migration note name 097 and 098.
+- **076's sources (S8–S10).**
+  - `checks/sources.ts` wraps `sourceFindings` as the eighth check.
+  - `source_drop` and `host_proxy_add` run through 076's `source-fixes.ts` from the fix runner, via optional ports.
+  - `FIX_ALL_EXCLUDED_KINDS` is `bind_dataset`, `dataset_patch`, `source_drop` (lead decision at the W1 merge).
+  - The loader fills `SourceFact.probe` from `source_probes` (stored rows only) and fills `lastSuccessAt`, the card source `id`, `DatasetFact.uploaded` and `ChannelFacts.proxyConfigured`.
+
+Not wired here:
+- 075's `materialAvailable`, the `bind_dataset` and `dataset_patch` kinds, and 074's `applied_hash`: these come with W2.
+- The effective tools still come from the card's lists, not the executor's registry names: the facts loader has no `ToolRegistry`.
+
 ## Deltas from the spec
 
 Written task by task; the list is appended to as each task lands.

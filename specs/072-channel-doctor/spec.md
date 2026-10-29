@@ -637,3 +637,8 @@ These override everything above, including the Amendments. They come from a cros
 - **I13:** `checks/tools.ts` keeps a local source→tool map in W1, marked "replaced by 073's SOURCE_READ_TOOLS at merge".
 - **I17:** `poll_series_over_cap` stays in the exclusion list in W1; the lead removes it at the 073 merge.
 - `pause_cause_gone` for `no_material`: W1 uses the `countPostable` seam (unused > 0). At the W2 merge it switches to 075's `materialAvailable`.
+- **W1 merge (lead, 2026-10-29), overrides I3's list:**
+  - `source_drop` takes a source off the card, which is destructive, so it joins the Fix-all exclusions: `FIX_ALL_EXCLUDED_KINDS = ['bind_dataset', 'dataset_patch', 'source_drop']`.
+  - `host_proxy_add` may run in Fix all.
+  - Neither of 076's two fix kinds is on the auto-safe list.
+  - Both run through 076's `sources/source-fixes.ts` from `sysadmin/fix-runner.ts`.

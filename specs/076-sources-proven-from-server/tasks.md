@@ -405,6 +405,34 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T9b `4b7473fb` `lib/page-charset.ts` (`decodePageBytes`, `contentTypeOf`), `SourceProbeDialog`, `UploadPageDialog`, both wired into `SourcesSection`, and an "Upload page" button in the Data header.
 - T10 — this commit (the last of the series): runbook § 36 and the § 29 pointer, spec status done, the README row and migration line, the final checks.
 
+### Integration (lead merge)
+
+W1 integrated on `worktree-wf_bbd31fba-ce1-1` (from `ae131b3b`): `533a2688` merge 073, `3debdb28` merge 072, `81c0e0b7` the 072×073 seams (S1–S7), `74c28183` merge 076, `ed1bac18` the 076 seams (S8–S11). Checks after the last seam (Node 20.19.6): automation `npm test` 4840 tests, 4286 pass, 0 fail, 554 skipped (PG); `npm run build` clean; `npm run lint` 0 errors, 40 warnings (the baseline); `tsc --noEmit` clean; the PG suite 553 tests on the scratch server, 546 pass in the parallel run and every failure green when rerun alone (`playbook-examples.pg` on a fresh database of its own, since `t046` holds agents another run left for its channel); dashboard `tsc` clean, `npm test` 685 of 685, `VITE_ALLOW_DEV_AUTH=true npm run build` clean.
+
+Wired for 076:
+- **S8, the doctor check.** `readiness/checks/sources.ts` wraps `sourceFindings` as the eighth doctor check (`DOCTOR_CHECKS`, last).
+- **S8, the codes.**
+  - The seven codes are entries of the one catalogue. `source_probe_failed`, `source_empty`, `source_untested`, `card_without_sources` and `dataset_resync_manual` are of kind `doctor`; `host_struck` and `resync_failed` are of kind `source`.
+  - `sources/codes.ts` takes the catalogue's own entries instead of a copy.
+  - `source_unreachable` stays a skip class, never a doctor code.
+  - 072's readiness card still leaves out `source_probe_failed` (I9).
+- **S9, the fixes.**
+  - `source_drop` and `host_proxy_add` join the `Fix` union and `FIX_KINDS`.
+  - The fix runner calls `applySourceDrop` and `applyHostProxyAdd` through two optional ports (`fix_unavailable` without them) and throws their refusals.
+  - The module wires the same calls as the Sources panel: the card upsert, and `EGRESS_PROXY_HOSTS` through `SettingsService`.
+  - Neither fix is auto-safe. `source_drop` is outside Fix all (lead decision); `host_proxy_add` may run in it.
+- **S10, the facts.** Read from stored rows only (`PgSourceProbes.latest`, tolerant before migration 100), never a live fetch. The loader fills:
+  - `SourceFact.probe` with the latest stored probe of each feed or page address, and the card source `id`;
+  - `lastSuccessAt` from `source_host_failures.last_success_at`;
+  - `DatasetFact.uploaded` from the `data_imports` upload mark;
+  - `ChannelFacts.proxyConfigured` from `egressProxyConfigured(env)`.
+- **S11, the runbook.**
+  - § 32 has the Sources row, and Fix all's scope names `source_drop`.
+  - § 36 sits after § 33 and has an "In Readiness" block.
+  - The README row and the migration note name 100.
+
+Open item, not code: 074 and 077 should call `sourceProberOf(pool)`, not a bare `probeSource`. It is for those specs' maintainers in W2/W3.
+
 ## Deltas from the spec
 
 - **T1.** `net/host-failures.test.ts` asserted the exact 8-element INSERT parameter array. The two new columns need two more parameters (`$9`, `$10`), so its three expectations now end `, 0, null`, and `'unreachable'` joins the blocked-reason loop. The spec said the file stayed unchanged.

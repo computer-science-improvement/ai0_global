@@ -216,6 +216,24 @@ Done. T1–T16 are committed on `worktree-wf_77f463e3-89e-1` (BASE ae131b3b), on
 
 Migration: `098_card_hashtag_default` only (with its idempotent down file). Runbook: § 33 in `docs/runbooks/agent-platform.md`.
 
+### Integration (lead merge)
+
+W1 integrated on `worktree-wf_bbd31fba-ce1-1` (from `ae131b3b`): `533a2688` merge 073, `3debdb28` merge 072, `81c0e0b7` the 072×073 seams (S1–S7), `74c28183` merge 076, `ed1bac18` the 076 seams (S8–S11). Checks after the last seam (Node 20.19.6): automation `npm test` 4840 tests, 4286 pass, 0 fail, 554 skipped (PG); `npm run build` clean; `npm run lint` 0 errors, 40 warnings (the baseline); `tsc --noEmit` clean; the PG suite 553 tests on the scratch server, 546 pass in the parallel run and every failure green when rerun alone (`playbook-examples.pg` on a fresh database of its own, since `t046` holds agents another run left for its channel); dashboard `tsc` clean, `npm test` 685 of 685, `VITE_ALLOW_DEV_AUTH=true npm run build` clean.
+
+Wired for 073:
+- **Config skips.** `onConfigSkip` becomes one 072 `config_skip` recheck (`configSkipRecheck`). The runner's own per-day config note (`noteConfigSkip`, `configNoted`) is removed, so only the doctor's blocker note remains.
+- **The catalogue.**
+  - It is the one list: 072's doctor codes and 076's source codes are entries in it, mirrored in `apps/dashboard/src/lib/reasons.ts`.
+  - 072's `readiness/codes.ts` and 076's `sources/codes.ts` read it instead of keeping copies.
+- **The run-time repairs.** `isRepairable` is exposed as `AUTO_SAFE_RUN_REPAIRS` in `readiness/auto-fix.ts`, and `slot-config.ts` reads that list.
+- **The doctor uses 073's checks.**
+  - `SOURCE_READ_TOOLS` for the tools check.
+  - `checkSlotConfig` and `checkPlanSkeleton` through the doctor's config seam, with `skeletonResourcesOf` in the facts loader.
+  - `seriesSourceConflict` as the doctor's one judge.
+- **`slotConfigContext`** keeps `{ roll: false }`. Its type is narrowed to the read-only fields the loader passes.
+- **«а не» clauses.** `profileOf` reads «бери з X, а не з Y» as source X and a rule against Y, with a test in `skill-series.073.test.ts`.
+- **Poll cap.** `poll_series_over_cap` is removed from 072's lists and tests too.
+
 ## Deltas from the spec
 
 The amendments name these first.
