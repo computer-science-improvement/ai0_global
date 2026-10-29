@@ -4,6 +4,13 @@ import { AppNotFound } from '../components/NotFound';
 import { sessionQuery } from '../auth/session';
 import { Button } from '../components/ui/Button';
 import '../components/auth/auth.css';
+// Spec 078 wave D area stylesheets: their components are loaded by node tests too, so they import no CSS themselves.
+import '../components/agents/agent-plan.css';
+import '../components/agents/agent-playbook.css';
+import '../components/agents/agent-manager.css';
+import '../components/agents/agent-settings.css';
+import '../components/approvals/approvals.css';
+import '../components/health/digest.css';
 
 // Layout route for the entire authenticated app (everything under /app).
 // The guard runs in the router, before anything renders (spec 028 FR-011): the
