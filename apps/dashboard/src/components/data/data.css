@@ -1,0 +1,128 @@
+/*
+ * Spec 078 (C6): the classes of the dataset pages (/app/data, /app/data/$key) and the import wizard. The shared
+ * parts (panels, tables, KPI strip, tabs, callouts, buttons) are index.css's; this file only adds what is specific
+ * to data: the stack of panels, the meta chips under a title, the filter chips, the round bar, key/value facts, the
+ * sticky save bar of the schema editor, the checkboxes and the import preview. Tokens only.
+ */
+
+/* Panels of a tab, one under the other. */
+.dx-stack { display: flex; flex-direction: column; gap: 16px; }
+.dx-page-gap { margin-top: 16px; }
+
+/* Plain-text colours for small notes (the ink ladder). */
+.dx-dim { color: var(--color-ink-dim); }
+.dx-ink { color: var(--color-ink); }
+.dx-muted { color: var(--color-ink-muted); }
+.dx-warn { color: var(--color-warning); }
+.dx-note { margin: 0; font-size: 14px; line-height: 1.4; color: var(--color-ink-muted); }
+.dx-note.is-sm { font-size: 12px; color: var(--color-ink-dim); }
+
+/* The chips under a dataset's description: status, entity, version, language, license. */
+.dx-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+
+/* Form blocks. */
+.dx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 16px; }
+.dx-grid.is-narrow { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.dx-grid.is-fill { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+.dx-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.dx-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.dx-fill { width: 100%; }
+.dx-resize { width: 100%; resize: vertical; }
+
+/* Toolbar above a list of rows: search, status tabs. */
+.dx-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dx-search { display: flex; gap: 6px; flex: 1 1 240px; min-width: 0; }
+.dx-search .input-field { flex: 1; min-width: 0; }
+.dx-fetching { opacity: 0.7; transition: opacity var(--dur-fast) ease; }
+
+/* The filter being built: field, operator, value, "Add filter". */
+.dx-filter-form { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.dx-filter-form .is-w160 { width: 160px; }
+.dx-filter-form .is-w120 { width: 120px; }
+.dx-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 8px; }
+.dx-filter {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 4px 3px 10px; border-radius: var(--radius-pill);
+  background: var(--color-surface-3); color: var(--color-ink-muted);
+  font-size: 12px; font-weight: 500; line-height: 1.4;
+}
+.dx-filter-x {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border: 0; border-radius: 50%;
+  background: transparent; color: inherit; cursor: pointer;
+  transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+.dx-filter-x::after { content: ''; position: absolute; inset: -11px; }
+.dx-filter-x:hover { background: var(--color-surface-1); color: var(--color-ink); }
+
+/* Images of a row: the thumbnail on its card, the picture in its dialog. */
+.dx-thumb { width: 48px; height: 48px; flex-shrink: 0; object-fit: cover; border-radius: var(--radius-sm); background: var(--color-surface-3); }
+.dx-hero-img { width: 100%; max-height: 320px; object-fit: contain; border-radius: var(--radius-sm); background: var(--color-surface-3); }
+.dx-card-top { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 5px; min-width: 0; }
+
+/* Key / value facts: the key is a mono name or an overline, the value wraps anywhere. */
+.dx-facts { display: grid; grid-template-columns: minmax(84px, max-content) 1fr; gap: 6px 14px; margin: 0; }
+.dx-facts dt { margin: 0; font-size: 12px; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.dx-facts dt.text-overline { color: var(--color-ink-dim); }
+.dx-facts dd { margin: 0; font-size: 13px; color: var(--color-ink); overflow-wrap: anywhere; }
+.dx-diff { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.dx-text.is-old { text-decoration: line-through; color: var(--color-ink-muted); }
+.dx-text { overflow-wrap: anywhere; white-space: pre-wrap; font-size: 14px; line-height: 1.5; color: var(--color-ink); }
+
+/* A round's progress: a 6px bar that grows in. */
+.dx-bar { display: block; height: 6px; border-radius: var(--radius-pill); background: var(--color-surface-3); overflow: hidden; }
+.dx-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--color-accent); }
+
+/* A column in the schema editor's field table. */
+.dx-field-name { font-size: 13px; }
+.dx-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.dx-flags { display: flex; flex-direction: column; gap: 2px; }
+
+/* The schema editor's save bar floats at the bottom edge while there are unsaved edits. */
+.dx-savebar {
+  position: sticky; bottom: 12px; z-index: 5;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 14px 16px; border-radius: var(--radius-xl);
+  background: var(--color-surface-2); border: 1px solid var(--color-hairline-strong);
+  box-shadow: var(--shadow-2);
+  animation: slide-in var(--dur-enter) var(--ease-out) both;
+}
+.dx-savebar-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.dx-savebar-row .input-field { flex: 1 1 200px; min-width: 0; }
+
+/* "Order by" selects of a round-based reuse policy. */
+.dx-order { display: flex; align-items: center; gap: 8px; }
+.dx-order > span { width: 64px; flex-shrink: 0; font-size: 12px; color: var(--color-ink-muted); }
+.dx-order .input-field { flex: 1; min-width: 0; }
+.dx-add-field { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; margin-top: 12px; }
+.dx-add-field .is-w160 { width: 160px; }
+.dx-add-field .is-w180 { width: 180px; }
+.dx-add-field .is-grow { flex: 1 1 200px; margin-bottom: 0; }
+
+/* A checkbox with a label. */
+.dx-check { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; font-size: 12px; color: var(--color-ink-muted); cursor: pointer; }
+.dx-check input { accent-color: var(--color-accent); }
+.dx-check.is-disabled { cursor: not-allowed; }
+.dx-checkbox { accent-color: var(--color-accent); }
+
+/* The import wizard. */
+.dx-wizard-hint { margin: 0 0 12px; font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); }
+.dx-details > summary { margin-bottom: 8px; padding: 6px 0; cursor: pointer; }
+.dx-prev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.dx-prev {
+  display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 12px;
+  border-radius: var(--radius-lg); background: var(--color-surface-1); border: 1px solid var(--color-hairline);
+}
+.dx-prev img { width: 100%; height: 110px; object-fit: cover; border-radius: var(--radius-sm); background: var(--color-surface-3); }
+.dx-prev-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.dx-prev-title { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; color: var(--color-ink); }
+.dx-inputs { display: flex; flex-direction: column; gap: 6px; }
+.dx-name-input { width: 150px; }
+.dx-wide-input { min-width: 180px; }
+.dx-block { margin-bottom: 16px; }
+
+@media (max-width: 600px) {
+  .dx-facts { grid-template-columns: 1fr; gap: 2px 0; }
+  .dx-facts dd { margin-bottom: 8px; }
+  .dx-savebar { bottom: 8px; padding: 12px; }
+}

@@ -2,48 +2,26 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState, useRef } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon } from '../components/ui/Icon';
-import { SectionCard, EmptyState, Field } from '../components/ui/primitives';
+import { SectionCard, EmptyState, Field, StatStrip, StatTile } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { ActionsTh, RowActions, TableAction } from '../components/ui/table';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { Modal } from '../components/Modal';
+import { SkeletonRows } from '../components/SkeletonRows';
 import {
   AD_FORMAT_LABEL, useAdOrders, useCreateAdOrder, useAdOrderCheckout, useScheduleAdOrder,
   useAdPrices, useUpsertAdPrice, useDeactivateAdPrice,
 } from '../api/ads';
 import { trackingApi } from '../api/tracking';
 import { useQuery } from '@tanstack/react-query';
-import type { AdCreative, AdFormat, AdOrder, AdOrderStatus, AdPrice } from '../api/types';
+import type { AdCreative, AdFormat, AdOrder, AdPrice } from '../api/types';
 import { fmtDate } from '../lib/format';
+import { flagLabel, isFlagged, ORDER_STATUS_LABEL, ORDER_STATUS_TONE, summarizeOrders } from '../lib/ad-orders';
+import '../components/ads/ads.css';
 
 export const Route = createFileRoute('/app/ads')({ component: AdsPage });
 
-const STATUS_TONE: Record<AdOrderStatus, 'success' | 'accent' | 'neutral' | 'warning'> = {
-  paid:             'success',
-  scheduled:        'accent',
-  published:        'success',
-  reported:         'accent',
-  awaiting_payment: 'neutral',
-  draft:            'neutral',
-  canceled:         'warning',
-};
-
 const FORMATS: AdFormat[] = ['post', 'pin_24h', 'digest_sponsor'];
-
-/** Spec 036: why a paid order is flagged (ad_orders.flag_reason). */
-const FLAG_LABEL: Record<string, string> = {
-  no_channel:       'no channel',
-  no_publish_date:  'no publish date',
-  no_agent_card:    'no digest and no agent card',
-  no_creative:      'no creative',
-  no_link:          'no sponsor link',
-  creative_invalid: 'creative invalid',
-  missed_day:       'day missed',
-  day_passed:       'day passed, not published',
-  slot_failed:      'slot failed',
-  not_scheduled:    'never scheduled',
-  approval_pending: 'action not approved',
-};
 
 type ChannelOpt = { id: string; title: string | null; channelKey?: string | null };
 
@@ -73,6 +51,7 @@ function AdsPage() {
     queryKey: ['channels', 'mine', 1, '', undefined],
     queryFn:  () => trackingApi.listChannels({ filter: 'mine', page: 1, pageSize: 100 }),
   });
+  const [newOrderOpen, setNewOrderOpen] = useState(false);
   const channels: ChannelOpt[] = channelsQ.data?.items ?? [];
   const activePrices = (pricesQ.data ?? []).filter(p => p.active);
 
@@ -82,36 +61,54 @@ function AdsPage() {
   };
 
   const orders = ordersQ.data ?? [];
+  const sum = summarizeOrders(orders);
 
   return (
     <div>
-      <PageHeader title="Ads" subtitle="Price list, ad orders, payment links, placement and advertiser reports" />
+      <PageHeader
+        eyebrow="Advertising"
+        title="Ads"
+        subtitle="Price list, ad orders, payment links, placement and advertiser reports"
+        actions={
+          <button type="button" className="btn-primary" onClick={() => setNewOrderOpen(true)}>
+            <Icon name="plus" size={14} /> New order
+          </button>
+        }
+      />
 
-      <PriceList prices={activePrices} channels={channels} />
-
-      <NewOrder prices={activePrices} channels={channels} />
-
-      {ordersQ.isLoading && (
-        <div className="panel" style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 20 }}>
-          {[0, 1, 2].map(i => (
-            <div key={i} className="card compose-rise" style={{ height: 78, opacity: 0.55, animationDelay: `${i * 60}ms`, background: 'var(--color-surface-1)' }} />
-          ))}
+      {orders.length > 0 && (
+        <div className="compose-rise" style={{ marginBottom: 16 }}>
+          <StatStrip label="Orders by stage">
+            <StatTile label="Awaiting payment" value={sum.awaitingPayment} />
+            <StatTile label="Paid, to schedule" value={sum.paid} />
+            <StatTile label="Scheduled" value={sum.scheduled} />
+            <StatTile label="Needs attention" value={sum.flagged} deltaTone="warning"
+              delta={sum.flagged > 0 ? 'flagged, see the Inbox' : undefined} />
+            <StatTile label="Published" value={sum.out} />
+          </StatStrip>
         </div>
       )}
 
-      {!ordersQ.isLoading && orders.length === 0 && (
-        <EmptyState icon="calendar" title="No ad orders yet" note="Create an order above to generate a payment link for an advertiser." />
-      )}
-
-      {orders.length > 0 && (
-        <SectionCard title="Orders" icon="calendar" delay={120}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {orders.map((order, i) => (
-              <OrderRow key={order.id} order={order} index={i} channelLabel={channelLabel} channels={channels} prices={pricesQ.data ?? []} />
-            ))}
+      <SectionCard title="Orders" flush delay={60}
+        action={orders.length > 0 ? <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{orders.length} total</span> : undefined}>
+        {ordersQ.isLoading && <SkeletonRows flush rows={3} height={64} label="Loading orders" />}
+        {ordersQ.error && (
+          <div className="callout-danger ad-error" role="alert" style={{ margin: '0 20px 16px' }}>
+            Couldn’t load the orders: {(ordersQ.error as Error).message}
           </div>
-        </SectionCard>
-      )}
+        )}
+        {!ordersQ.isLoading && !ordersQ.error && orders.length === 0 && (
+          <EmptyState icon="calendar" title="No ad orders yet" note="Create an order to generate a payment link for an advertiser."
+            action={<button type="button" className="btn-secondary btn-sm" onClick={() => setNewOrderOpen(true)}>New order</button>} />
+        )}
+        {orders.map(order => (
+          <OrderRow key={order.id} order={order} channelLabel={channelLabel} channels={channels} prices={pricesQ.data ?? []} />
+        ))}
+      </SectionCard>
+
+      <PriceList prices={activePrices} channels={channels} />
+
+      <NewOrder open={newOrderOpen} onClose={() => setNewOrderOpen(false)} prices={activePrices} channels={channels} />
     </div>
   );
 }
@@ -137,13 +134,14 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
   }
 
   return (
-    <SectionCard title="Price list" icon="analytics" delay={0}>
-      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 0 }}>
+    <SectionCard title="Price list" delay={120} style={{ marginTop: 16 }}
+      action={prices.length > 0 ? <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{prices.length} active</span> : undefined}>
+      <p className="ad-note">
         Public on the landing media kit and used for order amounts. Saving a price for the same channel and format replaces the old one (history is kept).
       </p>
-      <form onSubmit={save} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '0 16px', alignItems: 'end' }}>
+      <form onSubmit={save} className="inset ad-price-form">
         <Field label="Channel">
-          <select className="input-field" style={{ width: '100%' }} value={channelKey} onChange={e => setChannelKey(e.target.value)} required>
+          <select className="input-field" value={channelKey} onChange={e => setChannelKey(e.target.value)} required>
             <option value="">— pick —</option>
             {channels.filter(c => c.channelKey).map(c => (
               <option key={c.id} value={c.channelKey!}>{c.title ?? c.channelKey}</option>
@@ -151,7 +149,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
           </select>
         </Field>
         <Field label="Format">
-          <select className="input-field" style={{ width: '100%' }} value={format} onChange={e => setFormat(e.target.value as AdFormat)}>
+          <select className="input-field" value={format} onChange={e => setFormat(e.target.value as AdFormat)}>
             {FORMATS.map(f => <option key={f} value={f}>{AD_FORMAT_LABEL[f]}</option>)}
           </select>
         </Field>
@@ -162,15 +160,15 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
           <input className="input-field" placeholder="e.g. stays in the feed" value={note} onChange={e => setNote(e.target.value)} maxLength={200} />
         </Field>
         <div style={{ marginBottom: 16 }}>
-          <button type="submit" className="btn-primary" disabled={upsert.isPending} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="check" size={14} /> Save
+          <button type="submit" className="btn-secondary" disabled={upsert.isPending}>
+            <Icon name="check" size={14} /> Save price
           </button>
         </div>
       </form>
-      {upsert.isError && <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginTop: 0 }}>{(upsert.error as Error).message}</p>}
+      {upsert.isError && <div className="callout-danger ad-error" role="alert">{(upsert.error as Error).message}</div>}
 
       {prices.length === 0 ? (
-        <p className="text-body-sm" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>No active prices yet.</p>
+        <EmptyState icon="spend" title="No active prices yet" note="Pick a channel, a format and a price above." />
       ) : (
         <div className="table-wrap">
           <table className="table">
@@ -184,7 +182,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
             <tbody>
               {prices.map(p => (
                 <tr key={p.id}>
-                  <td>{p.channel_key}</td>
+                  <td><span className="mono">{p.channel_key}</span></td>
                   <td>
                     {AD_FORMAT_LABEL[p.format]}
                     {p.sellable === false && (
@@ -212,9 +210,9 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
   );
 }
 
-// ─── New order ───────────────────────────────────────────────────────────────
+// ─── New order (a drawer) ────────────────────────────────────────────────────
 
-function NewOrder({ prices, channels }: { prices: AdPrice[]; channels: ChannelOpt[] }) {
+function NewOrder({ open, onClose, prices, channels }: { open: boolean; onClose: () => void; prices: AdPrice[]; channels: ChannelOpt[] }) {
   const createMut = useCreateAdOrder();
   const [advertiser, setAdvertiser] = useState('');
   const [priceId, setPriceId] = useState('');
@@ -249,22 +247,21 @@ function NewOrder({ prices, channels }: { prices: AdPrice[]; channels: ChannelOp
         onSuccess: () => {
           setAdvertiser(''); setPriceId(''); setChannelId(''); setAmount(''); setDescription('');
           setPublishAt(''); setSponsorLabel(''); setText(''); setImageUrl(''); setButtonLabel(''); setButtonUrl('');
+          onClose();
         },
       },
     );
   }
 
-  const grid2 = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0 24px' } as const;
-
   return (
-    <SectionCard title="New order" icon="plus" delay={60}>
-      <form onSubmit={handleCreate} style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-        <div style={grid2}>
+    <Modal open={open} onClose={onClose} size="drawer" icon="plus" title="New order" subtitle="Creates the order; get its payment link from the list afterwards">
+      <form id="new-ad-order" onSubmit={handleCreate}>
+        <div className="ad-grid2">
           <Field label="Advertiser">
-            <input className="input-field" placeholder="Acme Corp" value={advertiser} onChange={e => setAdvertiser(e.target.value)} required />
+            <input className="input-field ad-fill" placeholder="Acme Corp" value={advertiser} onChange={e => setAdvertiser(e.target.value)} required />
           </Field>
           <Field label="Price" hint={price ? `${price.price_uah} UAH — amount is set by the server` : 'or enter a custom amount'}>
-            <select className="input-field" value={priceId} onChange={e => setPriceId(e.target.value)}>
+            <select className="input-field ad-fill" value={priceId} onChange={e => setPriceId(e.target.value)}>
               <option value="">— custom amount —</option>
               {prices.filter(p => p.sellable !== false).map(p => (
                 <option key={p.id} value={p.id}>{p.channel_key} · {AD_FORMAT_LABEL[p.format]} · {p.price_uah} UAH</option>
@@ -272,68 +269,66 @@ function NewOrder({ prices, channels }: { prices: AdPrice[]; channels: ChannelOp
             </select>
           </Field>
         </div>
-        <div style={grid2}>
+        <div className="ad-grid2">
           {!priceId ? (
             <Field label="Amount (UAH)">
-              <input className="input-field" placeholder="5000.00" value={amount} onChange={e => setAmount(e.target.value)}
+              <input className="input-field ad-fill" placeholder="5000.00" value={amount} onChange={e => setAmount(e.target.value)}
                 pattern="^\d+(\.\d{1,2})?$" title="Decimal number, e.g. 5000.00" required />
             </Field>
           ) : <div />}
           <Field label="Channel" hint={priceId ? 'defaults to the price channel' : 'optional'}>
-            <select className="input-field" value={channelId} onChange={e => setChannelId(e.target.value)}>
+            <select className="input-field ad-fill" value={channelId} onChange={e => setChannelId(e.target.value)}>
               <option value="">{priceId ? '— price channel —' : '— any / TBD —'}</option>
               {channels.map(c => <option key={c.id} value={c.id}>{c.title ?? c.channelKey ?? c.id}</option>)}
             </select>
           </Field>
         </div>
-        <div style={grid2}>
+        <div className="ad-grid2">
           <Field label="Publish at" hint="agreed time (digest sponsor: the digest day)">
-            <input type="datetime-local" className="input-field" value={publishAt} onChange={e => setPublishAt(e.target.value)} />
+            <input type="datetime-local" className="input-field ad-fill" value={publishAt} onChange={e => setPublishAt(e.target.value)} />
           </Field>
           <Field label="Customer line" hint="optional — adds “Реклама. Замовник: …”">
-            <input className="input-field" placeholder="ФОП Коваль" value={sponsorLabel} onChange={e => setSponsorLabel(e.target.value)} maxLength={120} />
+            <input className="input-field ad-fill" placeholder="ФОП Коваль" value={sponsorLabel} onChange={e => setSponsorLabel(e.target.value)} maxLength={120} />
           </Field>
         </div>
         <Field label="Ad text" hint="optional now — Ukrainian; blank line = new paragraph; **bold**, [link](https://…). #реклама is added automatically">
-          <textarea className="input-field" rows={4} value={text} onChange={e => setText(e.target.value)} style={{ resize: 'vertical' }} />
+          <textarea className="input-field ad-textarea" rows={4} value={text} onChange={e => setText(e.target.value)} />
         </Field>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 24px' }}>
+        <div className="ad-grid3">
           <Field label="Image URL" hint="optional, makes it a photo post">
-            <input className="input-field" placeholder="https://…" value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
+            <input className="input-field ad-fill" placeholder="https://…" value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
           </Field>
           <Field label="Button label" hint="optional">
-            <input className="input-field" placeholder="Детальніше" value={buttonLabel} onChange={e => setButtonLabel(e.target.value)} maxLength={40} />
+            <input className="input-field ad-fill" placeholder="Детальніше" value={buttonLabel} onChange={e => setButtonLabel(e.target.value)} maxLength={40} />
           </Field>
           <Field label="Button URL">
-            <input className="input-field" placeholder="https://…" value={buttonUrl} onChange={e => setButtonUrl(e.target.value)} />
+            <input className="input-field ad-fill" placeholder="https://…" value={buttonUrl} onChange={e => setButtonUrl(e.target.value)} />
           </Field>
         </div>
         <Field label="Description" hint="optional, internal / invoice">
-          <input className="input-field" placeholder="Post in @channel on Mon" value={description} onChange={e => setDescription(e.target.value)} />
+          <input className="input-field ad-fill" placeholder="Post in @channel on Mon" value={description} onChange={e => setDescription(e.target.value)} />
         </Field>
-        <div>
-          <button type="submit" className="btn-primary" disabled={createMut.isPending} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="plus" size={14} />
-            {createMut.isPending ? 'Creating…' : 'Create order'}
-          </button>
-          {createMut.isError && (
-            <span className="text-body-sm" style={{ color: 'var(--color-danger)', marginLeft: 12 }}>
-              {(createMut.error as Error).message}
-            </span>
-          )}
-        </div>
+        {createMut.isError && (
+          <div className="callout-danger" role="alert">{(createMut.error as Error).message}</div>
+        )}
       </form>
-    </SectionCard>
+      <div className="modal-foot">
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
+        <button type="submit" form="new-ad-order" className="btn-primary" disabled={createMut.isPending}>
+          <Icon name="plus" size={14} />
+          {createMut.isPending ? 'Creating…' : 'Create order'}
+        </button>
+      </div>
+    </Modal>
   );
 }
 
 // ─── Order row ───────────────────────────────────────────────────────────────
 
 function OrderRow({
-  order, index, channelLabel, channels, prices,
+  order, channelLabel, channels, prices,
 }: {
   order: AdOrder;
-  index: number;
   channelLabel: (id: string) => string;
   channels: ChannelOpt[];
   prices: AdPrice[];
@@ -373,66 +368,61 @@ function OrderRow({
   }
 
   return (
-    <div className="card row-lift compose-rise" style={{ padding: '14px 18px', animationDelay: `${index * 45}ms` }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
-        <div style={{ flex: '0 0 auto', minWidth: 140 }}>
-          <div className="text-body-sm" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{order.advertiser}</div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 2, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <>
+      <div className="panel-row">
+        <div className="ad-row-main">
+          <div className="text-body-sm ad-row-name">{order.advertiser}</div>
+          <div className="ad-row-meta">
             {order.channel_id && <span><Icon name="telegram" size={11} /> {channelLabel(order.channel_id)}</span>}
             {price && <span>{AD_FORMAT_LABEL[price.format]}</span>}
             {order.publish_at && <span><Icon name="calendar" size={11} /> {fmtDate(order.publish_at)}</span>}
           </div>
+          {order.description && <div className="ad-row-desc clamp" title={order.description}>{order.description}</div>}
         </div>
 
-        <div className="text-body-sm tabular-nums" style={{ color: 'var(--color-ink)', flexShrink: 0 }}>
-          {order.amount} {order.currency}
+        <div className="ad-row-amount mono">{order.amount} {order.currency}</div>
+
+        <div className="ad-row-badges">
+          <Badge tone={ORDER_STATUS_TONE[order.status]}>{ORDER_STATUS_LABEL[order.status] ?? order.status}</Badge>
+          {order.editor_slot_id && order.status === 'scheduled' && <Badge tone="neutral">Reserved slot</Badge>}
+          {isFlagged(order) && order.flag_reason && (
+            <Badge tone="danger" title={`Flagged ${order.flagged_at ? fmtDate(order.flagged_at) : ''}: see the Inbox item. Nothing is refunded or published automatically.`}>
+              Needs attention: {flagLabel(order.flag_reason)}
+            </Badge>
+          )}
         </div>
 
-        <Badge tone={STATUS_TONE[order.status]}>{order.status.replace('_', ' ')}</Badge>
-        {order.editor_slot_id && order.status === 'scheduled' && <Badge tone="neutral">reserved slot</Badge>}
-        {order.flag_reason && (order.status === 'paid' || order.status === 'scheduled') && (
-          <Badge tone="danger" title={`Flagged ${order.flagged_at ? fmtDate(order.flagged_at) : ''}: see the Inbox item. Nothing is refunded or published automatically.`}>
-            needs attention: {FLAG_LABEL[order.flag_reason] ?? order.flag_reason.replace(/_/g, ' ')}
-          </Badge>
-        )}
-
-        {order.description && (
-          <div className="text-body-sm" style={{ flex: 1, minWidth: 0, color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {order.description}
-          </div>
-        )}
-
-        <div style={{ flexShrink: 0, display: 'flex', gap: 8, marginLeft: 'auto', alignItems: 'center' }}>
+        <div className="ad-row-actions">
           {(order.status === 'draft' || order.status === 'awaiting_payment') && (
-            <button className="btn-tiny" onClick={handleCheckout} disabled={checkoutMut.isPending} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <button type="button" className="btn-tiny" onClick={handleCheckout} disabled={checkoutMut.isPending}>
               <Icon name="info" size={12} />
               {checkoutMut.isPending ? 'Loading…' : 'Get payment link'}
             </button>
           )}
           {paymentUrl && (
-            <button className="btn-tiny" onClick={() => setShowPayment(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <button type="button" className="btn-tiny" onClick={() => setShowPayment(true)}>
               <Icon name="check" size={12} /> Show payment link
             </button>
           )}
           {order.status === 'paid' && price?.format !== 'digest_sponsor' && (
-            <button className="btn-tiny" onClick={() => setShowSched(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <button type="button" className="btn-tiny" onClick={() => setShowSched(true)}>
               <Icon name="calendar" size={12} /> Schedule post
             </button>
           )}
           {order.status === 'paid' && price?.format === 'digest_sponsor' && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+            <span className="ad-hint">
               {price.sellable === false
                 ? 'goes out as a sponsored post on its publish day (no digest runs here)'
                 : 'goes into the digest on its publish day'}
             </span>
           )}
           {order.status === 'scheduled' && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+            <span className="ad-hint">
               {order.editor_slot_id ? 'publishes automatically at its slot' : 'approve the action on /app/agent'}
             </span>
           )}
           {reportUrl && (
-            <a className="btn-tiny" href={reportUrl} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <a className="btn-tiny" href={reportUrl} target="_blank" rel="noreferrer">
               <Icon name="analytics" size={12} /> Report ({order.report!.stage})
             </a>
           )}
@@ -443,26 +433,25 @@ function OrderRow({
         subtitle={`${order.advertiser} · ${order.amount} ${order.currency}`}>
         {paymentUrl && (
           <Field label="Payment link — send this to the advertiser">
-            <div style={{ display: 'flex', gap: 8 }}>
-              <input ref={urlRef} readOnly autoFocus className="input-field" value={paymentUrl} onFocus={e => e.target.select()}
-                style={{ flex: 1, minWidth: 0, fontFamily: 'var(--font-mono, monospace)', fontSize: 11 }} />
-              <button className="btn-tiny" onClick={() => { navigator.clipboard.writeText(paymentUrl); }} style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                <Icon name="check" size={12} /> Copy
+            <div className="ad-link-field">
+              <input ref={urlRef} readOnly autoFocus className="input-field mono" aria-label="Payment link" value={paymentUrl} onFocus={e => e.target.select()} />
+              <button type="button" className="btn-tiny" onClick={() => { navigator.clipboard.writeText(paymentUrl); }}>
+                <Icon name="copy" size={12} /> Copy
               </button>
             </div>
           </Field>
         )}
         <div className="modal-foot">
-          <button type="button" className="btn-secondary" onClick={() => setShowPayment(false)}>Close</button>
+          <button type="button" className="btn-ghost" onClick={() => setShowPayment(false)}>Close</button>
         </div>
       </Modal>
 
       <Modal open={order.status === 'paid' && showSched} onClose={() => setShowSched(false)} icon="calendar" title="Schedule post"
         subtitle={`${order.advertiser}${price ? ` · ${AD_FORMAT_LABEL[price.format]}` : ''}`}>
-        <form onSubmit={handleSchedule} style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0 24px' }}>
+        <form onSubmit={handleSchedule}>
+          <div className="ad-grid2">
             <Field label="Channel">
-              <select className="input-field" value={schedChannel} onChange={e => setSchedChannel(e.target.value)} required>
+              <select className="input-field ad-fill" value={schedChannel} onChange={e => setSchedChannel(e.target.value)} required>
                 <option value="">— pick a channel —</option>
                 {order.channel_id && !channels.some(c => c.id === order.channel_id) && (
                   <option value={order.channel_id}>{channelLabel(order.channel_id)}</option>
@@ -471,30 +460,30 @@ function OrderRow({
               </select>
             </Field>
             <Field label="Schedule at">
-              <input type="datetime-local" className="input-field" value={schedAt} onChange={e => setSchedAt(e.target.value)} required style={{ colorScheme: 'dark' }} />
+              <input type="datetime-local" className="input-field ad-fill" value={schedAt} onChange={e => setSchedAt(e.target.value)} required />
             </Field>
           </div>
           {order.creative ? (
-            <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 0 }}>
+            <p className="ad-note">
               The order’s creative is published as-is with #реклама. Approving the action on /app/agent reserves the slot.
             </p>
           ) : (
             <Field label="Post text" hint="#реклама is added automatically">
-              <textarea className="input-field" rows={5} value={schedText} onChange={e => setSchedText(e.target.value)} required style={{ resize: 'vertical' }} />
+              <textarea className="input-field ad-textarea" rows={5} value={schedText} onChange={e => setSchedText(e.target.value)} required />
             </Field>
           )}
           {scheduleMut.isError && (
-            <div className="callout-danger" style={{ marginBottom: 8 }}><span className="text-micro">{(scheduleMut.error as Error).message}</span></div>
+            <div className="callout-danger" role="alert" style={{ marginBottom: 8 }}>{(scheduleMut.error as Error).message}</div>
           )}
           <div className="modal-foot">
-            <button type="button" className="btn-secondary" onClick={() => setShowSched(false)}>Cancel</button>
-            <button type="submit" className="btn-primary" disabled={scheduleMut.isPending} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-ghost" onClick={() => setShowSched(false)}>Cancel</button>
+            <button type="submit" className="btn-primary" disabled={scheduleMut.isPending}>
               <Icon name="calendar" size={14} />
               {scheduleMut.isPending ? 'Scheduling…' : 'Schedule'}
             </button>
           </div>
         </form>
       </Modal>
-    </div>
+    </>
   );
 }

@@ -5,9 +5,10 @@ import { Crumbs } from '../components/ui/Crumbs';
 import { useCrumbs } from '../nav/hooks';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
-import { EmptyState, StatTile } from '../components/ui/primitives';
+import { EmptyState, SectionCard, StatStrip, StatTile } from '../components/ui/primitives';
 import { describeError } from '../components/ui/Toast';
 import { SegmentedTabs } from '../components/SegmentedTabs';
+import { SkeletonRows } from '../components/SkeletonRows';
 import { DatasetItems } from '../components/data/DatasetItems';
 import { SchemaEditor } from '../components/data/SchemaEditor';
 import { ImportHistory } from '../components/data/ImportHistory';
@@ -18,6 +19,7 @@ import { fmtDate, fmtRelative } from '../lib/format';
 import { DATASET_STATUS, fmtInt } from '../lib/data-store';
 import { ApiError } from '../api/client';
 import { useDataset, useDatasets } from '../api/data';
+import '../components/data/data.css';
 
 const TABS = ['items', 'schema', 'imports'] as const;
 type Tab = typeof TABS[number];
@@ -47,55 +49,63 @@ function DatasetPage() {
     const notFound = q.error instanceof ApiError && q.error.status === 404;
     return <div>{back}{notFound
       ? <EmptyState icon="database" title={`No dataset "${key}"`} note="It may have a different key. Pick one from the list." />
-      : <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{describeError(q.error)}</p>}</div>;
+      : <div className="callout-danger" role="alert">{describeError(q.error)}</div>}</div>;
   }
-  if (!q.data) return <div>{back}<p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p></div>;
+  if (!q.data) return <div>{back}<SkeletonRows rows={3} label="Loading dataset" /></div>;
   const s = q.data;
 
   return (
     <div>
       {back}
       <PageHeader
+        eyebrow={s.key}
         title={s.title}
-        subtitle={s.description || 'No description yet — agents choose datasets by their description, so add one on the Schema tab.'}
+        subtitle={<>
+          {s.description || 'No description yet — agents choose datasets by their description, so add one on the Schema tab.'}
+          <span className="dx-meta">
+            <Badge tone={DATASET_STATUS[s.status].tone}>{DATASET_STATUS[s.status].label}</Badge>
+            <span className="chip">{s.entity}</span>
+            <span className="mono text-micro dx-dim">
+              v{s.version}{s.language ? ` · ${s.language}` : ''} · license {s.default_license}
+              {s.contains_personal_data ? ' · personal data' : ''}{s.legacy ? ` · moved from the ${s.legacy.table} table` : ''}
+            </span>
+          </span>
+        </>}
         actions={
           <button type="button" className="btn-primary" disabled={s.status === 'archived'} onClick={() => setImporting(true)}>
             <Icon name="arrow-up" size={14} /> Import file
           </button>
         }
       />
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', margin: '-12px 0 16px' }}>
-        <Badge tone={DATASET_STATUS[s.status].tone}>{DATASET_STATUS[s.status].label}</Badge>
-        <span className="chip">{s.entity}</span>
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-          <code>{s.key}</code> · version {s.version}{s.language ? ` · ${s.language}` : ''} · license {s.default_license}
-          {s.contains_personal_data ? ' · personal data' : ''}{s.legacy ? ` · moved from the ${s.legacy.table} table` : ''}
-        </span>
+
+      <div className="compose-rise" style={{ marginBottom: 20 }}>
+        <StatStrip label="Dataset numbers">
+          <StatTile label="Rows" value={fmtInt(stats?.rows_active ?? null)}
+            delta={stats && stats.rows !== stats.rows_active ? `${fmtInt(stats.rows - stats.rows_active)} hidden` : undefined} />
+          <StatTile label="Unposted" value={fmtInt(stats?.unposted_network ?? null)}
+            delta={`${s.reuse_policy.kind === 'cycle' ? 'in current rounds · ' : ''}${stats?.stats_at ? `stats ${fmtRelative(stats.stats_at)}` : 'no stats yet'}`} />
+          <StatTile label="Today" value={fmtInt(stats?.today_items ?? null)} delta="rows for today's date" />
+          <StatTile label="Last import" value={stats?.last_import_at ? fmtRelative(stats.last_import_at) : '—'}
+            delta={stats?.last_import_at ? fmtDate(stats.last_import_at) : undefined} />
+        </StatStrip>
       </div>
 
-      <div className="stat-grid" style={{ marginBottom: 18 }}>
-        <StatTile label="Rows" value={fmtInt(stats?.rows ?? null)} icon="database" delta={stats && stats.rows !== stats.rows_active ? `${fmtInt(stats.rows - stats.rows_active)} hidden` : undefined} />
-        <StatTile label="Unposted" value={fmtInt(stats?.unposted_network ?? null)} icon="sparkles" accent
-          delta={`${s.reuse_policy.kind === 'cycle' ? 'in current rounds · ' : ''}${stats?.stats_at ? `stats ${fmtRelative(stats.stats_at)}` : 'no stats yet'}`} />
-        <StatTile label="Today" value={fmtInt(stats?.today_items ?? null)} icon="calendar" delta="rows for today's date" />
-        <StatTile label="Last import" value={stats?.last_import_at ? fmtRelative(stats.last_import_at) : '—'} icon="history"
-          delta={stats?.last_import_at ? fmtDate(stats.last_import_at) : undefined} />
-      </div>
-
-      <div style={{ marginBottom: 16, overflowX: 'auto' }}>
-        <SegmentedTabs<Tab> value={tab} onChange={setTab} options={[
+      <div style={{ marginBottom: 20 }}>
+        <SegmentedTabs<Tab> variant="underline" ariaLabel="Dataset sections" value={tab} onChange={setTab} options={[
           { key: 'items', label: 'Items', icon: 'database' },
           { key: 'schema', label: 'Schema', icon: 'pencil' },
           { key: 'imports', label: 'Imports', icon: 'history' },
         ]} />
       </div>
 
-      {tab === 'items' && <>
-        <RoundsPanel schema={s} />
-        <DatasetItems schema={s} />
-      </>}
-      {tab === 'schema' && <SchemaEditor schema={s}><DataSuggestions schema={s.key} /></SchemaEditor>}
-      {tab === 'imports' && <ImportHistory schema={s.key} />}
+      <div key={tab} className="anim-fade-up">
+        {tab === 'items' && <div className="dx-stack">
+          <RoundsPanel schema={s} />
+          <DatasetItems schema={s} />
+        </div>}
+        {tab === 'schema' && <SchemaEditor schema={s}><DataSuggestions schema={s.key} /></SchemaEditor>}
+        {tab === 'imports' && <SectionCard title="Imports"><ImportHistory schema={s.key} /></SectionCard>}
+      </div>
 
       {importing && <ImportWizard open onClose={() => setImporting(false)} initialSchema={s.key} />}
     </div>

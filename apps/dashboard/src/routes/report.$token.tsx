@@ -2,23 +2,45 @@
 // landing page; the token in the URL is the only key (served by
 // GET /api/ads/report/:token, which returns only the report JSON).
 import { createFileRoute } from '@tanstack/react-router';
-import { StatTile } from '../components/ui/primitives';
+import { useEffect, useRef, useState } from 'react';
+import { SectionCard, StatStrip, StatTile } from '../components/ui/primitives';
+import { PageHeader } from '../components/ui/PageHeader';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
+import { SkeletonRows } from '../components/SkeletonRows';
 import { useAdReport } from '../api/ads';
 import type { AdReport } from '../api/types';
+import '../components/report/report.css';
 
 export const Route = createFileRoute('/report/$token')({ component: ReportPage });
 
 const n = (v: number | null) => (v == null ? '—' : v.toLocaleString('en-GB'));
 const when = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
+/** Width of a box in px (re-read on resize), so the chart can be drawn 1 unit = 1px and keep its labels legible. */
+function useBoxWidth() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(640);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const read = () => { const v = Math.round(el.getBoundingClientRect().width); if (v > 0) setW(v); };
+    read();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(read);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return [ref, w] as const;
+}
+
 /** Views over hours since publication — a plain SVG polyline in the accent color. */
 function Curve({ points }: { points: AdReport['curve'] }) {
+  const [boxRef, boxW] = useBoxWidth();
   const pts = points.filter((p) => p.views != null) as Array<{ hours: number; views: number }>;
-  if (pts.length < 2) return <p className="text-body-sm" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>Not enough measurements for a chart yet.</p>;
+  if (pts.length < 2) return <div ref={boxRef} className="rp-curve"><p className="rp-empty">Not enough measurements for a chart yet.</p></div>;
   // Room for axis labels: left for views, bottom for hours since publication.
-  const W = 640, H = 190, L = 44, R = 12, T = 12, B = 28;
+  const W = Math.min(Math.max(boxW, 240), 760), H = 190, L = 44, R = 12, T = 12, B = 28;
   const maxH = Math.max(...pts.map((p) => p.hours));
   const maxV = Math.max(...pts.map((p) => p.views), 1);
   const x = (h: number) => L + (h / maxH) * (W - L - R);
@@ -35,25 +57,27 @@ function Curve({ points }: { points: AdReport['curve'] }) {
   const last = pts[pts.length - 1].hours;
   if (xTicks[xTicks.length - 1] !== last) { if (x(last) - x(xTicks[xTicks.length - 1]) < 56) xTicks.pop(); xTicks.push(last); }
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Views by hours since publication" style={{ width: '100%', height: 'auto', display: 'block' }}>
-      {yTicks.map((v) => (
-        <g key={`y${v}`}>
-          <line x1={L} y1={y(v)} x2={W - R} y2={y(v)} stroke="var(--color-hairline-soft)" strokeDasharray={v === 0 ? undefined : '3 4'} />
-          <text x={L - 8} y={y(v) + 4} textAnchor="end" fontSize={11} fill="var(--color-ink-dim)">{fmtV(v)}</text>
-        </g>
-      ))}
-      {xTicks.map((h) => (
-        <text key={`x${h}`} x={x(h)} y={H - 8} textAnchor="middle" fontSize={11} fill="var(--color-ink-dim)">{h} h</text>
-      ))}
-      <polyline points={`${x(pts[0].hours)},${H - B} ${line} ${x(pts[pts.length - 1].hours)},${H - B}`}
-        fill="color-mix(in srgb, var(--color-accent) 14%, transparent)" stroke="none" />
-      <polyline points={line} fill="none" stroke="var(--color-accent)" strokeWidth={2} strokeLinejoin="round" />
-      {pts.map((p) => (
-        <circle key={`p${p.hours}`} cx={x(p.hours)} cy={y(p.views)} r={3} fill="var(--color-accent)">
-          <title>{`${p.hours} h — ${p.views.toLocaleString('en-GB')} views`}</title>
-        </circle>
-      ))}
-    </svg>
+    <div ref={boxRef} className="rp-curve">
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Views by hours since publication">
+        {yTicks.map((v) => (
+          <g key={`y${v}`}>
+            <line x1={L} y1={y(v)} x2={W - R} y2={y(v)} stroke="var(--color-hairline-soft)" strokeDasharray={v === 0 ? undefined : '3 4'} />
+            <text x={L - 8} y={y(v) + 4} textAnchor="end" fontSize={11} fill="var(--color-ink-dim)">{fmtV(v)}</text>
+          </g>
+        ))}
+        {xTicks.map((h) => (
+          <text key={`x${h}`} x={x(h)} y={H - 8} textAnchor="middle" fontSize={11} fill="var(--color-ink-dim)">{h} h</text>
+        ))}
+        <polyline points={`${x(pts[0].hours)},${H - B} ${line} ${x(pts[pts.length - 1].hours)},${H - B}`}
+          fill="color-mix(in srgb, var(--color-accent) 14%, transparent)" stroke="none" />
+        <polyline points={line} fill="none" stroke="var(--color-accent)" strokeWidth={2} strokeLinejoin="round" />
+        {pts.map((p) => (
+          <circle key={`p${p.hours}`} cx={x(p.hours)} cy={y(p.views)} r={3} fill="var(--color-accent)">
+            <title>{`${p.hours} h — ${p.views.toLocaleString('en-GB')} views`}</title>
+          </circle>
+        ))}
+      </svg>
+    </div>
   );
 }
 
@@ -67,13 +91,13 @@ function ReportPage() {
       <main className="rp-main">
         <header className="rp-head">
           <span className="wordmark"><span className="dot" />ai0</span>
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Advertiser report</span>
+          <span className="rp-head-tag">Advertiser report</span>
         </header>
 
-        {q.isLoading && <div className="card" style={{ height: 220, opacity: 0.5 }} />}
+        {q.isLoading && <SkeletonRows rows={1} height={220} label="Loading the report" />}
 
         {q.isError && (
-          <div className="callout-warning">
+          <div className="callout-warning rp-error" role="alert">
             <Icon name="warning" size={16} />
             <span>Report not found. Check the link or contact us.</span>
           </div>
@@ -81,19 +105,19 @@ function ReportPage() {
 
         {r && (
           <>
-            <section className="rp-hero">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                <h1 className="text-display-md" style={{ margin: 0 }}>{r.advertiser}</h1>
-                <Badge tone={r.stage === '72h' ? 'success' : 'accent'}>{r.stage === '72h' ? 'final · 72 h' : 'first day · 24 h'}</Badge>
-              </div>
-              <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-                {r.channel.url ? <a href={r.channel.url} target="_blank" rel="noreferrer">{r.channel.title ?? r.channel.key}</a> : (r.channel.title ?? r.channel.key)}
-                {' · '}published {when(r.post.publishedAt)}
-                {r.post.url && <> · <a href={r.post.url} target="_blank" rel="noreferrer">open the post</a></>}
-              </p>
-            </section>
+            <div className="rp-hero">
+              <PageHeader
+                title={r.advertiser}
+                subtitle={<>
+                  {r.channel.url ? <a href={r.channel.url} target="_blank" rel="noreferrer">{r.channel.title ?? r.channel.key}</a> : (r.channel.title ?? r.channel.key)}
+                  {' · '}published {when(r.post.publishedAt)}
+                  {r.post.url && <> · <a href={r.post.url} target="_blank" rel="noreferrer">open the post</a></>}
+                </>}
+                actions={<Badge tone={r.stage === '72h' ? 'success' : 'accent'}>{r.stage === '72h' ? 'final · 72 h' : 'first day · 24 h'}</Badge>}
+              />
+            </div>
 
-            <section className="rp-tiles">
+            <StatStrip label="Report metrics">
               <StatTile label="Views" value={n(r.metrics.views)} icon="eye" accent />
               <StatTile label="Forwards" value={n(r.metrics.forwards)} icon="refresh" />
               <StatTile label="Reactions" value={n(r.metrics.reactions)} icon="sparkles" />
@@ -103,49 +127,32 @@ function ReportPage() {
                 delta={r.channel.subscribers ? `of ${n(r.channel.subscribers)} subscribers` : undefined}
                 icon="channels"
               />
-            </section>
+            </StatStrip>
 
-            <section className="card rp-card">
-              <span className="text-eyebrow">Views by hours since publication</span>
+            <SectionCard title="Views by hours since publication" delay={60}>
               <Curve points={r.curve} />
-            </section>
+            </SectionCard>
 
             {r.link && (
-              <section className="card rp-card">
-                <span className="text-eyebrow">Link in the post</span>
-                <span className="text-body-sm" style={{ wordBreak: 'break-all' }}>{r.link.url}</span>
-                <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                  {r.link.utm
-                    ? 'The link has UTM tags — clicks show up in your analytics (utm_source / utm_campaign).'
-                    : 'Telegram does not report link clicks; add UTM tags to the link to see them in your analytics.'}
-                </span>
-              </section>
+              <SectionCard title="Link in the post" delay={120}>
+                <div className="rp-card-body">
+                  <span className="text-body-sm mono rp-url">{r.link.url}</span>
+                  <span className="rp-note">
+                    {r.link.utm
+                      ? 'The link has UTM tags — clicks show up in your analytics (utm_source / utm_campaign).'
+                      : 'Telegram does not report link clicks; add UTM tags to the link to see them in your analytics.'}
+                  </span>
+                </div>
+              </SectionCard>
             )}
 
-            <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>
+            <p className="rp-foot">
               Data as of {when(r.metrics.capturedAt ?? r.generatedAt)}.
               {r.stage === '24h' && ' The final report appears at this same link 72 hours after publication.'}
             </p>
           </>
         )}
       </main>
-
-      <style>{`
-        .rp-root { min-height: 100vh; background: var(--color-canvas); color: var(--color-ink); }
-        .rp-main {
-          max-width: 760px; margin: 0 auto;
-          padding: var(--space-xl) var(--space-xl) var(--space-section);
-          display: flex; flex-direction: column; gap: var(--space-xl);
-        }
-        .rp-head { display: flex; align-items: center; justify-content: space-between; }
-        .rp-head .wordmark { font-size: 16px; }
-        .rp-hero { display: flex; flex-direction: column; gap: var(--space-sm); }
-        .rp-hero a, .rp-card a { color: var(--color-accent); }
-        .rp-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
-        @media (max-width: 720px) { .rp-tiles { grid-template-columns: repeat(2, 1fr); } }
-        .rp-card { display: flex; flex-direction: column; gap: var(--space-sm); padding: var(--space-lg); }
-        @media (max-width: 600px) { .rp-main { padding-left: var(--space-lg); padding-right: var(--space-lg); } }
-      `}</style>
     </div>
   );
 }

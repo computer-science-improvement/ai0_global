@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildFilter, cellText, changeLabel, draftMapping, draftProblems, filterLabel, newField, opsForField, previewSummary, roleValueLabel,
-  schemaPatch, type DraftField,
+  schemaPatch, summarizeDatasets, type DraftField,
 } from './data-store';
 
 test('operators follow the backend rules per type; today needs a date-like type or role', () => {
@@ -80,4 +80,16 @@ test('small display helpers', () => {
   assert.equal(cellText(null), '—');
   assert.equal(cellText('x'.repeat(10), 4), 'xxxx…');
   assert.equal(cellText({ a: 1 }), '{"a":1}');
+});
+
+test('the key numbers of the dataset list add up what the rows hold', () => {
+  const d = (over: Partial<Parameters<typeof summarizeDatasets>[0][number]>) =>
+    ({ status: 'active', rows: 10, rows_active: 8, unposted_network: 5, last_import_at: null, ...over });
+  assert.deepEqual(summarizeDatasets([]), { count: 0, active: 0, drafts: 0, rows: 0, hidden: 0, unposted: null, lastImportAt: null });
+  const s = summarizeDatasets([
+    d({}), d({ status: 'draft', rows: 4, rows_active: 4, unposted_network: null, last_import_at: '2026-10-01T10:00:00Z' }),
+    d({ status: 'archived', unposted_network: 2, last_import_at: '2026-10-20T10:00:00Z' }),
+  ]);
+  assert.deepEqual(s, { count: 3, active: 1, drafts: 1, rows: 20, hidden: 4, unposted: 7, lastImportAt: '2026-10-20T10:00:00Z' });
+  assert.equal(summarizeDatasets([d({ unposted_network: null })]).unposted, null, 'no stats at all stays unknown, not zero');
 });

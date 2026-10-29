@@ -5,9 +5,10 @@
 import { useState } from 'react';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { Pagination } from '../Pagination';
+import { SkeletonRows } from '../SkeletonRows';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
-import { EmptyState } from '../ui/primitives';
+import { EmptyState, SectionCard } from '../ui/primitives';
 import { CompactCard } from '../ui/CompactCard';
 import { describeError, toast } from '../ui/Toast';
 import { fmtDate } from '../../lib/format';
@@ -16,6 +17,7 @@ import {
   type DataFilter, type FilterOp,
 } from '../../lib/data-store';
 import { useDataItems, useSetItemStatus, type DataItem, type DataSchema } from '../../api/data';
+import './data.css';
 
 const PAGE_SIZE = 24;
 type StatusTab = 'active' | 'hidden' | 'all';
@@ -32,28 +34,28 @@ export function DatasetItems({ schema }: { schema: DataSchema }) {
   const apply = (f: DataFilter[]) => { setFilters(f); setPage(1); };
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 12 }}>
-        <form onSubmit={(e) => { e.preventDefault(); setQ(search); setPage(1); }} style={{ display: 'flex', gap: 6, flex: '1 1 240px', minWidth: 0 }}>
-          <input className="input-field" style={{ flex: 1, minWidth: 0 }} placeholder="Search titles and texts" value={search} onChange={(e) => setSearch(e.target.value)} />
+    <SectionCard title="Rows" delay={60}
+      action={items.data ? <span className="mono text-micro dx-dim">{fmtInt(items.data.total)} rows</span> : undefined}>
+      <div className="dx-toolbar">
+        <form className="dx-search" onSubmit={(e) => { e.preventDefault(); setQ(search); setPage(1); }}>
+          <input className="input-field" placeholder="Search titles and texts" aria-label="Search rows" value={search} onChange={(e) => setSearch(e.target.value)} />
           <button type="submit" className="btn-secondary" aria-label="Search"><Icon name="discovery" size={14} /></button>
         </form>
-        <SegmentedTabs<StatusTab> size="sm" value={status} onChange={(s) => { setStatus(s); setPage(1); }}
+        <SegmentedTabs<StatusTab> size="sm" ariaLabel="Row status" value={status} onChange={(s) => { setStatus(s); setPage(1); }}
           options={[{ key: 'active', label: 'Active' }, { key: 'hidden', label: 'Hidden' }, { key: 'all', label: 'All' }]} />
       </div>
 
       <FilterBar schema={schema} filters={filters} onChange={apply} />
 
-      {items.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{describeError(items.error)}</p>}
-      {items.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading rows…</p>}
+      {items.error && <div className="callout-danger" role="alert">{describeError(items.error)}</div>}
+      {items.isLoading && <SkeletonRows rows={3} height={84} label="Loading rows" />}
       {items.data && items.data.items.length === 0 && (
         <EmptyState icon="database" title={q || filters.length ? 'No rows match' : status === 'hidden' ? 'No hidden rows' : 'No rows yet'}
           note={q || filters.length ? 'Try fewer filters or another search.' : 'Import a file to add rows.'} />
       )}
       {items.data && items.data.items.length > 0 && (
         <>
-          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 8px' }}>{fmtInt(items.data.total)} rows</p>
-          <div className="compact-grid" style={{ opacity: items.isFetching ? 0.7 : 1 }}>
+          <div className={`compact-grid${items.isFetching ? ' dx-fetching' : ''}`}>
             {items.data.items.map((it, i) => (
               <ItemCard key={it.id} item={it} index={i} schema={schema} busy={setItem.isPending}
                 onToggle={(done) => setItem.mutate({ id: it.id, status: it.status === 'active' ? 'hidden' : 'active' }, {
@@ -65,7 +67,7 @@ export function DatasetItems({ schema }: { schema: DataSchema }) {
           <Pagination page={page} pageSize={PAGE_SIZE} total={items.data.total} onPage={setPage} />
         </>
       )}
-    </div>
+    </SectionCard>
   );
 }
 
@@ -80,31 +82,27 @@ function ItemCard({ item, index, schema, onToggle, busy }: { item: DataItem; ind
     <>
       {hidden && <Badge tone="warning">Hidden</Badge>}
       {item.posted_count > 0 && <Badge tone="success" title="Resources this row was published on (content ledger)">Posted {item.posted_count}×</Badge>}
-      {item.category && <span className="chip" style={{ fontSize: 11 }}>{item.category}</span>}
-      {date && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{date}</span>}
+      {item.category && <span className="chip">{item.category}</span>}
+      {date && <span className="mono text-micro dx-dim">{date}</span>}
     </>
   );
   return (
     <CompactCard delay={Math.min(index, 12) * 25} hint="Open the row" style={{ opacity: hidden ? 0.6 : 1 }}
       top={<>
-        {item.image_url && (
-          <img src={item.image_url} alt="" loading="lazy" style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)', flexShrink: 0 }} />
-        )}
-        <span style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap', minWidth: 0, flex: 1 }}>{badges}</span>
+        {item.image_url && <img src={item.image_url} alt="" loading="lazy" className="dx-thumb" />}
+        <span className="dx-card-top">{badges}</span>
       </>}
-      title={item.title ?? <em style={{ color: 'var(--color-ink-dim)', fontWeight: 400 }}>no title</em>}
+      title={item.title ?? <em className="dx-dim" style={{ fontWeight: 400 }}>no title</em>}
       body={item.body || undefined}
       dialog={{
         size: 'lg', icon: 'database', title: item.title ?? 'Untitled row', subtitle: item.ref,
         body: () => (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
-            {item.image_url && (
-              <img src={item.image_url} alt="" loading="lazy" style={{ width: '100%', maxHeight: 320, objectFit: 'contain', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)' }} />
-            )}
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>{badges}</div>
-            {item.body && <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-line', lineHeight: 1.55 }}>{item.body}</div>}
+          <div className="dx-col" style={{ gap: 12 }}>
+            {item.image_url && <img src={item.image_url} alt="" loading="lazy" className="dx-hero-img" />}
+            <div className="dx-meta" style={{ marginTop: 0 }}>{badges}</div>
+            {item.body && <div className="dx-text" style={{ whiteSpace: 'pre-line' }}>{item.body}</div>}
             {item.url && <a href={item.url} target="_blank" rel="noreferrer noopener" className="link-accent text-micro" style={{ overflowWrap: 'anywhere' }}>{item.url}</a>}
-            <dl style={{ margin: 0, display: 'grid', gridTemplateColumns: 'minmax(80px, 140px) 1fr', gap: '4px 10px', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8 }}>
+            <dl className="dx-facts inset">
               {schema.fields.map((f) => (
                 <FieldRow key={f.name} name={f.name} value={item.data[f.name]} muted={f.deprecated || f.agent_visible === false} />
               ))}
@@ -116,7 +114,7 @@ function ItemCard({ item, index, schema, onToggle, busy }: { item: DataItem; ind
         ),
         actions: (close) => (
           <button type="button" className="btn-secondary" disabled={busy} onClick={() => onToggle(close)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginLeft: 'auto' }}>
+            style={{ marginLeft: 'auto' }}>
             <Icon name={hidden ? 'eye' : 'ban'} size={14} /> {hidden ? 'Unhide' : 'Hide'}
           </button>
         ),
@@ -127,8 +125,8 @@ function ItemCard({ item, index, schema, onToggle, busy }: { item: DataItem; ind
 function FieldRow({ name, value, muted }: { name: string; value: unknown; muted?: boolean }) {
   return (
     <>
-      <dt className="text-micro" style={{ color: muted ? 'var(--color-ink-dim)' : 'var(--color-ink-muted)', fontFamily: 'var(--font-mono, monospace)', overflowWrap: 'anywhere' }}>{name}</dt>
-      <dd className="text-micro" style={{ margin: 0, color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{cellText(value, 400)}</dd>
+      <dt className={`mono${muted ? ' dx-dim' : ''}`}>{name}</dt>
+      <dd>{cellText(value, 400)}</dd>
     </>
   );
 }
@@ -144,7 +142,7 @@ function FilterBar({ schema, filters, onChange }: { schema: DataSchema; filters:
   const [v2, setV2] = useState('');
 
   if (!filterable.length) {
-    return <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 12px' }}>No filterable fields — mark fields as filterable on the Schema tab.</p>;
+    return <p className="dx-note is-sm" style={{ marginBottom: 12 }}>No filterable fields — mark fields as filterable on the Schema tab.</p>;
   }
 
   function add() {
@@ -156,8 +154,8 @@ function FilterBar({ schema, filters, onChange }: { schema: DataSchema; filters:
   }
 
   return (
-    <div style={{ marginBottom: 14 }}>
-      <form onSubmit={(e) => { e.preventDefault(); add(); }} style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+    <div style={{ marginBottom: 16 }}>
+      <form className="dx-filter-form" onSubmit={(e) => { e.preventDefault(); add(); }}>
         <select className="input-field" aria-label="Filter field" value={field?.name ?? ''} onChange={(e) => setFieldName(e.target.value)}>
           {filterable.map((f) => <option key={f.name} value={f.name}>{f.name}</option>)}
         </select>
@@ -176,26 +174,26 @@ function FilterBar({ schema, filters, onChange }: { schema: DataSchema; filters:
             {(field.enum ?? []).map((v) => <option key={v} value={v}>{v}</option>)}
           </select>
         ) : !VALUELESS.includes(curOp) && (
-          <input className="input-field" aria-label="Filter value" style={{ width: 160 }} value={v1} onChange={(e) => setV1(e.target.value)}
+          <input className="input-field is-w160" aria-label="Filter value" value={v1} onChange={(e) => setV1(e.target.value)}
             placeholder={curOp === 'in' ? 'a, b, c' : field?.type === 'date' ? 'YYYY-MM-DD' : field?.type === 'month_day' ? 'MM-DD' : curOp === 'between' ? 'from' : 'value'} />
         )}
         {curOp === 'between' && (
-          <input className="input-field" aria-label="Filter value to" style={{ width: 120 }} value={v2} onChange={(e) => setV2(e.target.value)} placeholder="to" />
+          <input className="input-field is-w120" aria-label="Filter value to" value={v2} onChange={(e) => setV2(e.target.value)} placeholder="to" />
         )}
         <button type="submit" className="btn-secondary"><Icon name="plus" size={13} /> Add filter</button>
       </form>
       {filters.length > 0 && (
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
+        <div className="dx-filters">
           {filters.map((f, i) => (
-            <span key={i} className="chip" style={{ gap: 6 }}>
+            <span key={i} className="dx-filter">
               {filterLabel(f)}
-              <button type="button" className="btn-icon" aria-label={`Remove filter ${filterLabel(f)}`} style={{ width: 18, height: 18 }}
+              <button type="button" className="dx-filter-x" aria-label={`Remove filter ${filterLabel(f)}`}
                 onClick={() => onChange(filters.filter((_, j) => j !== i))}>
                 <Icon name="x" size={11} />
               </button>
             </span>
           ))}
-          <button type="button" className="btn-ghost text-micro" onClick={() => onChange([])}>Clear</button>
+          <button type="button" className="btn-ghost" onClick={() => onChange([])}>Clear</button>
         </div>
       )}
     </div>

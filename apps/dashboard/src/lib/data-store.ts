@@ -138,6 +138,33 @@ export interface PreviewLike {
 const nf = new Intl.NumberFormat('en-GB');
 export const fmtInt = (n: number | null | undefined) => (n == null ? '—' : nf.format(n));
 
+/** The fields of a dataset row the key-numbers strip of /app/data adds up. */
+export interface DatasetCounts {
+  status: string; rows: number; rows_active: number; unposted_network: number | null; last_import_at: string | null;
+}
+
+/**
+ * The numbers above the dataset list: how many datasets (and how many are live), rows (active, and the hidden rest),
+ * rows nobody has posted yet (`null` when no dataset has stats), and the latest import.
+ */
+export function summarizeDatasets(rows: readonly DatasetCounts[]) {
+  let unposted: number | null = null;
+  let lastImportAt: string | null = null;
+  for (const d of rows) {
+    if (d.unposted_network != null) unposted = (unposted ?? 0) + d.unposted_network;
+    if (d.last_import_at && (!lastImportAt || new Date(d.last_import_at) > new Date(lastImportAt))) lastImportAt = d.last_import_at;
+  }
+  return {
+    count: rows.length,
+    active: rows.filter((d) => d.status === 'active').length,
+    drafts: rows.filter((d) => d.status === 'draft').length,
+    rows: rows.reduce((a, d) => a + d.rows_active, 0),
+    hidden: rows.reduce((a, d) => a + (d.rows - d.rows_active), 0),
+    unposted,
+    lastImportAt,
+  };
+}
+
 /** "Version 3 → 4. 1,240 rows keep version 3." / "Description-only edit: stays version 3." */
 export function previewSummary(p: PreviewLike, currentVersion: number): string {
   if (p.errors.length) return `This edit cannot be saved: ${p.errors[0]}`;

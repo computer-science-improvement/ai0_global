@@ -17,6 +17,7 @@ import {
 } from '../../lib/data-store';
 import { previewDatasetEdit, useUpdateDataset, type DataSchema, type EditPreview, type ReusePolicy, type SchemaPatch } from '../../api/data';
 import { Check, RoleSelect } from './ImportWizard';
+import './data.css';
 
 type Editable = Pick<DataSchema, 'title' | 'description' | 'entity' | 'fields' | 'roles' | 'language' | 'default_license'
   | 'reuse_policy' | 'suitable_for' | 'contains_personal_data' | 'status'>;
@@ -78,20 +79,20 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: dirty ? 96 : 0 }}>
+    <div className="dx-stack" style={{ paddingBottom: dirty ? 96 : 0 }}>
       {children}
 
-      <SectionCard title="Dataset" icon="info">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0 16px' }}>
-          <Field label="Title"><input className="input-field" style={{ width: '100%' }} value={draft.title} onChange={(e) => set({ title: e.target.value })} /></Field>
-          <Field label="Entity" hint="one row is a…"><input className="input-field" style={{ width: '100%' }} value={draft.entity} onChange={(e) => set({ entity: e.target.value })} /></Field>
-          <Field label="Language"><input className="input-field" style={{ width: '100%' }} value={draft.language ?? ''} onChange={(e) => set({ language: e.target.value.trim() || null })} /></Field>
-          <Field label="Default license"><input className="input-field" style={{ width: '100%' }} value={draft.default_license} onChange={(e) => set({ default_license: e.target.value })} /></Field>
+      <SectionCard title="Dataset" delay={0}>
+        <div className="dx-grid">
+          <Field label="Title"><input className="input-field dx-fill" value={draft.title} onChange={(e) => set({ title: e.target.value })} /></Field>
+          <Field label="Entity" hint="one row is a…"><input className="input-field dx-fill" value={draft.entity} onChange={(e) => set({ entity: e.target.value })} /></Field>
+          <Field label="Language"><input className="input-field dx-fill" value={draft.language ?? ''} onChange={(e) => set({ language: e.target.value.trim() || null })} /></Field>
+          <Field label="Default license"><input className="input-field dx-fill" value={draft.default_license} onChange={(e) => set({ default_license: e.target.value })} /></Field>
           <Field label="Reuse" hint="when a row may be posted again on the same resource">
             <ReuseInput value={draft.reuse_policy} fields={draft.fields} onChange={(v) => set({ reuse_policy: v })} />
           </Field>
           <Field label="Status">
-            <select className="input-field" style={{ width: '100%' }} value={draft.status} onChange={(e) => set({ status: e.target.value as Editable['status'] })}>
+            <select className="input-field dx-fill" value={draft.status} onChange={(e) => set({ status: e.target.value as Editable['status'] })}>
               <option value="active">Active — agents see it</option>
               <option value="draft">Draft — hidden from agents</option>
               <option value="archived">Archived — no imports</option>
@@ -99,20 +100,20 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
           </Field>
         </div>
         <Field label="Description" hint="what the data is, for whom, how to use it — agents read this first">
-          <textarea className="input-field" rows={3} style={{ width: '100%', resize: 'vertical' }} value={draft.description} onChange={(e) => set({ description: e.target.value })} />
+          <textarea className="input-field dx-resize" rows={3} value={draft.description} onChange={(e) => set({ description: e.target.value })} />
         </Field>
         <Field label="Suitable for" hint="topics and resources it fits">
-          <textarea className="input-field" rows={2} style={{ width: '100%', resize: 'vertical' }} value={draft.suitable_for} onChange={(e) => set({ suitable_for: e.target.value })} />
+          <textarea className="input-field dx-resize" rows={2} value={draft.suitable_for} onChange={(e) => set({ suitable_for: e.target.value })} />
         </Field>
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="dx-row">
           <Check label="contains personal data (agents are told)" checked={draft.contains_personal_data} onChange={(v) => set({ contains_personal_data: v })} />
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-            Dedup key: <code>{schema.dedup_key.length ? schema.dedup_key.join(' + ') : 'none'}</code> (fixed once the dataset has rows)
+          <span className="text-micro dx-dim">
+            Dedup key: <span className="mono">{schema.dedup_key.length ? schema.dedup_key.join(' + ') : 'none'}</span> (fixed once the dataset has rows)
           </span>
         </div>
       </SectionCard>
 
-      <SectionCard title={`Fields · version ${schema.version}`} icon="database">
+      <SectionCard title={`Fields · version ${schema.version}`} delay={60}>
         <div className="table-wrap">
           <table className="table">
             <thead><tr><th>Field</th><th>Type</th><th>Description for agents</th><th>Flags</th><th>Example</th><ActionsTh /></tr></thead>
@@ -120,8 +121,8 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
               {draft.fields.map((f) => (
                 <tr key={f.name} style={{ opacity: f.deprecated ? 0.55 : 1 }}>
                   <td>
-                    <code style={{ fontSize: 13 }}>{f.name}</code>
-                    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 4 }}>
+                    <span className="mono dx-field-name">{f.name}</span>
+                    <div className="dx-badges">
                       {f.required && <Badge>required</Badge>}
                       {f.deprecated && <Badge tone="warning">deprecated</Badge>}
                       {!savedNames.has(f.name) && <Badge tone="accent">new</Badge>}
@@ -133,18 +134,18 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
                     {f.enum && <div className="meta" style={{ maxWidth: 180, overflowWrap: 'anywhere' }}>{f.enum.slice(0, 12).join(', ')}{f.enum.length > 12 ? '…' : ''}</div>}
                   </td>
                   <td style={{ minWidth: 220 }}>
-                    <textarea className="input-field" rows={2} style={{ width: '100%', resize: 'vertical' }} value={f.description}
+                    <textarea className="input-field dx-resize" rows={2} value={f.description} aria-label={`Description of ${f.name}`}
                       placeholder="What this field holds and how to use it" onChange={(e) => setField(f.name, { description: e.target.value })} />
                   </td>
                   <td>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <div className="dx-flags">
                       <Check label="agents see" checked={f.agent_visible !== false} onChange={(v) => setField(f.name, { agent_visible: v })} />
                       <Check label="searchable" checked={!!f.searchable} onChange={(v) => setField(f.name, { searchable: v })} />
                       <Check label="filterable" checked={!!f.filterable} onChange={(v) => setField(f.name, { filterable: v })} />
                     </div>
                   </td>
                   <td style={{ minWidth: 140 }}>
-                    <input className="input-field" style={{ width: '100%' }} value={f.example === undefined || f.example === null ? '' : String(f.example)}
+                    <input className="input-field dx-fill" aria-label={`Example of ${f.name}`} value={f.example === undefined || f.example === null ? '' : String(f.example)}
                       onChange={(e) => setField(f.name, { example: e.target.value === '' ? undefined : e.target.value })} />
                   </td>
                   <td style={{ textAlign: 'right' }}>
@@ -163,11 +164,11 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
         <AddField existing={draft.fields} onAdd={(f) => set({ fields: [...draft.fields, f] })} />
       </SectionCard>
 
-      <SectionCard title="Roles" icon="agents">
-        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 0 }}>
+      <SectionCard title="Roles" delay={120}>
+        <p className="dx-note" style={{ marginBottom: 16 }}>
           Roles give every dataset the same shape: lists, search, previews and "today" filters use them. Changing a role is a structural edit.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '0 16px' }}>
+        <div className="dx-grid is-narrow">
           {ROLE_NAMES.map((role) => (
             <Field key={role} label={ROLE_LABEL[role]}>
               <RoleSelect value={draft.roles[role]} fields={liveFields}
@@ -178,10 +179,10 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
       </SectionCard>
 
       {dirty && (
-        <div className="panel" style={{ position: 'sticky', bottom: 12, zIndex: 5, display: 'flex', flexDirection: 'column', gap: 10, boxShadow: 'var(--shadow-2)' }}>
+        <div className="dx-savebar" role="region" aria-label="Unsaved schema changes">
           {preview && <PreviewBox p={preview} version={schema.version} />}
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-            <input className="input-field" style={{ flex: '1 1 200px', minWidth: 0 }} placeholder="Why (optional, kept in the version history)" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={500} />
+          <div className="dx-savebar-row">
+            <input className="input-field" placeholder="Why (optional, kept in the version history)" aria-label="Reason for the change" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={500} />
             <button type="button" className="btn-secondary" onClick={() => { setDraft(saved); setPreview(null); }}>Discard</button>
             <button type="button" className="btn-secondary" disabled={checking} onClick={() => void check()}>{checking ? 'Checking…' : 'Preview'}</button>
             <button type="button" className="btn-primary" disabled={checking || update.isPending} onClick={() => void save()}>
@@ -196,12 +197,11 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
 
 function PreviewBox({ p, version }: { p: EditPreview; version: number }) {
   return (
-    <div className={p.errors.length ? 'callout-danger' : p.structural ? 'callout-warning' : undefined}
-      style={p.errors.length || p.structural ? undefined : { padding: '10px 12px', background: 'var(--color-surface-2)', borderRadius: 'var(--radius-md)' }}>
+    <div className={p.errors.length ? 'callout-danger' : p.structural ? 'callout-warning' : 'inset'}>
       <div>
         <div className="text-body-sm" style={{ fontWeight: 600 }}>{previewSummary(p, version)}</div>
         {p.changes.length > 0 && (
-          <ul className="text-micro" style={{ margin: '6px 0 0', paddingLeft: 18, color: 'var(--color-ink-muted)' }}>
+          <ul className="text-micro dx-muted" style={{ margin: '6px 0 0', paddingLeft: 18 }}>
             {p.changes.map((c, i) => <li key={i}>{changeLabel(c)}</li>)}
           </ul>
         )}
@@ -217,7 +217,7 @@ function PreviewBox({ p, version }: { p: EditPreview; version: number }) {
 function ReuseInput({ value, fields, onChange }: { value: ReusePolicy; fields: FieldDef[]; onChange: (v: ReusePolicy) => void }) {
   const inOrder = value.kind === 'cycle' && value.order === 'sequential';
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div className="dx-col">
       <div style={{ display: 'flex', gap: 6 }}>
         <select className="input-field" style={{ flex: 1, minWidth: 0 }} aria-label="Reuse" value={reuseChoice(value)}
           onChange={(e) => onChange(reuseFromChoice(e.target.value as ReuseChoice, value))}>
@@ -228,7 +228,7 @@ function ReuseInput({ value, fields, onChange }: { value: ReusePolicy; fields: F
             onChange={(e) => { const n = Number(e.target.value); if (Number.isInteger(n) && n >= 1 && n <= 3650) onChange({ kind: 'after_days', days: n }); }} />
         )}
       </div>
-      {value.kind === 'cycle' && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{ROUNDS_HINT}</span>}
+      {value.kind === 'cycle' && <span className="text-micro dx-dim">{ROUNDS_HINT}</span>}
       {value.kind === 'cycle' && inOrder && <OrderBy value={value} fields={fields} onChange={onChange} />}
     </div>
   );
@@ -239,16 +239,16 @@ function OrderBy({ value, fields, onChange }: { value: Extract<ReusePolicy, { ki
   const chosen = value.order_by ?? [];
   const options = orderableFields(fields);
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div className="dx-col" style={{ gap: 6 }}>
       {Array.from({ length: MAX_ORDER_BY }, (_, i) => i).filter((i) => i <= chosen.length).map((i) => {
         const label = i === 0 ? 'Order by' : 'Then by';
         const here = chosen[i] ?? '';
         // A field already used by another select is not offered again; a saved name that is no longer orderable stays visible.
         const list = [...new Set([...options, ...(here ? [here] : [])])].filter((n) => n === here || !chosen.includes(n));
         return (
-          <label key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span className="text-micro" style={{ width: 64, flexShrink: 0, color: 'var(--color-ink-muted)' }}>{label}</span>
-            <select className="input-field" style={{ flex: 1, minWidth: 0 }} aria-label={label} value={here}
+          <label key={i} className="dx-order">
+            <span>{label}</span>
+            <select className="input-field" aria-label={label} value={here}
               onChange={(e) => onChange(setOrderBy(value, i, e.target.value))}>
               <option value="">{i === 0 ? 'Import order' : 'Then import order'}</option>
               {list.map((n) => <option key={n} value={n}>{n}</option>)}
@@ -273,9 +273,9 @@ function AddField({ existing, onAdd }: { existing: FieldDef[]; onAdd: (f: FieldD
     setName(''); setDescription(''); setEnumText('');
   }
   return (
-    <form onSubmit={add} style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'flex-end', marginTop: 12 }}>
+    <form onSubmit={add} className="dx-add-field">
       <Field label="New field" style={{ marginBottom: 0 }}>
-        <input className="input-field" style={{ width: 160 }} placeholder="snake_case_name" value={name} onChange={(e) => setName(e.target.value)} />
+        <input className="input-field is-w160" placeholder="snake_case_name" value={name} onChange={(e) => setName(e.target.value)} />
       </Field>
       <Field label="Type" style={{ marginBottom: 0 }}>
         <select className="input-field" value={type} onChange={(e) => setType(e.target.value as FieldType)}>
@@ -284,11 +284,11 @@ function AddField({ existing, onAdd }: { existing: FieldDef[]; onAdd: (f: FieldD
       </Field>
       {type === 'enum' && (
         <Field label="Values" style={{ marginBottom: 0 }}>
-          <input className="input-field" style={{ width: 180 }} placeholder="a, b, c" value={enumText} onChange={(e) => setEnumText(e.target.value)} />
+          <input className="input-field is-w180" placeholder="a, b, c" value={enumText} onChange={(e) => setEnumText(e.target.value)} />
         </Field>
       )}
       <Field label="Description" style={{ marginBottom: 0, flex: '1 1 200px' }}>
-        <input className="input-field" style={{ width: '100%' }} value={description} onChange={(e) => setDescription(e.target.value)} />
+        <input className="input-field dx-fill" value={description} onChange={(e) => setDescription(e.target.value)} />
       </Field>
       <button type="submit" className="btn-secondary"><Icon name="plus" size={13} /> Add field</button>
     </form>

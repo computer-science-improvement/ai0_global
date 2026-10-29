@@ -2,17 +2,20 @@
 // blurb each network shows on the public page and sets the order of the networks.
 // Ordering renumbers every network to its index (like the resource list below it), so
 // the default state where every network has order 0 still moves.
+// Spec 078 (C6): a flush panel with one .panel-row per network (identity, order, blurb editor).
 import { useEffect, useState, type JSX } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Panel } from '../ui/Card';
+import { SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { TableAction } from '../ui/table';
 import { toast } from '../ui/Toast';
+import { SkeletonRows } from '../SkeletonRows';
 import {
   landingApi, type LandingAdminNetwork, type LandingAdminNetworks,
 } from '../../api/landing';
 import { agentChip } from '../../lib/landing-view';
+import './landing-admin.css';
 
 export const NETWORK_BLURB_MAX = 280;
 
@@ -32,16 +35,15 @@ function BlurbEditor({ n, disabled, onSave }: { n: LandingAdminNetwork; disabled
         onChange={(e) => setValue(e.target.value)}
         aria-label={`Public description of ${n.name}`}
         aria-invalid={tooLong}
-        style={{ resize: 'vertical', width: '100%' }}
       />
       <div className="nc-row">
-        <span className="text-micro" style={{ color: tooLong ? 'var(--color-danger)' : 'var(--color-ink-dim)' }}>
+        <span className={`nc-len${tooLong ? ' is-over' : ''}`}>
           {len}/{NETWORK_BLURB_MAX}
         </span>
         {dirty && (
-          <span style={{ display: 'inline-flex', gap: 6 }}>
-            <Button variant="ghost" disabled={disabled} onClick={() => setValue(n.blurb ?? '')}>Discard</Button>
-            <Button variant="primary" disabled={disabled || tooLong} onClick={() => onSave(value.trim() ? value.trim() : null)}>Save</Button>
+          <span className="nc-row-btns">
+            <Button variant="ghost" size="sm" disabled={disabled} onClick={() => setValue(n.blurb ?? '')}>Discard</Button>
+            <Button variant="primary" size="sm" disabled={disabled || tooLong} onClick={() => onSave(value.trim() ? value.trim() : null)}>Save</Button>
           </span>
         )}
       </div>
@@ -62,14 +64,20 @@ export function NetworksCard({ data, isLoading, error }: { data: LandingAdminNet
     onError: (e) => toast.error(`Couldn’t save the network: ${(e as Error).message}`),
   });
 
-  if (isLoading) return <Panel title="Networks"><div className="la-skeleton" style={{ height: 96 }} /></Panel>;
+  if (isLoading) {
+    return (
+      <SectionCard title="Networks" flush delay={0}>
+        <SkeletonRows flush rows={2} height={96} label="Loading networks" />
+      </SectionCard>
+    );
+  }
   if (error || !data) {
     return (
-      <Panel title="Networks">
-        <div className="text-body-sm" style={{ color: 'var(--color-danger)' }}>
+      <SectionCard title="Networks">
+        <div className="callout-danger" role="alert">
           Couldn’t load the networks{error ? `: ${(error as Error).message}` : ''}
         </div>
-      </Panel>
+      </SectionCard>
     );
   }
 
@@ -86,62 +94,44 @@ export function NetworksCard({ data, isLoading, error }: { data: LandingAdminNet
   };
 
   return (
-    <Panel
+    <SectionCard
       title="Networks"
-      action={<span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{list.length} {list.length === 1 ? 'network' : 'networks'}</span>}
+      flush
+      delay={0}
+      action={<span className="la-count">{list.length} {list.length === 1 ? 'network' : 'networks'}</span>}
     >
-      <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)' }}>
+      <p className="la-note is-flush">
         The public page groups featured resources by network, in this order. A network shows only when at least one of its resources is featured.
       </p>
       {list.length === 0 && (
-        <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-          No networks yet. Group resources into networks under Connections → Groups.
-        </div>
+        <p className="nc-empty">No networks yet. Group resources into networks under Connections → Groups.</p>
       )}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {list.map((n, i) => {
-          const chip = agentChip(n.agent);
-          return (
-            <div key={n.id} className="nc-item">
-              <div className="nc-item-head">
-                <div className="nc-item-main">
-                  <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{n.name}</span>
-                  <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                    {n.featured}/{n.resources} featured
-                  </span>
-                  {chip
-                    ? <Badge tone={n.agent?.mode === 'live' ? 'success' : 'warning'}>{chip}</Badge>
-                    : <Badge>No agent</Badge>}
-                </div>
-                <div className="nc-item-actions">
-                  <Badge tone="neutral">#{i + 1}</Badge>
-                  <TableAction icon="chevron-up" title="Move up" disabled={i === 0 || save.isPending} onClick={() => move(i, -1)} />
-                  <TableAction icon="chevron-down" title="Move down" disabled={i === list.length - 1 || save.isPending} onClick={() => move(i, 1)} />
-                </div>
+      {list.map((n, i) => {
+        const chip = agentChip(n.agent);
+        return (
+          <div key={n.id} className="panel-row nc-item">
+            <div className="nc-item-head">
+              <div className="nc-item-main">
+                <span className="text-body-sm nc-item-name">{n.name}</span>
+                <span className="nc-item-meta mono">{n.featured}/{n.resources} featured</span>
+                {chip
+                  ? <Badge tone={n.agent?.mode === 'live' ? 'success' : 'warning'}>{chip}</Badge>
+                  : <Badge>No agent</Badge>}
               </div>
-              <BlurbEditor
-                n={n}
-                disabled={save.isPending}
-                onSave={(blurb) => save.mutate([{ id: n.id, blurb }], { onSuccess: () => toast.success('Network description saved') })}
-              />
+              <div className="nc-item-actions">
+                <Badge tone="neutral">#{i + 1}</Badge>
+                <TableAction icon="chevron-up" title="Move up" disabled={i === 0 || save.isPending} onClick={() => move(i, -1)} />
+                <TableAction icon="chevron-down" title="Move down" disabled={i === list.length - 1 || save.isPending} onClick={() => move(i, 1)} />
+              </div>
             </div>
-          );
-        })}
-      </div>
-      <style>{`
-        .nc-item {
-          display: flex; flex-direction: column; gap: 8px;
-          padding: 10px 12px;
-          background: var(--color-surface-2);
-          border: 1px solid var(--color-hairline);
-          border-radius: var(--radius-md);
-        }
-        .nc-item-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-        .nc-item-main { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
-        .nc-item-actions { display: inline-flex; align-items: center; gap: 6px; }
-        .nc-blurb { display: flex; flex-direction: column; gap: 6px; }
-        .nc-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-      `}</style>
-    </Panel>
+            <BlurbEditor
+              n={n}
+              disabled={save.isPending}
+              onSave={(blurb) => save.mutate([{ id: n.id, blurb }], { onSuccess: () => toast.success('Network description saved') })}
+            />
+          </div>
+        );
+      })}
+    </SectionCard>
   );
 }
