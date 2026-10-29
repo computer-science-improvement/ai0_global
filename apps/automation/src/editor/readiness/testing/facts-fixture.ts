@@ -39,6 +39,9 @@ export const mkDataset = (over: Partial<Omit<DatasetFact, 'boundBy' | 'seriesPer
 });
 
 export interface FactsInit {
+  /** Another channel than `@fx072`; its agent handle is `agentHandle` (default: the key without `@`, dashes as underscores). */
+  channelKey?:    string;
+  agentHandle?:   string;
   card?:          Partial<EditorCard>;
   playbook?:      Playbook | null;
   pendingPlaybook?: ChannelFacts['pendingPlaybook'];
@@ -62,17 +65,19 @@ export interface FactsInit {
 
 /** A healthy channel: a shadow card, a playbook without series, no sources. Override only what a test is about. */
 export function makeFacts(i: FactsInit = {}): ChannelFacts {
-  const card = { ...makeCard({ channelKey: CH, toolsAllow: null, ...i.card }), createdAt: new Date('2026-09-01T00:00:00.000Z') };
+  const channelKey = i.channelKey ?? CH;
+  const ref = `telegram:${channelKey}`;
+  const card = { ...makeCard({ channelKey, toolsAllow: null, ...i.card }), createdAt: new Date('2026-09-01T00:00:00.000Z') };
   const playbook = i.playbook === undefined ? mkPlaybook() : i.playbook;
-  const series = seriesOn(playbook, REF);
+  const series = seriesOn(playbook, ref);
   const sources = i.sources ?? sourceRefsOf(card, series).map((r) => ({ url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: null, lastSuccessAt: null }));
   return deriveFacts({
-    now: i.now ?? NOW, channelKey: CH, resourceRef: REF, card,
-    agent: { id: 'a1', handle: 'fx072', mode: card.mode },
+    now: i.now ?? NOW, channelKey, resourceRef: ref, card,
+    agent: { id: 'a1', handle: i.agentHandle ?? (i.channelKey ? channelKey.replace(/^@/, '').replace(/-/g, '_') : 'fx072'), mode: card.mode },
     chain: { orchestratorId: 'a1', executorId: 'a2' },
     profile: i.profile === undefined ? { topic: 'Space', language: 'uk', formatPrefs: {}, full: null } : i.profile,
     group: i.group ?? null,
-    resources: [{ ref: REF, platform: 'telegram' }],
+    resources: [{ ref, platform: 'telegram' }],
     playbook: playbook ? { id: 'pb1', version: 3, body: playbook } : null,
     pendingPlaybook: i.pendingPlaybook ?? null,
     pins: i.pins ?? [],
@@ -83,7 +88,7 @@ export function makeFacts(i: FactsInit = {}): ChannelFacts {
     pauses: i.pauses ?? [],
     sources,
     loadoutTools: i.loadoutTools ?? null,
-    conflictBase: { rules: [], refs: [REF], others: [], ...i.conflictBase },
+    conflictBase: { rules: [], refs: [ref], others: [], ...i.conflictBase },
     launch: i.launch ?? null,
     planned: i.planned ?? [],
     slots24h: i.slots24h ?? [],

@@ -46,7 +46,7 @@ export const sourceCheck: DoctorCheck = {
         code: 'series_source_contradicted',
         severity: series.source_mode === 'required' ? 'error' : 'warn',
         subject: { type: c.kind, id: `${series.name}|${c.kind}:${c.id}`, label: `${series.name}: ${c.kind === 'skill' ? c.name : what}` },
-        detail: `Series «${series.name}» ${series.source_mode === 'required' ? 'must' : 'is meant to'} take its material from ${label}, but ${what} ${x.reason}.${x.sentence ? ` It says: «${x.sentence}»` : ''}`,
+        detail: `Series «${series.name}» ${series.source_mode === 'required' ? 'must' : 'is meant to'} take its material from ${label}, but ${what}: ${x.reason}.${x.sentence ? ` It says: «${x.sentence}»` : ''}`,
         evidence: { series: series.name, source: label, source_mode: series.source_mode, [c.kind]: { id: c.id, name: c.name || undefined }, path: x.path, kind: x.kind, tokens: x.tokens, ...(x.sentence ? { sentence: x.sentence } : {}) },
         ...(c.kind === 'skill' && agent ? { fix: { kind: 'skill_disable' as const, agent, skill: c.name } } : {}),
         ...(c.kind === 'skill' ? {} : { link: '/app/agents/:agent?tab=memory' }),
