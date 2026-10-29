@@ -39,7 +39,8 @@ export function ideaOutcomeOf(status: string, error: string | null | undefined, 
   if (BACK_TO_POOL.some((r) => r.test(e))) return { status: 'accepted', reason };
   const group = skipGroupOf(e, criticVerdict);
   if (group === 'nothing_fresh') return { status: 'rejected', reason };
-  if (group === 'budget' || group === 'cap') return { status: 'accepted', reason };
+  // Spec 073 FR-010: a config problem (a format or a source the series does not have) says nothing about the idea: it goes back to the pool.
+  if (group === 'budget' || group === 'cap' || group === 'config') return { status: 'accepted', reason };
   // A slot that failed by a crash or a timeout (not on its content) did not test the idea.
   if (status === 'failed' && /^(max_steps|no_terminal|error|disabled|timeout)\b/.test(e)) return { status: 'accepted', reason };
   return { status: 'used' };

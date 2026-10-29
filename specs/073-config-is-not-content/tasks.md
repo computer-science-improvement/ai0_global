@@ -98,7 +98,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
     - `no-cyrillic-ui.test.ts`; a visual check on the mock API (port 3173).
   - Done when: every listed code is covered, the dashboard never shows "Note", and the drift test fails if a server `en` changes without the mirror.
 
-- [ ] **T10 Skip class `config`: the classification (FR-010; A5, A6, A9, A31, A36, A51, L4, L7).**
+- [x] **T10 Skip class `config`: the classification (FR-010; A5, A6, A9, A31, A36, A51, L4, L7).**
   - What:
     - `readiness/slot-config.ts` with `CONFIG_FAILURE_CODES` (A6's list) and `isConfigCode` only; the checker is T12;
     - `config` in `SKIP_GROUPS`; the `config` rule, built from the list, before `lint`; `series_source_mismatch` out of content and lint;

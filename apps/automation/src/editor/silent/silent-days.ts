@@ -97,16 +97,16 @@ export const missSubject = (ref: string) => `silent:${ref}:miss`;
 export const criticSubject = (ref: string) => `silent:${ref}:critic`;
 const STATUS_UK: Record<string, string> = { skipped: 'пропущено', failed: 'не вдалося', expired: 'прострочено' };
 const GROUP_UK: Record<string, string> = {
-  critic: 'критик', lint: 'перевірки тексту', cap: 'ліміти й тихі години', nothing_fresh: 'немає свіжого матеріалу', budget: 'бюджет', other: 'інше',
+  critic: 'критик', lint: 'перевірки тексту', config: 'налаштування', cap: 'ліміти й тихі години', nothing_fresh: 'немає свіжого матеріалу', budget: 'бюджет', other: 'інше',
 };
 
 /**
  * Spec 073 FR-007 (A24): the groups of a close that can make a series STALLED — it stopped for a reason that is not the
  * material running out (`nothing_fresh`), not the owner's decision, not the critic's verdict and not the budget: the
- * planner skipped it (`planner_skipped`, group `other`), a check of the text failed (`lint`), or anything else (`other`).
- * The config group joins with spec 073 T10.
+ * planner skipped it (`planner_skipped`, group `other`), a check of the text failed (`lint`), the slot's configuration is wrong
+ * (`config`), or anything else (`other`).
  */
-const STALL_GROUPS = new Set(['lint', 'other']);
+const STALL_GROUPS = new Set(['lint', 'config', 'other']);
 
 /** The catalogue code of a slot error (`planner_skipped`, `lint_failed`, …), or its skip group (also a catalogue code) for a free-text one. */
 function errorCodeOf(error: string | null | undefined, group: string): string {

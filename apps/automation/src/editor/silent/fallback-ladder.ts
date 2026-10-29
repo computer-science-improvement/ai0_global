@@ -1,5 +1,6 @@
 import { isToolError, type EditorTool } from '../harness/tool';
 import { isContentFailureCode } from './skip-reasons';
+import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
 
 /**
  * Spec 037 FR-010 (T10): the fallback ladder of a slot whose post failed.
@@ -221,7 +222,7 @@ export function libraryRefOf(spec: any): string | null {
 }
 
 /** Guard and lint codes that say nothing about the row's fitness: the row stays open for the next attempt (spec 071 A2). */
-const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar', 'quiz_answer_mismatch']);
+const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar', 'quiz_answer_mismatch', ...CONFIG_FAILURE_CODES]);
 
 /**
  * Spec 071 A2: does this failure put the post's library row aside for the round (`passRow`)?

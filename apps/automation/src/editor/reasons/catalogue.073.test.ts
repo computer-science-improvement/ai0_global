@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { REASONS, reasonFor, reasonOfError, reasonText } from './catalogue';
+import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
 import { CONTENT_FAILURE_CODES, SKIP_GROUPS, SKIP_SLOT_CAUSES, isNotAMiss, isOwnerDecision, skipGroupOf } from '../silent/skip-reasons';
 import { PREFLIGHT_CODES } from '../preflight/slot-preflight';
 import { EMPTY_DAY_ERROR_RE } from '../schedule/empty-day';
@@ -30,8 +31,9 @@ const RULE_CODES: Array<[string, string]> = [
   ['critic_rejected', 'critic'], ['critic_failed', 'critic'],
   ['budget_exceeded', 'budget'], ['budget', 'budget'],
   ['lint_failed', 'lint'], ['guard_failed', 'lint'], ['too_similar', 'lint'], ['too_verbatim', 'lint'], ['source_already_posted', 'lint'],
-  ['library_item_already_posted', 'lint'], ['already_posted', 'lint'], ['quiz_answer_mismatch', 'lint'], ['series_source_mismatch', 'lint'],
+  ['library_item_already_posted', 'lint'], ['already_posted', 'lint'], ['quiz_answer_mismatch', 'lint'],
   ['live_source_missing', 'lint'], ['not_next_in_order', 'lint'],
+  ...CONFIG_FAILURE_CODES.map((c) => [c, 'config'] as [string, string]),
   ['daily_cap_reached', 'cap'], ['poll_cap_reached', 'cap'], ['min_gap', 'cap'], ['quiet_hours', 'cap'], ['blackout_window', 'cap'],
   ['no_fresh_item', 'nothing_fresh'], ['source_not_published', 'nothing_fresh'],
   ['preflight_source_used', 'nothing_fresh'], ['preflight_stale', 'nothing_fresh'], ['preflight_host_blocked', 'nothing_fresh'], ['preflight_no_material', 'nothing_fresh'],
@@ -42,6 +44,7 @@ const RULE_CODES: Array<[string, string]> = [
 const SYSTEM_TEXTS: Array<[string, string, 'miss' | 'owner']> = [
   ['superseded by a new plan', 'superseded', 'miss'], ['mode_changed', 'mode_changed', 'miss'], ['draft canceled', 'draft_canceled', 'miss'],
   ['series_paused: its source ran dry', 'series_paused', 'miss'],
+  ['config_series_gone: the owner switched the series off', 'config_series_gone', 'miss'],
   ['rejected by owner', 'rejected_by_owner', 'owner'], ['resource_paused', 'resource_paused', 'owner'],
   ['agent @sky is paused', 'agent_paused', 'owner'], ['agent paused', 'agent_paused', 'owner'],
 ];
@@ -49,6 +52,8 @@ const SYSTEM_TEXTS: Array<[string, string, 'miss' | 'owner']> = [
 const COVERED: Array<[string, readonly string[]]> = [
   ['SKIP_GROUPS', SKIP_GROUPS],
   ['CONTENT_FAILURE_CODES', CONTENT_FAILURE_CODES],
+  ['CONFIG_FAILURE_CODES', CONFIG_FAILURE_CODES],
+  ['the config warning that is never a slot error', ['series_rate_over_card_max']],
   ['SKIP_SLOT_CAUSES', SKIP_SLOT_CAUSES],
   ['PREFLIGHT_CODES', PREFLIGHT_CODES],
   ['EMPTY_DAY_ERROR_RE', emptyDayCodes()],
