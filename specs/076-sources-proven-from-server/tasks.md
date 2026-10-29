@@ -280,7 +280,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - the button returns a fresh `ProbeResult`;
     - no cron makes a request for a URL probed less than 6 h ago, except the forced paused-host job.
 
-- [ ] **T8 Doctor seam: `sourceFindings`, codes and the replays** (FR-008, L4, L6, A4, A31 codes)
+- [x] **T8 Doctor seam: `sourceFindings`, codes and the replays** (FR-008, L4, L6, A4, A31 codes)
   - **What:**
     - `sources/source-findings.ts`:
       - the local `SourceFact` with the optional `probe?` and `required?` (L6);
@@ -399,7 +399,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T5 `ccb89849` — source health covers every source (playbook series, runway, probe), host notes through the note gate, the `resync_failed` note.
 - T6a `1f0b39f2` — `docFromBody` out of `fetchLive`, `origin: 'upload'` docs kept 7 days, `uploadPage`, the 12 MB body middleware, nginx 12m.
 - T6b `8f4e8859` — import marks (`uploaded`, `auto_resync: false`), `upload_expired`, `resync_manual`, and `uploadPage` with `dataset` re-syncing from memory.
-- T7 — (commit hash filled in the next commit) `SourceProbeWorker` (daily + paused re-probe), `SourcesController` (`probe`, `upload`, `drop`, `proxy-host`), `source-fixes.ts`, background probes on card save and series bind, `reach` in the `import_list` preview; host notes move from `toReplaceToday` to the worker.
+- T7 `34d0e9f4` `SourceProbeWorker` (daily + paused re-probe), `SourcesController` (`probe`, `upload`, `drop`, `proxy-host`), `source-fixes.ts`, background probes on card save and series bind, `reach` in the `import_list` preview; host notes move from `toReplaceToday` to the worker.
+- T8 — (commit hash filled in the next commit) pure `sourceFindings` and `SOURCE_REASONS` (seven codes), the 10-27 fixtures and the three acceptance replays.
 
 ## Deltas from the spec
 
@@ -435,3 +436,15 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
   - `proxy-host` also takes an optional `kind` for the forced probe it runs after adding the host, and answers `{ hosts, applied, probe }`. `drop` answers the `FixResult`.
   - `net/host-strikes.061.pg.test.ts` changed: the note it asserted from `toReplaceToday` now comes from `noteStruckHosts` (A26), and a new assertion says the replacement run writes no host note.
   - `editor.module.test.ts` needed no stub, as the task said.
+- **T8.**
+  - `SourceFact` declares a third optional field beyond L6's two: `id`, the card source's id. `source_drop` needs a `sourceId`, and 072's `SourceFact` has no id, so a fact without one names the source by its address (`sourceId: url`). To make that work `applySourceDrop` (T7) now matches an id first and then a source's `ref`, and reports the matched source's own id in `applied`; the id-first order is tested in `sources.controller.076.test.ts`. A 072 `SourceFact` is still assignable as it is (one test types it out).
+  - `SourceProbeFact` carries an optional `detail` (display only: the finding's detail line). The decisions read only the five probe fields of L6 and `SourceFact.kind`, as A4 says. `failure_class` is typed `string | null`, as in 072.
+  - `area: 'channel'` is declared locally in `SourceFinding` (A4); `audit.types.ts` is untouched. `source-findings.ts` imports `Finding` (type only) and `findingKey` from the sysadmin audit, which exist at HEAD. `SourceFix` is the union of the two fix types of `source-fixes.ts` (type-only import).
+  - Decisions the task left open:
+    - Only `rss` and `url` sources get a probe finding. A library or api source never does, even when its host is blocked (APIs keep their steps, datasets get 075's count).
+    - One finding per source, in the order `source_probe_failed`, `source_empty`, `source_untested`. A good probe beside an `unreachable` block still gives `source_probe_failed` (the block decides, and the detail is the block line).
+    - An `unreachable` block counts as the class `timeout` for the fix when the probe did not fail; when the probe failed, its own class decides (a `dns` or `http` failure gets `source_drop`, never the proxy).
+    - The same address listed by the card and by a series is one finding (same key): the higher severity and the first fix that either has. A series source never gets `source_drop`, but its host can still get `host_proxy_add`.
+    - The output order is the sources as given, then `card_without_sources`, then the datasets. Sorting is the lead's `channelDoctor`.
+  - The replays use `nextBlock` and `SourceHealthService.noteStruckHosts` with fakes, `SlotPreflight` for the $0 skip of the planned slot, `buildPlan` on a live and an uploaded page for the § 29 entries, `SourceHealthService.forCard` into `NetworkHealthService` for @ai0_prompts_dev, and `scanLive` for the live gate. The upload's `dataset_resync_manual` is the finding for `uploadedImports: ['pdr_rules']`; the PG test `docs/upload.076.pg.test.ts` covers the import being marked.
+  - `codes.076.test.ts` also reads the files of `sources/` and fails if one imports `readiness/` or `reasons/` (the T8 "done when").

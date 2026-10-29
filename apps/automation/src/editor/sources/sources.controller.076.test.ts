@@ -109,6 +109,19 @@ test('drop sends the card save the array without that source', async () => {
   assert.deepEqual(saved, [['@chan', { sources: [PAGE] }]]);
 });
 
+test('drop names a source by its address when no source has that id (a finding built from a fact with no id)', async () => {
+  const { ctl, saved } = rig({ cards: { '@chan': { channelKey: '@chan', sources: [FEED, PAGE] } } });
+  const r: any = await ctl.drop({ channel: '@chan', sourceId: PAGE.ref });
+  assert.equal(r.ok, true);
+  assert.match(r.applied, /Removed source “blog” \(url https:\/\/blog\.example\.org\/posts\)/);
+  assert.deepEqual(saved, [['@chan', { sources: [FEED] }]]);
+  // An id wins over an address, and an address that no source has is still a 404.
+  const other = rig({ cards: { '@chan': { channelKey: '@chan', sources: [{ id: PAGE.ref, kind: 'rss', ref: 'https://x.example/f' }, PAGE] } } });
+  await other.ctl.drop({ channel: '@chan', sourceId: PAGE.ref });
+  assert.deepEqual(other.saved, [['@chan', { sources: [PAGE] }]]);
+  assert.equal((await fails(() => ctl.drop({ channel: '@chan', sourceId: 'https://nowhere.example/' }))).body.error, 'source_not_found');
+});
+
 test('drop of an unknown source or channel is a 404', async () => {
   const { ctl, saved } = rig({ cards: { '@chan': { channelKey: '@chan', sources: [FEED] } } });
   const nosource = await fails(() => ctl.drop({ channel: '@chan', sourceId: 'ghost' }));

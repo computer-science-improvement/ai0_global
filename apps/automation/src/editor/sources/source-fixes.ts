@@ -24,18 +24,22 @@ const message = (err: unknown): string => {
   return String((err as Error)?.message ?? err).slice(0, 300);
 };
 
-/** Removes one source from a card by its id, through the card save (`channel_not_found`, `source_not_found` when there is nothing to remove). */
+/**
+ * Removes one source from a card through the card save (`channel_not_found`, `source_not_found` when there is nothing to remove).
+ * `sourceId` is the card source's id; a finding built from a fact that carries no id names the source by its address instead, so
+ * an address that no id has is matched against the sources' `ref`.
+ */
 export async function applySourceDrop(deps: SourceDropDeps, fix: SourceDropFix): Promise<FixResult> {
   const card = await deps.card(fix.channel).catch(() => null);
   if (!card) return { ok: false, error: 'channel_not_found' };
-  const source = card.sources.find((s) => s.id === fix.sourceId);
+  const source = card.sources.find((s) => s.id === fix.sourceId) ?? card.sources.find((s) => s.ref === fix.sourceId);
   if (!source) return { ok: false, error: 'source_not_found' };
   try {
-    await deps.upsert(fix.channel, { sources: card.sources.filter((s) => s.id !== fix.sourceId) });
+    await deps.upsert(fix.channel, { sources: card.sources.filter((s) => s !== source) });
   } catch (err) {
     return { ok: false, error: message(err) };
   }
-  return { ok: true, applied: `Removed source “${fix.sourceId}” (${source.kind} ${source.ref}) from ${fix.channel}` };
+  return { ok: true, applied: `Removed source “${source.id}” (${source.kind} ${source.ref}) from ${fix.channel}` };
 }
 
 export interface HostProxyAddDeps {
