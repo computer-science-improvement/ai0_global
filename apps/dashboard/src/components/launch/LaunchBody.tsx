@@ -1,10 +1,12 @@
 // Spec 052 FR-005: the launch in the artifact panel — what waits for the owner, the live checklist, progress after
 // Start (graduation, subscribers, promos) and the plan in a dialog. The actions (Start, Go live…) are the artifact's own.
+// Spec 078 D3: sections titled by an overline, the checklist as rows in a flush panel, the progress numbers as a StatStrip,
+// the plan in a dialog of insets and rows (amg-* classes in agent-manager.css).
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
-import { Field, StatTile, StatusDot } from '../ui/primitives';
+import { StatStrip, StatTile, StatusDot } from '../ui/primitives';
 import { Modal } from '../Modal';
 import type { ArtifactDetail } from '../../api/artifacts';
 import { fmtDate, fmtRelative } from '../../lib/format';
@@ -22,35 +24,39 @@ export function LaunchBody({ d }: { d: ArtifactDetail }) {
     <>
       {v.status === 'failed' && v.reason && <div className="callout-danger"><Icon name="warning" size={16} /><div>{v.reason}</div></div>}
       {v.status === 'ready' && v.reason && <div className="callout-warning"><Icon name="warning" size={16} /><div>{v.reason}</div></div>}
-      {headline && <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{headline}</div>}
+      {headline && <div className="text-body-sm amg-muted">{headline}</div>}
 
-      <Field label="Checklist" hint="What only you can do, and what runs by itself.">
-        <div style={{ display: 'grid', gap: 6 }}>
+      <section className="amg-section" aria-label="Checklist">
+        <div className="amg-sechead">
+          <h3 className="text-overline amg-h">Checklist</h3>
+          <span className="text-micro amg-dim">What only you can do, and what runs by itself.</span>
+        </div>
+        <div className="panel is-flush">
           {v.checklist.map((s) => <StepRow key={s.key} s={s} />)}
         </div>
-      </Field>
+      </section>
 
       {started && <Progress v={v} />}
 
       {v.plan && (
-        <Field label="Plan">
-          <div className="panel" style={{ padding: '10px 12px', display: 'grid', gap: 8 }}>
-            <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap' }}>{v.plan.summary}</div>
-            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-              {mixRows(v.plan.format_mix.formats).map((r) => <span key={r.format} className="chip">{r.format} {r.pct}%</span>)}
+        <section className="amg-section" aria-label="Plan">
+          <div className="amg-sechead"><h3 className="text-overline amg-h">Plan</h3></div>
+          <div className="inset amg-plan">
+            <div className="text-body-sm amg-pre amg-wrap">{v.plan.summary}</div>
+            <div className="amg-chips">
+              {mixRows(v.plan.format_mix.formats).map((r) => <span key={r.format} className="chip mono">{r.format} {r.pct}%</span>)}
             </div>
-            <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+            <div className="text-micro mono amg-dim amg-wrap">
               {scheduleLine(v.plan.schedule)} · {v.plan.first_week.ideas.length} first-week ideas · {v.plan.series_pillars.series.length} series
             </div>
-            <button type="button" className="btn-secondary" onClick={() => setPlanOpen(true)}
-              style={{ justifySelf: 'start', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-secondary btn-sm amg-start" onClick={() => setPlanOpen(true)}>
               <Icon name="book" size={13} /> Open the plan
             </button>
           </div>
-        </Field>
+        </section>
       )}
 
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+      <div className="text-micro mono amg-dim amg-wrap">
         Created {fmtRelative(v.createdAt)}{v.startedAt ? ` · started ${fmtDate(v.startedAt)}` : ''} · analysis ${v.costUsd.toFixed(3)}
       </div>
       {planOpen && v.plan && <PlanDialog v={v} plan={v.plan} onClose={() => setPlanOpen(false)} />}
@@ -60,21 +66,20 @@ export function LaunchBody({ d }: { d: ArtifactDetail }) {
 
 function StepRow({ s }: { s: LaunchStep }) {
   return (
-    <div className="panel" style={{ padding: '8px 10px', display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-      <span style={{ paddingTop: 6 }}><StatusDot tone={stepTone(s.state)} /></span>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="text-body-sm" style={{ overflowWrap: 'anywhere' }}>{s.title}</div>
-        {s.detail && <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{s.detail}</div>}
+    <div className="panel-row amg-step">
+      <span className="amg-step-dot"><StatusDot tone={stepTone(s.state)} /></span>
+      <div className="amg-step-main">
+        <div className="text-body-sm amg-wrap">{s.title}</div>
+        {s.detail && <div className="text-micro amg-muted amg-wrap">{s.detail}</div>}
         {s.link && (
-          <a href={s.link} className="link-accent text-micro" {...(isExternal(s.link) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
-            {isExternal(s.link) ? 'Open in Telegram' : 'Open'} <Icon name="external" size={11} />
+          <a href={s.link} className="link-accent text-micro amg-ref" {...(isExternal(s.link) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+            {isExternal(s.link) ? 'Open in Telegram' : 'Open'} <Icon name="external" size={12} />
           </a>
         )}
       </div>
-      <div style={{ display: 'grid', justifyItems: 'end', gap: 4, flexShrink: 0 }}>
+      <div className="amg-step-side">
         <Badge tone={stepTone(s.state)}>{stepLabel(s.state)}</Badge>
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{s.who === 'owner' ? 'you' : 'automatic'}</span>
+        <span className="text-micro amg-dim">{s.who === 'owner' ? 'you' : 'automatic'}</span>
       </div>
     </div>
   );
@@ -85,39 +90,60 @@ function Progress({ v }: { v: LaunchView }) {
   const criteria = v.graduation?.stats?.criteria ?? [];
   const promos = v.promo?.items ?? [];
   return (
-    <Field label="Since Start">
-      <div style={{ display: 'grid', gap: 10 }}>
-        {g && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 8 }}>
-            <StatTile label="Subscribers" value={g.subsNow ?? '—'} delta={subsDelta(g) || undefined} deltaTone={(g.subsNow ?? 0) >= (g.subsAtStart ?? 0) ? 'success' : 'danger'} icon="users" />
-            <StatTile label="Published" value={g.published} icon="megaphone" />
-            <StatTile label="Promo joins" value={g.promoJoins} icon="link" />
-          </div>
-        )}
-        {v.status === 'running' && criteria.length > 0 && (
-          <div className="panel" style={{ padding: '8px 10px', display: 'grid', gap: 4 }}>
-            <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Going live needs</div>
-            {criteria.map((c) => (
-              <div key={c.key} className="text-body-sm" style={{ display: 'flex', gap: 6, alignItems: 'center', color: c.ok ? 'var(--color-ink)' : 'var(--color-ink-muted)' }}>
-                <span style={{ color: c.ok ? 'var(--color-success)' : 'var(--color-ink-dim)', display: 'inline-flex' }}><Icon name={c.ok ? 'check' : 'clock'} size={13} /></span>
-                {c.label}
-              </div>
-            ))}
-          </div>
-        )}
-        {promos.length > 0 && (
-          <div style={{ display: 'grid', gap: 4 }}>
-            {promos.map((p) => (
-              <div key={p.sourceRef} className="text-body-sm" style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
-                <Badge tone={p.slotId ? 'success' : 'warning'}>{p.slotId ? 'scheduled' : 'refused'}</Badge>
-                <span>Promo in {p.sourceRef.replace(/^telegram:/, '')}</span>
-                <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{p.at ? fmtDate(p.at) : p.error}</span>
-              </div>
-            ))}
-          </div>
-        )}
+    <section className="amg-section" aria-label="Since Start">
+      <div className="amg-sechead"><h3 className="text-overline amg-h">Since Start</h3></div>
+      {g && (
+        <StatStrip label="Growth since Start">
+          <StatTile label="Subscribers" value={g.subsNow ?? '—'} delta={subsDelta(g) || undefined} deltaTone={(g.subsNow ?? 0) >= (g.subsAtStart ?? 0) ? 'success' : 'danger'} />
+          <StatTile label="Published" value={g.published} />
+          <StatTile label="Promo joins" value={g.promoJoins} />
+        </StatStrip>
+      )}
+      {v.status === 'running' && criteria.length > 0 && (
+        <div className="inset amg-criteria">
+          <span className="text-overline">Going live needs</span>
+          {criteria.map((c) => (
+            <div key={c.key} className={`text-body-sm amg-criterion${c.ok ? ' is-ok' : ''}`}>
+              <span className="amg-icon"><Icon name={c.ok ? 'check' : 'clock'} size={14} /></span>
+              {c.label}
+            </div>
+          ))}
+        </div>
+      )}
+      {promos.length > 0 && (
+        <div className="panel is-flush">
+          {promos.map((p) => (
+            <div key={p.sourceRef} className="panel-row amg-promo">
+              <Badge tone={p.slotId ? 'success' : 'warning'}>{p.slotId ? 'scheduled' : 'refused'}</Badge>
+              <span className="text-body-sm amg-wrap">Promo in {p.sourceRef.replace(/^telegram:/, '')}</span>
+              <span className="text-micro mono amg-dim amg-wrap">{p.at ? fmtDate(p.at) : p.error}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+/** A titled block of the plan dialog: an overline, then its content. */
+function PlanSection({ title, hint, children }: { title: string; hint?: string; children: ReactNode }) {
+  return (
+    <section className="amg-section" aria-label={title}>
+      <div className="amg-sechead">
+        <h3 className="text-overline amg-h">{title}</h3>
+        {hint && <span className="text-micro amg-dim">{hint}</span>}
       </div>
-    </Field>
+      {children}
+    </section>
+  );
+}
+
+function PlanFact({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="amg-line">
+      <span className="text-overline amg-key">{label}</span>
+      <div className="text-body-sm amg-val is-ink">{children}</div>
+    </div>
   );
 }
 
@@ -126,67 +152,76 @@ function PlanDialog({ v, plan, onClose }: { v: LaunchView; plan: LaunchPlan; onC
   const ideas = [...plan.first_week.ideas].sort((a, b) => a.day - b.day);
   return (
     <Modal open onClose={onClose} title={`Launch plan · ${v.channelKey}`} icon="rocket" size="lg">
-      <div style={{ display: 'grid', gap: 16 }}>
-        <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap' }}>{plan.summary}</div>
-        <Field label="Brief for the agent"><div className="text-body-sm" style={{ whiteSpace: 'pre-wrap' }}>{plan.brief_profile.brief}</div></Field>
-        <Field label="Profile">
-          <div className="text-body-sm" style={{ display: 'grid', gap: 2 }}>
-            {p.topic && <div>Topic: {p.topic}</div>}
-            {p.audience?.who && <div>Audience: {p.audience.who}</div>}
-            {p.tone && <div>Tone: {p.tone}</div>}
-            {p.language && <div>Language: {p.language}</div>}
-            {!!p.taboo?.length && <div>Never: {p.taboo.join(', ')}</div>}
+      <div className="amg-stack is-roomy">
+        <div className="text-body-sm amg-pre amg-wrap">{plan.summary}</div>
+        <PlanSection title="Brief for the agent"><div className="text-body-sm amg-pre amg-wrap">{plan.brief_profile.brief}</div></PlanSection>
+        <PlanSection title="Profile">
+          <div className="inset amg-facts">
+            {p.topic && <PlanFact label="Topic">{p.topic}</PlanFact>}
+            {p.audience?.who && <PlanFact label="Audience">{p.audience.who}</PlanFact>}
+            {p.tone && <PlanFact label="Tone">{p.tone}</PlanFact>}
+            {p.language && <PlanFact label="Language">{p.language}</PlanFact>}
+            {!!p.taboo?.length && <PlanFact label="Never">{p.taboo.join(', ')}</PlanFact>}
           </div>
-        </Field>
-        <Field label="Format mix and schedule">
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
-            {mixRows(plan.format_mix.formats).map((r) => <span key={r.format} className="chip">{r.format} {r.pct}%</span>)}
+        </PlanSection>
+        <PlanSection title="Format mix and schedule">
+          <div className="amg-chips">
+            {mixRows(plan.format_mix.formats).map((r) => <span key={r.format} className="chip mono">{r.format} {r.pct}%</span>)}
           </div>
-          <div className="text-body-sm">{scheduleLine(plan.schedule)}</div>
-        </Field>
-        <Field label="Pillars and series">
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
+          <div className="text-body-sm amg-wrap">{scheduleLine(plan.schedule)}</div>
+        </PlanSection>
+        <PlanSection title="Pillars and series">
+          <div className="amg-chips">
             {plan.series_pillars.pillars.map((x) => <span key={x.name} className="chip">{x.name} {x.share}%</span>)}
           </div>
-          <div style={{ display: 'grid', gap: 4 }}>
+          <div className="inset amg-rows">
             {plan.series_pillars.series.map((s) => (
-              <div key={s.name} className="text-body-sm"><b>{s.name}</b> <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{s.cadence} · {s.format}</span><div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{s.brief}</div></div>
-            ))}
-          </div>
-        </Field>
-        <Field label="Voice">
-          <div className="text-body-sm" style={{ marginBottom: 4 }}>{plan.voice.description}</div>
-          <ul className="text-body-sm" style={{ margin: 0, paddingLeft: 18, listStyle: 'disc' }}>{plan.voice.rules.map((r) => <li key={r}>{r}</li>)}</ul>
-        </Field>
-        <Field label={`First week (${ideas.length} ideas)`} hint="They go into the idea pool as accepted at Start; the planner uses them first.">
-          <div style={{ display: 'grid', gap: 6 }}>
-            {ideas.map((i) => (
-              <div key={i.title} className="panel" style={{ padding: '8px 10px' }}>
-                <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
-                  <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>Day {i.day}</span>
-                  <span className="text-body-sm" style={{ fontWeight: 600 }}>{i.title}</span>
-                  <span className="chip">{i.format}</span>
-                  {i.intro && <Badge tone="accent">intro</Badge>}
+              <div key={s.name} className="panel-row amg-planrow">
+                <div className="amg-planrow-top">
+                  <span className="text-body-sm amg-strong amg-wrap">{s.name}</span>
+                  <span className="text-micro mono amg-dim">{s.cadence} · {s.format}</span>
                 </div>
-                <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{i.angle}</div>
+                <div className="text-micro amg-muted amg-wrap">{s.brief}</div>
               </div>
             ))}
           </div>
-        </Field>
+        </PlanSection>
+        <PlanSection title="Voice">
+          <div className="text-body-sm amg-wrap">{plan.voice.description}</div>
+          <ul className="text-body-sm amg-list">{plan.voice.rules.map((r) => <li key={r}>{r}</li>)}</ul>
+        </PlanSection>
+        <PlanSection title={`First week (${ideas.length} ideas)`} hint="They go into the idea pool as accepted at Start; the planner uses them first.">
+          <div className="inset amg-rows">
+            {ideas.map((i) => (
+              <div key={i.title} className="panel-row amg-planrow">
+                <div className="amg-planrow-top">
+                  <span className="text-micro mono tabular-nums amg-dim">Day {i.day}</span>
+                  <span className="text-body-sm amg-strong amg-wrap">{i.title}</span>
+                  <span className="chip mono">{i.format}</span>
+                  {i.intro && <Badge tone="accent">intro</Badge>}
+                </div>
+                <div className="text-micro amg-muted amg-wrap">{i.angle}</div>
+              </div>
+            ))}
+          </div>
+        </PlanSection>
         {(v.refs.length > 0 || plan.references.length > 0) && (
-          <Field label="References">
-            <div style={{ display: 'grid', gap: 4 }}>
+          <PlanSection title="References">
+            <div className="inset amg-rows">
               {v.refs.map((r) => {
                 const take = plan.references.find((x) => x.ref === r.ref)?.takeaway;
                 return (
-                  <div key={r.ref} className="text-body-sm">
-                    <b>{r.name}</b> <Badge tone={r.status === 'skipped' ? 'warning' : 'neutral'}>{r.status}</Badge>
-                    {(take || r.reason) && <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{take ?? r.reason}</div>}
+                  <div key={r.ref} className="panel-row amg-planrow">
+                    <div className="amg-planrow-top">
+                      <span className="text-body-sm amg-strong amg-wrap">{r.name}</span>
+                      <Badge tone={r.status === 'skipped' ? 'warning' : 'neutral'}>{r.status}</Badge>
+                    </div>
+                    {(take || r.reason) && <div className="text-micro amg-muted amg-wrap">{take ?? r.reason}</div>}
                   </div>
                 );
               })}
             </div>
-          </Field>
+          </PlanSection>
         )}
       </div>
     </Modal>

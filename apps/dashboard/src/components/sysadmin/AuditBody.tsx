@@ -1,12 +1,14 @@
 // Spec 055 FR-003: the sysadmin's audit report in the artifact panel — the summary, counts by severity, the open findings
 // by area as compact rows, and the handled ones (applied, dismissed) collapsed at the bottom. A row opens a dialog with the
 // detail, the evidence, the model's comment and Apply fix / Dismiss 30 days. "Run again" is the artifact's own action.
+// Spec 078 D3: a StatStrip for the counts, areas titled by an overline, handled findings as rows in a flush panel,
+// evidence in a code block (amg-* classes in agent-manager.css).
 
 import { useState } from 'react';
 import { Badge } from '../ui/Badge';
 import { CompactCard } from '../ui/CompactCard';
 import { Icon } from '../ui/Icon';
-import { Field, StatTile } from '../ui/primitives';
+import { StatStrip, StatTile } from '../ui/primitives';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import { errorBody } from '../../api/agents';
@@ -38,9 +40,9 @@ export function AuditBody({ d }: { d: ArtifactDetail }) {
   if (!r) return null;
   if (r.status === 'running') {
     return (
-      <div className="callout" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-        <Icon name="clock" size={16} />
-        <div>The audit is running. It checks skills, memory, rules and tools in code, then asks the model for a short judgement; this page refreshes by itself.</div>
+      <div className="inset amg-running" role="status">
+        <span className="amg-icon amg-muted"><Icon name="clock" size={16} /></span>
+        <div className="text-body-sm amg-muted">The audit is running. It checks skills, memory, rules and tools in code, then asks the model for a short judgement; this page refreshes by itself.</div>
       </div>
     );
   }
@@ -51,41 +53,44 @@ export function AuditBody({ d }: { d: ArtifactDetail }) {
   const notice = llmNotice(r);
   return (
     <>
-      {r.summary && <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap' }}>{r.summary}</div>}
+      {r.summary && <div className="text-body-sm amg-pre amg-wrap">{r.summary}</div>}
       {notice && <div className="callout-warning"><Icon name="warning" size={16} /><div>{notice}</div></div>}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(96px, 1fr))', gap: 8 }}>
-        <StatTile label="Errors" value={r.counts.error} icon="warning" />
-        <StatTile label="Warnings" value={r.counts.warn} icon="warning" />
-        <StatTile label="Info" value={r.counts.info} icon="eye" />
-        <StatTile label="With a fix" value={r.counts.fixable} icon="wrench" />
-      </div>
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+      <StatStrip label="Findings by severity">
+        <StatTile label="Errors" value={r.counts.error} />
+        <StatTile label="Warnings" value={r.counts.warn} />
+        <StatTile label="Info" value={r.counts.info} />
+        <StatTile label="With a fix" value={r.counts.fixable} />
+      </StatStrip>
+      <div className="text-micro mono amg-dim amg-wrap">
         {countsLine(r.counts)} · {r.trigger === 'owner' ? 'run on request' : 'weekly run'} {fmtRelative(r.finishedAt ?? r.startedAt)} · ${r.costUsd.toFixed(3)}
       </div>
 
-      {!groups.length && <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{r.counts.total ? 'Every finding is handled.' : 'The checks found nothing to report.'}</div>}
+      {!groups.length && <div className="text-body-sm amg-muted">{r.counts.total ? 'Every finding is handled.' : 'The checks found nothing to report.'}</div>}
       {groups.map((g) => (
-        <Field key={g.area} label={`${g.label} (${g.findings.length})`}>
-          <div style={{ display: 'grid', gap: 6 }}>
+        <section key={g.area} className="amg-section" aria-label={`${g.label} findings`}>
+          <div className="amg-sechead">
+            <h3 className="text-overline amg-h">{g.label}</h3>
+            <span className="amg-count">{g.findings.length}</span>
+          </div>
+          <div className="amg-cards">
             {g.findings.map((f, i) => <FindingCard key={f.key} report={r} f={f} delay={i * 30} />)}
           </div>
-        </Field>
+        </section>
       ))}
 
       {done.length > 0 && (
-        <div>
-          <button type="button" className="btn-ghost" aria-expanded={showHandled} onClick={() => setShowHandled(!showHandled)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name={showHandled ? 'chevron-up' : 'chevron-down'} size={13} /> Handled ({done.length})
+        <div className="amg-section">
+          <button type="button" className="btn-ghost amg-start" aria-expanded={showHandled} onClick={() => setShowHandled(!showHandled)}>
+            <Icon name={showHandled ? 'chevron-up' : 'chevron-down'} size={12} /> Handled ({done.length})
           </button>
           {showHandled && (
-            <div style={{ display: 'grid', gap: 6, marginTop: 8 }}>
+            <div className="panel is-flush amg-handled">
               {done.map((f) => (
-                <div key={f.key} className="panel" style={{ padding: '8px 10px', display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
+                <div key={f.key} className="panel-row">
                   <Badge tone={f.status === 'applied' ? 'success' : 'neutral'}>{f.status}</Badge>
-                  <span className="text-body-sm" style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>{f.title}</span>
-                  <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{f.result ?? f.subject.label}{f.at ? ` · ${fmtDate(f.at)}` : ''}</span>
+                  <span className="text-body-sm amg-grow amg-wrap">{f.title}</span>
+                  <span className="text-micro amg-dim amg-wrap">{f.result ?? f.subject.label}{f.at ? ` · ${fmtDate(f.at)}` : ''}</span>
                 </div>
               ))}
             </div>
@@ -100,7 +105,7 @@ function FindingCard({ report, f, delay }: { report: AuditReport; f: AuditFindin
   return (
     <CompactCard
       delay={delay} hint="Open the finding"
-      top={<><Badge tone={SEVERITY_TONE[f.severity]}>{SEVERITY_LABEL[f.severity]}</Badge>{f.status === 'failed' && <Badge tone="danger">fix failed</Badge>}{f.fix && <span className="chip">fix</span>}</>}
+      top={<><Badge tone={SEVERITY_TONE[f.severity]}>{SEVERITY_LABEL[f.severity]}</Badge>{f.status === 'failed' && <Badge tone="danger">fix failed</Badge>}{f.fix && <span className="chip mono">fix</span>}</>}
       title={f.title}
       body={f.comment ?? f.subject.label}
       note={f.status === 'failed' ? f.result : undefined} noteTone="danger"
@@ -116,21 +121,28 @@ function FindingCard({ report, f, delay }: { report: AuditReport; f: AuditFindin
 function FindingDetails({ f }: { f: AuditFinding }) {
   const lines = evidenceLines(f.evidence);
   return (
-    <div style={{ display: 'grid', gap: 14 }}>
-      <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{f.detail}</div>
+    <div className="amg-stack is-roomy">
+      <div className="text-body-sm amg-pre amg-wrap">{f.detail}</div>
       {f.comment && (
-        <Field label="Sysadmin's comment"><div className="text-body-sm" style={{ whiteSpace: 'pre-wrap' }}>{f.comment}</div></Field>
+        <div className="amg-section">
+          <span className="text-overline">Sysadmin’s comment</span>
+          <div className="text-body-sm amg-pre amg-wrap">{f.comment}</div>
+        </div>
       )}
       {f.status === 'failed' && f.result && <div className="callout-danger"><Icon name="warning" size={16} /><div>The fix was refused: {f.result}</div></div>}
-      {f.fix && <Field label="Fix"><div className="text-body-sm">{fixText(f.fix)}</div></Field>}
-      {lines.length > 0 && (
-        <Field label="Evidence">
-          <div className="text-micro" style={{ display: 'grid', gap: 2, color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)', overflowWrap: 'anywhere' }}>
-            {lines.map((l) => <div key={l}>{l}</div>)}
-          </div>
-        </Field>
+      {f.fix && (
+        <div className="amg-section">
+          <span className="text-overline">Fix</span>
+          <div className="text-body-sm amg-wrap">{fixText(f.fix)}</div>
+        </div>
       )}
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{f.check.replace(/_/g, ' ')} · {f.area}</div>
+      {lines.length > 0 && (
+        <div className="amg-section">
+          <span className="text-overline">Evidence</span>
+          <div className="code-block">{lines.map((l) => <div key={l}>{l}</div>)}</div>
+        </div>
+      )}
+      <div className="text-micro mono amg-dim">{f.check.replace(/_/g, ' ')} · {f.area}</div>
     </div>
   );
 }
@@ -153,10 +165,10 @@ function FindingActions({ report, f, onDone }: { report: AuditReport; f: AuditFi
   });
   return (
     <>
-      <button type="button" className="btn-ghost" disabled={busy} onClick={doDismiss}>Dismiss 30 days</button>
+      <button type="button" className="btn-secondary" disabled={busy} onClick={doDismiss}>Dismiss 30 days</button>
       {f.fix
         ? <button type="button" className="btn-primary" disabled={busy} onClick={doApply}>Apply fix</button>
-        : <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center' }}>No automatic fix: change it by hand.</span>}
+        : <span className="text-micro amg-dim amg-center">No automatic fix: change it by hand.</span>}
     </>
   );
 }

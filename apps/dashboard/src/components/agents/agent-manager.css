@@ -1,2 +1,260 @@
 /* Spec 078 wave D3: directives, reviews, post audit, network, critic, audit, launch, setup and steering cards. Prefix amg-.
-   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests). */
+   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests).
+   The shared parts (panels, insets, rows, chips, buttons, callouts, tabs) are index.css; this file lays out what is inside
+   them. Tokens only; the one literal colour is the per-destination tint of a platform glyph. */
+
+/* ── Small helpers (text tone, wrapping) ──────────────────────────────────────────────────────────── */
+.amg-dim { color: var(--color-ink-dim); }
+.amg-muted { color: var(--color-ink-muted); }
+.amg-ink { color: var(--color-ink); }
+.amg-danger { color: var(--color-danger-ink); }
+.amg-warn { color: var(--color-warning); }
+.amg-ok { color: var(--color-success); }
+.amg-wrap { overflow-wrap: anywhere; min-width: 0; }
+.amg-pre { white-space: pre-wrap; }
+.amg-nowrap { white-space: nowrap; }
+.amg-trunc { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.amg-push { margin-left: auto; }
+.amg-stack { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.amg-icon { display: inline-flex; flex: none; }
+/* A mono count or id line: "12 shown", "2 issues on 3 resources". */
+.amg-count { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--color-ink-dim); }
+.amg-skeleton { height: 160px; border-radius: var(--radius-xl); background: color-mix(in srgb, var(--color-ink) 3%, transparent); }
+.amg-skeleton.is-short { height: 140px; }
+.amg-skeleton.is-line { height: 40px; border-radius: var(--radius-md); }
+
+/* ── Network bits (NetworkUi): platform glyph, resource label and chip, score meter, weight bar ───── */
+.amg-plat { display: inline-flex; flex-shrink: 0; color: var(--color-ink-muted); }
+/* Per-destination tints: the only added colour, purely for scannability (same as the groups page). */
+.amg-plat.is-telegram  { color: #229ED9; }
+.amg-plat.is-facebook  { color: #4a7dff; }
+.amg-plat.is-instagram { color: #e1497f; }
+.amg-plat.is-threads   { color: #c7c7c7; }
+.amg-plat.is-tiktok    { color: #25d8d0; }
+.amg-plat.is-youtube   { color: #ff4e45; }
+
+.amg-res { display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
+.amg-res-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-muted); }
+.amg-res-name.is-strong { color: var(--color-ink); font-weight: 500; }
+.chip.amg-reschip { gap: 5px; max-width: 100%; min-width: 0; }
+.amg-reschip-suffix { white-space: nowrap; color: var(--color-ink-dim); }
+
+.amg-score { display: inline-flex; flex-direction: column; gap: 3px; min-width: 0; }
+.amg-score-label { font-size: 11px; line-height: 1.2; color: var(--color-ink-dim); white-space: nowrap; }
+.amg-score-bar { display: inline-flex; gap: 2px; }
+.amg-score-seg { width: 8px; height: 4px; border-radius: var(--radius-pill); background: var(--color-surface-3); }
+.amg-score-seg.is-bad { background: var(--color-danger); }
+.amg-score-seg.is-mid { background: var(--color-warning); }
+.amg-score-seg.is-good { background: var(--color-success); }
+
+.amg-weight { display: grid; grid-template-columns: minmax(0, 92px) 1fr 40px; gap: 8px; align-items: center; }
+.amg-weight-track { height: 6px; border-radius: var(--radius-pill); background: var(--color-surface-3); overflow: hidden; }
+.amg-weight-fill { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--color-accent); }
+.amg-weight-val { text-align: right; }
+
+/* A status dot (a review on its timeline, a directive in a chip). */
+.amg-dot { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--color-ink-dim); }
+.amg-dot.is-success { background: var(--color-success); }
+.amg-dot.is-warning { background: var(--color-warning); }
+.amg-dot.is-danger  { background: var(--color-danger); }
+.amg-dot.is-accent  { background: var(--color-accent); }
+
+/* ── The critic's verdict (CriticBlock): an inset under a post ───────────────────────────────────── */
+.inset.amg-critic { display: grid; gap: 8px; min-width: 0; margin-top: 10px; padding: 12px 14px; }
+.amg-critic-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.amg-critic-scores { display: flex; flex-wrap: wrap; gap: 4px; }
+.amg-critic-notes { font-size: 13px; line-height: 1.5; color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.amg-critic-issues { display: grid; gap: 6px; }
+.amg-critic-issue { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 6px; overflow-wrap: anywhere; line-height: 1.5; }
+
+/* ── Directives: the filter bar, the board, the dialog body ──────────────────────────────────────── */
+.amg-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; min-width: 0; }
+.amg-toolbar.is-spaced { margin-bottom: 10px; }
+.amg-filters { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.amg-kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+.amg-kinds .chip-toggle { min-height: 32px; padding: 0 10px; font-size: 12px; gap: 5px; }
+
+/* The board: a column per stage on a wide screen (scrolls sideways when they do not fit), a stack of groups below 1100px. */
+.amg-board-scroll { overflow-x: auto; max-width: 100%; padding-bottom: 6px; }
+.amg-board { display: flex; align-items: flex-start; gap: 12px; min-width: min-content; }
+.amg-col {
+  flex: 1 0 280px; max-width: 380px; display: flex; flex-direction: column; gap: 8px; padding: 8px;
+  border-radius: var(--radius-lg); background: var(--color-surface-1); border: 1px solid var(--color-hairline);
+}
+.amg-col.is-empty { flex: 0 0 150px; }
+.amg-col-empty { padding: 10px 4px; }
+.amg-groups { display: flex; flex-direction: column; gap: 16px; }
+.amg-group { display: flex; flex-direction: column; gap: 8px; }
+.amg-colhead { display: flex; align-items: center; gap: 8px; padding: 2px 4px; min-height: 28px; }
+.amg-colhead .text-overline.is-warn { color: var(--color-warning); }
+
+/* Dialog body of one directive. */
+.amg-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.amg-badges > .amg-push { min-width: 0; }
+.amg-facts { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.amg-line { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 4px 12px; align-items: baseline; min-width: 0; }
+.amg-key { min-width: 0; overflow-wrap: anywhere; }
+.amg-val { min-width: 0; line-height: 1.45; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.amg-pairs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-width: 0; }
+.amg-pair { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; }
+.amg-expected { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.amg-metric { font-weight: 500; }
+.amg-arrow { font-weight: 600; }
+.amg-arrow.is-up { color: var(--color-success); }
+.amg-arrow.is-down { color: var(--color-danger-ink); }
+.inset.amg-outcome { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 10px 14px; }
+.amg-change { font-weight: 600; }
+.amg-change.is-good { color: var(--color-success); }
+.amg-change.is-bad { color: var(--color-danger-ink); }
+.amg-change.is-flat { color: var(--color-ink-dim); }
+.inset.amg-contest {
+  display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 12px 14px;
+  background: color-mix(in srgb, var(--color-warning) 6%, var(--color-surface-1));
+  border-color: color-mix(in srgb, var(--color-warning) 30%, transparent);
+}
+.amg-contest-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.amg-contest-who { font-weight: 500; }
+.amg-contest-check { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; min-width: 0; }
+.amg-resolution { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; color: var(--color-ink-muted); }
+.amg-note { display: flex; align-items: center; gap: 6px; }
+.amg-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+
+/* Dialog footer: the owner's decisions are real buttons (Discuss on the left when the orchestrator contests). */
+.amg-actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+.amg-actions-split { flex: 1; display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.callout-warning.amg-callout-col { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+@media (max-width: 600px) {
+  .amg-line { grid-template-columns: minmax(0, 1fr); }
+  .amg-actions, .amg-actions-split { justify-content: stretch; }
+  .amg-actions > button, .amg-actions-split > a { flex: 1 1 auto; justify-content: center; }
+}
+
+/* ── Manager reviews: a timeline of runs, the quality checklist, the directive chips ─────────────── */
+.amg-tl { list-style: none; margin: 0; padding: 0; }
+.amg-tl-item { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; }
+.amg-tl-rail { position: relative; display: flex; justify-content: center; }
+.amg-tl-rail::before { content: ''; position: absolute; top: 18px; bottom: -14px; width: 1px; background: var(--color-hairline); }
+.amg-tl-item.is-last .amg-tl-rail::before { display: none; }
+.amg-tl-dot { position: relative; margin-top: 14px; box-shadow: 0 0 0 3px var(--color-canvas); }
+.amg-tl-card { min-width: 0; padding-bottom: 10px; }
+
+.amg-stack.is-roomy { gap: 16px; }
+.amg-section { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.amg-sechead { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
+.inset.amg-rows { padding: 0; overflow: hidden; }
+.amg-rows > .panel-row { padding: 10px 14px; }
+.panel-row.amg-qrow { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 4px; }
+.amg-qrow-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.amg-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip.amg-dchip { position: relative; gap: 6px; max-width: 100%; min-width: 0; text-decoration: none; color: var(--color-ink-muted); }
+.chip.amg-dchip::after { content: ''; position: absolute; inset: -6px 0; }
+.chip.amg-dchip:hover { color: var(--color-ink); }
+.amg-dchip .amg-dot { width: 6px; height: 6px; }
+
+/* ── Post audit (health → resource) and feed fit ─────────────────────────────────────────────────── */
+.amg-audit { display: grid; gap: 8px; min-width: 0; }
+.amg-audit-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.amg-inline { display: inline-flex; align-items: center; gap: 5px; }
+.amg-refs { display: flex; flex-wrap: wrap; gap: 2px 8px; min-width: 0; }
+.amg-ref { display: inline-flex; align-items: center; gap: 3px; min-width: 0; overflow-wrap: anywhere; }
+.amg-codegroup { min-width: 0; }
+.amg-sum {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; min-width: 0; min-height: 36px;
+  list-style: none; cursor: pointer; border-radius: var(--radius-sm);
+}
+.amg-sum::-webkit-details-marker { display: none; }
+.amg-sum:hover { background: color-mix(in srgb, var(--color-ink) 2.5%, transparent); }
+.amg-sum-title { font-weight: 500; min-width: 0; }
+.amg-chev { display: inline-flex; flex: none; color: var(--color-ink-dim); transition: transform var(--dur-base) var(--ease-out); }
+.amg-codegroup[open] > .amg-sum .amg-chev { transform: rotate(90deg); }
+.amg-codegroup-body { display: grid; gap: 6px; min-width: 0; padding: 4px 0 4px 20px; }
+.amg-fixlabel { color: var(--color-accent); font-weight: 500; }
+.amg-code { font-size: 11px; color: var(--color-ink-dim); }
+.amg-issue {
+  display: grid; gap: 4px; min-width: 0; padding: 8px 10px;
+  border-radius: var(--radius-md); background: var(--color-surface-1); border: 1px solid var(--color-hairline);
+}
+.amg-issue-head { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
+.amg-quote { border-left: 2px solid var(--color-hairline-strong); padding-left: 8px; }
+.amg-feeds { display: grid; gap: 4px; min-width: 0; }
+.amg-feed { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; align-items: center; min-width: 0; }
+.amg-feed-share { text-align: right; color: var(--color-ink-muted); }
+.amg-feed-share.is-bad { color: var(--color-danger-ink); }
+.amg-feed-badge { grid-column: 1 / -1; }
+
+/* ── Artifact bodies (sysadmin audit, launch, steering): overline sections, rows in flush panels ── */
+.amg-h { margin: 0; }
+.amg-grow { flex: 1 1 160px; min-width: 0; }
+.amg-center { align-self: center; }
+.amg-start { align-self: flex-start; justify-self: start; }
+.amg-strong { font-weight: 600; color: var(--color-ink); }
+.amg-cards { display: grid; gap: 6px; }
+.inset.amg-running { display: flex; align-items: center; gap: 10px; }
+.panel.is-flush.amg-handled > .panel-row { padding: 10px 14px; }
+.amg-list { margin: 0; padding-left: 18px; list-style: disc; display: grid; gap: 2px; }
+
+/* Launch: checklist steps, going-live criteria, promos, the plan. */
+.panel-row.amg-step { flex-wrap: nowrap; align-items: flex-start; gap: 10px; padding: 10px 14px; }
+.amg-step-dot { display: inline-flex; padding-top: 6px; }
+.amg-step-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.amg-step-side { flex: none; display: grid; justify-items: end; gap: 4px; }
+.inset.amg-criteria { display: grid; gap: 6px; }
+.amg-criterion { display: flex; align-items: center; gap: 8px; color: var(--color-ink-muted); }
+.amg-criterion .amg-icon { color: var(--color-ink-dim); }
+.amg-criterion.is-ok { color: var(--color-ink); }
+.amg-criterion.is-ok .amg-icon { color: var(--color-success); }
+.panel-row.amg-promo { padding: 10px 14px; gap: 8px; }
+.inset.amg-plan { display: grid; gap: 10px; }
+.amg-val.is-ink { color: var(--color-ink); }
+.panel-row.amg-planrow { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 4px; }
+.amg-planrow-top { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.amg-planrow-top .chip { align-self: center; }
+
+/* Steering: a rule is a row (kind, switches, text, evidence); a reference post is a one-line row. */
+.panel-row.amg-rule { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 6px; padding: 12px 14px; }
+.amg-rule.is-off { opacity: 0.75; }
+.amg-rule-top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.amg-rule-tools { display: inline-flex; align-items: center; gap: 10px; }
+.panel-row.amg-post { flex-wrap: nowrap; align-items: baseline; gap: 8px; padding: 8px 14px; }
+.amg-post-key { flex: none; width: 28px; }
+.amg-post-text { --clamp: 1; flex: 1 1 auto; min-width: 0; color: var(--color-ink); }
+.amg-post-text.is-empty { color: var(--color-ink-dim); }
+.btn-ghost.amg-discard { color: var(--color-danger-ink); margin-right: auto; }
+.btn-ghost.amg-discard:hover:not(:disabled) { color: var(--color-danger-ink); background: var(--color-danger-soft); }
+
+@media (max-width: 600px) {
+  .panel-row.amg-post { flex-wrap: wrap; }
+  .amg-post-text { flex-basis: 100%; order: 3; }
+}
+
+/* ── Setup from history (SetupProposalDialog / ProposalBody): metrics inset, a block per section ── */
+.amg-p { margin: 0; }
+.amg-note.is-top { align-items: flex-start; }
+.amg-note.is-top > .amg-icon { margin-top: 1px; }
+.inset.amg-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px 16px; }
+.amg-mcell { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+.amg-setup-section {
+  padding: 14px 16px; border-radius: var(--radius-lg); border: 1px solid var(--color-hairline); min-width: 0;
+  transition: border-color var(--dur-base) ease, background var(--dur-base) ease;
+}
+.amg-setup-section.is-picked {
+  border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+}
+.amg-setup-head { display: flex; align-items: flex-start; gap: 12px; }
+.amg-check { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--color-accent); cursor: pointer; }
+.amg-setup-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.amg-setup-title { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.amg-setup-label { font-size: 14px; font-weight: 600; color: var(--color-ink); }
+.amg-setup-label.is-pick { cursor: pointer; }
+.amg-now-proposed { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; margin-top: 2px; }
+.amg-rows-col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.amg-dl { margin: 0; display: grid; gap: 4px; }
+.amg-dlrow dt { display: inline; color: var(--color-ink-dim); }
+.amg-dlrow dd { display: inline; margin: 0; }
+.amg-posts-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; max-width: 100%; }
+.amg-postlist { list-style: none; margin: 0; padding: 0 0 0 4px; display: grid; gap: 4px; min-width: 0; max-width: 100%; }
+.amg-postlist-row { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.modal-foot.amg-foot-split { justify-content: space-between; flex-wrap: wrap; }
