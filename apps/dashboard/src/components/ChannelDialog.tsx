@@ -27,7 +27,7 @@ export function ChannelDialog({ channelId, onClose }: { channelId: string; onClo
   return (
     <Modal open onClose={onClose} title={c ? channelName(c) : 'Channel'} subtitle={subtitle} icon="channels" size="lg">
       {channelQ.isLoading && <LoadingNote note="Loading channel…" />}
-      {channelQ.error && <ErrorCallout title="Couldn’t load the channel" message={(channelQ.error as Error).message} />}
+      {channelQ.error && <ErrorCallout title="Couldn’t load the channel" error={channelQ.error} />}
 
       {c && (
         <div className="gr-dialog">

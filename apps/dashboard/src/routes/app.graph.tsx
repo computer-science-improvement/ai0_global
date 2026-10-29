@@ -79,7 +79,7 @@ function GraphPage() {
         </div>
       )}
       {!syntheticData && q.error && (
-        <ErrorCallout title="Couldn’t load the graph" message={(q.error as Error).message} />
+        <ErrorCallout title="Couldn’t load the graph" error={q.error} />
       )}
       {isEmpty && (
         <div className="panel gr-state">

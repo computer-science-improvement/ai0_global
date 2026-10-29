@@ -110,7 +110,7 @@ function ChannelsPage() {
         </SectionCard>
       )}
 
-      {error && <ErrorCallout title="Couldn’t load channels" message={(error as Error).message} />}
+      {error && <ErrorCallout title="Couldn’t load channels" error={error} />}
 
       {isEmpty && (
         <SectionCard title="My channels" delay={40}>

@@ -38,8 +38,11 @@ function ArtifactsPage() {
   const toChat = (q: string) => navigate({ to: '/app/chat', search: { q } });
 
   // Counts for the filters. The query is the list's own (no type picked), so it is one request, not two; when the
-  // endpoint is missing the counts are left out and the list shows its own error.
-  const rows = useArtifacts({ agent, limit: 200 }).data?.rows;
+  // endpoint is missing the counts are left out and the list shows its own error. The server keeps only the 200 newest
+  // across all types, so a full page is not a total: then no counts at all rather than short ones.
+  const LIMIT = 200;
+  const page = useArtifacts({ agent, limit: LIMIT }).data?.rows;
+  const rows = page && page.length < LIMIT ? page : undefined;
   const ofType = rows?.filter((r) => !type || r.type === type);
   const typeCount = (t?: ArtifactType) => rows?.filter((r) => !t || r.type === t).length;
 

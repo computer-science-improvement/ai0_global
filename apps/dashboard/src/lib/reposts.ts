@@ -45,3 +45,8 @@ export function repostBadge(from: string | null | undefined): string | null {
   if (!from) return null;
   return `Repost from @${from.replace(/^@/, '')}`;
 }
+
+/** Views of the last `n` own fresh posts, oldest first (`posts` come latest first): the trend line of the own-views average. */
+export function ownViewsSpark(posts: RepostLike[], n = 7): number[] {
+  return posts.filter((p) => !p.repostFrom && !p.evergreen).slice(0, n).reverse().map((p) => p.views ?? 0);
+}

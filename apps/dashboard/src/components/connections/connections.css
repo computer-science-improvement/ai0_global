@@ -104,6 +104,8 @@
 /* The remove control of a filled port: a 28px target (a 44px hit area through ::after), always shown on touch. */
 .group-card .group-x { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; flex: none; }
 .group-card .group-x::after { content: ''; position: absolute; inset: -8px; }
+/* The remove control shows on hover (index.css); keyboard focus must show it too. */
+.group-card .group-port:focus-within .group-x, .group-card .group-x:focus-visible { opacity: 1; }
 /* Phones: name and the delete control share the first line, the source picker / "independent" tag drop under them. */
 @media (max-width: 600px) {
   .grp-source { width: 100%; justify-content: space-between; }

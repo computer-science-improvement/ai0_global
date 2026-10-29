@@ -17,7 +17,7 @@
 
 /* A quiet-bordered button whose action is destructive (Sign out everywhere): danger text, danger wash on hover. */
 .btn-secondary.is-danger { color: var(--color-danger); border-color: color-mix(in srgb, var(--color-danger) 32%, transparent); }
-.btn-secondary.is-danger:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger); border-color: var(--color-danger); }
+.btn-secondary.is-danger:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger-ink); border-color: var(--color-danger); }
 
 /* ── Configuration ── */
 .set-toolbar { display: flex; flex-direction: column; gap: 10px; }

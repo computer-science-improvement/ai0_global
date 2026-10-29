@@ -53,7 +53,7 @@ export function EdgePanel({ sourceId, targetUsername, onClose }: Props) {
     >
       <div className="gr-posts">
         {postsQ.isLoading && <LoadingNote note="Loading posts…" />}
-        {postsQ.error && <ErrorCallout title="Couldn’t load the posts" message={(postsQ.error as Error).message} style={{ marginBottom: 0 }} />}
+        {postsQ.error && <ErrorCallout title="Couldn’t load the posts" error={postsQ.error} style={{ marginBottom: 0 }} />}
         {postsQ.data && posts.length === 0 && (
           <EmptyState icon="channels" title="No posts found" note="No post in this channel references this target." />
         )}

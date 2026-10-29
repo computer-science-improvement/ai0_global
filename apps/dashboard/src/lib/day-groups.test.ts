@@ -30,6 +30,8 @@ test('dayHeading: Today, Yesterday, then the short date', () => {
   assert.equal(dayHeading('2026-10-29', '2026-10-29'), 'Today');
   assert.equal(dayHeading('2026-10-28', '2026-10-29'), 'Yesterday');
   assert.equal(dayHeading('2026-10-27', '2026-10-29'), 'Tue, 27 Oct');
+  assert.equal(dayHeading('2025-11-03', '2026-10-29'), 'Mon, 3 Nov 2025', 'another year names the year');
+  assert.equal(dayHeading('2025-12-31', '2026-01-01'), 'Yesterday');
 });
 
 test('groupByDay: keeps the order, splits on the Kyiv midnight, never drops a row', () => {

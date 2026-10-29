@@ -58,7 +58,6 @@ function DatasetPage() {
     <div>
       {back}
       <PageHeader
-        eyebrow={s.key}
         title={s.title}
         subtitle={<>
           {s.description || 'No description yet — agents choose datasets by their description, so add one on the Schema tab.'}
@@ -66,7 +65,7 @@ function DatasetPage() {
             <Badge tone={DATASET_STATUS[s.status].tone}>{DATASET_STATUS[s.status].label}</Badge>
             <span className="chip">{s.entity}</span>
             <span className="mono text-micro dx-dim">
-              v{s.version}{s.language ? ` · ${s.language}` : ''} · license {s.default_license}
+              {s.key} · v{s.version}{s.language ? ` · ${s.language}` : ''} · license {s.default_license}
               {s.contains_personal_data ? ' · personal data' : ''}{s.legacy ? ` · moved from the ${s.legacy.table} table` : ''}
             </span>
           </span>
@@ -80,7 +79,7 @@ function DatasetPage() {
 
       <div className="compose-rise" style={{ marginBottom: 20 }}>
         <StatStrip label="Dataset numbers">
-          <StatTile label="Rows" value={fmtInt(stats?.rows_active ?? null)}
+          <StatTile label="Rows" value={fmtInt(stats?.rows ?? null)}
             delta={stats && stats.rows !== stats.rows_active ? `${fmtInt(stats.rows - stats.rows_active)} hidden` : undefined} />
           <StatTile label="Unposted" value={fmtInt(stats?.unposted_network ?? null)}
             delta={`${s.reuse_policy.kind === 'cycle' ? 'in current rounds · ' : ''}${stats?.stats_at ? `stats ${fmtRelative(stats.stats_at)}` : 'no stats yet'}`} />

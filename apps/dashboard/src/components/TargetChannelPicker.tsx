@@ -7,14 +7,17 @@ interface Props {
   onChange: (id: string | null) => void;
 }
 
-/** Which of my channels the placements are for. While the list loads (or fails) the select stays in place, disabled, so the form does not jump. */
+/**
+ * Which of my channels the placements are for. While the list first loads (or its first load fails) the select stays in
+ * place, disabled, so the form does not jump. A failed background refetch keeps the cached list usable.
+ */
 export function TargetChannelPicker({ value, onChange }: Props) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['channels', { filter: 'mine' }],
     queryFn: () => trackingApi.listChannels({ filter: 'mine', pageSize: 100 }),
   });
 
-  if (isLoading || isError) {
+  if (isLoading || (isError && !data)) {
     return (
       <select className="input-field" aria-label="Target channel" disabled value="" style={{ width: '100%' }}>
         <option value="">{isLoading ? 'Loading channels…' : 'Couldn’t load your channels'}</option>

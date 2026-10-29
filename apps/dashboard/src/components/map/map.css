@@ -113,6 +113,8 @@
 /* A finger needs 44px: the hit area grows past the look (no layout change, so the bar still fits at 375px). */
 @media (pointer: coarse) {
   .map-icon-btn::after, .map-toggle-btn::after, .map-alerts-btn::after, .map-chip-x::after { content: ''; position: absolute; inset: -6px; }
+  .map-icon-btn.is-sm::after { inset: -8px; }
+  .map-icon-btn.is-xs::after { inset: -10px; }
 }
 .map-live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); flex: none; }
 .map-live-dot.is-stale { background: var(--color-ink-dim); }

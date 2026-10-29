@@ -206,7 +206,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           </div>
         </Field>
 
-        {error && <ErrorCallout title="Couldn’t add the channel" message={error.message} style={{ marginBottom: 0 }} />}
+        {error && <ErrorCallout title="Couldn’t add the channel" error={error} style={{ marginBottom: 0 }} />}
 
         <div className="modal-foot">
           <button type="button" onClick={onClose} className="btn-ghost">Cancel</button>

@@ -158,7 +158,8 @@ export function summarizeDatasets(rows: readonly DatasetCounts[]) {
     count: rows.length,
     active: rows.filter((d) => d.status === 'active').length,
     drafts: rows.filter((d) => d.status === 'draft').length,
-    rows: rows.reduce((a, d) => a + d.rows_active, 0),
+    // All rows, as the table's Rows column counts them; `hidden` says how many of them are hidden.
+    rows: rows.reduce((a, d) => a + d.rows, 0),
     hidden: rows.reduce((a, d) => a + (d.rows - d.rows_active), 0),
     unposted,
     lastImportAt,

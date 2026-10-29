@@ -186,7 +186,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
         </label>
       </Field>
 
-      {save.error && <ErrorCallout title="Couldn’t save the channel" message={(save.error as Error).message} />}
+      {save.error && <ErrorCallout title="Couldn’t save the channel" error={save.error} />}
 
       <div className="modal-foot">
         <button type="button" onClick={onClose} className="btn-ghost">Cancel</button>

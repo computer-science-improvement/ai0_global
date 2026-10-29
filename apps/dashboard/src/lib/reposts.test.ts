@@ -2,7 +2,7 @@
 // Spec 037 T2: own vs repost counts on Analytics and the "Repost from @…" badge in the posts list.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { evergreenBadge, repostBadge, splitReposts } from './reposts';
+import { evergreenBadge, ownViewsSpark, repostBadge, splitReposts } from './reposts';
 
 test('own vs reposts: counted apart, the average views read own posts only', () => {
   const s = splitReposts([
@@ -26,4 +26,13 @@ test('repost badge text is English and names the source channel', () => {
   assert.equal(repostBadge('ai_tech'), 'Repost from @ai_tech');
   assert.equal(repostBadge('@ai_tech'), 'Repost from @ai_tech');
   assert.equal(repostBadge(null), null);
+});
+
+test('ownViewsSpark: the last own fresh posts, oldest first; reposts and evergreen left out', () => {
+  const posts = [
+    { views: 50 }, { views: 900, repostFrom: '@sib' }, { views: 40, evergreen: true }, { views: 30 }, { views: null }, { views: 10 },
+  ];
+  assert.deepEqual(ownViewsSpark(posts), [10, 0, 30, 50]);
+  assert.deepEqual(ownViewsSpark(posts, 2), [30, 50]);
+  assert.deepEqual(ownViewsSpark([]), []);
 });

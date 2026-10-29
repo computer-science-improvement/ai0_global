@@ -99,11 +99,11 @@ function TrackedPage() {
         </SectionCard>
       )}
 
-      {error && <ErrorCallout title="Couldn’t load tracked channels" message={(error as Error).message} />}
+      {error && <ErrorCallout title="Couldn’t load tracked channels" error={error} />}
 
       {/* Delete failed — surfaced inline so the row doesn't just "not disappear". */}
       {del.isError && (
-        <ErrorCallout title="Couldn’t delete the channel" message={(del.error as Error).message} />
+        <ErrorCallout title="Couldn’t delete the channel" error={del.error} />
       )}
 
       {data && data.total === 0 && (

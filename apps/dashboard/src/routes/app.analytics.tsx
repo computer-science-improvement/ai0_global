@@ -5,7 +5,7 @@ import { trackingApi } from '../api/tracking';
 import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights } from '../api/meta-accounts';
 import { channelOptionLabel } from '../lib/labels';
 import { fmtNumber } from '../lib/format';
-import { EVERGREEN_SHARE_MAX, splitReposts } from '../lib/reposts';
+import { EVERGREEN_SHARE_MAX, ownViewsSpark, splitReposts } from '../lib/reposts';
 import { PageHeader } from '../components/ui/PageHeader';
 import type { IconName } from '../components/ui/Icon';
 import { SegmentedTabs } from '../components/SegmentedTabs';
@@ -73,8 +73,8 @@ function AnalyticsPage() {
   const split = splitReposts(posts);
   const avgViews = split.avgOwnViews;
   const totalReactions = posts.reduce((a, p) => a + (p.reactionsTotal ?? 0), 0);
-  // Views of the last 7 posts, oldest first (the list comes latest first).
-  const viewsSpark = posts.slice(0, 7).reverse().map(p => p.views ?? 0);
+  // Views of the last 7 own posts, oldest first: the same posts the average reads (reposts carry a sibling's audience).
+  const viewsSpark = ownViewsSpark(posts);
 
   const metaReachTotal = insPoints.reduce((a, p) => a + (p.reach ?? 0), 0);
 
@@ -110,8 +110,8 @@ function AnalyticsPage() {
       </div>
 
       {tab === 'telegram' ? (
-        channelsQ.error ? (
-          <ErrorCallout title="Couldn’t load your channels" message={(channelsQ.error as Error).message} />
+        channelsQ.error && !channelsQ.data ? (
+          <ErrorCallout title="Couldn’t load your channels" error={channelsQ.error} />
         ) : channelsQ.isPending ? (
           <div className="panel"><ChartState note="Loading channels…" loading /></div>
         ) : !channelId ? (
@@ -187,8 +187,8 @@ function AnalyticsPage() {
           </div>
         )
       ) : (
-        metaQ.error ? (
-          <ErrorCallout title="Couldn’t load your Meta accounts" message={(metaQ.error as Error).message} />
+        metaQ.error && !metaQ.data ? (
+          <ErrorCallout title="Couldn’t load your Meta accounts" error={metaQ.error} />
         ) : metaQ.isPending ? (
           <div className="panel"><ChartState note="Loading Meta accounts…" loading /></div>
         ) : !metaId ? (

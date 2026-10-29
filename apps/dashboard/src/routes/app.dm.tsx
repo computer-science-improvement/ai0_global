@@ -311,7 +311,7 @@ function ChatIntelSection() {
                     <span className="dm-meta">→ {ACTION_LABEL[o.suggested_action] ?? o.suggested_action}</span>
                   )}
                 </div>
-                {o.summary && <p className="dm-opp-summary clamp">{o.summary}</p>}
+                {o.summary && <p className="dm-opp-summary">{o.summary}</p>}
               </div>
               <RowActions
                 danger={

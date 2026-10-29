@@ -47,10 +47,11 @@ function ScheduledPage() {
       {data && data.length > 0 && (
         <div className="compose-rise" style={{ marginBottom: 16 }}>
           <StatStrip label="Scheduled post numbers">
-            <StatTile label="Scheduled" value={data.length} />
-            <StatTile label="Pending" value={pendingCount} />
-            <StatTile label="Sent" value={sentCount} delta={sentCount ? 'delivered' : undefined} deltaTone="success" />
-            <StatTile label="Failed" value={failedCount} delta={failedCount ? 'needs attention' : undefined} deltaTone={failedCount ? 'danger' : 'neutral'} />
+            {/* The tiles use the rows' status words (lib/status-tone): a pending post reads "Scheduled" in both places. */}
+            <StatTile label="All posts" value={data.length} />
+            <StatTile label={publicationLabel('pending')} value={pendingCount} />
+            <StatTile label={publicationLabel('sent')} value={sentCount} delta={sentCount ? 'delivered' : undefined} deltaTone="success" />
+            <StatTile label={publicationLabel('failed')} value={failedCount} delta={failedCount ? 'needs attention' : undefined} deltaTone={failedCount ? 'danger' : 'neutral'} />
           </StatStrip>
         </div>
       )}

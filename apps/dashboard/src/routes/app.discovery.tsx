@@ -37,7 +37,7 @@ function DiscoveryPage() {
         subtitle="Channels seen in ads on tracked channels but not yet polled (closed or unresolved)."
       />
 
-      {error && <ErrorCallout title="Couldn’t load the discovery queue" message={(error as Error).message} />}
+      {error && <ErrorCallout title="Couldn’t load the discovery queue" error={error} />}
 
       <div className="ch-stack">
         {data && items.length > 0 && (
@@ -49,7 +49,7 @@ function DiscoveryPage() {
           </div>
         )}
 
-        {!error && (
+        {(!error || data) && (
           <SectionCard
             title="Discovery queue"
             flush

@@ -80,7 +80,7 @@ function AdsPage() {
         <div className="compose-rise" style={{ marginBottom: 16 }}>
           <StatStrip label="Orders by stage">
             <StatTile label="Awaiting payment" value={sum.awaitingPayment} />
-            <StatTile label="Paid, to schedule" value={sum.paid} />
+            <StatTile label="Paid" value={sum.paid} />
             <StatTile label="Scheduled" value={sum.scheduled} />
             <StatTile label="Needs attention" value={sum.flagged} deltaTone="warning"
               delta={sum.flagged > 0 ? 'flagged, see the Inbox' : undefined} />

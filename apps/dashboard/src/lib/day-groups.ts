@@ -32,11 +32,12 @@ export function previousDay(day: string): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
 }
 
-/** "Today", "Yesterday" or "Thu, 29 Oct". */
+/** "Today", "Yesterday", "Thu, 29 Oct", or "Mon, 3 Nov 2025" for a day of another year. */
 export function dayHeading(day: string, today: string): string {
   if (day === today) return 'Today';
   if (day === previousDay(today)) return 'Yesterday';
-  return fmtDayShort(day);
+  const short = fmtDayShort(day);
+  return DAY_RE.test(day) && day.slice(0, 4) !== today.slice(0, 4) ? `${short} ${day.slice(0, 4)}` : short;
 }
 
 export interface DayGroup<T> { day: string; items: T[] }

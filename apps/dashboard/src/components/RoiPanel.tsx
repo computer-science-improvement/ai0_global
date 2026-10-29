@@ -3,6 +3,7 @@ import { trackingApi } from '../api/tracking';
 import { fmtNumber, fmtRelative } from '../lib/format';
 import { Badge } from './ui/Badge';
 import { EmptyState } from './ui/primitives';
+import { describeError } from './ui/Toast';
 import { LoadingNote } from './channels/ChannelsUi';
 
 /** How sure the estimate is: a category (low → red, medium → amber, high → green), not a status of the app. */
@@ -21,12 +22,13 @@ export function RoiPanel({ channelId }: { channelId: string }) {
   });
 
   if (q.isLoading) return <LoadingNote note="Computing ROI…" />;
-  if (q.error || !q.data) {
+  // A failed refetch keeps the last estimate (and Recompute) on screen; only a missing estimate is replaced.
+  if (!q.data) {
     return (
       <EmptyState
         icon="warning"
         title="No ROI estimate"
-        note={q.error ? (q.error as Error).message : 'Nothing has been computed for this channel yet.'}
+        note={q.error ? describeError(q.error) : 'Nothing has been computed for this channel yet.'}
       />
     );
   }

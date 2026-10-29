@@ -703,9 +703,6 @@ a.panel-row, button.panel-row { width: 100%; color: inherit; font: inherit; text
   background: var(--color-accent);
   animation: auth-pulse 1.1s ease-in-out infinite;
 }
-@media (prefers-reduced-motion: reduce) {
-  .auth-pending-dot { animation: none; }
-}
 
 /* A small inline spinner (e.g. a slot preview being written, spec 034 FR-012). */
 @keyframes spin-ring { to { transform: rotate(360deg); } }

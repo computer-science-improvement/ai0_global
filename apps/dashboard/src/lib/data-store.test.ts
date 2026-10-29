@@ -90,6 +90,6 @@ test('the key numbers of the dataset list add up what the rows hold', () => {
     d({}), d({ status: 'draft', rows: 4, rows_active: 4, unposted_network: null, last_import_at: '2026-10-01T10:00:00Z' }),
     d({ status: 'archived', unposted_network: 2, last_import_at: '2026-10-20T10:00:00Z' }),
   ]);
-  assert.deepEqual(s, { count: 3, active: 1, drafts: 1, rows: 20, hidden: 4, unposted: 7, lastImportAt: '2026-10-20T10:00:00Z' });
+  assert.deepEqual(s, { count: 3, active: 1, drafts: 1, rows: 24, hidden: 4, unposted: 7, lastImportAt: '2026-10-20T10:00:00Z' });
   assert.equal(summarizeDatasets([d({ unposted_network: null })]).unposted, null, 'no stats at all stays unknown, not zero');
 });

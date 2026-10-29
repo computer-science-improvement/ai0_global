@@ -11,7 +11,7 @@ import { ViewsBarChart } from '../components/ViewsBarChart';
 import { EngagementChart } from '../components/EngagementChart';
 import { PostsList } from '../components/PostsList';
 import { fmtNumber } from '../lib/format';
-import { splitReposts } from '../lib/reposts';
+import { ownViewsSpark, splitReposts } from '../lib/reposts';
 import { channelName } from '../lib/channel-view';
 import { RoiPanel } from '../components/RoiPanel';
 import { EditThemesModal } from '../components/EditThemesModal';
@@ -104,7 +104,7 @@ function ChannelDetailPage() {
       <div>
         <Crumbs crumbs={trail} />
         <PageHeader title="Channel" />
-        <ErrorCallout title="Couldn’t load channel" message={(channelQ.error as Error).message} />
+        <ErrorCallout title="Couldn’t load channel" error={channelQ.error} />
         <Link to="/app/channels" search={{ filter: 'mine', page: 1, q: '' }} className="btn-secondary">All channels</Link>
       </div>
     );
@@ -135,8 +135,8 @@ function ChannelDetailPage() {
   const posts = postsQ.data?.items ?? [];
   const subsDelta = points.length > 1 ? points[points.length - 1].subs - points[0].subs : null;
   const split = splitReposts(posts);
-  // Views of the last 7 posts, oldest first (the list comes latest first).
-  const viewsSpark = posts.slice(0, 7).reverse().map(p => p.views ?? 0);
+  // Views of the last 7 own posts, oldest first: the same posts the average reads (reposts carry a sibling's audience).
+  const viewsSpark = ownViewsSpark(posts);
   const botInactive = c.bot && !c.bot.active;
 
   const onTier = async (next: 'hot' | 'warm' | 'cold') => {
@@ -207,16 +207,17 @@ function ChannelDetailPage() {
               delta={subsDelta != null ? `${signed(subsDelta)} · tracked range` : undefined}
               deltaTone={deltaTone(subsDelta)}
             />
+            {/* Read from the posts only once they answered: "no posts" while they load would be false. */}
             <StatTile
               label="Avg views"
-              value={fmtNumber(split.avgOwnViews)}
-              delta={split.own > 0 ? `last ${split.own} own posts` : 'no posts'}
+              value={postsQ.data ? fmtNumber(split.avgOwnViews) : '—'}
+              delta={postsQ.data ? (split.own > 0 ? `last ${split.own} own posts` : 'no posts') : undefined}
               spark={viewsSpark.length > 1 ? viewsSpark : undefined}
             />
             <StatTile
               label="Own vs reposts"
-              value={`${fmtNumber(split.own)} / ${fmtNumber(split.reposts)}`}
-              delta={split.share != null ? `${Math.round(split.share * 100)}% reposts` : 'no posts'}
+              value={postsQ.data ? `${fmtNumber(split.own)} / ${fmtNumber(split.reposts)}` : '—'}
+              delta={postsQ.data ? (split.share != null ? `${Math.round(split.share * 100)}% reposts` : 'no posts') : undefined}
             />
             <StatTile label="Legacy strategies" value={allBound.length} delta={allBound.length > 0 ? 'history only' : undefined} />
           </StatStrip>

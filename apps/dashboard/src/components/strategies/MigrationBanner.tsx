@@ -45,7 +45,7 @@ export function MigrationBanner() {
   if (!error && (isLoading || channels.length === 0)) return null;
 
   return (
-    <SectionCard title="Legacy strategy bindings" flush delay={40} action={<Badge tone="warning">{channels.length}</Badge>}>
+    <SectionCard title="Legacy strategy bindings" flush delay={40} action={data ? <Badge tone="warning">{channels.length}</Badge> : undefined}>
       <p className="mig-intro">
         Strategies were removed: these bindings are still enabled but publish nothing, the channel&apos;s agent writes its
         content. Migrate a channel to turn its bindings into the agent&apos;s series, then cut over to retire them.

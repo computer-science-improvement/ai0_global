@@ -15,7 +15,7 @@
 .dm-opp-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
 .dm-meta { font-size: 12px; color: var(--color-ink-dim); }
 .dm-meta.is-muted { color: var(--color-ink-muted); }
-.dm-opp-summary { margin: 4px 0 0; font-size: 14px; color: var(--color-ink-muted); }
+.dm-opp-summary { margin: 4px 0 0; font-size: 14px; color: var(--color-ink-muted); overflow-wrap: anywhere; }
 
 /* Compact cards: who/what the card is about, and the "a draft is waiting" cue. */
 .dm-peer { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); overflow-wrap: anywhere; min-width: 0; }
@@ -38,7 +38,7 @@
 
 /* A quiet button whose action is destructive (Reject, Archive): danger text, danger wash on hover. */
 .btn-ghost.dm-danger { color: var(--color-danger); }
-.btn-ghost.dm-danger:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger); }
+.btn-ghost.dm-danger:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger-ink); }
 
 @media (max-width: 600px) {
   .dm-actions .dm-push { margin-right: 0; width: 100%; justify-content: center; }

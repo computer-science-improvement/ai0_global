@@ -25,6 +25,7 @@
 .agent-banner-title { font-weight: 600; }
 .agent-banner-sub { font-size: 13px; color: var(--color-ink-muted); }
 .agent-banner-sub.clamp { --clamp: 2; }
+.agent-banner-sub.link-accent { color: var(--color-accent); }
 
 /* Overview: a column of blocks 16px apart. */
 .agent-overview { display: flex; flex-direction: column; gap: 16px; }

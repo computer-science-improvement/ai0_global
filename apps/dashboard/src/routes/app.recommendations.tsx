@@ -86,10 +86,10 @@ function RecommendationsPage() {
           <SectionCard title="Placements" flush delay={80} action={<SectionCaption>computing…</SectionCaption>}>
             <ListSkeleton rows={4} />
           </SectionCard>
-        ) : recs.error ? (
+        ) : recs.error && !recs.data ? (
           <ErrorCallout
             title="Couldn’t compute recommendations"
-            message={(recs.error as Error).message}
+            error={recs.error}
             style={{ marginBottom: 0 }}
           />
         ) : recs.data ? (

@@ -60,7 +60,11 @@ function EditorRunPage() {
       <SectionCard title="Trace" flush delay={40}
         action={steps.length > 0 ? <span className="mono text-caption" style={{ color: 'var(--color-ink-muted)' }}>{steps.length} step{steps.length === 1 ? '' : 's'}</span> : undefined}>
         {steps.length === 0
-          ? <EmptyState icon="logs" title="No steps recorded" note="The run ended before its first model turn." />
+          ? (
+            <EmptyState icon="logs" title="No steps recorded"
+              // A running run has none yet; a run that counted steps lost their details to retention (30 days, the run row stays 180).
+              note={run.status === 'running' ? 'No step has finished yet.' : run.steps > 0 ? 'The step details were removed after 30 days.' : 'The run ended before its first model turn.'} />
+          )
           : steps.map((s) => <StepRow key={s.id} step={s} />)}
       </SectionCard>
     </div>

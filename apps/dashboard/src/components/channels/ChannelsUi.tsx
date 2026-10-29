@@ -5,6 +5,7 @@ import { useState, type CSSProperties, type ReactNode } from 'react';
 import { Icon } from '../Icon';
 import { Icon as UiIcon } from '../ui/Icon';
 import { EmptyState } from '../ui/primitives';
+import { describeError } from '../ui/Toast';
 import { channelInitial } from '../../lib/channel-view';
 import './channels.css';
 
@@ -65,13 +66,15 @@ export function ListSkeleton({ rows = 5 }: { rows?: number }) {
 }
 
 /** A failed load: the red callout with what failed and why. */
-export function ErrorCallout({ title, message, style }: { title: string; message?: string; style?: CSSProperties }) {
+export function ErrorCallout({ title, error, message, style }: { title: string; error?: unknown; message?: string; style?: CSSProperties }) {
+  // The request error reads as the server's own sentence (describeError), never as a raw JSON body.
+  const text = message ?? (error != null ? describeError(error) : undefined);
   return (
     <div className="callout-danger" role="alert" style={{ marginBottom: 16, ...style }}>
       <span className="ch-callout-glyph"><UiIcon name="warning" size={18} /></span>
       <div style={{ minWidth: 0 }}>
         <div className="text-body-sm ch-callout-title">{title}</div>
-        {message && <div className="text-micro ch-callout-msg">{message}</div>}
+        {text && <div className="text-micro ch-callout-msg">{text}</div>}
       </div>
     </div>
   );
