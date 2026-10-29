@@ -77,7 +77,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `schedule/empty-day.073.test.ts`; `repo/editor-plans.073.pg.test.ts` (A42: `replacePlan` supersedes future `planner_skipped:` and `series_in_quiet_hours:` placeholders; `insertEmptyDay` twice writes one row); `silent/silent-days.073.test.ts` (A24's four cases); `isPlaceholderPlan` (`repo/editor-plans.repository.ts:194`) still holds for a plan of only placeholders.
   - Done when: two days of `planner_skipped` for «Prompt» add one `stalled:Prompt` part, and one day does not.
 
-- [ ] **T8 `poll_correct_index` (FR-008; A49).**
+- [x] **T8 `poll_correct_index` (FR-008; A49).**
   - What: the lint error and its Ukrainian text; grep the tests under `apps/automation/src` for poll-format fixtures with `correct_index` and change the linted ones to `quiz` (`post/render-telegram.test.ts:71` is a render test: check whether it lints).
   - Files: `post/lint-post.ts` (:200-213), and the fixtures the grep finds.
   - Tests: `post/lint-post.073.test.ts`.

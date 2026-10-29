@@ -208,6 +208,10 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
         if (ci === undefined || ci < 0 || ci >= spec.poll.options.length) err('quiz_correct_index', 'вікторина: correct_index має вказувати на існуючий варіант');
         if (spec.poll.explanation && inlineToPlain(spec.poll.explanation).length > 200) err('quiz_explanation', 'пояснення ≤ 200 символів');
       }
+      // Spec 073 FR-008: a question with a right answer is a quiz, and the plan sets the format — a poll never carries one.
+      if (spec.format === 'poll' && spec.poll.correct_index !== undefined && spec.poll.correct_index !== null) {
+        err('poll_correct_index', 'опитування не має правильної відповіді: прибери correct_index; питання з правильною відповіддю — це формат quiz, його задає план, не пост');
+      }
       if (new Set(spec.poll.options.map((o) => o.trim().toLowerCase())).size !== spec.poll.options.length) err('poll_options', 'варіанти не мають повторюватись');
     }
   } else if (spec.poll) {

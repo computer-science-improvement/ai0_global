@@ -97,8 +97,9 @@ test('series_change: "рецепти о 20:30 по буднях" → a card; App
   const stale = await actions.apply(b.pending_action);
   assert.equal(stale.status, 'failed');
   assert.match(stale.error!, /stale/);
-  // An invalid change is refused at propose time.
-  const bad: any = await tools.propose_series_change.execute({ op: 'update', series: { name: 'Рецепт дня', format: 'video' } }, await ctx());
+  // An invalid change is refused at propose time. Spec 073 FR-002: a series' format only has to be one the platform implements,
+  // so `video` (implemented on Telegram) passes and `reel` (not a Telegram format) is the refused one.
+  const bad: any = await tools.propose_series_change.execute({ op: 'update', series: { name: 'Рецепт дня', format: 'reel' } }, await ctx());
   assert.equal(bad.error, 'series_invalid');
 });
 
