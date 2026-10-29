@@ -23,9 +23,6 @@ import {
 } from '../../lib/slot-plan';
 import { usePreviewSlot } from '../../api/editor';
 
-const muted = { color: 'var(--color-ink-muted)' } as const;
-const dim = { color: 'var(--color-ink-dim)' } as const;
-
 export interface SlotPlanView extends PlanSlotLike {
   id:           string;
   angle?:       string | null;
@@ -51,13 +48,13 @@ export function SlotDescription({ slot, tz, feeds, compact = false }: { slot: Sl
   if (slot.pinned) chips.push(<span key="pin" className="chip" title="Your pinned post">pinned</span>);
   if (!live && slot.sourceHints?.length) chips.push(<span key="hints" className="chip" style={{ overflowWrap: 'anywhere' }} title="Where the planner suggests to look">sources: {slot.sourceHints.join(', ')}</span>);
   return (
-    <div className="text-micro" style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0, ...muted }} data-testid="slot-description">
+    <div className="text-micro ink-muted" style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }} data-testid="slot-description">
       {live && (
         <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap', minWidth: 0 }}>
           <Badge tone="accent" title="The topic is picked at slot time from the freshest item">
             <Icon name="radar" size={10} /> {LIVE_ORIGIN_LABEL[slot.liveSpec!.origin] ?? 'live'}
           </Badge>
-          <span style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{liveLine(slot, tz, feeds)}</span>
+          <span className="plan-ink" style={{ overflowWrap: 'anywhere' }}>{liveLine(slot, tz, feeds)}</span>
         </div>
       )}
       {live && item && (
@@ -102,7 +99,7 @@ export function PreviewButton({ slot, estimateUsd, block = false }: { slot: Slot
       style={{ gap: 6, ...(block ? { width: '100%' } : {}) }} onClick={() => preview.mutate(slot.id)}>
       {running ? <span className="spin-ring" aria-hidden /> : <Icon name="sparkles" size={12} />}
       {running ? 'Writing preview…' : again ? 'Preview again' : 'Preview'}
-      {!running && <span className="tabular-nums" style={{ ...dim, fontWeight: 400 }}>{hint}</span>}
+      {!running && <span className="tabular-nums plan-hint">{hint}</span>}
     </button>
   );
 }
@@ -111,8 +108,8 @@ function PostBox({ html, plain, children }: { html: string; plain: boolean; chil
   const safe = useMemo(() => sanitizeTelegramHtml(html), [html]);
   return (
     <div className="inset" style={{ padding: 14, maxWidth: 480, minWidth: 0 }}>
-      {plain && <div className="text-micro" style={{ ...dim, marginBottom: 6 }}>rendered text</div>}
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
+      {plain && <div className="text-micro ink-dim" style={{ marginBottom: 6 }}>rendered text</div>}
+      <div className="text-body-sm plan-post"
         dangerouslySetInnerHTML={{ __html: safe }} />
       {children}
     </div>
@@ -123,7 +120,7 @@ function PostBox({ html, plain, children }: { html: string; plain: boolean; chil
 export function PreviewDraft({ draft, tz, plain = false }: { draft: SlotPreviewView; tz: string; plain?: boolean }) {
   if (draft.status === 'running') {
     return (
-      <div className="text-body-sm" style={{ display: 'flex', gap: 8, alignItems: 'center', ...muted }} role="status">
+      <div className="text-body-sm ink-muted" style={{ display: 'flex', gap: 8, alignItems: 'center' }} role="status">
         <span className="spin-ring" aria-hidden /> {PREVIEW_STATUS_LABEL.running} It usually takes under a minute.
       </div>
     );
@@ -138,10 +135,10 @@ export function PreviewDraft({ draft, tz, plain = false }: { draft: SlotPreviewV
         )}
       </div>
       {draft.preview && <PostBox html={draft.preview} plain={plain || (draft.platform != null && draft.platform !== 'telegram')} />}
-      {draft.reason && <div className="text-micro" style={{ ...muted, overflowWrap: 'anywhere' }}>{draft.reason}</div>}
-      {draft.warnings.length > 0 && <div className="text-micro" style={{ ...dim, overflowWrap: 'anywhere' }}>Lint warnings: {draft.warnings.join(' · ')}</div>}
+      {draft.reason && <div className="text-micro ink-muted" style={{ overflowWrap: 'anywhere' }}>{draft.reason}</div>}
+      {draft.warnings.length > 0 && <div className="text-micro ink-dim" style={{ overflowWrap: 'anywhere' }}>Lint warnings: {draft.warnings.join(' · ')}</div>}
       {draft.critic && <CriticBlock critic={draft.critic} where="preview" />}
-      <div className="text-micro" style={dim}>{previewFootnote(draft, tz)}</div>
+      <div className="text-micro ink-dim">{previewFootnote(draft, tz)}</div>
     </div>
   );
 }
@@ -171,7 +168,7 @@ export function SlotPost({ slot, tz, estimateUsd, plain = false, collapsible = f
     );
   }
   if (isLive(slot) && slot.status === 'planned') {
-    return <div className="text-micro" style={dim}>No preview before its time: a live slot writes about the freshest item it finds at {formatIn(slot.at, tz)} {zoneLabel(tz)}.</div>;
+    return <div className="text-micro ink-dim">No preview before its time: a live slot writes about the freshest item it finds at {formatIn(slot.at, tz)} {zoneLabel(tz)}.</div>;
   }
   return (
     <div style={{ display: 'grid', gap: 8, minWidth: 0 }}>
@@ -199,7 +196,7 @@ export function PlanStamp({ data, tz }: { data: PlanStampData; tz: string }) {
   const evening = data.schedule?.approval && plannedEveningBefore(data.plannedAt, data.planDate, tz);
   const history = data.history ?? [];
   return (
-    <div className="text-micro" style={{ display: 'grid', gap: 4, minWidth: 0, ...muted }} data-testid="plan-stamp">
+    <div className="text-micro ink-muted" style={{ display: 'grid', gap: 4, minWidth: 0 }} data-testid="plan-stamp">
       {at ? (
         <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
           <Icon name="clock" size={12} />
@@ -213,7 +210,7 @@ export function PlanStamp({ data, tz }: { data: PlanStampData; tz: string }) {
       ) : (
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}><Icon name="clock" size={12} /> Not planned yet.</div>
       )}
-      {data.schedule && <div style={dim}>{planScheduleNote(data.schedule)}</div>}
+      {data.schedule && <div className="ink-dim">{planScheduleNote(data.schedule)}</div>}
       {history.length > 0 && (
         <div>
           <button type="button" className="btn-tiny" style={{ gap: 5 }} aria-haspopup="dialog" onClick={() => setOpen(true)}>
@@ -223,14 +220,14 @@ export function PlanStamp({ data, tz }: { data: PlanStampData; tz: string }) {
             subtitle={`${history.length} superseded plan${history.length === 1 ? '' : 's'} · times in ${tz}`}>
             <div className="text-body-sm" style={{ display: 'grid', gap: 10 }}>
               {history.map((h) => (
-                <div key={h.id} style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap', paddingLeft: 10, borderLeft: '2px solid var(--color-hairline-strong)', minWidth: 0 }}>
-                  <span className="tabular-nums" style={{ color: 'var(--color-ink)' }}>{formatIn(h.plannedAt, tz)}</span>
+                <div key={h.id} className="plan-history-row">
+                  <span className="tabular-nums plan-ink">{formatIn(h.plannedAt, tz)}</span>
                   {h.runId
                     ? <Link to="/app/editor/run/$id" params={{ id: h.runId }} className="link-accent">{runLabel(h.runRole)} →</Link>
-                    : <span style={muted}>no run</span>}
-                  {h.slots != null && <span style={muted}>· {h.slots} slot{h.slots === 1 ? '' : 's'}</span>}
+                    : <span className="ink-muted">no run</span>}
+                  {h.slots != null && <span className="ink-muted">· {h.slots} slot{h.slots === 1 ? '' : 's'}</span>}
                   <Badge tone="neutral">superseded</Badge>
-                  {h.rationale && <span style={{ flexBasis: '100%', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap', ...muted }}>{h.rationale}</span>}
+                  {h.rationale && <span className="ink-muted" style={{ flexBasis: '100%', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{h.rationale}</span>}
                 </div>
               ))}
             </div>

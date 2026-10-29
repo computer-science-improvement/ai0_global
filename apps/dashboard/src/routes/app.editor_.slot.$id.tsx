@@ -58,8 +58,8 @@ function EditorSlotPage() {
 
       <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: 16 }} className="compose-rise">
         <SlotStatus slot={s} />
-        <span className="mono text-micro" style={{ color: 'var(--color-ink-muted)' }}>attempt {s.attempts}</span>
-        {s.publishedPostId != null && <span className="mono text-micro" style={{ color: 'var(--color-ink-muted)' }}>· published post #{s.publishedPostId}</span>}
+        <span className="mono text-micro ink-muted">attempt {s.attempts}</span>
+        {s.publishedPostId != null && <span className="mono text-micro ink-muted">· published post #{s.publishedPostId}</span>}
       </div>
 
       {/* Spec 034 FR-012: what the slot will do (or why it did not), and when / by which run it was planned. */}
@@ -67,7 +67,7 @@ function EditorSlotPage() {
         <div style={{ display: 'grid', gap: 10, minWidth: 0 }}>
           <SlotDescription slot={view} tz={tz} feeds={feedsOf(channel.data)} />
           {s.error && s.status !== 'skipped' && s.status !== 'failed' && s.status !== 'expired' && (
-            <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>{s.error}</div>
+            <div className="text-micro ink-dim" style={{ overflowWrap: 'anywhere' }}>{s.error}</div>
           )}
         </div>
         <div className="block-divider">
@@ -76,7 +76,7 @@ function EditorSlotPage() {
             schedule: channel.data ? { planHour: channel.data.planHour, timezone: tz, approval: channel.data.mode === 'approve', batchHour: 20 } : null,
           }} />
           {s.plan?.status === 'superseded' && (
-            <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>This slot belongs to a plan that was replaced later that day.</div>
+            <div className="text-micro ink-dim" style={{ marginTop: 4 }}>This slot belongs to a plan that was replaced later that day.</div>
           )}
         </div>
       </SectionCard>
@@ -107,8 +107,8 @@ function EditorSlotPage() {
                 <Badge tone={RUN_TONE[r.status]}>{runStatusLabel(r.status)}</Badge>
                 <span className="text-body-sm">{r.role === 'checker' ? 'critic' : r.role}</span>
                 {r.id === s.previewDraft?.runId && <Badge tone="neutral" title="The owner's dry-run preview: nothing was published">preview (dry run)</Badge>}
-                <span className="mono text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)', minWidth: 0 }}>{fmtDate(r.startedAt)} · {r.steps} steps · {fmtUsd(r.costUsd)}</span>
-                <span style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)', display: 'inline-flex' }}><Icon name="chevron-right" size={14} /></span>
+                <span className="mono text-micro tabular-nums ink-muted" style={{ minWidth: 0 }}>{fmtDate(r.startedAt)} · {r.steps} steps · {fmtUsd(r.costUsd)}</span>
+                <span className="ink-muted" style={{ marginLeft: 'auto', display: 'inline-flex' }}><Icon name="chevron-right" size={14} /></span>
               </Link>
             ))}
       </SectionCard>

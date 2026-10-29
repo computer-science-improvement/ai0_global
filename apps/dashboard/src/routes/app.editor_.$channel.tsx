@@ -86,7 +86,7 @@ function EditorChannelPage() {
             planDate: c.today.date, plannedAt: active?.createdAt ?? null, runId: active?.runId ?? null, runRole: active?.runRole ?? null,
             schedule: c.mode === 'off' ? null : schedule, history,
           }} />
-          {active?.rationale && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>{active.rationale}</p>}
+          {active?.rationale && <p className="text-body-sm ink-muted" style={{ margin: 0 }}>{active.rationale}</p>}
         </div>
         {!active || active.slots.length === 0
           ? <EmptyState icon="calendar" title="No plan for today yet" note={c.mode === 'off' ? 'The channel is off.' : `${planScheduleNote(schedule)} Or use “Replan the rest of today”.`} />
@@ -110,14 +110,14 @@ function CardSummary({ c }: { c: EditorChannel }) {
   );
   const chips = (xs: string[]) => xs.length
     ? <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>{xs.map((x) => <span key={x} className="chip">{x}</span>)}</span>
-    : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>;
+    : <span className="ink-dim">—</span>;
 
   return (
     <SectionCard title="Card" delay={30} style={{ marginBottom: 16 }}>
-      <p className="text-body-sm" style={{ margin: '0 0 12px', color: c.brief ? 'var(--color-ink)' : 'var(--color-ink-dim)', whiteSpace: 'pre-wrap' }}>{c.brief || 'No brief yet.'}</p>
+      <p className={c.brief ? 'text-body-sm' : 'text-body-sm ink-dim'} style={{ margin: '0 0 12px', whiteSpace: 'pre-wrap' }}>{c.brief || 'No brief yet.'}</p>
       <div className="kv-list">
         {row('Formats', chips(Object.entries(c.formats).map(([f, w]) => `${f} ${w}`)))}
-        {row('Hashtags', <>{chips(c.hashtags.map((h) => `#${h}`))} <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{c.hashtagMin}–{c.hashtagMax} per post</span></>)}
+        {row('Hashtags', <>{chips(c.hashtags.map((h) => `#${h}`))} <span className="text-micro ink-dim">{c.hashtagMin}–{c.hashtagMax} per post</span></>)}
         {row('Style', `links ${c.linkStyle} · emoji ${c.emojiPolicy}${c.footer ? ` · footer “${c.footer}”` : ''}`)}
         {row('Sources', c.sources.length
           ? <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>{c.sources.map((s) => <span key={s.id}><span className="chip mono">{s.kind}</span> {s.ref}</span>)}</span>
@@ -182,12 +182,12 @@ function MemorySection({ channelKey }: { channelKey: string }) {
                     body: () => (
                       <div style={{ minWidth: 0 }}>
                         <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>{badges}</div>
-                        <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.55 }}>{m.text}</div>
+                        <div className="text-body-sm ed-memory-text">{m.text}</div>
                       </div>
                     ),
                     actions: (close) => (
-                      <button type="button" className="btn-ghost" disabled={retire.isPending} onClick={() => onRetire(close)}
-                        style={{ color: 'var(--color-danger)', marginRight: 'auto' }}>
+                      <button type="button" className="btn-ghost ed-retire" disabled={retire.isPending} onClick={() => onRetire(close)}
+                        style={{ marginRight: 'auto' }}>
                         <Icon name="trash" size={14} /> Retire
                       </button>
                     ),
@@ -199,10 +199,10 @@ function MemorySection({ channelKey }: { channelKey: string }) {
         <div className="inset" style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
           <div className="text-overline">Retired entries</div>
           {history.map((m) => (
-            <div key={m.id} className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div key={m.id} className="text-micro ink-dim" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="mono tabular-nums">{fmtDate(m.createdAt)}</span>
               <span>{m.kind} · {m.createdBy}</span>
-              <span style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', minWidth: 0 }}>{m.text}</span>
+              <span className="ink-muted" style={{ overflowWrap: 'anywhere', minWidth: 0 }}>{m.text}</span>
             </div>
           ))}
         </div>

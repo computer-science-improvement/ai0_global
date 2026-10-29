@@ -58,7 +58,7 @@ function EditorRunPage() {
       </div>
 
       <SectionCard title="Trace" flush delay={40}
-        action={steps.length > 0 ? <span className="mono text-caption" style={{ color: 'var(--color-ink-muted)' }}>{steps.length} step{steps.length === 1 ? '' : 's'}</span> : undefined}>
+        action={steps.length > 0 ? <span className="mono text-caption ink-muted">{steps.length} step{steps.length === 1 ? '' : 's'}</span> : undefined}>
         {steps.length === 0
           ? (
             <EmptyState icon="logs" title="No steps recorded"
@@ -102,10 +102,10 @@ function StepRow({ step }: { step: EditorRunStep }) {
         <span className="trace-main">
           <span className="trace-title">
             <Badge tone={step.type === 'llm' ? 'neutral' : step.isError ? 'danger' : 'success'}>{step.type === 'llm' ? 'llm' : step.isError ? 'error' : 'tool'}</Badge>
-            <span className="text-body-sm" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</span>
+            <span className="text-body-sm trace-name">{name}</span>
           </span>
-          {summary && <span className="text-micro clamp" style={{ ['--clamp' as string]: 1, marginTop: 3, color: 'var(--color-ink-muted)' }}>{summary}</span>}
-          {excerpt && <span className="text-micro clamp" style={{ ['--clamp' as string]: 2, marginTop: 3, color: 'var(--color-danger)' }}>{excerpt}</span>}
+          {summary && <span className="text-micro clamp ink-muted" style={{ ['--clamp' as string]: 1, marginTop: 3 }}>{summary}</span>}
+          {excerpt && <span className="text-micro clamp ink-danger" style={{ ['--clamp' as string]: 2, marginTop: 3 }}>{excerpt}</span>}
         </span>
         <span className="trace-stats mono tabular-nums">
           {stats}

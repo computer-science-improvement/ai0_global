@@ -1,6 +1,6 @@
 /* Area styles of the editor pages (spec 078 C3): /app/editor, /app/editor/$channel, the run trace and the slot page.
-   Imported by the routes and by CardEditorModal, never by EditorUi / SlotPlan: those are also imported by the agent pages
-   and by node tests, and they style themselves with the global classes. Colours are tokens only. */
+   Imported by the routes, by CardEditorModal and by routes/app.tsx, never by EditorUi / SlotPlan: those are also imported by
+   the agent pages and by node tests, so the /app layout route loads this file for them. Colours are tokens only. */
 
 /* ── Key / value rows (the card summary, the facts of a slot) ─────────────── */
 .kv-list { display: flex; flex-direction: column; }
@@ -55,8 +55,33 @@
 .trace-main { min-width: 0; }
 .trace-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
 .trace-stats { padding-top: 2px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 12px; color: var(--color-ink-dim); }
+.text-body-sm.trace-name { font-weight: 600; color: var(--color-ink); }
 @media (max-width: 600px) {
   .panel-row.trace-row { grid-template-columns: 28px 14px minmax(0, 1fr); gap: 10px; }
   .panel-row.trace-row::before { left: calc(16px + 28px + 10px + 6px); }
   .trace-stats { grid-column: 3; padding-top: 0; }
 }
+
+/* ── Slot rows and plan blocks (EditorUi, SlotPlan: also shown on the agent pages) ────────────────────────── */
+.slot-time { width: 48px; flex-shrink: 0; margin-top: 2px; }
+.slot-time.text-caption { font-weight: 600; }
+.slot-topic { color: var(--color-ink); text-decoration: none; }
+/* Body-coloured text inside a muted plan block. */
+.plan-ink { color: var(--color-ink); }
+/* The cost hint on the Preview button: quieter than the label. */
+.plan-hint { color: var(--color-ink-dim); font-weight: 400; }
+/* The written post in its inset. */
+.text-body-sm.plan-post { color: var(--color-ink); white-space: pre-wrap; word-break: break-word; line-height: 1.5; }
+/* One earlier plan of the day in the history dialog. */
+.plan-history-row {
+  display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; min-width: 0;
+  padding-left: 10px; border-left: 2px solid var(--color-hairline-strong);
+}
+
+/* ── Editor pages ─────────────────────────────────────────────────────────── */
+.ed-name { color: var(--color-ink); text-decoration: none; }
+.text-body-sm.ed-name { font-weight: 600; }
+.ed-figure { font-weight: 600; }
+.text-body-sm.ed-memory-text { color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }
+/* Retire: a ghost button in the danger colour, which keeps it on hover. */
+.btn-ghost.ed-retire, .btn-ghost.ed-retire:hover:not(:disabled) { color: var(--color-danger); }
