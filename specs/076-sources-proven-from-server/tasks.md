@@ -185,7 +185,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - `sources/sources.049.test.ts` stays green.
   - **Done when:** @ai0_prompts_dev's shape (no card sources, a library series) shows one source row with runway on the agent report and on network health.
 
-- [ ] **T6a Upload the page: the stored doc and the endpoint body** (FR-005, A13)
+- [x] **T6a Upload the page: the stored doc and the endpoint body** (FR-005, A13)
   - **What:**
     - `docFromBody` is extracted from `fetchLive` (`docs/doc-fetch.ts:71-124`).
     - `StoredDoc.origin?: 'upload'`.
@@ -374,7 +374,21 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - `specs/README.md`:
       - the 076 row between 071 (`:78`) and 078 (`:79`), DONE, migration 100, depends on 049, 061, 065, 070;
       - line 87 gains "100 spec 076 (source probes, unreachable strikes: apply before deploying the code that writes them)".
-    - Fill in `## Status
+    - Fill in `## Status` and `## Deltas from the spec` below. At least these Deltas:
+      - `area: 'channel'` declared locally (A4);
+      - repeat and demotion of host notes, and the changed 061 tests (A9);
+      - `feed-items.test.ts:51-57` (A20);
+      - `inbox-kinds.test.ts:383` (A24);
+      - the T6 and T9 splits and the T2/T3 swap (A27).
+  - **Files:**
+    - `docs/runbooks/agent-platform.md`;
+    - `specs/076-sources-proven-from-server/spec.md`;
+    - `specs/076-sources-proven-from-server/tasks.md`;
+    - `specs/README.md`.
+  - **Tests:** none new. The full automation suite, the PG suite on the scratch DB, the dashboard tests and `tsc`, and `npm run build` on Node 20 all pass once more.
+  - **Done when:** the runbook section reads end to end for the owner, and the README row and the spec status say done.
+
+## Status
 
 Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per task:
 
@@ -382,7 +396,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T2 `8ee7e6a2` — the per-host egress proxy (`EGRESS_PROXY_URL`, `EGRESS_PROXY_HOSTS`).
 - T3 `083d39bc` — `probeSource`, the 6 h cache in `source_probes`, the bound prober, the candidate check through it.
 - T4 `3260597d` — guarded live scan, the $0 all-unreachable skip, pre-flight feed hints.
-- T5 — (commit hash filled in the next commit) source health covers every source (playbook series, runway, probe), host notes through the note gate, the `resync_failed` note.
+- T5 `ccb89849` — source health covers every source (playbook series, runway, probe), host notes through the note gate, the `resync_failed` note.
+- T6a — (commit hash filled in the next commit) `docFromBody` out of `fetchLive`, `origin: 'upload'` docs kept 7 days, `uploadPage`, the 12 MB body middleware, nginx 12m.
 
 ## Deltas from the spec
 
@@ -401,4 +416,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
   - A failed probe shows in the weekly network-health section as "the server cannot read it": `network-health.ts` `SOURCE_TEXT` gains `ok` and `unused` for that case (a source is listed there with state `ok` only when its probe failed).
   - New exports: `orderSources`, `withReach`, `isSeriesExhausted` (`source-health.ts`), `hostStruckNote` and `sinceStamp` (`source-health.service.ts`), `summaryOf` (`probe.ts`), `resyncFailedNote` and `errorClassOf` (`list-resync.worker.ts`), `SERIES_SOURCE_PREFIX` and `playbookSeriesSources` (`playbook-feeds.ts`). `toReplaceToday` still calls `noteStruckHosts` (A26); T7 removes the call.
   - Code that runs before migration 100: `struck()` returns no rows (its query reads the new columns), so no host note is sent until the migration is applied. The README line for migration 100 says to apply it first.
-
+- **T6a.**
+  - `UPLOAD_PAGE_MAX_CHARS` and `UPLOAD_BODY_LIMIT` are defined in the new `sources/upload-limits.ts`, which imports nothing, and `sources/upload-page.ts` re-exports both. `main.ts` imports the body middleware before `bootSettings` runs, and `upload-page.ts` pulls in the document parser; a static import of it from `main.ts` would load that code before the settings overlay. The middleware imports the constants from `upload-limits.ts`.
+  - `docFromBody(base, res, asked)` takes the address asked for as a third argument (the `.md` path rule of `isMarkdown` reads it) and returns `NewDoc | FetchFailure`; it is exported with a `DocBase` type. The `unsupported_content` check for the content type moved into it with the rest of lines 86-123.
+  - `uploadPage` is async from the start (T6b adds the re-sync, which is). It refuses a JSON body in every case, not only without `dataset`, and also a page with no text (`empty_page`); `UploadPageBody.url` accepts only `http(s)` addresses.
+  - `tasks.md` itself: an earlier status edit had replaced the text of the T10 bullet "Fill in `## Status` and `## Deltas…`" and the real `## Status` heading. Both are restored.

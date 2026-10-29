@@ -46,6 +46,8 @@ export interface StoredDoc {
   images:       string[];
   published_at: string | null;
   primary_links?: string[];
+  /** Spec 076 FR-005: the owner uploaded this page (saved in a browser); the server never fetched it, so it cannot be fetched again. */
+  origin?:      'upload';
   /** Only for `kind: 'json'`. */
   json?:        JsonDocData;
   text:         string;
