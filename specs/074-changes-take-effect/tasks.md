@@ -1,0 +1,260 @@
+# 074 tasks
+
+Build on W1 merged (073 → 072 → 076). Read the spec's «Amendments after the builder check» first: where it differs from the body, it wins (L = lead decision, A = check item). The code map is `<scratchpad>/w7/map-074.md`. Its anchors are at 1ecb8160, so re-check them after the W1 merge. One commit per task, with everything green before each.
+
+- [ ] **T1 Pure pieces and codes** (FR-002, FR-003, FR-004, FR-005, FR-008 codes; A1–A3, A7–A10, A14, A28, L3, L5)
+  - **What.**
+    - `config-repair/repair-plan.ts`:
+      - `repairable(slot, now)`, which also requires `attempts === 0 && !retryAt` (A10);
+      - `planSlotRepair(slot, ctx, o: { baseline: boolean; anchorRef: string })`. Rule 3 keeps a slot with an `owner_moved:` warning (A7). It applies only when the slot and the series are on `anchorRef` (A8), and never on a baseline (A9);
+      - `rehint(hints, series)`;
+      - `uncoveredInstances(ctx, daySlots, now, skeleton)`, which drops instances that 073's `checkPlanSkeleton` left out (`series_format_unavailable`, `series_in_quiet_hours`, matched on `series` and `at`, L3);
+      - `REPAIR_LEAD_MS`.
+    - `config-repair/source-urls.ts`: `sourceUrlsOf(src, card)` (A1).
+    - `config-repair/cause-cleared.ts`:
+      - `causeCleared(pause, ev)` with the A2 rule (`source_unreachable`) and the A3 rule (feed `no_material`);
+      - removed series and removed or inactive rules lift at once (A1);
+      - `autoResumeEligible(p, x)` (A14).
+    - `config-repair/codes.ts`: `CONFIG_REPAIR_CODES = ['config_series_gone', 'config_series_changed', 'config_replan_capped']` (L5).
+    - `schedule/pin-slot-spec.ts`: `pinSlotSpec(rule, series, at)`. `materialiseAgent` calls it, and an inactive series counts as missing (`schedule.service.ts:264`).
+    - Catalogue entries in `reasons/catalogue.ts`, only for the codes the merged catalogue lacks (L5).
+    - `config_series_changed` joins 073's `CONFIG_FAILURE_CODES`, `NOT_A_MISS` in `silent/skip-reasons.ts`, and the dashboard mirror `lib/status-tone.ts` (A28).
+    - The dashboard mirror `lib/reasons.ts` gains the codes it lacks.
+  - **Files.**
+    - new `apps/automation/src/editor/config-repair/{repair-plan,source-urls,cause-cleared,codes}.ts`;
+    - new `apps/automation/src/editor/schedule/pin-slot-spec.ts`;
+    - `schedule/schedule.service.ts` (the `materialiseAgent` body only);
+    - `reasons/catalogue.ts`, `silent/skip-reasons.ts`;
+    - `apps/dashboard/src/lib/status-tone.ts`, `apps/dashboard/src/lib/reasons.ts`.
+  - **Tests.**
+    - `repair-plan.074.test.ts`:
+      - `repairable`: running, written, claimed, derived, repurpose, news-watch, a running preview, ≤ 10 min, the day after tomorrow, `attempts > 0`, `retryAt` set;
+      - each rule, including a moved-by-owner slot, a network series on another resource, and a baseline with a moved series;
+      - `rehint`;
+      - the invariant against `checkSlotConfig` on every fixture slot.
+    - `uncovered.074.test.ts`: covered by a slot, a pin or a placeholder; < 30 min ahead; an unlocked series; a paused series; a skeleton-excluded instance.
+    - `source-urls.074.test.ts`: every source kind, a card id, an unknown id, a raw URL.
+    - `cause-cleared.074.test.ts`:
+      - A2: ok after the pause, ok before it, blocked, `invalid`, one of two URLs failing;
+      - A3: 7 h old, 5 h old, a page date, +2 h;
+      - eligibility for every cause, key, source kind, kept and flap.
+    - `pin-slot-spec.074.test.ts`: a golden fixture taken from the pre-extraction output.
+    - The skip-reasons and `reasonOfError` tests, extended for `config_series_changed`.
+    - New `series-pause/streak.074.test.ts`: a config skip in a no_material run neither counts nor ends it.
+    - The catalogue coverage test, and the dashboard `status-tone` and `reasons` drift tests.
+  - **Done when** the invariant test passes and `schedule.pg.test.ts` still passes.
+
+- [ ] **T2 The repair service: slots, pins and the hook** (FR-001, FR-002, FR-003; A7, A9–A12)
+  - **What.**
+    - `ConfigRepairService.run(channelKey, trigger, o?: { hash?, baseline?, since?, resumedKeys? })`:
+      - single-flight per channel;
+      - the dirty rerun merges the latest hash, the latest `since` and the union of `resumedKeys`;
+      - one log line per run.
+    - `onRecheck(e: RecheckEvent)` (A11, A12):
+      - returns on `view` and on `e.hash === e.appliedHash`;
+      - baseline when `appliedHash` is null or the reason is `start`;
+      - not awaited.
+    - `applied_hash` is written only through 072's `ReadinessRepository.setAppliedHash` (A11).
+    - The slot repair and the pin repair: `dropFuturePins(rule.id, now + 10 min)`, then one `materialiseAgent`.
+    - `ConfigRepairRepository`:
+      - `plannedForRepair(channelKey, dates, after)`, with `attempts = 0 AND retry_at IS NULL` (A10);
+      - `patchPlanned(id, patch)`, guarded by `status = 'planned'`;
+      - `pinSlots(channelKey, dates, after)`;
+      - `planCreatedAt(channelKey, date)`.
+      - It has no `appliedHash` and no `setAppliedHash`.
+    - Skips go through `skipPlannedSlot`.
+    - `ScheduleRepository.moveSlot` appends `owner_moved: <from> -> <to>` to `lint_warnings` (A7).
+  - **Files.**
+    - new `config-repair/config-repair.service.ts`, new `config-repair/config-repair.repository.ts`;
+    - `schedule/schedule.repository.ts` (`moveSlot` only).
+  - **Tests.**
+    - `config-repair.074.test.ts` (fakes):
+      - single-flight, and the dirty rerun with merged options;
+      - a baseline keeps a moved series' slot and writes the hash (A9);
+      - equal hashes do nothing;
+      - a `view` event starts nothing; a `start` event never replans (A12);
+      - `setAppliedHash` is called once, with the event's hash.
+    - `config-repair.074.pg.test.ts` (own `t074_repair` DB):
+      - a format patch on today's and tomorrow's slots;
+      - the running-meanwhile guard;
+      - a slot with `attempts > 0` or `retry_at` is untouched (A10);
+      - `config_series_gone` and `config_series_changed`;
+      - a slot moved by the owner is kept (A7), and a network series slot is kept (A8);
+      - pins are re-made with the new brief and format;
+      - a second run makes zero writes.
+    - `schedule.pg.test.ts`: `moveSlot` writes the marker.
+  - **Done when** a second run on the same state makes zero writes, and running, written, retried and pin rows are untouched.
+
+- [ ] **T3 The capped replan** (FR-004; A4, A5, A15, A21, A23)
+  - **What.**
+    - **The decision after the repair.** There are uncovered locked instances (L3 skeleton exclusions), today has an active non-placeholder plan, and its `created_at < changeAt`.
+    - **The second reason (A21).** A resumed `resource:` key, with no planned plain slot of the own resource after now + 30 min.
+    - **Order.** Today first, then tomorrow in approve mode. A `started` run with tomorrow pending leaves `applied_hash` unwritten (A4).
+    - **Outcomes.** `busy`, `off`, `capped` and `started`, each with its `applied_hash` rule.
+    - **Retries.** `pending` and `retryPending(now)`: at most 3 tries; any outcome other than `busy` clears the entry (A5).
+    - **The cap.** In memory per (channel, plan date), read live from `CONFIG_REPLANS_PER_DAY` (A23).
+    - **The ceiling.** 6 runs, counted with 073's `plannerRunsOn(pool, channelKey, tz, day)` (L3).
+    - **`changeAt`.** The latest of the playbook's `COALESCE(decided_at, created_at)`, the latest `resumed_at` and `o.since`.
+    - **The capped note** goes through `postOnce`, exactly as A15's code block: `dailyRef` of `telegram:<channel>` and the date, the gate subject `config_replan:<channel>` with parts `['day:<date>']`, an English title and body, and a Ukrainian alert. A21 has the plain-slot variant.
+    - **Settings entry** `CONFIG_REPLANS_PER_DAY`, exactly as A23.
+  - **Files.** `config-repair/config-repair.service.ts`, `config-repair/config-repair.repository.ts`, `apps/automation/src/settings/catalog.ts` (one row after :129).
+  - **Tests.**
+    - `config-repair.074.test.ts`, extended:
+      - the cap and the ceiling;
+      - `replan_in_progress` → busy → the retry on the next tick → started; three busy retries drop the entry;
+      - capped → one note per day; mode off; a baseline never replans;
+      - two sweeps for tomorrow: one replan per date, and the hash is written after the second (A4);
+      - the resource resume replans once, and not when plain slots are left (A21);
+      - a skeleton-excluded instance never replans.
+    - The PG file, extended:
+      - the ceiling through `plannerRunsOn`;
+      - `changeAt` from `playbooks.decided_at`;
+      - two `postOnce` calls from two service instances (a restart) store one note (the 076 unique index).
+    - `settings/catalog.test.ts`.
+  - **Done when** three changes in one day start two replans and send one note, and the fake `ops.replan` is never called with `wait: true`.
+
+- [ ] **T4 Automatic resume** (FR-005; A1–A3, A5, A6, A16, A18, A23, A30)
+  - **What.**
+    - `config-repair/auto-resume.ts`: `AutoResume.tick(now)`, called only from the port's detached `runTick` (A17, built in T5; a fake port here).
+    - **The evidence loader.**
+      - `unposted(ref, table)`: the contract seam, wired later to the `buildCatalog` lambda (A18);
+      - the series or rule source at pause time against now (A1);
+      - `sourceUrlsOf` plus `sourceProberOf(pool)`, called with `maxAgeMs` for `source_unreachable` (A2) and with the default cache for feeds (A3);
+      - `PgHostFailures.blocked`.
+    - **When a pause lifts.**
+      - After two clear checks at least 5 minutes apart.
+      - At once for a removed series and for a removed or inactive rule (A1).
+      - Never for an owner or kept pause (`isKept`, A16).
+      - Never for a flap: `codeResumedSince` within `FLAP_WINDOW_DAYS = 14`. The flap gets one unread line (A6).
+    - **Lifts by channel.** Lift every due pause of a channel, then call `run(channelKey, 'auto_resume', { since: now, resumedKeys })` once (A5).
+    - **`pause-actions.ts`.** Export `KEPT_PREFIX`, `keptLine`, `isKept`, and `logOnPauseNotes(pool, pauseId, text, { read? })`. `keep()` and `log()` use them (A16).
+    - **`SeriesPausesRepository`.** New `codeResumedSince(channelKey, key, since)` (A6) and `restorePausedPins(p, after, until)` (A30).
+    - **`ConfigRepairService.run`** first calls `restorePausedPins` for each of `o.resumedKeys` (A30).
+    - **Owner cards.** `OwnerCardsRepository.presetOutcome(kind, refIds, text)`, which updates only `status IN ('queued','open')`. `owner-bot.service.ts:164` reads `c.outcome ?? 'Вирішено в дашборді'`.
+    - **Settings.** The `SERIES_AUTO_RESUME` row and the extra `SERIES_SKIP_STREAK` help sentence, exactly as A23.
+  - **Files.**
+    - new `config-repair/auto-resume.ts`;
+    - `config-repair/config-repair.service.ts`;
+    - `series-pause/pause-actions.ts`, `series-pause/series-pauses.repository.ts`;
+    - `owner-bot/owner-cards.repository.ts`, `owner-bot/owner-bot.service.ts`;
+    - `settings/catalog.ts`.
+  - **Tests.**
+    - `auto-resume.074.pg.test.ts` (own `t074_resume` DB):
+      - a lift on the second tick with `resumed_by = 'code'`; the note line, read; the card outcome;
+      - owner and kept pauses stay;
+      - a flap after a 3-day gap is held, and its unread line is written once over two ticks (A6);
+      - a cycle dataset whose round is not finished: the tick writes nothing (A18);
+      - `restorePausedPins`: a `rule:` pause's skipped pin returns to `planned`, while a pin in a superseded plan stays skipped (A30);
+      - two pauses of one channel lifted in one tick → one `run` (A5).
+    - A unit test enumerates every cause plus a kept line.
+    - An owner-bot sweep unit test for the preset outcome.
+    - `pause-actions.060.pg.test.ts`, `note-actions.060.test.ts` and `inbox-actions.078.*` stay green.
+  - **Done when** no code path lifts a pause with cause `owner`, a kept pause or a flap.
+
+- [ ] **T5 Wiring: the port, Resume, change_source, the hook and the doctor** (FR-006; A12–A14, A17, A29)
+  - **What.**
+    - Start with `grep -rn "new SeriesPauseActions" apps/automation/src` on the merged tree and list the sites in Deltas (A13).
+    - `config-repair/config-repair.port.ts`, with the `ConfigRepairPort` class and the `configRepairPort` singleton:
+      - `run`, which is a no-op before `bind`;
+      - `tick`, which is synchronous and detached, with a 10-minute throttle and an in-flight flag (A17);
+      - `autoResumable(channelKey, pauses)`, an empty set before `bind` (A14);
+      - the `SeriesDueGate` holder (T6).
+    - `config-repair/pause-actions-of.ts`: `pauseActionsOf(pool, profiles?)` with `afterResume`. It is used at every site, 072's fix port included (A13).
+    - **The `CONFIG_REPAIR` provider** (A29):
+      - builds `ConfigRepairService` and `AutoResume`, with `OwnerCardsRepository`, `PgHostFailures`, `sourceProberOf(pool)`, `SeriesPausesRepository` and 072's `ReadinessRepository`;
+      - binds the port;
+      - registers `afterRecheck` on `READINESS_SERVICE`;
+      - is listed in `EDITOR_PROVIDERS`;
+      - wires `ev.unposted` to the `buildCatalog` lambda of `editor.module.ts:1201` (A18).
+    - `PauseActionsDeps.afterResume`: called after a resume that changed something, not awaited, errors logged.
+    - `applySourceChangeAction` gains `after`, passed at `editor.module.ts:942-945`.
+    - The breaker hook at :1783 becomes `check: async (now) => { await breaker.check(now); configRepairPort.tick(now); }` (A17).
+    - **072 (A14).** `readiness/facts.ts` fills `autoResume` on the pauses from the port. `readiness/checks/pauses.ts` does not raise `pause_cause_gone` for such a pause.
+  - **Files.**
+    - new `config-repair/config-repair.port.ts`, new `config-repair/pause-actions-of.ts`;
+    - `editor.module.ts`, `series-pause/pause-actions.ts`, `sources/source-tools.ts`;
+    - `readiness/facts.ts`, `readiness/checks/pauses.ts`;
+    - `sources/probe.ts`, only if the bound prober's option type lacks `maxAgeMs` (L4).
+  - **Tests.**
+    - `pause-actions` unit tests: `afterResume` runs once on `resumed`, and never on `already_resumed`, `not_found` or `kept`.
+    - A `source-tools` unit test: `after` runs after the upsert, and not when the card is unknown.
+    - Port unit tests: unbound calls are no-ops; `tick` returns before a never-resolving probe; a second tick during the first does nothing.
+    - `config-repair/pause-actions-of.074.test.ts`: no `new SeriesPauseActions(` outside the factory.
+    - `readiness/checks/pauses.074.test.ts` (A14).
+    - `editor.module.test.ts`: the port is bound and the hook is registered once.
+    - `npm run build` (nest) passes.
+  - **Done when** each of these calls `run` once with the right trigger, shown on fakes: a dashboard Resume, a Telegram Resume, a bundle Resume, a doctor `series_resume` fix and a change_source Apply.
+
+- [ ] **T6 Plain pauses no longer stop series** (FR-007; A22)
+  - **What.**
+    - `config-repair/series-due.ts`: `SeriesDueGate`.
+      - `due(card, date, now)` runs over `planContext`, `dueInstances` and `pinsOn`, and caches both answers per `<channelKey>|<date>` for 10 minutes.
+      - `drop(channelKey)` is called when `run` starts (A22).
+    - `EditorSchedulerDeps.seriesPauses.seriesDue?` (`editor.scheduler.ts:81`).
+    - At :181, `maybePlan` and `maybePlanAhead` run for a plain-paused channel behind the gate. Each method gets one line after its active-plan check, and `newsWatch` stays gated.
+    - The wiring at `editor.module.ts:1783`.
+    - The resource-pause line in `scheduleBlock` (`plan-schedule-rules.ts:288`).
+  - **Files.** new `config-repair/series-due.ts`, `editor.scheduler.ts`, `schedule/plan-schedule-rules.ts`, `editor.module.ts`.
+  - **Tests.**
+    - `editor.scheduler.test.ts`: a plain-paused channel with a due series is planned; with nothing due it is not; `newsWatch` stays gated.
+    - `series-due.074.test.ts`: a counting fake (ten ticks → one `planContext` call; a `run` drops the entry).
+    - `series-pause.060.test.ts:253` passes unchanged.
+    - A `plan-schedule-rules` test for the new line.
+  - **Done when** the 060 scheduler tests pass without edits.
+
+- [ ] **T7 Owner-visible text** (FR-008; A19, A20, A24, A26)
+  - **What.**
+    - **Server.**
+      - `pauseView` gains `autoResume`, filled in `seriesPauses(handle)` from `configRepairPort.autoResumable` (A19).
+      - `pausedNote(p, { autoResume })` and the `SeriesBreakerDeps.autoResumes?` dep, wired to the port, with the note text and Ukrainian alert of A19.
+      - The "Overview → Paused series" texts in `pause-resume-action.ts:54` and `docs/import-bundle.ts:163`.
+      - The plain-pause rewording of A20 in `agents/agent-prompts.ts:43`, `docs/import-list-tools.ts:20`, `docs/import-bundle.ts:163`, :182 and :221, and `apps/automation/editor-skills/editor-composer-workflow.md:19`.
+    - **Dashboard.**
+      - `SeriesPause.autoResume?` in `api/agents.ts`.
+      - `pauseEffect(key, cause?, autoResume?)` with A19's table, called at `PauseBanners.tsx:74`.
+      - `resumeToast(key)` in `lib/agent-overview.ts`, used by the Resume toast (`PauseBanners.tsx:60-65`).
+      - The series save toast (`AgentSchedule.tsx:526`).
+      - The `series_paused` why, and the new `config_replan_capped` kind with the Replan step (A24), in `lib/inbox-kinds.ts`.
+  - **Files.**
+    - `apps/automation/src/editor/agents/agents.service.ts`, `agents/agent-prompts.ts`;
+    - `series-pause/series-breaker.ts`, `series-pause/pause-resume-action.ts`;
+    - `docs/import-bundle.ts`, `docs/import-list-tools.ts`;
+    - `apps/automation/editor-skills/editor-composer-workflow.md`;
+    - `editor.module.ts` (the breaker's `autoResumes` dep);
+    - `apps/dashboard/src/api/agents.ts`, `lib/agent-overview.ts`, `lib/inbox-kinds.ts`;
+    - `components/agents/PauseBanners.tsx`, `components/agents/AgentSchedule.tsx`.
+  - **Tests.**
+    - `lib/agent-overview.test.ts`: `pauseEffect` for every row of A19's table, and `resumeToast` for the three key kinds.
+    - `lib/inbox-kinds.test.ts`: `BRIEF_KINDS` and `FIXTURES` gain `config_replan_capped`, with a no-channel case (A24).
+    - `no-cyrillic-ui.test.ts`.
+    - These tests get the new text:
+      - `note-actions.060.test.ts:108` (both breaker-note variants);
+      - `import-bundle.069.pg.test.ts:266` and its item summary;
+      - `import-list-tools.069.test.ts:252`, :254, :256, :375, :527 and :552.
+    - Dashboard `tsc`, `npm test` and build.
+    - A visual check on your own mock at port 3174 (A26), at 375 px and on desktop: the four banners, the three toasts and the capped Inbox note.
+  - **Done when** no file under `apps/` says "Overview → Paused series" or that a paused channel plans its series, and every new English text is free of Cyrillic.
+
+- [ ] **T8 Replays, runbook § 34, status and README** (A20, A25, A27)
+  - **What.**
+    - `config-repair/replay.074.test.ts`:
+      - the @ai0_prompts_dev and @pdr_dev_channel replays of 10-27;
+      - @ai0_global with no false work, on a synthetic fixture built from 072's `readiness/fixtures/onboarding-1027.ts` (equal hashes, and a baseline);
+      - plus a `test.skip('stage fixture absent')` replay of the lead's `readiness/fixtures/stage-<channel>.json` for @ai0_global (A27).
+    - **Runbook § 34 "Changes take effect by themselves (spec 074)"** in `docs/runbooks/agent-platform.md`. Place it after § 33 and before 076's § 36; 075 adds § 35 (A25). It covers:
+      - what repairs by itself and when: the 10-minute sweep, owner saves, Resume, change_source, and views that never act;
+      - the replans: locked series, resumed plain slots, the cap, the ceiling and the note;
+      - auto-resume: what is judged (library, feed, unreachable sites), two checks, the 14-day flap guard, and what never lifts;
+      - restored pins;
+      - the two settings;
+      - troubleshooting, e.g. "a series has no slot today" and "a pause did not lift".
+    - Replace the stale "Overview → Paused series" in § 19 (:510), § 24 (:735), § 27 (:859), § 29 (:898) and § 30 (:984, :988) with "the pause banner on the agent page". In :859, :898, :984 and :988, also say that plain slots of a paused channel are not planned while its series and pins are (A20).
+    - Spec Status → done.
+    - `specs/README.md`: row 074 DONE (no migration), in number order.
+  - **Files.** new `config-repair/replay.074.test.ts`, `docs/runbooks/agent-platform.md`, `specs/074-changes-take-effect/spec.md`, `specs/README.md`.
+  - **Tests.** The replay file. Run the full `npm test`, `npm run build` and `npm run lint` on Node 20, and the PG files with `EDITOR_PG_TEST_URL`.
+  - **Done when** the replays pass and the synthetic @ai0_global fixture shows zero writes, zero pin drops, zero replans and zero resumes.
+
+## Status
+
+## Deltas from the spec

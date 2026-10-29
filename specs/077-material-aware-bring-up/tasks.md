@@ -1,0 +1,457 @@
+# 077 tasks
+
+Build on W2 merged (073 → 072 → 076, then 074 ∥ 075). Each task is one commit (`feat(launch): 077 Tn — … (AI0-255)`).
+
+Read these first:
+1. The spec's «Amendments after the builder check» (L1–L7, A1–A46, "Types after the amendments"). Where it differs from the body, it wins.
+2. Then the body, the contract and `<scratchpad>/w7/map-077.md`.
+
+Re-check every anchor by symbol name: 072–076 moved code in the files under "Shared files" in the map. "A*n*" below points at the amendment.
+
+- [ ] **T1 Migration 101, the launch row and the shared types.**
+  - What:
+    - Migration 101 and its down file, as in the body.
+    - `bring-up/bring-up.types.ts`, exactly as in "Types after the amendments":
+      - the constants;
+      - `MaterialDataset` (with `expect` and `unposted`), `MaterialSource` and `LaunchMaterial` (with `requested`);
+      - `BringUpCheck`, `FirstSlot`, `LaunchBringUp`, `FirstOutcome` and `LaunchViewBringUp`;
+      - `MaterialDeps` and `BringUpDeps`;
+      - `PromptBlock`, `PromptBlockSource` and `SlotInstructions`.
+    - `launch.types.ts`: `ChannelLaunch.material` and `.bringup`, and `StartResult` (A20).
+    - `launch.repository.ts`:
+      - `toLaunch` normalises `{}` to the typed empties (A14);
+      - `LaunchPatch`, `JSON_COLS` and `COLS` gain `material` and `bringup`;
+      - `insert` takes `material?`;
+      - new `mergeBringup(id, partial)` (A30 SQL).
+    - `launch.service.ts`: `LaunchDeps.bringUp?: BringUpDeps` (declared, not used yet), and `launchJson` adds `material`, `bringup`, `set` and `check` (A15).
+    - `testing/launch-fixtures.ts`: `MemoryLaunchRepo.insert` defaults and `MemoryLaunchRepo.mergeBringup` (A1).
+  - Files:
+    - `database/migrations/101_launch_material.sql`;
+    - `database/migrations/down/101_launch_material.down.sql`;
+    - `apps/automation/src/editor/launch/bring-up/bring-up.types.ts`;
+    - `launch/launch.types.ts`;
+    - `launch/launch.repository.ts`;
+    - `launch/launch.service.ts` (`LaunchDeps`, `launchJson` only);
+    - `launch/testing/launch-fixtures.ts`.
+  - Tests:
+    - new `launch/bring-up/bring-up.077.pg.test.ts`. It gets its own throwaway database, uses the `@pgtest_launch_077%` cleanup and follows the pattern of `launch.052.pg.test.ts`. It checks:
+      - up and down each run twice;
+      - a non-object value is refused;
+      - both columns round-trip;
+      - a row inserted without the columns reads as the typed empties;
+      - `mergeBringup` merges shallowly and keeps the other keys;
+    - a unit test of the `MemoryLaunchRepo` defaults;
+    - `launch.052.test.ts` and `launch.052.pg.test.ts` stay green (A44).
+  - Done when: the PG test passes on the scratch server, and `npm test`, build and lint are green.
+
+- [ ] **T2 `/launch` takes the material.**
+  - What:
+    - `parseLaunchArgs` reads the `from dataset` and `from <url>` clauses with every edge case of A23, and always returns `datasets` and `sources`.
+    - `SlashDeps.launch` takes `datasets` and `sources`. `SlashStart`'s ok branch gains `notes?`, and `case 'launch'` appends them (A25).
+    - The `launch_channel` tool takes `datasets` (≤3) and `sources` (≤10). Its result carries `notes`.
+    - `CreateBody` gains `datasets` and `sources`. `createLaunch`:
+      - dedupes, applies the caps and checks `SCHEMA_KEY_RE`, existence and status;
+      - checks the URL scheme and refuses t.me with `invalid_source`;
+      - returns `notes` from `bringUp.postCount` (A25);
+      - inserts `material.requested`.
+      - `LaunchRefusal` and `LAUNCH_ERRORS` gain `unknown_dataset`, `dataset_not_active`, `invalid_source`, `too_many_datasets` and `too_many_sources`.
+    - `bring-up/material.ts` `readMaterial(deps: MaterialDeps, channelKey, requested)` (A4, A11, A16) reads:
+      - fields with roles, and 3 samples clipped to 300 chars;
+      - `rows`, `postable` and `unposted`, and the publish profile;
+      - the bind plan (a `Fail` → `bind_failed`), and `expect`;
+      - the probes.
+      - It reads in parallel with `Promise.allSettled` and the per-item timeout.
+    - `begin` reads the material before its transition and never fails the launch because of it (A16). `redo` resets `bringup` and keeps `requested` (A14).
+    - `LaunchPromptInput.material`, the «Матеріал» block in `launchUserPrompt` and the new system rule at `launch-analysis.ts:190`.
+    - `launch-queries.ts`: `sampleRows(schemaId, n)` and `postCount(key)` (A25).
+    - Module: the `bringUp` object's `material` and `postCount`, built from:
+      - `DataStore.getSchema` and `sampleRows`;
+      - `postableCount(pool, { key }, ref)`;
+      - `bindDatasetPlan` with 075's `BindDeps`;
+      - `sourceProberOf(pool)`.
+      - Append only (A6).
+    - The `/launch` description in `SLASH_COMMANDS` and in `SlashMenu.tsx`, with `args` unchanged (A24).
+  - Files:
+    - `chat/slash-commands.ts`;
+    - `launch/launch-tool.ts`;
+    - `launch/launch.service.ts` (`CreateBody`, `createLaunch`, `begin`, `redo`);
+    - `launch/launch-analysis.ts`;
+    - `launch/bring-up/material.ts`;
+    - `launch/launch-queries.ts`;
+    - `editor.module.ts`;
+    - `apps/dashboard/src/components/chat/SlashMenu.tsx`.
+  - Tests:
+    - `launch/launch.052.test.ts`: the `parseLaunchArgs` expectations gain `datasets: [], sources: []` (`:123-127`), plus one case per A23 rule: comma lists with spaces, uppercase keys, duplicates, trailing punctuation, `from` at the end, "from the…" in the brief, t.me after `from`, the caps;
+    - `createLaunch` refusals and `notes`; a slash reply with a note;
+    - new `bring-up/material.077.test.ts`, with a fake store, prober and bind:
+      - sample clipping;
+      - a failed probe kept with its `failure_class`;
+      - unknown and inactive datasets;
+      - a bind `Fail` stored;
+      - a hung read times out;
+      - a throwing read becomes `read_failed`, and `begin` still reaches `preparing`;
+    - a `launchUserPrompt` test of the block;
+    - in the 077 PG file: `sampleRows` and `postCount`;
+    - `apps/dashboard` `SlashMenu.test.ts` stays green.
+  - Done when: `/launch @x from dataset pdr_questions …` stores `material` with one dataset and its bind plan, and a bad key returns `unknown_dataset`.
+
+- [ ] **T3 Code binds after the model.**
+  - What:
+    - `bring-up/bind.ts`:
+      - `bindMaterial(plan, material, card)` covers the take-over rule, collisions and the cap (A13), card sources (A5), tools only when `toolsAllow` is non-null (A28), and the idea note;
+      - `reconcilePlan(plan)` holds the closed list exported as `PLAN_AUTO_FIXES`;
+      - both return `set` lines.
+    - `launch-analysis.ts`:
+      - the series item becomes a named const, with `LaunchSeriesPlan` and `LaunchPlan` built on it (A13);
+      - `LaunchCheckContext` gains `material?` and `materialFormats?` (the polls exemption);
+      - `execute` binds and reconciles first, runs `checkLaunch` and `extra` on the result, and returns `{ ok, launch: plan, set }` (A12).
+    - `bring-up/extra.ts` `buildExtra(plan, material, ctx)`, with today's checks; launch's `runAnalysis` calls it (A40).
+    - `analyze` parses `LaunchPlan` and writes `plan` and `bringup: { set }` in the `ready` transition (A26).
+    - `testing/launch-fixtures.ts` gains `validLaunchPlan()` (A1).
+  - Files:
+    - `launch/bring-up/bind.ts`;
+    - `launch/bring-up/extra.ts`;
+    - `launch/launch-analysis.ts`;
+    - `launch/launch.service.ts` (`analyze`, `runAnalysis`);
+    - `launch/testing/launch-fixtures.ts`.
+  - Tests:
+    - new `bring-up/bind.077.test.ts`:
+      - format take-over versus a new series;
+      - the " (2)" suffix, and two datasets of one format;
+      - precedence;
+      - a `PLAN_AUTO_FIXES` list test;
+      - more than 6 a day is a plan error;
+      - sources: the id, rss versus url, dedupe, and the cap of 30 with its `set` line;
+      - `toolsAllow` null stays null, and a non-null list is extended;
+      - the idea note and the `set` lines;
+    - `launch.052.test.ts` additions:
+      - a plan of two daily series with max 1 goes through the tool with no error and is stored with max 2 (A12);
+      - the polls rule does not fire on a dataset's quiz format;
+    - the 052 tests stay green.
+  - Done when: the A12 test passes, and the stored plan's quiz series carries `library:pdr_questions` as `required`.
+
+- [ ] **T4 Start writes the bound plan.**
+  - What:
+    - `bring-up/start-writes.ts` `startWrites(plan, state, launch, material): StartWrites` (A27). `doStart` writes exactly what it returns.
+    - `doStart` parses `LaunchPlan` (`launch.service.ts:494`). `toSetupInput` (`:645-656`) carries `source` and `source_mode` explicitly. The card step writes `sources` and `toolsAllow`. Ideas carry the dataset note.
+    - The dataset patch step runs before the playbook step, through `bringUp.applyDatasetPatch` (075's apply function). It is idempotent: no-op, apply or skip, with a `set` line (A18).
+    - `mergePlaybook` keeps unlocked `library` / `feed` series and carries `source` / `source_mode` (A29). The characterisation test comes first, in the same commit.
+  - Files:
+    - `launch/bring-up/start-writes.ts`;
+    - `launch/launch.service.ts` (`doStart`, `toSetupInput`);
+    - `setup/setup-apply.ts` (`mergePlaybook`);
+    - `editor.module.ts` (`applyDatasetPatch`).
+  - Tests:
+    - `setup/setup.042.test.ts`:
+      - a characterisation test of today's drop rule;
+      - then: unlocked library and feed series kept;
+      - a series of the same name replaced;
+      - the source taken from the input;
+      - the source carried over by name;
+      - `source_mode` defaults;
+    - new `bring-up/start-writes.077.test.ts`;
+    - the 052 Start test: the series source reaches `putPlaybook`;
+    - in the 077 PG file, the patch step applies once, a second Start is a no-op, and a stale schema is skipped with its `set` line.
+  - Done when: in the PG test, a launch made from `validLaunchPlan` starts with a required `library:pdr_questions` series in the playbook and the dataset patch applied once.
+
+- [ ] **T5 The would-be check, stored at plan-ready (no Start change).**
+  - What:
+    - `bring-up/extra.ts` gets the real context (FR-003):
+      - `bringUp.context(key, wouldBeCard)` gives the resources, `telegramFormats` and the catalog;
+      - the quiet hours go into the options;
+      - `checkPlanSkeleton` lines are added as «план: …»;
+      - the body-derived fallback stays.
+      - Setup's `extra` calls the same function with `material = null` and the new optional `ChannelSetupDeps.context`.
+    - `bring-up/would-be.ts`: `wouldBeOverlay(writes, material)` and `wouldBeCheck(facts, overlay, { planErrors, drift })` over 072's `applyOverlay` and `channelDoctor`. Blockers exclude `LAUNCH_GATE_IGNORED_CODES` (A8, A10). Only if 072's overlay lacks them: optional `skills?` and `steering?` on its type, listed in Deltas.
+    - The `ready` transition in `analyze` writes `bringup: { set, baseline: sectionBaseline(state, targetRef), ready }`.
+  - Files:
+    - `launch/bring-up/extra.ts`;
+    - `launch/bring-up/would-be.ts`;
+    - `launch/launch.service.ts` (`analyze`, `runAnalysis`);
+    - `setup/setup.service.ts` (`extra` and `ChannelSetupDeps.context?` only);
+    - `editor.module.ts` (`context`, `facts`);
+    - only if needed, 072's overlay in `readiness/` (minimal, appended).
+  - Tests:
+    - new `bring-up/would-be.077.test.ts`:
+      - the overlay replaces the card, profile, playbook and series;
+      - it adds the datasets, probes, voice skill and reference rules;
+      - `bot_not_admin` is listed but is not a blocker;
+    - `extra` tests: a series in quiet hours, an unknown series source, a `checkPlanSkeleton` line, and setup using the same function.
+  - Done when: a ready launch row carries `bringup.ready` and `bringup.baseline`, and the analysis gets a quiet-hours error back.
+
+- [ ] **T6 The Start gate.**
+  - What:
+    - `start(id, { force })` returns `StartResult` (A20), in this order:
+      1. status checks;
+      2. fresh material (A18) and `startWrites`;
+      3. plan errors from `validatePlaybook` with the real context → `start_failed`, nothing written;
+      4. the would-be check and drift (A17), merged as `bringup.start`;
+      5. blockers or drift without `force` → `waitingFor: 'readiness'`, nothing written;
+      6. the bot is not OK → `startRequested`, plus `forced` (A19);
+      7. else `doStart`.
+    - The failure path of `doStart` re-baselines (A17).
+    - `watch` uses the gate path, with `force` from `bringup.forced` (A19).
+    - `@Post(':id/start-anyway')` in the controller.
+    - Artifact actions: `launchActions` gains the gate and `start_anyway`, and the adapter reads `body.check` (A22).
+    - The owner-bot card:
+      - `waiting()` selects `bringup`;
+      - the `start_anyway` button;
+      - refuse, then force;
+      - `LaunchCardDeps.launches.start(id, o?)` (A21).
+    - Catalogue lines `dataset_changed` and `source_changed` in the server catalogue and the dashboard mirror (L6).
+  - Files:
+    - `launch/launch.service.ts` (`start`, `doStart`, `watch`);
+    - `launch/launch.controller.ts`;
+    - `launch/launch-artifact.ts`;
+    - `launch/launch-cards.ts`;
+    - `reasons/catalogue.ts`;
+    - `apps/dashboard/src/lib/reasons.ts`.
+  - Tests:
+    - PG:
+      - Start with a blocker writes nothing: the card, playbook, profile, mode and dataset are unchanged;
+      - `start-anyway` writes and stores `forced`;
+      - a failed step, then a second Start, continues without Start anyway, and an owner edit after the failure is drift (A17);
+      - the bot is not an admin and there is no blocker → `bot_admin` and `startRequested`;
+      - a forced Start whose bot later becomes admin is started by `watch`;
+      - a dataset changed after the plan → `dataset_changed`, and its patch is not written under `force`;
+    - unit:
+      - `launchActions` keys with and without the gate;
+      - the owner-bot card buttons with `bringup.ready` blockers, and refuse, then force;
+      - the catalogue test is green;
+    - the 052 Start and card tests stay green.
+  - Done when: a launch whose would-be state has a blocker cannot be started without "Start anyway", and nothing is written before the check.
+
+- [ ] **T7 First drafts at Start.**
+  - What:
+    - `bring-up/first-drafts.ts`:
+      - the pure `firstDrafts(slots, series, card, now)`, with L1's rules;
+      - `runFirstDrafts(deps, launch, picks)` (A3).
+    - `LaunchService.firstDraftsChain`, in A30's order. It keeps 072's `readiness.recheck(key, 'start')` after `planAhead` and merges `firstSlots` before any run.
+    - Module: `plannedSlots`, `firstDraftGate` (pauses, platform health), `writeNow` (`ops.runSlot(id, { wait: true })`) and `slotStates`.
+  - Files:
+    - `launch/bring-up/first-drafts.ts`;
+    - `launch/launch.service.ts` (the tail of `doStart`);
+    - `editor.module.ts`.
+  - Tests:
+    - new `bring-up/first-drafts.077.test.ts`:
+      - one pick per series;
+      - no live, time-sensitive or derived slots;
+      - the 48 h window and the cap of 6;
+      - no series → the first plain slot;
+      - each error's outcome;
+      - `editor_off` stops the chain;
+      - it never throws;
+    - PG, with a fake runner:
+      - the picks leave `planned` without waiting for `writeAt`;
+      - `firstSlots` is stored before the runs;
+      - at most one `approval_alerts` row per picked date (A30).
+  - Done when: after Start in the PG test, each series' first slot is written and `bringup.firstSlots` holds every outcome.
+
+- [ ] **T8 Prompt blocks (no behaviour change).**
+  - What:
+    - `systemPromptBlocks`, with the separators inside each block's text (A31). `buildSystemPrompt` joins the blocks.
+    - `inlineSkills` returns `overBudget` (A33).
+    - A private `systemPromptInputs(role, card, ctx, extras)` in the runner, used by `run`.
+    - `criticPromptBlocks`, with `CAP` and `clipped`; `criticUserPrompt` joins them (A33).
+  - Files:
+    - `roles/prompts.ts`;
+    - `roles/editor-runner.service.ts` (`systemPromptInputs` only);
+    - `critic/critic.service.ts`.
+  - Tests:
+    - new `roles/prompt-blocks.077.test.ts`, with goldens captured before the refactor: the system prompt the `FakeLlm` records for planner, executor and reviewer fixtures is byte-identical;
+    - every inline skill is labelled `skill:<name>`;
+    - `overBudget` names the skipped skills;
+    - the critic blocks join to the same text as `criticUserPrompt`;
+    - the existing prompt and critic tests stay green.
+  - Done when: the goldens pass and nothing else changed.
+
+- [ ] **T9 Prompt fixes.**
+  - What:
+    - The critic's series note is a trailing `seriesNote` parameter, passed by every caller (A34).
+    - `profileVoice` in `agents/resource-profile.ts`. `platformContext` returns it, and `executorUser` passes `resourceRef ?? telegram:<key>` (A35).
+    - The two precedence lines (FR-006).
+    - The T8 goldens are updated where the owner-rules line appears (A42).
+  - Files:
+    - `roles/editor-runner.service.ts`;
+    - `critic/critic-gate.ts`;
+    - `critic/critic.service.ts`;
+    - `network/network-runner.ts`;
+    - `agents/resource-profile.ts`;
+    - `rules/owner-rules-prompt.ts`;
+    - `schedule/series-guard.ts`;
+    - `roles/prompt-blocks.077.test.ts`.
+  - Tests:
+    - the critic prompt has the series note after the brief;
+    - the critic request carries `seriesNote` on the first attempt, on a ladder step and in a preview;
+    - the writer user prompt has «Профіль ресурсу (тон і табу)»;
+    - the `profileVoice` cases of A35;
+    - the owner-rules and series-guard line tests;
+    - `series-guard.test.ts:35` and `rules/config-conflicts.040.test.ts:174` stay green.
+  - Done when: the replay fixture slot's critic request holds the same series note as the writer's prompt.
+
+- [ ] **T10 The instructions endpoint.**
+  - What:
+    - `executorContext(slot, { notify: false })` makes no inbox post and no round roll. `nextInRound` gets `{ roll?: boolean }`, and the `nextRow` dep gets an optional fourth argument (A32).
+    - `EditorRunnerService.instructions(slot, card)`, assembled in the pure `roles/instructions.ts`. It holds:
+      - the system blocks from `systemPromptInputs`;
+      - the `executorUser` blocks;
+      - the critic blocks through `criticContextOf`;
+      - the skills split;
+      - `slotConfigContext` + `checkSlotConfig`;
+      - `assessPlanned`;
+      - the platform and derived notes.
+    - The runner deps `seriesContextRead` and `slotConfigContext`.
+    - `EditorOpsService.slotInstructions(id)` and `GET /api/editor/slots/:id/instructions`.
+  - Files:
+    - `roles/editor-runner.service.ts`;
+    - `roles/instructions.ts`;
+    - `schedule/schedule.service.ts`;
+    - `schedule/next-row.ts`;
+    - `apps/automation/src/data/data-query.ts` (the `nextInRound` option only);
+    - `api/editor-ops.service.ts`;
+    - `api/editor.controller.ts`;
+    - `editor.module.ts`.
+  - Tests:
+    - new `roles/instructions.077.test.ts`:
+      - zero LLM calls (`FakeLlm`);
+      - zero inbox posts for an empty required source;
+      - the fake `nextRow` receives `{ roll: false }`;
+      - labels and chars;
+      - the `overBudget` list and `clipped` marks;
+      - two `platform` blocks for a native-platform slot, and the derived note;
+      - a 404 for an unknown id;
+    - a `data-query` PG case: `nextInRound(…, { roll: false })` leaves `data_reuse_rounds` unchanged;
+    - the existing schedule tests stay green.
+  - Done when: the endpoint returns `SlotInstructions` for a planned Telegram slot in a test, and the view writes nothing.
+
+- [ ] **T11 Lifecycle in the backend.**
+  - What:
+    - Checklist steps:
+      - `readiness` reads `bringup.ready` before Start and `bringUp.readinessRow` after it;
+      - `first_outcomes` comes from `slotStates` with `reasonOfError` / `reasonFor` (A36).
+    - The age line in the `start` detail, and `ageDays` and `firstOutcomes` in `view` (A15).
+    - The quiet card in `watch` (A37), through `waitingSince` and `notifyQuiet`. The module builds `notifyQuiet` with `postOnce`: kind `launch_quiet`, refType `launch`, refId the launch id, and the FR-007 texts.
+    - The owner-bot card's age line (A21).
+  - Files:
+    - `launch/launch-checklist.ts`;
+    - `launch/launch.service.ts` (`checklist`, `view`, `watch`);
+    - `launch/launch-queries.ts` (`waitingSince`);
+    - `launch/launch-cards.ts`;
+    - `editor.module.ts` (`notifyQuiet`, `waitingSince`, `readinessRow`).
+  - Tests:
+    - the step-state map in `launch.052.test.ts:316-323` gains `readiness` and `first_outcomes`;
+    - checklist cases: the outcome lines, including an unknown code, and the age at 6 and 8 days;
+    - a quiet-condition unit test;
+    - PG: the quiet card posts once and `quietNotedAt` is set; the `waitingSince` query.
+  - Done when: a launch started 25 h ago with nothing published or waiting posts one `launch_quiet` item.
+
+- [ ] **T12 `/setup` Apply ends with the bot check and "Start in approval".**
+  - What:
+    - `apply` returns `next` (A38) and calls `readiness.recheck(key, 'owner')` unless 072 already does (A7).
+    - `ChannelSetupService.start(id, body)` and `POST /api/channel-setup/proposals/:id/start` (A38).
+    - The module-level `launchModeOps(...)`, shared by the LaunchService and ChannelSetupService factories. The setup factory gets the optional injects appended (A38).
+    - The owner-bot setup card's outcome adds the bot line and the hint (A39).
+  - Files:
+    - `setup/setup.service.ts`;
+    - `setup/setup.controller.ts`;
+    - `editor.module.ts`;
+    - `owner-bot/card-sources.ts` (setup `act` and the `SourceDeps.setup` type only).
+  - Tests: new `setup/setup-start.077.test.ts`:
+    - `next` is present only when the card is off and nothing failed;
+    - `not_applied`;
+    - a bot that is not an admin → `bot_admin`, with nothing stored;
+    - blockers → `readiness`, and `force` passes;
+    - `setMode` is called with `{ replan: false }`, and only by the endpoint;
+    - the owner-bot outcome line;
+    - in the 077 PG file: the endpoint on a seeded proposal.
+  - Done when: Apply never changes mode, and the endpoint does so only on the owner's call.
+
+- [ ] **T13 Dashboard: the launch panel.**
+  - What:
+    - `lib/launch.ts` mirrors `LaunchViewBringUp` and `StartResult`, with pure helpers: material rows, the source probe line, `set` lines, the check callout text and the age text.
+    - `LaunchBody` gets:
+      - a "Material" section (dataset rows: rows, postable, format, bind warnings and the `reuse` proposal with a link to the dataset; source rows: the probe line);
+      - a "Set by code" list;
+      - the check callout, with blockers from the reasons mirror and the drifted sections;
+      - the age `callout-warning`.
+    - `ArtifactPanel.tsx`: `CONFIRM['launch:start_anyway']` lists the check's blockers and drift, and a refused Start shows its blockers in a toast (A22).
+  - Files:
+    - `apps/dashboard/src/lib/launch.ts` and `launch.test.ts`;
+    - `src/components/launch/LaunchBody.tsx`;
+    - `src/components/artifacts/ArtifactPanel.tsx` (`CONFIRM` and the refusal toast only);
+    - `src/components/agents/agent-manager.css` (area classes only).
+  - Tests:
+    - `launch.test.ts` helpers, including empty `material` / `bringup`, a missing `check` and an unknown reason code;
+    - no-cyrillic.
+  - Done when: tsc, test and build are green. On the mock server (port 3177), at 375 px, the panel shows the material, the blockers and Start anyway, and an empty `material` or `bringup` renders nothing.
+
+- [ ] **T14 Dashboard: first outcomes and `launch_quiet`.**
+  - What:
+    - `firstOutcomes` lines under the checklist, with reason labels from `lib/reasons.ts`.
+    - `launch_quiet` in `INBOX_KINDS`, with a "why" and steps (A37).
+  - Files:
+    - `apps/dashboard/src/lib/launch.ts` and `launch.test.ts`;
+    - `src/components/launch/LaunchBody.tsx`;
+    - `src/lib/inbox-kinds.ts` and `inbox-kinds.test.ts` (`BRIEF_KINDS`, `FIXTURES`).
+  - Tests: outcome lines, the inbox-kinds test, no-cyrillic.
+  - Done when: tsc, test and build are green.
+
+- [ ] **T15 Dashboard: the Instructions section.**
+  - What:
+    - A slot page section "Instructions" with two CompactCards and a details dialog. Each block shows a source `Badge`, a "clipped" mark and its server text in a `<pre>`.
+    - Config and pre-flight callouts.
+    - The empty state on a 404 or empty response.
+    - The `useSlotInstructions` hook.
+  - Files:
+    - `apps/dashboard/src/routes/app.editor_.slot.$id.tsx`;
+    - `src/components/editor/SlotInstructions.tsx`;
+    - `src/lib/slot-instructions.ts` and its test;
+    - `src/api/editor.ts`.
+  - Tests: `slot-instructions.test.ts` (grouping, chars, badge tone by source, clipped, empty) and no-cyrillic.
+  - Done when: tsc, test and build are green, and the section renders at 375 px on the mock server.
+
+- [ ] **T16 Dashboard: setup "Start in approval".**
+  - What:
+    - `ProposalBody` gets `onApplied?` (A39).
+    - `SetupProposalDialog`'s "Next" step: the bot line, an unticked "Start in approval" and Done. Done calls the start endpoint. On blockers it shows them with "Start anyway"; when the bot is not an admin it keeps the box ticked. Closing starts nothing.
+    - The artifact panel's bot line and hint.
+  - Files:
+    - `apps/dashboard/src/components/setup/SetupProposalDialog.tsx`;
+    - `src/api/channel-setup.ts`;
+    - `src/lib/setup-start.ts` and its test (pure texts).
+  - Tests: `setup-start.test.ts` and no-cyrillic.
+  - Done when: tsc, test and build are green, and the checkbox is unticked by default.
+
+- [ ] **T17 Acceptance replays.**
+  - What: the three replays from the spec's Tests section, as corrected by A45. They run on fixtures built from the review §1 table, with FakeLlm plans, a fake probe and a fake bind:
+    - @pdr_dev_channel: the poll-rule finding at plan-ready and no quiz-weight finding;
+    - @ai0_prompts_dev;
+    - @ai0_global, with no false blocker.
+  - Files:
+    - `launch/bring-up/bring-up.acceptance.077.pg.test.ts`;
+    - `launch/bring-up/testing/replays-077.ts`.
+  - Tests: this task is the tests.
+  - Done when: all three pass on the scratch server, and the full suite without the URL is green.
+
+- [ ] **T18 Docs and close-out.**
+  - What:
+    - Runbook §37 "Bring-up that takes the material (spec 077)" in `docs/runbooks/agent-platform.md`, in the file's style. It covers:
+      - the `/launch` grammar;
+      - what code sets;
+      - Start anyway (dashboard, owner bot: press twice);
+      - first drafts and the early batch alert (open question 1);
+      - the instructions view;
+      - `/setup` Start in approval;
+      - migration 101 applied with the deploy.
+    - The spec's Status set to done.
+    - The `specs/README.md` row 077 set to DONE (added in number order if missing), with 101 in the migration line.
+  - Files:
+    - `docs/runbooks/agent-platform.md`;
+    - `specs/077-material-aware-bring-up/spec.md`;
+    - `specs/077-material-aware-bring-up/tasks.md`;
+    - `specs/README.md`.
+  - Done when: the docs are committed and every box above is ticked.
+
+## Status
+
+## Deltas from the spec

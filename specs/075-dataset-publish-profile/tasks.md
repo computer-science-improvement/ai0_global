@@ -1,0 +1,372 @@
+# 075 tasks
+
+One commit per task, in this order. Commit style: `feat(data): 075 T1 — … (AI0-253)`. Code map: `scratchpad/w7/map-075.md`.
+
+Before you start:
+- Read the spec's «Amendments after the builder check» first. L*n* and A*n* below point to it.
+- The base is W1 merged (073 → 072 → 076). Before T1, re-grep the 072 and 073 names this spec uses (L2–L5, A33): `DOCTOR_CHECKS`, `ChannelFacts`, `countPostable`, `configHash`, `AUTO_SAFE_FIX_KINDS`, `fix-runner.ts`, `CONFIG_FAILURE_CODES`, `isConfigCode`, `REASONS`, `lib/reasons.ts`.
+
+- [ ] T1 **Publish profile, DataStore and migration 099** (FR-001, FR-002; A1, A8, A9, A12, A13, A19, A22, A32)
+  - What:
+    - in `data/data.types.ts`:
+      - `PublishProfileSchema`, with `HostName` (A32);
+      - `DataSchema.publish`;
+      - `publish` in the input (default `{}`) and in the patch;
+      - field-name checks in the same `superRefine` as `post_requires`;
+    - `data/publish-profile.ts`:
+      - `answerOf` (A27), `retellText`, `formatNeeds`, `proposePostRequires`;
+      - `loadRowProfile` (A18);
+      - `LEGACY_PUBLISH` and `publishSql(alias)` (A12);
+      - the types `DatasetPatch` and `DatasetExpect` (A4);
+      - the `onPublishChanged` / `publishChanged` registry (A13, A22);
+    - `data/publish-profile.cases.json` (A9);
+    - DataStore:
+      - `publishSql` in all four reads (A19);
+      - `createSchema` writes `publish` only when it is non-empty;
+      - `updateSchema` checks fields against the effective `post_requires` and `publish`;
+      - `publishChanged()` runs after a write of `publish` or `status`;
+    - `diffSchemas` treats `publish` as description-only;
+    - migration 099:
+      - the column, `data_publish_valid` and the constraint (a comment says zod owns the host shape);
+      - the backfill, including `quotes` and `jokes` (A8);
+    - the down file `099_dataset_publish.down.sql` (A1).
+  - Files:
+    - `apps/automation/src/data/publish-profile.ts` (new), `data/publish-profile.cases.json` (new);
+    - `data/data.types.ts`, `data/data-store.ts`, `data/schema-versioning.ts`;
+    - `database/migrations/099_dataset_publish.sql`, `database/migrations/down/099_dataset_publish.down.sql`.
+  - Tests:
+    - `data/publish-profile.test.ts`:
+      - the schema (unknown field, `answer_key` without quiz, base 2, a bad or `www.` host);
+      - every case of `publish-profile.cases.json`;
+      - `retellText`, `formatNeeds`, `proposePostRequires`;
+      - the `publishSql` text;
+    - `data/publish-profile.075.pg.test.ts`, on its own database:
+      - the constraint refuses an unknown field;
+      - the backfill per key, `quotes` and `jokes` included;
+      - an owner value is kept;
+      - a re-apply is harmless;
+      - the down file runs twice;
+      - a run with 083 left out;
+      - golden: the stored profile equals `LEGACY_PUBLISH` for its five keys;
+      - before 099, `publishSql` returns the legacy profile;
+    - `data/data-store.test.ts`:
+      - all four read paths carry `publish`;
+      - a fields-only patch that removes a profile field gives the readable error;
+      - `publishChanged` is called only after a `publish` or `status` write;
+    - `data/schema-versioning.test.ts`: a `publish` change bumps no version.
+  - Done when:
+    - unit and PG tests are green;
+    - build and lint are clean;
+    - a database without 099 still reads schemas, with the legacy profile for the five keys and `{}` for the rest.
+
+- [ ] T2 **Content guards read the profile** (FR-003: quiz truth, verbatim, critic; A12, A18, A27)
+  - What:
+    - `checkQuizGroundTruth` is generic through `loadRowProfile` and `answerOf`:
+      - the clip and prefix rule (A27);
+      - `library_ref_not_found` for a missing row of an answer-key dataset;
+      - `PDR` removed;
+    - `checkVerbatim` checks only `text_use: 'retell'`, with `retellText`;
+    - `RETELL_SOURCES`, `retellSource` and `RETOLD_FIRST` are deleted;
+    - `libraryRowText(row, retellFields = [])`;
+    - `libraryTextOf` reads through `loadRowProfile`.
+  - Files: `editor/post/quiz-ground-truth.ts`, `editor/post/verbatim-guard.ts`, `editor/critic/critic-source.ts`.
+  - Tests:
+    - `post/quiz-ground-truth.test.ts`:
+      - a generic base-0 field-list dataset;
+      - PDR base 1;
+      - a clipped option passes;
+      - a prefix that two options share fails;
+      - no answer key gives null;
+      - a missing row gives `library_ref_not_found`;
+    - `post/verbatim-guard.test.ts`: retell lists, `verbatim`, unset;
+    - `critic/read-capture.test.ts:282-286`: the new signature, with the same expected text;
+    - `chat/drafts.service.test.ts`, if its fake pool serves these queries;
+    - unchanged and green:
+      - `tools/data-tools.pg.test.ts:116-126`, on t046;
+      - `data/data-store.migration.pg.test.ts`.
+  - Done when: no guard keys on a dataset name except through `LEGACY_PUBLISH`.
+
+- [ ] T3 **Reusable hosts and series format from the profile** (FR-003; A13, A20)
+  - What:
+    - `datasetHosts`, `setDatasetHosts` and `reusableHosts(env, extra)`;
+    - `DatasetHostsRefresher` (boot, `@Cron('*/10 * * * *')`, `onPublishChanged`);
+    - `datasetFormat(entity, publish?)`;
+    - `SeriesSourceCatalog.publish?`;
+    - `seriesSourceCatalog` reads `FROM data_schemas s` with `publishSql('s')`;
+    - `seriesSourceErrors` uses the profile.
+  - Files:
+    - `data/ledger-anchor.ts`, `data/dataset-hosts.refresher.ts` (new), `data/data.module.ts` (provider);
+    - `editor/network/series.ts`, `editor/network/series-edit.ts`.
+  - Tests:
+    - `data/ledger-anchor.test.ts`: the exact lists are unchanged, with `setDatasetHosts([])` in `beforeEach`, plus a merge case;
+    - `data/dataset-hosts.refresher.test.ts`: a fake pool, and an error keeps the list;
+    - `network/series` tests:
+      - `datasetFormat` with a profile;
+      - an entity-less answer-key dataset fails a poll series;
+      - catalogue fakes without `publish` still work;
+    - `setup/dataset-formats.047.test.ts` is unchanged.
+  - Done when: `pdr_rules`'s host comes through the dataset list, and the pure `reusableHosts({})` still returns the default only.
+
+- [ ] T4 **`dataset_needs_quiz` at publish, in the config class** (FR-003; A10, A11, A23)
+  - What:
+    - the optional dep `ScheduleServiceDeps.datasetProfile(key)`, wired with `DataStore.getSchema(k)?.publish`;
+    - `refs.format`;
+    - the branch `const fmt = s.format ?? refs.format`, after 073's `series_format_mismatch` and before `not_next_in_order`;
+    - `dataset_needs_quiz` appended to the list `isConfigCode` reads and to the `config` pattern of `RULES`;
+    - its `ReasonEntry` (kind `dataset`) and its dashboard mirror line.
+  - Files:
+    - `editor/schedule/schedule.service.ts` (deps and `publishGuard` only);
+    - `editor/tools/role-tools.ts` (`format: spec.format` in the refs at :223);
+    - `editor/editor.module.ts` (the ScheduleService wiring near :1195-1203);
+    - `editor/silent/skip-reasons.ts`, and the file that holds `CONFIG_FAILURE_CODES` after the W1 merge;
+    - `editor/reasons/catalogue.ts`;
+    - `apps/dashboard/src/lib/reasons.ts`.
+  - Tests:
+    - `schedule/schedule.075.test.ts` (new):
+      - a poll series with a PDR ref gives `dataset_needs_quiz`;
+      - a quiz series gives null;
+      - a plain slot gives null;
+      - refs without a format (the platform-tools call shape) still use the series format;
+      - the branch order;
+    - the skip-reasons test: the text classifies as `config`, and `isConfigCode` is true;
+    - the 073 catalogue test;
+    - the dashboard drift test, `tsc --noEmit` and `npm test`.
+  - Done when: the post-1725 poll is refused with `dataset_needs_quiz`, and the refusal never counts toward the breaker.
+
+- [ ] T5 **The answer comes from code** (FR-004; A17, A27)
+  - What:
+    - the computed keys `correct_index`, `correct_option`, `poll_options` and `credit` in the agent projection (A17);
+    - the `answerKey` line in `seriesNote`, set from `executorContext` through `datasetProfile`.
+  - Files: `data/data-query.ts` (agent branch :333-341), `editor/schedule/series-guard.ts`, `editor/schedule/schedule.service.ts` (`executorContext` only).
+  - Tests:
+    - `data/data-query.test.ts`:
+      - the computed keys;
+      - a field-name clash keeps the field;
+      - the 3-row rule;
+      - a read that lists `fields` still gets `correct_index`;
+    - `data/data-query.075.pg.test.ts` (own database): a PDR row read by ref;
+    - `schedule/series-guard.test.ts`.
+  - Done when: a by-ref `query_data` read of a PDR fixture row shows `correct_index = correct_answer_num - 1`, and a 20-row search carries no `poll_options`.
+
+- [ ] T6 **Natural order and dotted keys** (FR-005; A21)
+  - What:
+    - the natural `numeric[]` sort over the `txt` expression in `roundOrderSql`;
+    - `inferType` keeps colliding dotted values as text.
+  - Files: `data/data-rounds.ts`, `data/import/type-inference.ts`.
+  - Tests:
+    - `data/data-rounds.read.test.ts:23-31`: the exact-SQL assertion, rewritten;
+    - `data/data-rounds.075.pg.test.ts` (own database):
+      - 1.1, 1.2, 1.10, 2.1;
+      - a 20-digit key, with no error;
+      - mixed values: numeric-looking ones first, then lexical, then blank;
+    - `data/import/type-inference.test.ts`: "1.1" and "1.10" stay text; "2.5" and "3.75" stay number.
+  - Done when: the Rounds panel order, `nextInRound` and `query_data` agree on the PG fixture.
+
+- [ ] T7 **The import proposes the profile** (FR-006; A28, A29, A32)
+  - What:
+    - `inferPublishProfile` and `inferReuse`, with base inference as in A28;
+    - hosts lower-cased, without `www.`;
+    - `infer()` returns `publish` and `sample_row`;
+    - `planSchema(…, rows?)` from `buildPlan` (`import-list.ts:346`), with the mapping-only fallback;
+    - `previewOf` prints `newSchema.publish` and `newSchema.reuse_policy` and stays sync;
+    - the media probe in `import-list-tools.ts` (`media_probe`).
+  - Files:
+    - `data/import/publish-inference.ts` (new), `data/import/data-import.service.ts`;
+    - `editor/docs/import-list.ts`, `editor/docs/import-list-tools.ts`.
+  - Tests:
+    - `data/import/publish-inference.test.ts`:
+      - PDR-like rows;
+      - values 0..3;
+      - {1, 2} only;
+      - both 0 and *n*;
+      - nanobanana-like rows;
+      - articles-like rows;
+      - clause keys;
+      - mapping-only inference;
+    - the import_list tests:
+      - the plan carries the profile;
+      - `previewOf` prints it, and the three direct calls are unchanged;
+      - `split_on` with `url_anchor` gives cite and the host;
+    - the import-list-tools test, with a fake http for the probe;
+    - the `data.controller` tests: `infer` returns `publish` and `sample_row`.
+  - Done when:
+    - an import_list plan for a nanobanana-like page yields photo, verbatim and cycle;
+    - no test makes a real network call.
+
+- [ ] T8 **One postable count** (FR-008; A3, A23, A30)
+  - What:
+    - `postableCount(pool, { id?, key? }, resourceRef)`, with `resourceKeys` normalisation;
+    - `CandidateDeps.dataset(key, resourceRef)`;
+    - `checkCandidate(s, d, { resourceRef })`:
+      - `candidate_empty` is kept;
+      - `candidate_unpostable`, in its two cases;
+      - the new evidence;
+    - `source-tools` passes the resource;
+    - the `candidate_unpostable` `ReasonEntry` (kind `source`) and its mirror line.
+  - Files:
+    - `data/postable.ts` (new);
+    - `editor/sources/source-change.ts`, `editor/sources/source-wiring.ts`, `editor/sources/source-tools.ts` (all three on the 076-merged state);
+    - `editor/reasons/catalogue.ts`, `apps/dashboard/src/lib/reasons.ts`.
+  - Tests:
+    - `data/postable.075.pg.test.ts` (own database):
+      - ledger use and a cycle round;
+      - parity with `buildCatalog`;
+      - by id and by key;
+      - a bare channel key and `@key` give the same count;
+      - an unknown dataset gives null;
+      - the database's round rows are unchanged afterwards;
+    - `editor/sources/sources.049.test.ts`:
+      - :83 updated;
+      - `candidate_unpostable` in both cases;
+      - `candidate_empty` is kept;
+    - the catalogue test, and the dashboard drift test.
+  - Done when: change_source on a dataset with no postable rows is refused, and the evidence names the postable and unposted counts.
+
+- [ ] T9 **Dashboard "How it posts"** (FR-007 without "Use in a channel"; A9, A15, A16)
+  - What:
+    - `PublishFields`, with the sample quiz render;
+    - in `lib/publish-profile.ts`:
+      - the `answerOf` mirror, `renderSampleQuiz` and `publishPatch`;
+      - `remapProfile` (A15);
+      - `postRequiresChips` and `postRequiresFromChips` (A16);
+    - the wizard:
+      - the `'publish'` step, for a new dataset only;
+      - creation moves to that step;
+      - read-only once created, and Back goes to the right step;
+      - the button is disabled while the base is ambiguous;
+    - the SchemaEditor section;
+    - `pick()` normalisation;
+    - `EDITABLE_KEYS` gains `post_requires` and `publish`;
+    - API types.
+  - Files:
+    - `apps/dashboard/src/components/data/PublishFields.tsx` (new);
+    - `src/lib/publish-profile.ts` (new) and its `.test.ts`;
+    - `components/data/ImportWizard.tsx`, `components/data/SchemaEditor.tsx`;
+    - `lib/data-store.ts`, `api/data.ts`;
+    - `components/data/data.css`.
+  - Tests:
+    - `lib/publish-profile.test.ts`:
+      - every case of the server's `publish-profile.cases.json`, read with `readFileSync`;
+      - `remapProfile`;
+      - the chips;
+    - `lib/data-store.test.ts`:
+      - a pre-099 schema gives no patch;
+      - an OR group survives;
+    - `no-cyrillic-ui`, `tsc --noEmit`, build.
+  - Done when, in the mock API on port 3175:
+    - a PDR-like file goes through the wizard with a rendered sample quiz;
+    - a renamed column still creates the dataset;
+    - a pre-099 schema opens with a clean savebar;
+    - the page works at 375px.
+
+- [ ] T10 **`bindDatasetPlan` and "Use in a channel"** (FR-009; A14, A24, A25, A26)
+  - What:
+    - in `bind-dataset.ts`:
+      - `bindDatasetPlan`, with `expect` on the plan;
+      - `chooseBindSeries` (A24);
+      - `proposeBinding`, the one proposer;
+    - in `bind-dataset-action.ts`:
+      - `applyDatasetPatch`, with the stale check and the null-patch path;
+      - the `bind_dataset` handler;
+    - the resume items without `requires`, offered only when the dataset has postable rows;
+    - the conflict items only on a take-over with a source;
+    - the reuse item (A26);
+    - `resumeItems` exported;
+    - the endpoint (409 `already_proposed` with `actionId`) and the chat tool `propose_dataset_binding`;
+    - the dashboard: the `UseInChannel` drawer, with the local CardOpener, on the wizard's Done step and in the "How it posts" section;
+    - the `KIND_META` label.
+  - Files:
+    - `editor/datasets/bind-dataset.ts`, `editor/datasets/bind-dataset-action.ts`, `editor/datasets/datasets.controller.ts`, `editor/datasets/dataset-tools.ts` (all new);
+    - `editor/docs/import-bundle.ts` (export only);
+    - `editor/editor.module.ts`: the action next to :2016, the tools next to :1290, the controller in the list near :2506;
+    - `apps/dashboard/src/components/data/UseInChannel.tsx` (new), `api/data.ts` (hook), `components/chat/ActionCard.tsx` (one line).
+  - Tests:
+    - `editor/datasets/bind-dataset.test.ts`:
+      - the three rules;
+      - the rule-2 tie-break, and its warnings;
+      - the @ai0_prompts_dev `Prompt` fixture;
+      - the reuse item;
+      - no playbook gives `card: null` with `expect` set;
+      - conflict items only on a take-over with a source;
+      - the follow-up cap;
+      - the resume items have no `requires`;
+    - `editor/datasets/bind-dataset.075.pg.test.ts` (own database):
+      - Apply applies the patch;
+      - a stale card is refused;
+      - a null patch gives `{ unchanged: true }`, and the follow-ups run, the resume item included;
+    - dashboard: `tsc --noEmit`, `npm test`, build.
+  - Done when:
+    - the @pdr_dev_channel bind card makes the series quiz, rebinds it as required and proposes cycle sequential;
+    - the @ai0_prompts_dev card takes over `Prompt` for `nanobanana_prompts`.
+
+- [ ] T11 **Doctor checks, fix kinds, reasons** (FR-010; A2, A4, A5, A6, A7, A8, A31, A33)
+  - What:
+    - in 072's `readiness/facts.ts`:
+      - `countPostable` is replaced by `postableCount` per dataset (A2);
+      - the dataset read gains `fields` and `publish`;
+      - `configHash` covers `publish` (A7);
+      - one line calls `loadDatasetPublishFacts` (A33);
+    - the four pure checks in `checks/datasets.ts`, appended to `DOCTOR_CHECKS`, with the A8 and A31 rules;
+    - `dataset_without_series` gets the `bind_dataset` fix (A5);
+    - the fix kinds:
+      - `dataset_patch` and `bind_dataset` in the `Fix` union and the runner, with injected ports and the `FixResult` shape;
+      - `FIX_ALL_SKIPS`;
+      - `fix()` skips them on Fix all and returns `proposed`;
+      - the panel row opens a proposed card;
+    - the `ReasonEntry` lines and mirror lines for the four doctor codes.
+  - Files:
+    - `editor/readiness/dataset-facts.ts` (new), `editor/readiness/checks/datasets.ts` (new);
+    - `editor/readiness/checks/index.ts`, `editor/readiness/checks/material.ts` (one line), `editor/readiness/facts.ts`;
+    - `editor/readiness/auto-fix.ts`, `editor/readiness/readiness.service.ts`;
+    - `editor/sysadmin/audit.types.ts`, `editor/sysadmin/fix-runner.ts`;
+    - `editor/editor.module.ts` (the fix ports);
+    - `editor/reasons/catalogue.ts`;
+    - `apps/dashboard/src/lib/reasons.ts`, `components/readiness/ReadinessPanel.tsx`, `api/readiness.ts`.
+  - Tests:
+    - `readiness/checks/datasets.test.ts`:
+      - each code fires and stays quiet;
+      - the A31 negatives;
+      - the A8 median rule;
+      - `shared_with` in the evidence;
+    - the facts test: a `publish` change flips `configHash`;
+    - the material test: the `bind_dataset` fix;
+    - `sysadmin/fix-runner.test.ts`;
+    - the `auto-fix` test: both kinds are outside `AUTO_SAFE_FIX_KINDS` and inside `FIX_ALL_SKIPS`;
+    - a `ReadinessService` test with fakes;
+    - `readiness/dataset-facts.075.pg.test.ts`;
+    - the 073 catalogue test, and the dashboard suite.
+  - Acceptance replays, in `readiness/checks/datasets.replay.075.test.ts`. They use synthetic fixtures built from the review; they never wait for stage data.
+    - **@pdr_dev_channel:**
+      - `answer_key_series_not_quiz`, with the `bind_dataset` fix;
+      - the bind plan sets quiz and proposes cycle sequential;
+      - ground truth passes the right option and refuses the off-by-one;
+      - the post-1725 poll gets `dataset_needs_quiz`.
+    - **@ai0_prompts_dev:**
+      - change_source on `prompts` gives `candidate_unpostable`;
+      - the bind takes over `Prompt`;
+      - a verbatim prompt raises no `too_verbatim`.
+    - **@ai0_global:**
+      - no error-level dataset finding;
+      - no `dataset_text_use_unset`;
+      - the four retell profiles equal the deleted map (golden).
+  - Done when: the three replays pass, and Fix all on a channel with a `dataset_without_series` finding proposes no card.
+
+- [ ] T12 **Docs and close-out**
+  - What:
+    - runbook §35, "Datasets declare how they post (spec 075)", in `docs/runbooks/agent-platform.md`. It goes after §34, or after the last section present at merge. It covers:
+      - the profile fields;
+      - applying 099 with the deploy, and the down file `099_dataset_publish.down.sql`;
+      - "Until 099 is applied, the guards use a frozen legacy map for `pdr_questions` and the four retell datasets; nothing stops";
+      - one `configHash` change per affected channel after 099, which gives one $0 repair;
+      - the backfill table, `quotes` and `jokes` included;
+      - the owner steps for @pdr_dev_channel and @ai0_prompts_dev: open the dataset → How it posts → Use in a channel;
+      - the new codes and fixes, and that dataset fixes are not part of Fix all;
+    - the spec's Status set to done;
+    - `specs/README.md`: row 075 set to DONE, in number order, and migration 099 added to the landed list.
+  - Files: `docs/runbooks/agent-platform.md`, `specs/075-dataset-publish-profile/spec.md`, `specs/075-dataset-publish-profile/tasks.md`, `specs/README.md`.
+  - Tests: none (docs). Run the full automation and dashboard suites once more.
+  - Done when: everything is green on Node 20, and Status and Deltas below are filled in.
+
+## Status
+
+## Deltas from the spec

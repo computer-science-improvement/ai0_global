@@ -1,0 +1,393 @@
+# 076 tasks
+
+Spec: [spec.md](spec.md). Read its last section, "Amendments after the builder check" (L1–L11, A1–A33), first; where it differs from the body, the amendment wins. Code map: `<scratchpad>/w7/map-076.md`. Contract: `<scratchpad>/w7/contract.md`.
+
+**Rules for every task.**
+- One commit per task.
+- No service start, no publish, no paid call, no real network in tests. Use stubbed `get`/`lookup` and fake `HostFailures`.
+- PG tests run on the scratch Postgres (`EDITOR_PG_TEST_URL`, `createProbeDb`).
+- Verify on Node 20 (`nvm use 20.19.6`):
+  - `pnpm --filter automation test`;
+  - `npm run build` in `apps/automation` (nest build);
+  - the dashboard's `tsc --noEmit` and `pnpm --filter dashboard test` for T9a and T9b.
+- Dashboard text is English; owner-bot and Telegram texts are Ukrainian.
+- W1 (L10): nothing imports `readiness/` (072) or `reasons/` (073). The seams are named in FR-008 and L6, L7.
+- 076 code never changes a mode and never lifts a pause (L11).
+
+The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths below are under `apps/automation/src/editor/` unless they say otherwise.
+
+---
+
+- [ ] **T1 Migration 100 and the `unreachable` strike** (FR-002, A1, A2, A5–A8, A17)
+  - **What:**
+    - `100_source_reach.sql` as in the spec, plus the guarded `editor_ro` GRANT (A17). The down file is idempotent (A17).
+    - In `net/host-failures.ts`:
+      - the `unreachable` reason and `REASON_TEXT.unreachable`;
+      - `PrevBlock` gains the optional `timeouts?`, `timeoutsSince?` and `lastAt?`; `NextBlock` gains `reason`, `timeouts` and `timeoutsSince` (A5);
+      - the counting rule in the pure `nextBlock`: the sliding 14-day window on `lastAt` (A7), and a timeout inside an active block (A6);
+      - `record` reads `last_at` and the new columns, and writes the new columns and `next.reason`;
+      - `succeeded(host, use = 'page')` as the one UPDATE of A2, with `$2 = this.now()` (A8). The `HostFailures.succeeded?` interface gains the optional `use`;
+      - `blocked` stops pages and feeds for `unreachable` (already true for any non-`feed_`, non-`refused` reason; a test pins it).
+    - `fetch_feed` (`tools/read-tools.ts`, success path after `:236`) calls `succeeded(host, 'feed')` and `succeeded(feedKey(url), 'feed')` (A8).
+    - `needsReplacement` (`sources/source-health.ts:196-197`) gains `|| h.blocked?.reason === 'unreachable'` (A1).
+    - The `preflight/slot-preflight.ts:241` comment names `unreachable`.
+  - **Files:**
+    - new `database/migrations/100_source_reach.sql` and `database/migrations/down/100_source_reach.down.sql`;
+    - `net/host-failures.ts`;
+    - `tools/read-tools.ts`;
+    - `sources/source-health.ts`;
+    - `preflight/slot-preflight.ts` (comment only).
+  - **Tests:**
+    - new `net/host-unreachable.076.test.ts` (pure `nextBlock`):
+      - three counted timeouts → `unreachable` 1 d, then 3 d, then 7 d;
+      - the three in-block cases of A6;
+      - the day-18 case of A7 (strikes on days 0, 1, 4, 11; day 18 is strike 5, 7 d).
+    - new `net/source-reach.076.pg.test.ts` (own `createProbeDb` database):
+      - migration up, the down twice, then up again (A17);
+      - escalation through `record` with an injected clock;
+      - `succeeded`: a feed success keeps a `refused` streak's strikes and `noted_at`; a feed success ends an `unreachable` block and writes `last_success_at`; a page success resets everything (A2);
+      - "feed key recovers after a good read" (A8).
+    - `sources/sources.049.test.ts`: a first-strike `unreachable` block → `needsReplacement` true; a first-strike `refused` block → false (A1).
+    - `net/host-failures.test.ts`, `net/host-strikes.061.test.ts` and `net/host-strikes.061.pg.test.ts` stay green and unchanged (`:51-52` included).
+  - **Done when:**
+    - three timeouts at least 1 h apart give an `unreachable` 1 d block, and the next gives 3 d;
+    - a success ends the block;
+    - `assessUrl` on an `unreachable` host returns `preflight_host_blocked`.
+
+- [ ] **T2 Per-host egress proxy** (FR-003, A29; was T3)
+  - **What:**
+    - The `EGRESS_PROXY_URL` catalog row (secret, `apply: 'live'`, help ends with "http or https proxy only.") and the `EGRESS_PROXY_HOSTS` row (list, live).
+    - `egressProxyFor(host, env)`:
+      - only an `http:`/`https:` URL counts, so `socks5://` is malformed;
+      - a malformed value means a direct request, with one warning per value hash that never shows the value;
+      - listed hosts are lower-cased and lose a leading `www.`.
+    - `egressProxyConfigured(env): boolean`.
+    - `SafeOpts.env?`, also on the inline opts of `safeGet` (`:87`) and `safeGetBytes` (`:105`), read on every request.
+    - `guardedGet` passes `proxy` only for listed hosts and leaves it `undefined` otherwise.
+    - `via_proxy` on both result types.
+  - **Files:**
+    - `apps/automation/src/settings/catalog.ts`;
+    - `net/safe-http.ts`.
+  - **Tests:**
+    - new `net/egress.076.test.ts`:
+      - a listed host carries `proxy`, and an unlisted host carries no `proxy` key;
+      - `www.` and case are ignored;
+      - `socks5://` and junk go direct with one warning, and the warning holds no part of the value;
+      - a changed `env` takes effect on the next request;
+      - a private target is still refused with the proxy on.
+    - `safe-http.test.ts`, `ssrf-guard.test.ts` and the settings catalog tests stay green.
+  - **Done when:** no code outside `safe-http.ts` reads the two settings, except `egressProxyConfigured`.
+
+- [ ] **T3 `probeSource`, the probe cache and the bound prober** (FR-001, L2, L3, A11, A12, A33; was T2)
+  - **What:**
+    - `sources/probe.ts`:
+      - the types and signatures of A11 (`ProbeFailureClass` with `invalid`, `ProbeOpts`, `ProbeSummary`, the overloads, `ProberOpts`, `SourceProber`, `sourceProberOf(pool, env?)`);
+      - the steps of A11 (syntax → cache/`cacheOnly` → active block → guard → read), then the body's steps 5–7 as amended by A12 and A33;
+      - `PROBE_CACHE_HOURS = 6`;
+      - `via_proxy` from T2;
+      - `rss` on a non-feed → `empty` "not a feed" (plus the feed-link hint); a page without a feed link → `items = primary_links.length`, detail "page, N chars" (A12);
+      - recording (A33): `rss` records network failures on the host and the feed key and nothing for an HTTP status; `url` records `refused` on the host; any status < 400 calls `succeeded` (`'feed'` for `rss` on host and key, `'page'` for `url`).
+    - `sources/source-probes.repository.ts`: `PgSourceProbes` (`get`, `put`, `latest`). `invalid` is never written.
+    - `CandidateDeps.probe`: `checkCandidate` uses it for `rss`/`url` with unchanged error codes, and `candidateDeps` wires it.
+  - **Files:**
+    - new `sources/probe.ts` and `sources/source-probes.repository.ts`;
+    - `sources/source-change.ts`;
+    - `sources/source-wiring.ts`;
+    - `live/feed-items.ts`: export the parser entry for a body already fetched (no behaviour change).
+  - **Tests:**
+    - new `sources/probe.076.test.ts`:
+      - every case in the spec's Tests;
+      - `invalid` for a bad URL and for a guard refusal other than DNS, not cached and not recorded;
+      - "does not resolve" → `dns`, recorded;
+      - an unknown error → `http`, status null, cached, not recorded;
+      - the two A12 cases;
+      - the A33 cases: an `rss` 403 records nothing; a `url` 403 records `refused`; a 200 empty body calls `succeeded`;
+      - `cacheOnly` returns the row or `null` and makes no request.
+    - `net/source-reach.076.pg.test.ts` gains the cache (`put`, `get` inside and after 6 h, `latest`).
+    - `sources/sources.049.test.ts` stays green.
+  - **Done when:**
+    - a stubbed geoblocked host gives `failure_class: 'timeout'` after two tries and one `record(host, 'timeout')`;
+    - a feed gives items, `newest_at` and 5 titles;
+    - a page with a feed link reads that feed.
+
+- [ ] **T4 Guarded live scan, the $0 all-unreachable skip, and pre-flight feed hints** (FR-007, L5, A19–A21)
+  - **What:**
+    - `readFeedGuarded` and `GuardedFeed` in `live/feed-items.ts` (A19).
+    - `liveFeeds` entries gain `kind: 'rss' | 'url'` (`FEEDISH` exported from `sources/playbook-feeds.ts`) (A20).
+    - `scanLive(d: { pool; http?; hosts?; retryMs? })` reads every entry through `readFeedGuarded`, and counts `feedsFailed`, `feedsUnreachable` and `pageSources` (A19).
+    - `LiveScan` gains the optional `feedsUnreachable?` and `pageSources?` (A20).
+    - The runner gate after `roles/editor-runner.service.ts:448`, with the condition of A20, skips with `preflight_host_blocked` (L5).
+    - `NewsWatchDeps.hosts?`; `run()` reads through `readFeedGuarded`.
+    - `SlotPreflight`: feed hints that resolve to an http card source join `material`, and `assessFeed` follows A21. `assessPlanned` inherits it.
+    - `editor.module.ts:1654` passes `hosts: new PgHostFailures(pool)` to `scanLive`, and `:1757` passes it to `NewsWatchService`.
+  - **Files:**
+    - `live/feed-items.ts`, `live/live-slot.ts`, `live/news-watch.ts`;
+    - `roles/editor-runner.service.ts`;
+    - `preflight/slot-preflight.ts`;
+    - `sources/playbook-feeds.ts` (export only);
+    - `editor.module.ts` (two lines).
+  - **Tests:**
+    - new `live/live-unreachable.076.test.ts`:
+      - scan counts;
+      - an HTTP status or parse error is `failed` and not recorded;
+      - a success calls `succeeded` on host and key with `'feed'`;
+      - the gate skip and its class through `skip-reasons.ts`;
+      - a page source and a parse error still run;
+      - a typed `LiveScan` fake without the new fields never skips.
+    - new `preflight/slot-preflight.076.test.ts`, with the three cases of A21.
+    - `live/feed-items.test.ts:51-57`: the `deepEqual` gains `kind` (Deltas).
+    - `live/live-slot.test.ts`, `silent/fallback-ladder.test.ts` and `preflight/slot-preflight.068.test.ts` stay green.
+  - **Done when:**
+    - a live slot whose only feeds are blocked or timing out skips with `preflight_host_blocked` and makes no model call;
+    - a slot with a `url` card source still runs.
+
+- [ ] **T5 Source health covers every source; host notes go through the gate** (FR-006, A9, A10, A22, A23, A26, backend half of A31)
+  - **What:**
+    - `playbookSeriesSources(body, cardSources)` in `sources/playbook-feeds.ts` (A23), appended in `sourcesOf` as playbook rows.
+    - `SourceHealth.probe` (from `PgSourceProbes.latest`) and `SourceHealth.runway` (from the `catalogOverview` row, A23).
+    - The `exhausted` state for a library source with no unposted rows and no rounds; `isTroubled` also true for a failed probe (A22).
+    - `SourceHealthDeps` gains `runway?`, `probes?` and `env?`. `sourceHealthOf` builds them, and its `inbox` type widens to `Pick<OwnerInbox, 'post' | 'postOnce'>`. Callers do not change (A23).
+    - The report's `noSources` and `proxyConfigured` (via `egressProxyConfigured`).
+    - The `AgentsService.sources` no-card fallback (`agents/agents.service.ts:384`) gains `noSources: false, proxyConfigured: false` (A23).
+    - `health/network-health.service.ts:95` drops the `c.sources.length` filter and skips `noSources` reports (A22).
+    - `noteStruckHosts`:
+      - posts through `postOnce`, with the gate subject `host_struck:<channel>/<host>` and the parts of A9;
+      - `struck(keys, 1)` returns the new columns; the service keeps `unreachable` rows and rows with `strikes >= STRIKES_FOR_OWNER`, with the "last reason wins" comment (A10);
+      - `struck()` keeps its `noted_at IS NULL` filter; `claimNote` is no longer called (A9);
+      - the English title and body and the Ukrainian alert per reason, plus the card and playbook sentences (A31).
+    - `toReplaceToday` **keeps** its `noteStruckHosts` call; T7 removes it (A26).
+    - `resyncAll` posts the `resync_failed` note (A31: severity `action`, gate subject `resync:<dataset>`, parts `[<error class>]`). `ListResyncWorker` gets the inbox through `@Optional() @Inject('AGENT_INFRA')`.
+  - **Files:**
+    - `sources/playbook-feeds.ts`;
+    - `sources/source-health.ts`, `sources/source-health.service.ts`, `sources/source-health.repository.ts`, `sources/source-wiring.ts`;
+    - `health/network-health.service.ts`;
+    - `agents/agents.service.ts`;
+    - `docs/list-resync.worker.ts`.
+  - **Tests:**
+    - new `sources/source-health.076.test.ts`:
+      - a library series row with runway from a fake `catalogOverview` row, including `rounds` and `days: null`;
+      - the `exhausted` state;
+      - an api series row;
+      - a series that duplicates a card source is skipped;
+      - `noSources`;
+      - a failed probe makes the row troubled;
+      - the host-note texts per reason, and the `since:` part's format.
+    - `health/network-health.049.test.ts` (or the existing network-health test) gains a card with no card sources but a library series.
+    - `net/source-reach.076.pg.test.ts` gains:
+      - two channels on one struck host get one note each, and a second run gets none;
+      - a success, then a new streak → a new `since:` part and a new note;
+      - a legacy host with `noted_at` set stays quiet;
+      - the `resync_failed` note, through `resyncAll` with a failing fake fetch.
+    - Changed 061 tests (record in Deltas):
+      - `net/host-strikes.061.test.ts:219-262`: the fake inbox gains `postOnce`, the Ukrainian title assertions move to `alert.title`, and "claimed once" becomes "gated once";
+      - `net/host-strikes.061.pg.test.ts:123-158`: a real `OwnerInbox(pool)` or a `postOnce` fake; "the next streak is noted again" becomes "a success gives a new `since:` part and a new note";
+      - `host-strikes.061.pg.test.ts:99-122` stays unchanged.
+    - `sources/sources.049.test.ts` stays green.
+  - **Done when:** @ai0_prompts_dev's shape (no card sources, a library series) shows one source row with runway on the agent report and on network health.
+
+- [ ] **T6a Upload the page: the stored doc and the endpoint body** (FR-005, A13)
+  - **What:**
+    - `docFromBody` is extracted from `fetchLive` (`docs/doc-fetch.ts:71-124`).
+    - `StoredDoc.origin?: 'upload'`.
+    - `DocStore.fresh` keeps uploads for `DOC_STALE_MAX_HOURS`.
+    - `sources/upload-page.ts`:
+      - `UPLOAD_PAGE_MAX_CHARS = 5_000_000` and `UPLOAD_BODY_LIMIT = 12 * 1024 * 1024`;
+      - zod `UploadPageBody`, with `content.max(UPLOAD_PAGE_MAX_CHARS)`;
+      - `uploadPage(deps, body)` without `dataset`: refuses JSON and stores the doc under `canonicalUrl`.
+    - `sources/upload-body.middleware.ts`: `uploadPageJsonBody`, a copy of `dataRowsJsonBody` with `UPLOAD_BODY_LIMIT` (A13).
+    - `apps/automation/src/main.ts`: `app.use('/api/editor/sources/upload', uploadPageJsonBody)` next to `:52`.
+    - `apps/dashboard/nginx.conf`: `client_max_body_size 12m;` in the API location (`:25`).
+  - **Files:**
+    - `docs/doc-fetch.ts`, `docs/doc-types.ts`, `docs/doc-store.ts`;
+    - new `sources/upload-page.ts` and `sources/upload-body.middleware.ts`;
+    - `apps/automation/src/main.ts`;
+    - `apps/dashboard/nginx.conf`.
+  - **Tests:**
+    - new `docs/upload.076.test.ts`:
+      - an uploaded body and a stubbed live fetch of the same body give the same doc id and the same `list_ref` values under `split_on` (the § 29 mapping on a short ПДР sample);
+      - JSON is refused;
+      - the upload survives `fresh` and stays for `DOC_STALE_MAX_HOURS`.
+    - new `sources/upload-body.076.test.ts`, with the four cases of A13.
+    - The 065, 066 and 070 import tests stay green.
+  - **Done when:** an uploaded page is in the store with `origin: 'upload'`, and a 6 MB JSON body reaches the route while a 13 MB one gets 413.
+
+- [ ] **T6b Upload the page: import marks and the manual re-sync** (FR-005, A15)
+  - **What:**
+    - `ImportPayload` and `ListImportOptions` gain `uploaded`.
+    - `payloadOf` gains its 4th parameter `o?: { uploaded?: boolean }`, and `import_list` passes `{ uploaded: doc.origin === 'upload' }`.
+    - `runImport` stores `auto_resync: false` for an upload, and throws `upload_expired` when the kept doc is missing or not an upload (A15c).
+    - `resyncDataset(..., { fromUpload: true })` patches the latest import even when nothing changed (A15a).
+    - `resyncAll` skips uploads.
+    - `resync_import` and the `RESYNC_IMPORT_KIND` handler answer `resync_manual` (A15b).
+    - `uploadPage` with `dataset` re-syncs from memory (`url_mismatch`, `no_list_import`).
+  - **Files:**
+    - `docs/import-list.ts`, `docs/import-list-tools.ts`, `docs/list-resync.worker.ts`;
+    - `sources/upload-page.ts`.
+  - **Tests:**
+    - new `docs/upload.076.pg.test.ts`:
+      - an upload with `dataset` re-syncs with no request (the stubbed `get` is never called), and the import is marked `uploaded`;
+      - a zero-change re-sync from an upload still marks the import;
+      - `resync_import` answers `resync_manual` with no request;
+      - an expired upload throws `upload_expired`, and the stubbed `get` is never called;
+      - `resyncAll` skips an uploaded import.
+    - The 065, 066 and 070 import tests stay green.
+  - **Done when:** an uploaded import never triggers a live fetch, and the owner is told to upload again.
+
+- [ ] **T7 Probe triggers, the worker and the sources controller** (FR-004, FR-008 endpoints, L7, A3, A16, A18, A26, A30)
+  - **What:**
+    - `sources/sources.controller.ts` (`@Controller('api/editor/sources')`, `TrackingAuthGuard`; deps per A30), with four endpoints:
+      - `POST probe`;
+      - `POST upload` (calls `uploadPage`);
+      - `POST drop` (through `applySourceDrop`: `upsertChannel` with the filtered array; 404 `source_not_found`);
+      - `POST proxy-host` (409 `proxy_not_configured` via `egressProxyConfigured`; `applyHostProxyAdd` via `SettingsService.setValue`; then a forced probe).
+    - `sources/source-fixes.ts`: `applySourceDrop` and `applyHostProxyAdd`, returning `{ ok, applied?, error? }` (L7).
+    - `sources/source-probe.worker.ts`: `@Injectable() SourceProbeWorker` (A3), with two crons:
+      - `'35 5 * * *'` (`source-probe-daily`): young channels, then `noteStruckHosts` for every active card, with the agent id query of A3;
+      - `'35 */6 * * *'` (`source-probe-paused`): `pausedReprobe` as in A18, forced.
+    - `dailyProbe(deps)` and `pausedReprobe(deps)` are exported.
+    - `toReplaceToday` no longer calls `noteStruckHosts` (A26). Same commit.
+    - Background probes (A30): optional `probe?` on `EditorOpsDeps` and `ScheduleServiceDeps`:
+      - in `upsertChannel`, for new or changed `rss`/`url` sources;
+      - in `commitSeriesChange`, for a new or changed feed series source, compared before `:641` overwrites the playbook.
+    - `reach` in the `import_list` preview: `ImportToolDeps.probe?`, wired at `editor.module.ts:1290` (A16).
+    - In `editor.module.ts`:
+      - `SourceProbeWorker` in `EDITOR_PROVIDERS` before `EditorCron`;
+      - the probe port into the `EDITOR_OPS` factory (`:1901-1914`) and `SCHEDULE_INFRA` (`:1191-1213`);
+      - `SourcesController` in `controllers` (`:2506`).
+  - **Files:**
+    - new `sources/sources.controller.ts`, `sources/source-probe.worker.ts` and `sources/source-fixes.ts`;
+    - `sources/source-health.service.ts`;
+    - `api/editor-ops.service.ts`;
+    - `schedule/schedule.service.ts`;
+    - `docs/import-list-tools.ts`;
+    - `editor.module.ts`.
+  - **Tests:**
+    - new `sources/source-probe.worker.076.test.ts`, with fakes:
+      - the young channel is selected and an old one is not;
+      - a paused channel's blocked host is force-probed once, and a URL probed 10 min ago is skipped (A18);
+      - `noteStruckHosts` runs with `SOURCE_PROPOSALS=off`;
+      - nothing runs unless `EDITOR_ENABLED === 'true'`.
+    - new `sources/sources.controller.076.test.ts`:
+      - the `proxy-host` 409 without a valid URL;
+      - `drop` of an unknown id → 404 `source_not_found`;
+      - `drop` sends the filtered array.
+    - `upsertChannel` fires a probe only for changed sources, and none on a mode-only save (A30).
+    - The `import_list` preview's `reach`, with the four cases of A16.
+    - `editor.module.test.ts` stays green with no new stub.
+    - `npm run build` (nest build) passes on Node 20.
+  - **Done when:**
+    - saving a card with a new feed writes a `source_probes` row without slowing the response;
+    - the button returns a fresh `ProbeResult`;
+    - no cron makes a request for a URL probed less than 6 h ago, except the forced paused-host job.
+
+- [ ] **T8 Doctor seam: `sourceFindings`, codes and the replays** (FR-008, L4, L6, A4, A31 codes)
+  - **What:**
+    - `sources/source-findings.ts`:
+      - the local `SourceFact` with the optional `probe?` and `required?` (L6);
+      - `SourceFinding` with `area: 'channel'` declared locally (A4);
+      - the five checks, with the fields, titles, links and the 7-day rule of A4.
+    - `sources/codes.ts`:
+      - `ReasonEntry` copied verbatim from the contract;
+      - `SOURCE_REASONS`, with the seven rows and the kinds of A31 and L4 (`host_struck`, not `host_unreachable`);
+      - `sourceReason`.
+    - The 10-27 fixtures and the three acceptance replays.
+  - **Files:**
+    - new `sources/source-findings.ts` and `sources/codes.ts`;
+    - new `sources/fixtures/onboarding-1027.ts`.
+  - **Tests:**
+    - new `sources/source-findings.076.test.ts`: each code's key, subject, title and link; a probe older than 7 days counts as none.
+    - new `sources/codes.076.test.ts`: unique codes, no Cyrillic in `en` or `fix.en`, `uk` not empty, no `source_unreachable` code, the doctor codes have `kind: 'doctor'`.
+    - new `sources/onboarding-1027.076.test.ts`, the replays of @pdr_dev_channel, @ai0_prompts_dev and @ai0_global, exactly as the spec's Acceptance. The @ai0_prompts_dev replay asserts the series row in `NetworkHealthService.health().sources` (A22).
+  - **Done when:**
+    - the @ai0_global replay has no `error` or `warn` finding;
+    - the @pdr_dev_channel replay has `source_probe_failed` with `host_proxy_add` when a proxy is set and `source_drop` otherwise;
+    - nothing in `sources/` imports `readiness/` or `reasons/`.
+
+- [ ] **T9a Dashboard: API, types, the Sources rows and the inbox kinds** (FR-009, L8, A23, A24, A25)
+  - **What:**
+    - `api/sources.ts`, with the four hooks.
+    - The new optional fields in the `api/agents.ts` and `api/health.ts` types (A23).
+    - `lib/source-probe.ts`: `probeLine` (with `invalid` → "Not a valid public address"), `probeTone`, `rowFixes` and `runwayLine`.
+    - In `SourcesSection`, on the Settings tab (L8):
+      - the probe line;
+      - the "Unreachable" badge;
+      - the row buttons as `RowActions`/`TableAction`, and "Remove" in `RowActions danger` with `useConfirm` (A25);
+      - the library runway rows;
+      - the no-sources line.
+    - The probe line on the Health page's Sources rows.
+    - `lib/inbox-kinds.ts`: the `resync_failed` entry and the new `host_struck` why and primary step (A24).
+    - `ast-` classes, with no inline colour; the row wraps at 375 px.
+  - **Files:**
+    - new `apps/dashboard/src/api/sources.ts`;
+    - `apps/dashboard/src/api/agents.ts`, `apps/dashboard/src/api/health.ts`;
+    - new `apps/dashboard/src/lib/source-probe.ts` and `apps/dashboard/src/lib/source-probe.test.ts`;
+    - `apps/dashboard/src/components/agents/SourcesSection.tsx`;
+    - `apps/dashboard/src/components/health/NetworkHealthView.tsx`;
+    - `apps/dashboard/src/lib/inbox-kinds.ts` and `apps/dashboard/src/lib/inbox-kinds.test.ts`;
+    - the stylesheet that holds the `ast-` classes at HEAD.
+  - **Tests:**
+    - `lib/source-probe.test.ts`: `probeLine` for each class, `invalid` included; `probeTone`; `rowFixes` with and without a proxy; `runwayLine` for rounds, 0 days and under 7 days.
+    - `lib/inbox-kinds.test.ts`:
+      - `FIXTURES` and `BRIEF_KINDS` gain `resync_failed`;
+      - `:383` expects 'Open sources' (Deltas).
+    - `no-cyrillic-ui.test.ts`.
+    - Dashboard `tsc --noEmit`.
+  - **Done when:**
+    - the three fix buttons appear only on a failed probe or an `unreachable` block;
+    - "Route via proxy" appears only with `proxyConfigured`;
+    - a card with no sources shows the brief-only line;
+    - an older server's report (no new fields) still renders.
+
+- [ ] **T9b Dashboard: the dialogs, the charset and the browser check** (FR-009, A13, A14, A32)
+  - **What:**
+    - `SourceProbeDialog`, opened by "Details".
+    - `UploadPageDialog`:
+      - opened from a Sources row ("Upload the page") and from "Upload page" in the Data header;
+      - a file ≤ 5 MB and decoded text ≤ 5,000,000 characters, with a comment naming `UPLOAD_PAGE_MAX_CHARS` (A13);
+      - reads a file as an `ArrayBuffer` and decodes it with `decodePageBytes`; pasted text goes as it is (A14).
+    - `lib/page-charset.ts`: `decodePageBytes(bytes)` (A14).
+    - The browser check on a throwaway mock at `<worktree>/tmp/mock076/server.mjs`, port 3176, never committed (A32).
+  - **Files:**
+    - new `apps/dashboard/src/components/sources/SourceProbeDialog.tsx` and `apps/dashboard/src/components/sources/UploadPageDialog.tsx`;
+    - new `apps/dashboard/src/lib/page-charset.ts` and `apps/dashboard/src/lib/page-charset.test.ts`;
+    - `apps/dashboard/src/components/agents/SourcesSection.tsx` (opens the dialogs);
+    - `apps/dashboard/src/routes/app.data.tsx`.
+  - **Tests:**
+    - `lib/page-charset.test.ts`: UTF-8, a windows-1251 `<meta>`, a UTF-8 BOM, an unknown label → UTF-8.
+    - `no-cyrillic-ui.test.ts`.
+    - Dashboard `tsc --noEmit`.
+    - A look on the mock: Settings → Sources, both dialogs, Health → Sources, Data → Upload page, in light and dark, at desktop and 375 px. If it cannot run, the final report lists these checks for the lead.
+  - **Done when:** a windows-1251 page saved from a browser uploads with readable Cyrillic, and a 6 MB file is refused in the dialog.
+
+- [ ] **T10 Docs and close-out** (A28)
+  - **What:**
+    - Runbook **§ 36 "Sources proven from the server (spec 076)"**, one contiguous block at the end of `docs/runbooks/agent-platform.md`. It covers:
+      - what a probe tells, the 6 h cache and `invalid`;
+      - the `unreachable` strike (3 timeouts in a sliding 14 days, 1 d → 3 d → 7 d; a success ends it);
+      - setting `EGRESS_PROXY_URL` (http or https only) and `EGRESS_PROXY_HOSTS`, and what never uses the proxy;
+      - "Upload the page", step by step, for `pdr_rules` ("Save Page As → Webpage, HTML only"); this replaces the local split in § 29;
+      - the manual re-sync of uploaded datasets, and `upload_expired` after a restart;
+      - the new notes (`host_struck` per channel, repeated every 3 days; `resync_failed`) and the Sources panel buttons;
+      - the owner's post-deploy steps: apply migration 100 before the code; optional proxy; upload `pdr_rules`.
+    - § 29: one pointer line under step 1 (`:894`).
+    - Set the spec's `Status:` to `done`.
+    - `specs/README.md`:
+      - the 076 row between 071 (`:78`) and 078 (`:79`), DONE, migration 100, depends on 049, 061, 065, 070;
+      - line 87 gains "100 spec 076 (source probes, unreachable strikes: apply before deploying the code that writes them)".
+    - Fill in `## Status` and `## Deltas from the spec` below. At least these Deltas:
+      - `area: 'channel'` declared locally (A4);
+      - repeat and demotion of host notes, and the changed 061 tests (A9);
+      - `feed-items.test.ts:51-57` (A20);
+      - `inbox-kinds.test.ts:383` (A24);
+      - the T6 and T9 splits and the T2/T3 swap (A27).
+  - **Files:**
+    - `docs/runbooks/agent-platform.md`;
+    - `specs/076-sources-proven-from-server/spec.md`;
+    - `specs/076-sources-proven-from-server/tasks.md`;
+    - `specs/README.md`.
+  - **Tests:** none new. The full automation suite, the PG suite on the scratch DB, the dashboard tests and `tsc`, and `npm run build` on Node 20 all pass once more.
+  - **Done when:** the runbook section reads end to end for the owner, and the README row and the spec status say done.
+
+## Status
+
+## Deltas from the spec
