@@ -1,5 +1,7 @@
 // Steering (spec 045 FR-008): a set's details — the summary, the rules with a switch and an edit each, the evidence
 // posts — and its actions. Spec 048 shows them in the artifact panel (the Artifacts page and the chat).
+// Spec 078 D3: sections titled by an overline, rules and reference posts as rows in a flush panel
+// (amg-* classes in agent-manager.css); same mutations, switches and dialogs.
 
 import { useState } from 'react';
 import { Badge } from '../ui/Badge';
@@ -26,43 +28,57 @@ export function steeringError(e: unknown): string {
 export function SteeringDetails({ id }: { id: string }) {
   const q = useSteeringSet(id);
   if (q.error) return <div className="callout-danger">{describeError(q.error)}</div>;
-  if (!q.data) return <div className="panel" style={{ height: 120, opacity: 0.55 }} />;
+  if (!q.data) return <div className="amg-skeleton is-short" aria-hidden />;
   const { set, posts } = q.data;
   const st = STEERING_STATUS[set.status];
   const byKey = new Map(posts.map((p) => [p.key, p]));
   const editable = rulesEditable(set.status);
   return (
-    <div style={{ display: 'grid', gap: 16 }}>
+    <div className="amg-stack is-roomy">
       {(set.reason || st.hint) && (
-        <div className={set.status === 'failed' || set.status === 'no_access' ? 'callout-danger' : 'text-body-sm'} style={{ color: 'var(--color-ink-muted)' }}>
+        <div className={set.status === 'failed' || set.status === 'no_access' ? 'callout-danger' : 'text-body-sm amg-muted'}>
           {set.reason ?? st.hint}
         </div>
       )}
       {isBusy(set.status) && (
-        <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
+        <div className="text-body-sm amg-muted">
           Reading {refLabel(set.sourceRef)} and writing the rules. It takes about a minute; this dialog updates by itself.
         </div>
       )}
-      {set.summary && <Field label="Summary"><div className="text-body-sm">{set.summary}</div></Field>}
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+      {set.summary && (
+        <section className="amg-section" aria-label="Summary">
+          <div className="amg-sechead"><h3 className="text-overline amg-h">Summary</h3></div>
+          <div className="text-body-sm amg-wrap">{set.summary}</div>
+        </section>
+      )}
+      <div className="text-micro amg-dim">
         Steering is the lowest-priority rule source: your owner rules, the playbook, the profile, formatting and examples win.
         The agent learns the form and the direction of the content, never the reference's text or facts.
       </div>
       {set.rules.length > 0 && (
-        <Field label={`Rules (${set.rules.length})`}>
-          <div style={{ display: 'grid', gap: 8 }}>
+        <section className="amg-section" aria-label="Rules">
+          <div className="amg-sechead">
+            <h3 className="text-overline amg-h">Rules</h3>
+            <span className="amg-count">{set.rules.length}</span>
+          </div>
+          <div className="panel is-flush">
             {set.rules.map((r) => <RuleRow key={r.id} setId={set.id} r={r} posts={byKey} editable={editable} />)}
           </div>
-        </Field>
+        </section>
       )}
       {posts.length > 0 && (
-        <Field label={`Reference posts (${posts.length})`} hint={isBusy(set.status) ? undefined : 'r1 is the newest'}>
-          <div style={{ display: 'grid', gap: 4 }}>
+        <section className="amg-section" aria-label="Reference posts">
+          <div className="amg-sechead">
+            <h3 className="text-overline amg-h">Reference posts</h3>
+            <span className="amg-count">{posts.length}</span>
+            {!isBusy(set.status) && <span className="text-micro amg-dim">r1 is the newest</span>}
+          </div>
+          <div className="panel is-flush">
             {posts.map((p) => <PostLine key={p.key} p={p} />)}
           </div>
-        </Field>
+        </section>
       )}
-      {set.costUsd > 0 && <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>Analysis cost ${set.costUsd.toFixed(4)}</div>}
+      {set.costUsd > 0 && <div className="text-micro mono tabular-nums amg-dim">Analysis cost ${set.costUsd.toFixed(4)}</div>}
     </div>
   );
 }
@@ -70,12 +86,12 @@ export function SteeringDetails({ id }: { id: string }) {
 function PostLine({ p }: { p: SteeringPostRef }) {
   const stats = [p.views != null ? `${p.views} views` : null, p.reactions != null ? `${p.reactions} reactions` : null, p.mediaType].filter(Boolean).join(' · ');
   return (
-    <div className="text-body-sm" style={{ display: 'flex', gap: 8, alignItems: 'baseline', minWidth: 0 }}>
-      <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', width: 28, flexShrink: 0 }}>{p.key}</span>
-      <span className="clamp" style={{ ['--clamp' as string]: 1, flex: 1, minWidth: 0, color: p.firstLine ? 'var(--color-ink)' : 'var(--color-ink-dim)' }}>
+    <div className="panel-row amg-post">
+      <span className="text-micro mono tabular-nums amg-dim amg-post-key">{p.key}</span>
+      <span className={`text-body-sm clamp amg-post-text${p.firstLine ? '' : ' is-empty'}`}>
         {p.link ? <a href={p.link} target="_blank" rel="noreferrer" className="link-accent">{p.firstLine || '(no text)'}</a> : (p.firstLine || '(no text)')}
       </span>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }}>{stats}</span>
+      <span className="text-micro mono amg-dim amg-nowrap">{stats}</span>
     </div>
   );
 }
@@ -85,12 +101,12 @@ function RuleRow({ setId, r, posts, editable }: { setId: string; r: SteeringRule
   const [editing, setEditing] = useState(false);
   const toggle = (enabled: boolean) => patch.mutate({ id: setId, ruleId: r.id, enabled }, { onError: (e) => toast.error(steeringError(e)) });
   return (
-    <div className="card" style={{ padding: '10px 12px', display: 'grid', gap: 6, opacity: r.enabled && !r.conflict ? 1 : 0.75 }}>
-      <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-        <Badge tone="accent">{RULE_KIND_LABEL[r.kind] ?? r.kind}</Badge>
+    <div className={`panel-row amg-rule${r.enabled && !r.conflict ? '' : ' is-off'}`}>
+      <div className="amg-rule-top">
+        <Badge tone="neutral">{RULE_KIND_LABEL[r.kind] ?? r.kind}</Badge>
         {r.conflict && <Badge tone="warning" title={r.conflict.note}>Conflict</Badge>}
         {r.edited && <Badge tone="neutral">Edited</Badge>}
-        <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 10, alignItems: 'center' }}>
+        <span className="amg-push amg-rule-tools">
           {editable && !r.conflict && (
             <button type="button" className="btn-tiny" onClick={() => setEditing(true)} disabled={patch.isPending}>Edit</button>
           )}
@@ -99,13 +115,13 @@ function RuleRow({ setId, r, posts, editable }: { setId: string; r: SteeringRule
             title={r.conflict ? 'A conflicting rule is never given to the agent' : r.enabled ? 'Switch this rule off' : 'Switch this rule on'} />
         </span>
       </div>
-      <div className="text-body-sm">{r.text}</div>
+      <div className="text-body-sm amg-wrap">{r.text}</div>
       {r.conflict && (
-        <div className="text-micro" style={{ color: 'var(--color-warning)' }}>
+        <div className="text-micro amg-warn amg-wrap">
           Contradicts {r.conflict.with}: {r.conflict.note}. The channel's own rules win, so the agent never gets this rule.
         </div>
       )}
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+      <div className="text-micro amg-dim amg-wrap">
         Seen in{' '}
         {r.evidence.post_ids.map((k, i) => {
           const p = posts.get(k);
@@ -168,12 +184,12 @@ export function SteeringActions({ s, onDone }: { s: Pick<SteeringSetBrief, 'id' 
   return (
     <>
       {actions.includes('discard') && (
-        <button type="button" className="btn-ghost" style={{ color: 'var(--color-danger)', marginRight: 'auto' }} disabled={act.isPending} onClick={() => run('discard')}>
+        <button type="button" className="btn-ghost amg-discard" disabled={act.isPending} onClick={() => run('discard')}>
           Discard
         </button>
       )}
       {actions.filter((a) => a !== 'discard').map((a, i) => (
-        <button key={a} type="button" className={i === 0 && (a === 'activate' || a === 'resume') ? 'btn-primary' : 'btn-ghost'} disabled={act.isPending} onClick={() => run(a)}>
+        <button key={a} type="button" className={i === 0 && (a === 'activate' || a === 'resume') ? 'btn-primary' : 'btn-secondary'} disabled={act.isPending} onClick={() => run(a)}>
           {ACTION_LABEL[a]}
         </button>
       ))}

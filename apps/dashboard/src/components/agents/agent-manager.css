@@ -182,3 +182,48 @@
 .amg-feed-share { text-align: right; color: var(--color-ink-muted); }
 .amg-feed-share.is-bad { color: var(--color-danger-ink); }
 .amg-feed-badge { grid-column: 1 / -1; }
+
+/* ── Artifact bodies (sysadmin audit, launch, steering): overline sections, rows in flush panels ── */
+.amg-h { margin: 0; }
+.amg-grow { flex: 1 1 160px; min-width: 0; }
+.amg-center { align-self: center; }
+.amg-start { align-self: flex-start; justify-self: start; }
+.amg-strong { font-weight: 600; color: var(--color-ink); }
+.amg-cards { display: grid; gap: 6px; }
+.inset.amg-running { display: flex; align-items: center; gap: 10px; }
+.panel.is-flush.amg-handled > .panel-row { padding: 10px 14px; }
+.amg-list { margin: 0; padding-left: 18px; list-style: disc; display: grid; gap: 2px; }
+
+/* Launch: checklist steps, going-live criteria, promos, the plan. */
+.panel-row.amg-step { flex-wrap: nowrap; align-items: flex-start; gap: 10px; padding: 10px 14px; }
+.amg-step-dot { display: inline-flex; padding-top: 6px; }
+.amg-step-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.amg-step-side { flex: none; display: grid; justify-items: end; gap: 4px; }
+.inset.amg-criteria { display: grid; gap: 6px; }
+.amg-criterion { display: flex; align-items: center; gap: 8px; color: var(--color-ink-muted); }
+.amg-criterion .amg-icon { color: var(--color-ink-dim); }
+.amg-criterion.is-ok { color: var(--color-ink); }
+.amg-criterion.is-ok .amg-icon { color: var(--color-success); }
+.panel-row.amg-promo { padding: 10px 14px; gap: 8px; }
+.inset.amg-plan { display: grid; gap: 10px; }
+.amg-val.is-ink { color: var(--color-ink); }
+.panel-row.amg-planrow { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 4px; }
+.amg-planrow-top { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.amg-planrow-top .chip { align-self: center; }
+
+/* Steering: a rule is a row (kind, switches, text, evidence); a reference post is a one-line row. */
+.panel-row.amg-rule { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 6px; padding: 12px 14px; }
+.amg-rule.is-off { opacity: 0.75; }
+.amg-rule-top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.amg-rule-tools { display: inline-flex; align-items: center; gap: 10px; }
+.panel-row.amg-post { flex-wrap: nowrap; align-items: baseline; gap: 8px; padding: 8px 14px; }
+.amg-post-key { flex: none; width: 28px; }
+.amg-post-text { --clamp: 1; flex: 1 1 auto; min-width: 0; color: var(--color-ink); }
+.amg-post-text.is-empty { color: var(--color-ink-dim); }
+.btn-ghost.amg-discard { color: var(--color-danger-ink); margin-right: auto; }
+.btn-ghost.amg-discard:hover:not(:disabled) { color: var(--color-danger-ink); background: var(--color-danger-soft); }
+
+@media (max-width: 600px) {
+  .panel-row.amg-post { flex-wrap: wrap; }
+  .amg-post-text { flex-basis: 100%; order: 3; }
+}
