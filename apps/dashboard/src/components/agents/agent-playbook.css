@@ -1,2 +1,152 @@
 /* Spec 078 wave D2: the agent page's Playbook, Ideas, Skills and Memory tabs. Prefix apb-.
    Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests). */
+
+/* ── Shared bits ──────────────────────────────────────────────────────────────────────────────────── */
+.apb-stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.apb-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.apb-row { display: flex; min-width: 0; }
+.apb-grow { flex: 1 1 auto; min-width: 0; display: flex; }
+.apb-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; min-width: 0; }
+.apb-dim { color: var(--color-ink-dim); }
+.apb-muted { color: var(--color-ink-muted); }
+.apb-ink { color: var(--color-ink); }
+.apb-warn { color: var(--color-warning); }
+.apb-gap-top { margin-top: 10px; }
+.apb-gap-bottom { margin-bottom: 8px; }
+.apb-skeleton { border-radius: var(--radius-xl); background: var(--color-surface-1); border: 1px solid var(--color-hairline); opacity: 0.6; }
+.apb-title { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.apb-actions { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.apb-note { margin: 0; color: var(--color-ink-muted); }
+.apb-callout-col { flex-direction: column; align-items: stretch; gap: 6px; }
+.apb-label { display: block; margin-bottom: 6px; }
+
+/* ── Playbook tab ─────────────────────────────────────────────────────────────────────────────────── */
+/* The network header: glyph, name + mode, what the mode does, the resources; the mode switch on the right. */
+.apb-net { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 12px 14px; }
+.apb-net h2 { margin: 0; color: var(--color-ink); }
+.apb-net-main { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.apb-net-text { margin: 0; font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); }
+.apb-net-text strong { font-weight: 600; color: var(--color-ink); }
+.apb-mode { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; max-width: 100%; }
+
+/* "by owner · 3 days ago · why" under the title of the active playbook. */
+.apb-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: -4px 0 14px; font-size: 13px; color: var(--color-ink-muted); }
+.apb-meta-why { color: var(--color-ink); overflow-wrap: anywhere; }
+
+/* The playbook view: blocks (an overline head over cards, a bar or a list) 20px apart. */
+.apb-view { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.apb-block { min-width: 0; }
+.apb-block-head { display: flex; align-items: center; gap: 8px; min-height: 22px; margin-bottom: 8px; }
+.apb-block-head h3, .apb-fact h3 { margin: 0; }
+.apb-block-head .btn-tiny { margin-left: auto; }
+.apb-paused { min-width: 0; opacity: 0.65; }
+.apb-paused:hover, .apb-paused:focus-within { opacity: 1; }
+.apb-funnel { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; }
+
+/* Topic pillars: one bar split by share (the accent at falling strength) and a legend. */
+.apb-bar { display: flex; gap: 2px; height: 8px; overflow: hidden; border-radius: var(--radius-pill); background: var(--color-surface-3); }
+.apb-pillar { background: color-mix(in srgb, var(--color-accent) var(--apb-alpha, 50%), transparent); }
+.apb-bar > .apb-pillar { flex-grow: var(--apb-share, 1); flex-shrink: 1; flex-basis: 0; min-width: 0; }
+.apb-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px; }
+.apb-legend-item { display: inline-flex; align-items: center; gap: 6px; color: var(--color-ink-muted); }
+.apb-swatch { flex: none; width: 8px; height: 8px; border-radius: var(--radius-xs); }
+
+/* Rules: numbered, each clamped to two lines (the dialog shows them in full). */
+.apb-rules { margin: 0; padding-left: 22px; list-style: decimal; display: flex; flex-direction: column; gap: 4px; }
+.apb-rules li { padding-left: 2px; font-size: 14px; line-height: 1.45; color: var(--color-ink); overflow-wrap: anywhere; }
+.apb-rules li::marker { font-family: var(--font-mono); font-size: 12px; color: var(--color-ink-dim); }
+.apb-rules.is-full li { white-space: pre-wrap; }
+
+/* A section's dialog: the lead line, the weights, the facts inset (an overline key and its value per line). */
+.apb-lead { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.apb-weights { display: flex; flex-direction: column; gap: 6px; max-width: 420px; }
+.apb-reasons { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.apb-reasons li { color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.apb-reasons .apb-ink { font-weight: 500; }
+.apb-facts { display: flex; flex-direction: column; gap: 10px; }
+.apb-fact-row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+.apb-fact-value { min-width: 0; overflow-wrap: anywhere; font-size: 14px; line-height: 1.45; color: var(--color-ink); }
+
+/* Dialog text and the reviewer / changes insets. */
+.apb-prose { margin: 0; font-size: 14px; line-height: 1.5; color: var(--color-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.apb-prose.apb-muted { color: var(--color-ink-muted); }
+.apb-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px; }
+.apb-fact { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.apb-review { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.apb-list { margin: 0; padding-left: 18px; list-style: disc; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.5; color: var(--color-ink); }
+.apb-list li { overflow-wrap: anywhere; }
+.apb-errors li { color: var(--color-danger-ink); }
+
+/* The diff of a version against the active one: + added, − removed, ~ changed, per resource. */
+.apb-diff-groups { display: flex; flex-direction: column; gap: 10px; }
+.apb-diff-group { min-width: 0; }
+.apb-diff-title { margin-bottom: 4px; font-size: 14px; font-weight: 500; color: var(--color-ink); }
+.apb-diff-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.apb-diff-list li { display: flex; gap: 8px; min-width: 0; font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); }
+.apb-diff-mark { flex: none; width: 12px; text-align: center; font-family: var(--font-mono); font-weight: 600; }
+.apb-diff-mark.is-added { color: var(--color-success); }
+.apb-diff-mark.is-removed { color: var(--color-danger-ink); }
+.apb-diff-mark.is-changed { color: var(--color-warning); }
+.apb-diff-text { min-width: 0; overflow-wrap: anywhere; }
+
+/* Version history: one clickable row per version. */
+.apb-hist { gap: 10px 12px; }
+.apb-hist-ver { flex: none; min-width: 32px; font-size: 13px; font-weight: 600; color: var(--color-ink); }
+.apb-hist-note { flex: 1 1 160px; min-width: 0; font-size: 13px; color: var(--color-ink-muted); --clamp: 1; }
+.apb-hist-date { flex: none; margin-left: auto; font-size: 12px; white-space: nowrap; color: var(--color-ink-dim); }
+
+/* Reject keeps the bordered ghost and tells it is the destructive one of the pair. */
+.btn-secondary.apb-reject { color: var(--color-danger-ink); border-color: color-mix(in srgb, var(--color-danger) 40%, transparent); }
+.btn-secondary.apb-reject:hover:not(:disabled) { background: var(--color-danger-soft); border-color: var(--color-danger); }
+
+/* Rebuild from brief. */
+.input-field.apb-textarea { display: block; width: 100%; box-sizing: border-box; min-height: 140px; resize: vertical; font-family: inherit; }
+.apb-count { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 8px; margin-top: 6px; }
+
+/* ── Owner editor (every block of the form is an inset) ───────────────────────────────────────────── */
+.apb-form { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.apb-form h3 { margin: 0; }
+.apb-form.is-invalid { border-color: var(--color-danger); box-shadow: inset 0 0 0 1px var(--color-danger); }
+.apb-form-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; }
+.apb-role { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; }
+.apb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+.apb-sub { min-width: 0; }
+.apb-sub-label { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 6px; }
+.input-field.apb-field { width: 100%; box-sizing: border-box; padding: 6px 10px; font-size: 13px; }
+.apb-role .input-field.apb-field { width: 200px; max-width: 100%; }
+.input-field.apb-num { width: 64px; box-sizing: border-box; padding: 6px 8px; font-size: 13px; }
+.input-field.apb-tone { min-height: 64px; resize: vertical; font-family: inherit; }
+.apb-rows { display: flex; flex-direction: column; gap: 6px; }
+.apb-weight { display: grid; grid-template-columns: minmax(0, 90px) minmax(0, 1fr) 60px 30px; gap: 8px; align-items: center; }
+.apb-weight-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: var(--color-ink); }
+.apb-weight input[type='range'] { min-width: 0; accent-color: var(--color-accent); }
+.apb-weight .input-field.apb-num { width: 100%; padding: 6px; }
+.apb-add { display: flex; align-items: center; gap: 6px; }
+.apb-add.is-wrap { flex-wrap: wrap; }
+.apb-add .input-field.apb-field { flex: 1 1 120px; width: auto; min-width: 0; }
+.apb-range { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
+.apb-hours { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; }
+.chip-toggle.apb-hour { min-height: 28px; padding: 0; justify-content: center; gap: 0; font-size: 12px; }
+.chip.apb-tag { gap: 2px; padding-right: 4px; }
+.apb-tag-x {
+  position: relative; display: inline-flex; padding: 2px;
+  background: none; border: 0; border-radius: var(--radius-xs); color: var(--color-ink-dim); cursor: pointer;
+}
+.apb-tag-x::after { content: ''; position: absolute; inset: -6px; }
+.apb-tag-x:hover { color: var(--color-ink); }
+.apb-series-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; }
+.apb-series-name { flex: 1 1 160px; min-width: 0; font-size: 14px; font-weight: 500; color: var(--color-ink); overflow-wrap: anywhere; }
+.apb-rule-list { display: flex; flex-direction: column; gap: 6px; }
+.apb-rule-row { display: flex; align-items: center; gap: 6px; }
+.apb-rule-n { flex: none; width: 22px; text-align: right; font-size: 12px; color: var(--color-ink-dim); }
+.apb-rule-row .input-field.apb-field { flex: 1 1 auto; width: auto; min-width: 0; }
+.apb-foot { flex-wrap: wrap; align-items: center; }
+.apb-unsaved { display: inline-flex; margin-right: auto; }
+
+@media (max-width: 600px) {
+  .apb-mode { width: 100%; }
+  .apb-weight { grid-template-columns: minmax(0, 72px) minmax(0, 1fr) 54px 30px; gap: 6px; }
+}
+@media (max-width: 480px) {
+  .apb-fact-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}

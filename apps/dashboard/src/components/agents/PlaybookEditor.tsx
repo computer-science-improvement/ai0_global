@@ -3,8 +3,9 @@
 // on/off; the rules list. Saving PUTs the whole document; it becomes active at
 // once (owner precedence). Server validation (`playbook_invalid` details /
 // `invalid_body` issues) is listed inline; the modal stays open.
+// Spec 078 D2: classes of agent-playbook.css (prefix apb-); every block of the form is an inset.
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { toast } from '../ui/Toast';
@@ -14,9 +15,6 @@ import { errorBody } from '../../api/agents';
 import { usePutPlaybook, type NetworkResource, type Playbook, type PlaybookPlatform, type PlaybookRow } from '../../api/network';
 import { ResourceChip, ResourceLabel, errorText, fmtCadence } from './NetworkUi';
 
-const input: CSSProperties = { width: '100%', boxSizing: 'border-box' };
-const small: CSSProperties = { padding: '6px 10px', fontSize: 13 };
-const eyebrow: CSSProperties = { color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10, marginBottom: 6, display: 'block' };
 const ROLES = ['core', 'discovery', 'community', 'archive'];
 
 const clone = (p: Playbook): Playbook => JSON.parse(JSON.stringify(p));
@@ -87,36 +85,36 @@ export function PlaybookEditor({ handle, row, resources, onClose }: {
   return (
     <Modal open onClose={onClose} size="xl" icon="pencil" title={`Edit playbook v${row.version}`}
       subtitle="Your version becomes active as soon as you save; a pending agent draft is superseded.">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div className="apb-col">
         {d.platforms.map((s, i) => (
           <PlatformForm key={s.resource_ref} s={s} errors={[...local[i], ...serverLines.filter((l) => l.includes(s.resource_ref))]} funnelTargets={otherRefs(s.resource_ref)}
             onChange={(fn) => setPlatform(i, fn)} />
         ))}
 
         {d.series.length > 0 && (
-          <div className="card" style={{ padding: '12px 14px' }}>
-            <span className="text-micro" style={eyebrow}>Series</span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <section className="inset apb-form" aria-label="Series">
+            <h3 className="text-overline">Series · {d.series.length}</h3>
+            <div className="apb-rows">
               {d.series.map((s, i) => (
-                <div key={s.name} style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+                <div key={s.name} className="apb-series-row">
                   <Toggle checked={s.active} label={s.active ? 'on' : 'off'} title={s.active ? 'Pause the series' : 'Resume the series'}
                     onChange={(v) => setD((cur) => { const n = clone(cur); n.series[i].active = v; return n; })} />
-                  <span style={{ color: 'var(--color-ink)', fontWeight: 500, flex: '1 1 160px', minWidth: 0 }}>{s.name}</span>
-                  <span className="chip tabular-nums">{fmtCadence(s.cadence)}</span>
+                  <span className="apb-series-name">{s.name}</span>
+                  <span className="chip mono tabular-nums">{fmtCadence(s.cadence)}</span>
                   <ResourceChip refId={s.resource_ref} suffix={s.format} />
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        <div className="card" style={{ padding: '12px 14px' }}>
-          <span className="text-micro" style={eyebrow}>Rules</span>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <section className="inset apb-form" aria-label="Rules">
+          <h3 className="text-overline">Rules · {d.rules.length}</h3>
+          <div className="apb-rule-list">
             {d.rules.map((r, i) => (
-              <div key={i} style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', width: 18, textAlign: 'right', flexShrink: 0 }}>{i + 1}.</span>
-                <input className="input-field" style={{ ...input, ...small }} value={r} maxLength={300} aria-label={`Rule ${i + 1}`}
+              <div key={i} className="apb-rule-row">
+                <span className="apb-rule-n mono tabular-nums">{i + 1}.</span>
+                <input className="input-field apb-field" value={r} maxLength={300} aria-label={`Rule ${i + 1}`}
                   onChange={(e) => setD((cur) => { const n = clone(cur); n.rules[i] = e.target.value; return n; })} />
                 <button type="button" className="btn-act btn-act-danger" title="Remove rule" aria-label={`Remove rule ${i + 1}`}
                   onClick={() => setD((cur) => { const n = clone(cur); n.rules.splice(i, 1); return n; })}>
@@ -131,29 +129,29 @@ export function PlaybookEditor({ handle, row, resources, onClose }: {
               </button>
             </div>
           </div>
-        </div>
+        </section>
 
         <div>
-          <label className="text-eyebrow" htmlFor="pb-rationale" style={{ display: 'block', marginBottom: 6 }}>Why this change <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>optional · shown in history</span></label>
-          <input id="pb-rationale" className="input-field" style={input} value={rationale} maxLength={2000} placeholder="owner edit"
+          <label className="text-eyebrow apb-label" htmlFor="pb-rationale">Why this change <span className="text-micro apb-dim">optional · shown in history</span></label>
+          <input id="pb-rationale" className="input-field apb-field" value={rationale} maxLength={2000} placeholder="owner edit"
             onChange={(e) => setRationale(e.target.value)} />
         </div>
       </div>
 
       {put.error && (
-        <div ref={errRef} className="callout-danger" style={{ marginTop: 14, flexDirection: 'column', alignItems: 'stretch', gap: 6 }} role="alert">
+        <div ref={errRef} className="callout-danger apb-callout-col apb-gap-top" role="alert">
           <strong>{serverLines.length ? 'The playbook was not saved:' : errorText(put.error)}</strong>
           {serverLines.length > 0 && (
-            <ul style={{ margin: 0, paddingLeft: 18, listStyle: 'disc', display: 'flex', flexDirection: 'column', gap: 3 }}>
-              {serverLines.map((l, i) => <li key={i} className="text-micro" style={{ overflowWrap: 'anywhere' }}>{l}</li>)}
+            <ul className="apb-list">
+              {serverLines.map((l, i) => <li key={i}>{l}</li>)}
             </ul>
           )}
         </div>
       )}
 
-      <div className="modal-foot" style={{ flexWrap: 'wrap' }}>
-        {dirty && <Badge tone="warning" style={{ marginRight: 'auto', alignSelf: 'center' }}>unsaved</Badge>}
-        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+      <div className="modal-foot apb-foot">
+        {dirty && <span className="apb-unsaved"><Badge tone="warning">unsaved</Badge></span>}
+        <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={!dirty || hasLocal || put.isPending} onClick={save}
           title={hasLocal ? 'Fix the highlighted fields first' : undefined}>
           {put.isPending ? 'Saving…' : 'Save & activate'}
@@ -163,10 +161,11 @@ export function PlaybookEditor({ handle, row, resources, onClose }: {
   );
 }
 
+/** A labelled control of the form: the label (sentence case) with an optional hint, then the control. */
 function Sub({ label, children, hint }: { label: string; children: ReactNode; hint?: ReactNode }) {
   return (
-    <div style={{ minWidth: 0 }}>
-      <span className="text-micro" style={eyebrow}>{label}{hint && <span style={{ textTransform: 'none', letterSpacing: 0, marginLeft: 6 }}>{hint}</span>}</span>
+    <div className="apb-sub">
+      <span className="text-eyebrow apb-sub-label">{label}{hint && <span className="text-micro apb-dim">{hint}</span>}</span>
       {children}
     </div>
   );
@@ -174,7 +173,7 @@ function Sub({ label, children, hint }: { label: string; children: ReactNode; hi
 
 function NumberBox({ value, min, max, onChange, label }: { value: number; min: number; max: number; onChange: (n: number) => void; label: string }) {
   return (
-    <input type="number" className="input-field tabular-nums" aria-label={label} style={{ ...small, width: 64 }} min={min} max={max} value={value}
+    <input type="number" className="input-field apb-num tabular-nums" aria-label={label} min={min} max={max} value={value}
       onChange={(e) => { const n = Math.round(Number(e.target.value)); if (Number.isFinite(n)) onChange(Math.max(min, Math.min(max, n))); }} />
   );
 }
@@ -197,15 +196,14 @@ function PlatformForm({ s, errors, funnelTargets, onChange }: {
     onChange((x) => { x.hashtag_policy.vocab.push(t); });
     setTag('');
   };
-  const grid: CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 14 };
 
   return (
-    <div className="card" style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 14, boxShadow: errors.length ? 'inset 0 0 0 1px var(--color-danger)' : undefined }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-        <span style={{ flex: '1 1 200px', minWidth: 0, display: 'flex' }}><ResourceLabel refId={s.resource_ref} strong /></span>
-        <label className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-ink-dim)' }}>
-          role
-          <input className="input-field" list={listId} style={{ ...small, width: 200, maxWidth: '100%' }} value={s.role} maxLength={120}
+    <section className={`inset apb-form${errors.length ? ' is-invalid' : ''}`} aria-label={`Section ${s.resource_ref}`}>
+      <div className="apb-form-head">
+        <span className="apb-grow"><ResourceLabel refId={s.resource_ref} strong /></span>
+        <label className="apb-role">
+          <span className="text-eyebrow">Role</span>
+          <input className="input-field apb-field" list={listId} value={s.role} maxLength={120}
             onChange={(e) => onChange((x) => { x.role = e.target.value; })} />
           <datalist id={listId}>
             {ROLES.map((r) => <option key={r} value={r} />)}
@@ -214,46 +212,46 @@ function PlatformForm({ s, errors, funnelTargets, onChange }: {
         </label>
       </div>
 
-      <div style={grid}>
+      <div className="apb-grid">
         <Sub label="Format weights" hint="0 – 1">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div className="apb-rows">
             {Object.entries(s.formats).map(([f, w]) => (
-              <div key={f} style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 90px) minmax(0, 1fr) 60px 30px', gap: 8, alignItems: 'center' }}>
-                <span className="text-micro" style={{ color: 'var(--color-ink)', overflow: 'hidden', textOverflow: 'ellipsis' }} title={f}>{f}</span>
-                <input type="range" min={0} max={1} step={0.05} value={w} aria-label={`${f} weight`} style={{ accentColor: 'var(--color-accent)', minWidth: 0 }}
+              <div key={f} className="apb-weight">
+                <span className="apb-weight-name" title={f}>{f}</span>
+                <input type="range" min={0} max={1} step={0.05} value={w} aria-label={`${f} weight`}
                   onChange={(e) => onChange((x) => { x.formats[f] = Number(e.target.value); })} />
-                <input type="number" className="input-field tabular-nums" min={0} max={1} step={0.05} value={w} aria-label={`${f} weight value`} style={{ ...small, width: 60, padding: '5px 6px' }}
+                <input type="number" className="input-field apb-num tabular-nums" min={0} max={1} step={0.05} value={w} aria-label={`${f} weight value`}
                   onChange={(e) => { const n = Number(e.target.value); if (Number.isFinite(n)) onChange((x) => { x.formats[f] = Math.max(0, Math.min(1, n)); }); }} />
-                <button type="button" className="btn-act" title={`Remove ${f}`} aria-label={`Remove format ${f}`} style={{ width: 28, height: 28 }}
+                <button type="button" className="btn-act" title={`Remove ${f}`} aria-label={`Remove format ${f}`}
                   onClick={() => onChange((x) => { delete x.formats[f]; })}>
                   <Icon name="x" size={12} />
                 </button>
               </div>
             ))}
-            <div style={{ display: 'flex', gap: 6 }}>
-              <input className="input-field" style={{ ...small, flex: 1, minWidth: 0 }} placeholder="add format (e.g. carousel)" value={newFormat} maxLength={30}
+            <div className="apb-add">
+              <input className="input-field apb-field" placeholder="add format (e.g. carousel)" value={newFormat} maxLength={30}
+                aria-label="New format"
                 onChange={(e) => setNewFormat(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addFormat(); } }} />
-              <button type="button" className="btn-tiny" disabled={newFormat.trim().length < 2} onClick={addFormat}><Icon name="plus" size={12} /></button>
+              <button type="button" className="btn-tiny" aria-label="Add format" disabled={newFormat.trim().length < 2} onClick={addFormat}><Icon name="plus" size={12} /></button>
             </div>
           </div>
         </Sub>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minWidth: 0 }}>
+        <div className="apb-col">
           <Sub label="Posts per day">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div className="apb-range">
               <NumberBox label="min per day" value={s.per_day.min} min={0} max={24} onChange={(n) => onChange((x) => { x.per_day.min = n; })} />
-              <span style={{ color: 'var(--color-ink-dim)' }}>–</span>
+              <span className="apb-dim" aria-hidden>–</span>
               <NumberBox label="max per day" value={s.per_day.max} min={0} max={24} onChange={(n) => onChange((x) => { x.per_day.max = n; })} />
             </div>
           </Sub>
           <Sub label="Best hours" hint={`${s.best_hours.length} / 12`}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(34px, 1fr))', gap: 4 }}>
+            <div className="apb-hours">
               {Array.from({ length: 24 }, (_, h) => {
                 const on = s.best_hours.includes(h);
                 return (
-                  <button key={h} type="button" aria-pressed={on} className={`chip tabular-nums${on ? ' is-active' : ''}`}
+                  <button key={h} type="button" aria-pressed={on} className="chip-toggle apb-hour mono tabular-nums"
                     disabled={!on && s.best_hours.length >= 12}
-                    style={{ justifyContent: 'center', border: 0, cursor: 'pointer', fontSize: 11, padding: '3px 0' }}
                     onClick={() => onChange((x) => { x.best_hours = on ? x.best_hours.filter((y) => y !== h) : [...x.best_hours, h].sort((a, b) => a - b); })}>
                     {String(h).padStart(2, '0')}
                   </button>
@@ -264,25 +262,24 @@ function PlatformForm({ s, errors, funnelTargets, onChange }: {
         </div>
       </div>
 
-      <div style={grid}>
+      <div className="apb-grid">
         <Sub label="Hashtags">
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
+          <div className="apb-chips apb-gap-bottom">
             {s.hashtag_policy.vocab.map((t) => (
-              <span key={t} className="chip" style={{ gap: 4, paddingRight: 4 }}>
+              <span key={t} className="chip apb-tag">
                 {t}
-                <button type="button" aria-label={`Remove ${t}`} title="Remove"
-                  onClick={() => onChange((x) => { x.hashtag_policy.vocab = x.hashtag_policy.vocab.filter((y) => y !== t); })}
-                  style={{ background: 'none', border: 0, color: 'var(--color-ink-dim)', cursor: 'pointer', display: 'inline-flex', padding: 2 }}>
+                <button type="button" className="apb-tag-x" aria-label={`Remove ${t}`} title="Remove"
+                  onClick={() => onChange((x) => { x.hashtag_policy.vocab = x.hashtag_policy.vocab.filter((y) => y !== t); })}>
                   <Icon name="x" size={11} />
                 </button>
               </span>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-            <input className="input-field" style={{ ...small, flex: '1 1 120px', minWidth: 0 }} placeholder="#tag" value={tag} maxLength={40}
+          <div className="apb-add is-wrap">
+            <input className="input-field apb-field apb-tag-input" placeholder="#tag" value={tag} maxLength={40} aria-label="New hashtag"
               onChange={(e) => setTag(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addTag(); } }} />
-            <button type="button" className="btn-tiny" disabled={!tag.trim()} onClick={addTag}><Icon name="plus" size={12} /></button>
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <button type="button" className="btn-tiny" aria-label="Add hashtag" disabled={!tag.trim()} onClick={addTag}><Icon name="plus" size={12} /></button>
+            <span className="text-micro apb-range apb-dim">
               per post
               <NumberBox label="min hashtags" value={s.hashtag_policy.min} min={0} max={30} onChange={(n) => onChange((x) => { x.hashtag_policy.min = n; })} />
               –
@@ -291,27 +288,27 @@ function PlatformForm({ s, errors, funnelTargets, onChange }: {
           </div>
         </Sub>
         <Sub label="Tone">
-          <textarea className="input-field" style={{ ...input, ...small, minHeight: 64, resize: 'vertical', fontFamily: 'inherit' }} maxLength={300} value={s.tone ?? ''}
+          <textarea className="input-field apb-field apb-tone" maxLength={300} value={s.tone ?? ''}
             onChange={(e) => onChange((x) => { x.tone = e.target.value; })} />
         </Sub>
       </div>
 
-      <div style={grid}>
+      <div className="apb-grid">
         <Sub label="Link policy">
-          <input className="input-field" style={{ ...input, ...small }} maxLength={200} value={s.link_policy ?? ''} placeholder="—"
+          <input className="input-field apb-field" maxLength={200} value={s.link_policy ?? ''} placeholder="—"
             onChange={(e) => onChange((x) => { x.link_policy = e.target.value; })} />
         </Sub>
         <Sub label="CTA">
-          <input className="input-field" style={{ ...input, ...small }} maxLength={200} value={s.cta ?? ''} placeholder="—"
+          <input className="input-field apb-field" maxLength={200} value={s.cta ?? ''} placeholder="—"
             onChange={(e) => onChange((x) => { x.cta = e.target.value; })} />
         </Sub>
       </div>
 
       {errors.length > 0 && (
-        <ul style={{ margin: 0, paddingLeft: 18, listStyle: 'disc' }}>
-          {errors.map((e) => <li key={e} className="text-micro" style={{ color: 'var(--color-danger)' }}>{e}</li>)}
+        <ul className="apb-list apb-errors">
+          {errors.map((e) => <li key={e}>{e}</li>)}
         </ul>
       )}
-    </div>
+    </section>
   );
 }
