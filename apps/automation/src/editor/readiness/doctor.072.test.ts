@@ -9,7 +9,7 @@ import { channelDoctor } from './doctor';
 import { mkFinding } from './finding';
 import { DOCTOR_REASONS } from './codes';
 import { NANOBANANA_SKILL, PROMPTHERO_SKILL } from './fixtures/real-skills-1027';
-import { deepFreeze, makeFacts, mkDataset, mkPlaybook, mkSkill, promptSeries } from './testing/facts-fixture';
+import { deepFreeze, makeFacts, mkDataset, mkPlaybook, mkSkill, NOW, promptSeries } from './testing/facts-fixture';
 
 /** Spec 072 FR-003, L5: the doctor runs the checks, drops repeated keys, sorts, and does nothing else. */
 
@@ -76,6 +76,24 @@ test('every finding is a catalogue code on the channel area with a key that hash
     assert.equal(x.key, findingKey('channel', x.check, x.subject));
     assert.equal(x.subject.channel, facts.channelKey);
   }
+});
+
+test('a channel with a fault for every check file gets a finding from each of the seven', () => {
+  const facts = makeFacts({
+    card: { toolsAllow: ['web_fetch'], hashtagMin: 2, hashtags: [] },
+    playbook: mkPlaybook([promptSeries({ source_mode: 'suggested' })]),
+    skills: [mkSkill({ id: PROMPTHERO_SKILL.id, name: PROMPTHERO_SKILL.name, description: PROMPTHERO_SKILL.description, body: PROMPTHERO_SKILL.body })],
+    datasets: [mkDataset({ key: 'prompts', unusedPostable: 0 })],
+    pauses: [{ id: 'p9', channelKey: '@fx072', key: 'series:Prompt', label: 'Prompt', cause: 'owner', reason: '', streak: 0, pausedAt: NOW, resumedAt: null, resumedBy: null }],
+    launch: { id: 'l1', status: 'ready', botState: { state: 'no_access', detail: 'x', bot: null }, graduation: null },
+  });
+  const got = new Set(channelDoctor(facts).map((x) => x.check));
+  for (const code of ['series_source_contradicted', 'series_source_not_required', 'material_exhausted', 'tools_missing_for_source', 'hashtag_min_without_vocabulary', 'series_paused_by_owner', 'bot_not_admin']) {
+    assert.ok(got.has(code), code);
+  }
+  const out = channelDoctor(facts);
+  assert.equal(out[0].severity, 'error');
+  assert.equal(out[out.length - 1].severity, 'info');
 });
 
 test('the doctor does not change the facts it reads', () => {

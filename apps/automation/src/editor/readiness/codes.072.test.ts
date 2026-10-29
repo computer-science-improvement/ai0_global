@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { DOCTOR_REASONS, doctorReason, LINK_PLACEHOLDERS, resolveLink } from './codes';
+import { DOCTOR_CHECKS } from './checks';
 
 /** Spec 072 FR-001: the doctor's reason catalogue. */
 
@@ -60,4 +63,30 @@ test('resolveLink fills and URL-encodes placeholders; a missing value gives null
   assert.equal(resolveLink('/app/agents/:agent', { agent: null }), null);
   assert.equal(resolveLink(undefined, { agent: 'x' }), null);
   assert.equal(resolveLink('/app/health', {}), '/app/health');
+});
+
+/** The codes the checks write as string literals (`code: 'x'`); the service's `auto_fixed` is the only catalogue entry no check emits. */
+function emittedCodes(): Set<string> {
+  const dir = join(__dirname, 'checks');
+  const out = new Set<string>();
+  for (const name of readdirSync(dir)) {
+    if (!name.endsWith('.ts') || name.endsWith('.test.ts')) continue;
+    for (const m of readFileSync(join(dir, name), 'utf8').matchAll(/\bcode:\s*'([a-z][a-z0-9_]*)'/g)) out.add(m[1]);
+  }
+  return out;
+}
+
+test('every code a check can emit is in the catalogue, and every catalogue code but auto_fixed is emitted by a check', () => {
+  const emitted = emittedCodes();
+  const known = new Set(DOCTOR_REASONS.map((r) => r.code));
+  assert.deepEqual([...emitted].filter((c) => !known.has(c)).sort(), [], 'a check emits a code nobody can read');
+  assert.deepEqual([...known].filter((c) => c !== 'auto_fixed' && !emitted.has(c)).sort(), [], 'a catalogue code no check emits');
+  assert.ok(known.has('auto_fixed'), 'the service writes auto_fixed (A20)');
+  assert.ok(!emitted.has('auto_fixed'));
+});
+
+test('all seven check files are in DOCTOR_CHECKS, once each', () => {
+  assert.deepEqual(DOCTOR_CHECKS.map((c) => c.code), [
+    'series_source_contradicted', 'series_source_not_required', 'material_exhausted', 'tools_missing_for_source', 'config_conflict', 'series_paused', 'bot_not_admin',
+  ]);
 });
