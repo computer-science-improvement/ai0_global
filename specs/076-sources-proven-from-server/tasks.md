@@ -78,7 +78,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - `safe-http.test.ts`, `ssrf-guard.test.ts` and the settings catalog tests stay green.
   - **Done when:** no code outside `safe-http.ts` reads the two settings, except `egressProxyConfigured`.
 
-- [ ] **T3 `probeSource`, the probe cache and the bound prober** (FR-001, L2, L3, A11, A12, A33; was T2)
+- [x] **T3 `probeSource`, the probe cache and the bound prober** (FR-001, L2, L3, A11, A12, A33; was T2)
   - **What:**
     - `sources/probe.ts`:
       - the types and signatures of A11 (`ProbeFailureClass` with `invalid`, `ProbeOpts`, `ProbeSummary`, the overloads, `ProberOpts`, `SourceProber`, `sourceProberOf(pool, env?)`);

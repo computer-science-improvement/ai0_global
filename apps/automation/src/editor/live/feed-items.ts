@@ -49,9 +49,14 @@ export class FeedParseError extends Error {
 export async function readFeed(url: string, now: Date, http: HttpSeams = {}): Promise<{ title: string | null; items: FeedItem[] }> {
   const res = await safeGet(url, { lookup: http.lookup, get: http.get, accept: FEED_ACCEPT });
   if (res.status >= 400) throw new Error(`status ${res.status}`);
+  return parseFeedBody(res.body, now);
+}
+
+/** Parse an RSS/Atom body that is already fetched (spec 076: the probe reads the body itself). Throws FeedParseError when it is not a feed. */
+export async function parseFeedBody(body: string, now: Date): Promise<{ title: string | null; items: FeedItem[] }> {
   let feed: Awaited<ReturnType<typeof parser.parseString>>;
   try {
-    feed = await parser.parseString(res.body);
+    feed = await parser.parseString(body);
   } catch (err: any) {
     throw new FeedParseError(errText(err).slice(0, 200));
   }

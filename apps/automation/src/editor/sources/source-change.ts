@@ -2,6 +2,7 @@ import type { CardSource } from '../card';
 import { feedKey, hostOf, type HostFailures } from '../net/host-failures';
 import type { FeedItem } from '../live/feed-items';
 import { errText as errMessage } from '../../common/err-text';
+import type { ProbeResult } from './probe';
 
 /**
  * Spec 049 FR-004: a source change the channel agent proposes and the owner applies — replace a failing source, add
@@ -68,11 +69,27 @@ export interface CandidateDeps {
   /** An active dataset and its rows (null when there is no such dataset). */
   dataset?:  (key: string) => Promise<{ active: boolean; rows: number } | null>;
   hosts?:    Pick<HostFailures, 'blocked'>;
+  /** Spec 076: a server-side read of a feed or page (cache first). With it a candidate gets what the server saw ("24 items, newest 2 h ago") instead of a bare status. */
+  probe?:    (url: string, o: { kind: 'rss' | 'url' }) => Promise<ProbeResult>;
 }
 
 export type CandidateCheck = { ok: true; evidence: string } | { ok: false; error: string; details: string };
 
 const errText = (err: unknown): string => errMessage(err).slice(0, 200);
+
+/** A probe as the candidate check's answer: the same error codes as the direct reads, the evidence is what the server saw. */
+function candidateFromProbe(kind: 'rss' | 'url', p: ProbeResult): CandidateCheck {
+  if (!p.ok) {
+    if (p.failure_class === 'empty' && (kind === 'url' || p.kind === 'rss')) return { ok: false, error: 'candidate_empty', details: kind === 'rss' ? 'the feed has no items' : p.detail };
+    if (kind === 'url' && p.status !== null && p.status >= 400) return { ok: false, error: 'candidate_http_error', details: `status ${p.status}` };
+    return { ok: false, error: 'candidate_failed', details: p.detail.slice(0, 200) };
+  }
+  if (kind === 'rss' && p.newest_at) {
+    const days = (Date.parse(p.checked_at) - Date.parse(p.newest_at)) / 86_400_000;
+    if (days > CANDIDATE_FRESH_DAYS) return { ok: false, error: 'candidate_stale', details: `the newest item is ${Math.round(days)} d old` };
+  }
+  return { ok: true, evidence: p.detail };
+}
 
 /** Read the candidate once: a live feed with recent items, a page that answers, an api with items, a dataset with rows. */
 export async function checkCandidate(s: Pick<CardSource, 'kind' | 'ref'>, d: CandidateDeps): Promise<CandidateCheck> {
@@ -84,6 +101,8 @@ export async function checkCandidate(s: Pick<CardSource, 'kind' | 'ref'>, d: Can
     if (b) return { ok: false, error: 'candidate_blocked', details: `${b.host} is blocked until ${b.until.toISOString().slice(0, 16)}Z (${b.reason}) — pick another source` };
   }
   try {
+    // Spec 076: a feed or page is read from the server by the probe (cache first); the error codes stay the same.
+    if (d.probe && (s.kind === 'rss' || s.kind === 'url')) return candidateFromProbe(s.kind, await d.probe(s.ref, { kind: s.kind }));
     switch (s.kind) {
       case 'rss': {
         if (!d.readFeed) return { ok: false, error: 'not_checked', details: 'feeds cannot be checked here' };

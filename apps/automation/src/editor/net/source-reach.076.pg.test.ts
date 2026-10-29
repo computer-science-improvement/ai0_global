@@ -10,6 +10,8 @@ import { join } from 'path';
 import type { Pool } from 'pg';
 import { createProbeDb, MIGRATIONS_DIR, type ProbeDb } from '../agents/testing/probe-db';
 import { PgHostFailures, feedKey } from './host-failures';
+import { probeSource, type ProbeOpts, type ProbeResult } from '../sources/probe';
+import { PgSourceProbes } from '../sources/source-probes.repository';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -182,4 +184,69 @@ test('succeeded: the feed key recovers after a good read (A8)', { skip }, async 
   await hosts.succeeded(key, 'feed');
   assert.equal(await hosts.blocked(key, 'feed'), null);
   assert.equal(iso((await row(key)).last_success_at), now.toISOString());
+});
+
+const probeRow = (over: Partial<ProbeResult> = {}): ProbeResult => ({
+  ok: true, failure_class: null, status: 200, kind: 'rss', feed_url: 'https://cache.example/rss', items: 4, newest_at: '2026-10-29T10:00:00.000Z',
+  sample_titles: ['A', 'B'], checked_at: '2026-10-29T12:00:00.000Z', via_proxy: false, url: 'https://cache.example/rss', detail: '4 items, newest 2 h ago',
+  ms: 120, cached: false, blocked_until: null, ...over,
+});
+
+test('source_probes: put / get round trip, an upsert by canonical URL, latest() by the address as written; invalid is never stored', { skip }, async () => {
+  const probes = new PgSourceProbes(pool);
+  await probes.put(probeRow());
+  const got = await probes.get('https://CACHE.example/rss/#frag');
+  assert.deepEqual(got, probeRow(), 'the same address under another spelling');
+  await probes.put(probeRow({ ok: false, failure_class: 'timeout', status: null, items: 0, newest_at: null, sample_titles: [], detail: 'timed out twice (10 s)', checked_at: '2026-10-29T13:00:00.000Z' }));
+  assert.equal((await pool.query(`SELECT count(*)::int AS n FROM source_probes WHERE host = 'cache.example'`)).rows[0].n, 1);
+  assert.deepEqual([(await probes.get('https://cache.example/rss'))?.failure_class, (await probes.get('https://cache.example/rss'))?.ok], ['timeout', false]);
+  await probes.put(probeRow({ ok: false, failure_class: 'invalid', url: 'http://127.0.0.1/a' }));
+  assert.equal(await probes.get('http://127.0.0.1/a'), null);
+  const latest = await probes.latest(['https://cache.example/rss/', 'https://nothing.example/']);
+  assert.deepEqual([...latest.keys()], ['https://cache.example/rss/']);
+  assert.equal(latest.get('https://cache.example/rss/')?.failure_class, 'timeout');
+  assert.equal((await probes.latest([])).size, 0);
+});
+
+test('probeSource over the real cache and host record: a geoblocked host is read twice, recorded once, then answered from the cache; a good feed is cached for 6 h', { skip }, async () => {
+  let now = new Date('2026-10-29T12:00:00Z');
+  const hosts = new PgHostFailures(pool, () => now);
+  const store = new PgSourceProbes(pool);
+  const lookup = async () => [{ address: '93.184.216.34', family: 4 }];
+  let calls = 0;
+  const geo = async () => { calls++; throw Object.assign(new Error('timeout of 10000ms exceeded'), { code: 'ECONNABORTED' }); };
+  const probe = (url: string, get: () => Promise<any>, o: Partial<ProbeOpts> = {}) =>
+    probeSource(url, { kind: 'url', store, hosts, http: { lookup, get }, now: () => now, retryMs: 0, ...o });
+
+  const first = await probe('https://zakon.geo.example/print', geo);
+  assert.deepEqual([first.failure_class, first.detail, calls], ['timeout', 'timed out twice (10 s)', 2]);
+  const r = await row('zakon.geo.example');
+  assert.deepEqual([r.reason, r.consecutive_timeouts, r.strikes], ['timeout', 1, 0], 'one record(host, timeout) for the two tries');
+  assert.equal((await store.get('https://zakon.geo.example/print'))?.failure_class, 'timeout');
+
+  now = plus(now, 1.5); // the hour block is over, the cache is not
+  assert.equal((await probe('https://zakon.geo.example/print', geo)).cached, true);
+  assert.equal(calls, 2, 'no request inside the cache');
+  now = plus(now, 5); // 6.5 h: the cache expired; the earlier timeout is counted again
+  const again = await probe('https://zakon.geo.example/print', geo);
+  assert.deepEqual([again.cached, calls], [false, 4]);
+  assert.equal((await row('zakon.geo.example')).consecutive_timeouts, 2);
+  // A forced probe inside an unreachable block is answered by a request and not counted again.
+  now = plus(now, 7);
+  await probe('https://zakon.geo.example/print', geo, { force: true });
+  assert.equal((await row('zakon.geo.example')).reason, 'unreachable');
+  const blocked = await probe('https://zakon.geo.example/other', geo);
+  assert.deepEqual([blocked.failure_class, blocked.cached, typeof blocked.blocked_until], ['timeout', false, 'string']);
+  assert.equal(await store.get('https://zakon.geo.example/other'), null, 'a block answer is not stored');
+
+  const feed = `<?xml version="1.0"?><rss version="2.0"><channel><title>F</title><item><title>One</title><link>https://ok.example/1</link><pubDate>${now.toUTCString()}</pubDate></item></channel></rss>`;
+  let feedCalls = 0;
+  const getFeed = async () => { feedCalls++; return { status: 200, headers: { 'content-type': 'application/rss+xml' }, data: feed }; };
+  const ok = await probe('https://ok.example/rss', getFeed, { kind: 'rss' });
+  assert.deepEqual([ok.ok, ok.items, ok.kind], [true, 1, 'rss']);
+  now = plus(now, 5.9);
+  assert.equal((await probe('https://ok.example/rss', getFeed, { kind: 'rss' })).cached, true);
+  now = plus(now, 0.2);
+  assert.equal((await probe('https://ok.example/rss', getFeed, { kind: 'rss' })).cached, false);
+  assert.equal(feedCalls, 2);
 });
