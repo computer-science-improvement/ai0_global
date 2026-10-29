@@ -41,7 +41,7 @@ export function ArtifactPanel({ type, id, onClose, onAsk, bare = false }: {
   const d = q.data;
   return (
     <div style={bare ? { display: 'grid' } : { display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' }}>
-      {!bare && <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '14px 16px 12px', borderBottom: '1px solid var(--color-hairline)' }}>
+      {!bare && <div className="art-head">
         <span className="section-glyph" aria-hidden><Icon name={meta.icon} size={15} /></span>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, minWidth: 0 }}>

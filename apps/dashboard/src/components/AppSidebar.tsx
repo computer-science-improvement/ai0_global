@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
-import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Icon } from './ui/Icon';
 import { toast } from './ui/Toast';
 import { SidebarItem } from './nav/SidebarItem';
@@ -95,25 +95,8 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
   const isCollapsed = isMobile ? false : collapsed;
   const width = isMobile ? 264 : (collapsed ? 64 : 248);
 
-  const base: CSSProperties = {
-    width, flexShrink: 0,
-    background: 'var(--color-surface-1)',
-    borderRight: '1px solid var(--color-hairline)',
-    display: 'flex', flexDirection: 'column',
-  };
-  const style: CSSProperties = isMobile
-    ? {
-        ...base,
-        height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: 60,
-        transform: mobileOpen ? 'translateX(0)' : 'translateX(-100%)',
-        transition: 'transform 220ms cubic-bezier(0.2,0.7,0.2,1)',
-        boxShadow: mobileOpen ? '0 12px 48px rgba(0,0,0,0.55)' : 'none',
-      }
-    : {
-        ...base,
-        height: '100vh', position: 'sticky', top: 0,
-        transition: 'width 160ms cubic-bezier(0.2,0.7,0.2,1)',
-      };
+  // The width is the one inline value (it depends on the viewport and the rail); the look is `.side` in sidebar.css.
+  const sideClass = isMobile ? `side is-mobile${mobileOpen ? ' is-open' : ''}` : 'side is-desktop';
 
   const renderItem = (item: ResolvedItem, where: string) => (
     <SidebarItem
@@ -177,7 +160,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
   const groupTitle = (title: string) => !isCollapsed && <div className="nav-group-title">{title}</div>;
 
   return (
-    <aside style={style} aria-label="Main menu">
+    <aside className={sideClass} style={{ width }} aria-label="Main menu">
       <div className={`side-head${isCollapsed ? ' side-head-rail' : ''}`}>
         <div className="side-brand">
           <Link to={'/app' as any} activeOptions={{ exact: true }} onClick={onNavigate} className="side-logo" aria-label="ai0, go to Today">

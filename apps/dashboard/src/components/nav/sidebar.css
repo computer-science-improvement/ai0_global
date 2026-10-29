@@ -103,3 +103,15 @@
 .nav-dot.is-accent { background: var(--color-accent); }
 .nav-dot.is-warning { background: var(--color-warning); }
 .nav-dot.is-danger { background: var(--color-danger); }
+
+/* ── The sidebar itself: sticky on a desktop, a sliding drawer on a phone (the width is inline) ── */
+.side {
+  flex-shrink: 0; height: 100vh; display: flex; flex-direction: column;
+  background: var(--color-surface-1); border-right: 1px solid var(--color-hairline);
+}
+.side.is-desktop { position: sticky; top: 0; transition: width 160ms var(--ease-out); }
+.side.is-mobile {
+  position: fixed; top: 0; left: 0; z-index: 60; transform: translateX(-100%);
+  transition: transform 220ms var(--ease-out);
+}
+.side.is-mobile.is-open { transform: translateX(0); box-shadow: var(--shadow-modal); }

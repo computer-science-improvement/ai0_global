@@ -55,3 +55,6 @@
   .panel-row.log-row::before { left: calc(16px + 40px + 10px + 6px); }
   .log-trace { padding: 0 16px 14px calc(16px + 40px + 10px + 14px + 10px); }
 }
+
+/* The compact filters of the log toolbar (selects and date inputs). */
+.input-field.log-filter { min-width: 130px; padding: 6px 10px; font-size: 12px; }

@@ -212,7 +212,6 @@ function LogsPage() {
   // The API counts only the filter in force, so the number sits on the selected type tab (never a stale one while a new filter loads).
   const typeOptions = TYPE_TABS.map((t) => (t.key === type && q.data && !q.isPlaceholderData ? { ...t, count: total } : t));
 
-  const selectStyle: React.CSSProperties = { padding: '6px 10px', fontSize: 12, minWidth: 130 };
 
   return (
     <div>
@@ -237,12 +236,12 @@ function LogsPage() {
           options={[...RANGE_TABS.map(r => ({ key: r.key, label: r.label })), { key: 'custom', label: 'Custom' }]} />
         {range === 'custom' && (
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-            <input type="date" aria-label="From" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field" style={selectStyle} />
+            <input type="date" aria-label="From" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field log-filter" />
             <span className="text-micro ink-dim">→</span>
-            <input type="date" aria-label="To" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field" style={selectStyle} />
+            <input type="date" aria-label="To" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field log-filter" />
           </span>
         )}
-        <select aria-label="Strategy" value={strategy} onChange={(e) => resetPage(setStrategy)(e.target.value)} className="input-field" style={selectStyle}>
+        <select aria-label="Strategy" value={strategy} onChange={(e) => resetPage(setStrategy)(e.target.value)} className="input-field log-filter">
           <option value="">All strategies</option>
           {strategyOptions.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
@@ -250,8 +249,7 @@ function LogsPage() {
           aria-label={resourceLabel}
           value={channelId}
           onChange={(e) => resetPage(setChannelId)(e.target.value)}
-          className="input-field"
-          style={selectStyle}
+          className="input-field log-filter"
           disabled={resourceOptions.length === 0}
           title={resourceOptions.length === 0 ? 'No accounts for this platform' : undefined}
         >
