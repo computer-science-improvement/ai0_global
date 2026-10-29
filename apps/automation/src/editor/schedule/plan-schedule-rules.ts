@@ -85,6 +85,38 @@ export function slotSeries(s: PlanSlotLike): string | null {
   return s.series ?? s.source_hints?.find((h) => h.startsWith('series:'))?.slice('series:'.length) ?? null;
 }
 
+/**
+ * Spec 073 FR-002 / A21: the series is authoritative for its slots' format. Each slot that names a series (`series`, else a
+ * `series:` hint) gets that series' format; the resource of a slot is `resource_ref ?? defaultRef`, matched by name and
+ * resource first, then by name alone. A slot that names an unknown series is left as it is. `changed[].i` indexes the
+ * submitted array. Pure: the submit tools call it before the validators.
+ */
+export function lockSeriesFormats<S extends PlanSlotLike & { format: string }>(
+  slots: readonly S[], series: ReadonlyArray<Pick<Series, 'name' | 'resource_ref' | 'format'>>, defaultRef: string,
+): { slots: S[]; changed: Array<{ i: number; from: string; to: string }> } {
+  const changed: Array<{ i: number; from: string; to: string }> = [];
+  const out = slots.map((s, i) => {
+    const name = slotSeries(s);
+    if (!name) return s;
+    const ref = s.resource_ref ?? defaultRef;
+    const found = series.find((x) => x.name === name && x.resource_ref === ref) ?? series.find((x) => x.name === name);
+    if (!found || found.format === s.format) return s;
+    changed.push({ i, from: s.format, to: found.format });
+    return { ...s, format: found.format };
+  });
+  return { slots: out, changed };
+}
+
+/** The tool-result line that tells the planner which slots code gave their series' format (empty = none). */
+export function lockedFormatsNote(slots: ReadonlyArray<PlanSlotLike>, changed: ReadonlyArray<{ i: number; from: string; to: string }>): string | null {
+  if (!changed.length) return null;
+  const parts = changed.map((c) => {
+    const s = slots[c.i];
+    return `слот ${c.i + 1} (${s.resource_ref ? `${s.resource_ref} ` : ''}${s.time}, серія «${slotSeries(s)}»): ${c.from} → ${c.to}`;
+  });
+  return `Формат слота серії задає серія, код виставив його сам: ${parts.join('; ')}.`;
+}
+
 export interface DueInstance { series: Series; time: string; at: Date }
 
 /** Due series instances of the day on the scope's resources (resource-local times). */

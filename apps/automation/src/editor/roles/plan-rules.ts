@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isQuietHour, zonedToUtc } from './time';
-import { EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput, slotSeries } from '../schedule/plan-schedule-rules';
 import { type EmptyDaySlot, ShortDayInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
 import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
 import { pollCapErrors, type PollCapCtx } from './poll-cap';
@@ -125,7 +125,12 @@ export function validatePlan(
   plan.slots.forEach((s, i) => {
     const at = zonedToUtc(planDate, s.time, card.timezone);
     const label = `слот ${i + 1} (${s.time})`;
-    if (!allowed.has(s.format) && !directiveFormat(s)) errors.push(`${label}: формат ${s.format} не дозволений; дозволені: ${[...allowed].join(', ')}`);
+    // Spec 073 FR-002: a series slot's format is the series' (code set it), not the card's weights; only "can it be produced here" still applies.
+    const seriesName = slotSeries(s);
+    const ofSeries = !!seriesName && !!schedule?.series.some((x) => x.name === seriesName);
+    if (ofSeries) {
+      if (!(SUPPORTED_FORMATS as readonly string[]).includes(s.format) || (formatOk && !formatOk(s.format))) errors.push(`${label}: формат ${s.format} серії «${seriesName}» зараз неможливий тут`);
+    } else if (!allowed.has(s.format) && !directiveFormat(s)) errors.push(`${label}: формат ${s.format} не дозволений; дозволені: ${[...allowed].join(', ')}`);
     if (at.getTime() < now.getTime() + LEAD_MINUTES * 60_000) errors.push(`${label}: час уже минув або менше ніж через ${LEAD_MINUTES} хв`);
     const hour = Number(s.time.slice(0, 2));
     if (isQuietHour(hour, card.quietStartHour, card.quietEndHour)) errors.push(`${label}: тихі години ${card.quietStartHour}:00–${card.quietEndHour}:00`);

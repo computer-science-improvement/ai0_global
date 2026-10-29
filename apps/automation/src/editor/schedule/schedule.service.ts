@@ -601,7 +601,8 @@ export class ScheduleService {
       const r = sc.net.resources.find((x) => x.ref === s.resource_ref);
       if (!r) errors.push(`${s.resource_ref} is not a resource of @${sc.agent.handle}`);
       else {
-        const allowed = r.platform === 'telegram' ? sc.net.telegramFormats : implementedFormats(r.platform);
+        // Spec 073 FR-002: a series' format is the series' own — it only has to be one the platform implements (not the card's weights).
+        const allowed = implementedFormats(r.platform);
         if (!allowed.includes(s.format)) errors.push(`format ${s.format} is not available on ${r.ref} (available: ${allowed.join(', ')})`);
         if (!body.platforms.some((p) => p.resource_ref === s.resource_ref)) errors.push(`the playbook has no section for ${s.resource_ref}`);
       }

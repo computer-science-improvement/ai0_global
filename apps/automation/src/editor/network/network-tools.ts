@@ -14,6 +14,7 @@ import { SubmitNetworkPlanInput, validateNetworkPlan } from './network-plan';
 import { PlaybookSchema, renderPlaybook } from './playbook';
 import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
 import type { ScheduleService } from '../schedule/schedule.service';
+import { lockedFormatsNote, lockSeriesFormats } from '../schedule/plan-schedule-rules';
 import { longText, longTextNote } from '../harness/clip-text';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
@@ -411,7 +412,8 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     ].join(' '),
     kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitNetworkPlanInput,
-    execute: async (plan, ctx) => {
+    execute: async (planIn, ctx) => {
+      let plan = planIn;
       const net = netOf(ctx);
       const card = ctx.extras?.card as EditorCard;
       const t = now();
@@ -420,6 +422,10 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       const reserved = await d.plans.reservedSlots(net.anchorKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
       const accepted = await d.repo.listIdeas(net.orchestrator.id, ['accepted'], 200);
       const sched = d.schedule ? await d.schedule.planContext(card, net, planDate, t, 'network') : undefined;
+      // Spec 073 FR-002: the series is authoritative for its slots' format — code sets it before the validator looks.
+      const locked = sched ? lockSeriesFormats(plan.slots, sched.series, sched.defaultRef) : null;
+      if (locked?.changed.length) plan = { ...plan, slots: locked.slots };
+      const lockedNote = locked ? lockedFormatsNote(locked.slots, locked.changed) : null;
       const planned = [...new Set(plan.slots.map((s) => s.idea_id).filter((x): x is string => !!x))];
       const v = validateNetworkPlan(plan, {
         net: sched ? d.schedule!.effectiveNet(net, sched) : net, schedule: sched,
@@ -432,7 +438,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
           : [],
         pollCap: d.pollCaps ? await d.pollCaps({ refs: net.resources.map((r) => r.ref), planDate, tz: card.timezone }) : undefined,
       });
-      if (!v.ok) return { error: 'plan_invalid', details: v.errors };
+      if (!v.ok) return { error: 'plan_invalid', details: [...v.errors, ...(lockedNote ? [lockedNote] : [])] };
       // Spec 068 FR-007: a source or row that cannot post is told to the planner now, not found by the executor when the slot is due.
       const sourceErrors = await planTimePreflightErrors(d.preflight, card, v.slots.map((s, i) => ({
         label: `слот ${i + 1} (${s.resourceRef} ${plan.slots[i].time})`,
@@ -441,11 +447,11 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
           ...(s.topicMode === 'live' ? { topicMode: 'live' as const } : {}), ideaId: s.ideaId, ...(s.treatment ? { treatment: s.treatment } : {}),
         },
       })), NETWORK_PLAN_TIME_WAY_OUT);
-      if (sourceErrors.length) return { error: 'plan_invalid', details: sourceErrors };
+      if (sourceErrors.length) return { error: 'plan_invalid', details: [...sourceErrors, ...(lockedNote ? [lockedNote] : [])] };
       const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id, v.empty);
       for (const id of new Set(v.slots.map((s) => s.ideaId).filter(Boolean) as string[])) await d.repo.updateIdea(id, { status: 'planned' });
       return {
-        ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}),
+        ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}), ...(lockedNote ? { format_locked: lockedNote } : {}),
         decisions: v.decisions.length, auto_skipped: v.decisions.filter((x) => x.decidedBy === 'system').map((x) => `${x.ideaId} → ${x.resourceRef}`),
       };
     },

@@ -132,7 +132,10 @@ export function validateNetworkPlan(
       treatment, fromSlot: s.from_slot ?? null, reason: s.reason ?? null, at: null,
     };
     // A unique slot's format must be in the playbook; a derived slot only has to be possible on the platform (plan-decisions).
-    if (treatment === 'unique' && !(sec.formats[s.format] > 0) && !directiveFormat(s, r.platform)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
+    // Spec 073 FR-002: a series slot's format is the series' (code set it), not the section's weights.
+    const ofSeries = !!s.series && due.has(s.series);
+    if (ofSeries && !implementedFormats(r.platform).includes(s.format)) errors.push(`${label}: формат ${s.format} серії «${s.series}» недоступний для ${r.platform}`);
+    if (treatment === 'unique' && !ofSeries && !(sec.formats[s.format] > 0) && !directiveFormat(s, r.platform)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
     const { tz, quiet } = resourceClock(r, card);
     const at = zonedToUtcStrict(o.planDate, s.time, tz);
     if (!at) { errors.push(`${label}: ${s.time} не існує ${o.planDate} у ${tz} (перехід на літній час) — обери інший час`); return; }

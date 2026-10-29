@@ -27,6 +27,7 @@ import type { CrossPostRequest } from '../publish/editor-crosspost';
 import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
 import type { ScheduleService } from '../schedule/schedule.service';
+import { lockedFormatsNote, lockSeriesFormats } from '../schedule/plan-schedule-rules';
 import type { NetworkCtx } from '../network/network-context';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
@@ -199,7 +200,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   // Spec 037 T9: the resource's last 20 posts (monotony) and a fixed slot's topic (same format + topic twice a day).
   const variety = { previous: await recentAuditPosts(d.pool, { channelKey, timezone: card.timezone, excludeSlotId: slotId, card }).catch(() => []), topic: slot.topicMode === 'live' ? undefined : slot.topic };
   // Spec 067 FR-005: the post is about to be stored or sent, so an off-topic poster is an error the executor fixes now.
-  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}), previous: variety.previous, prePublish: true }, topic: variety.topic });
+  // Spec 073 A20: a series or pin slot's format is the schedule's: lint does not refuse it for the card's weights (publishGuard compares it with the series).
+  const lockedFormat = slotSeriesOf(slot) || slot.scheduleRuleId ? slot.format : undefined;
+  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ...(lockedFormat ? { lockedFormat } : {}), ctx: { now: now.toISOString(), ...(sources ? { sources } : {}), previous: variety.previous, prePublish: true }, topic: variety.topic });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
   const truth = await checkQuizGroundTruth(d.pool, spec);
   if (truth) return truth;
@@ -276,13 +279,18 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову. Якщо для серії чи для всього дня немає з чого писати — чесно скажи це: skipped_series з cause no_material (знижує мінімум постів) або short_day {cause, reason} (мінімум 0); код запише це як пропущений слот, а не змусить планувати слоти, які однаково не вийдуть.',
     kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitPlanInput,
-    execute: async (plan, ctx) => {
+    execute: async (planIn, ctx) => {
+      let plan = planIn;
       const card = cardFrom(ctx);
       const t = now();
       const planDate = (ctx.extras?.planDate as string) ?? localDate(t, card.timezone);
       const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
       const reserved = await d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
       const sched = d.schedule ? await d.schedule.planContext(card, (ctx.extras?.network as NetworkCtx | undefined) ?? null, planDate, t, 'single') : undefined;
+      // Spec 073 FR-002: the series is authoritative for its slots' format — code sets it before the validators look.
+      const locked = sched ? lockSeriesFormats(plan.slots, sched.series, sched.defaultRef) : null;
+      if (locked?.changed.length) plan = { ...plan, slots: locked.slots };
+      const lockedNote = locked ? lockedFormatsNote(locked.slots, locked.changed) : null;
       // Spec 025 FR-014: a single-channel plan carries the quotas on its own channel only.
       const anchor = `telegram:${card.channelKey}`;
       const formatOk = d.env ? (f: string) => formatAvailable(f, d.env!).ok : undefined;
@@ -298,14 +306,14 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
         label: `слот ${i + 1} (${plan.slots[i].time})`,
         slot: { channelKey: card.channelKey, format: s.format, sourceHints: s.sourceHints, ...(s.live ? { topicMode: 'live' as const } : {}), ideaId: s.ideaId ?? null },
       }))) : [];
-      if (!v.ok || topicErrors.length || sourceErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors, ...sourceErrors] };
+      if (!v.ok || topicErrors.length || sourceErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors, ...sourceErrors, ...(lockedNote ? [lockedNote] : [])] };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots, v.empty);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.
       const ideaIds = [...new Set(v.slots.map((s) => s.ideaId).filter(Boolean))];
       if (ideaIds.length) {
         await d.pool.query(`UPDATE content_ideas SET status = 'planned', updated_at = now() WHERE id = ANY($1::uuid[]) AND status = 'accepted'`, [ideaIds]).catch(() => {});
       }
-      return { ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}) };
+      return { ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}), ...(lockedNote ? { format_locked: lockedNote } : {}) };
     },
   });
 

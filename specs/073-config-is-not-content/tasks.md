@@ -19,7 +19,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
     - `post/polls/poll-cap-guard.pg.test.ts` stays green unchanged.
   - Done when: a daily quiz series on a resource with `polls_per_week` 1 passes the guard on every day of a week in the test, an improvised second poll is still refused, and the digest and the post audit do not flag the series.
 
-- [ ] **T2 Series format lock at plan time and in lint (FR-002; A20, A21, A22).**
+- [x] **T2 Series format lock at plan time and in lint (FR-002; A20, A21, A22).**
   - What:
     - `lockSeriesFormats(slots, series, defaultRef)` in `submit_plan` and `submit_network_plan`, with A21's matching rule and the changed slots named in the tool result;
     - series slots are exempt from card and section weights;
