@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { AUTO_SAFE_FIX_KINDS, AUTO_SAFE_RUN_REPAIRS, FIX_ALL_EXCLUDED_KINDS, isAutoSafeFix, isFixAllKind } from './auto-fix';
+import { AUTO_SAFE_FIX_KINDS, AUTO_SAFE_RUN_REPAIRS, DESTRUCTIVE_FIX_KINDS, FIX_ALL_EXCLUDED_KINDS, isAutoSafeFix, isDestructiveFix, isFixAllKind } from './auto-fix';
 import { CONFIG_FAILURE_CODES, isConfigCode, isRepairable } from './slot-config';
 import { FIX_KINDS } from '../sysadmin/audit.types';
 
@@ -27,6 +27,12 @@ test('FIX_ALL_EXCLUDED_KINDS is bind_dataset, dataset_patch (075, W2) and source
   for (const k of FIX_KINDS.filter((x) => x !== 'source_drop')) assert.equal(isFixAllKind(k), true, k);
   assert.equal(isAutoSafeFix('source_drop'), false);
   assert.equal(isAutoSafeFix('host_proxy_add'), false, 'neither 076 fix is applied by code');
+});
+
+test('W1 integration review: source_drop is the one destructive kind (the row confirm is a danger Remove that names it)', () => {
+  assert.deepEqual([...DESTRUCTIVE_FIX_KINDS], ['source_drop']);
+  for (const k of FIX_KINDS) assert.equal(isDestructiveFix(k), k === 'source_drop', k);
+  for (const k of DESTRUCTIVE_FIX_KINDS) assert.equal(isFixAllKind(k), false, `${k}: never in Fix all`);
 });
 
 test('lead I5: the runner\'s own slot repairs are a closed list of two, and isRepairable reads exactly that list', () => {

@@ -14,11 +14,9 @@ import { useFixReadiness, useReadiness, useRecheckReadiness, type ReadinessFindi
 import { alignPrompt } from '../../lib/align';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import {
-  AUTO_FIXED_CODE, badgesOf, bodyLine, findingHint, findingTitle, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix, last24hLine, sectionsOf, splitLink,
+  AUTO_FIXED_CODE, badgesOf, bodyLine, findingHint, findingTitle, fixAllNote, fixAllPhrase, fixConfirm, fixLabels, fixToasts, hasFix, last24hLine, sectionsOf, splitLink,
 } from '../../lib/readiness';
 // The stylesheet (readiness.css) is imported by routes/app.tsx: node tests load this module through the launch panel.
-
-const lowerFirst = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 
 interface Props {
   channelKey: string;
@@ -101,7 +99,9 @@ function FindingRow({ f, channelKey, handle }: { f: ReadinessFinding; channelKey
   const fixed = f.code === AUTO_FIXED_CODE;
   const link = f.link ? splitLink(f.link) : null;
   const fixOne = async () => {
-    if (!f.fix || !(await confirm(lowerFirst(f.fix.label), { confirmLabel: 'Apply fix', danger: false }))) return;
+    if (!f.fix) return;
+    const c = fixConfirm(f.fix);
+    if (!(await confirm(c.action, { confirmLabel: c.confirmLabel, danger: c.danger }))) return;
     fix.mutate({ keys: [f.key] }, { onSuccess: (r) => fixToasts(r).forEach((t) => (t.kind === 'error' ? toast.error(t.text) : toast.success(t.text))) });
   };
   return (

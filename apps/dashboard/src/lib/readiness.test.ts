@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { ReadinessFinding, ReadinessView } from '../api/readiness';
 import {
-  FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockedView, blockerIntro, blockerLines, bodyLine, findingHint, findingTitle, fixAllNote, fixAllPhrase, fixLabels,
+  FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockedView, blockerIntro, blockerLines, bodyLine, findingHint, findingTitle, fixAllNote, fixAllPhrase, fixConfirm, fixLabels,
   fixToasts, hasFix, isFreshWindow, isStartMove, last24hLine, parseReadinessFlag, readinessLink, readinessPath, sectionsOf, splitLink, startPhrase,
 } from './readiness';
 import { reasonView } from './reasons';
@@ -226,4 +226,10 @@ test('a successful change opens the fresh window and invalidates the results bef
   const early = src.indexOf('meta?.skipNavBadges');
   assert.ok(guard > 0 && guard < stale && stale < early, 'markReadinessStale sits behind the readiness guard and before the skipNavBadges return');
   assert.ok(root > stale && root < early, 'the invalidation sits there too');
+});
+
+test('W1 integration review: a row Fix that removes a source is a danger "Remove" naming it; any other is "Apply fix"', () => {
+  assert.deepEqual(fixConfirm({ label: 'Remove source “pdr_feed” from @pdr', auto: false, inFixAll: false, destructive: true }),
+    { action: 'remove source “pdr_feed” from @pdr', confirmLabel: 'Remove', danger: true });
+  assert.deepEqual(fixConfirm({ label: 'Switch the skill off', auto: false, inFixAll: true }), { action: 'switch the skill off', confirmLabel: 'Apply fix', danger: false });
 });

@@ -23,5 +23,12 @@ export const FIX_ALL_EXCLUDED_KINDS: readonly string[] = ['bind_dataset', 'datas
  */
 export const AUTO_SAFE_RUN_REPAIRS = ['config_format_mismatch', 'config_source_mismatch'] as const;
 
+/**
+ * W1 integration review: the kinds a row's own Fix button must confirm as a removal (danger style, the subject named), as the
+ * Sources panel's "Remove" does. `source_drop` is the only one: it takes a source off the card.
+ */
+export const DESTRUCTIVE_FIX_KINDS: readonly string[] = ['source_drop'];
+
+export const isDestructiveFix = (kind: string): boolean => DESTRUCTIVE_FIX_KINDS.includes(kind);
 export const isAutoSafeFix = (kind: string): boolean => (AUTO_SAFE_FIX_KINDS as readonly string[]).includes(kind);
 export const isFixAllKind = (kind: string): boolean => !FIX_ALL_EXCLUDED_KINDS.includes(kind);

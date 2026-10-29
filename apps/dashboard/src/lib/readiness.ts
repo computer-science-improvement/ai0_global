@@ -77,6 +77,16 @@ export function sectionsOf(findings: readonly ReadinessFinding[]): ReadinessSect
 /** Can this row's own Fix button do something? (Info rows keep one; the server decides whether the kind is allowed.) */
 export const hasFix = (f: ReadinessFinding): boolean => isOpen(f) && !!f.fix;
 
+/**
+ * The confirm of a row's Fix button (W1 integration review): the server's label as the action ("Are you sure you want to …?").
+ * A destructive fix (a source taken off the card) is a danger "Remove", as the Sources panel's own Remove; any other is
+ * "Apply fix".
+ */
+export function fixConfirm(fix: NonNullable<ReadinessFinding['fix']>): { action: string; confirmLabel: string; danger: boolean } {
+  const action = fix.label.charAt(0).toLowerCase() + fix.label.slice(1);
+  return fix.destructive ? { action, confirmLabel: 'Remove', danger: true } : { action, confirmLabel: 'Apply fix', danger: false };
+}
+
 /** Fix all's confirm: `Are you sure you want to apply 2 fixes?` */
 export const fixAllPhrase = (n: number): string => `apply ${plural(n, 'fix', 'fixes')}`;
 

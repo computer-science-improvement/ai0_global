@@ -32,7 +32,7 @@ test('source_drop is never in Fix all (lead S9); host_proxy_add is, and neither 
   const [route] = sourcesCheck.run(withProbe(probe(), { proxy: true, required: true }));
   assert.equal(isFixAllTarget(drop), false);
   assert.equal(isFixAllTarget(route), true);
-  assert.deepEqual(toReadinessFinding(drop).fix, { label: 'Remove the source from the card', auto: false, inFixAll: false });
+  assert.deepEqual(toReadinessFinding(drop).fix, { label: 'Remove source “pdr_feed” from @fx072', auto: false, inFixAll: false, destructive: true }, 'the row\'s confirm names it and warns (W1 integration review)');
   assert.deepEqual(toReadinessFinding(route).fix, { label: 'Read zakon.rada.gov.ua through the proxy', auto: false, inFixAll: true });
 });
 

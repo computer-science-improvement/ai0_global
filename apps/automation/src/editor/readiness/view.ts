@@ -2,7 +2,7 @@ import type { ChannelMode } from '../card';
 import { isNotAMiss, skipGroupOf } from '../silent/skip-reasons';
 import type { Finding, FindingSubject } from '../sysadmin/audit.types';
 import { fixLabel } from '../sysadmin/fix-runner';
-import { isAutoSafeFix, isFixAllKind } from './auto-fix';
+import { isAutoSafeFix, isDestructiveFix, isFixAllKind } from './auto-fix';
 
 /**
  * Spec 072 FR-007, A11, A13, A20: what the API and the dashboard see of the stored row. Pure: the service reads, this shapes.
@@ -18,9 +18,10 @@ export interface ReadinessFinding {
   subject: FindingSubject; link: string | null; firstSeenAt: string | null;
   /**
    * The Fix itself stays on the server. `inFixAll`: whether Fix all and «Виправити все» apply it (`isFixAllKind`, lead at the
-   * 076 merge), so the Fix all confirm lists only what it will do.
+   * 076 merge), so the Fix all confirm lists only what it will do. `destructive`: the row's Fix removes something (W1
+   * integration review), so its confirm names the subject in the danger style; absent otherwise.
    */
-  fix: { label: string; auto: boolean; inFixAll: boolean } | null;
+  fix: { label: string; auto: boolean; inFixAll: boolean; destructive?: true } | null;
 }
 
 export interface Last24h { planned: number; published: number; awaiting: number; skipped: number; byGroup: Record<string, number> }
@@ -36,7 +37,10 @@ export interface ReadinessView {
 export const toReadinessFinding = (f: Finding): ReadinessFinding => ({
   key: f.key, code: f.check, severity: f.severity, title: f.title, detail: f.detail, subject: f.subject,
   link: f.link ?? null, firstSeenAt: f.firstSeenAt ?? null,
-  fix: f.fix ? { label: fixLabel(f.fix), auto: isAutoSafeFix(f.fix.kind), inFixAll: isFixAllKind(f.fix.kind) } : null,
+  fix: f.fix ? {
+    label: fixLabel(f.fix), auto: isAutoSafeFix(f.fix.kind), inFixAll: isFixAllKind(f.fix.kind),
+    ...(isDestructiveFix(f.fix.kind) ? { destructive: true as const } : {}),
+  } : null,
 });
 
 /** Open errors, warnings and infos; the `auto_fixed` rows are in none of them (A20). */

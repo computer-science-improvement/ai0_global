@@ -13,9 +13,10 @@ export interface ReadinessFinding {
   link: string | null; firstSeenAt: string | null;
   /**
    * The fix itself stays on the server: its label, whether code may apply it by itself, and whether Fix all applies it
-   * (absent from an older server: then it is listed).
+   * (absent from an older server: then it is listed). `destructive`: it removes something (a source from the card), so the
+   * row's confirm is a danger "Remove" that names it.
    */
-  fix: { label: string; auto: boolean; inFixAll?: boolean } | null;
+  fix: { label: string; auto: boolean; inFixAll?: boolean; destructive?: boolean } | null;
 }
 
 export interface ReadinessLast24h { planned: number; published: number; awaiting: number; skipped: number; byGroup: Record<string, number> }

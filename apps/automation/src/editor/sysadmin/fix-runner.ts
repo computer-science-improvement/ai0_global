@@ -91,7 +91,7 @@ export function fixLabel(fix: Fix): string {
     case 'hashtag_min_zero':       return 'Set minimum hashtags to 0';
     case 'series_resume':          return 'Resume the series';
     case 'series_source_require':  return 'Require the source (the series becomes yours and is locked)';
-    case 'source_drop':            return 'Remove the source from the card';
+    case 'source_drop':            return `Remove source “${fix.sourceId}” from ${fix.channel}`;
     case 'host_proxy_add':         return `Read ${fix.host} through the proxy`;
   }
 }
