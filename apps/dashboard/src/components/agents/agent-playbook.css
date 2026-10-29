@@ -236,6 +236,28 @@ ol.apb-md-list { list-style: decimal; }
 .apb-judge > div { overflow-wrap: anywhere; }
 .apb-wrap { overflow-wrap: anywhere; }
 
+/* ── Memory and run history ───────────────────────────────────────────────────────────────────────── */
+.apb-callout-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.apb-run-error { max-width: 260px; color: var(--color-danger-ink); }
+.apb-more { display: flex; justify-content: center; margin-top: 12px; }
+
+/* ── Style sheet (an inset inside the Edit formatting dialog) ─────────────────────────────────────── */
+.apb-sheet { min-width: 0; margin: 4px 0 14px; }
+.apb-sheet-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 4px; }
+.apb-sheet-head h3 { margin: 0; color: var(--color-ink); }
+.apb-sheet-lead { margin: 0 0 12px; }
+.apb-sheet-off { margin: -4px 0 12px; }
+.apb-sheet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); column-gap: 14px; }
+.apb-suggest {
+  display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; padding: 10px 12px;
+  background: var(--color-surface-2); border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+}
+.apb-suggest-ask { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.apb-suggest-ask > span { flex: 1 1 200px; min-width: 0; }
+.apb-pair { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.apb-pair .input-field.apb-input { flex: 1 1 0; width: auto; min-width: 0; }
+.apb-pair-arrow { flex: none; color: var(--color-ink-dim); }
+
 @media (max-width: 600px) {
   .apb-mode { width: 100%; }
   .apb-weight { grid-template-columns: minmax(0, 72px) minmax(0, 1fr) 54px 30px; gap: 6px; }
