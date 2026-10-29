@@ -272,3 +272,34 @@ a.apl-entry:hover { background: var(--color-surface-3); }
   .panel-row.apl-linkrow { flex-wrap: wrap; }
   .apl-rule-link { margin-left: 0; width: 100%; }
 }
+
+/* ── In force (active effects): a row per paused resource or directive in effect ─────────────────── */
+.apl-nowrap { white-space: nowrap; }
+.apl-pad { padding: 0 20px 12px; }
+.apl-effects-skeleton { height: 56px; margin: 0 20px 16px; border-radius: var(--radius-md); background: var(--color-surface-1); opacity: 0.6; }
+.panel-row.apl-effect { align-items: flex-start; flex-wrap: nowrap; gap: 12px; }
+.apl-effect-icon { display: inline-flex; flex: none; margin-top: 3px; color: var(--color-ink-dim); }
+.apl-effect-icon.is-warning { color: var(--color-warning); }
+.apl-effect-main { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.apl-effect-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.apl-effect-text { color: var(--color-ink); overflow-wrap: anywhere; }
+.apl-effect-note { color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.apl-effect-side { display: flex; flex: none; align-items: center; gap: 12px; margin-left: auto; }
+.apl-until { text-align: right; color: var(--color-ink-muted); white-space: nowrap; }
+
+/* ── The news watch of a resource (NewsWatchView / NewsWatchEditor) ───────────────────────────────── */
+.apl-nw-view { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-nw-when { color: var(--color-ink-muted); }
+.apl-nw { display: flex; flex-direction: column; gap: 8px; }
+.apl-nw-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.apl-nw-word { color: var(--color-ink-dim); }
+.input-field.apl-nw-sel { flex: 1 1 72px; min-width: 0; }
+.apl-nw-err { color: var(--color-danger); }
+
+@media (max-width: 600px) {
+  .apl-pad { padding: 0 16px 12px; }
+  .apl-effects-skeleton { margin: 0 16px 16px; }
+  .panel-row.apl-effect { flex-wrap: wrap; }
+  .apl-effect-side { margin-left: 26px; flex-wrap: wrap; }
+  .apl-until { text-align: left; }
+}
