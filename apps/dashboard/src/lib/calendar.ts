@@ -229,6 +229,8 @@ export function markOfSlot(slot: Pick<ScheduleSlot, 'status' | 'seriesName' | 's
 }
 
 const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+/** The slot statuses whose `error` says why no post went out. */
+const CLOSED = new Set(['skipped', 'failed', 'expired']);
 
 /** Which open pause (if any) stops a projected series or pin: `series:<name>`, `rule:<id>` or `resource:<ref>`. */
 export function pauseOf(e: Pick<Entry, 'kind' | 'series' | 'ruleId' | 'title'>, ref: string, open: readonly Pick<SeriesPause, 'key'>[]): Pick<SeriesPause, 'key'> | null {
@@ -261,8 +263,12 @@ function entryChip(e: Entry, res: ScheduleResource, byId: Map<string, ScheduleSl
     mark = markOfSlot(slot);
     label = MARK_LABEL[mark];
     if (slot.topic && slot.topic !== e.title) detail = slot.topic;
+    // A closed slot says why it did not go out; a planned one shows only the runner's own notes (a retry, the budget), never
+    // an old text as a skip. An unclassified text is shown as it is, as Today and the agent Overview do.
     const why = skipReason(slot.error ?? null);
-    if (why) detail = [detail, `${why.label}${why.detail ? `: ${why.detail}` : ''}`].filter(Boolean).join(' · ');
+    if (why && (CLOSED.has(slot.status) || why.code === 'retrying' || why.code === 'waiting_for_budget')) {
+      detail = [detail, why.code === 'other' ? why.detail : `${why.label}${why.detail ? `: ${why.detail}` : ''}`].filter(Boolean).join(' · ');
+    }
     if (kind === 'reserved') label = `${slot.promo ? 'Promo' : 'Reserved'} · ${lower(label)}`;
   } else {
     // A series instance or a pin the planner has not turned into a slot. Past days: the series may not have existed

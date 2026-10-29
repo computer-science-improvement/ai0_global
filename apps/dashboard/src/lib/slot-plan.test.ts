@@ -51,7 +51,14 @@ test('skip reasons: no_fresh_item, critic reject / failure, replaced, owner, age
   assert.deepEqual(skipReason('resource_unavailable: token_invalid — token expired on 2026-08-17'),
     { code: 'unavailable', label: 'Connection broken', detail: 'token_invalid — token expired on 2026-08-17', fix: 'Reconnect the resource in Connections.' });
   // Spec 073 FR-014: a text the mirror does not know stays unclassified, with the system's words as the detail (never "Note").
-  assert.deepEqual(skipReason('retry after max_steps'), { code: 'other', label: 'Skipped — reason not classified', detail: 'retry after max_steps' });
+  // W1 integration review: the label is neutral (the text may be on a planned or a failed slot), and the runner's two notes
+  // on a slot that stays planned are read as the server reads them.
+  assert.deepEqual(skipReason('Request failed with status code 502'), { code: 'other', label: 'Reason not classified', detail: 'Request failed with status code 502' });
+  assert.deepEqual(skipReason('retry after max_steps'), { code: 'retrying', label: 'Retrying after a failed attempt', detail: 'Run hit its step limit' });
+  assert.deepEqual(skipReason('retry after timeout of 60000ms exceeded'), { code: 'retrying', label: 'Retrying after a failed attempt', detail: 'timeout of 60000ms exceeded' });
+  assert.deepEqual(skipReason('waiting for budget: daily cap $3.00 reached'), {
+    code: 'waiting_for_budget', label: 'Waiting for budget', detail: 'daily cap $3.00 reached', fix: 'Raise the daily budget or wait; the slot tries again by itself.',
+  });
   assert.equal(skipReason(null), null);
 });
 
@@ -68,7 +75,7 @@ test('skip reasons: any other code of the catalogue mirror gives its label, fix 
   assert.deepEqual(skipReason('mode_changed'), { code: 'mode_changed', label: 'Channel mode changed', detail: '' });
   // A code that is only a prefix of a word is not a code.
   assert.equal(skipReason('stale-source')!.code, 'other');
-  assert.equal(skipReason('anything')!.label, 'Skipped — reason not classified');
+  assert.equal(skipReason('anything')!.label, 'Reason not classified');
 });
 
 test('planned at / by and when the agent plans (approval: the evening before)', () => {

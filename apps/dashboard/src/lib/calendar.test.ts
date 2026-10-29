@@ -205,6 +205,21 @@ test('a skipped slot\'s tooltip carries the reason in plain words', () => {
   assert.match(c.tip, /Nothing fresh in the sources: feed empty/);
 });
 
+test('W1 integration review: a planned slot shows the runner\'s retry or budget note, never "not classified"; a failed one its own words', () => {
+  const sc = sched([], [
+    slot({ status: 'planned', error: 'waiting for budget: daily cap $3.00 reached' }),
+    slot({ id: 's2', time: '12:00', status: 'planned', error: 'retry after max_steps' }),
+    slot({ id: 's3', time: '13:00', status: 'planned', error: 'some old text' }),
+    slot({ id: 's4', time: '14:00', status: 'failed', error: 'Request failed with status code 502' }),
+  ]);
+  const [budget, retry, old, failed] = agentChips(sc, agent(), TODAY, TODAY);
+  assert.match(budget.tip, /Waiting for budget: daily cap \$3\.00 reached/);
+  assert.match(retry.tip, /Retrying after a failed attempt: Run hit its step limit/);
+  assert.doesNotMatch(old.tip, /some old text|not classified/);
+  assert.match(failed.tip, /Request failed with status code 502/);
+  assert.doesNotMatch(failed.tip, /not classified|Skipped/);
+});
+
 test('chips sort by time, slot before projection at the same minute, the owner\'s post last', () => {
   const mk = (time: string, kind: CalChip['kind'], title: string): CalChip =>
     ({ key: title, kind, mark: 'planned', muted: false, alert: null, time, title, status: '', platform: null, tip: '', target: null });

@@ -134,10 +134,18 @@ export function skipReason(error: string | null | undefined): SkipReason | null 
   if (/^preflight_no_material\b/.test(e)) return withFix({ code: 'preflight_no_material', label: 'Nothing to post from the library row', detail: rest(/^preflight_no_material:?/) }, 'preflight_no_material');
   if (/^resource_paused/.test(e)) return withFix({ code: 'paused', label: 'Resource paused', detail: '' }, 'resource_paused');
   if (/^resource_unavailable\b/.test(e)) return withFix({ code: 'unavailable', label: 'Connection broken', detail: rest(/^resource_unavailable:?/) }, 'resource_unavailable');
-  // Any other leading `<code>` or `<code>:` the catalogue knows (the legacy texts of the server's mapping are not ported).
+  // The two notes the runner still writes on a slot that stays planned (`retry after <why>`, `waiting for budget: <why>`): the
+  // server's LEGACY mapping reads them as `retrying` and `waiting_for_budget`; the other legacy texts are not ported.
+  if (/^waiting for budget\b/.test(e)) return withFix({ code: 'waiting_for_budget', label: 'Waiting for budget', detail: rest(/^waiting for budget:?/) }, 'waiting_for_budget');
+  if (/^retry after\b/.test(e)) {
+    const why = rest(/^retry after:?/);
+    return withFix({ code: 'retrying', label: 'Retrying after a failed attempt', detail: reasonOfToken(why)?.en ?? why }, 'retrying');
+  }
+  // Any other leading `<code>` or `<code>:` the catalogue knows.
   const entry = reasonOfToken(e);
   if (entry) return withFix({ code: entry.code, label: entry.en, detail: rest(new RegExp(`^${entry.code}:?`)) }, entry.code);
-  return { code: 'other', label: 'Skipped — reason not classified', detail: e };
+  // Neutral: the text may sit on a planned or a failed slot as well as on a skipped one.
+  return { code: 'other', label: 'Reason not classified', detail: e };
 }
 
 /** "Planned at 06:02 Kyiv" (the plan's creation time in the channel's zone). */
