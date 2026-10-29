@@ -198,3 +198,31 @@ test('S9: source_drop and host_proxy_add run 076\'s functions through their port
   assert.equal((await refusalOf(() => runFix(bare, { kind: 'source_drop', channel: '@c', sourceId: 'x' }))).error, 'fix_unavailable');
   assert.equal((await refusalOf(() => runFix(bare, { kind: 'host_proxy_add', host: 'a.example' }))).error, 'fix_unavailable');
 });
+
+test('W1 integration review: host_proxy_add reads the finding\'s source again through the proxy, so the stored probe follows', async () => {
+  const env: Record<string, string> = { EGRESS_PROXY_URL: 'http://proxy.example:3128', EGRESS_PROXY_HOSTS: '' };
+  const reads: unknown[][] = [];
+  let answer: { ok: boolean; detail?: string | null } = { ok: true, detail: '24 items, newest 2 h ago' };
+  const { p } = ports({
+    hostProxy: {
+      env: (k) => env[k], setHosts: async (v) => { env.EGRESS_PROXY_HOSTS = v; },
+      reprobe: async (url, kind) => { reads.push([url, kind, env.EGRESS_PROXY_HOSTS]); return answer; },
+    },
+  });
+  const fix = { kind: 'host_proxy_add', host: 'slow.example', url: 'https://slow.example/feed', sourceKind: 'rss' } as const;
+  const ok = await runFix(p, fix);
+  assert.deepEqual(reads, [['https://slow.example/feed', 'rss', 'slow.example']], 'read after the host is on the list');
+  assert.equal(ok.applied, 'slow.example is now read through the proxy; the server read the source again: 24 items, newest 2 h ago');
+  // Still failing through the proxy: a refusal (the host stays listed); Fix all reports it as failed, not fixed.
+  answer = { ok: false, detail: 'timed out twice (10 s)' };
+  const still = await tryFix(p, fix);
+  assert.equal(still.ok, false);
+  assert.equal(still.error, 'source_still_failing: slow.example is read through the proxy now, but https://slow.example/feed still fails: timed out twice (10 s)');
+  assert.equal(env.EGRESS_PROXY_HOSTS, 'slow.example');
+  // A read that cannot be made keeps the fix; a fix without an address, or a port without the read, only edits the list.
+  const broken = ports({ hostProxy: { env: (k) => env[k], setHosts: async () => {}, reprobe: async () => { throw new Error('pool gone'); } } });
+  assert.match((await runFix(broken.p, fix)).applied!, /^slow\.example is already read through the proxy; the source could not be read again now \(pool gone\)$/);
+  reads.length = 0;
+  assert.equal((await runFix(p, { kind: 'host_proxy_add', host: 'slow.example' })).applied, 'slow.example is already read through the proxy');
+  assert.deepEqual(reads, []);
+});

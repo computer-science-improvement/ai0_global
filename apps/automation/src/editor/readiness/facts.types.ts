@@ -51,6 +51,8 @@ export interface ChannelFacts {
   sources:         SourceFact[];
   /** 076: an egress proxy is configured (`EGRESS_PROXY_URL`), so a refused or timing-out host can be routed through it. Absent = no. */
   proxyConfigured?: boolean;
+  /** 076: `EGRESS_PROXY_HOSTS` as listed now (a host on it is not offered the proxy again). Absent = none. */
+  proxyHosts?:     string[];
   /** The executor's loadout allowlist; null = the role default. */
   loadoutTools:    string[] | null;
   /** `intersectAllow(card.toolsAllow, loadoutTools)`; null = no limit. */
@@ -105,7 +107,7 @@ export interface SourceFact {
    * 076's latest stored probe of the address (`source_probes`, read from the cache only, never a live fetch); null = never probed,
    * absent for a library or api source. `detail` is the display line of the probe.
    */
-  probe?: { ok: boolean; failure_class: string | null; items: number | null; newest_at: string | null; checked_at: string; detail?: string } | null;
+  probe?: { ok: boolean; failure_class: string | null; items: number | null; newest_at: string | null; checked_at: string; detail?: string; via_proxy?: boolean } | null;
 }
 
 export interface PlannedSlotFact {

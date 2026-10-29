@@ -9,7 +9,8 @@ import { egressProxyConfigured, proxyHosts } from '../net/safe-http';
 export interface FixResult { ok: boolean; applied?: string; error?: string }
 
 export interface SourceDropFix { kind: 'source_drop'; channel: string; sourceId: string }
-export interface HostProxyAddFix { kind: 'host_proxy_add'; host: string }
+/** `url` and `sourceKind`: the source the finding is about, read again through the proxy once the host is added (the fix runner). */
+export interface HostProxyAddFix { kind: 'host_proxy_add'; host: string; url?: string; sourceKind?: 'rss' | 'url' }
 
 export interface SourceDropDeps {
   /** The card as saved, or null for an unknown channel. */
@@ -46,6 +47,12 @@ export interface HostProxyAddDeps {
   env: (k: string) => string | undefined;
   /** `SettingsService.setValue('EGRESS_PROXY_HOSTS', value)`: validates the list, stores it and applies it at once. */
   setHosts(value: string): Promise<unknown>;
+  /**
+   * A forced read of one address (`sourceProberOf(pool, env)` with `force: true`), which stores the probe and lifts a host block
+   * on success. The readiness fix calls it after the host is added, as the Sources panel's "Route via proxy" does; without it
+   * the fix only edits the list.
+   */
+  reprobe?(url: string, kind?: 'rss' | 'url'): Promise<{ ok: boolean; detail?: string | null }>;
 }
 
 const HOST_RE = /^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$/;

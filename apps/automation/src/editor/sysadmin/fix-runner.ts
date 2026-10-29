@@ -160,9 +160,29 @@ export async function runFix(p: FixPorts, fix: Fix): Promise<FixResult> {
     }
     case 'host_proxy_add': {
       if (!p.hostProxy) throw unavailable('the source proxy');
-      return sourceFixResult(await applyHostProxyAdd(p.hostProxy, fix), fix.host, fix);
+      const done = sourceFixResult(await applyHostProxyAdd(p.hostProxy, fix), fix.host, fix);
+      return fix.url && p.hostProxy.reprobe ? readAgainThroughProxy(p.hostProxy.reprobe, { ...fix, url: fix.url }, done) : done;
     }
   }
+}
+
+/**
+ * W1 integration review: once the host is on the proxy list, the finding's source is read again, forced, as the Sources panel's
+ * "Route via proxy" does. The doctor reads only the stored probe, so without this read the finding (and the fix Fix all offers
+ * for it) would stay until a probe that may never come. A read that still fails is a refusal: the host stays on the list, and
+ * the next check offers no proxy any more (its failed read went through the proxy). A read that cannot be made keeps the fix.
+ */
+async function readAgainThroughProxy(
+  reprobe: NonNullable<HostProxyAddDeps['reprobe']>, fix: Extract<Fix, { kind: 'host_proxy_add' }> & { url: string }, done: FixResult,
+): Promise<FixResult> {
+  let r: { ok: boolean; detail?: string | null };
+  try {
+    r = await reprobe(fix.url, fix.sourceKind);
+  } catch (err) {
+    return { ok: true, applied: `${done.applied}; the source could not be read again now (${clip(errText(err), 120)})` };
+  }
+  if (!r.ok) throw refusal('source_still_failing', `${fix.host} is read through the proxy now, but ${fix.url} still fails${r.detail ? `: ${clip(r.detail, 120)}` : ''}`);
+  return { ok: true, applied: `${done.applied}; the server read the source again${r.detail ? `: ${clip(r.detail, 120)}` : ''}` };
 }
 
 /** `runFix` that never throws: a refusal or a failure becomes `{ ok: false, error: '<code>: <details>' }`. */

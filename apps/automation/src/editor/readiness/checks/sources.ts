@@ -26,6 +26,7 @@ export const sourcesCheck: DoctorCheck = {
       createdAt: f.card.createdAt,
       sources: f.sources.map(toSourceFact),
       proxyConfigured: f.proxyConfigured === true,
+      proxyHosts: f.proxyHosts ?? [],
       uploadedImports: f.datasets.filter((d) => d.uploaded).map((d) => d.key),
     });
   },

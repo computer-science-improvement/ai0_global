@@ -10,7 +10,9 @@ import type { HostProxyAddFix, SourceDropFix } from './source-fixes';
  *
  * Per source at most one finding, in this order of precedence:
  *   `source_probe_failed` (error when the source is required, else warn) — the latest fresh probe failed with any class but `empty`,
- *     or the host is blocked as `unreachable`;
+ *     or the host is blocked as `unreachable`. Its fix is `host_proxy_add` (with the source's address, read again once the host is
+ *     added) for a timeout or a refusal while a proxy is configured, unless that read already went through the proxy or the host
+ *     is on the proxy list since (then no fix: the next read decides); else `source_drop` for a card source;
  *   `source_empty` (warn) — the probe failed as `empty`, or an `rss` source's newest item is over 7 days old;
  *   `source_untested` (info) — an `rss` / `url` source with no fresh probe, on a channel created in the last 14 days.
  * Per channel: `card_without_sources` (info), and one `dataset_resync_manual` (info) for each dataset bound to an uploaded page.
@@ -26,6 +28,8 @@ export interface SourceProbeFact {
   newest_at:     string | null;
   checked_at:    string;
   detail?:       string;
+  /** The read went through the egress proxy (W1 integration review: then the proxy is no fix for it). */
+  via_proxy?:    boolean;
 }
 
 /** 072 FR-012's `SourceFact` with its two optional fields (L6), and the card source's id (delta: `source_drop` needs it). */
@@ -51,6 +55,8 @@ export interface SourceFindingsInput {
   createdAt:        Date;
   sources:          SourceFact[];
   proxyConfigured:  boolean;
+  /** `EGRESS_PROXY_HOSTS` as listed now (lower-case, no `www.`). A host on it is not offered the proxy again. Absent = none. */
+  proxyHosts?:      string[];
   /** The dataset keys already bound to the channel whose latest list import is an upload (the facts loader filters them). */
   uploadedImports:  string[];
 }
@@ -73,6 +79,11 @@ export const UNTESTED_CHANNEL_DAYS = 14;
 const DAY = 86_400_000;
 const SEVERITY_RANK = { info: 0, warn: 1, error: 2 } as const;
 const isReadFromServer = (kind: SourceFact['kind']): boolean => kind === 'rss' || kind === 'url';
+/** The host is read through the proxy: it or a parent domain is on the list (as `egressProxyFor` matches). */
+const onProxyList = (host: string, list: readonly string[]): boolean => {
+  const h = host.toLowerCase().replace(/^www\./, '');
+  return list.some((l) => h === l || h.endsWith(`.${l}`));
+};
 const en = (code: SourceFindingCode): string => sourceReason(code)?.en ?? code;
 
 const when = (iso: string): string => {
@@ -134,18 +145,28 @@ export function sourceFindings(input: SourceFindingsInput): SourceFinding[] {
     const subject = subjectOf(`${channelKey}|${f.url}`, label);
     const code = v.code;
 
+    // The proxy is offered once: not when the failed read already went through it (it did not help), and not when the host is
+    // on the list since that read (then the next read decides, and nothing is left for a tap to do but wait for it).
     let fix: SourceFix | undefined;
+    let routed = false;
     if (v.code === 'source_probe_failed') {
       const proxyable = v.classes.some((c) => c === 'timeout' || c === 'refused');
-      if (input.proxyConfigured && proxyable && f.host) fix = { kind: 'host_proxy_add', host: f.host };
+      routed = proxyable && !!f.host && !v.cause?.via_proxy && onProxyList(f.host, input.proxyHosts ?? []);
+      if (input.proxyConfigured && proxyable && f.host && !v.cause?.via_proxy && !routed) {
+        fix = { kind: 'host_proxy_add', host: f.host, url: f.url, sourceKind: f.kind === 'rss' ? 'rss' : 'url' };
+      }
     }
-    if (!fix && code !== 'source_untested' && f.origin === 'card') fix = { kind: 'source_drop', channel: channelKey, sourceId: f.id ?? f.url };
+    if (!fix && !routed && code !== 'source_untested' && f.origin === 'card') fix = { kind: 'source_drop', channel: channelKey, sourceId: f.id ?? f.url };
 
-    const detail = v.cause?.detail
+    const said = v.cause?.detail
       || (code === 'source_probe_failed' && f.hostBlock
         ? `blocked until ${when(f.hostBlock.until)} (${f.hostBlock.reason}, ${f.hostBlock.strikes} in a row)`
         : en(code));
-    const title = code === 'source_probe_failed' ? `${label}: the server cannot read this source`
+    const detail = routed
+      ? `${said}. ${f.host} is read through the proxy since; the next read from the server tells whether that helps ("Test from server" reads it now).`
+      : said;
+    const title = routed ? `${label}: routed through the proxy, waiting for a new read`
+      : code === 'source_probe_failed' ? `${label}: the server cannot read this source`
       : code === 'source_empty' ? `${label}: empty or not a feed`
         : `${label}: not read from the server yet`;
 
@@ -156,6 +177,7 @@ export function sourceFindings(input: SourceFindingsInput): SourceFinding[] {
       evidence: {
         url: f.url, kind: f.kind, origin: f.origin, failure_class: probe?.failure_class ?? null, items: probe?.items ?? null,
         newest_at: probe?.newest_at ?? null, checked_at: probe?.checked_at ?? null, block: f.hostBlock,
+        ...(probe?.via_proxy ? { via_proxy: true } : {}), ...(routed ? { routed_through_proxy: true } : {}),
       },
       ...(fix ? { fix } : {}), link: settingsLink,
     });

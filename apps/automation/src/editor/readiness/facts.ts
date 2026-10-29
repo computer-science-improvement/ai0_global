@@ -9,7 +9,7 @@ import { LoadoutRepository } from '../loadout/loadout.repository';
 import { intersectAllow, LoadoutService } from '../loadout/loadout.service';
 import type { LaunchBotState, LaunchGraduation } from '../launch/launch.types';
 import { feedKey, hostOf } from '../net/host-failures';
-import { egressProxyConfigured } from '../net/safe-http';
+import { egressProxyConfigured, proxyHosts } from '../net/safe-http';
 import { NetworkRepository } from '../network/network.repository';
 import type { Playbook, Series } from '../network/playbook';
 import { instancesPerDay, parseCadence, seriesSourceLabel, SeriesSourceSchema } from '../network/series';
@@ -433,7 +433,10 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: Load
       url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: blockOf(r, blocks), ...(r.id ? { id: r.id } : {}),
       lastSuccessAt: r.host ? answered.get(r.host) ?? null : null,
       ...(p === undefined ? {} : {
-        probe: p && { ok: p.ok, failure_class: p.failure_class, items: p.items, newest_at: p.newest_at, checked_at: p.checked_at, ...(p.detail ? { detail: p.detail } : {}) },
+        probe: p && {
+          ok: p.ok, failure_class: p.failure_class, items: p.items, newest_at: p.newest_at, checked_at: p.checked_at,
+          ...(p.detail ? { detail: p.detail } : {}), ...(p.via_proxy ? { via_proxy: true } : {}),
+        },
       }),
     };
   });
@@ -495,6 +498,7 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: Load
     pauses,
     sources,
     proxyConfigured: o.env ? egressProxyConfigured(o.env) : false,
+    proxyHosts: o.env ? proxyHosts(o.env('EGRESS_PROXY_HOSTS')) : [],
     loadoutTools,
     conflictBase: { rules: memory.filter((m) => m.createdBy === 'owner').map((m): OwnerRule => ({ id: m.id, text: m.text })), refs, others },
     launch: l ? { id: l.id, status: l.status, botState: (l.bot_state ?? null) as LaunchBotState | null, graduation: (l.graduation ?? null) as LaunchGraduation | null } : null,

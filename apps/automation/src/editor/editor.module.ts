@@ -2194,7 +2194,13 @@ export const EDITOR_PROVIDERS = [
             schedule,
             // Spec 076 (lead, 076 merge): the same two calls as the Sources panel's "Remove" and "Route via proxy".
             sourceDrop: { card: (key) => repos.channels.get(key), upsert: (key, body) => ops.upsertChannel(key, body) },
-            ...(settings ? { hostProxy: { env, setHosts: (v: string) => settings.setValue('EGRESS_PROXY_HOSTS', v) } } : {}),
+            // The forced read after the host is added is the panel's too (W1 integration review): the doctor reads only stored probes.
+            ...(settings ? {
+              hostProxy: {
+                env, setHosts: (v: string) => settings.setValue('EGRESS_PROXY_HOSTS', v),
+                reprobe: (url: string, kind?: 'rss' | 'url') => sourceProberOf(pool, env)(url, { force: true, ...(kind ? { kind } : {}) }),
+              },
+            } : {}),
           }),
           // READINESS_AUTO_FIX is live: read on every recheck. Anything but off/false/0/no is on.
           autoFix: () => !['off', 'false', '0', 'no'].includes((cfg.get<string>('READINESS_AUTO_FIX') ?? '').trim().toLowerCase()),

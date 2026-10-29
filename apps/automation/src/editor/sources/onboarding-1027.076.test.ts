@@ -133,7 +133,7 @@ test('replay 1: the doctor says source_probe_failed, with the proxy as the fix w
 
   const withProxy = sourceFindings({ ...base, proxyConfigured: true });
   assert.deepEqual(withProxy.map((f) => f.check), ['source_probe_failed']);
-  assert.deepEqual(withProxy[0].fix, { kind: 'host_proxy_add', host: PDR_HOST });
+  assert.deepEqual(withProxy[0].fix, { kind: 'host_proxy_add', host: PDR_HOST, url: PDR_URL, sourceKind: 'url' });
   assert.equal(withProxy[0].key, noProxy[0].key, 'the same problem keeps its key whatever the fix');
 
   // Even with no probe yet, the block alone is enough.

@@ -289,10 +289,11 @@ test('076 × 072 seams (S10): the stored probe, the host\'s last success, the ca
   assert.equal(feed.id, 'feed1');
   assert.equal(before.sources.find((s) => s.kind === 'library')!.probe, undefined, 'a library source is never read from the server');
   assert.equal(before.proxyConfigured, false);
+  assert.deepEqual(before.proxyHosts, []);
 
   await new PgSourceProbes(pool).put({
     url: RSS, ok: false, failure_class: 'timeout', status: null, kind: 'rss', feed_url: null, items: 0, newest_at: null, sample_titles: [],
-    detail: 'timed out after 15 s', ms: 15000, via_proxy: false, checked_at: new Date(Date.now() - 3_600_000).toISOString(),
+    detail: 'timed out after 15 s', ms: 15000, via_proxy: true, checked_at: new Date(Date.now() - 3_600_000).toISOString(),
   } as any);
   await pool.query(`UPDATE source_host_failures SET last_success_at = now() - interval '2 hours' WHERE host = 'feeds.fx072.example'`);
   const { rows: [tips] } = await pool.query(`SELECT id, version FROM data_schemas WHERE key = 'fx072_tips'`);
@@ -300,11 +301,14 @@ test('076 × 072 seams (S10): the stored probe, the host\'s last success, the ca
     `INSERT INTO data_imports (schema_id, schema_version, source, options, status) VALUES ($1, $2, 'pipeline', $3::jsonb, 'committed') RETURNING id`,
     [tips.id, tips.version, JSON.stringify({ list_import: { url: 'https://x.example/page', uploaded: true, auto_resync: false } })]);
   try {
-    const f = await loadChannelFacts(pool, CH, { env: (k) => (k === 'EGRESS_PROXY_URL' ? 'http://proxy.example:3128' : undefined) });
+    const env: Record<string, string> = { EGRESS_PROXY_URL: 'http://proxy.example:3128', EGRESS_PROXY_HOSTS: 'www.Feeds.fx072.example, other.example' };
+    const f = await loadChannelFacts(pool, CH, { env: (k) => env[k] });
     const card = f.sources.find((s) => s.origin === 'card' && s.kind === 'rss')!;
     assert.equal(card.probe?.ok, false);
     assert.equal(card.probe?.failure_class, 'timeout');
     assert.equal(card.probe?.detail, 'timed out after 15 s');
+    assert.equal(card.probe?.via_proxy, true, 'the read went through the proxy (W1 integration review)');
+    assert.deepEqual(f.proxyHosts, ['feeds.fx072.example', 'other.example'], 'the proxy list as egressProxyFor reads it');
     assert.ok(card.lastSuccessAt && Date.now() - Date.parse(card.lastSuccessAt) < 3 * 3_600_000);
     assert.equal(f.sources.find((s) => s.origin === 'series:Feed digest')!.probe?.failure_class, 'timeout', 'the series feed is the same address');
     assert.equal(f.proxyConfigured, true);

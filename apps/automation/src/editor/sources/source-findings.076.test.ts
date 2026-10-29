@@ -77,9 +77,9 @@ test('source_probe_failed: error for a required source, warn otherwise', () => {
 
 test('the fix of source_probe_failed: the proxy for timeout and refused when one is configured, else a card source is removed', () => {
   const withProxy = (f: SourceFact) => only(input([f], { proxyConfigured: true })).fix;
-  assert.deepEqual(withProxy(fact({ probe: failed('timeout') })), { kind: 'host_proxy_add', host: 'example.com' });
-  assert.deepEqual(withProxy(fact({ probe: failed('refused') })), { kind: 'host_proxy_add', host: 'example.com' });
-  assert.deepEqual(withProxy(fact({ hostBlock: block('unreachable') })), { kind: 'host_proxy_add', host: 'example.com' }, 'an unreachable block is repeated timeouts');
+  assert.deepEqual(withProxy(fact({ probe: failed('timeout') })), { kind: 'host_proxy_add', host: 'example.com', url: FEED, sourceKind: 'rss' });
+  assert.deepEqual(withProxy(fact({ probe: failed('refused') })), { kind: 'host_proxy_add', host: 'example.com', url: FEED, sourceKind: 'rss' });
+  assert.deepEqual(withProxy(fact({ hostBlock: block('unreachable') })), { kind: 'host_proxy_add', host: 'example.com', url: FEED, sourceKind: 'rss' }, 'an unreachable block is repeated timeouts');
   for (const cls of ['dns', 'tls', 'http', 'invalid']) {
     assert.deepEqual(withProxy(fact({ probe: failed(cls) })), { kind: 'source_drop', channel: '@chan', sourceId: 'news' }, `${cls}: a proxy does not help`);
   }
@@ -87,9 +87,34 @@ test('the fix of source_probe_failed: the proxy for timeout and refused when one
   assert.deepEqual(only(input([fact({ probe: failed('timeout') })])).fix, { kind: 'source_drop', channel: '@chan', sourceId: 'news' }, 'no proxy configured');
   assert.deepEqual(withProxy(fact({ probe: failed('timeout'), host: null })), { kind: 'source_drop', channel: '@chan', sourceId: 'news' }, 'no host to add');
   assert.equal(withProxy(fact({ probe: failed('timeout'), origin: 'series:Morning news', host: null })), undefined, 'a series source cannot be removed from the card');
-  assert.deepEqual(withProxy(fact({ probe: failed('timeout'), origin: 'series:Morning news' })), { kind: 'host_proxy_add', host: 'example.com' }, 'but its host can be proxied');
+  assert.deepEqual(withProxy(fact({ probe: failed('timeout'), origin: 'series:Morning news' })), { kind: 'host_proxy_add', host: 'example.com', url: FEED, sourceKind: 'rss' }, 'but its host can be proxied');
   assert.equal(only(input([fact({ probe: failed('dns'), origin: 'series:Morning news' })])).fix, undefined);
   assert.deepEqual(only(input([fact({ probe: failed('dns'), id: undefined })])).fix, { kind: 'source_drop', channel: '@chan', sourceId: FEED }, 'a fact with no id names the source by its address');
+  assert.deepEqual(withProxy(fact({ url: PAGE, kind: 'url', host: 'blog.example.org', probe: failed('refused') })), { kind: 'host_proxy_add', host: 'blog.example.org', url: PAGE, sourceKind: 'url' }, 'a page is read again as a page');
+});
+
+test('W1 integration review: the proxy is offered once — not for a read that already went through it, not for a host listed since', () => {
+  const run = (f: SourceFact, hosts: string[] = []) => only(input([f], { proxyConfigured: true, proxyHosts: hosts }));
+  // The failed read went through the proxy: it did not help, so the card source can only be removed (outside Fix all).
+  const through = run(fact({ probe: failed('timeout', { via_proxy: true }), required: true }));
+  assert.deepEqual(through.fix, { kind: 'source_drop', channel: '@chan', sourceId: 'news' });
+  assert.equal(through.severity, 'error');
+  assert.equal((through.evidence as any).via_proxy, true);
+  // The host (or a parent domain) is on the list since the read: no fix, the row says it waits for the next read.
+  for (const listed of [['example.com'], ['other.org', 'example.com'], ['com.example', 'example.com']]) {
+    const waiting = run(fact({ probe: failed('timeout'), required: true }), listed);
+    assert.equal(waiting.check, 'source_probe_failed');
+    assert.equal(waiting.severity, 'error', 'still a blocker until a read says otherwise');
+    assert.equal(waiting.fix, undefined, listed.join(','));
+    assert.equal(waiting.title, 'example.com: routed through the proxy, waiting for a new read');
+    assert.match(waiting.detail, /^failed: timeout\. example\.com is read through the proxy since; the next read from the server tells whether that helps/);
+    assert.equal((waiting.evidence as any).routed_through_proxy, true);
+  }
+  assert.equal(run(fact({ host: 'feeds.example.com', probe: failed('refused') }), ['example.com']).fix, undefined, 'a parent domain on the list covers the host');
+  assert.equal(run(fact({ hostBlock: block('unreachable') }), ['example.com']).fix, undefined, 'an unreachable block alike');
+  // Another host on the list changes nothing; a class the proxy does not help keeps its own fix.
+  assert.equal(run(fact({ probe: failed('timeout') }), ['example.org']).fix?.kind, 'host_proxy_add');
+  assert.equal(run(fact({ probe: failed('dns') }), ['example.com']).fix?.kind, 'source_drop');
 });
 
 test('source_empty: a probe that failed as empty, or an rss source whose newest item is over 7 days old; warn; a card source can be removed', () => {
