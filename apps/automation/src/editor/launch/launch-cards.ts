@@ -33,7 +33,7 @@ const at = (outcome: string) => `${outcome} · ${kyivTime(new Date())}`;
 /** The readiness line of a Start card (FR-010). */
 export function readinessLineUk(b: { count: number; first: string }): string {
   const first = clip(b.first.trim().replace(/\.+$/, ''), 90);
-  return `Готовність: ${b.count} ${plural(b.count, 'блокер', 'блокери', 'блокерів')} — ${first}${first.endsWith('…') ? '' : '.'} Старт можливий, але ці слоти пропустяться.`;
+  return `Готовність: ${b.count} ${plural(b.count, 'блокер', 'блокери', 'блокерів')} — ${first}${first.endsWith('…') ? '' : '.'} Старт можливий, але слоти, яких це стосується, буде пропущено.`;
 }
 
 /** The bot's state in one Ukrainian line. */

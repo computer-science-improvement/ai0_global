@@ -630,7 +630,7 @@ test('readiness card: a Start card without blockers is as before; with blockers 
 
   summary = { count: 2, first: 'Скіл велить брати матеріал не з того джерела, яке вимагає серія' };
   [card] = await src.waiting(NOW);
-  assert.match(card.body ?? '', /Готовність: 2 блокери — Скіл велить брати матеріал не з того джерела, яке вимагає серія\. Старт можливий, але ці слоти пропустяться\./);
+  assert.match(card.body ?? '', /Готовність: 2 блокери — Скіл велить брати матеріал не з того джерела, яке вимагає серія\. Старт можливий, але слоти, яких це стосується, буде пропущено\./);
   assert.equal(card.buttons[0].key, 'start');
   assert.equal(card.buttons[0].confirm, 'Так, запустити попри блокери');
 

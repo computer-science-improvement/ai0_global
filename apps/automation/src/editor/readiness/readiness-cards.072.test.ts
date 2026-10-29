@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { Finding, Fix } from '../sysadmin/audit.types';
 import { channelOfRefId, notifiable, notedElsewhere, readinessRefId } from './notify';
-import { NOTHING_TO_FIX_UK, blockerLineUk, readinessBodyUk, readinessSource, type ReadinessCardDeps } from './readiness-cards';
+import { NOTHING_TO_FIX_UK, blockerLineUk, fixActionUk, fixFailureUk, readinessBodyUk, readinessSource, type ReadinessCardDeps } from './readiness-cards';
 import { CH } from './testing/facts-fixture';
 import { mkF } from './testing/fake-readiness';
 import type { FixOutcome } from './readiness.service';
@@ -77,13 +77,14 @@ test('readiness card: at most five blocker lines, the rest as «…і ще N», 
   assert.equal(item.since.toISOString(), STAMP.toISOString());
 });
 
-test('readiness card: after the blockers it lists what one tap fixes, one line per distinct sentence, at most five', async () => {
+test('readiness card: after the blockers it lists what one tap does for them, one line per distinct action, at most five', async () => {
   const fs = [
-    fixable('series_source_contradicted', 'a', SKILL_OFF),
-    fixable('series_source_contradicted', 'b', { ...SKILL_OFF, skill: 's2' }),
-    fixable('hashtag_min_without_vocabulary', 'c', HASHTAG),
-    fixable('tools_missing_for_source', 'd', TOOLS),
-    plain('dataset_without_series', 'e'),
+    fixable('series_source_contradicted', 'a', SKILL_OFF, 'a'),
+    fixable('series_source_contradicted', 'b', { ...SKILL_OFF, skill: 's2' }, 'b'),
+    fixable('hashtag_min_without_vocabulary', 'c', HASHTAG, 'c'),
+    fixable('tools_missing_for_source', 'd', TOOLS, 'd'),
+    fixable('tools_missing_for_source', 'd2', TOOLS, 'd2'),
+    plain('dataset_without_series', 'e', 'e'),
   ];
   const { src } = harness([rowOf(fs)]);
   const [item] = await src.waiting(new Date());
@@ -93,11 +94,12 @@ test('readiness card: after the blockers it lists what one tap fixes, one line p
   const block = body.slice(at).split('\n\n')[0].split('\n');
   assert.deepEqual(block, [
     'Виправлю в один дотик:',
-    '• Вимкніть скіл або виправте правило, щоб воно називало джерело серії.',
-    '• Поставте мінімум хештегів 0 або додайте список хештегів.',
-    '• Дозвольте інструмент у картці або в наборі інструментів.',
-  ], 'the same sentence once');
-  assert.ok(body.endsWith('Виправлень в один дотик: 4. Решта — у панелі Readiness.'), 'K counts every finding with a fix');
+    '• Вимкну скіл «s1»',
+    '• Вимкну скіл «s2»',
+    '• Поставлю мінімум хештегів 0',
+    '• Додам web_fetch у дозволені інструменти картки',
+  ], 'what the tap does, each subject named, the same action once');
+  assert.ok(body.endsWith('Виправлень в один дотик: 5. Решта — у панелі Readiness.'), 'K counts every finding with a fix');
 });
 
 test('readiness card: K counts errors and warnings with a fix, not info rows; the buttons follow K', async () => {
@@ -141,10 +143,54 @@ test('readiness card: the body fits 600 characters with long texts and many fixe
 });
 
 test('readiness card: a line is the reason in Ukrainian and what it is about; a code with no entry falls back to the title', () => {
-  assert.equal(blockerLineUk(plain('dataset_without_series', 'd', 'набір tips')), '• Набір даних є в картці каналу, але жодна серія не бере з нього матеріал. — набір tips');
-  const unknown = { ...plain('some_future_code', 'x', 'the thing'), title: 'A future problem' };
+  assert.equal(blockerLineUk(plain('dataset_without_series', 'd', 'набір tips')), '• Набір даних є в картці каналу, але жодна серія не бере з нього матеріал — набір tips');
+  const unknown = { ...plain('some_future_code', 'x', 'the thing'), title: 'A future problem.' };
   assert.equal(blockerLineUk(unknown), '• A future problem — the thing');
+  assert.equal(blockerLineUk({ ...unknown, subject: { ...unknown.subject, label: '' } }), '• A future problem');
   assert.equal(readinessBodyUk([unknown], []).split('\n\n').at(-1), 'Виправлень в один дотик: 0. Решта — у панелі Readiness.');
+});
+
+test('W1 integration review: the main 10-27 blocker keeps its subject, with the real Ukrainian reason (87 characters)', () => {
+  const f = fixable('series_source_contradicted', 'a', SKILL_OFF, 'Prompt: prompthero-image-prompt-post');
+  const line = blockerLineUk(f);
+  assert.ok(line.endsWith(' — Prompt: prompthero-image-prompt-post'), line);
+  assert.ok(line.startsWith('• Скіл, правило чи настанова велить брати матеріал не з того джерела, яке вимагає серія'), line);
+  assert.ok(line.length <= 140);
+  // A long label is clipped to 40 characters; the reason gives way first, never the label.
+  const long = blockerLineUk({ ...f, subject: { ...f.subject, label: 'Ранкова добірка: дуже-довга-назва-скіла-про-промпти-для-фото' } });
+  const tail = long.slice(long.lastIndexOf(' — ') + 3);
+  assert.ok(tail.startsWith('Ранкова добірка: дуже-довга') && tail.endsWith('…') && tail.length <= 41, tail);
+});
+
+test('W1 integration review: fix lines are the actions for the named blockers only; the summary still counts every fix', async () => {
+  const contradiction = fixable('series_source_contradicted', 'a', { ...SKILL_OFF, skill: 'ai0-voice' }, 'prompts: ai0-voice');
+  const tools = fixable('tools_missing_for_source', 'b', { kind: 'tools_allow_add', channel: CH, tools: ['query_data'] }, 'query_data');
+  const probeFailed = fixable('source_probe_failed', 'c', { kind: 'host_proxy_add', host: 'rada.gov.ua', url: 'https://rada.gov.ua/x', sourceKind: 'url' }, 'rada.gov.ua');
+  const { src } = harness([rowOf([contradiction, tools, probeFailed])]);
+  const [item] = await src.waiting(new Date());
+  const body = item.body!;
+  assert.match(body, /— prompts: ai0-voice/);
+  assert.ok(body.includes('Виправлю в один дотик:\n• Вимкну скіл «ai0-voice»\n• Додам query_data у дозволені інструменти картки\n\n'), body);
+  assert.doesNotMatch(body, /rada\.gov\.ua|проксі/, 'the source the host note covers is neither named nor listed');
+  assert.doesNotMatch(body, /Вимкніть|Дозвольте|Пусти/, 'no advice to the owner under «Виправлю»');
+  assert.ok(body.endsWith('Виправлень в один дотик: 3. Решта — у панелі Readiness.'));
+});
+
+test('W1 integration review: every fix kind has a Ukrainian action, and a refusal code never reaches the owner', () => {
+  const kinds: Fix[] = [
+    { kind: 'skill_disable', agent: 'a', skill: 's' }, { kind: 'skill_inline_off', agent: 'a', skill: 's' }, { kind: 'memory_retire', channel: CH, id: 7 },
+    { kind: 'conflicts_resolve', agent: 'a' }, { kind: 'tools_allow_add', channel: CH, tools: ['web_fetch'] }, { kind: 'hashtag_min_zero', channel: CH },
+    { kind: 'series_resume', channel: CH, pauseId: 'p' }, { kind: 'series_source_require', channel: CH, series: 'Prompt' },
+    { kind: 'source_drop', channel: CH, sourceId: 'feed1' }, { kind: 'host_proxy_add', host: 'x.example' },
+  ];
+  for (const k of kinds) {
+    const uk = fixActionUk(k);
+    assert.ok(uk && /[а-яіїєґ]/i.test(uk), k.kind);
+    assert.doesNotMatch(uk!, /=|\b(?:skill_disable|tools_allow_add|host_proxy_add|source_drop)\b/, `${k.kind}: no internal tokens`);
+  }
+  assert.equal(fixActionUk({ kind: 'bind_dataset' } as unknown as Fix), null, 'a kind of a later spec has no line');
+  assert.equal(fixFailureUk('source_still_failing: x.example is read through the proxy now, but https://x.example still fails'), 'Не вдалося виправити: сайт уже йде через проксі, але джерело досі не читається. Деталі — у панелі Readiness.');
+  assert.doesNotMatch(fixFailureUk('something_new: English details'), /something_new|English/);
 });
 
 // ── which blockers the card names ────────────────────────────────────────────────────────────────────────────────
@@ -186,7 +232,7 @@ test('readiness card: blockers another note covers are not named (I9)', async ()
     const { src } = harness([rowOf([keep, ...covered, botNotAdmin])]);
     const [item] = await src.waiting(new Date());
     assert.match(item.title, /2 блокери/, 'the other one and the bot (no launch open)');
-    assert.match(item.body!, /Бот не може публікувати в каналі\./);
+    assert.match(item.body!, /Бот не може публікувати в каналі — /);
     assert.doesNotMatch(item.body!, /Серію призупинила|Title of source_probe_failed/, 'what another note covers is not named');
   }
   {
@@ -257,7 +303,9 @@ test('readiness card act(fix): partial success adds the failures; nothing applie
   }
   {
     const { src } = harness([], { fix: { applied: [], failed: [{ code: 'x', error: 'permission_denied' }] } });
-    await assert.rejects(src.act(`${CH}|x|20261020`, 'fix'), /Не вдалося виправити: permission_denied/);
+    await assert.rejects(src.act(`${CH}|x|20261020`, 'fix'), (err: Error) => err.message === 'Не вдалося виправити. Деталі — у панелі Readiness.');
+    const proxy = harness([], { fix: { applied: [], failed: [{ code: 'source_probe_failed', error: 'proxy_not_configured: zakon.rada.gov.ua' }] } });
+    await assert.rejects(proxy.src.act(`${CH}|x|20261020`, 'fix'), (err: Error) => err.message === 'Не вдалося виправити: проксі не налаштовано в Settings. Деталі — у панелі Readiness.');
   }
   {
     const { src } = harness([], { fix: { applied: [], failed: [] } });
