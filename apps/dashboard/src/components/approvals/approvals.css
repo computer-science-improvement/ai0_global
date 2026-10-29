@@ -1,2 +1,109 @@
 /* Spec 078 wave D4: posts to approve (cards, list, autonomy dialog, findings, stats). Prefix appr-.
-   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests). */
+   Loaded by routes/app.tsx (components import no CSS: some are loaded by node tests).
+   The list renders in the Inbox "To approve" tab, on the agent's Approvals tab and in the chat strip. Cards are CompactCards (ui/),
+   statuses come from lib/status-tone.ts; this file lays out what is inside them. Tokens only, no literal colours. */
+
+/* ── Small helpers ───────────────────────────────────────────────────────── */
+.appr-dim { color: var(--color-ink-dim); }
+.appr-muted { color: var(--color-ink-muted); }
+.appr-ink { color: var(--color-ink); }
+.appr-warn { color: var(--color-warning); overflow-wrap: anywhere; }
+.appr-wrap { min-width: 0; overflow-wrap: anywhere; }
+.appr-break { word-break: break-all; }
+.appr-block { display: block; }
+.appr-skeleton { height: 120px; border-radius: var(--radius-lg); background: var(--color-surface-1); opacity: 0.6; }
+/* A block inside a flush panel that is not a row (an error, a skeleton). */
+.appr-pad { padding: 0 20px 16px; }
+
+/* ── The list: a titled group per resource and day ──────────────────────── */
+.appr-list { display: flex; flex-direction: column; gap: 24px; }
+.appr-network { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 12px; padding: 12px 16px; }
+.appr-network-text { flex: 1 1 220px; min-width: 0; }
+.appr-group { min-width: 0; }
+.appr-group-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 12px; }
+.appr-group-title { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.appr-group-name { margin: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.appr-group-ref { font-size: 12px; font-weight: 400; color: var(--color-ink-dim); }
+
+/* ── The card (a CompactCard): time, status, format on top; critic and media count under the text ── */
+.appr-time { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--color-ink); }
+.chip.appr-format { gap: 4px; }
+.appr-extra { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.appr-media-count { display: inline-flex; align-items: center; gap: 4px; }
+
+/* ── The dialog: preview, rationale, critic, findings, expiry — blocks 10px apart ─ */
+.appr-details { min-width: 0; }
+.appr-details > * + * { margin-top: 10px; }
+.appr-tags { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.appr-forward { overflow-wrap: anywhere; }
+.appr-notes { display: flex; flex-direction: column; gap: 2px; }
+
+/* The agent's rationale: an inset of overline keys over their values. */
+.appr-rationale { display: grid; gap: 10px; padding: 12px 14px; }
+.appr-kv { display: grid; grid-template-columns: minmax(84px, 110px) minmax(0, 1fr); gap: 2px 12px; align-items: baseline; }
+.appr-kv-value { min-width: 0; font-size: 13px; line-height: 1.45; color: var(--color-ink); overflow-wrap: anywhere; white-space: pre-wrap; }
+@media (max-width: 600px) { .appr-kv { grid-template-columns: minmax(0, 1fr); } }
+
+/* The checks' findings (spec 037): an inset, an overline per section. */
+.appr-findings { display: grid; gap: 12px; min-width: 0; padding: 12px 14px; }
+.appr-findings-section { display: grid; gap: 8px; min-width: 0; }
+.appr-finding { display: grid; gap: 4px; min-width: 0; }
+.appr-finding-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.appr-finding-title { min-width: 0; font-weight: 600; color: var(--color-ink); overflow-wrap: anywhere; }
+.appr-excerpt { padding-left: 8px; color: var(--color-ink-muted); border-left: 2px solid var(--color-hairline-strong); overflow-wrap: anywhere; }
+
+/* The dialog's footer: Reject at the left (quiet, red text), the rest at the right, Approve last. */
+.appr-actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; width: 100%; }
+.appr-locked { margin-right: auto; }
+.btn-ghost.appr-reject { margin-right: auto; color: var(--color-danger-ink); }
+.btn-ghost.appr-reject:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger-ink); }
+
+/* ── A native post's preview (Instagram, Facebook, Threads, TikTok) ──────── */
+.appr-platform { max-width: 480px; overflow: hidden; background: var(--color-surface-1); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); }
+.appr-platform-head { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--color-hairline); }
+.appr-platform-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 600; color: var(--color-ink); }
+.appr-platform-meta { flex: none; margin-left: auto; font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink-dim); }
+.appr-media { display: flex; gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory; }
+.appr-media img { flex: none; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; scroll-snap-align: start; background: var(--color-surface-2); }
+.appr-media.is-multi img { width: 80%; }
+.appr-platform .appr-pad { padding: 8px 12px; }
+.appr-platform .appr-platform-tt { padding-bottom: 0; font-weight: 600; color: var(--color-ink); }
+.appr-platform .appr-caption { padding: 10px 12px; color: var(--color-ink); line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.appr-first-comment { padding: 0 12px 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* ── Edit, reschedule and reject dialogs ────────────────────────────────── */
+.appr-mode { margin-bottom: 10px; }
+.appr-field, .appr-textarea { width: 100%; box-sizing: border-box; }
+.appr-textarea { resize: vertical; font-family: inherit; }
+.input-field.appr-json { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; line-height: 1.5; }
+.input-field.appr-datetime { color-scheme: dark; }
+.callout-danger.appr-err { margin-top: 8px; }
+.appr-err span { overflow-wrap: anywhere; }
+.appr-note { margin: 8px 0 0; }
+
+/* ── Approval stats: four numbers split by hairlines, then rows ─────────── */
+.appr-numbers { display: flex; flex-wrap: wrap; overflow: hidden; border-top: 1px solid var(--color-hairline); }
+.appr-numbers > .stat-tile {
+  flex: 1 1 160px; min-width: 0; padding: 16px 20px;
+  background: none; border: 0; border-radius: 0; box-shadow: -1px 0 0 var(--color-hairline), 0 -1px 0 var(--color-hairline);
+}
+.appr-label { padding: 12px 20px 8px; border-top: 1px solid var(--color-hairline); }
+.appr-label + .panel-row { border-top: 0; }
+.panel-row.appr-line { gap: 4px 12px; padding-top: 8px; padding-bottom: 8px; }
+.appr-line-text { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
+.chip.appr-ref { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
+
+/* ── "Switch to Live" dialog ────────────────────────────────────────────── */
+.appr-autonomy { display: flex; flex-direction: column; gap: 12px; }
+.appr-v-accent { color: var(--color-accent); }
+.appr-v-warning { color: var(--color-warning); }
+.appr-check { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
+.appr-check.is-disabled { cursor: default; }
+.appr-check input { margin-top: 3px; accent-color: var(--color-accent); }
+
+/* ── Phones: panel padding follows index.css's 16px ─────────────────────── */
+@media (max-width: 600px) {
+  .appr-pad { padding: 0 16px 16px; }
+  .appr-label { padding: 12px 16px 8px; }
+  .appr-numbers > .stat-tile { padding: 14px 16px; }
+}
