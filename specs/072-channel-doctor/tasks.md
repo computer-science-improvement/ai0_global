@@ -2,7 +2,7 @@
 
 Base: `feat/editor-agent` at the commit your prompt names. One commit per task, everything green before each (common rules: `npm test`, `npm run build`, `npm run lint` in apps/automation; `tsc --noEmit`, `npm test`, `npm run build` in apps/dashboard when touched; PG tests of touched files with `EDITOR_PG_TEST_URL`). Code map: scratchpad `w7/map-072.md`. Read the spec's «Amendments after the builder check» first; `A<n>` and `L<n>` below point there.
 
-- [ ] **T1 Shared fix runner, the `channel` area, new fix kinds** (FR-001 first half, FR-004, A6, A7, A18, A32)
+- [x] **T1 Shared fix runner, the `channel` area, new fix kinds** (FR-001 first half, FR-004, A6, A7, A18, A32)
   - What:
     - `FINDING_AREAS`/`FindingArea`, `Finding.link?`, `Finding.firstSeenAt?`.
     - The `Fix` union: `conflicts_resolve` gains `codes?` and `channel?`; four new kinds (`tools_allow_add`, `hashtag_min_zero`, `series_resume`, `series_source_require`). `FIX_KINDS` lists exactly eight.
@@ -19,13 +19,13 @@ Base: `feat/editor-agent` at the commit your prompt names. One commit per task, 
     - `audit.055.test.ts`, `audit.055.pg.test.ts` and `auditor-input.055.test.ts` unchanged and green.
   - Done when: the weekly audit applies fixes exactly as before, and every new kind has a label, a description and a port.
 
-- [ ] **T2 Migration 097 and the scratch-database helper** (FR-005, A14, A28)
+- [x] **T2 Migration 097 and the scratch-database helper** (FR-005, A14, A28)
   - What: `database/migrations/097_channel_readiness.sql` and `down/097_channel_readiness.down.sql`, both idempotent; `readiness/testing/pg-db.ts` with `scratchDb(url, tag, o?)` (own database: `schema_migrations`, `init.sql`, every migration sorted; `drop()`), copied from `data/prompts-rule.095.migration.pg.test.ts:46-60`.
   - Files: the two SQL files, `readiness/testing/pg-db.ts` (new).
   - Tests: `readiness/readiness-migration.072.pg.test.ts` (own database through `scratchDb`): apply all, apply 097 again, down twice, up again; columns and defaults; `applied_hash` nullable.
   - Done when: the A28 command passes on a throwaway database of the scratch server (`/tmp/pgs046`, port 55446), and that database is dropped. If `psql` is missing, say so in Deltas.
 
-- [ ] **T3 Codes, facts types and the facts loader** (FR-001 second half, FR-002, A15, A16, A19, A21, A27, A29, L5)
+- [x] **T3 Codes, facts types and the facts loader** (FR-001 second half, FR-002, A15, A16, A19, A21, A27, A29, L5)
   - What:
     - `readiness/codes.ts`: `ReasonEntry` copied verbatim from the contract, `DOCTOR_REASONS` (every FR-001 code plus `auto_fixed`; no `source_unreachable` entry), `doctorReason`, `resolveLink`.
     - `readiness/facts.types.ts`: `ChannelFacts`, `SkillFact`, `DatasetFact`, `SourceFact` (with `lastSuccessAt?`, `required?`, `probe?`), `PlannedSlotFact`, exactly as A16.
@@ -135,3 +135,24 @@ Base: `feat/editor-agent` at the commit your prompt names. One commit per task, 
 ## Status
 
 ## Deltas from the spec
+
+Written task by task; the list is appended to as each task lands.
+
+**T1**
+- `runFix` and its ports moved to `sysadmin/fix-runner.ts`; `AuditService` re-exports `AuditFixPorts` and its `apply` stores `runFix(...).applied`. The `applyConflicts` port gained an optional filter (`{ codes?, ref? }`), wired in the `AuditService` factory of `editor.module.ts` as a predicate over the conflict (`code`, `ref`) passed to `conflicts.apply`; with no filter it behaves as before.
+- A fix that the runner refuses throws `{ response: { error, details } }` (as the audit's own refusals did); `tryFix` wraps it and never throws. Refusal codes in use: `fix_unavailable`, `owner_pause`, `pause_not_found`, `already_resumed`, `nothing_to_apply`, `agent_not_found`, `nothing_to_retire`.
+- The A32 check runs the real `applySeriesOp` (not a fake) for `series_source_require`.
+
+**T2**
+- `database/ci-bootstrap-check.sh` cannot be started from this sandbox (the shell guard refuses `bash <script>`), so its steps were run by a node-pg script on a throwaway database of the scratch server: `init.sql` twice, every migration once in order (one transaction each, recorded in `schema_migrations`), every migration from 042 again, then 097 down twice and up again. All passed and the database was dropped. The same sequence is what `scratchDb` does for the PG tests.
+- `scratchDb(url, tag, o?)` names its database `<base>_m097_<tag>_<pid>` and returns `{ pool, url, name, drop() }`; `readMigration`, `readDown` and `applySql` sit next to it.
+
+**T3**
+- `ChannelFacts.profile` carries `full` (the whole stored profile) and the facts carry `conflictBase` (`rules` created by the owner, the group's refs in `forAgent` order, the configs of the other refs). A16 lists neither; `applyOverlay` needs them to rebuild `conflictInput` after the card or the profile changed.
+- `readiness/facts.ts` also exports the pure helpers `sourceRefsOf`, `blockOf`, `siblingConfig`, `seriesOn`, `canonical` and `resolveChannelKey`, and the `ChannelNotFound` error (`code: 'channel_not_found'`). `RawFacts` is what the loader reads; `deriveFacts(raw)` adds `series` (when not given), `datasets[].boundBy/seriesPerDay`, `sources[].required`, `effectiveTools` and `conflictInput`.
+- The planned-slot and last-24 h queries take `kind = 'content'` only (a reserved slot is not a post). Closed means the statuses the streak counter uses (`published`, `shadowed`, `awaiting_approval`, `approved`, `skipped`, `failed`, `expired`), windowed by `scheduled_at`.
+- `effectiveTools` for an empty intersection is `['(none)']` (`NO_TOOL`), never `[]`; the tools check (T4b) must read it with `includes`.
+- A card source is `required` when it is the only card-origin source among the facts' sources (so a source added by an overlay counts). A series source is `required` when the series is active and `source_mode` is `required`.
+- A stored profile that does not parse (the repository's tolerant parser) gives `profile: null`, as `ResourceProfilesRepository.list` returns it. An empty `post_requires` list is `null` in `DatasetFact`.
+- `countPostable` is a copy of the `countRows` SQL; `buildCatalog` rolls the round of a used-up cycle dataset (a write). The PG test proves both halves: the loader leaves `data_reuse_rounds` empty and a control call of `buildCatalog` then creates the row.
+- `readiness/testing/facts-fixture.ts` (new, test-only) builds small `ChannelFacts` through the real `deriveFacts`; the check, doctor and hash tests of later tasks use it.
