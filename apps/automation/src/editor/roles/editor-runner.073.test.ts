@@ -1,6 +1,6 @@
 // Spec 073 T11 (FR-010, A27, A30): a slot whose publish tool answered with a CONFIG failure (the series' format or source does not fit
-// the post) ends skipped with that reason — no fallback step, no 15-minute retry, no row put aside. The owner is told once a day
-// per channel and code; `onConfigSkip` fires once per config skip.
+// the post) ends skipped with that reason — no fallback step, no 15-minute retry, no row put aside. `onConfigSkip` fires once per
+// config skip; since the 072 merge (L1) it is the readiness recheck, and the runner sends the owner no note of its own.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EditorRunnerService, executorToolNames, PLATFORM_ONLY, TELEGRAM_ONLY } from './editor-runner.service';
@@ -117,7 +117,7 @@ function setup(scripts: Script[], o: SetupOpts = {}) {
   } as any);
   return {
     runner, st, runs, passed, configSkips, notes, done, seen, patches, card: o.card ?? makeCard({ channelKey: '@chan', timezone: 'Europe/Kyiv' }),
-    /** The next slot of the same runner (the once-a-day map lives on the runner): fresh state, optionally another script / channel / day. */
+    /** The next slot of the same runner: fresh state, optionally another script / channel / day. */
     next: (id: string, o2: { scripts?: Script[]; channelKey?: string; at?: Date } = {}) => {
       Object.assign(st, { ...baseSlot, id, channelKey: o2.channelKey ?? baseSlot.channelKey, status: 'running', error: null, critic: null, fallback: null, retryAt: undefined });
       if (o2.scripts) script = o2.scripts;
@@ -180,45 +180,21 @@ test('A30 a content failure is untouched: lint on every attempt still climbs the
   assert.notEqual(s.st.fallback?.final?.code, 'config');
 });
 
-test('A27 the owner is told once a day per channel and code, in Ukrainian, with the fix', async () => {
+test('A27 / L1 (072 merge): every config skip calls onConfigSkip with its channel and code, and the runner sends no owner note', async () => {
   const s = setup([cfg('series_format_mismatch')]);
-  const entry = reasonFor('series_format_mismatch')!;
-  assert.ok(entry, 'the catalogue has the code');
+  assert.ok(reasonFor('series_format_mismatch'), 'the catalogue has the code (the readiness note reads it)');
   await s.runner.runExecutor(s.st, s.card);
-  assert.deepEqual(gear(s.notes), [`⚙️ @chan: ${entry.uk}${entry.fix ? `. ${entry.fix.uk}` : ''}`]);
-
-  // The same code, the same local day, a second slot: no second note, but the hook still fires.
+  // The same code, the same day, a second slot: the hook fires again (the readiness service decides what the owner hears).
   s.next('s2');
   await s.runner.runExecutor(s.st, s.card);
-  assert.equal(gear(s.notes).length, 1, 'once a day');
-  assert.equal(s.configSkips.length, 2, 'onConfigSkip is called for every config skip');
-
-  // Another code the same day: its own note.
   s.next('s3', { scripts: [cfg('series_source_mismatch', 'x')] });
   await s.runner.runExecutor(s.st, s.card);
-  assert.equal(gear(s.notes).length, 2);
-  const source = reasonFor('series_source_mismatch');
-  assert.ok(gear(s.notes)[1].startsWith(`⚙️ @chan: ${source ? source.uk : 'series_source_mismatch'}`), gear(s.notes)[1]);
-
-  // Another channel, the same code: its own note.
   s.next('s4', { scripts: [cfg('series_format_mismatch')], channelKey: '@other' });
   await s.runner.runExecutor(s.st, makeCard({ channelKey: '@other', timezone: 'Europe/Kyiv' }));
-  assert.equal(gear(s.notes).length, 3);
-  assert.ok(gear(s.notes)[2].startsWith('⚙️ @other: '), gear(s.notes)[2]);
-
-  // The next local day: the first code tells again.
-  s.next('s5', { scripts: [cfg('series_format_mismatch')], at: new Date('2026-10-30T09:00:00Z') });
-  await s.runner.runExecutor(s.st, s.card);
-  assert.equal(gear(s.notes).length, 4, 'a new day tells again');
-});
-
-test('A27 the day is the card\'s local day: 21:30Z and 22:30Z on the same UTC date are different days in Kyiv', async () => {
-  const s = setup([cfg('series_format_mismatch')]);
-  s.next('s1', { at: new Date('2026-10-28T21:30:00Z') }); // 23:30 on the 28th in Kyiv
-  await s.runner.runExecutor(s.st, s.card);
-  s.next('s2', { at: new Date('2026-10-28T22:30:00Z') }); // 00:30 on the 29th
-  await s.runner.runExecutor(s.st, s.card);
-  assert.equal(gear(s.notes).length, 2);
+  assert.deepEqual(s.configSkips, [
+    ['@chan', 'series_format_mismatch'], ['@chan', 'series_format_mismatch'], ['@chan', 'series_source_mismatch'], ['@other', 'series_format_mismatch'],
+  ]);
+  assert.deepEqual(gear(s.notes), [], 'the doctor\'s blocker note is the only one');
 });
 
 test('A27 config_series_gone is not a miss: it ends the slot but sends no owner note', async () => {
@@ -279,7 +255,7 @@ test('A7 the source hints of @prompts are repaired to series + next row before t
   assert.equal(s.patches[0].note, 'config_source_mismatch: hints → series:Prompt, data://nanobanana_prompts/503');
 });
 
-test('A15 a gone series skips with its code at $0: no writer run, no row put aside, onConfigSkip fires, no owner note (not a miss)', async () => {
+test('A15 a gone series skips with its code at $0: no writer run, no row put aside, onConfigSkip fires, no owner note', async () => {
   const c = promptsCase();
   const s = setup([], { slot: slotOf(c, { seriesName: 'Removed' }), card: cardOf(c), registry: realRegistry(), gate: { context: withTools(c) } });
   const res = await s.runner.runExecutor(s.st, s.card);
@@ -288,12 +264,12 @@ test('A15 a gone series skips with its code at $0: no writer run, no row put asi
   assert.equal(s.st.status, 'skipped');
   assert.match(s.st.error, /^config_series_gone: /);
   assert.deepEqual(s.configSkips, [[c.channelKey, 'config_series_gone']]);
-  assert.deepEqual(gear(s.notes), [], 'the owner removed it themselves');
+  assert.deepEqual(gear(s.notes), []);
   assert.deepEqual(s.passed, []);
   assert.deepEqual(s.done, ['s1']);
 });
 
-test('A15 a problem that cannot be repaired ends the slot: the code leads the error, onConfigSkip fires per slot, the owner hears once a day', async () => {
+test('A15 a problem that cannot be repaired ends the slot: the code leads the error, onConfigSkip fires per slot, no runner note', async () => {
   const c = promptsCase();
   // The channel allows only web_fetch: the library read tools are gone (F28).
   const card = cardOf(c, { toolsAllow: ['web_fetch'] });
@@ -303,15 +279,14 @@ test('A15 a problem that cannot be repaired ends the slot: the code leads the er
   assert.equal(s.runs.length, 0);
   assert.match(s.st.error, /^config_tools_missing: /);
   assert.deepEqual(s.configSkips, [[c.channelKey, 'config_tools_missing']]);
-  assert.equal(gear(s.notes).length, 1);
-  assert.match(gear(s.notes)[0], /^⚙️ @ai0_prompts_dev: /);
+  assert.deepEqual(gear(s.notes), []);
   assert.deepEqual(s.patches, [], 'nothing repairable, nothing written');
-  // A second slot of the same channel on the same day: the hook fires again, the owner is not told again.
+  // A second slot of the same channel on the same day: the hook fires again.
   s.next('s2', { channelKey: c.channelKey });
   Object.assign(s.st, slotOf(c, { id: 's2', sourceHints: hints }), { status: 'running', error: null, fallback: null });
   await s.runner.runExecutor(s.st, s.card);
   assert.deepEqual(s.configSkips.map((x) => x[1]), ['config_tools_missing', 'config_tools_missing']);
-  assert.equal(gear(s.notes).length, 1, 'one note a day per channel and code');
+  assert.deepEqual(gear(s.notes), [], 'the runner never notes a config skip');
 });
 
 test('L4 preflight_no_material from the gate is material, not config: it skips, but no onConfigSkip and no owner note', async () => {

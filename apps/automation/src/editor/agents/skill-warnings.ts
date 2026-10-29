@@ -177,6 +177,11 @@ const CLAUSE_END_RE = /\s*(?:,|—|–|\s-\s|:)\s*(?=(?:(?:а|але|тепер|
 /** «X замість Y» / «X instead of Y»: only what comes after the marker is ruled out. */
 const INSTEAD_RE = /(?<![\p{L}])(?:замість|instead\s+of|rather\s+than)(?![\p{L}])/iu;
 const POSITIVE_VERB_RE = /(?<![\p{L}])(?:бер\p{L}*|бра\p{L}*|взя\p{L}*|візьм\p{L}*|використ\p{L}*|користу\p{L}*|use|take|fetch|pull|get)(?![\p{L}])/iu;
+/**
+ * «бери з X, а не з Y» / «use X, not Y»: a comma or dash, then «а не» / «не» / «not», ends a positive clause; only what follows
+ * is ruled out (072 × 073 merge: the owner's rule «Беру промпти з prompthero.com, а не з бази» names prompthero as the source).
+ */
+const BUT_NOT_RE = /\s*(?:,|—|–|\s-\s)\s*(?:(?:а|але|but|and)\s+)?(?:не|not)(?![\p{L}])/iu;
 
 function profileOf(body: string): SourceProfile {
   const positive = new Set<string>();
@@ -194,6 +199,12 @@ function profileOf(body: string): SourceProfile {
   };
   for (const clause of sentences(body).flatMap((s) => s.split(/\s*;\s*/)).flatMap((s) => s.split(CLAUSE_END_RE))) {
     if (!NEGATION_RE.test(clause)) { use(clause); continue; }
+    const butNot = BUT_NOT_RE.exec(clause);
+    if (butNot && butNot.index > 0 && !NEGATION_RE.test(clause.slice(0, butNot.index))) {
+      use(clause.slice(0, butNot.index));
+      rule(clause.slice(butNot.index + butNot[0].length));
+      continue;
+    }
     const instead = INSTEAD_RE.exec(clause);
     if (instead && !NEGATION_RE.test(clause.replace(INSTEAD_RE, ' '))) {
       // «Пиши про nanobanana замість prompthero»: the part before the marker is what to use, the part after is ruled out (up to a take verb).

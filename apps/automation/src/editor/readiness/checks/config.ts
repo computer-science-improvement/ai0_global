@@ -1,9 +1,12 @@
+import type { Platform } from '../../agents/agent.types';
 import { configConflicts, type ConfigConflict } from '../../rules/config-conflicts';
 import { findingKey } from '../../sysadmin/audit-text';
 import type { AuditSeverity, Finding } from '../../sysadmin/audit.types';
 import { doctorReason, resolveLink } from '../codes';
 import { mkFinding } from '../finding';
 import type { ChannelFacts } from '../facts.types';
+import { checkPlanSkeleton, type SkeletonResource } from '../plan-skeleton';
+import { checkSlotConfig, isConfigCode, isRepairable, type ConfigProblem } from '../slot-config';
 import type { DoctorCheck } from './index';
 
 /**
@@ -12,13 +15,18 @@ import type { DoctorCheck } from './index';
  * playbook section that enable different formats, and the seam where 073's checks of the plan and of the slots plug in.
  */
 
-/** Copy of 073's `ConfigProblem` (the lead swaps it for the import at merge) with the two fields that tell problems apart (L8). */
-export type ConfigProblem = { code: string; detail: string; series?: string; at?: string };
+export type { ConfigProblem };
 
 /**
- * 073's seam. In W1 every function returns the empty answer. At merge the lead points `planSkeleton` at
- * `checkPlanSkeleton(f.card, f.playbook?.body ?? null, f.series, f.resources)`, `slotConfig` at `checkSlotConfig(slot, ctx)` over
- * `f.planned`, and `isRepairable` at 073's `isRepairable` (I5): a repairable problem is fixed before the run, so it is only info.
+ * 073's checks of the plan and of the slots, as the doctor reads them (L8, I5, I6). The seam keeps the check testable with a stub;
+ * `configSeam` is the real one, wired at the 073 × 072 merge:
+ *   - `planSkeleton`: `checkPlanSkeleton` over the channel's series and the resources the loader filled through
+ *     `skeletonResourcesOf` (a resource without `formats` is left out; the per-day maximum needs none). 073 owns
+ *     `series_format_unavailable`, `series_in_quiet_hours` and `series_rate_over_card_max`: the doctor has no check of its own for them.
+ *   - `slotConfig`: `checkSlotConfig` over today's and tomorrow's planned slots, with the read-only context the loader took from
+ *     `ScheduleService.slotConfigContext` (no tools: `tools_missing_for_source` is the doctor's). Only config codes come through;
+ *     `preflight_no_material` is material, and the material check says it per dataset.
+ *   - `isRepairable`: 073's (`AUTO_SAFE_RUN_REPAIRS`): the runner repairs such a slot before the run, so it is only info.
  */
 export interface ConfigSeam {
   planSkeleton(f: ChannelFacts): ConfigProblem[];
@@ -26,22 +34,45 @@ export interface ConfigSeam {
   isRepairable(p: ConfigProblem): boolean;
 }
 
+/** The facts' resources as the skeleton check takes them: only those the loader gave producible formats. */
+export const skeletonResourcesOfFacts = (f: Pick<ChannelFacts, 'resources'>): SkeletonResource[] =>
+  f.resources.flatMap((r) => (r.formats ? [{ ref: r.ref, platform: r.platform as Platform, formats: r.formats, ...(r.tz ? { tz: r.tz } : {}), ...(r.quiet ? { quiet: r.quiet } : {}) }] : []));
+
 export const configSeam: ConfigSeam = {
-  planSkeleton: () => [],
-  slotConfig: () => [],
-  isRepairable: () => false,
+  planSkeleton: (f) => checkPlanSkeleton(f.card, f.playbook?.body ?? null, f.series, skeletonResourcesOfFacts(f)),
+  slotConfig: (f) => f.planned.flatMap((p) => {
+    if (!p.configCtx) return [];
+    const problems = checkSlotConfig(
+      { channelKey: f.channelKey, resourceRef: p.resourceRef, format: p.format, seriesName: p.seriesName, sourceHints: p.sourceHints, scheduleRuleId: p.scheduleRuleId },
+      p.configCtx,
+    ).filter((x) => isConfigCode(x.code));
+    return problems.length ? [{ slotId: p.id, problems }] : [];
+  }),
+  isRepairable: (p) => isRepairable(p.code),
 };
+
+/**
+ * How bad a seam problem is when it is not repairable. A gone series is not a miss (the owner removed it; the slot is skipped at $0
+ * and nothing is lost), so it is info; a series that posts more often than the card's daily maximum is a warning, because the
+ * maximum is raised to the series (spec 073: the series is authoritative). Every other config problem stops a post: an error.
+ */
+const SEAM_SEVERITY: Readonly<Record<string, AuditSeverity>> = { config_series_gone: 'info', series_rate_over_card_max: 'warn' };
 
 const humanise = (code: string) => { const s = code.replace(/_/g, ' '); return s.charAt(0).toUpperCase() + s.slice(1); };
 
-/** A finding for a problem of 073's: its code is 073's, not in the doctor's catalogue, so the title falls back to the code. */
-function seamFinding(f: ChannelFacts, p: ConfigProblem, severity: AuditSeverity, slotId?: string): Finding {
+/**
+ * A finding for a problem of 073's. Its code is 073's: the title and the link come from the one catalogue (a code with no entry
+ * gets its own words as the title and the Schedule tab).
+ */
+function seamFinding(f: ChannelFacts, p: ConfigProblem, seam: ConfigSeam, slotId?: string): Finding {
+  const repairable = seam.isRepairable(p);
+  const severity: AuditSeverity = repairable ? 'info' : SEAM_SEVERITY[p.code] ?? 'error';
   const subject = {
     type: 'channel' as const, id: `${p.code}:${slotId ?? p.series ?? ''}:${p.at ?? ''}`, label: p.series ?? humanise(p.code),
     ...(f.agent ? { agent: f.agent.handle } : {}), channel: f.channelKey,
   };
-  const link = resolveLink('/app/agents/:agent?tab=schedule', { channel: f.channelKey, agent: f.agent?.handle });
-  const repair = severity === 'info' ? ' It will be repaired before the run.' : '';
+  const link = resolveLink(doctorReason(p.code)?.link ?? '/app/agents/:agent?tab=schedule', { channel: f.channelKey, agent: f.agent?.handle, series: p.series });
+  const repair = repairable ? ' It will be repaired before the run.' : p.code === 'config_series_gone' ? ' The slot is skipped at no cost.' : '';
   return {
     key: findingKey('channel', p.code, subject), area: 'channel', check: p.code, severity, subject,
     title: doctorReason(p.code)?.en ?? humanise(p.code), detail: `${p.detail}${repair}`,
@@ -88,8 +119,7 @@ export function makeConfigCheck(seam: ConfigSeam = configSeam): DoctorCheck {
           subject: { type: first.rule_id !== undefined ? 'rule' : 'channel', id, label: `${humanise(first.code)}${first.rule_id !== undefined ? ` (rule #${first.rule_id})` : ''}` },
           detail: list.map((c) => c.detail).join(' '),
           evidence: { conflict: first.code, ref: first.ref, ...(first.rule_id !== undefined ? { rule_id: first.rule_id } : {}), details: list.map((c) => c.detail), fixes: list.map((c) => c.fix) },
-          ...(f.agent && first.code !== 'poll_series_over_cap'
-            ? { fix: { kind: 'conflicts_resolve' as const, agent: f.agent.handle, codes: [first.code], channel: f.channelKey } } : {}),
+          ...(f.agent ? { fix: { kind: 'conflicts_resolve' as const, agent: f.agent.handle, codes: [first.code], channel: f.channelKey } } : {}),
         }));
       }
 
@@ -111,10 +141,10 @@ export function makeConfigCheck(seam: ConfigSeam = configSeam): DoctorCheck {
         }
       }
 
-      // 073's checks of the plan and of the slots (L8, I5): an error, or info when the problem is repaired before the run.
-      for (const p of seam.planSkeleton(f)) out.push(seamFinding(f, p, seam.isRepairable(p) ? 'info' : 'error'));
+      // 073's checks of the plan and of the slots (L8, I5): info when the problem is repaired before the run (`SEAM_SEVERITY`).
+      for (const p of seam.planSkeleton(f)) out.push(seamFinding(f, p, seam));
       for (const { slotId, problems } of seam.slotConfig(f)) {
-        for (const p of problems) out.push(seamFinding(f, p, seam.isRepairable(p) ? 'info' : 'error', slotId));
+        for (const p of problems) out.push(seamFinding(f, p, seam, slotId));
       }
       return out;
     },

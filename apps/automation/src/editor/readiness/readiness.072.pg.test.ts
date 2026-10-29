@@ -81,7 +81,7 @@ test('a recheck stores the row under the card\'s spelling: findings with firstSe
   assert.equal(v.channelKey, CH);
   assert.equal(v.mode, 'approve');
   assert.equal(v.blockers, r.blockers);
-  assert.deepEqual(v.findings.find((f) => f.code === 'hashtag_min_without_vocabulary')?.fix, { label: 'Set minimum hashtags to 0', auto: true });
+  assert.deepEqual(v.findings.find((f) => f.code === 'hashtag_min_without_vocabulary')?.fix, { label: 'Set minimum hashtags to 0', auto: true, inFixAll: true });
 });
 
 test('the next recheck updates the same row, keeps firstSeenAt and stamps the blockers that have been open for five minutes', { skip }, async () => {

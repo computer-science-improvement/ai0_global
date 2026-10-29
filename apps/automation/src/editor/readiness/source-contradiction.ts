@@ -1,12 +1,12 @@
-import { skillConflicts, sourceInSkill, sourceTokensIn, topicOf } from '../agents/skill-warnings';
+import { originWithSource, seriesSourceConflict, sourceTokensIn, topicOf, type SeriesSourceConflict, type SeriesSourceFact } from '../agents/skill-warnings';
 import type { Series } from '../network/playbook';
-import { seriesSourceLabel } from '../network/series';
 
 /**
  * Spec 072 FR-003.1, A2, lead decision I14: does a skill, an owner rule or a steering line send the writer to another source than
- * the one a series is bound to? Pure, and built on the helpers of `agents/skill-warnings.ts` (it re-implements none of them).
+ * the one a series is bound to? Pure.
  *
- * The per-pair judgement is ONE function, `judgePair`: the lead swaps it for 073's `seriesSourceConflict` in one line at the merge.
+ * The judgement is 073's `seriesSourceConflict` (`agents/skill-warnings.ts`), the same one every skill write runs (lead, 073 × 072
+ * merge): a skill the write path accepts is never a doctor blocker, and the reverse. `judgePair` is the one place it is called.
  */
 
 /** A text that may tell the writer where to take material from. A rule or a steering line has no name or description. */
@@ -22,14 +22,15 @@ export interface Candidate {
 export interface Contradiction {
   series:    Series;
   candidate: Candidate;
-  /** 1: `skillConflicts` (hard or soft); 2: the text names a source of its own for the same topic. */
-  path:      'skill_conflicts' | 'source_in_text';
-  kind:      'hard' | 'soft' | 'source';
-  /** The tokens that clash (path 1) or the sources the text names (path 2). */
+  /** The judge that found it: 073's `seriesSourceConflict`. */
+  path:      'series_source_conflict';
+  /** `other_source`: the text names a source the series does not read; `rules_out_source`: it rules out the one it reads; `original_with_source`: it sets origin=original on what the series reads. */
+  kind:      SeriesSourceConflict['reason'];
+  /** The tokens that clash. */
   tokens:    string[];
   /** English, for the finding's detail. */
   reason:    string;
-  /** Path 2: the sentence that names the source. */
+  /** The first sentence of the text that carries a clashing token (073's judge names tokens; the owner reads the sentence). */
   sentence:  string | null;
 }
 
@@ -38,6 +39,19 @@ export const SOURCE_SERIES_KINDS = ['library', 'feed', 'api'] as const;
 
 /** Resolves the `ref` of a `feed` source (a card source id or an address) to the address. Default: the ref as it is. */
 export type FeedUrlOf = (ref: string) => string;
+
+/**
+ * A series as 073's judge takes it (a feed by its address, so the host label is a token); null for a sourceless series, and for
+ * a feed whose ref resolves to no address (an unknown card source id has no host to compare: nothing to judge, as before the merge).
+ */
+export function seriesSourceFactOf(s: Series, feedUrl: FeedUrlOf = (r) => r): SeriesSourceFact | null {
+  const src = s.source;
+  if (!src) return null;
+  const ref = src.kind === 'library' ? src.table : src.kind === 'api' ? src.source : src.kind === 'feed' ? feedUrl(src.ref) : null;
+  if (!ref || (src.kind !== 'library' && src.kind !== 'feed' && src.kind !== 'api')) return null;
+  if (src.kind === 'feed' && !sourceTokensIn(ref).length) return null;
+  return { series: s.name, kind: src.kind, ref, format: s.format, brief: s.brief };
+}
 
 /** The source token of a series (A2): the library table, the host label of the feed, the api name; null when it cannot be told. */
 export function seriesSourceToken(s: Series, feedUrl: FeedUrlOf = (r) => r): string | null {
@@ -51,54 +65,55 @@ export function seriesSourceToken(s: Series, feedUrl: FeedUrlOf = (r) => r): str
   }
 }
 
-/** «Бери матеріал лише з <label>.» with the feed written as its address, so `skillConflicts` can read the host. */
-function seriesBodyOf(s: Series, feedUrl: FeedUrlOf): string {
-  const src = s.source!;
-  const label = src.kind === 'feed' ? `feed:${feedUrl(src.ref)}` : seriesSourceLabel(src);
-  return `Бери матеріал лише з ${label}.`;
+const REASON_TEXT: Record<SeriesSourceConflict['reason'], (tokens: string[]) => string> = {
+  other_source:         (t) => `it names ${t.map((x) => `"${x}"`).join(', ')} as a source`,
+  rules_out_source:     (t) => `it rules out ${t.map((x) => `"${x}"`).join(', ')}, the source the series reads`,
+  original_with_source: () => 'it sets origin=original on the material the series reads',
+};
+
+/** The first sentence that names a token as a source, else the first that holds it as a word; at most 160 characters. */
+function sentenceOf(body: string, tokens: readonly string[]): string | null {
+  const list = body.split(/(?<=[.!?])\s+|\n+/).map((s) => s.trim()).filter(Boolean);
+  const hit = list.find((s) => sourceTokensIn(s).some((t) => tokens.includes(t)))
+    ?? list.find((s) => { const low = s.toLowerCase(); return tokens.some((t) => low.includes(t)); });
+  return hit ? hit.slice(0, 160) : null;
 }
 
-const head = (t: string) => t.split(/[_-]/)[0];
-/** The same source: equal, or the same first part of a key (`nanobanana` for `nanobanana_prompts`). */
-const sameSource = (a: string, b: string) => a === b || (head(a).length >= 4 && head(a) === head(b));
-
 /**
- * One series against one candidate. Path 1: `skillConflicts` of the series' own instruction against the candidate finds a hard or
- * a soft conflict. Path 2 (when path 1 finds nothing): `sourceInSkill` finds a source in the text, none of its tokens is the
- * series source, and the series and the text share a topic word. A hit with no tokens («через API») never contradicts.
+ * One series against one candidate the candidate is about: 073's `seriesSourceConflict` with that series alone. The first
+ * conflict is the verdict. `original_with_source` of a skill whose text `originWithSource` already flags is left to the doctor's
+ * own `origin_original_with_source` finding (one finding, said once, as `skillWriteProblems` does for a write).
  */
 export function judgePair(series: Series, c: Candidate, feedUrl: FeedUrlOf = (r) => r): Contradiction | null {
-  const t = seriesSourceToken(series, feedUrl);
-  if (!t || !series.source) return null;
-  const seriesBody = seriesBodyOf(series, feedUrl);
-
-  const [conflict] = skillConflicts(seriesBody, [{ name: c.name, description: c.description ?? '', body: c.body }], { name: series.name, description: series.brief, keep: [t] });
-  if (conflict) {
-    return { series, candidate: c, path: 'skill_conflicts', kind: conflict.kind, tokens: conflict.tokens, reason: conflict.reason, sentence: null };
-  }
-
-  const hit = sourceInSkill(c.body);
+  const fact = seriesSourceFactOf(series, feedUrl);
+  if (!fact) return null;
+  const said = c.kind === 'skill' && originWithSource(c.body) !== null;
+  const hit = seriesSourceConflict(c.body, [fact], { name: c.name, description: c.description ?? '' })
+    .find((x) => !(x.reason === 'original_with_source' && said));
   if (!hit) return null;
-  const tokens = sourceTokensIn(hit.sentence);
-  if (!tokens.length || tokens.some((x) => sameSource(x, t))) return null;
-  const mine = topicOf(series.name, series.brief, seriesBody);
-  const theirs = c.kind === 'skill' ? topicOf(c.name, c.description ?? '', '') : topicOf(c.name, '', c.body);
-  const shared = [...theirs].filter((w) => mine.has(w));
-  if (!shared.length) return null;
   return {
-    series, candidate: c, path: 'source_in_text', kind: 'source', tokens, sentence: hit.sentence,
-    reason: `it names ${tokens.map((x) => `"${x}"`).join(', ')} as a source for the same ${shared.slice(0, 2).map((w) => `"${w}"`).join(' / ')}`,
+    series, candidate: c, path: 'series_source_conflict', kind: hit.reason, tokens: hit.tokens, reason: REASON_TEXT[hit.reason](hit.tokens),
+    sentence: sentenceOf(c.body, hit.tokens),
   };
 }
 
-/** Every contradiction between the active series that read a source and the candidates, one per (series, candidate) pair. */
+/**
+ * Every contradiction between the active series that read a source and the candidates, one per (series, candidate) pair. A
+ * candidate is judged against the series it is about, chosen as `seriesSourceConflict` chooses: the only required series when the
+ * channel has one, else a series that shares a format or a name word with the text. A `suggested` series is judged by the shared
+ * word only (the write path does not judge it at all).
+ */
 export function seriesSourceContradictions(
   series: readonly Series[], candidates: readonly Candidate[], o: { feedUrl?: FeedUrlOf } = {},
 ): Contradiction[] {
+  const sourced = series.filter((s) => s.active !== false && s.source && (SOURCE_SERIES_KINDS as readonly string[]).includes(s.source.kind));
+  const onlyRequired = sourced.filter((s) => s.source_mode === 'required').length === 1;
   const out: Contradiction[] = [];
-  for (const s of series) {
-    if (s.active === false || !s.source || !(SOURCE_SERIES_KINDS as readonly string[]).includes(s.source.kind)) continue;
+  for (const s of sourced) {
     for (const c of candidates) {
+      const mine = topicOf(c.name, c.description ?? '', c.body);
+      const about = (onlyRequired && s.source_mode === 'required') || [...topicOf(s.name, s.format, s.brief)].some((w) => mine.has(w));
+      if (!about) continue;
       const j = judgePair(s, c, o.feedUrl);
       if (j) out.push(j);
     }

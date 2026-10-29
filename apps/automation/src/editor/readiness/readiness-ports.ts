@@ -1,5 +1,6 @@
 import { resourceRef, type Agent } from '../agents/agent.types';
 import { mergeToolsAllow, refusal, type FixPorts } from '../sysadmin/fix-runner';
+import type { ReadinessService } from './readiness.service';
 import type { ClosedSlotRow } from './view';
 
 /**
@@ -79,5 +80,27 @@ export function closedSlotsPort(pool: { query(sql: string, params?: unknown[]): 
           AND scheduled_at > $2::timestamptz - interval '24 hours' AND scheduled_at <= $2`,
       [resourceRef('telegram', channelKey), now]);
     return rows.map((r: any) => ({ status: r.status, error: r.error ?? null, verdict: r.verdict ?? null }));
+  };
+}
+
+/**
+ * Lead L1 (073 × 072 merge): the runner's `onConfigSkip(channelKey, code)` becomes one `config_skip` recheck of the channel, so
+ * a slot that stopped on its setup shows in the Readiness panel at once and the owner hears of it through the doctor's blocker
+ * note (the runner's own once-a-day note is gone). Cheap and safe: no readiness service (a test module, a boot without it) is a
+ * no-op; while a recheck of the channel is under way the next config skips of it are dropped (that recheck reads the state they
+ * left); a failing recheck is logged and never reaches the slot.
+ */
+export function configSkipRecheck(
+  svc: () => Pick<ReadinessService, 'recheck'> | undefined, log: (msg: string) => void = () => {},
+): (channelKey: string, code: string) => void {
+  const pending = new Set<string>();
+  return (channelKey, code) => {
+    const s = svc();
+    const key = channelKey.toLowerCase();
+    if (!s || pending.has(key)) return;
+    pending.add(key);
+    void s.recheck(channelKey, 'config_skip')
+      .catch((err: any) => log(`readiness: config_skip recheck of ${channelKey} (${code}) failed: ${err?.message ?? err}`))
+      .finally(() => pending.delete(key));
   };
 }

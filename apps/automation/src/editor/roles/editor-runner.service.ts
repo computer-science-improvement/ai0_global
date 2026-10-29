@@ -43,10 +43,8 @@ import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 import { channelLanguage, readerLanguageRule } from '../post/channel-language';
-import { reasonFor } from '../reasons/catalogue';
 import { checkSlotConfig, isConfigCode, isRepairable, repairSlotConfig, type SlotConfigCtx, type SlotConfigSlot } from '../readiness/slot-config';
 import { slotSeriesOf } from '../post/polls/poll-cap-guard';
-import { isNotAMiss } from '../silent/skip-reasons';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -105,8 +103,8 @@ export interface EditorRunnerDeps {
     patch(id: string, r: { format?: string; sourceHints?: string[]; note: string }): Promise<EditorSlot | null>;
   };
   /**
-   * Spec 073 A30 / L1: a slot ended as a CONFIG skip (its setup is wrong, not its content): `(channelKey, code)`. Not wired in 073;
-   * the lead wires it to the readiness recheck at the 072 merge and deletes the runner's own once-a-day note (`noteConfigSkip`).
+   * Spec 073 A30 / L1: a slot ended as a CONFIG skip (its setup is wrong, not its content): `(channelKey, code)`. Wired to the
+   * readiness recheck (`config_skip`, spec 072); the owner hears about it through 072's blocker note, the runner sends none.
    */
   onConfigSkip?: (channelKey: string, code: string) => void;
   /** Spec 073 FR-005: the validator's lines (≤ 5, ≤ 200 chars each) of the last failed call of a run's tool; the planner alert appends them. */
@@ -300,9 +298,6 @@ export interface PreviewOptions {
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
   constructor(private readonly d: EditorRunnerDeps) {}
-
-  /** Spec 073 A27: `${channelKey}:${code}` → the local date (in the card's zone) the owner was last told. In memory: a restart may repeat a note once. */
-  private readonly configNoted = new Map<string, string>();
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
@@ -528,7 +523,7 @@ export class EditorRunnerService {
           status: 'skipped', error: cfg.reason,
           fallback: { ...fresh.fallback, steps: fresh.fallback?.steps ?? [], final: { outcome: 'skipped', code: 'config', step: 'initial', reason: cfg.reason } },
         });
-        await this.noteConfigSkip(slot, card, cfg.code);
+        this.configSkipped(slot, cfg.code);
         if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
         return first;
       }
@@ -720,7 +715,7 @@ export class EditorRunnerService {
       }
     }
     await this.d.plans.updateSlot(slot.id, { fallback: { ...slot.fallback, steps, final } });
-    if (cfgCode) await this.noteConfigSkip(slot, card, cfgCode);
+    if (cfgCode) this.configSkipped(slot, cfgCode);
     return res;
   }
 
@@ -756,24 +751,17 @@ export class EditorRunnerService {
     const p = problems[0];
     if (!p) return { slot };
     const done = await this.skipByCode(slot, `${p.code}: ${p.detail}`.slice(0, 500));
-    // A config code tells the recheck hook and the owner (once a day); `preflight_no_material` is material: it counts toward the breaker and has no note.
-    if (isConfigCode(p.code)) await this.noteConfigSkip(slot, card, p.code);
+    // A config code tells the readiness recheck; `preflight_no_material` is material: it counts toward the breaker and has no hook.
+    if (isConfigCode(p.code)) this.configSkipped(slot, p.code);
     return { done };
   }
 
   /**
-   * Spec 073 A27: a config skip tells the lead's recheck hook (`onConfigSkip`, L1) and, once a day per channel and code, the owner,
-   * in Ukrainian: what is wrong and what to change. `config_series_gone` (the owner removed the series) is not a miss: no note.
+   * Spec 073 A27 / L1 (lead, at the 072 merge): a config skip only tells the readiness recheck (`onConfigSkip`). The runner's own
+   * once-a-day owner note is gone: the doctor's blocker note (spec 072) is the one the owner gets, so a wrong setup is said once.
    */
-  private async noteConfigSkip(slot: EditorSlot, card: EditorCard, code: string): Promise<void> {
+  private configSkipped(slot: EditorSlot, code: string): void {
     try { this.d.onConfigSkip?.(slot.channelKey, code); } catch { /* a hook must not fail the slot */ }
-    if (isNotAMiss(code)) return;
-    const day = localDate(this.now(), card.timezone);
-    const key = `${slot.channelKey}:${code}`;
-    if (this.configNoted.get(key) === day) return;
-    this.configNoted.set(key, day);
-    const entry = reasonFor(code);
-    await this.safeNotify(`⚙️ ${slot.channelKey}: ${entry ? entry.uk : code}${entry?.fix ? `. ${entry.fix.uk}` : ''}`);
   }
 
   /** Spec 071 A2: put the failed post's own library row aside for the round when the failure says the row is the problem. */

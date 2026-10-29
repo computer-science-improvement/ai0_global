@@ -198,7 +198,7 @@ import { AuditTick } from './sysadmin/audit-schedule';
 import { auditAdapter, auditTitle } from './sysadmin/audit-artifact';
 import { playbookPort, retireMemoryPort } from './sysadmin/audit-ports';
 import { loadChannelFacts, resolveChannelKey } from './readiness/facts';
-import { closedSlotsPort, readinessFixPorts } from './readiness/readiness-ports';
+import { closedSlotsPort, configSkipRecheck, readinessFixPorts } from './readiness/readiness-ports';
 import { READINESS_SERVICE, ReadinessController } from './readiness/readiness.controller';
 import { readinessSource } from './readiness/readiness-cards';
 import { ReadinessRepository } from './readiness/readiness.repository';
@@ -1667,6 +1667,8 @@ export const EDITOR_PROVIDERS = [
           seriesContext: (slot) => schedule.executorContext(slot),
           // Spec 073 FR-009: the slot's config check before the pre-flight (read-only context; a repair patches the claimed slot only).
           slotConfig: { context: (card, slot, o) => schedule.slotConfigContext(card, slot, o), patch: (id, r) => repos.plans.patchSlotConfig(id, r) },
+          // Spec 073 L1 / 072: a config skip rechecks the channel's readiness (the holder is filled by READINESS_SERVICE; no DI cycle).
+          onConfigSkip: configSkipRecheck(() => READINESS.svc, (m) => logger.warn(m)),
           // Spec 071 R4: a post's `library://` alias against the series' next row (`data://`).
           canonicalRef: async (ref) => (await resolveContentRef(pool, ref).catch(() => null))?.dataRef ?? ref,
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
@@ -2154,13 +2156,15 @@ export const EDITOR_PROVIDERS = [
         pool: Pool, cfg: ConfigService, repos: EditorRepos, infra: AgentInfra, ops: EditorOpsService, schedule: ScheduleService, agentsSvc: AgentsService,
       ): ReadinessService => {
         const logger = new Logger('Readiness');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const conflicts = configConflictsOf(pool, repos, infra);
         const pauseRepo = new SeriesPausesRepository(pool);
         const pauseActions = new SeriesPauseActions({ pool, repo: pauseRepo, profiles: infra.profiles });
         const svc = new ReadinessService({
           repo: new ReadinessRepository(pool),
           resolveKey: (key) => resolveChannelKey(pool, key),
-          load: (key, now) => loadChannelFacts(pool, key, { now }),
+          // 073 × 072 seams (lead): the skeleton check's producible formats need the env; the slot check's context is the schedule's read-only one.
+          load: (key, now) => loadChannelFacts(pool, key, { now, env, slotConfigContext: (card, slot) => schedule.slotConfigContext(card, slot) }),
           identity: async (key) => {
             const card = await repos.channels.get(key);
             if (!card) return null;

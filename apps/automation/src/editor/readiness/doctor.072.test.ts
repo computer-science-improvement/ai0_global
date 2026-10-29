@@ -7,7 +7,7 @@ import { findingKey } from '../sysadmin/audit-text';
 import { DOCTOR_CHECKS, type DoctorCheck } from './checks';
 import { channelDoctor } from './doctor';
 import { mkFinding } from './finding';
-import { DOCTOR_REASONS } from './codes';
+import { DOCTOR_CODES } from './codes';
 import { NANOBANANA_SKILL, PROMPTHERO_SKILL } from './fixtures/real-skills-1027';
 import { deepFreeze, makeFacts, mkDataset, mkPlaybook, mkSkill, NOW, promptSeries } from './testing/facts-fixture';
 
@@ -69,7 +69,7 @@ test('every finding is a catalogue code on the channel area with a key that hash
     skills: [mkSkill({ id: PROMPTHERO_SKILL.id, name: PROMPTHERO_SKILL.name, description: PROMPTHERO_SKILL.description, body: PROMPTHERO_SKILL.body })],
     datasets: [mkDataset({ key: 'prompts', unusedPostable: 0 })],
   });
-  const known = new Set(DOCTOR_REASONS.map((r) => r.code));
+  const known = new Set<string>(DOCTOR_CODES);
   for (const x of channelDoctor(facts)) {
     assert.equal(x.area, 'channel');
     assert.ok(known.has(x.check), x.check);

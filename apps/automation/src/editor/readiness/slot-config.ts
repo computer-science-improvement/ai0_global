@@ -16,6 +16,7 @@ import type { Series } from '../network/playbook';
 import { datasetFormat, type SeriesSourceCatalog } from '../network/series';
 import { sourceHints } from '../schedule/series-guard';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
+import { AUTO_SAFE_RUN_REPAIRS } from './auto-fix';
 
 /** The slot errors that are a config problem: the checker's codes, the publish-time guards, and the skeleton check's instance codes. */
 export const CONFIG_FAILURE_CODES = [
@@ -30,10 +31,10 @@ const CONFIG = new Set<string>(CONFIG_FAILURE_CODES);
 /** The single source for 072, 074 and 076: is this code a config failure? */
 export const isConfigCode = (code: string | null | undefined): boolean => !!code && CONFIG.has(code);
 
-/** The two problems the runner fixes in place at $0 (the format and the source hints); every other one skips the slot. */
-const REPAIRABLE = new Set<string>(['config_format_mismatch', 'config_source_mismatch']);
+/** The two problems the runner fixes in place at $0 (the format and the source hints); every other one skips the slot. One list: `AUTO_SAFE_RUN_REPAIRS`. */
+const REPAIRABLE = new Set<string>(AUTO_SAFE_RUN_REPAIRS);
 
-/** True only for `config_format_mismatch` and `config_source_mismatch` (I5). At the 072 merge the lead also exposes it as `AUTO_SAFE_RUN_REPAIRS`. */
+/** True only for `config_format_mismatch` and `config_source_mismatch` (I5): the codes of `AUTO_SAFE_RUN_REPAIRS` in `readiness/auto-fix.ts`. */
 export const isRepairable = (code: string | null | undefined): boolean => !!code && REPAIRABLE.has(code);
 
 /**

@@ -385,7 +385,9 @@ export class ScheduleService {
    * Null when the slot names no series, or the channel has no orchestrator or no active playbook (nothing to check).
    * `series` is the playbook's full list, inactive series included.
    */
-  async slotConfigContext(card: EditorCard, slot: EditorSlot, o: { tools?: ReadonlySet<string> | null } = {}): Promise<SlotConfigCtx | null> {
+  async slotConfigContext(
+    card: EditorCard, slot: Pick<EditorSlot, 'channelKey' | 'resourceRef' | 'seriesName' | 'sourceHints'>, o: { tools?: ReadonlySet<string> | null } = {},
+  ): Promise<SlotConfigCtx | null> {
     const name = slotSeriesOf(slot);
     if (!name) return null;
     const orch = await this.d.agents.findTop('orchestrator', 'resource', `telegram:${slot.channelKey}`);

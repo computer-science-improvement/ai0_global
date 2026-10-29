@@ -262,6 +262,25 @@ test('a seeded channel gives the expected facts', { skip }, async () => {
   assert.equal(f.conflictInput.playbook, f.playbook?.body);
 });
 
+test('073 × 072 seams (S4): the resources carry what the skeleton check needs; the slot context is read once per series, read-only', { skip }, async () => {
+  const calls: Array<{ series: string | null; ref: string | null }> = [];
+  const ctx = { series: [], catalog: null, tools: null };
+  const f = await loadChannelFacts(pool, CH, {
+    env: () => undefined,
+    slotConfigContext: async (_card, slot) => { calls.push({ series: slot.seriesName ?? null, ref: slot.resourceRef ?? null }); return ctx; },
+  });
+  const own = f.resources.find((r) => r.ref === REF)!;
+  assert.ok(own.formats?.includes('text'), 'producible formats from skeletonResourcesOf');
+  assert.equal(own.tz, 'Europe/Kyiv');
+  assert.deepEqual(calls, [{ series: 'Tip of the day', ref: REF }], 'one read for the one series planned; a slot with no series is not read');
+  assert.equal(f.planned.find((p) => p.seriesName === 'Tip of the day')?.configCtx, ctx);
+  assert.equal(f.planned.find((p) => !p.seriesName)?.configCtx, undefined);
+  const failing = await loadChannelFacts(pool, CH, { slotConfigContext: async () => { throw new Error('boom'); } });
+  assert.equal(failing.planned.find((p) => p.seriesName === 'Tip of the day')?.configCtx, null, 'a failed read is no context: the seam skips the slot');
+  const plain = await loadChannelFacts(pool, CH);
+  assert.ok(plain.planned.every((p) => p.configCtx === undefined));
+});
+
 test('loading changes nothing: every table it reads is byte-for-byte the same', { skip }, async () => {
   const before = await snapshot();
   await loadChannelFacts(pool, CH);

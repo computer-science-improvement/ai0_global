@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import type { CardSource, EditorCard } from '../../card';
 import { makeFacts, mkPlaybook, mkSeries, promptSeries } from '../testing/facts-fixture';
 import { SOURCE_TOOLS, toolsCheck } from './tools';
+import { SOURCE_READ_TOOLS } from '../slot-config';
 
 /** Spec 072 FR-003.3, A8, A29, I13: a source needs a read tool the run will not have. */
 
@@ -53,7 +54,12 @@ test('each kind of source asks for its own tool: url web_fetch, api fetch_api, l
   assert.deepEqual(tools({ toolsAllow: ['x'], sources: [{ id: 'a1', kind: 'api', ref: 'nasa_apod' } as CardSource] }), ['fetch_api']);
   assert.deepEqual(tools({ toolsAllow: ['x'], sources: [libSource] }), ['query_data']);
   assert.deepEqual(tools({ toolsAllow: ['x'], sources: [] }), []);
-  assert.deepEqual(Object.keys(SOURCE_TOOLS).sort(), ['api', 'feed', 'library', 'url']);
+  assert.deepEqual(Object.keys(SOURCE_TOOLS).sort(), ['api', 'feed', 'library', 'network_highlights', 'url']);
+});
+
+test('I13 (merge): the "any of" lists are 073\'s SOURCE_READ_TOOLS, so the doctor and the runner\'s config check agree', () => {
+  for (const k of ['library', 'feed', 'api', 'network_highlights'] as const) assert.equal(SOURCE_TOOLS[k].anyOf, SOURCE_READ_TOOLS[k], k);
+  for (const k of Object.keys(SOURCE_TOOLS) as Array<keyof typeof SOURCE_TOOLS>) assert.ok(SOURCE_TOOLS[k].anyOf.includes(SOURCE_TOOLS[k].add), `${k}: the fix adds one of the tools`);
 });
 
 test('an api series needs fetch_api, a feed series fetch_feed', () => {
@@ -78,12 +84,18 @@ test('two different missing tools are two findings with different keys', () => {
 test('a free series, a series without source and an inactive series need no tool (A29)', () => {
   const out = run({
     card: { toolsAllow: ['x'] },
-    playbook: mkPlaybook([
-      mkSeries({ name: 'Free', source: { kind: 'free' } }), mkSeries({ name: 'None' }),
-      mkSeries({ name: 'Net', source: { kind: 'network_highlights' } }), promptSeries({ name: 'Off', active: false }),
-    ]),
+    playbook: mkPlaybook([mkSeries({ name: 'Free', source: { kind: 'free' } }), mkSeries({ name: 'None' }), promptSeries({ name: 'Off', active: false })]),
   });
   assert.deepEqual(out, []);
+});
+
+test('A29 at the merge: a network_highlights series needs get_network_highlights (073\'s config_tools_missing says the same at run time)', () => {
+  const [x, ...rest] = run({ card: { toolsAllow: ['x'] }, playbook: mkPlaybook([mkSeries({ name: 'Net', source: { kind: 'network_highlights' } })]) });
+  assert.equal(rest.length, 0);
+  assert.equal(x.subject.id, 'get_network_highlights');
+  assert.equal(x.severity, 'error');
+  assert.deepEqual(x.fix, { kind: 'tools_allow_add', channel: '@fx072', tools: ['get_network_highlights'] });
+  assert.deepEqual(run({ card: { toolsAllow: ['get_network_highlights'] }, playbook: mkPlaybook([mkSeries({ name: 'Net', source: { kind: 'network_highlights' } })]) }), []);
 });
 
 test('the loadout is the cause: no fix and the link is the loadout tab', () => {

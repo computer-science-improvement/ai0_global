@@ -1,6 +1,7 @@
 import type { Finding } from '../../sysadmin/audit.types';
 import { mkFinding } from '../finding';
 import type { ChannelFacts } from '../facts.types';
+import { SOURCE_READ_TOOLS } from '../slot-config';
 import type { DoctorCheck } from './index';
 
 /**
@@ -11,12 +12,16 @@ import type { DoctorCheck } from './index';
 /** What a kind of source needs: any of `anyOf`, and the one tool a fix adds. */
 export interface ToolNeed { anyOf: readonly string[]; add: string }
 
-/** Replaced by 073's SOURCE_READ_TOOLS at merge (I13). The same "any of" idea: `search_library` reads a dataset as well as `query_data`. */
-export const SOURCE_TOOLS: Readonly<Record<'library' | 'feed' | 'url' | 'api', ToolNeed>> = {
-  library: { anyOf: ['query_data', 'search_library'], add: 'query_data' },
-  feed:    { anyOf: ['fetch_feed', 'web_fetch'], add: 'fetch_feed' },
-  url:     { anyOf: ['web_fetch'], add: 'web_fetch' },
-  api:     { anyOf: ['fetch_api'], add: 'fetch_api' },
+/**
+ * I13: the "any of" lists are 073's `SOURCE_READ_TOOLS` (the one map the runner's `config_tools_missing` reads too); this file
+ * only adds the tool a fix allows. A card `url` source is a page: it is read with `web_fetch` alone (the map has no page kind).
+ */
+export const SOURCE_TOOLS: Readonly<Record<'library' | 'feed' | 'url' | 'api' | 'network_highlights', ToolNeed>> = {
+  library:            { anyOf: SOURCE_READ_TOOLS.library, add: 'query_data' },
+  feed:               { anyOf: SOURCE_READ_TOOLS.feed, add: 'fetch_feed' },
+  url:                { anyOf: ['web_fetch'], add: 'web_fetch' },
+  api:                { anyOf: SOURCE_READ_TOOLS.api, add: 'fetch_api' },
+  network_highlights: { anyOf: SOURCE_READ_TOOLS.network_highlights, add: 'get_network_highlights' },
 };
 
 type NeedKind = keyof typeof SOURCE_TOOLS;
@@ -27,7 +32,10 @@ const lacks = (list: readonly string[], need: ToolNeed) => !need.anyOf.some((t) 
 
 interface Needer { kind: NeedKind; what: string; series: boolean }
 
-/** The active series and the card sources that read something through a tool. `free`, `network_highlights` and no source need none (A29). */
+/**
+ * The active series and the card sources that read something through a tool. `free` and no source need none (A29); a
+ * `network_highlights` series needs its read tool, as 073's `config_tools_missing` says at run time (A29, at the merge).
+ */
 export function toolNeeders(f: Pick<ChannelFacts, 'series' | 'card'>): Needer[] {
   const out: Needer[] = [];
   for (const s of f.series) {
@@ -35,6 +43,7 @@ export function toolNeeders(f: Pick<ChannelFacts, 'series' | 'card'>): Needer[] 
     if (s.source.kind === 'library') out.push({ kind: 'library', what: `series «${s.name}» (library:${s.source.table})`, series: true });
     else if (s.source.kind === 'feed') out.push({ kind: 'feed', what: `series «${s.name}» (a feed)`, series: true });
     else if (s.source.kind === 'api') out.push({ kind: 'api', what: `series «${s.name}» (api:${s.source.source})`, series: true });
+    else if (s.source.kind === 'network_highlights') out.push({ kind: 'network_highlights', what: `series «${s.name}» (network highlights)`, series: true });
   }
   for (const c of f.card.sources) {
     const kind: NeedKind = c.kind === 'rss' ? 'feed' : c.kind;

@@ -16,8 +16,11 @@ export const isAutoFixed = (f: Pick<Finding, 'check'>): boolean => f.check === A
 export interface ReadinessFinding {
   key: string; code: string; severity: 'error' | 'warn' | 'info'; title: string; detail: string;
   subject: FindingSubject; link: string | null; firstSeenAt: string | null;
-  /** The Fix itself stays on the server. */
-  fix: { label: string; auto: boolean } | null;
+  /**
+   * The Fix itself stays on the server. `inFixAll`: whether Fix all and «Виправити все» apply it (`isFixAllKind`, lead at the
+   * 076 merge), so the Fix all confirm lists only what it will do.
+   */
+  fix: { label: string; auto: boolean; inFixAll: boolean } | null;
 }
 
 export interface Last24h { planned: number; published: number; awaiting: number; skipped: number; byGroup: Record<string, number> }
@@ -33,7 +36,7 @@ export interface ReadinessView {
 export const toReadinessFinding = (f: Finding): ReadinessFinding => ({
   key: f.key, code: f.check, severity: f.severity, title: f.title, detail: f.detail, subject: f.subject,
   link: f.link ?? null, firstSeenAt: f.firstSeenAt ?? null,
-  fix: f.fix ? { label: fixLabel(f.fix), auto: isAutoSafeFix(f.fix.kind) } : null,
+  fix: f.fix ? { label: fixLabel(f.fix), auto: isAutoSafeFix(f.fix.kind), inFixAll: isFixAllKind(f.fix.kind) } : null,
 });
 
 /** Open errors, warnings and infos; the `auto_fixed` rows are in none of them (A20). */

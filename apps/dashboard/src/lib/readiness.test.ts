@@ -6,9 +6,10 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { ReadinessFinding, ReadinessView } from '../api/readiness';
 import {
-  FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockedView, blockerIntro, blockerLines, bodyLine, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix,
-  isFreshWindow, isStartMove, last24hLine, parseReadinessFlag, readinessLink, readinessPath, sectionsOf, splitLink, startPhrase,
+  FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockedView, blockerIntro, blockerLines, bodyLine, findingHint, findingTitle, fixAllNote, fixAllPhrase, fixLabels,
+  fixToasts, hasFix, isFreshWindow, isStartMove, last24hLine, parseReadinessFlag, readinessLink, readinessPath, sectionsOf, splitLink, startPhrase,
 } from './readiness';
+import { reasonView } from './reasons';
 
 const f = (code: string, severity: ReadinessFinding['severity'], over: Partial<ReadinessFinding> = {}): ReadinessFinding => ({
   key: `${code}|${over.subject?.id ?? 'x'}`, code, severity, title: `Title of ${code}`, detail: `Detail of ${code}`,
@@ -74,6 +75,30 @@ test('Fix all confirm: the action phrase and the distinct labels of errors and w
   assert.deepEqual(fixLabels(rows), ['Switch the skill off', 'Set minimum hashtags to 0']);
   const many = Array.from({ length: 10 }, (_, i) => f(`k${i}`, 'error', { fix: fixOf(`Fix ${i}`) }));
   assert.deepEqual(fixLabels(many, 3), ['Fix 0', 'Fix 1', 'Fix 2', '…and 7 more']);
+});
+
+test('Fix all confirm lists only what Fix all applies: a kind it skips (inFixAll: false) keeps its own button', () => {
+  const rows = [
+    f('a', 'error', { fix: { label: 'Switch the skill off', auto: false, inFixAll: true } }),
+    f('b', 'error', { fix: { label: 'Drop the source', auto: false, inFixAll: false } }),
+    f('c', 'warn', { fix: { label: 'Set minimum hashtags to 0', auto: true } }),
+  ];
+  assert.deepEqual(fixLabels(rows), ['Switch the skill off', 'Set minimum hashtags to 0'], 'an older server without the flag: listed');
+  assert.equal(hasFix(rows[1]), true);
+});
+
+test('S6: a finding is labelled from the reason mirror (lib/reasons.ts); a code it does not hold keeps the server title', () => {
+  const known = f('series_source_contradicted', 'error', { title: 'Server words' });
+  assert.equal(findingTitle(known), reasonView('series_source_contradicted')!.en);
+  assert.equal(findingTitle(f('not_in_the_mirror', 'error')), 'Title of not_in_the_mirror');
+  assert.equal(bodyLine({ findings: [known] }), reasonView('series_source_contradicted')!.en);
+  assert.deepEqual(blockerLines({ findings: [known] }), [`${reasonView('series_source_contradicted')!.en} — label of series_source_contradicted`]);
+  // The what-to-change line shows on an open row without a Fix button only.
+  const low = f('dataset_low_fill', 'warn');
+  assert.equal(findingHint(low), reasonView('dataset_low_fill')!.fix!.en);
+  assert.equal(findingHint({ ...low, fix: fixOf('Do it') }), null);
+  assert.equal(findingHint(f('auto_fixed', 'info')), null);
+  assert.equal(findingHint(f('not_in_the_mirror', 'warn')), null);
 });
 
 test('fixToasts: what was applied, then the refusal in the server\'s words; an empty request says so', () => {

@@ -7,6 +7,8 @@ import type { ConflictInput, OwnerRule, ResourceConfig } from '../rules/config-c
 import type { SeriesPause } from '../series-pause/series-pauses.repository';
 import type { ReusePolicy } from '../../data/data.types';
 import type { PostRequires } from '../../data/post-requires';
+import type { Quiet } from '../time/resource-time';
+import type { SlotConfigCtx } from './slot-config';
 
 /**
  * Spec 072 FR-002, A16: everything the doctor's checks read about one channel, loaded once by `loadChannelFacts` (the only
@@ -26,8 +28,11 @@ export interface ChannelFacts {
   /** `full` is the whole stored profile, which the conflict input needs (A16 lists the other three). */
   profile:         { topic: string | null; language: string | null; formatPrefs: Record<string, unknown>; full: ResourceProfile | null } | null;
   group:           { id: string; name: string; mode: string } | null;
-  /** The group's resources, or this channel alone. `formats` and `tz` are for 073's skeleton check (filled at the merge). */
-  resources:       Array<{ ref: string; platform: string; formats?: string[]; tz?: string }>;
+  /**
+   * The group's resources, or this channel alone. `formats` (what can be produced there now), `tz` and `quiet` are for 073's
+   * skeleton check: the loader fills them through `skeletonResourcesOf` (I6). A resource without `formats` is left out of it.
+   */
+  resources:       Array<{ ref: string; platform: string; formats?: string[]; tz?: string; quiet?: Quiet }>;
   /** Active. */
   playbook:        { id: string; version: number; body: Playbook } | null;
   pendingPlaybook: { id: string; createdAt: string } | null;
@@ -96,6 +101,9 @@ export interface SourceFact {
 export interface PlannedSlotFact {
   id: string; scheduledAt: string; resourceRef: string | null; format: string;
   seriesName: string | null; sourceHints: string[]; scheduleRuleId: string | null;
-  /** 073's SlotConfigCtx for this slot, filled at the merge. */
-  configCtx?: unknown;
+  /**
+   * 073's `SlotConfigCtx` of this slot, from `ScheduleService.slotConfigContext` (read only; no tools, so the tools check stays the
+   * doctor's own). Absent or null = the slot names no series, or nothing is known: the config seam skips it.
+   */
+  configCtx?: SlotConfigCtx | null;
 }

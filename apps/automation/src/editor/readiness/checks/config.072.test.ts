@@ -78,13 +78,10 @@ test('the same code twice for one rule is one finding that keeps both details', 
   assert.equal((out[0].evidence as any).fixes.length, 2);
 });
 
-test('poll_series_over_cap is reported without a fix', () => {
+test('a poll series over the weekly cap is no finding: 073 exempts series polls (S5, the code is gone)', () => {
   const series = [mkSeries({ name: 'Polls', cadence: 'daily@09:00', format: 'poll', brief: 'A poll of the day for the readers' })];
   const out = run({ card: { pollsPerWeek: 1 }, playbook: pb({}, series) });
-  const x = out.find((f) => (f.evidence as any).conflict === 'poll_series_over_cap')!;
-  assert.ok(x);
-  assert.equal(x.severity, 'warn');
-  assert.equal(x.fix, undefined);
+  assert.deepEqual(out.filter((f) => f.check === 'config_conflict'), []);
 });
 
 test('without an agent there is no fix to run', () => {
@@ -150,11 +147,60 @@ test('other groups, no group and no playbook section are left alone', () => {
 
 // ── the 073 seam ────────────────────────────────────────────────────────────────────────────────────────────────────
 
-test('the seam in W1 returns nothing, so the check says nothing for it', () => {
-  const f = makeFacts();
-  assert.deepEqual(configSeam.planSkeleton(f), []);
-  assert.deepEqual(configSeam.slotConfig(f), []);
-  assert.equal(configSeam.isRepairable({ code: 'x', detail: 'y' }), false);
+// The real seam (073 × 072 merge, S4): 073's checkPlanSkeleton and checkSlotConfig, 073's isRepairable.
+
+/** Facts whose resource carries what the loader fills through `skeletonResourcesOf` (formats, zone, quiet hours). */
+const withFormats = (init: Parameters<typeof makeFacts>[0], formats = ['text', 'photo', 'poll']) => {
+  const f = makeFacts(init);
+  return { ...f, resources: [{ ref: REF, platform: 'telegram', formats, tz: 'Europe/Kyiv', quiet: { start: 23, end: 8 } }] };
+};
+
+test('real seam: a series inside the quiet hours is an error from 073 (series_in_quiet_hours), titled by the catalogue', () => {
+  const f = withFormats({ playbook: pb({}, [mkSeries({ name: 'Night', cadence: 'daily@02:00' })]) });
+  const x = configCheck.run(f).find((y) => y.check === 'series_in_quiet_hours')!;
+  assert.ok(x);
+  assert.equal(x.severity, 'error');
+  assert.equal(x.title, doctorReason('series_in_quiet_hours')!.en);
+  assert.equal(x.subject.label, 'Night');
+  assert.match(x.detail, /02:00, inside the quiet hours 23:00-8:00/);
+});
+
+test('real seam: a format the resource cannot produce is series_format_unavailable; no formats from the loader, no check', () => {
+  const init = { playbook: pb({}, [mkSeries({ name: 'Photo', cadence: 'daily@12:00', format: 'photo' })]) };
+  const x = configCheck.run(withFormats(init, ['text'])).find((y) => y.check === 'series_format_unavailable')!;
+  assert.equal(x.severity, 'error');
+  assert.equal(x.subject.label, 'Photo');
+  assert.deepEqual(configCheck.run(makeFacts(init)).filter((y) => y.check === 'series_format_unavailable'), [], 'a resource without formats is left out');
+});
+
+test('real seam: more series posts a day than the card maximum is a warning (series_rate_over_card_max)', () => {
+  const series = [mkSeries({ name: 'Morning', cadence: 'daily@10:00,12:00' }), mkSeries({ name: 'Evening', cadence: 'daily@15:00' })];
+  const x = configCheck.run(withFormats({ card: { postsPerDayMax: 2 }, playbook: pb({}, series) })).find((y) => y.check === 'series_rate_over_card_max')!;
+  assert.equal(x.severity, 'warn');
+  assert.match(x.detail, /3 series posts on .*more than the card's maximum of 2/);
+  assert.deepEqual(configCheck.run(withFormats({ card: { postsPerDayMax: 3 }, playbook: pb({}, series) })).filter((y) => y.check === 'series_rate_over_card_max'), []);
+});
+
+const ctxSeries = [{ name: 'Prompt', resource_ref: REF, format: 'photo', active: true, source: { kind: 'library' as const, table: 'prompts' }, source_mode: 'required' as const }];
+const planned = (over: Record<string, unknown> = {}) => ({
+  id: 'slot-1', scheduledAt: '2026-10-27T10:00:00.000Z', resourceRef: REF, format: 'photo', seriesName: 'Prompt', sourceHints: [], scheduleRuleId: null,
+  configCtx: { series: ctxSeries, catalog: null, tools: null }, ...over,
+});
+
+test('real seam: a slot whose format drifted is info, repaired before the run; a slot without a context is not checked', () => {
+  const out = configCheck.run(makeFacts({ planned: [planned({ format: 'text' }), planned({ id: 'slot-2', format: 'text', configCtx: undefined })] }));
+  assert.deepEqual(out.map((x) => [x.check, x.severity, (x.evidence as any).slot]), [['config_format_mismatch', 'info', 'slot-1']]);
+  assert.match(out[0].detail, /It will be repaired before the run\.$/);
+  assert.equal(configSeam.isRepairable({ code: 'config_format_mismatch', detail: '' }), true);
+  assert.equal(configSeam.isRepairable({ code: 'config_tools_missing', detail: '' }), false);
+});
+
+test('real seam: a gone series is info and costs nothing; preflight_no_material is left to the material check', () => {
+  const gone = configCheck.run(makeFacts({ planned: [planned({ seriesName: 'Old' })] }));
+  assert.deepEqual(gone.map((x) => [x.check, x.severity]), [['config_series_gone', 'info']]);
+  assert.match(gone[0].detail, /The slot is skipped at no cost\.$/);
+  const empty = configCheck.run(makeFacts({ planned: [planned({ configCtx: { series: ctxSeries, catalog: null, tools: null, material: 'empty' } })] }));
+  assert.deepEqual(empty, []);
 });
 
 const stub = (over: Partial<ConfigSeam>): ConfigSeam => ({ planSkeleton: () => [], slotConfig: () => [], isRepairable: () => false, ...over });

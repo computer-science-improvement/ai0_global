@@ -1,6 +1,7 @@
 // Spec 072 FR-008: the channel doctor's result as one compact card (the count, the first blocker, the last 24 hours) and a
-// details dialog (Blockers, Warnings, Info, "Fixed by code" as rows in flush panels; Recheck and Fix all). The words are the
-// server's (title, detail, fix label); the card is placed on the agent Overview, the editor page and the launch panel.
+// details dialog (Blockers, Warnings, Info, "Fixed by code" as rows in flush panels; Recheck and Fix all). The label and the
+// what-to-change line are the reason mirror's (lib/reasons.ts); the detail and the fix label are the server's. The card is
+// placed on the agent Overview, the editor page and the launch panel.
 
 import { Link } from '@tanstack/react-router';
 import { Badge } from '../ui/Badge';
@@ -13,7 +14,7 @@ import { useFixReadiness, useReadiness, useRecheckReadiness, type ReadinessFindi
 import { alignPrompt } from '../../lib/align';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import {
-  AUTO_FIXED_CODE, badgesOf, bodyLine, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix, last24hLine, sectionsOf, splitLink,
+  AUTO_FIXED_CODE, badgesOf, bodyLine, findingHint, findingTitle, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix, last24hLine, sectionsOf, splitLink,
 } from '../../lib/readiness';
 // The stylesheet (readiness.css) is imported by routes/app.tsx: node tests load this module through the launch panel.
 
@@ -107,8 +108,9 @@ function FindingRow({ f, channelKey, handle }: { f: ReadinessFinding; channelKey
     <div className="panel-row rdy-row">
       <span className="rdy-badge"><Badge tone={fixed ? 'success' : ROW_TONE[f.severity]}>{fixed ? 'fixed' : ROW_LABEL[f.severity]}</Badge></span>
       <div className="rdy-main">
-        <div className="text-body-sm rdy-title">{f.title}</div>
+        <div className="text-body-sm rdy-title">{findingTitle(f)}</div>
         {f.detail && <div className="text-micro ink-muted rdy-wrap">{f.detail}</div>}
+        {findingHint(f) && <div className="text-micro ink-dim rdy-wrap">{findingHint(f)}</div>}
         <div className="text-micro ink-dim rdy-meta">
           {f.subject?.label && <span className="rdy-wrap">{f.subject.label}</span>}
           {f.firstSeenAt && <span>{fixed ? 'Fixed' : 'Since'} {fmtDate(f.firstSeenAt)}</span>}

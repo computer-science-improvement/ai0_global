@@ -14,9 +14,11 @@ const SKILL: Fix = { kind: 'skill_disable', agent: 'fx072', skill: 's' };
 
 test('toReadinessFinding keeps the Fix on the server: the view carries its label and whether code may apply it by itself', () => {
   const auto = toReadinessFinding(mkF('hashtag_min_without_vocabulary', 'error', { fix: HASHTAG }));
-  assert.deepEqual(auto.fix, { label: fixLabel(HASHTAG), auto: true });
+  assert.deepEqual(auto.fix, { label: fixLabel(HASHTAG), auto: true, inFixAll: true });
   const one = toReadinessFinding(mkF('series_source_contradicted', 'error', { fix: SKILL }));
-  assert.deepEqual(one.fix, { label: fixLabel(SKILL), auto: false });
+  assert.deepEqual(one.fix, { label: fixLabel(SKILL), auto: false, inFixAll: true });
+  const bind = toReadinessFinding(mkF('dataset_without_series', 'warn', { fix: { kind: 'bind_dataset' } as unknown as Fix }));
+  assert.equal(bind.fix?.inFixAll, false, 'an excluded kind keeps its own button and is not in the Fix all list');
   const none = toReadinessFinding(mkF('dataset_low_fill', 'warn'));
   assert.equal(none.fix, null);
   assert.ok(!('evidence' in none) && !JSON.stringify(none).includes('"kind"'), 'no Fix object in the view');

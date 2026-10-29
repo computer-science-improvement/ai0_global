@@ -2,10 +2,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { DOCTOR_REASONS, doctorReason, LINK_PLACEHOLDERS, resolveLink } from './codes';
+import { DOCTOR_CODES, DOCTOR_REASONS, doctorReason, LINK_PLACEHOLDERS, resolveLink } from './codes';
 import { DOCTOR_CHECKS } from './checks';
+import { REASONS, reasonFor } from '../reasons/catalogue';
 
-/** Spec 072 FR-001: the doctor's reason catalogue. */
+/** Spec 072 FR-001: the doctor's reason codes, whose texts live in 073's one catalogue since the merge. */
 
 test('codes are unique, snake_case and have a known kind', () => {
   const codes = DOCTOR_REASONS.map((r) => r.code);
@@ -41,9 +42,25 @@ test('link placeholders are known, and every link is a dashboard path', () => {
 });
 
 test('source_unreachable is a skip class and a pause cause, never a doctor code', () => {
-  assert.equal(doctorReason('source_unreachable'), undefined);
+  assert.ok(!(DOCTOR_CODES as readonly string[]).includes('source_unreachable'));
+  assert.equal(reasonFor('source_unreachable')?.kind, 'skip', 'the catalogue keeps it as the skip reason it is');
+  assert.ok(!emittedCodes().has('source_unreachable'), 'no check emits it');
   assert.ok(doctorReason('auto_fixed'));
   assert.ok(doctorReason('series_source_contradicted'));
+});
+
+test('lead S2 (073 × 072 merge): every doctor code is an entry of the one catalogue, of kind doctor (series_paused is the shared skip entry)', () => {
+  const byCode = new Map(REASONS.map((e) => [e.code, e]));
+  for (const code of DOCTOR_CODES) {
+    const e = byCode.get(code);
+    assert.ok(e, `${code} is in reasons/catalogue.ts`);
+    assert.equal(e!.kind, code === 'series_paused' ? 'skip' : 'doctor', code);
+  }
+  assert.deepEqual(DOCTOR_REASONS.map((e) => e.code), [...DOCTOR_CODES]);
+  assert.equal(new Set(REASONS.map((e) => e.code)).size, REASONS.length, 'one entry per code across both specs');
+  // An entry with no fix or no link has a reason: auto_fixed is a record, bot_not_admin links to the launch itself.
+  const bare = DOCTOR_REASONS.filter((e) => !e.fix || !e.link).map((e) => e.code).sort();
+  assert.deepEqual(bare, ['auto_fixed', 'bot_not_admin']);
 });
 
 test('every reason that offers a fix says what to change in one sentence', () => {
@@ -78,8 +95,8 @@ function emittedCodes(): Set<string> {
 
 test('every code a check can emit is in the catalogue, and every catalogue code but auto_fixed is emitted by a check', () => {
   const emitted = emittedCodes();
-  const known = new Set(DOCTOR_REASONS.map((r) => r.code));
-  assert.deepEqual([...emitted].filter((c) => !known.has(c)).sort(), [], 'a check emits a code nobody can read');
+  const known = new Set<string>(DOCTOR_CODES);
+  assert.deepEqual([...emitted].filter((c) => !known.has(c)).sort(), [], 'a check emits a code that is not the doctor\'s');
   assert.deepEqual([...known].filter((c) => c !== 'auto_fixed' && !emitted.has(c)).sort(), [], 'a catalogue code no check emits');
   assert.ok(known.has('auto_fixed'), 'the service writes auto_fixed (A20)');
   assert.ok(!emitted.has('auto_fixed'));

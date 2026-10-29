@@ -11,8 +11,11 @@ export interface ReadinessFinding {
   key: string; code: string; severity: ReadinessSeverity; title: string; detail: string;
   subject: { type: string; id: string; label: string; agent?: string; channel?: string };
   link: string | null; firstSeenAt: string | null;
-  /** The fix itself stays on the server: its label, and whether code may apply it by itself. */
-  fix: { label: string; auto: boolean } | null;
+  /**
+   * The fix itself stays on the server: its label, whether code may apply it by itself, and whether Fix all applies it
+   * (absent from an older server: then it is listed).
+   */
+  fix: { label: string; auto: boolean; inFixAll?: boolean } | null;
 }
 
 export interface ReadinessLast24h { planned: number; published: number; awaiting: number; skipped: number; byGroup: Record<string, number> }

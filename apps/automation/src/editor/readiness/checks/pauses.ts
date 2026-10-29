@@ -32,6 +32,12 @@ const sourceOf = (f: ChannelFacts, key: string): SourceFact | null => {
   return name === null ? null : f.sources.find((s) => s.origin === `series:${name}`) ?? null;
 };
 
+/**
+ * `series_paused` shares its catalogue entry with the slot's skip reason (spec 073), whose link is the Schedule tab; a pause row
+ * of the panel links to the Overview, where the pause banner sits, like the other two pause codes.
+ */
+const PAUSE_LINK = '/app/agents/:agent?tab=overview';
+
 export const pausesCheck: DoctorCheck = {
   code: 'series_paused',
   run(f: ChannelFacts): Finding[] {
@@ -62,7 +68,7 @@ export const pausesCheck: DoctorCheck = {
           continue;
         }
         out.push(mkFinding(f, {
-          code: 'series_paused', severity: 'info', subject, fix: resume,
+          code: 'series_paused', severity: 'info', subject, fix: resume, link: PAUSE_LINK,
           detail: `«${p.label}» has been paused since ${day(p.pausedAt)} after ${p.streak} skipped slots in a row: it had no material to post.`,
           evidence: { ...base, ...(ds ? { dataset: ds.key, unused_postable: ds.unusedPostable } : {}) },
         }));
@@ -81,7 +87,7 @@ export const pausesCheck: DoctorCheck = {
         continue;
       }
       out.push(mkFinding(f, {
-        code: 'series_paused', severity: 'info', subject,
+        code: 'series_paused', severity: 'info', subject, link: PAUSE_LINK,
         detail: `«${p.label}» has been paused since ${day(p.pausedAt)} after ${p.streak} skipped slots in a row: its source could not be reached.`,
         evidence: { ...base, ...(src ? { source: src.url, host_block: src.hostBlock } : {}) },
       }));

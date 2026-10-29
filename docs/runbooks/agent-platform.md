@@ -1075,15 +1075,15 @@ One check of the whole channel, at $0 (no model call), that names what keeps it 
 
 | Group | Codes | Looks at |
 |---|---|---|
-| Source and series | `series_source_contradicted`, `origin_original_with_source`, `skill_prescribes_source`, `dataset_without_series`, `series_source_not_required` | the series' source against enabled skills, owner rules and steering lines; datasets on the card that no series posts from; series that only «suggest» their source |
+| Source and series | `series_source_contradicted`, `origin_original_with_source`, `skill_prescribes_source`, `dataset_without_series`, `series_source_not_required` | the series' source against enabled skills, owner rules and steering lines (judged by spec 073's `seriesSourceConflict`, the same judge every skill write runs: another source named, the series' source ruled out, or `origin=original` on read material); datasets on the card that no series posts from; series that only «suggest» their source |
 | Material | `dataset_post_requires_missing`, `dataset_low_fill`, `material_exhausted`, `material_low`, `dataset_order_random` | the rows a dataset can still post (`post_requires`, rounds, reuse), thin text, used-up material |
-| Tools | `tools_missing_for_source` | the card's tool list and the agent's loadout against what the series' source needs (`query_data`, `fetch_feed`, `web_fetch`, `fetch_api`) |
-| Config | `hashtag_min_without_vocabulary`, `config_conflict`, `formats_diverge` | owner rules against the card (one finding per rule and code), hashtag minimum with no vocabulary, formats the card and the playbook disagree on; spec 073 adds its pre-flight problems here |
+| Tools | `tools_missing_for_source` | the card's tool list and the agent's loadout against what the series' source needs (spec 073's `SOURCE_READ_TOOLS`: `query_data` or `search_library`, `fetch_feed` or `web_fetch`, `fetch_api`, `get_network_highlights`) |
+| Config | `hashtag_min_without_vocabulary`, `config_conflict`, `formats_diverge`, and spec 073's own codes | owner rules against the card (one finding per rule and code), hashtag minimum with no vocabulary, formats the card and the playbook disagree on. Spec 073's checks run here too, under their own codes: the plan skeleton (`series_format_unavailable` and `series_in_quiet_hours` are errors, `series_rate_over_card_max` a warning) and the pre-flight of today's and tomorrow's planned slots (`config_*`, `series_*_mismatch`; the two the run repairs by itself, `config_format_mismatch` and `config_source_mismatch`, are info «It will be repaired before the run», and `config_series_gone` is info: the slot is skipped at no cost) |
 | Pauses | `series_paused`, `series_paused_by_owner`, `pause_cause_gone` | a paused series, one the owner paused (never offered a Resume), and one whose cause (no material) is gone |
 | Launch and playbook | `playbook_draft_waiting`, `bot_not_admin` | a playbook draft that has waited over a day for your decision; the launch's bot cannot post (not an admin of the channel, or its token is no longer accepted) |
 | Code's own | `auto_fixed` | an info row «Fixed by code» for a fix applied by itself, kept 24 h |
 
-Severity is the doctor's: an **error** is a blocker (it stops posts or makes them wrong), a **warning** is worth a look, **info** is for the record. Counts of blockers and warnings never include `auto_fixed` rows. The titles and the owner-bot lines are one catalogue (`readiness/codes.ts`, `DOCTOR_REASONS`); change a text there, not in the dashboard.
+Severity is the doctor's: an **error** is a blocker (it stops posts or makes them wrong), a **warning** is worth a look, **info** is for the record. Counts of blockers and warnings never include `auto_fixed` rows. The titles and the owner-bot lines come from spec 073's one reason catalogue (`reasons/catalogue.ts`, entries of kind `doctor`; `readiness/codes.ts` lists the doctor's codes in `DOCTOR_CODES`), and the dashboard reads the labels from its mirror `lib/reasons.ts`. Change a text in both: the drift test fails otherwise.
 
 **When it runs**
 
@@ -1094,7 +1094,7 @@ Severity is the doctor's: an **error** is a blocker (it stops posts or makes the
 | `sweep` | every 10 minutes, for cards in `approve` or `live` and channels with an open launch (`ready`, `running`); one at a time, never two sweeps at once | yes | yes |
 | `start` | a launch starts (in the background, beside the first plan) | yes | yes |
 | `fix` | after Fix / Fix all | no | yes |
-| `config_skip` | reserved for spec 073: a skip with class `config` | no | yes |
+| `config_skip` | a slot skipped with a spec 073 `config` code (the runner's `onConfigSkip`); one in flight per channel, a burst of skips is one look | no | yes |
 
 «Can stamp a card» means the result may write `notified_blockers` for the owner-bot card (see below); a `view` never does. A card in `off` or `shadow` is checked when someone opens it, never by the sweep, and is never auto-fixed or announced. Every change the dashboard makes (any successful save) makes its next five seconds of Readiness reads ask for `?fresh=1`, so the card never shows the state from before the save.
 
@@ -1108,7 +1108,7 @@ Each applied fix is logged once and shows in the panel as **Fixed by code** for 
 **The Readiness card**
 
 - On the agent's **Overview** (above «Today, step by step»), on the **editor page** (between the numbers and the Card block) and in the **launch panel** (above the checklist, after Start). The card shows the count, the first blocker, the last 24 hours («6 planned · 2 published · 1 waiting · 3 skipped (2 lint, 1 config)») and, when something can be fixed in one tap, «Fix all can resolve N».
-- The dialog lists **Blockers**, **Warnings**, **Info** and **Fixed by code** as rows: the server's title and detail, since when, **Open** (the page that fixes it), **Fix** (the one fix of that row, after a confirm), and **Resolve in one card** on a `config_conflict` row (prefills `/align @handle` in the chat). **Recheck** looks again now. **Fix all** (only when something can be fixed) confirms with the list of fixes and applies every open error and warning that has one.
+- The dialog lists **Blockers**, **Warnings**, **Info** and **Fixed by code** as rows: the label from the reason mirror (the server's title for a code it does not hold), the server's detail, «what to change» from the mirror on a row with no Fix, since when, **Open** (the page that fixes it), **Fix** (the one fix of that row, after a confirm), and **Resolve in one card** on a `config_conflict` row (prefills `/align @handle` in the chat). **Recheck** looks again now. **Fix all** (only when something can be fixed) confirms with the list of fixes and applies every open error and warning that has one.
 - **Fix all's scope.** Info rows keep their own Fix button («Resume the series»). Kinds that need your eyes on one row (spec 075's `bind_dataset` and `dataset_patch`, once they exist) are never in Fix all, neither in the dashboard nor in the owner bot's «Виправити все».
 - `/app/agents/<handle>?tab=overview&readiness=1` opens the dialog on arrival (the owner-bot card links there).
 
@@ -1128,7 +1128,7 @@ When `LAUNCH_GRADUATION` is `auto` and a launched channel meets the criteria, it
 
 **API** (all under the editor's auth, `/api/editor/channels/:key/…`; the key is the card's spelling, `%40` for `@`; no card = 404 `channel_not_found`)
 
-- `GET …/readiness[?fresh=1]`: the stored row (under 60 s old) or a new look. Fields: `channelKey`, `agent`, `mode`, `checkedAt`, `blockers`, `warnings`, `infos`, `fixable`, `findings[]` (`key`, `code`, `severity`, `title`, `detail`, `subject`, `link`, `firstSeenAt`, `fix {label, auto}`), `last24h`, `topFix`.
+- `GET …/readiness[?fresh=1]`: the stored row (under 60 s old) or a new look. Fields: `channelKey`, `agent`, `mode`, `checkedAt`, `blockers`, `warnings`, `infos`, `fixable`, `findings[]` (`key`, `code`, `severity`, `title`, `detail`, `subject`, `link`, `firstSeenAt`, `fix {label, auto, inFixAll}`), `last24h`, `topFix`. `inFixAll` is false for a kind Fix all skips, so its confirm lists only what it applies.
 - `POST …/readiness/recheck`: reason `owner`; answers the new view.
 - `POST …/readiness/fix` with `{codes?, keys?}`: none = Fix all, `codes` = every open finding with those codes, `keys` = those findings only (a key that is no longer open comes back in `failed` as `finding_gone`). Answers `{applied, failed, view}`.
 
@@ -1162,14 +1162,14 @@ A wrong setting used to look like bad content: the writer was paid, a guard fail
 **Needs**
 
 - Migration `098_card_hashtag_default` (`editor_channels.hashtag_min` DEFAULT 0, and every channel with no hashtags and a minimum above 0 is set to 0; a channel with a vocabulary keeps its minimum). Apply it with the deploy; the code works without it, but a card created by SQL would still demand a hashtag. Down: `database/migrations/down/098_card_hashtag_default.down.sql` (restores DEFAULT 1; the backfill is not undone, a channel set to 0 stays 0).
-- Nothing to enable. No new setting. The hook `onConfigSkip` exists on the runner and is **not wired** here: the readiness service of spec 072 connects it at its merge.
+- Nothing to enable. No new setting. The runner's hook `onConfigSkip` is wired to the channel doctor (§ 32): a config skip asks Readiness for a look with reason `config_skip`, and the doctor's owner-bot card tells the owner.
 
 **The config class**
 
 - The codes (`CONFIG_FAILURE_CODES`, `readiness/slot-config.ts`): `config_series_gone`, `config_format_mismatch`, `config_source_mismatch`, `config_source_missing`, `config_tools_missing`, `series_format_mismatch`, `series_source_mismatch`, `preflight_format_unavailable`, `series_format_unavailable`, `series_in_quiet_hours`.
 - A slot that ends with one of them is `skipped` at once: no ladder step, no 15-minute retry, no row put aside (they are in `NEVER_PASS`), and the breaker of § 19 ignores them. The idea goes back to the pool and the owner report and the silent-day line call the group «налаштування».
 - `config_series_gone` (the owner removed or paused the series) is **not a miss** (`NOT_A_MISS`): it neither pauses anything nor raises a note.
-- For every other config code the owner gets one Ukrainian note per channel and code per local day: `⚙️ <channel>: <what is wrong>. <what to change>`. The memory of "already told today" is in the process, so a restart can repeat a note once that day.
+- For every other config code the runner asks the channel doctor for a look (`onConfigSkip` → Readiness `config_skip`, § 32). The doctor finds the same problem in the plan or the slot and the owner learns it from the Readiness panel and its owner-bot card (a blocker that stands five minutes, at most one card a day per channel). The «⚙️» note of the first 073 build is gone: one channel, one place.
 - `preflight_no_material` stays **material**: an empty required source still pauses a dead series (§ 19, § 27).
 
 **The pre-flight (before the writer)**
@@ -1219,13 +1219,12 @@ A post with `format: poll` and a `correct_index` now fails lint as `poll_correct
 **Reading it**
 
 - A slot skipped as `config_*` or `series_*_mismatch` is not a content failure: read its «What to change» line, fix the series or the card, and the next slot runs. It will not pause the series.
-- «⚙️ <channel>: …» in Telegram is that same line, once a day per code.
+- The Readiness panel (§ 32) shows the same problem under the same code, with «what to change» and the link.
 - `fallback.repairs` on a slot says what the pre-flight changed before the writer ran.
 
 **Accepted limits**
 
 - Owner replans and Start's planner runs count toward the scheduler's three tries; after 20:00 the ahead window and today's retries overlap, so either can lose tries. After a restart the next day's `maybePlan` does not see the previous evening's failed ahead tries and may try up to three more times (A14).
-- The once-a-day config note is kept in memory, so a restart can repeat it once (A27).
 - A deleted channel's slots have no channel row; they stay planned until `skipStale` writes «stale: …» (A44).
 
 **Troubleshooting**

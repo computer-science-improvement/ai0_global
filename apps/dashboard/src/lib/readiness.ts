@@ -1,7 +1,9 @@
 // Spec 072 FR-008/FR-010, A11, A13, A23: the words of the Readiness panel and of the "Start anyway" confirms. Pure: no React.
-// The titles, details and fix labels are the server's (the doctor's reason catalogue); this file only arranges them.
+// A finding's label comes from the reason mirror (lib/reasons.ts, spec 073 FR-014: labels are read from there only), with the
+// server's title for a code the mirror does not hold; the details and the fix labels are the server's.
 
 import type { ReadinessFinding, ReadinessFixResult, ReadinessLast24h, ReadinessView } from '../api/readiness';
+import { reasonView } from './reasons';
 
 /** After a successful change the next reads ask the server for a fresh look for this long (A11). */
 export const FRESH_WINDOW_MS = 5_000;
@@ -34,10 +36,17 @@ export function badgesOf(v: Pick<ReadinessView, 'blockers' | 'warnings'>): Array
 
 const isOpen = (f: Pick<ReadinessFinding, 'code'>) => f.code !== AUTO_FIXED_CODE;
 
+/** The label of a finding: the mirror's `en` for its code, else the server's title. */
+export const findingTitle = (f: Pick<ReadinessFinding, 'code' | 'title'>): string => reasonView(f.code)?.en ?? f.title;
+
+/** What to change, from the mirror, for an open row without a Fix button; null otherwise. */
+export const findingHint = (f: Pick<ReadinessFinding, 'code' | 'fix'>): string | null =>
+  (isOpen(f) && !f.fix ? reasonView(f.code)?.fix?.en ?? null : null);
+
 /** The first open blocker's title, or the all-clear line. */
 export function bodyLine(v: Pick<ReadinessView, 'findings'>): string {
   const first = v.findings.find((f) => f.severity === 'error' && isOpen(f));
-  return first ? first.title : 'Nothing blocks this channel.';
+  return first ? findingTitle(first) : 'Nothing blocks this channel.';
 }
 
 /** "Last 24 h: 6 planned · 2 published · 1 waiting · 3 skipped (2 lint, 1 config)". */
@@ -71,9 +80,12 @@ export const hasFix = (f: ReadinessFinding): boolean => isOpen(f) && !!f.fix;
 /** Fix all's confirm: `Are you sure you want to apply 2 fixes?` */
 export const fixAllPhrase = (n: number): string => `apply ${plural(n, 'fix', 'fixes')}`;
 
-/** The distinct fix labels of the open errors and warnings, for the Fix all confirm (up to `max`, then "…and N more"). */
+/**
+ * The distinct fix labels of the open errors and warnings Fix all applies, for its confirm (up to `max`, then "…and N more").
+ * A kind Fix all skips (`inFixAll: false`: binding a dataset, a dataset patch, dropping a source) keeps its own button only.
+ */
 export function fixLabels(findings: readonly ReadinessFinding[], max = 8): string[] {
-  const labels = [...new Set(findings.filter((f) => isOpen(f) && f.severity !== 'info' && f.fix).map((f) => f.fix!.label))];
+  const labels = [...new Set(findings.filter((f) => isOpen(f) && f.severity !== 'info' && f.fix && f.fix.inFixAll !== false).map((f) => f.fix!.label))];
   return labels.length > max ? [...labels.slice(0, max), `…and ${labels.length - max} more`] : labels;
 }
 
@@ -134,8 +146,9 @@ export const startPhrase = (target: string, n: number): string => `start ${targe
 export function blockerLines(v: Pick<ReadinessView, 'findings'>, max = 5): string[] {
   const open = v.findings.filter((f) => f.severity === 'error' && isOpen(f));
   const lines = open.slice(0, max).map((f) => {
+    const title = findingTitle(f);
     const label = (f.subject?.label ?? '').trim();
-    return label && label !== f.title && label !== f.code ? `${f.title} — ${label}` : f.title;
+    return label && label !== title && label !== f.code ? `${title} — ${label}` : title;
   });
   return open.length > max ? [...lines, `…and ${open.length - max} more`] : lines;
 }

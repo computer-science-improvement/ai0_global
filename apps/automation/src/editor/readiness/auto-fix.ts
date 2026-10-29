@@ -13,5 +13,13 @@ export type AutoSafeFixKind = typeof AUTO_SAFE_FIX_KINDS[number];
 
 export const FIX_ALL_EXCLUDED_KINDS: readonly string[] = ['bind_dataset', 'dataset_patch'];
 
+/**
+ * Lead decision I5 (073 × 072 merge): the slot repairs the runner makes by itself at $0 before a paid run (spec 073 FR-009):
+ * the slot takes its series' format, and its source hints are set back to the series' own dataset. They are not `Fix` kinds
+ * (nothing in the channel's setup changes, only the planned slot), so they are a list of their own. `isRepairable` in
+ * `readiness/slot-config.ts` reads this list, and the doctor shows such a problem as info ("will be repaired before the run").
+ */
+export const AUTO_SAFE_RUN_REPAIRS = ['config_format_mismatch', 'config_source_mismatch'] as const;
+
 export const isAutoSafeFix = (kind: string): boolean => (AUTO_SAFE_FIX_KINDS as readonly string[]).includes(kind);
 export const isFixAllKind = (kind: string): boolean => !FIX_ALL_EXCLUDED_KINDS.includes(kind);

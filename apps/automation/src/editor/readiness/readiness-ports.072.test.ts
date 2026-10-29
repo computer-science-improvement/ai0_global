@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { tryFix } from '../sysadmin/fix-runner';
-import { closedSlotsPort, readinessFixPorts, type ReadinessPortDeps } from './readiness-ports';
+import { closedSlotsPort, configSkipRecheck, readinessFixPorts, type ReadinessPortDeps } from './readiness-ports';
 
 /**
  * Spec 072 T6, FR-004, A30, A32: the ports behind the readiness fixes, each over a fake of the service that owns the change. The
@@ -108,4 +108,33 @@ test('closedSlotsPort reads the closed slots of the last 24 hours of one resourc
   assert.deepEqual(queries[0][1], ['telegram:@c', now]);
   assert.match(queries[0][0], /critic->>'verdict'/);
   assert.match(queries[0][0], /interval '24 hours'/);
+});
+
+// ── lead L1: the runner's onConfigSkip → a config_skip recheck ─────────────────────────────────────────────────────
+
+test('L1: a config skip starts one config_skip recheck; a burst of one channel while it runs is dropped; no service is a no-op', async () => {
+  const calls: Array<[string, string]> = [];
+  let release!: () => void;
+  const gate = new Promise<void>((r) => { release = r; });
+  const svc = { recheck: async (key: string, reason: string) => { calls.push([key, reason]); await gate; return {} as any; } };
+  const hook = configSkipRecheck(() => svc as any);
+  hook('@Chan', 'config_tools_missing');
+  hook('@chan', 'config_format_mismatch');
+  hook('@other', 'config_series_gone');
+  assert.deepEqual(calls, [['@Chan', 'config_skip'], ['@other', 'config_skip']], 'one per channel while it is under way');
+  release();
+  await new Promise((r) => setImmediate(r));
+  hook('@chan', 'config_tools_missing');
+  assert.deepEqual(calls.at(-1), ['@chan', 'config_skip'], 'a later skip rechecks again');
+  // No readiness service in this process: nothing happens and nothing throws.
+  assert.doesNotThrow(() => configSkipRecheck(() => undefined)('@chan', 'x'));
+});
+
+test('L1: a failing recheck is logged and never thrown at the runner', async () => {
+  const logs: string[] = [];
+  const hook = configSkipRecheck(() => ({ recheck: async () => { throw new Error('db down'); } }) as any, (m) => logs.push(m));
+  assert.doesNotThrow(() => hook('@chan', 'config_tools_missing'));
+  await new Promise((r) => setImmediate(r));
+  assert.equal(logs.length, 1);
+  assert.match(logs[0], /config_skip recheck of @chan \(config_tools_missing\) failed: db down/);
 });

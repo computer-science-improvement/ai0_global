@@ -1,6 +1,6 @@
 import { createHash } from 'crypto';
 import type { Pool } from 'pg';
-import { resourceRef } from '../agents/agent.types';
+import { resourceRef, type Platform } from '../agents/agent.types';
 import { AgentsRepository } from '../agents/agents.repository';
 import { profileCaps, ResourceProfilesRepository, type ResourceProfile } from '../agents/resource-profile';
 import { SkillStore, type AgentSkillEntry } from '../agents/skill-store';
@@ -13,6 +13,8 @@ import { NetworkRepository } from '../network/network.repository';
 import type { Playbook, Series } from '../network/playbook';
 import { instancesPerDay, parseCadence, seriesSourceLabel, SeriesSourceSchema } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
+import { slotSeriesOf } from '../post/polls/poll-cap-guard';
+import type { EditorSlot } from '../repo/editor-plans.repository';
 import { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { localDate, zonedToUtc } from '../roles/time';
@@ -23,6 +25,8 @@ import { SteeringRepository } from '../steering/steering.repository';
 import { ledgerUsage } from '../tools/catalog-context';
 import { resourceKeys, usedRefsCte } from '../../data/data-refs';
 import type { ChannelFacts, DatasetFact, PlannedSlotFact, SkillFact, SourceFact } from './facts.types';
+import { skeletonResourcesOf } from './plan-skeleton';
+import type { SlotConfigCtx } from './slot-config';
 
 /**
  * Spec 072 FR-002: the one module that reads for the channel doctor. `loadChannelFacts` loads one channel in a fixed number of
@@ -292,11 +296,35 @@ function zoneOk(tz: string): string {
   try { localDate(new Date(), tz); return tz; } catch { return 'Europe/Kyiv'; }
 }
 
+/** What the loader may be given besides the pool (wired in `editor.module.ts`; a test passes what it needs). */
+export interface LoadFactsOptions {
+  now?: Date;
+  /** The settings behind `formatAvailable` (a carousel needs slide hosting); absent = every format a platform implements is producible. */
+  env?: (key: string) => string | undefined;
+  /**
+   * `ScheduleService.slotConfigContext`, read only (no inbox post, no round started: 073 I1). Called once per series that has a
+   * planned slot today or tomorrow, without tools. Absent = no `configCtx`, and the config seam skips the planned slots.
+   */
+  slotConfigContext?: (card: EditorCard, slot: Pick<EditorSlot, 'channelKey' | 'resourceRef' | 'seriesName' | 'sourceHints'>) => Promise<SlotConfigCtx | null>;
+}
+
+/** The resources with what 073's skeleton check needs (I6): producible formats, zone, quiet hours. A platform it cannot read keeps none. */
+function withSkeleton(card: EditorCard, resources: Array<{ ref: string; platform: string }>, env?: LoadFactsOptions['env']): ChannelFacts['resources'] {
+  return resources.map((r) => {
+    try {
+      const [s] = skeletonResourcesOf(card, [{ ref: r.ref, platform: r.platform as Platform }], env);
+      return { ref: r.ref, platform: r.platform, formats: [...s.formats], ...(s.tz ? { tz: s.tz } : {}), ...(s.quiet ? { quiet: s.quiet } : {}) };
+    } catch {
+      return r;
+    }
+  });
+}
+
 /**
  * Everything the doctor reads about one channel (the card's spelling of the key is resolved first, A27). A fixed number of
- * queries whatever the channel holds; writes nothing.
+ * queries whatever the channel holds, plus one read-only slot config context per series planned today or tomorrow; writes nothing.
  */
-export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: { now?: Date } = {}): Promise<ChannelFacts> {
+export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: LoadFactsOptions = {}): Promise<ChannelFacts> {
   const now = o.now ?? new Date();
   const channelKey = await resolveChannelKey(pool, channelKeyIn);
   if (!channelKey) throw new ChannelNotFound(channelKeyIn);
@@ -314,7 +342,7 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: { no
   if (!card) throw new ChannelNotFound(channelKeyIn);
   const executor = orch ? (await agents.children(orch.id)).find((a) => a.kind === 'executor') ?? null : null;
   const groupRefs = group ? await network.groupResources(group.id) : [];
-  const resources = groupRefs.length ? groupRefs.map((r) => ({ ref: r.ref, platform: r.platform })) : [{ ref, platform: 'telegram' }];
+  const resources = withSkeleton(card, groupRefs.length ? groupRefs.map((r) => ({ ref: r.ref, platform: r.platform })) : [{ ref, platform: 'telegram' }], o.env);
   const refs = resources.map((r) => r.ref);
   if (!refs.includes(ref)) refs.unshift(ref);
 
@@ -385,6 +413,19 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: { no
     id: r.id, scheduledAt: new Date(r.scheduled_at).toISOString(), resourceRef: r.resource_ref ?? null, format: r.format,
     seriesName: r.series_name ?? null, sourceHints: Array.isArray(r.source_hints) ? r.source_hints.map(String) : [], scheduleRuleId: r.schedule_rule_id ?? null,
   }));
+  // 073's slot config context (L8): one read per series, shared by its slots (the context depends on the series, not the slot).
+  if (o.slotConfigContext) {
+    const ctxOf = new Map<string, Promise<SlotConfigCtx | null>>();
+    for (const p of planned) {
+      const name = slotSeriesOf(p);
+      if (!name) continue;
+      const k = `${(p.resourceRef ?? ref).toLowerCase()}|${name}`;
+      if (!ctxOf.has(k)) {
+        ctxOf.set(k, o.slotConfigContext(card, { channelKey, resourceRef: p.resourceRef, seriesName: p.seriesName, sourceHints: p.sourceHints }).catch(() => null));
+      }
+      p.configCtx = await ctxOf.get(k)!;
+    }
+  }
 
   const steering = steeringSets.flatMap((set) => set.rules.map((r, i) => ({ r, i })).filter(({ r }) => r.enabled && !r.conflict).map(({ r, i }) => ({ id: `${set.id}/${i}`, text: r.text })));
   const others = refs.filter((r) => r !== ref).map((r) => siblingConfig(r, profileOf(r)));

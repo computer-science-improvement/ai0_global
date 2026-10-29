@@ -112,3 +112,12 @@ test('seriesSourceFacts keeps the active required series that read a library, a 
     ['Апі', 'api', 'nasa_apod', 'text'],
   ]);
 });
+
+test('«бери з X, а не з Y» names X as the source and rules out only Y (072 × 073 merge)', () => {
+  const r = seriesSourceConflict('Беру промпти для постів з https://prompthero.com, а не з бази.', [PROMPT]);
+  assert.deepEqual(r.map((c) => [c.reason, c.tokens]), [['other_source', ['prompthero']]]);
+  const back = seriesSourceConflict('Беру промпти з library:nanobanana_prompts, а не з prompthero.com.', [PROMPT]);
+  assert.deepEqual(back, [], 'the series source on the positive side, another one ruled out: no conflict');
+  const ruled = seriesSourceConflict('Беру промпти з prompthero.com, не з nanobanana.', [PROMPT]);
+  assert.deepEqual(ruled.map((c) => c.reason), ['other_source', 'rules_out_source']);
+});
