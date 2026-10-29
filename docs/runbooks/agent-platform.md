@@ -990,3 +990,71 @@ A dataset can now be set to **repeat in rounds**: every row is posted once on ea
 - `not_next_in_order` in a skip reason: the executor picked another row than the next one. It is a content failure (it does not pause the series); the note of the next attempt names the row.
 - A row never appears: it is hidden, or not postable (a required field is empty), or it was put aside in this round. The Rounds card counts only postable rows.
 - Tests: `data/data-rounds.test.ts`, `data-rounds.pg.test.ts`, `data-rounds.migration.pg.test.ts` (migration traps and the down file), `data-rounds.read.test.ts`, `data-rounds.read.pg.test.ts` (round order, lazy roll, the 7-day tail, passed, A7), `data-rounds-api.pg.test.ts` (rounds view and restart), `editor/silent/pass-row.071.test.ts` (also the ladder keeping the next row, the series note after a row is put aside), `editor/tools/data-tools.rounds.test.ts`, `role-tools.071.test.ts`, `role-tools.test.ts` (similarity without the row's own post), `editor/schedule/schedule.071.test.ts`, `editor/approval/approval-publisher.test.ts`, `editor/chat/drafts.service.test.ts`, `editor/platform/platform.test.ts`, `editor/repo/round-similarity.071.pg.test.ts`; in the dashboard `lib/data-store.rounds.test.ts`.
+
+## 31. The dashboard redesign (spec 078)
+
+The dashboard and the landing page have a new look: dark panels with hairlines, one green accent, amber for "you have to act", mono type for machine facts. The menu is shorter, three pages are new (Today, Inbox, Calendar), and every other page is restyled. No API was removed. Two backend changes ship with it: the Inbox actions endpoints and a mark-read answer (below). There is no migration.
+
+**Needs**
+
+- A normal deploy of both images. Deploy the automation service with the dashboard, or at the same time. With an older service the Inbox note buttons answer 404, and the page says the server does not support the action yet.
+- Optional: the stage's sidebar shows a small `dev` pill. The develop workflow passes `VITE_ENV_LABEL=dev` (override with the repository variable `DEV_VITE_ENV_LABEL`). The prod build passes nothing, so prod has no pill. Locally, set `VITE_ENV_LABEL` in `apps/dashboard/.env.local`.
+
+**The menu (saved menu schema v2)**
+
+- The default menu has 11 items in four groups:
+  - **Home:** Today, Inbox, Chat.
+  - **Network:** Agents, Calendar, Channels, Map.
+  - **Insights:** Analytics, Spend, Health.
+  - **System:** Settings.
+- Every other page is under **More tools**, in ⌘K and in breadcrumbs. Hiding a page only changes the menu: every route keeps working.
+- A menu saved before (schema v1) is migrated when it is read. The migration starts from the new default and keeps:
+  - pins, custom links, and renames, icons and counter switches;
+  - your own groups and their order;
+  - the pages you hid on purpose (including every page of a group you hid);
+  - the pages you un-hid from the old hidden-by-default list (directives, the Telegram tabs and so on);
+  - a title you gave a surviving group.
+- The migration does not keep:
+  - the order of pages inside a built-in group;
+  - pages moved between built-in groups;
+  - where you placed pages you left visible (the redesign decides the 11).
+- The migration runs on every load until you save the menu once (Settings → Navigation). From then on the menu is stored as v2. Nothing is lost by not saving.
+- The Inbox counter in the menu is unread notes plus posts to approve. "Posts to approve" is no longer its own menu item. It is the Inbox's Approvals tab (`/app/agents/inbox?tab=approvals`), and the old Telegram links land there.
+
+**What moved where**
+
+- **`/app`** is now **Today**: what needs you, the day's ring and a Telegram timeline (06:00–24:00 Kyiv). It replaced the old Overview.
+  - The headline counts only what needs a decision: unread critical and action notes, posts to approve, and cards waiting in a chat.
+  - Dismissing a note marks it read, and Undo brings it back.
+- **Inbox** (`/app/agents/inbox`) has a list on the left and the note on the right; on a narrow screen the note opens in a sheet.
+  - A note carries the same buttons as its Telegram card: Resume, Keep paused, Pause series, Mute for 7 days.
+  - A press in the dashboard counts as your reaction (the A10 demotion rule; `owner_cards.resolved_by = 'dashboard:owner'`). The bot then never sends a card for that note.
+  - "Mark as done" offers Undo only for the notes it actually changed. A note you settled in Telegram in the meantime stays settled.
+  - API:
+    - `POST /api/agents/inbox/:id/actions {key}` runs a note's button.
+    - `POST /api/agents/inbox/read` now also answers `ids` (the notes it changed).
+    - `POST /api/agents/inbox/unread` marks notes unread.
+- **Agent page:**
+  - It has 17 tabs in five groups, with a second row for the group's tabs. `?tab=` is still the tab, so old links work.
+  - The profile, resource, formatting and sources forms moved from Overview to **Settings**. Overview keeps two short summaries, each with a link to Settings.
+  - Lock a formatting field from the summary's switch.
+  - **In force** lists the active effects.
+- **Calendar** (`/app/calendar`) is new. It shows a week of agent slots and your own posts.
+  - **Add** opens the composer as a side sheet (`?compose=new&channel=&day=`). A post opens with `?compose=edit&post=`.
+  - "Ask the agent" adds a one-off pin to the agent's schedule. The toast's Undo withdraws it.
+- **Redirects** keep old links working: `/app/strategies*` → Agents, `/app/bots` and `/app/telegraph` → Connections, `/app/agent` → DM, `/app/setup` and `/app/steering` → Artifacts.
+- **Landing (`/`)**: a new hero with an orbit of the network's agents and an agent log built from the public pulse.
+  - The sections and anchors are unchanged, and so are the lead-form and CTA tracking.
+  - Under "reduce motion" nothing moves, and the channel row and the log show as plain lists.
+  - `/white-label` is not restyled.
+
+**Troubleshooting**
+
+- The menu still shows the old 26 items: the browser has an old build cached. Reload the page. The first paint uses a local copy of the menu, and the saved menu replaces it a moment later.
+- An Inbox button answers "This server does not support that action yet": the automation image is older than the dashboard. Deploy it, or use the note's link to the page.
+- "This note no longer offers that action. Refresh the list.": the note's buttons changed since the list loaded.
+- "That series was already resumed" or "That series is already paused": the pause changed elsewhere (Telegram, the agent page). The note is still marked read.
+- The Today headline says only the greeting: the Inbox has not answered yet, or the approvals counter is still loading. If the Inbox fails, the "Needs you" panel says so and offers Try again. It never says "All clear" on a failure.
+- Tests:
+  - Dashboard: `nav/migrate.test.ts`, `nav/registry.test.ts`, `nav/badges.test.ts`, `lib/today.test.ts`, `lib/inbox-*.test.ts`, `lib/calendar.test.ts`, `lib/agent-tabs.test.ts`, `lib/landing-*.test.ts`, `lib/status-tone.test.ts`.
+  - Backend: `editor/series-pause/inbox-actions.078.test.ts` and `inbox-actions.078.pg.test.ts`.
