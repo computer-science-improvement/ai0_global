@@ -354,8 +354,10 @@ export class ScheduleService {
    * Publish guard of a slot: a live post inside the owner's blackout (`blackout_window`; owner pins are
    * exempt), a `required` series source the post does not use (`series_source_mismatch`) and (spec 034)
    * a live slot's post without its item's source URL (`live_source_missing`).
+   * Spec 073 A20 / A34: a series or pin slot's post in another format than the series (or the pin) gives is refused as
+   * `series_format_mismatch` (a config failure) — `refs.format` is the post's format, absent = not checked.
    */
-  async publishGuard(slot: EditorSlot, refs: { libraryRef?: string | null; sourceUrl?: string | null }, o: { live: boolean; now: Date; card?: EditorCard | null; feeds?: CardSource[] }): Promise<Fail | null> {
+  async publishGuard(slot: EditorSlot, refs: { libraryRef?: string | null; sourceUrl?: string | null; format?: string | null }, o: { live: boolean; now: Date; card?: EditorCard | null; feeds?: CardSource[] }): Promise<Fail | null> {
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
     // Spec 034 FR-010: a live slot's post names the item it is about, so the ledger can stop a repeat.
     if (slot.topicMode === 'live' && !refs.sourceUrl) {
@@ -370,6 +372,16 @@ export class ScheduleService {
       }
     }
     const s = await this.seriesForSlot(slot);
+    // Spec 073 A20: the format check runs once the series or pin resolves, before the source and order checks. An improvised slot
+    // (no series, no pin) has no `s` and is never checked.
+    if (s && refs.format && refs.format !== s.format) {
+      return {
+        error: 'series_format_mismatch',
+        details: s.pin
+          ? `закріплений слот має формат ${s.format}, а пост — ${refs.format}: зроби пост у ${s.format}`
+          : `серія «${s.name}» виходить у форматі ${s.format}, а пост — ${refs.format}. Формат задає серія: зроби пост у ${s.format}`,
+      };
+    }
     if (s && !s.pin) {
       const why = seriesSourceMismatch(s, refs, (o.feeds ?? []).filter((f) => f.kind === 'rss' || f.kind === 'url'));
       if (why) return { error: 'series_source_mismatch', details: why };

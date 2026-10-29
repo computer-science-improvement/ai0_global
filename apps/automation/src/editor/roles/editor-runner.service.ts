@@ -34,7 +34,7 @@ import { alreadyUsedBlock } from '../post/variety/monotony';
 import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, formatLocked, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
+  classifyFailure, configStop, formatLocked, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import type { PassRow } from '../silent/pass-row';
@@ -43,6 +43,8 @@ import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 import { channelLanguage, readerLanguageRule } from '../post/channel-language';
+import { reasonFor } from '../reasons/catalogue';
+import { isNotAMiss } from '../silent/skip-reasons';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -92,6 +94,11 @@ export interface EditorRunnerDeps {
   preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /**
+   * Spec 073 A30 / L1: a slot ended as a CONFIG skip (its setup is wrong, not its content): `(channelKey, code)`. Not wired in 073;
+   * the lead wires it to the readiness recheck at the 072 merge and deletes the runner's own once-a-day note (`noteConfigSkip`).
+   */
+  onConfigSkip?: (channelKey: string, code: string) => void;
   /** Spec 073 FR-005: the validator's lines (≤ 5, ≤ 200 chars each) of the last failed call of a run's tool; the planner alert appends them. */
   lastToolErrors?: (runId: string, tool: string) => Promise<string[]>;
   /**
@@ -262,6 +269,9 @@ export interface PreviewOptions {
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
   constructor(private readonly d: EditorRunnerDeps) {}
+
+  /** Spec 073 A27: `${channelKey}:${code}` → the local date (in the card's zone) the owner was last told. In memory: a restart may repeat a note once. */
+  private readonly configNoted = new Map<string, string>();
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
@@ -473,6 +483,21 @@ export class EditorRunnerService {
     // Spec 067 FR-003: after the 15-minute retry the critic keeps the level an earlier attempt of the slot ran at.
     const first = await attempt(slot, note ?? null, scan, probe, { passBudget, pinLevel: pinLevelOf(slot.fallback) });
     await this.d.plans.updateSlot(slot.id, { runId: first.runId });
+    // Spec 073 A30: a CONFIG failure (the series' format or source does not fit the post) ends the slot here — no ladder step, no
+    // 15-minute retry, no row put aside: nothing the writer does can fix the setup.
+    const cfg = configStop(probe);
+    if (cfg) {
+      const fresh = await this.d.plans.getSlot(slot.id);
+      if (fresh && (fresh.status === 'running' || fresh.status === 'skipped')) {
+        await this.d.plans.updateSlot(slot.id, {
+          status: 'skipped', error: cfg.reason,
+          fallback: { steps: fresh.fallback?.steps ?? [], final: { outcome: 'skipped', code: 'config', step: 'initial', reason: cfg.reason } },
+        });
+        await this.noteConfigSkip(slot, card, cfg.code);
+        if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+        return first;
+      }
+    }
     // Spec 037 FR-010: a post the critic rejected or that failed lint / a guard climbs the fallback ladder.
     const res = await this.fallback(slot, card, ctx, { note: callerNote, seriesNote: series?.note ?? null, nextRow: series?.nextRow ?? null, scan, platform: target?.platform ?? 'telegram' }, first, probe, attempt);
 
@@ -565,6 +590,7 @@ export class EditorRunnerService {
     let res = first;
     let final: FallbackFinal | null = null;
     let last: LadderStep = 'initial';
+    let cfgCode = null as string | null;
     const skipped = (step: FallbackStepRecord['step'], format: string, outcome: 'no_candidate' | 'unavailable', reason: string): FallbackStepRecord =>
       ({ step, at: this.now().toISOString(), format, outcome, reason, verdict: null, run_id: null, cost_usd: 0 });
 
@@ -622,6 +648,14 @@ export class EditorRunnerService {
       res = r;
       await this.d.plans.updateSlot(slot.id, { runId: r.runId });
       after = await this.d.plans.getSlot(slot.id);
+      // Spec 073 A30: a config failure on a step ends the slot with that reason; it is checked before the content classification.
+      const cfg = configStop(p);
+      if (cfg) {
+        steps.push({ ...stepRecord(st.step, st.format, this.now(), after, null, r), outcome: 'config', reason: cfg.reason.slice(0, 300) });
+        final = { outcome: 'skipped', code: 'config', step: st.step, reason: cfg.reason };
+        cfgCode = cfg.code;
+        break;
+      }
       const f = after ? classifyFailure(after, p) : null;
       steps.push(stepRecord(st.step, st.format, this.now(), after, f, r));
       // Spec 037 T10: an evergreen post that did not go out (critic, guard, the writer's skip) skips the slot with the
@@ -645,13 +679,29 @@ export class EditorRunnerService {
     }
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
-      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: (final.code === 'series_skip' && final.reason ? final.reason : failure.reason).slice(0, 500) });
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: ((final.code === 'series_skip' || final.code === 'config') && final.reason ? final.reason : failure.reason).slice(0, 500) });
       if (this.d.deadSource) {
         for (const url of rejectedSources) await this.d.deadSource(slot, url, failure.reason).catch(() => 0);
       }
     }
     await this.d.plans.updateSlot(slot.id, { fallback: { steps, final } });
+    if (cfgCode) await this.noteConfigSkip(slot, card, cfgCode);
     return res;
+  }
+
+  /**
+   * Spec 073 A27: a config skip tells the lead's recheck hook (`onConfigSkip`, L1) and, once a day per channel and code, the owner,
+   * in Ukrainian: what is wrong and what to change. `config_series_gone` (the owner removed the series) is not a miss: no note.
+   */
+  private async noteConfigSkip(slot: EditorSlot, card: EditorCard, code: string): Promise<void> {
+    try { this.d.onConfigSkip?.(slot.channelKey, code); } catch { /* a hook must not fail the slot */ }
+    if (isNotAMiss(code)) return;
+    const day = localDate(this.now(), card.timezone);
+    const key = `${slot.channelKey}:${code}`;
+    if (this.configNoted.get(key) === day) return;
+    this.configNoted.set(key, day);
+    const entry = reasonFor(code);
+    await this.safeNotify(`⚙️ ${slot.channelKey}: ${entry ? entry.uk : code}${entry?.fix ? `. ${entry.fix.uk}` : ''}`);
   }
 
   /** Spec 071 A2: put the failed post's own library row aside for the round when the failure says the row is the problem. */

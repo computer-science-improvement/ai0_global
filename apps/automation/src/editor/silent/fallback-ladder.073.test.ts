@@ -7,7 +7,8 @@ import { EditorRunnerService } from '../roles/editor-runner.service';
 import { SkillLibrary } from '../skills/skill-library';
 import { makeCard } from '../post/testing/fixtures';
 import { isToolError } from '../harness/tool';
-import { formatLocked, ladderPlan, shouldPassRow } from './fallback-ladder';
+import { configStop, formatLocked, ladderPlan, PublishProbe, shouldPassRow } from './fallback-ladder';
+import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
 
 const NOW = new Date('2026-10-29T09:00:00Z');
 const ROW = 'data://pdr_questions/7';
@@ -145,4 +146,38 @@ test('runner: every failure kind on a locked slot — fixable revise, non-fixabl
   const fix = setup([revise, revise, revise], { slot: locked });
   await fix.runner.runExecutor(fix.st, fix.card);
   assert.deepEqual(stepsOf(fix.st).slice(0, 2), ['initial', 'revise_source']);
+});
+
+// ── T11 (A30, A34): a config failure ends the slot ───────────────────────────────────────────
+
+test('configStop: a last publish error that is a config code gives {code, reason}; any other code, a success and no probe give null', () => {
+  const cfg = configStop({ last: { code: 'series_format_mismatch', details: 'серія «Білет дня» виходить у форматі quiz, а пост — text' } });
+  assert.deepEqual(cfg, { code: 'series_format_mismatch', reason: 'series_format_mismatch: серія «Білет дня» виходить у форматі quiz, а пост — text' });
+  assert.equal(configStop({ last: { code: 'series_source_mismatch', details: ['a', 'b'] } })?.reason, 'series_source_mismatch: a, b');
+  assert.equal(configStop({ last: { code: 'series_source_mismatch', details: null } })?.reason, 'series_source_mismatch', 'no details, no trailing colon');
+  for (const code of CONFIG_FAILURE_CODES) assert.equal(configStop({ last: { code, details: 'x' } })?.code, code, code);
+  for (const code of ['lint_failed', 'too_similar', 'not_next_in_order', 'critic_revise', 'live_source_missing']) {
+    assert.equal(configStop({ last: { code, details: 'x' } }), null, code);
+  }
+  assert.equal(configStop({ last: null }), null);
+  assert.equal(configStop(null), null);
+});
+
+test('configStop: the reason is cut at 500 characters', () => {
+  const r = configStop({ last: { code: 'series_format_mismatch', details: 'я'.repeat(900) } })!;
+  assert.equal(r.reason.length, 500);
+  assert.ok(r.reason.startsWith('series_format_mismatch: яя'));
+});
+
+test('PublishProbe: series_format_mismatch drops the row like the other row guards; it stays on `last` after a later non-publish tool', async () => {
+  const probe = new PublishProbe();
+  const publish: any = { name: 'publish_post', kind: 'terminal', description: '', input: {}, roles: ['executor'], execute: async () => ({ error: 'series_format_mismatch', details: 'x' }) };
+  const skip: any = { name: 'skip_slot', kind: 'terminal', description: '', input: {}, roles: ['executor'], execute: async () => ({ ok: true, skipped: true }) };
+  const [p, sk] = probe.wrap([publish, skip]);
+  await p.execute({ spec: { format: 'text', library_ref: ROW, source: { url: 'https://src.example/1' } } }, {} as any);
+  assert.equal(probe.libraryRef, null, 'a row the guard refused was never judged');
+  assert.equal(probe.source, 'https://src.example/1');
+  await sk.execute({ cause: 'no_material' }, {} as any);
+  assert.equal(probe.last?.code, 'series_format_mismatch', 'skip_slot does not clear it');
+  assert.equal(configStop(probe)?.code, 'series_format_mismatch');
 });

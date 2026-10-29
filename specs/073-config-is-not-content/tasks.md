@@ -117,7 +117,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
     - `apps/dashboard/src/lib/status-tone.test.ts:95-108` stays green; `reasons/catalogue.073.test.ts` covers the new list.
   - Done when: `series_source_mismatch: x` reads as config in every consumer, the 060 breaker ignores it, and its row is never passed.
 
-- [ ] **T11 Config errors at publish end the slot (FR-010 runner part, FR-002 publish part; A20, A27, A30, A31, A34, L1, L3).**
+- [x] **T11 Config errors at publish end the slot (FR-010 runner part, FR-002 publish part; A20, A27, A30, A31, A34, L1, L3).**
   - What:
     - `publishGuard(slot, refs: { libraryRef?; sourceUrl?; format? })` returns `series_format_mismatch` as in A34, before `series_source_mismatch`; `tools/role-tools.ts:223` and `platform/platform-tools.ts:85` pass `format: spec.format`;
     - `ROW_GUARD_CODES` gains `series_format_mismatch` (A31);

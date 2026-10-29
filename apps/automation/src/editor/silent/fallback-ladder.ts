@@ -1,6 +1,6 @@
 import { isToolError, type EditorTool } from '../harness/tool';
 import { isContentFailureCode } from './skip-reasons';
-import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
+import { CONFIG_FAILURE_CODES, isConfigCode } from '../readiness/slot-config';
 
 /**
  * Spec 037 FR-010 (T10): the fallback ladder of a slot whose post failed.
@@ -53,6 +53,7 @@ export type StepOutcome =
   | 'published' | 'shadowed' | 'awaiting_approval' | 'approved'      // rescued
   | 'critic_reject' | 'lint' | 'guard'                                // failed again
   | 'no_candidate' | 'unavailable'                                    // the step could not run
+  | 'config'                                                          // spec 073: the slot's setup is wrong; no step can fix it
   | 'ended';                                                          // a non-content end (skip, outage, budget, …)
 
 export interface FallbackStepRecord {
@@ -80,7 +81,7 @@ export interface FallbackStepRecord {
 export interface FallbackFinal {
   /** rescued: a later step went out; skipped: every step failed or the ladder stopped; ended: a step ended the slot otherwise. */
   outcome: 'rescued' | 'skipped' | 'ended';
-  /** exhausted | budget | too_late (skipped); the slot status (rescued / ended). */
+  /** exhausted | budget | too_late | series_skip | config (skipped; `config`: spec 073, the setup is wrong); the slot status (rescued / ended). */
   code:    string;
   step:    LadderStep;
   reason:  string | null;
@@ -147,7 +148,7 @@ function detailsText(details: unknown): string {
 }
 
 /** Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order). */
-const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch']);
+const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'series_format_mismatch']);
 
 /**
  * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
@@ -174,6 +175,18 @@ export class PublishProbe {
       },
     });
   }
+}
+
+/**
+ * Spec 073 A30: the run's last publish error is a CONFIG failure (the series' format or source does not fit the post, the series is
+ * gone): no rewrite fixes it, so the slot ends skipped with that reason — no ladder step, no 15-minute retry, no row put aside.
+ * `PublishProbe.last` survives a later `skip_slot` of the same run; only a successful publish clears it.
+ */
+export function configStop(probe: Pick<PublishProbe, 'last'> | null): { code: string; reason: string } | null {
+  const last = probe?.last;
+  if (!last || !isConfigCode(last.code)) return null;
+  const text = detailsText(last.details);
+  return { code: last.code, reason: clip(text ? `${last.code}: ${text}` : last.code, 500) };
 }
 
 /** The slot fields the classification reads. */

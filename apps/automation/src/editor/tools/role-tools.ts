@@ -223,7 +223,7 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   const dup = ledger ? await sourceGuard(d, channelKey, spec) : null;
   if (dup) return dup;
   if (d.schedule && ledger) {
-    const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: card.mode === 'live', now, card, feeds: card.sources });
+    const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url, format: spec.format }, { live: card.mode === 'live', now, card, feeds: card.sources });
     if (sg) return sg;
   }
   // Spec 037 T7: polls + quizzes over polls_per_week on what is really out, waiting or approved (live, approval, shadow).

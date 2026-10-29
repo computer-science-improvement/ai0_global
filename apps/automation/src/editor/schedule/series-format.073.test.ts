@@ -15,6 +15,7 @@ import { lintPost } from '../post/lint-post';
 import { makeCard, makeSpec } from '../post/testing/fixtures';
 import { buildRoleTools, type RoleToolDeps } from '../tools/role-tools';
 import { buildNetworkTools } from '../network/network-tools';
+import { buildPlatformTools } from '../platform/platform-tools';
 import { isFail, ScheduleService, type ScheduleScope } from './schedule.service';
 
 const CH = '@pdr';
@@ -215,4 +216,73 @@ test('prepareSeriesChange: a quiz series saves on a card without quiz (the serie
   const bad = await svc.prepareSeriesChange(scope(), 'update', { name: 'Prompt of the day', format: 'th_text' });
   assert.ok(isFail(bad));
   assert.match(JSON.stringify(bad.details), /format th_text is not available on telegram:@pdr/);
+});
+
+// ── publishGuard: the post's format against the series' (A20, A34) ───────────────────────────
+
+function guardService(o: { rule?: { format: string | null } | null; sourceMode?: 'suggested' | 'required' } = {}) {
+  const series = {
+    name: 'Білет дня', brief: 'Питання з відповіддю', format: 'quiz', cadence: 'daily 10:00', resource_ref: TG, active: true,
+    source: { kind: 'library', table: 'pdr_questions', category: null }, source_mode: o.sourceMode ?? 'suggested',
+  };
+  return new ScheduleService({
+    pool: { query: async () => ({ rows: [] }) } as any,
+    rules: { get: async () => (o.rule ? { id: 'rule-1', brief: null, source: null, ...o.rule } : null), activeFor: async () => [] } as any,
+    network: { activePlaybook: async () => ({ body: { series: [series] } }) } as any,
+    agents: { findTop: async () => ({ id: 'o1', handle: 'pdr' }) } as any,
+    card: async () => null, plans: {} as any, inbox: { post: async () => {} } as any,
+  } as any);
+}
+const guardSlot: any = { id: 's1', channelKey: CH, resourceRef: TG, scheduledAt: NOW, format: 'quiz', topic: 'Тема' };
+const guardOf = (svc: ScheduleService, slot: any, refs: { libraryRef?: string | null; format?: string | null } = {}) =>
+  svc.publishGuard(slot, { libraryRef: null, sourceUrl: null, ...refs }, { live: false, now: NOW, feeds: [] });
+
+test('publishGuard: a series slot whose post is in another format is refused as series_format_mismatch, and the message names both formats', async () => {
+  const slotOf = { ...guardSlot, seriesName: 'Білет дня' };
+  const r: any = await guardOf(guardService(), slotOf, { format: 'text' });
+  assert.equal(r.error, 'series_format_mismatch');
+  assert.match(r.details, /серія «Білет дня» виходить у форматі quiz, а пост — text\. Формат задає серія: зроби пост у quiz/);
+  assert.equal(await guardOf(guardService(), slotOf, { format: 'quiz' }), null, 'the series format passes');
+});
+
+test('publishGuard: the format check runs before series_source_mismatch', async () => {
+  const slotOf = { ...guardSlot, seriesName: 'Білет дня' };
+  const required = guardService({ sourceMode: 'required' });
+  const both: any = await guardOf(required, slotOf, { libraryRef: 'data://other/1', format: 'text' });
+  assert.equal(both.error, 'series_format_mismatch');
+  const sourceOnly: any = await guardOf(required, slotOf, { libraryRef: 'data://other/1', format: 'quiz' });
+  assert.equal(sourceOnly.error, 'series_source_mismatch');
+});
+
+test('publishGuard: a pin compares with rule.format, and with the slot format when the rule has none', async () => {
+  const pinned = { ...guardSlot, scheduleRuleId: 'rule-1', format: 'photo' };
+  const withRule: any = await guardOf(guardService({ rule: { format: 'quiz' } }), pinned, { format: 'text' });
+  assert.equal(withRule.error, 'series_format_mismatch');
+  assert.match(withRule.details, /закріплений слот має формат quiz, а пост — text: зроби пост у quiz/);
+  assert.equal(await guardOf(guardService({ rule: { format: 'quiz' } }), pinned, { format: 'quiz' }), null);
+  // No rule.format: the slot's own format stands.
+  const noFormat: any = await guardOf(guardService({ rule: { format: null } }), pinned, { format: 'text' });
+  assert.equal(noFormat.error, 'series_format_mismatch');
+  assert.match(noFormat.details, /має формат photo, а пост — text/);
+  assert.equal(await guardOf(guardService({ rule: { format: null } }), pinned, { format: 'photo' }), null);
+});
+
+test('publish_platform_post hands the post\'s format to publishGuard (A34)', async () => {
+  const seen: any[] = [];
+  const tools = buildPlatformTools({
+    pool: { query: async () => ({ rows: [] }) } as any, publish: {} as any,
+    plans: { getSlot: async () => ({ id: 's1', status: 'running', channelKey: CH, resourceRef: TH }), updateSlot: async () => {} } as any,
+    schedule: { publishGuard: async (_s: unknown, refs: unknown) => { seen.push(refs); return { error: 'series_format_mismatch', details: 'x' }; } } as any,
+  });
+  const tool = tools.find((t) => t.name === 'publish_platform_post')!;
+  const c: any = { runId: 'r', role: 'executor', channelKey: CH, slotId: 's1', extras: { platformSlot: { resourceRef: TH, mode: 'live' } } };
+  const r: any = await tool.execute({ spec: { format: 'th_image', library_ref: 'data://x/1', source: { url: 'https://s.example/1' } } } as any, c);
+  assert.equal(r.error, 'series_format_mismatch');
+  assert.deepEqual(seen, [{ libraryRef: 'data://x/1', sourceUrl: 'https://s.example/1', format: 'th_image' }]);
+});
+
+test('publishGuard: an improvised slot (no series, no pin) is never checked, and a post without a format is not a mismatch', async () => {
+  assert.equal(await guardOf(guardService(), { ...guardSlot, format: 'photo' }, { format: 'text' }), null);
+  assert.equal(await guardOf(guardService(), { ...guardSlot, seriesName: 'Білет дня' }), null);
+  assert.equal(await guardOf(guardService(), { ...guardSlot, seriesName: 'Білет дня' }, { format: null }), null);
 });

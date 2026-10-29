@@ -82,7 +82,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       // Spec 059: a skill probe re-runs a written slot — the ledger guards (schedule, already posted, similar) do not apply.
       if (d.schedule && !dry?.probe) {
         const card = (ctx.extras?.card as { sources?: any[] } | undefined) ?? null;
-        const sg = await d.schedule.publishGuard(s, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: slot.mode === 'live', now: new Date(), feeds: card?.sources ?? [] });
+        const sg = await d.schedule.publishGuard(s, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url, format: spec.format }, { live: slot.mode === 'live', now: new Date(), feeds: card?.sources ?? [] });
         if (sg) return sg;
       }
       // Spec 034 FR-004: the critic reads the post after every check, before it is stored, sent or put up for approval.
