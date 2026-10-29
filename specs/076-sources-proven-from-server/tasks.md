@@ -303,7 +303,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - the @pdr_dev_channel replay has `source_probe_failed` with `host_proxy_add` when a proxy is set and `source_drop` otherwise;
     - nothing in `sources/` imports `readiness/` or `reasons/`.
 
-- [ ] **T9a Dashboard: API, types, the Sources rows and the inbox kinds** (FR-009, L8, A23, A24, A25)
+- [x] **T9a Dashboard: API, types, the Sources rows and the inbox kinds** (FR-009, L8, A23, A24, A25)
   - **What:**
     - `api/sources.ts`, with the four hooks.
     - The new optional fields in the `api/agents.ts` and `api/health.ts` types (A23).
@@ -400,7 +400,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T6a `1f0b39f2` — `docFromBody` out of `fetchLive`, `origin: 'upload'` docs kept 7 days, `uploadPage`, the 12 MB body middleware, nginx 12m.
 - T6b `8f4e8859` — import marks (`uploaded`, `auto_resync: false`), `upload_expired`, `resync_manual`, and `uploadPage` with `dataset` re-syncing from memory.
 - T7 `34d0e9f4` `SourceProbeWorker` (daily + paused re-probe), `SourcesController` (`probe`, `upload`, `drop`, `proxy-host`), `source-fixes.ts`, background probes on card save and series bind, `reach` in the `import_list` preview; host notes move from `toReplaceToday` to the worker.
-- T8 — (commit hash filled in the next commit) pure `sourceFindings` and `SOURCE_REASONS` (seven codes), the 10-27 fixtures and the three acceptance replays.
+- T8 `3e6afbce` pure `sourceFindings` and `SOURCE_REASONS` (seven codes), the 10-27 fixtures and the three acceptance replays.
+- T9a — (commit hash filled in the next commit) `api/sources.ts` (four hooks), `lib/source-probe.ts`, the probe line / badge / runway / buttons / no-sources line in `SourcesSection`, the probe line on the Health page, `resync_failed` and the new `host_struck` steps in `inbox-kinds`.
 
 ## Deltas from the spec
 
@@ -448,3 +449,15 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
     - The output order is the sources as given, then `card_without_sources`, then the datasets. Sorting is the lead's `channelDoctor`.
   - The replays use `nextBlock` and `SourceHealthService.noteStruckHosts` with fakes, `SlotPreflight` for the $0 skip of the planned slot, `buildPlan` on a live and an uploaded page for the § 29 entries, `SourceHealthService.forCard` into `NetworkHealthService` for @ai0_prompts_dev, and `scanLive` for the live gate. The upload's `dataset_resync_manual` is the finding for `uploadedImports: ['pdr_rules']`; the PG test `docs/upload.076.pg.test.ts` covers the import being marked.
   - `codes.076.test.ts` also reads the files of `sources/` and fails if one imports `readiness/` or `reasons/` (the T8 "done when").
+- **T9a.**
+  - `api/health.ts` is unchanged: `SourceIssue extends SourceHealth`, so it inherits the new optional fields (A23).
+  - `SourceRow` shows "Details" and "Upload the page" only when its dialog is wired (`onDetails`, `onUpload`). T9a wires neither, so the "three fix buttons" of the Done-when are complete after T9b; "Test from server", "Route via proxy" and "Remove" work in this commit.
+  - Beyond the task's four helpers, `lib/source-probe.ts` has `sourceBadge` (the "Unreachable" badge, and "Cannot be read" for a source whose state is `ok` or `unused` but whose latest read from the server failed), `ageText`, `hostOfRef`, `sourceName` (a `series:` id shows its name), `INK_OF_TONE` and `sourceErrorMessage` (the endpoint codes in words). `rowFixes` has three rules the spec did not state:
+    - a library or api row gets no buttons;
+    - "Route via proxy" is not offered when the failed read already went through the proxy;
+    - an `invalid` address gets only "Test from server" and "Remove", because there is nothing to route or upload.
+  - Icons: `info` (Details), `graph` (Route via proxy) and `arrow-up` (Upload the page) from `Icon.tsx`; nothing was added to it. The buttons are icon-only with a tooltip, as `TableAction` is everywhere.
+  - The row's buttons sit under its detail line, inside the main column, and the row wraps through the shared `.panel-row`; two small `ast-` rules were added (`ast-src-actions`, `ast-nosrc`). The panel's "not working" count also counts a source with a worse badge.
+  - The Health page's `Row` gained a `foot` slot for the probe line. A source whose state is `ok` or `unused` appears there only when its probe failed, so its label is "Cannot be read".
+  - `lib/inbox-kinds.ts`: `host_struck` has the sentence of A24, "Open sources" (the agent's Settings tab) first with the channel page as the fallback, and "Open network health" second. `lib/inbox-kinds.test.ts:383` now expects 'Open sources', as A24 says, and the test gains the `resync_failed` row in `FIXTURES` and `BRIEF_KINDS`.
+  - The panel shows the no-sources row only when the server says `noSources: true`; an older server's report (no new fields) renders as before. This is checked by hand on the mock in T9b, since the dashboard tests run in Node without a DOM.

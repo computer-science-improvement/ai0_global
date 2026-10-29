@@ -110,6 +110,9 @@
 .ast-src-stats { flex: none; margin-left: auto; min-width: 90px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
 .ast-src-rate { font-size: 15px; font-weight: 600; color: var(--color-ink); }
 .panel-foot.ast-hosts { align-items: flex-start; flex-direction: column; gap: 8px; }
+/* Spec 076: the owner's tools under a source (test, details, proxy, upload, remove); a channel with no sources is one two-line row. */
+.ast-src-actions { margin-top: 4px; max-width: 100%; }
+.panel-row.ast-nosrc { align-items: flex-start; }
 
 /* ── Phones: panel padding follows index.css's 16px; the numbers of a source drop under it ── */
 @media (max-width: 600px) {

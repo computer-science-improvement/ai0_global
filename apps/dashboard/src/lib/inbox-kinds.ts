@@ -305,11 +305,16 @@ const RULES: Record<string, Rule> = {
     ],
   },
   host_struck: {
-    why: 'A website keeps refusing our requests, so it is blocked for a while and sources that depend on it stay empty.',
+    why: 'A website refuses the server or cannot be reached from it, so the sources that depend on it stay empty.',
     steps: (c) => {
       const h = parseHostRef(c.it.refId);
-      return [link('Open network health', '/app/health'), agentLink(c, 'Open agent') ?? channelLink('Open channel', h?.channelKey ?? null)];
+      // Spec 076 A24: the fix is on the channel's sources (route the site through the proxy, upload the page, remove the source).
+      return [agentLink(c, 'Open sources', 'settings') ?? channelLink('Open channel', h?.channelKey ?? null), link('Open network health', '/app/health')];
     },
+  },
+  resync_failed: {
+    why: 'A dataset made from a web page could not be re-read; its new entries are missing until the page is uploaded again.',
+    steps: (c) => [c.ref ? link('Open dataset', '/app/data/$key', { params: { key: c.ref.base } }) : link('Open data', '/app/data'), read()],
   },
   event_not_covered: {
     why: 'An event was announced but no post followed it, so a recap is missing. Planning one now still catches readers.',
