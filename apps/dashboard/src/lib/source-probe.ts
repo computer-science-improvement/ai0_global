@@ -74,11 +74,14 @@ export const INK_OF_TONE: Record<Tone, string> = {
 /**
  * The badge that replaces a source's own state when the server's view is worse: "Unreachable" for a host blocked after
  * repeated timeouts, "Cannot be read" for a source whose reads worked in the agent's runs (or never happened) but whose
- * latest read from the server failed. `null`: the state's own badge stands.
+ * latest read from the server failed, and "Empty" when that read answered with nothing (the doctor's `source_empty`, not a
+ * failed read: W1 integration review). `null`: the state's own badge stands.
  */
 export function sourceBadge(s: Pick<SourceHealth, 'state' | 'probe' | 'blocked'>): { label: string; tone: Tone } | null {
   if (isUnreachable(s)) return { label: 'Unreachable', tone: 'danger' };
-  if ((s.state === 'ok' || s.state === 'unused') && probeFailed(s.probe)) return { label: 'Cannot be read', tone: 'warning' };
+  if ((s.state === 'ok' || s.state === 'unused') && probeFailed(s.probe)) {
+    return s.probe?.failure_class === 'empty' ? { label: 'Empty', tone: 'warning' } : { label: 'Cannot be read', tone: 'warning' };
+  }
   return null;
 }
 
@@ -86,9 +89,13 @@ export type RowFix = 'test' | 'proxy' | 'upload' | 'remove';
 
 /**
  * The buttons a source row gets, in order. "Test from server" is always there for a feed or a page. A failed read or an
- * `unreachable` block adds "Route via proxy" (only when a proxy is configured, and not when the failed read already went
- * through it), "Upload the page" and, for a card source, "Remove". An address that is not valid has nothing to route or upload.
- * A library or api source is not read from the server, so it has no buttons.
+ * `unreachable` block adds:
+ * - "Route via proxy" for a timeout, a refusal or an `unreachable` block (what the doctor offers the proxy for), only when a
+ *   proxy is configured and not when the failed read already went through it;
+ * - "Upload the page" for a page source (a feed is read as a feed, so a saved page does not stand in for it);
+ * - "Remove" for a card source.
+ * An address that is not valid has nothing to route or upload. A library or api source is not read from the server, so it has
+ * no buttons.
  */
 export function rowFixes(s: RowSource, o: { proxyConfigured: boolean }): RowFix[] {
   if (!isReadFromServer(s)) return [];
@@ -97,12 +104,16 @@ export function rowFixes(s: RowSource, o: { proxyConfigured: boolean }): RowFix[
   if (!probeFailed(s.probe) && !unreachable) return out;
   const invalid = s.probe?.failure_class === 'invalid' && !unreachable;
   if (!invalid) {
-    if (o.proxyConfigured && !s.probe?.via_proxy) out.push('proxy');
-    out.push('upload');
+    const proxyable = unreachable || PROXYABLE.has(s.probe?.failure_class ?? '');
+    if (o.proxyConfigured && proxyable && !s.probe?.via_proxy) out.push('proxy');
+    if (s.kind === 'url') out.push('upload');
   }
   if (s.origin !== 'playbook') out.push('remove');
   return out;
 }
+
+/** The failed reads the proxy may help with (the server's `source_probe_failed` fix: a timeout or a refusal). */
+const PROXYABLE = new Set(['timeout', 'refused']);
 
 /** A host name for "Route via proxy" (no leading `www.`), or null for an address that is not a URL. */
 export function hostOfRef(ref: string): string | null {

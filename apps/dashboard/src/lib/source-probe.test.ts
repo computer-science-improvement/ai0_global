@@ -73,7 +73,7 @@ test('sourceBadge: Unreachable beats the state; a failed read on a source that l
   assert.deepEqual(sourceBadge({ state: 'blocked', probe: bad('timeout'), blocked: unreachable }), { label: 'Unreachable', tone: 'danger' });
   assert.deepEqual(sourceBadge({ state: 'ok', probe: undefined, blocked: unreachable }), { label: 'Unreachable', tone: 'danger' });
   assert.deepEqual(sourceBadge({ state: 'ok', probe: bad('dns'), blocked: null }), { label: 'Cannot be read', tone: 'warning' });
-  assert.deepEqual(sourceBadge({ state: 'unused', probe: bad('empty'), blocked: null }), { label: 'Cannot be read', tone: 'warning' });
+  assert.deepEqual(sourceBadge({ state: 'unused', probe: bad('empty'), blocked: null }), { label: 'Empty', tone: 'warning' }, 'an empty answer is not a failed read (the doctor\'s source_empty)');
   assert.equal(sourceBadge({ state: 'failing', probe: bad('timeout'), blocked: null }), null, 'the state is already bad');
   assert.equal(sourceBadge({ state: 'blocked', probe: bad('refused'), blocked: { ...unreachable, reason: 'refused' } }), null);
   assert.equal(sourceBadge({ state: 'ok', probe: ok(), blocked: null }), null);
@@ -90,7 +90,7 @@ test('the predicates', () => {
   assert.ok(probeFailed(bad('dns')) && !probeFailed(ok()) && !probeFailed(null) && !probeFailed(undefined));
 });
 
-test('rowFixes: the buttons appear only for a failed read or an unreachable block, and the proxy only when one is configured', () => {
+test('rowFixes: the buttons appear only for a failed read or an unreachable block; the proxy where it may help, the upload for a page', () => {
   const rss = { kind: 'rss' as const, origin: 'card' as const, probe: undefined as SourceProbe | null | undefined, blocked: null as any };
   const unreachable = { reason: 'unreachable', host: 'x.example', statusCode: null, until: ago(-60), failures: 3 };
   const withProxy = { proxyConfigured: true };
@@ -101,19 +101,25 @@ test('rowFixes: the buttons appear only for a failed read or an unreachable bloc
   assert.deepEqual(rowFixes({ ...rss, probe: ok() }, withProxy), ['test'], 'a good read');
   assert.deepEqual(rowFixes({ ...rss, blocked: { ...unreachable, reason: 'refused' } }, withProxy), ['test'], 'a block of another reason is not this');
 
-  assert.deepEqual(rowFixes({ ...rss, probe: bad('timeout') }, withProxy), ['test', 'proxy', 'upload', 'remove']);
-  assert.deepEqual(rowFixes({ ...rss, probe: bad('timeout') }, without), ['test', 'upload', 'remove'], 'no proxy configured: no proxy button');
-  assert.deepEqual(rowFixes({ ...rss, blocked: unreachable }, withProxy), ['test', 'proxy', 'upload', 'remove'], 'the block alone is enough');
-  assert.deepEqual(rowFixes({ ...rss, probe: ok(), blocked: unreachable }, without), ['test', 'upload', 'remove']);
-  assert.deepEqual(rowFixes({ ...rss, kind: 'url', probe: bad('empty', { kind: 'page' }) }, withProxy), ['test', 'proxy', 'upload', 'remove']);
+  assert.deepEqual(rowFixes({ ...rss, probe: bad('timeout') }, withProxy), ['test', 'proxy', 'remove'], 'a feed: no page to upload');
+  assert.deepEqual(rowFixes({ ...rss, probe: bad('refused') }, withProxy), ['test', 'proxy', 'remove']);
+  assert.deepEqual(rowFixes({ ...rss, probe: bad('timeout') }, without), ['test', 'remove'], 'no proxy configured: no proxy button');
+  assert.deepEqual(rowFixes({ ...rss, blocked: unreachable }, withProxy), ['test', 'proxy', 'remove'], 'the block alone is enough');
+  assert.deepEqual(rowFixes({ ...rss, probe: ok(), blocked: unreachable }, without), ['test', 'remove']);
+  // W1 integration review: the proxy only where the doctor offers it (timeout, refused, unreachable); the upload only for a page.
+  for (const c of ['empty', 'http', 'dns', 'tls'] as const) {
+    assert.deepEqual(rowFixes({ ...rss, probe: bad(c) }, withProxy), ['test', 'remove'], `rss ${c}`);
+    assert.deepEqual(rowFixes({ ...rss, kind: 'url', probe: bad(c, { kind: 'page' }) }, withProxy), ['test', 'upload', 'remove'], `page ${c}`);
+  }
+  assert.deepEqual(rowFixes({ ...rss, kind: 'url', probe: bad('timeout', { kind: 'page' }) }, withProxy), ['test', 'proxy', 'upload', 'remove']);
 
-  assert.deepEqual(rowFixes({ ...rss, origin: 'playbook', probe: bad('timeout') }, withProxy), ['test', 'proxy', 'upload'], 'a playbook source is not removed from the card');
-  assert.deepEqual(rowFixes({ ...rss, origin: undefined, probe: bad('dns') }, withProxy), ['test', 'proxy', 'upload', 'remove'], 'a report with no origin is a card source');
-  assert.deepEqual(rowFixes({ ...rss, probe: bad('timeout', { via_proxy: true }) }, withProxy), ['test', 'upload', 'remove'], 'it already went through the proxy');
+  assert.deepEqual(rowFixes({ ...rss, kind: 'url', origin: 'playbook', probe: bad('timeout') }, withProxy), ['test', 'proxy', 'upload'], 'a playbook source is not removed from the card');
+  assert.deepEqual(rowFixes({ ...rss, origin: undefined, probe: bad('refused') }, withProxy), ['test', 'proxy', 'remove'], 'a report with no origin is a card source');
+  assert.deepEqual(rowFixes({ ...rss, probe: bad('timeout', { via_proxy: true }) }, withProxy), ['test', 'remove'], 'it already went through the proxy');
 
   assert.deepEqual(rowFixes({ ...rss, probe: bad('invalid') }, withProxy), ['test', 'remove'], 'nothing to route or upload for an address that is not valid');
   assert.deepEqual(rowFixes({ ...rss, origin: 'playbook', probe: bad('invalid') }, withProxy), ['test']);
-  assert.deepEqual(rowFixes({ ...rss, probe: bad('invalid'), blocked: unreachable }, withProxy), ['test', 'proxy', 'upload', 'remove'], 'a block still counts');
+  assert.deepEqual(rowFixes({ ...rss, kind: 'url', probe: bad('invalid'), blocked: unreachable }, withProxy), ['test', 'proxy', 'upload', 'remove'], 'a block still counts');
 
   for (const kind of ['library', 'api'] as const) assert.deepEqual(rowFixes({ ...rss, kind, probe: bad('timeout'), blocked: unreachable }, withProxy), [], kind);
 });
