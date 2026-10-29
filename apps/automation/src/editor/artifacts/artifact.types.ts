@@ -3,6 +3,8 @@
  * read model with one adapter per type.
  */
 
+import type { ConflictNote } from '../rules/config-conflicts';
+
 export const ARTIFACT_TYPES = ['setup', 'steering', 'rules', 'memory', 'skill', 'playbook', 'profile', 'formatting', 'launch', 'audit'] as const;
 export type ArtifactType = typeof ARTIFACT_TYPES[number];
 
@@ -82,7 +84,9 @@ export interface ArtifactEditor {
   reason?:  string | null;
 }
 
-export type EditResult = { ok: true; detail: ArtifactDetail } | { ok: false; error: string; details?: unknown };
+/** Spec 073 FR-012: `warnings` (a skill the owner saved that says something against the channel) and `conflicts` (what a rule write caused) ride on a done edit. */
+export interface EditNotes { warnings?: string[]; conflicts?: ConflictNote[] }
+export type EditResult = ({ ok: true; detail: ArtifactDetail } & EditNotes) | { ok: false; error: string; details?: unknown };
 
 /** `type:id` → parts; a bare type (`rules`) gives a null id (the chat's channel fills it). */
 export function parseArtifactRef(ref: string): { type: ArtifactType; id: string | null } | null {

@@ -132,6 +132,7 @@ import { ConfigConflictsService } from './rules/config-conflicts.service';
 import { buildBuilderTools, FIX_CONFIG_CONFLICTS_KIND } from './agents/builder-tools';
 import { buildContentExamplesTool, CONTENT_EXAMPLES_KIND, examplesFromChoice, type ContentExamplesPayload } from './agents/content-examples';
 import { applyOwnerRule, buildAgentChatTools, OWNER_RULE_KIND } from './agents/agent-chat-tools';
+import { requiredSeriesSources } from './agents/series-sources';
 import type { AgentChatPort } from './chat/editor-chat.service';
 import { MetaAccountsRepository } from '../config/meta-accounts.repository';
 import { TikTokTokenService } from '../config/tiktok-token.service';
@@ -455,6 +456,26 @@ async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text:
     skillExists: async (name) => !!((await infra.skills.findForAgent(orch.id, name)) ?? (await infra.skills.findShared(name))),
     handles: (await infra.agents.list()).map((x) => x.handle),
   });
+}
+
+/**
+ * Spec 073 FR-012: the owner-rule lint by channel key (the orchestrator's skills, the network's handles). The memory form, the Rules
+ * artifact and the Apply of an `owner_rule` card all run this one.
+ */
+function channelRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>) {
+  return async (text: string, key: string) => {
+    const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
+    return orch ? ownerRuleLint(infra, text, orch) : lintOwnerRule(text);
+  };
+}
+
+/** Spec 073 FR-012: a channel's rules-vs-config conflicts by channel key (none when the channel has no orchestrator yet). */
+function channelConflictNotes(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'channels'>, infra: Pick<AgentInfra, 'profiles' | 'skills' | 'agents'>) {
+  const svc = configConflictsOf(pool, repos, infra);
+  return async (key: string) => {
+    const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
+    return orch ? svc.forAgent(orch) : [];
+  };
 }
 
 /** Every top-level orchestrator's conflicts, for the manager digest. */
@@ -1044,7 +1065,8 @@ export const EDITOR_PROVIDERS = [
       ): AgentInfra => {
         const logger = new Logger('Agents');
         const agents = new AgentsRepository(pool);
-        const skills = new SkillStore(pool);
+        // Spec 073 FR-012: a skill is checked against the series its channel must run, whoever writes it.
+        const skills = new SkillStore(pool, { seriesSources: requiredSeriesSources({ agents, network: new NetworkRepository(pool) }) });
         const profiles = new ResourceProfilesRepository(pool);
         const loadoutRepo = new LoadoutRepository(pool);
         const loadoutUsage = new LoadoutUsage(pool);
@@ -1909,8 +1931,8 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_OPS,
-      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS, DB_POOL],
-      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary, pool: Pool) => {
+      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS, DB_POOL, AGENT_INFRA],
+      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary, pool: Pool, infra: AgentInfra) => {
         const logger = new Logger('EditorOps');
         return new EditorOpsService({
           channels: repos.channels, plans: repos.plans, memory: repos.memory, runs: repos.runs,
@@ -1918,6 +1940,9 @@ export const EDITOR_PROVIDERS = [
           enabled: () => isEnabled(cfg),
           log: (m) => logger.warn(m),
           styleProposal: (ref) => proposeStyle(pool, ref),
+          // Spec 073 FR-012: the memory form lints a rule and reports the conflicts it causes, as the Rules artifact does.
+          lint: channelRuleLint(infra),
+          conflicts: channelConflictNotes(pool, repos, infra),
         });
       },
     },
@@ -1996,7 +2021,10 @@ export const EDITOR_PROVIDERS = [
           return configConflictsOf(pool, repos, infra).resolve(orch, skip);
         });
         // Spec 040 FR-010: an owner rule the owner confirmed with a card (its words did not match the chat closely enough).
-        infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>));
+        // Spec 073 FR-012: the card can be days old — the lint runs again at Apply, and the conflicts the rule causes come back.
+        infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>, {
+          lint: channelRuleLint(infra), conflicts: channelConflictNotes(pool, repos, infra),
+        }));
         // Spec 048 FR-002: an agent's change to a live artifact, applied by the owner.
         infra.actions.register(UPDATE_ARTIFACT_KIND, (p) => applyUpdateArtifact(ARTIFACTS.svc, p as Record<string, unknown>));
         // A directive the owner approved in the chat with @manager (spec 021): filed as owner-approved, never shadow.
@@ -2047,13 +2075,7 @@ export const EDITOR_PROVIDERS = [
           adapters: [
             setupAdapter({ setup: new ChannelSetupRepository(pool), versions }),
             steeringAdapter({ repo: new SteeringRepository(pool), editRules: (id, body) => steering.editRules(id, body), versions }),
-            rulesAdapter({
-              pool, memory: repos.memory, versions,
-              lint: async (text, key) => {
-                const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
-                return orch ? ownerRuleLint(infra, text, orch) : lintOwnerRule(text);
-              },
-            }),
+            rulesAdapter({ pool, memory: repos.memory, versions, lint: channelRuleLint(infra), conflicts: channelConflictNotes(pool, repos, infra) }),
             memoryAdapter({ pool, memory: repos.memory }),
             skillAdapter({ pool, skills: infra.skills }),
             playbookAdapter({ pool, history: (agentId) => networkRepo.playbookHistory(agentId), put: (handle, body) => network.putPlaybook(handle, body) }),

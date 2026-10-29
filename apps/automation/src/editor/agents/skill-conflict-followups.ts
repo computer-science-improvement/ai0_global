@@ -15,6 +15,20 @@ export interface ConflictDeps {
   skills?: Partial<Pick<SkillStore, 'listForAgent'>>;
 }
 
+/**
+ * Spec 073 FR-012: the refusal for a skill that contradicts a series of the agent's channel (`seriesSourceConflict`, through the
+ * store's `writeProblems`), in the tool-error shape; null when it does not, or when there is no store. The two checks the chat
+ * tools always ran (`sourceRefusal`, `originRefusal`) are made before this one. A failure to look never stops the card.
+ */
+export async function seriesRefusal(
+  skills: Partial<Pick<SkillStore, 'writeProblems'>>, agentId: string, text: { name: string; description: string; body: string },
+): Promise<{ error: string; details: string; hint: string } | null> {
+  if (!skills.writeProblems) return null;
+  const problems = await skills.writeProblems(agentId, text).catch(() => null);
+  const found = problems?.find((p) => p.code === 'series_source_conflict');
+  return found ? found.refusal : null;
+}
+
 /** The follow-up key of "switch this skill off" (an explicit `disable_skills` item and a conflict share it, so they never double). */
 export const detachKey = (skill: string): string => `detach:${skill}`;
 

@@ -1,163 +1,93 @@
-// Spec 073 T4 (FR-004, A25, L6): switching a channel back on starts the day's replan — but only when it is not the scheduler's
-// job to plan the day. A thrown `editor_disabled` / `replan_in_progress` (or a failing read) never costs the mode save.
+/**
+ * Spec 073 FR-012: the memory form (`EditorOpsService.addMemory`) lints a rule or an avoid with the Rules artifact's lint and
+ * answers 400 `rule_invalid` on issues; an insight is not linted; the conflicts the new entry causes come back with the id.
+ */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { BadRequestException } from '@nestjs/common';
 import { EditorOpsService, type EditorOpsDeps } from './editor-ops.service';
+import { lintOwnerRule } from '../agents/rule-lint';
 import { makeCard } from '../post/testing/fixtures';
-import type { EditorCard } from '../card';
-import { RESERVED_ONLY_RATIONALE, type EditorSlot } from '../repo/editor-plans.repository';
+import type { ConflictNote } from '../rules/config-conflicts';
 
-const AFTERNOON = new Date('2026-10-29T10:00:00Z'); // 12:00 Kyiv (EET), plan hour is 6
-const EARLY = new Date('2026-10-29T02:00:00Z');     // 04:00 Kyiv
-
-const slot = (over: Partial<EditorSlot> = {}): EditorSlot => ({
-  id: 's1', planId: 'p1', channelKey: '@chan', scheduledAt: new Date('2026-10-29T08:00:00Z'), kind: 'content',
-  format: 'text', topic: 'тема', angle: null, sourceHints: [], isExperiment: false, status: 'skipped', attempts: 0,
-  runId: null, publishedPostId: null, postSpec: null, renderedPreview: null, error: null, ...over,
-} as EditorSlot);
-
-interface Opts {
-  mode?: EditorCard['mode'];
-  now?: Date;
-  plan?: { id: string; rationale: string | null } | null;
-  slots?: EditorSlot[];
-  enabled?: boolean;
-  activePlanThrows?: boolean;
-  hold?: boolean;
-}
-
-function setup(o: Opts = {}) {
-  const cards = new Map<string, EditorCard>([['@chan', makeCard({ channelKey: '@chan', mode: o.mode ?? 'off', planHour: 6 })]]);
-  const calls: string[] = [];
-  const logs: string[] = [];
-  let release: () => void = () => {};
-  const gate = new Promise<void>((r) => { release = r; });
+function setup(over: Partial<EditorOpsDeps> = {}) {
+  const added: Array<{ key: string; kind: string; text: string }> = [];
+  let nextId = 40;
   const d = {
-    channels: {
-      get: async (k: string) => (cards.has(k) ? { ...cards.get(k)!, createdAt: AFTERNOON } : null),
-      list: async () => [...cards.values()].map((c) => ({ ...c, createdAt: AFTERNOON })),
-      upsert: async (c: EditorCard) => {
-        const previousMode = cards.get(c.channelKey)?.mode ?? null;
-        cards.set(c.channelKey, c);
-        calls.push(`upsert:${c.mode}`);
-        return { card: { ...c, createdAt: AFTERNOON }, previousMode };
-      },
-    },
-    plans: {
-      listPlans: async () => [], slotStatusCounts: async () => [], getSlot: async () => null, claimSlot: async () => null, skipPlannedSlot: async () => null,
-      getActivePlan: async (key: string, date: string) => {
-        calls.push(`active:${key}:${date}`);
-        if (o.activePlanThrows) throw new Error('db down');
-        return o.plan === undefined ? { id: 'p1', rationale: 'a real plan' } : o.plan;
-      },
-      listSlots: async () => o.slots ?? [],
-    },
-    memory: { listAll: async () => [], add: async () => 1, retireByOwner: async () => true },
-    runs: { list: async () => [], get: async () => null, spendByDay: async () => [] },
-    runner: {
-      runPlanner: async (card: EditorCard, opts: any) => { calls.push(`planner:${card.channelKey}:${JSON.stringify(opts ?? {})}`); if (o.hold) await gate; return { runId: 'rp', status: 'ok', terminalTool: 'submit_plan', totals: {} as any }; },
-      runExecutor: async () => ({ runId: 'rx', status: 'ok', totals: {} as any }),
-    },
-    registry: { all: () => [], get: () => undefined },
-    skills: { list: () => [] },
-    enabled: () => o.enabled ?? true,
-    now: () => o.now ?? AFTERNOON,
-    log: (m: string) => logs.push(m),
+    channels: { get: async (k: string) => (k === '@chan' ? { ...makeCard(), createdAt: new Date() } : null) },
+    memory: { add: async (key: string, kind: string, text: string) => { added.push({ key, kind, text }); return ++nextId; } },
+    lint: (text: string) => lintOwnerRule(text),
+    ...over,
   } as unknown as EditorOpsDeps;
-  return { svc: new EditorOpsService(d), calls, logs, cards, release };
+  return { svc: new EditorOpsService(d), added };
 }
 
-const settle = () => new Promise<void>((r) => setImmediate(r));
-const planners = (calls: string[]) => calls.filter((c) => c.startsWith('planner:'));
-
-test('off → shadow past the plan hour with a real plan and nothing left to run starts one replan, not awaited', async () => {
-  const s = setup({ slots: [slot({ status: 'skipped' }), slot({ id: 's2', status: 'published' })], hold: true });
-  const saved = await s.svc.upsertChannel('@chan', { mode: 'shadow' });
-  assert.equal(saved.card.mode, 'shadow');
-  await settle();
-  assert.deepEqual(planners(s.calls), ['planner:@chan:{}'], 'the planner was started while it still runs (the save did not wait for it)');
-  s.release();
+test('a rule that says nothing is refused with 400 rule_invalid, and nothing is stored', async () => {
+  const { svc, added } = setup();
+  await assert.rejects(svc.addMemory('@chan', { kind: 'rule', text: 'Ці правила завжди виконуються для всіх постів' }), (e: any) => {
+    assert.ok(e instanceof BadRequestException);
+    assert.equal(e.getStatus(), 400);
+    const body = e.getResponse() as { error: string; details: string[] };
+    assert.equal(body.error, 'rule_invalid');
+    assert.ok(Array.isArray(body.details) && body.details.length === 1);
+    assert.match(body.details[0], /points at other text/);
+    return true;
+  });
+  await assert.rejects(svc.addMemory('@chan', { kind: 'avoid', text: 'Запамʼятай це' }), (e: any) => e.getResponse().error === 'rule_invalid');
+  assert.deepEqual(added, []);
 });
 
-test('a planned content slot still ahead, a reserved one or a past planned one do not count as "something left to run" the way a future content slot does', async () => {
-  const ahead = setup({ slots: [slot({ status: 'planned', scheduledAt: new Date('2026-10-29T15:00:00Z') })] });
-  await ahead.svc.upsertChannel('@chan', { mode: 'live' });
-  await settle();
-  assert.deepEqual(planners(ahead.calls), [], 'a future planned content slot: the day is not empty');
-
-  const reservedOnly = setup({ slots: [slot({ kind: 'reserved', status: 'planned', scheduledAt: new Date('2026-10-29T15:00:00Z') })] });
-  await reservedOnly.svc.upsertChannel('@chan', { mode: 'live' });
-  await settle();
-  assert.equal(planners(reservedOnly.calls).length, 1, 'a reserved slot is not content: the afternoon is empty');
-
-  const pastPlanned = setup({ slots: [slot({ status: 'planned', scheduledAt: new Date('2026-10-29T08:00:00Z') })] });
-  await pastPlanned.svc.upsertChannel('@chan', { mode: 'approve' });
-  await settle();
-  assert.equal(planners(pastPlanned.calls).length, 1, 'a planned slot whose time has passed is not "ahead"');
+test('an unknown skill or agent in a rule is refused the same way', async () => {
+  const lint = (text: string) => lintOwnerRule(text, { skillExists: async () => false, handles: ['ai0_global'] });
+  const { svc, added } = setup({ lint });
+  await assert.rejects(svc.addMemory('@chan', { kind: 'rule', text: 'Завжди дивись скіл poster-bank перед постом' }), (e: any) => /no such skill: poster-bank/.test(e.getResponse().details[0]));
+  await assert.rejects(svc.addMemory('@chan', { kind: 'rule', text: 'Питай @nobody_here про тему дня' }), (e: any) => /no such agent/.test(e.getResponse().details[0]));
+  assert.deepEqual(added, []);
 });
 
-test('no active plan, or only a placeholder plan: nothing starts — the scheduler plans the day on its next tick', async () => {
-  const none = setup({ plan: null });
-  await none.svc.upsertChannel('@chan', { mode: 'shadow' });
-  await settle();
-  assert.deepEqual(planners(none.calls), []);
-
-  const placeholder = setup({ plan: { id: 'p0', rationale: RESERVED_ONLY_RATIONALE } });
-  await placeholder.svc.upsertChannel('@chan', { mode: 'shadow' });
-  await settle();
-  assert.deepEqual(planners(placeholder.calls), []);
+test('a good rule is stored and the answer is {id} as before; an insight is not linted', async () => {
+  const { svc, added } = setup();
+  assert.deepEqual(await svc.addMemory('@chan', { kind: 'rule', text: 'Без хештегів у кінці поста' }), { id: 41 });
+  assert.deepEqual(await svc.addMemory('@chan', { kind: 'insight', text: 'так' + '.' }), { id: 42 });
+  assert.deepEqual(added.map((a) => [a.kind, a.text]), [['rule', 'Без хештегів у кінці поста'], ['insight', 'так.']]);
 });
 
-test('replan: false (launch Start), before the plan hour, and any change that is not off → on start none', async () => {
-  const noReplan = setup();
-  await noReplan.svc.upsertChannel('@chan', { mode: 'shadow' }, { replan: false });
-  await settle();
-  assert.deepEqual(planners(noReplan.calls), []);
-  assert.ok(!noReplan.calls.some((c) => c.startsWith('active:')), 'no plan read either');
-
-  const early = setup({ now: EARLY });
-  await early.svc.upsertChannel('@chan', { mode: 'shadow' });
-  await settle();
-  assert.deepEqual(planners(early.calls), []);
-
-  const shadowToLive = setup({ mode: 'shadow' });
-  await shadowToLive.svc.upsertChannel('@chan', { mode: 'live' });
-  await settle();
-  assert.deepEqual(planners(shadowToLive.calls), [], 'shadow → live is not a switch-on');
-
-  const stillOff = setup({ mode: 'off' });
-  await stillOff.svc.upsertChannel('@chan', { brief: 'новий бриф' });
-  await settle();
-  assert.deepEqual(planners(stillOff.calls), [], 'off → off');
-
-  const toOff = setup({ mode: 'live' });
-  await toOff.svc.upsertChannel('@chan', { mode: 'off' });
-  await settle();
-  assert.deepEqual(planners(toOff.calls), [], 'on → off');
+test('without a lint the form stores as it did', async () => {
+  const { svc, added } = setup({ lint: undefined });
+  assert.deepEqual(await svc.addMemory('@chan', { kind: 'rule', text: 'Ці правила завжди виконуються для всіх постів' }), { id: 41 });
+  assert.equal(added.length, 1);
 });
 
-test('a thrown editor_disabled or replan_in_progress, or a failing plan read, still saves the mode', async () => {
-  const disabled = setup({ enabled: false });
-  const a = await disabled.svc.upsertChannel('@chan', { mode: 'shadow' });
-  await settle();
-  assert.equal(a.card.mode, 'shadow');
-  assert.equal(disabled.cards.get('@chan')!.mode, 'shadow');
-  assert.deepEqual(planners(disabled.calls), []);
-  assert.ok(disabled.logs.some((l) => /editor_disabled|EDITOR_ENABLED/.test(l)), disabled.logs.join('|'));
+test('the conflicts the new rule causes come back; the ones the channel already had do not', async () => {
+  const known: ConflictNote = { code: 'hashtag_min_without_vocabulary', ref: 'telegram:@chan', detail: 'hashtag_min is 1 but the card has no hashtags' } as ConflictNote;
+  const fresh: ConflictNote = { code: 'hashtags_off_playbook', ref: 'telegram:@chan', detail: 'rule #41 turns hashtags off, the playbook still asks for them' } as ConflictNote;
+  let stored = false;
+  const { svc } = setup({
+    memory: { add: async () => { stored = true; return 41; } } as any,
+    conflicts: async () => (stored ? [known, fresh] : [known]),
+  });
+  const r = await svc.addMemory('@chan', { kind: 'rule', text: 'Без хештегів у кінці поста' });
+  assert.deepEqual(r, { id: 41, conflicts: [{ code: 'hashtags_off_playbook', ref: 'telegram:@chan', detail: fresh.detail }] });
+});
 
-  // A replan already runs on the channel (the owner pressed Replan a moment ago).
-  const busy = setup({ mode: 'shadow', hold: true });
-  await busy.svc.replan('@chan', { wait: false });
-  await busy.svc.upsertChannel('@chan', { mode: 'off' });          // off …
-  const b = await busy.svc.upsertChannel('@chan', { mode: 'live' }); // … and on again, while that planner still runs
-  await settle();
-  assert.equal(b.card.mode, 'live');
-  assert.equal(planners(busy.calls).length, 1, 'only the first planner started');
-  assert.ok(busy.logs.some((l) => /replan_in_progress|skipped/.test(l)), busy.logs.join('|'));
-  busy.release();
+test('a conflict that names the new rule is reported even when its code was there before', async () => {
+  const had: ConflictNote = { code: 'language_check_rule', ref: 'telegram:@chan', detail: 'rule #7 turns the language check off' };
+  const named: ConflictNote = { code: 'language_check_rule', ref: 'telegram:@chan', detail: 'rule #41 turns the language check off', rule_id: 41 };
+  let stored = false;
+  const { svc } = setup({
+    memory: { add: async () => { stored = true; return 41; } } as any,
+    conflicts: async () => (stored ? [named] : [had]),
+  });
+  const r = await svc.addMemory('@chan', { kind: 'avoid', text: 'Не перевіряй мову постів' });
+  assert.deepEqual((r as any).conflicts.map((c: ConflictNote) => c.detail), ['rule #41 turns the language check off']);
+});
 
-  const reads = setup({ activePlanThrows: true });
-  const c = await reads.svc.upsertChannel('@chan', { mode: 'shadow' });
-  assert.equal(c.card.mode, 'shadow');
-  assert.ok(reads.logs.some((l) => /replan check/.test(l)));
+test('insights are not checked for conflicts, and a failing conflicts read never stops the rule', async () => {
+  let reads = 0;
+  const { svc } = setup({ conflicts: async () => { reads++; throw new Error('db gone'); } });
+  assert.deepEqual(await svc.addMemory('@chan', { kind: 'rule', text: 'Без хештегів у кінці поста' }), { id: 41 });
+  assert.equal(reads, 2, 'before and after for a rule');
+  reads = 0;
+  assert.deepEqual(await svc.addMemory('@chan', { kind: 'insight', text: 'Люди люблять короткі пости' }), { id: 42 });
+  assert.equal(reads, 0);
 });

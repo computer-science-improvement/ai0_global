@@ -14,6 +14,7 @@ import { localDate, localHour } from '../roles/time';
 import { previewWithoutRun, type SlotPreview } from '../roles/preview-run';
 import { mergeCard } from './card-input';
 import type { StyleProposal } from '../post/style/style-proposal';
+import { conflictNote, newConflictsOf, type ConflictNote } from '../rules/config-conflicts';
 import { errText } from '../../common/err-text';
 
 export interface EditorOpsDeps {
@@ -30,6 +31,10 @@ export interface EditorOpsDeps {
   log?:     (msg: string) => void;
   /** Spec 037 FR-008: the style bootstrap proposal of a resource (read-only; absent = 503). */
   styleProposal?: (ref: string) => Promise<StyleProposal>;
+  /** Spec 073 FR-012: the owner-rule lint (the Rules artifact's); absent = the form stores a rule as it did. */
+  lint?: (text: string, channelKey: string) => Promise<Array<{ code: string; detail: string }>>;
+  /** Spec 073 FR-012: the channel's rules-vs-config conflicts (`ConfigConflictsService.forAgent`); absent = none are reported. */
+  conflicts?: (channelKey: string) => Promise<ConflictNote[]>;
 }
 
 export interface RunOptions { wait?: boolean }
@@ -358,8 +363,18 @@ export class EditorOpsService {
     const p = MemoryInput.safeParse(body);
     if (!p.success) throw new BadRequestException({ error: 'invalid_memory', issues: p.error.issues });
     await this.card(key);
+    // Spec 073 FR-012: a rule or an avoid goes through the same lint as the Rules artifact; an insight is a note, not an instruction.
+    const instruction = p.data.kind !== 'insight';
+    if (instruction && this.d.lint) {
+      const issues = await this.d.lint(p.data.text, key).catch(() => []);
+      if (issues.length) throw new BadRequestException({ error: 'rule_invalid', details: issues.map((i) => `«${p.data.text.slice(0, 60)}»: ${i.detail}`) });
+    }
+    const before = instruction && this.d.conflicts ? await this.d.conflicts(key).catch(() => []) : [];
     const id = await this.d.memory.add(key, p.data.kind, p.data.text, null, 'owner');
-    return { id };
+    // …and the conflicts it causes with the playbook, the profiles and the card come back with the id (the form shows one line).
+    const after = instruction && this.d.conflicts ? await this.d.conflicts(key).catch(() => []) : [];
+    const conflicts = newConflictsOf(before, after, [id]).map(conflictNote);
+    return { id, ...(conflicts.length ? { conflicts } : {}) };
   }
 
   async retireMemory(key: string, id: number) {

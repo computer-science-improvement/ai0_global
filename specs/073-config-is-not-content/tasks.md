@@ -160,7 +160,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `readiness/plan-skeleton.073.test.ts` (A8: `series` on both instance codes, `at` when `day` is given; `producibleFormats`); `schedule/plan-schedule-rules.073.test.ts` and `network/network-plan.073.test.ts` (A54 on both planner paths); `readiness/stage-replay.073.test.ts`, "no false blocker on @ai0_global", reading `readiness/fixtures/stage-*.json` and `test.skip` with a reason when the file or a field is missing (L2).
   - Done when: a series at 23:30 with quiet hours from 23 gets a config placeholder and no `plan_invalid` on both planner paths, and the @ai0_global stage file, when present, gives zero problems.
 
-- [ ] **T14 Write paths (FR-012; A48).**
+- [x] **T14 Write paths (FR-012; A48).**
   - What:
     - `SkillStore` gains an optional second argument `ports?: { seriesSources?(agentId) }`; `writeAgentSkill` runs `sourceRefusal` and `originRefusal` on every write and the series check only with the port, refusing agent writes and warning on owner writes;
     - `addMemory` lints and returns `conflicts`;

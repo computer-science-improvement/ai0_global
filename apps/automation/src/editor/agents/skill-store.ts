@@ -1,8 +1,9 @@
 import type { Pool, PoolClient } from 'pg';
 import type { EditorRole } from '../llm/llm.types';
 import { isOptionalSkill, isProtectedSkill, Skill, SkillLibrary, SkillView } from '../skills/skill-library';
-import { lintSkill, SKILL_MAX_INLINE_BODY, SkillLintResult } from './skill-lint';
+import { lintSkill, SKILL_MAX_INLINE_BODY, SkillLintIssue, SkillLintResult } from './skill-lint';
 import type { ProbeRecord } from './skill-probe.types';
+import { skillWriteProblems, type SeriesSourceFact, type SkillWriteProblem } from './skill-warnings';
 
 export type SkillScope = 'builtin' | 'global' | 'agent';
 export type SkillAuthor = 'repo' | 'owner' | 'agent';
@@ -82,8 +83,23 @@ export interface WriteSkillInput {
 }
 
 export type WriteSkillResult =
-  | { ok: true; skill: SkillRow; version: number; lint: SkillLintResult; /** Spec 059: stored for the probe, not live. */ probing?: boolean }
-  | { error: string; details?: unknown };
+  | {
+    ok: true; skill: SkillRow; version: number; lint: SkillLintResult;
+    /** Spec 059: stored for the probe, not live. */
+    probing?: boolean;
+    /**
+     * Spec 073 FR-012: what the owner's write says against the channel (a source in the skill, origin=original on read material,
+     * a series it contradicts). Saved all the same; also appended to `lint.warnings`, which the skills tab already shows. Absent when clean.
+     */
+    warnings?: SkillLintIssue[];
+  }
+  | { error: string; details?: unknown; hint?: string };
+
+/** Spec 073 A48: what the store asks of the rest of the editor. Every port is optional; without one its check is not run. */
+export interface SkillStorePorts {
+  /** The required series sources of the agent's channel (an orchestrator's, or its child's parent's). */
+  seriesSources?(agentId: string): Promise<SeriesSourceFact[]>;
+}
 
 const rowToSkill = (r: any): SkillRow => ({
   id: r.id, name: r.name, scope: r.scope, agentId: r.agent_id ?? null, description: r.description,
@@ -110,7 +126,16 @@ type Pg = Pick<Pool, 'query' | 'connect'>;
  * agents get overrides and their own skills, every write is a version.
  */
 export class SkillStore {
-  constructor(private readonly pool: Pg) {}
+  constructor(private readonly pool: Pg, private readonly ports: SkillStorePorts = {}) {}
+
+  /**
+   * Spec 073 FR-012: what is wrong with a skill text for this agent — a source in the skill, origin=original on read material,
+   * and (with the `seriesSources` port) a series it contradicts. A port that throws gives the first two only.
+   */
+  async writeProblems(agentId: string, text: { name: string; description: string; body: string }): Promise<SkillWriteProblem[]> {
+    const series = this.ports.seriesSources ? await this.ports.seriesSources(agentId).catch(() => []) : [];
+    return skillWriteProblems(text.body, series, { name: text.name, description: text.description });
+  }
 
   private async tx<T>(fn: (c: PoolClient) => Promise<T>): Promise<T> {
     const c = await this.pool.connect();
@@ -296,6 +321,11 @@ export class SkillStore {
         if (rows[0]?.author === 'owner') return { error: 'owner_authored', details: 'поточну версію написав власник — агент її не змінює' };
       }
     }
+    // Spec 073 FR-012: the checks the chat tools always ran, for every path that writes a skill. An agent's write is refused
+    // with the existing error shapes; the owner's is saved and says what it found (`warnings`).
+    const problems = await this.writeProblems(i.agentId, i);
+    if (i.author === 'agent' && problems[0]) return problems[0].refusal;
+    const warnings: SkillLintIssue[] = problems.map((p) => ({ code: p.code, message: p.warning }));
     // Spec 059: an agent's edit of a skill that already has a live text is stored for the probe; anything else goes live.
     const probing = !!i.probing && i.author === 'agent' && !!(existing || shared);
     const probeJson = i.probe == null ? null : JSON.stringify(i.probe);
@@ -346,7 +376,12 @@ export class SkillStore {
           [i.agentId, skillId, i.body.length <= SKILL_MAX_INLINE_BODY]);
       }
       const { rows } = await c.query(`SELECT * FROM skills WHERE id = $1`, [skillId]);
-      return { ok: true as const, skill: rowToSkill(rows[0]), version, lint, ...(probing ? { probing: true } : {}) };
+      return {
+        ok: true as const, skill: rowToSkill(rows[0]), version,
+        lint: warnings.length ? { ...lint, warnings: [...lint.warnings, ...warnings] } : lint,
+        ...(warnings.length ? { warnings } : {}),
+        ...(probing ? { probing: true } : {}),
+      };
     });
   }
 

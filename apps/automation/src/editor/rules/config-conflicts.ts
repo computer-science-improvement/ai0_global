@@ -65,6 +65,22 @@ export interface ConfigConflict {
   fix:      ConflictFix;
 }
 
+/** A conflict as the rule write paths hand it back (spec 073 FR-012): its code, what it is about and the English line. */
+export type ConflictNote = Pick<ConfigConflict, 'code' | 'ref' | 'detail'> & { rule_id?: number | null };
+
+/**
+ * Spec 062 FR-007, 073 FR-012: the conflicts a write causes — those that were not there before it, and those that name a rule
+ * it wrote (`rule_id`). The conflicts the channel already had are not news.
+ */
+export function newConflictsOf<C extends { code: string; ref: string; rule_id?: number | null }>(before: readonly C[], after: readonly C[], ruleIds: readonly number[]): C[] {
+  const had = new Set(before.map((c) => `${c.code}:${c.ref}`));
+  const wrote = new Set(ruleIds);
+  return after.filter((c) => (c.rule_id != null && wrote.has(c.rule_id)) || !had.has(`${c.code}:${c.ref}`));
+}
+
+/** The note a write path returns for a conflict. */
+export const conflictNote = (c: ConflictNote): ConflictNote => ({ code: c.code, ref: c.ref, detail: c.detail });
+
 const SLANG_RE = /сленг|slang/iu;
 const NEGATED_SLANG_RE = /(без|ні|не|no|without|avoid)\s+(?:\p{L}+\s+){0,2}?(сленг|slang)/iu;
 const AUDIENCE_RULE_RE = /(аудиторі|читач\w*\s+(?:—|-|це)|пишемо\s+для|пиши\s+для|для\s+(?:новачк|початківц|експерт|розробник|школяр|студент|батьк|геймер|дітей|підлітк)|audience|write\s+for)/iu;

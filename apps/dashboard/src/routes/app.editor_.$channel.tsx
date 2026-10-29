@@ -12,7 +12,7 @@ import { CardEditorModal } from '../components/editor/CardEditorModal';
 import { ModeSwitch, RUN_TONE, SlotCounts, SlotRow, fmtDuration, fmtUsd, runStatusLabel } from '../components/editor/EditorUi';
 import '../components/editor/editor.css';
 import {
-  useAddEditorMemory, useEditorChannel, useEditorMemory, useEditorPlans, useEditorRuns, useReplan, useRetireEditorMemory,
+  useAddEditorMemory, useEditorChannel, useEditorMemory, useEditorPlans, useEditorRuns, useReplan, useRetireEditorMemory, type MemoryConflict,
 } from '../api/editor';
 import { fmtDate } from '../lib/format';
 import { feedsOf, planScheduleNote } from '../lib/slot-plan';
@@ -135,6 +135,12 @@ function CardSummary({ c }: { c: EditorChannel }) {
 
 const KIND_TONE: Record<EditorMemoryEntry['kind'], 'accent' | 'warning' | 'neutral'> = { rule: 'accent', avoid: 'warning', insight: 'neutral' };
 
+/** One English line for the conflicts a new rule caused (null when there are none). */
+function conflictLine(conflicts: MemoryConflict[] | undefined): string | null {
+  if (!conflicts?.length) return null;
+  return `Saved, but it conflicts with the channel setup: ${conflicts.map((c) => c.detail).join('; ')}. Ask @ai0 to align them.`;
+}
+
 function MemorySection({ channelKey }: { channelKey: string }) {
   const memory = useEditorMemory(channelKey);
   const add = useAddEditorMemory(channelKey);
@@ -143,6 +149,8 @@ function MemorySection({ channelKey }: { channelKey: string }) {
   const [kind, setKind] = useState<EditorMemoryEntry['kind']>('rule');
   const [text, setText] = useState('');
   const [showHistory, setShowHistory] = useState(false);
+  // Spec 073 FR-012: the entry is saved, but it contradicts the channel's setup — one line until the next add.
+  const [conflict, setConflict] = useState<string | null>(null);
 
   const all = memory.data ?? [];
   const activeEntries = all.filter((m) => m.active);
@@ -150,7 +158,10 @@ function MemorySection({ channelKey }: { channelKey: string }) {
 
   const submit = () => {
     if (text.trim().length < 3) return;
-    add.mutate({ kind, text: text.trim() }, { onSuccess: () => setText('') });
+    add.mutate({ kind, text: text.trim() }, {
+      onSuccess: (r) => { setText(''); setConflict(conflictLine(r.conflicts)); },
+      onError: () => setConflict(null),
+    });
   };
 
   return (
@@ -164,6 +175,7 @@ function MemorySection({ channelKey }: { channelKey: string }) {
           onChange={(e) => setText(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') submit(); }} />
         <button className="btn-primary" disabled={add.isPending || text.trim().length < 3} onClick={submit}>Add</button>
       </div>
+      {conflict && <p role="status" className="text-body-sm ink-warning" style={{ margin: '-6px 0 14px', overflowWrap: 'anywhere' }}>⚠ {conflict}</p>}
       {activeEntries.length === 0
         ? <EmptyState icon="bots" title="No active memory" note="Owner rules are injected into every planner, executor and reviewer prompt. The reviewer adds insights weekly." />
         : <div className="compact-grid">
