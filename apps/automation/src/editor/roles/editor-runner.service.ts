@@ -38,6 +38,7 @@ import {
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import type { PassRow } from '../silent/pass-row';
+import { reasonsClause } from '../schedule/planner-runs';
 import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
@@ -91,6 +92,8 @@ export interface EditorRunnerDeps {
   preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /** Spec 073 FR-005: the validator's lines (≤ 5, ≤ 200 chars each) of the last failed call of a run's tool; the planner alert appends them. */
+  lastToolErrors?: (runId: string, tool: string) => Promise<string[]>;
   /**
    * Spec 024 FR-007: derived (duplicate / adapt) slots. `resolve` finds the
    * source; `formatPrefs` renders the target's format_prefs (FR-013);
@@ -416,7 +419,9 @@ export class EditorRunnerService {
       planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
     }, ctx);
     if (res.terminalTool !== 'submit_plan') {
-      await this.safeNotify(`🗓 Editor: планувальник ${card.channelKey} не склав план (${res.status}${res.error ? `: ${res.error}` : ''}).`);
+      // Spec 073 FR-005: the validator's lines from the last refused submit_plan say why the plan was not made.
+      const why = this.d.lastToolErrors && res.runId ? await this.d.lastToolErrors(res.runId, 'submit_plan').catch(() => []) : [];
+      await this.safeNotify(`🗓 Editor: планувальник ${card.channelKey} не склав план (${res.status}${res.error ? `: ${res.error}` : ''}).${reasonsClause(why)}`);
     }
     return res;
   }

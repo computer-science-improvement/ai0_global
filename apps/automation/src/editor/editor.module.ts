@@ -181,6 +181,7 @@ import { launchSource } from './launch/launch-cards';
 import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
 import { launchQueries } from './launch/launch-queries';
 import { planTodayAndTomorrow } from './launch/plan-ahead';
+import { lastToolErrors } from './schedule/planner-runs';
 import { launchJson, LaunchService } from './launch/launch.service';
 import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
@@ -1583,6 +1584,8 @@ export const EDITOR_PROVIDERS = [
           env: (k) => cfg.get<string>(k) ?? undefined,
           defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           notify: (t) => notifier.notifyAlert(t),
+          // Spec 073 FR-005: the planner alert says why (the validator's lines from the last refused submit_network_plan).
+          lastToolErrors: (runId, tool) => lastToolErrors(pool, runId, tool),
           // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
           catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
           runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
@@ -1633,6 +1636,8 @@ export const EDITOR_PROVIDERS = [
           // Spec 071 R4: a post's `library://` alias against the series' next row (`data://`).
           canonicalRef: async (ref) => (await resolveContentRef(pool, ref).catch(() => null))?.dataRef ?? ref,
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          // Spec 073 FR-005: the planner alert says why (the validator's lines from the last refused submit_plan).
+          lastToolErrors: (runId, tool) => lastToolErrors(pool, runId, tool),
           deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
           // Spec 071 A2: a row the critic rejected for good (or whose quiz key is wrong) is put aside for the round on a cycle dataset.
           passRow: makePassRow(new ContentLedger(pool, (m) => logger.warn(m)), (m) => logger.warn(m)),

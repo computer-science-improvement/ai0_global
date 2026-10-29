@@ -24,6 +24,7 @@ import {
 } from './network-prompts';
 import { renderExamples, renderSection } from './playbook';
 import { renderExperimentQuotas, type ExperimentQuota } from '../manager/experiment-quota';
+import { reasonsClause } from '../schedule/planner-runs';
 
 export interface NetworkRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -51,6 +52,8 @@ export interface NetworkRunnerDeps {
   workspace?: () => Promise<Workspace>;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
+  /** Spec 073 FR-005: the validator's lines of the last failed call of a run's tool; the planner alert appends them. */
+  lastToolErrors?: (runId: string, tool: string) => Promise<string[]>;
   /** Spec 045 FR-005: the steering rules of a resource's active sets (enabled, non-conflicting); absent = none. */
   steering?: (targetRef: string) => Promise<SteeringPromptRule[]>;
   /** Spec 046 FR-003: the manager's advice / directives the orchestrator accepted and that are in force (planner block). */
@@ -272,7 +275,9 @@ export class NetworkRunner {
     const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories].filter(Boolean).join('\n\n');
     const res = await this.run('planner', card, c, system, user, STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
-      await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
+      // Spec 073 FR-005: the validator's lines from the last refused submit_network_plan.
+      const why = this.d.lastToolErrors && res.runId ? await this.d.lastToolErrors(res.runId, 'submit_network_plan').catch(() => []) : [];
+      await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).${reasonsClause(why)}`);
     }
     return res;
   }

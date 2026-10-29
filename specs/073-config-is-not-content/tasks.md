@@ -58,7 +58,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `launch/plan-ahead.073.test.ts` (fake runner and `getActivePlan`: each day once; a non-placeholder tomorrow is left alone; a throwing today still plans tomorrow; tomorrow is right across a DST change); `launch/launch-checklist.073.test.ts` asserts the `first_posts` link from `buildChecklist` (no test pins it today).
   - Done when: Start calls the planner for today and tomorrow once each, and the link opens the Approvals tab.
 
-- [ ] **T6 Planner retries survive a restart; the alert says why (FR-005; A1, A11, A13, A14, A43).**
+- [x] **T6 Planner retries survive a restart; the alert says why (FR-005; A1, A11, A13, A14, A43).**
   - What:
     - new `schedule/planner-runs.ts` with `plannerRunsOn(pool, channelKey, tz, day, opts?)` returning `{ n, failed, lastFailedAt }` from one query (A11);
     - seed `plannerTries` only when a key is absent, over A13's window, as `{ n: failed, at: lastFailedAt }` (A13, A43);

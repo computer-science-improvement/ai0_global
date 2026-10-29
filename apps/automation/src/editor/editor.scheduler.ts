@@ -1,12 +1,13 @@
 import type { Pool } from 'pg';
 import type { ChannelMode, EditorCard } from './card';
-import { batchDateDue, writeAt } from './approval/approval-timing';
+import { APPROVAL_BATCH_HOUR, batchDateDue, writeAt } from './approval/approval-timing';
 import type { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { isPlaceholderPlan } from './repo/editor-plans.repository';
 import type { EditorPlansRepository, EditorSlot } from './repo/editor-plans.repository';
 import type { EditorRunnerService } from './roles/editor-runner.service';
 import { PAUSED_ERROR, slotRef } from './pauses/resource-pauses';
-import { localDate, localHour, localWeekday } from './roles/time';
+import { localDate, localHour, localWeekday, zonedToUtc } from './roles/time';
+import { plannerRunsOn } from './schedule/planner-runs';
 
 export interface EditorSchedulerDeps {
   pool:     Pick<Pool, 'query'>;
@@ -316,10 +317,29 @@ export class EditorScheduler {
     const active = await this.d.plans.getActivePlan(card.channelKey, date);
     if (active && !isPlaceholderPlan(active.rationale)) return;
     const key = `${card.channelKey}:${date}`;
+    // Spec 073 A13: the ahead key's first eligible instant is the batch hour today (`date` is tomorrow's).
+    const today = localDate(now, card.timezone);
+    await this.seedTries(card, key, today, zonedToUtc(today, `${APPROVAL_BATCH_HOUR}:00`, card.timezone));
     const tries = this.plannerTries.get(key) ?? { n: 0, at: 0 };
     if (tries.n >= PLANNER_MAX_TRIES || now.getTime() - tries.at < PLANNER_RETRY_MS) return;
     this.plannerTries.set(key, { n: tries.n + 1, at: now.getTime() });
     await this.d.runner.runPlanner(card, { planDate: date });
+  }
+
+  /**
+   * Spec 073 FR-005: when the key is not in `plannerTries` (a fresh process), start it from the planner runs that already
+   * failed since the key's first eligible instant (`since`) on the local day `day` — so a restart neither forgets three
+   * failed tries nor retries sooner than `PLANNER_RETRY_MS` after the last one. Only an absent key is seeded; a failing
+   * read leaves it absent (this tick plans as an empty state would, and the next tick tries the read again).
+   */
+  private async seedTries(card: EditorCard, key: string, day: string, since: Date): Promise<void> {
+    if (this.plannerTries.has(key)) return;
+    try {
+      const r = await plannerRunsOn(this.d.pool, card.channelKey, card.timezone, day, { since });
+      this.plannerTries.set(key, { n: r.failed, at: r.lastFailedAt?.getTime() ?? 0 });
+    } catch (err: any) {
+      this.d.log?.(`planner runs of ${card.channelKey} could not be read: ${err?.message ?? err}`);
+    }
   }
 
   private readonly orchestrated = new Set<string>();
@@ -349,6 +369,8 @@ export class EditorScheduler {
     const active = await this.d.plans.getActivePlan(card.channelKey, date);
     if (active && !isPlaceholderPlan(active.rationale)) return;
     const key = `${card.channelKey}:${date}`;
+    // Spec 073 A13: today's key starts at the plan hour on that day in the card's zone.
+    await this.seedTries(card, key, date, zonedToUtc(date, `${String(card.planHour).padStart(2, '0')}:00`, card.timezone));
     const tries = this.plannerTries.get(key) ?? { n: 0, at: 0 };
     if (tries.n >= PLANNER_MAX_TRIES || now.getTime() - tries.at < PLANNER_RETRY_MS) return;
     this.plannerTries.set(key, { n: tries.n + 1, at: now.getTime() });
