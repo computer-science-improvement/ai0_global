@@ -44,6 +44,8 @@ import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/ow
 import type { SteeringPromptRule } from '../steering/steering.types';
 import { channelLanguage, readerLanguageRule } from '../post/channel-language';
 import { reasonFor } from '../reasons/catalogue';
+import { checkSlotConfig, isConfigCode, isRepairable, repairSlotConfig, type SlotConfigCtx, type SlotConfigSlot } from '../readiness/slot-config';
+import { slotSeriesOf } from '../post/polls/poll-cap-guard';
 import { isNotAMiss } from '../silent/skip-reasons';
 
 export interface EditorRunnerDeps {
@@ -94,6 +96,14 @@ export interface EditorRunnerDeps {
   preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /**
+   * Spec 073 FR-009 / A15: the slot's config check before the pre-flight. `context` is `ScheduleService.slotConfigContext` (read
+   * only; null = nothing to check), `patch` is `EditorPlansRepository.patchSlotConfig` (a running slot only). Absent = no check.
+   */
+  slotConfig?: {
+    context(card: EditorCard, slot: EditorSlot, o: { tools: ReadonlySet<string> | null }): Promise<SlotConfigCtx | null>;
+    patch(id: string, r: { format?: string; sourceHints?: string[]; note: string }): Promise<EditorSlot | null>;
+  };
   /**
    * Spec 073 A30 / L1: a slot ended as a CONFIG skip (its setup is wrong, not its content): `(channelKey, code)`. Not wired in 073;
    * the lead wires it to the readiness recheck at the 072 merge and deletes the runner's own once-a-day note (`noteConfigSkip`).
@@ -215,6 +225,27 @@ export function executorTools(role: CardRole, tools: EditorTool[], allow: string
   if (role !== 'executor') return tools;
   const allowed = new Set(allow ?? []);
   return tools.filter((t) => !EXECUTOR_DENY.has(t.name) || allowed.has(t.name));
+}
+
+/**
+ * The tools a role gets before the per-run exclusions: the registry's tools for the role, narrowed by the channel's allow list
+ * and the agent's loadout (`loadoutAllow`, spec 054), minus what a writer never needs (spec 053). `run()` and the config check
+ * (spec 073 A12) both read it, so the check sees the tools the run will hand the model.
+ */
+export function roleTools(role: CardRole, card: Pick<EditorCard, 'toolsAllow'>, registry: Pick<ToolRegistry, 'forRole'>, loadoutAllow: string[] | null): EditorTool[] {
+  return executorTools(role, registry.forRole(role, intersectAllow(card.toolsAllow, loadoutAllow)), card.toolsAllow);
+}
+
+/** The names of the executor's tools for a run, `exclude` being what the attempt leaves out (`PLATFORM_ONLY` on a Telegram slot, `TELEGRAM_ONLY` on a platform slot). Pure. */
+export function executorToolNames(
+  card: Pick<EditorCard, 'toolsAllow'>, ctx: { registry: Pick<ToolRegistry, 'forRole'>; loadoutAllow: string[] | null; exclude?: ReadonlySet<string> },
+): Set<string> {
+  return new Set(roleTools('executor', card, ctx.registry, ctx.loadoutAllow).map((t) => t.name).filter((n) => !ctx.exclude?.has(n)));
+}
+
+/** A slot as the config check reads it; the series comes from the column, else the `series:` hint (A17). */
+export function toConfigSlot(slot: EditorSlot): SlotConfigSlot {
+  return { channelKey: slot.channelKey, resourceRef: slot.resourceRef ?? null, format: slot.format, seriesName: slotSeriesOf(slot), sourceHints: slot.sourceHints ?? [], scheduleRuleId: slot.scheduleRuleId ?? null };
 }
 
 /** Tools of a duplicate's short formatting run (FR-007): publish (it lints) or skip — nothing else. */
@@ -385,7 +416,7 @@ export class EditorRunnerService {
       }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
-        executorTools(role, this.d.registry.forRole(role, intersectAllow(card.toolsAllow, loadoutAllow)), card.toolsAllow)
+        roleTools(role, card, this.d.registry, loadoutAllow)
           .filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name))
           .filter((t) => !(extras.allowTools as Set<string> | undefined) || (extras.allowTools as Set<string>).has(t.name))),
       maxSteps: typeof extras.maxSteps === 'number' ? extras.maxSteps : MAX_STEPS[role],
@@ -452,6 +483,10 @@ export class EditorRunnerService {
     const callerNote = note ?? null;
     note = [note, series?.note].filter(Boolean).join('\n') || null;
     if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
+    // Spec 073 FR-009 / A15: what the slot's configuration gets wrong is fixed in place or skipped at $0, before anything is paid for.
+    const gate = await this.configGate(slot, card, ctx);
+    if ('done' in gate) return gate.done;
+    slot = gate.slot;
     // Spec 061 FR-001: what code knows (spent / stale / blocked source, missing hosting) is checked before the writer is paid.
     if (this.d.preflight) {
       const pf = await this.d.preflight.run(slot, card, { nextRow: series?.nextRow ?? null });
@@ -491,7 +526,7 @@ export class EditorRunnerService {
       if (fresh && (fresh.status === 'running' || fresh.status === 'skipped')) {
         await this.d.plans.updateSlot(slot.id, {
           status: 'skipped', error: cfg.reason,
-          fallback: { steps: fresh.fallback?.steps ?? [], final: { outcome: 'skipped', code: 'config', step: 'initial', reason: cfg.reason } },
+          fallback: { ...fresh.fallback, steps: fresh.fallback?.steps ?? [], final: { outcome: 'skipped', code: 'config', step: 'initial', reason: cfg.reason } },
         });
         await this.noteConfigSkip(slot, card, cfg.code);
         if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
@@ -517,7 +552,7 @@ export class EditorRunnerService {
         const record = criticPasses(after) > 0 && !(after.fallback?.steps ?? []).some((x) => x.run_id && x.run_id === res.runId);
         await this.d.plans.updateSlot(slot.id, {
           status: 'planned', retryAt, error: `retry after ${reason}`,
-          ...(!record ? {} : { fallback: { steps: [...(after.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, null, res)], final: null } }),
+          ...(!record ? {} : { fallback: { ...after.fallback, steps: [...(after.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, null, res)], final: null } }),
         });
       } else {
         await this.d.plans.updateSlot(slot.id, { status: 'failed', error: content ? content.reason.slice(0, 500) : reason });
@@ -684,9 +719,46 @@ export class EditorRunnerService {
         for (const url of rejectedSources) await this.d.deadSource(slot, url, failure.reason).catch(() => 0);
       }
     }
-    await this.d.plans.updateSlot(slot.id, { fallback: { steps, final } });
+    await this.d.plans.updateSlot(slot.id, { fallback: { ...slot.fallback, steps, final } });
     if (cfgCode) await this.noteConfigSkip(slot, card, cfgCode);
     return res;
+  }
+
+  /**
+   * Spec 073 FR-009 / A15: check the slot's configuration. A repairable problem (the format, the source hints) is fixed in place
+   * through `patchSlotConfig` and the check runs once more on the patched row; any other problem ends the slot, skipped with
+   * `<code>: <detail>`, without a model call. A check that cannot run (a read error) lets the slot go on as before.
+   */
+  private async configGate(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null): Promise<{ slot: EditorSlot } | { done: AgentLoopResult }> {
+    const dep = this.d.slotConfig;
+    if (!dep) return { slot };
+    let problems: ReturnType<typeof checkSlotConfig>;
+    try {
+      const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
+      const loadoutAllow = this.d.loadout ? await this.d.loadout.allowFor(ctx?.agent, { role: 'executor', registry: this.d.registry }) : null;
+      const tools = executorToolNames(card, { registry: this.d.registry, loadoutAllow, exclude: target && target.platform !== 'telegram' ? TELEGRAM_ONLY : PLATFORM_ONLY });
+      const sctx = await dep.context(card, slot, { tools });
+      if (!sctx) return { slot };
+      problems = checkSlotConfig(toConfigSlot(slot), sctx);
+      if (problems.some((p) => isRepairable(p.code))) {
+        const fix = repairSlotConfig(toConfigSlot(slot), problems, sctx);
+        if (fix.format || fix.sourceHints) {
+          const patched = await dep.patch(slot.id, fix);
+          if (patched) {
+            slot = patched;
+            problems = checkSlotConfig(toConfigSlot(slot), sctx);
+          }
+        }
+      }
+    } catch {
+      return { slot };
+    }
+    const p = problems[0];
+    if (!p) return { slot };
+    const done = await this.skipByCode(slot, `${p.code}: ${p.detail}`.slice(0, 500));
+    // A config code tells the recheck hook and the owner (once a day); `preflight_no_material` is material: it counts toward the breaker and has no note.
+    if (isConfigCode(p.code)) await this.noteConfigSkip(slot, card, p.code);
+    return { done };
   }
 
   /**

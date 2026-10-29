@@ -735,6 +735,25 @@ export class EditorPlansRepository {
     }
   }
 
+  /**
+   * Spec 073 A7 / A32: the runner fixes a CLAIMED slot's configuration in place at $0 (`repairSlotConfig`): the format and / or the
+   * source hints, and the note is appended to `fallback.repairs`. Running slots only (074 writes planned ones through its own
+   * guarded patch); returns the patched slot, or null for a slot that is not running (nothing is written).
+   */
+  async patchSlotConfig(id: string, p: { format?: string; sourceHints?: string[]; note: string }, at: Date = new Date()): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET
+              format = COALESCE($2::text, format),
+              source_hints = COALESCE($3::jsonb, source_hints),
+              fallback = COALESCE(fallback, '{"steps":[],"final":null}'::jsonb)
+                         || jsonb_build_object('repairs', COALESCE(fallback->'repairs', '[]'::jsonb)
+                                                          || jsonb_build_array(jsonb_build_object('at', $4::text, 'note', $5::text))),
+              updated_at = now()
+        WHERE id = $1 AND status = 'running' RETURNING *`,
+      [id, p.format ?? null, p.sourceHints ? JSON.stringify(p.sourceHints) : null, at.toISOString(), p.note]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
   /** Spec 061 FR-001: the pre-flight gave the planned slot another idea (topic, angle and source hints follow it); `note` is kept as a lint warning. */
   async retopicSlot(id: string, p: { ideaId: string; topic: string; angle: string | null; sourceHints: string[]; note: string }): Promise<void> {
     await this.pool.query(

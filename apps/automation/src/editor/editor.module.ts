@@ -264,10 +264,8 @@ import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleRepository } from './schedule/schedule.repository';
 import { buildScheduleTools, registerScheduleActions, registerSlotRunActions } from './schedule/schedule-tools';
 import { SCHEDULE_SERVICE, ScheduleController } from './schedule/schedule.controller';
-import { buildCatalog } from '../data/data-catalog';
-import { kyivMonthDay } from '../data/data-query';
 import { ContentLedger } from '../data/content-ledger';
-import { nextRowPort } from './schedule/next-row';
+import { nextRowPort, unpostedPort } from './schedule/next-row';
 import { isCycleRef } from '../data/data-rounds';
 import { resolveContentRef } from '../data/data-refs';
 import { makePassRow } from './silent/pass-row';
@@ -1200,7 +1198,7 @@ export const EDITOR_PROVIDERS = [
           time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
           sourceCatalog: (card) => seriesSourceCatalog(pool, card),
           pauses: new PlannerPauseView(new SeriesPausesRepository(pool)),   // spec 060: paused series + last skip reasons for the planners
-          unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
+          unposted: unpostedPort(pool),
           nextRow: nextRowPort(pool),   // spec 071: the next row of an in-order dataset (series note + not_next_in_order guard)
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
@@ -1633,6 +1631,8 @@ export const EDITOR_PROVIDERS = [
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
+          // Spec 073 FR-009: the slot's config check before the pre-flight (read-only context; a repair patches the claimed slot only).
+          slotConfig: { context: (card, slot, o) => schedule.slotConfigContext(card, slot, o), patch: (id, r) => repos.plans.patchSlotConfig(id, r) },
           // Spec 071 R4: a post's `library://` alias against the series' next row (`data://`).
           canonicalRef: async (ref) => (await resolveContentRef(pool, ref).catch(() => null))?.dataRef ?? ref,
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },

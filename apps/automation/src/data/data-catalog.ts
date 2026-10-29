@@ -62,6 +62,11 @@ export interface CatalogOptions {
   /** Resource ref or Telegram channel key: adds `unposted_here`. */
   resource?:   string | null;
   today:       { month: number; day: number };
+  /**
+   * Start the next round of a cycle dataset whose round is done (the default). Spec 073 I1: a read-only caller passes `false`;
+   * then `unposted_here` is the plain count and nothing is written.
+   */
+  roll?:       boolean;
 }
 
 const DATE_ROLES: RoleName[] = ['date', 'month_day', 'month', 'day'];
@@ -197,7 +202,7 @@ export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions)
   let rounds: Awaited<ReturnType<typeof roundsOf>> | null = null;
   if (resource && cycleIds.length) {
     let rolled = false;
-    for (const id of cycleIds) {
+    for (const id of o.roll === false ? [] : cycleIds) {
       const c = bySchema.get(id);
       if (c && (c.unposted_here ?? 0) === 0 && c.rows - (c.not_postable ?? 0) > 0) rolled = (await rollIfDone(pool, id, resource)) || rolled;
     }

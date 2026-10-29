@@ -385,9 +385,11 @@ function refFlags(r: { status?: string; postable?: boolean; missing?: string[]; 
  * within one category (a series' `library:<table>/<category>` source). Null for a dataset that is not cycle/sequential, and
  * when nothing is left. A cycle dataset with nothing left asks the database to start the next round and looks again
  * (`rolled` tells the caller it did), so a slot is never told «nothing left» on the one read that would have found rows.
+ * `o.roll: false` (spec 073 I1) reads without ever starting a round: it returns null when the round is done.
  */
 export async function nextInRound(
   pool: Pick<Pool, 'query'>, schema: DataSchema, resourceRef: string, today: { month: number; day: number }, category?: string | null,
+  o: { roll?: boolean } = {},
 ): Promise<{ ref: string | null; rolled: boolean }> {
   if (!isSequential(schema.reuse_policy)) return { ref: null, rolled: false };
   const read = async () => {
@@ -400,6 +402,8 @@ export async function nextInRound(
   };
   const first = await read();
   if (first) return { ref: first, rolled: false };
+  // Spec 073 I1: a read-only caller (the config check) passes `roll: false` and never starts a round.
+  if (o.roll === false) return { ref: null, rolled: false };
   if (!(await rollIfDone(pool, schema.id, resourceRef))) return { ref: null, rolled: false };
   return { ref: await read(), rolled: true };
 }

@@ -22,6 +22,8 @@ import {
 } from './schedule-rules';
 import { applySeriesOp, SeriesFields, SeriesOp, seriesDiff, seriesKey } from './series-change';
 import { refDataset, SeriesForSlot, seriesNote, seriesSourceMismatch, sourceHints } from './series-guard';
+import { slotSeriesOf } from '../post/polls/poll-cap-guard';
+import type { SlotConfigCtx } from '../readiness/slot-config';
 import { resolveContentRef } from '../../data/data-refs';
 import { LIVE_DEFAULT_MAX_AGE_HOURS, seriesLiveSources, type TopicMode } from '../live/live-slot';
 
@@ -58,12 +60,12 @@ export interface ScheduleServiceDeps {
   /** Library datasets and card feeds a source may name. */
   sourceCatalog?: (card: EditorCard | null) => Promise<SeriesSourceCatalog>;
   /** Unposted rows of a dataset on a resource (content ledger); null = unknown. */
-  unposted?: (resourceRef: string, dataset: string) => Promise<number | null>;
+  unposted?: (resourceRef: string, dataset: string, o?: { roll?: boolean }) => Promise<number | null>;
   /**
    * Spec 071 FR-005: the next row (`data://…`) of a dataset that goes in order, on a resource, within a category; null when
    * the dataset is not an in-order cycle dataset or nothing is left. A cycle dataset with nothing left rolls to the next round first.
    */
-  nextRow?: (resourceRef: string, dataset: string, category: string | null) => Promise<string | null>;
+  nextRow?: (resourceRef: string, dataset: string, category: string | null, o?: { roll?: boolean }) => Promise<string | null>;
   /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
   pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
   now?:     () => Date;
@@ -296,7 +298,7 @@ export class ScheduleService {
       const pb = orch ? await this.d.network.activePlaybook(orch.id) : null;
       const all = pb ? normalizePlaybook(pb.body).series : [];
       const s = all.find((x) => x.name === slot.seriesName && x.resource_ref === ref) ?? all.find((x) => x.name === slot.seriesName);
-      if (s) return { name: s.name, brief: s.brief, format: s.format, source: s.source ?? null, sourceMode: s.source_mode ?? 'suggested', locked: !!s.locked };
+      if (s) return { name: s.name, brief: s.brief, format: s.format, source: s.source ?? null, sourceMode: s.source_mode ?? 'suggested', locked: !!s.locked, active: s.active !== false };
     }
     if (slot.scheduleRuleId) {
       const r = await this.d.rules.get(slot.scheduleRuleId);
@@ -313,23 +315,60 @@ export class ScheduleService {
     const s = await this.seriesForSlot(slot);
     if (!s) return { note: null };
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
-    if (s.sourceMode === 'required' && s.source?.kind === 'library' && this.d.unposted) {
-      const left = await this.d.unposted(ref, s.source.table).catch(() => null);
-      if (left === 0) {
-        await this.sourceEmpty(slot, s).catch(() => {});
-        return { note: null, skip: `series "${s.name}": required source library:${s.source.table} has nothing left on ${ref}` };
-      }
+    // A run: a cycle dataset whose round is done starts the next one here (`roll`), so the slot is not told «nothing left».
+    const { left, nextRow } = await this.seriesMaterial(s, ref, { roll: true });
+    if (left === 0 && s.source?.kind === 'library') {
+      await this.sourceEmpty(slot, s).catch(() => {});
+      return { note: null, skip: `series "${s.name}": required source library:${s.source.table} has nothing left on ${ref}` };
     }
     // Spec 071 FR-005: a series (or pin) on a dataset that goes in order takes the next row of the round.
-    const next = await this.nextRowOf(s, ref);
     // `nextRow` also goes back as data: the ladder keeps the row the series is waiting for (spec 071 R3 / R4).
-    return { note: seriesNote(s, seriesSourceLabel, { nextRow: next }), nextRow: next };
+    return { note: seriesNote(s, seriesSourceLabel, { nextRow }), nextRow };
+  }
+
+  /**
+   * The material of a series on a resource, read only (spec 073 A3): `left` is the unposted count of a REQUIRED library source
+   * (null for any other, or when unknown) and `nextRow` the next in-order row (null when `left` is 0, which needs none). It never
+   * posts to the inbox. `roll: false` (spec 073 I1) also never starts a round: the config check reads through it.
+   */
+  private async seriesMaterial(s: SeriesForSlot, resourceRef: string, o: { roll: boolean }): Promise<{ left: number | null; nextRow: string | null }> {
+    const left = s.sourceMode === 'required' && s.source?.kind === 'library' && this.d.unposted
+      ? await this.d.unposted(resourceRef, s.source.table, { roll: o.roll }).catch(() => null)
+      : null;
+    return { left, nextRow: left === 0 ? null : await this.nextRowOf(s, resourceRef, o) };
   }
 
   /** The next in-order row of the slot's library source on a resource, or null (not a library source, not in order, nothing left, no dep, a read error). */
-  private async nextRowOf(s: Pick<SeriesForSlot, 'source'>, resourceRef: string): Promise<string | null> {
+  private async nextRowOf(s: Pick<SeriesForSlot, 'source'>, resourceRef: string, o?: { roll?: boolean }): Promise<string | null> {
     if (s.source?.kind !== 'library' || !this.d.nextRow) return null;
-    return this.d.nextRow(resourceRef, s.source.table, s.source.category ?? null).catch(() => null);
+    return this.d.nextRow(resourceRef, s.source.table, s.source.category ?? null, o).catch(() => null);
+  }
+
+  /**
+   * Spec 073 FR-009 / A3 / A12 / A16: the context `checkSlotConfig` reads, for the runner (which passes its `tools`), the 072 doctor,
+   * the 074 repair and the 077 bring-up (which pass none). READ ONLY: no inbox post, and no round is started (`roll: false`, I1).
+   * Null when the slot names no series, or the channel has no orchestrator or no active playbook (nothing to check).
+   * `series` is the playbook's full list, inactive series included.
+   */
+  async slotConfigContext(card: EditorCard, slot: EditorSlot, o: { tools?: ReadonlySet<string> | null } = {}): Promise<SlotConfigCtx | null> {
+    const name = slotSeriesOf(slot);
+    if (!name) return null;
+    const orch = await this.d.agents.findTop('orchestrator', 'resource', `telegram:${slot.channelKey}`);
+    const pb = orch ? await this.d.network.activePlaybook(orch.id) : null;
+    if (!pb) return null;
+    const series = normalizePlaybook(pb.body).series;
+    const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
+    const s = series.find((x) => x.name === name && x.resource_ref === ref) ?? series.find((x) => x.name === name);
+    const catalog = this.d.sourceCatalog ? await this.d.sourceCatalog(card).catch(() => null) : null;
+    let nextRow: string | null = null;
+    let material: SlotConfigCtx['material'] = null;
+    if (s && s.active !== false) {
+      const m = await this.seriesMaterial(
+        { name: s.name, brief: s.brief, format: s.format, source: s.source ?? null, sourceMode: s.source_mode ?? 'suggested', locked: !!s.locked }, ref, { roll: false });
+      nextRow = m.nextRow;
+      material = m.left === null ? null : m.left === 0 ? 'empty' : 'ok';
+    }
+    return { series, catalog, tools: o.tools ?? null, nextRow, material };
   }
 
   private async sourceEmpty(slot: EditorSlot, s: SeriesForSlot): Promise<void> {

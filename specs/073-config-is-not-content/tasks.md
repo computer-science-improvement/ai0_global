@@ -128,7 +128,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
   - Tests: `schedule/series-format.073.test.ts` gains A20's four publish cases; `silent/fallback-ladder.073.test.ts` gains `configStop` and the dropped `libraryRef` on `series_format_mismatch`; new `roles/editor-runner.073.test.ts` with A30's four cases (`passRow` never called, `onConfigSkip` once, the note once per channel, code and day); `schedule/schedule.071.test.ts:42` and `live/live-slots.e2e.pg.test.ts:229-230` stay green unchanged.
   - Done when: a `series_format_mismatch` at publish ends the slot `skipped`, never `planned` for a retry, never `lighter_format`, and the breaker's streak is unchanged.
 
-- [ ] **T12 `checkSlotConfig` and the config pre-flight (FR-009; A3, A4, A7, A12, A15, A16, A17, A18, A32, A50, A53, L2, L4).**
+- [x] **T12 `checkSlotConfig` and the config pre-flight (FR-009; A3, A4, A7, A12, A15, A16, A17, A18, A32, A50, A53, L2, L4).**
   - What:
     - `readiness/slot-config.ts` gains `ConfigProblem` (L3), `SlotConfigSlot`, `SlotConfigCtx`, `checkSlotConfig` and `repairSlotConfig` (A7); `detail` is one English line (A53);
     - `SeriesForSlot.active?`, filled by `seriesForSlot` (A4);

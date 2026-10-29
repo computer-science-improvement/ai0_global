@@ -91,6 +91,11 @@ export interface FallbackFinal {
 export interface SlotFallback {
   steps: FallbackStepRecord[];
   final: FallbackFinal | null;
+  /**
+   * Spec 073 A32: the config repairs the runner made to the slot at run time (`patchSlotConfig`): the format or the source hints
+   * changed in place at $0. Not a step: the ladder, the digest and the critic-pass counter read only `steps` and `final`.
+   */
+  repairs?: Array<{ at: string; note: string }>;
 }
 
 /** The ladder does not start a new step this long after the slot's time (stale slots are skipped at 3 h). */

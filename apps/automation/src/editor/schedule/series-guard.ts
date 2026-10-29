@@ -50,6 +50,8 @@ export interface SeriesForSlot {
   source:      SeriesSource | null;
   sourceMode:  'suggested' | 'required';
   locked:      boolean;
+  /** Spec 073 A4: the series is switched on in the playbook (absent on a pin). A breaker pause is not `active: false`: it lives in `series_pauses`. */
+  active?:     boolean;
   /** An owner pin without a series (its brief and source are the pin's). */
   pin?:        boolean;
 }
