@@ -71,6 +71,7 @@ jobs:
             VITE_AUTH_MODE=${{ vars.DEV_VITE_AUTH_MODE || secrets.DEV_VITE_AUTH_MODE || vars.VITE_AUTH_MODE || secrets.VITE_AUTH_MODE }}
             VITE_TG_BOT_USERNAME=${{ vars.DEV_VITE_TG_BOT_USERNAME || secrets.DEV_VITE_TG_BOT_USERNAME }}
             VITE_PUBLIC_URL=${{ vars.DEV_VITE_PUBLIC_URL || secrets.DEV_VITE_PUBLIC_URL }}
+            VITE_ENV_LABEL=${{ vars.DEV_VITE_ENV_LABEL || 'dev' }}
           tags: |
             ${{ steps.image.outputs.dashboard }}:dev-latest
             ${{ steps.image.outputs.dashboard }}:dev-${{ github.sha }}
