@@ -162,7 +162,15 @@ interface SourceProfile {
   positive: Set<string>;
   /** Source tokens and bare words inside negated clauses: what it rules out. */
   negated:  Set<string>;
+  /**
+   * Spec 073 FR-012: the part of `positive` the skill PRESCRIBES — a `data://` / `library:` key or a `provider=` value anywhere,
+   * a host only in a clause that takes or names a source (not a link shown in a post). A host in a credit line is not here.
+   */
+  prescribed: Set<string>;
 }
+
+/** A clause that takes a source or names one («бери…», «джерело: …», «source»): its hosts are prescribed, not mentioned. */
+const TAKING_RE = new RegExp(`${TAKE_RE.source}|(?<![\\p{L}])джерел\\p{L}*`, 'iu');
 
 /** «не бери X, тепер бери з Y»: a comma, dash or colon before a positive take verb ends the negated clause and starts a new one. */
 const CLAUSE_END_RE = /\s*(?:,|—|–|\s-\s|:)\s*(?=(?:(?:а|але|тепер|now|but|натомість|and)\s+)?(?:бер\p{L}*|бра\p{L}*|взя\p{L}*|візьм\p{L}*|використ\p{L}*|користу\p{L}*|use|take|fetch|pull|source|get)(?![\p{L}]))/iu;
@@ -177,7 +185,13 @@ function profileOf(body: string): SourceProfile {
     for (const t of sourceTokensIn(text)) negated.add(t);
     for (const w of text.toLowerCase().match(WORD4_RE) ?? []) negated.add(w);
   };
-  const use = (text: string) => { for (const t of sourceTokensIn(text)) positive.add(t); };
+  const prescribed = new Set<string>();
+  const use = (text: string) => {
+    const taking = TAKING_RE.test(text) && !LINK_URL_RE.test(text);
+    for (const t of sourceTokensIn(text)) { positive.add(t); if (taking) prescribed.add(t); }
+    for (const m of text.matchAll(SOURCE_KEY_RE)) prescribed.add(m[1].toLowerCase());
+    for (const m of text.matchAll(PROVIDER_VALUE_RE)) prescribed.add(m[1].toLowerCase());
+  };
   for (const clause of sentences(body).flatMap((s) => s.split(/\s*;\s*/)).flatMap((s) => s.split(CLAUSE_END_RE))) {
     if (!NEGATION_RE.test(clause)) { use(clause); continue; }
     const instead = INSTEAD_RE.exec(clause);
@@ -192,7 +206,7 @@ function profileOf(body: string): SourceProfile {
     }
     rule(clause);
   }
-  return { positive, negated };
+  return { positive, negated, prescribed };
 }
 
 /**
@@ -328,4 +342,145 @@ export function originRefusal(body: string): { error: 'origin_original_with_sour
     details: `скіл велить ставити origin=original на матеріал, який агент бере з джерела («${found.sentence}») — lint відхилить такий пост (origin_mismatch)`,
     hint: 'матеріал зі сторінки чи фіду — origin=external + source.url; рядок бібліотеки — origin=library + library_ref; origin=original лише для власного тексту, який не повторює прочитане',
   };
+}
+
+// ── Spec 073 FR-012: a skill against the series the agent must run ─────────────────────────────────────────────────
+
+/**
+ * What a required series reads, as a skill write sees it (`SeriesSource` of kind library, feed or api, mode `required`):
+ * the series name, the kind and the dataset key, feed ref (an id or a URL) or API name. `format` and `brief` only help to
+ * tell which series a skill is about.
+ */
+export interface SeriesSourceFact {
+  series:  string;
+  kind:    'library' | 'feed' | 'api';
+  ref:     string;
+  format?: string;
+  brief?:  string;
+}
+
+export interface SeriesSourceConflict {
+  code:   'series_source_conflict';
+  /** The series (names joined with «, » when the skill is about several of them). */
+  series: string;
+  /** `other_source`: the skill tells the agent to use a source no series reads. `rules_out_source`: it rules out one a series reads. `original_with_source`: it sets origin=original while the series reads a library or feed. */
+  reason: 'other_source' | 'rules_out_source' | 'original_with_source';
+  tokens: string[];
+  /** English, one line. */
+  detail: string;
+}
+
+/** The tokens a series' source goes by in a skill text: a dataset key or an API name as written, a feed id, or the host label of a feed URL. */
+export function seriesSourceTokens(f: Pick<SeriesSourceFact, 'kind' | 'ref'>): string[] {
+  const ref = f.ref.trim().toLowerCase();
+  if (!ref) return [];
+  const out = new Set<string>();
+  if (f.kind === 'feed') for (const t of sourceTokensIn(f.ref)) out.add(t);
+  if (!/^https?:\/\//.test(ref)) out.add(ref);
+  return [...out];
+}
+
+const seriesSourceLabelOf = (f: Pick<SeriesSourceFact, 'kind' | 'ref'>) => `${f.kind}:${f.ref}`;
+
+/** The same source: equal, or the same first part of a key (`nanobanana` / `nanobanana_prompts`) unless that part only names a kind of post. */
+function sameSource(a: string, b: string): boolean {
+  if (a === b) return true;
+  const ha = a.split(/[_-]/)[0];
+  return ha === b.split(/[_-]/)[0] && ha.length >= 5 && !FORMAT_HEADS.has(ha);
+}
+
+/** A sentence that gives origin=original to material without saying it is the agent's own text. */
+const OWN_TEXT_RE = /(?<![\p{L}])(?:власн\p{L}*|свій|свого|своє|свої|своїх|own|самостійн\p{L}*|your\s+own)(?![\p{L}])/iu;
+
+/** The first sentence that prescribes origin=original with no negation, no other origin and no mention of own text; or null. */
+function prescribedOriginal(body: string): string | null {
+  for (const s of sentences(body)) {
+    if (ORIGIN_ORIGINAL_RE.test(s) && !ORIGIN_OTHER_RE.test(s) && !RULES_OUT_RE.test(s) && !OWN_TEXT_RE.test(s)) return s.slice(0, 160);
+  }
+  return null;
+}
+
+/**
+ * I14 / FR-012: what a skill body says against the required series of its agent. Pure; the caller passes the series sources
+ * (`SkillStore`'s `seriesSources` port, 072's doctor). A skill is judged against the series it is about — the only one when
+ * the agent has one, else those that share a format or a name word with it (`opts.name` / `description` help to find them).
+ * Built on `profileOf`, `ruledOut` and `ORIGIN_ORIGINAL_RE` of the checks above, not beside them.
+ */
+export function seriesSourceConflict(
+  body: string, series: readonly SeriesSourceFact[], opts: { name?: string; description?: string } = {},
+): SeriesSourceConflict[] {
+  if (!series.length) return [];
+  const mine = topicOf(opts.name ?? '', opts.description ?? '', body);
+  const about = series.length === 1 ? [...series] : series.filter((f) => [...topicOf(f.series, f.format ?? '', f.brief ?? '')].some((w) => mine.has(w)));
+  if (!about.length) return [];
+  const names = [...new Set(about.map((f) => f.series))].join(', ');
+  const labels = [...new Set(about.map(seriesSourceLabelOf))].join(', ');
+  const own = about.flatMap(seriesSourceTokens);
+  const profile = profileOf(body);
+  const out: SeriesSourceConflict[] = [];
+  const other = [...profile.prescribed].filter((t) => !own.some((o) => sameSource(o, t)));
+  if (other.length) {
+    out.push({
+      code: 'series_source_conflict', series: names, reason: 'other_source', tokens: other,
+      detail: `the skill tells the agent to use ${other.map((t) => `"${t}"`).join(', ')}, but series ${names} reads ${labels}`,
+    });
+  }
+  const ruled = ruledOut(profile.negated, new Set(own));
+  if (ruled.length) {
+    out.push({
+      code: 'series_source_conflict', series: names, reason: 'rules_out_source', tokens: ruled,
+      detail: `the skill rules out ${ruled.map((t) => `"${t}"`).join(', ')}, which series ${names} reads (${labels})`,
+    });
+  }
+  const original = about.some((f) => f.kind === 'library' || f.kind === 'feed') ? prescribedOriginal(body) : null;
+  if (original) {
+    out.push({
+      code: 'series_source_conflict', series: names, reason: 'original_with_source', tokens: ['origin=original'],
+      detail: `the skill sets origin=original («${original}»), but series ${names} reads ${labels}; material it reads goes out as origin=library or origin=external, and the lint rejects origin=original on it (origin_mismatch)`,
+    });
+  }
+  return out;
+}
+
+export type SkillWriteProblemCode = 'source_belongs_in_import' | 'origin_original_with_source' | 'series_source_conflict';
+
+/** One thing wrong with a skill that is being written: the tool-error shape an agent is refused with, and the line the owner is warned with. */
+export interface SkillWriteProblem {
+  code:    SkillWriteProblemCode;
+  refusal: { error: SkillWriteProblemCode; details: string; hint: string };
+  /** English, for the owner. */
+  warning: string;
+}
+
+/**
+ * Every path that writes a skill runs these (`SkillStore.writeAgentSkill`): the checks the chat tools always ran
+ * (`sourceRefusal`, `originRefusal`) and, given the agent's required series, `seriesSourceConflict`. An agent's write is
+ * refused with the first problem's `refusal`; the owner's is saved and carries the `warning`s.
+ */
+export function skillWriteProblems(
+  body: string, series: readonly SeriesSourceFact[] = [], opts: { name?: string; description?: string } = {},
+): SkillWriteProblem[] {
+  const out: SkillWriteProblem[] = [];
+  const place = sourceRefusal(body);
+  const found = sourceInSkill(body);
+  if (place && found) {
+    out.push({ code: place.error, refusal: place, warning: `The skill tells the agent where to take posts from («${found.sentence}»). A change of source is an import card, not a skill.` });
+  }
+  const origin = originRefusal(body);
+  const orig = originWithSource(body);
+  if (origin && orig) {
+    out.push({ code: origin.error, refusal: origin, warning: `The skill sets origin=original on material the agent reads («${orig.sentence}»); the lint rejects such a post (origin_mismatch).` });
+  }
+  for (const c of seriesSourceConflict(body, series, opts)) {
+    // origin=original on read material is already said above; the series adds only what it alone can see.
+    if (c.reason === 'original_with_source' && origin) continue;
+    out.push({
+      code: 'series_source_conflict', warning: `The skill contradicts a series: ${c.detail}.`,
+      refusal: {
+        error: 'series_source_conflict', details: c.detail,
+        hint: 'the series decides where its posts come from — change the series source (the Schedule tab) or reword the skill so it only says how to use the series\' rows (pick the row, keep the prompt verbatim, credit the author)',
+      },
+    });
+  }
+  return out;
 }

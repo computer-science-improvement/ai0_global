@@ -1,5 +1,4 @@
 import type { Playbook } from '../network/playbook';
-import { instancesPerDay, parseCadence } from '../network/series';
 import type { ResourceStyle } from '../post/style/resource-style';
 import { ruleOverlap } from '../agents/mentions';
 import { NO_HASHTAGS_RE, NO_SLANG_RE, SIMPLER_RE } from './owner-style-overlay';
@@ -20,7 +19,7 @@ export interface ResourceConfig {
   style?:        Pick<ResourceStyle, 'hashtags'> | null;
   /** format_prefs.slang (absent = off). */
   slang?:        boolean;
-  /** Poll + quiz posts a week (null = no cap). */
+  /** Poll + quiz posts a week (null = no cap). Informational since spec 073: a series is exempt from the cap, so nothing conflicts with it. */
   pollsPerWeek?: number | null;
   /** Spec 041 FR-003, Telegram only: the card's hashtag vocabulary and its stored minimum. */
   vocabulary?:   readonly string[] | null;
@@ -44,7 +43,6 @@ export interface ConflictInput {
 
 export type ConflictFix =
   | { target: 'playbook'; op: 'hashtags_off'; ref: string }
-  | { target: 'playbook'; op: 'pause_series'; names: string[] }
   | { target: 'playbook'; op: 'tone'; ref: string; tone: string }
   | { target: 'profile'; op: 'hashtags_off'; ref: string }
   | { target: 'profile'; op: 'tone'; ref: string; field: 'tone' | 'format_prefs.tone'; tone: string }
@@ -58,7 +56,7 @@ export type ConflictFix =
   | { target: 'card'; op: 'language'; channelKey: string; language: string };
 
 export interface ConfigConflict {
-  code:     'hashtags_off_playbook' | 'hashtags_off_profile' | 'poll_series_over_cap' | 'slang_in_tone' | 'audience_mismatch'
+  code:     'hashtags_off_playbook' | 'hashtags_off_profile' | 'slang_in_tone' | 'audience_mismatch'
     | 'hashtag_min_without_vocabulary' | 'rule_not_in_profile' | 'language_check_rule' | 'language_profile_card';
   ref:      string;
   /** English, for the agent page and the manager digest. */
@@ -67,10 +65,25 @@ export interface ConfigConflict {
   fix:      ConflictFix;
 }
 
+/** A conflict as the rule write paths hand it back (spec 073 FR-012): its code, what it is about and the English line. */
+export type ConflictNote = Pick<ConfigConflict, 'code' | 'ref' | 'detail'> & { rule_id?: number | null };
+
+/**
+ * Spec 062 FR-007, 073 FR-012: the conflicts a write causes — those that were not there before it, and those that name a rule
+ * it wrote (`rule_id`). The conflicts the channel already had are not news.
+ */
+export function newConflictsOf<C extends { code: string; ref: string; rule_id?: number | null }>(before: readonly C[], after: readonly C[], ruleIds: readonly number[]): C[] {
+  const had = new Set(before.map((c) => `${c.code}:${c.ref}`));
+  const wrote = new Set(ruleIds);
+  return after.filter((c) => (c.rule_id != null && wrote.has(c.rule_id)) || !had.has(`${c.code}:${c.ref}`));
+}
+
+/** The note a write path returns for a conflict. */
+export const conflictNote = (c: ConflictNote): ConflictNote => ({ code: c.code, ref: c.ref, detail: c.detail });
+
 const SLANG_RE = /сленг|slang/iu;
 const NEGATED_SLANG_RE = /(без|ні|не|no|without|avoid)\s+(?:\p{L}+\s+){0,2}?(сленг|slang)/iu;
 const AUDIENCE_RULE_RE = /(аудиторі|читач\w*\s+(?:—|-|це)|пишемо\s+для|пиши\s+для|для\s+(?:новачк|початківц|експерт|розробник|школяр|студент|батьк|геймер|дітей|підлітк)|audience|write\s+for)/iu;
-const POLL_FORMATS = new Set(['poll', 'quiz', 'ig_poll', 'threads_poll']);
 /** Below this share of the rule's words in `audience.who`, the profile describes someone else. */
 const AUDIENCE_OVERLAP_MIN = 0.3;
 
@@ -91,13 +104,6 @@ export function toneWithoutSlang(tone: string): string {
 }
 
 const asksForSlang = (tone: string | undefined): tone is string => !!tone && SLANG_RE.test(tone) && toneWithoutSlang(tone) !== tone.trim();
-
-/** Poll / quiz series posts a week on a resource. */
-function pollSeriesPerWeek(pb: Playbook, ref: string): Array<{ name: string; perWeek: number }> {
-  return pb.series.filter((s) => s.active !== false && s.resource_ref === ref && POLL_FORMATS.has(s.format))
-    .map((s) => { const c = parseCadence(s.cadence); return { name: s.name, perWeek: c ? Math.round(instancesPerDay(c) * 7) : 0 }; })
-    .filter((s) => s.perWeek > 0);
-}
 
 export function configConflicts(i: ConflictInput): ConfigConflict[] {
   const out: ConfigConflict[] = [];
@@ -146,26 +152,6 @@ export function configConflicts(i: ConflictInput): ConfigConflict[] {
         detail: `The profile of ${r.ref} suggests ${r.profile!.format_prefs!.hashtags!.count} hashtags per post, but ${why}.`,
         fix: { target: 'profile', op: 'hashtags_off', ref: r.ref },
       });
-    }
-    // polls_per_week ⇒ the poll / quiz series fit the cap.
-    if (i.playbook && r.pollsPerWeek != null) {
-      const series = pollSeriesPerWeek(i.playbook, r.ref);
-      const total = series.reduce((a, s) => a + s.perWeek, 0);
-      if (total > r.pollsPerWeek) {
-        // Pause the busiest series first until the rest fits the cap.
-        const names: string[] = [];
-        let left = total;
-        for (const s of [...series].sort((a, b) => b.perWeek - a.perWeek)) {
-          if (left <= r.pollsPerWeek) break;
-          names.push(s.name);
-          left -= s.perWeek;
-        }
-        out.push({
-          code: 'poll_series_over_cap', ref: r.ref,
-          detail: `Poll/quiz series on ${r.ref} plan ${total} posts a week (${series.map((s) => `«${s.name}» ${s.perWeek}`).join(', ')}); the cap is ${r.pollsPerWeek}.`,
-          fix: { target: 'playbook', op: 'pause_series', names },
-        });
-      }
     }
     // Slang off ⇒ no slang asked for in the tones.
     const slangOff = r.slang !== true || !!noSlangRule;
@@ -230,8 +216,6 @@ export function patchPlaybook(pb: Playbook, fixes: ConflictFix[]): Playbook | nu
     if (f.op === 'hashtags_off') {
       const s = next.platforms.find((p) => p.resource_ref === f.ref);
       if (s && s.hashtag_policy.max > 0) { s.hashtag_policy = { vocab: [], min: 0, max: 0 }; changed = true; }
-    } else if (f.op === 'pause_series') {
-      for (const s of next.series) if (f.names.includes(s.name) && s.active !== false) { s.active = false; changed = true; }
     } else if (f.op === 'tone') {
       const s = next.platforms.find((p) => p.resource_ref === f.ref);
       if (s && s.tone !== f.tone) { s.tone = f.tone || undefined; changed = true; }

@@ -1,5 +1,6 @@
 import { isToolError, type EditorTool } from '../harness/tool';
 import { isContentFailureCode } from './skip-reasons';
+import { CONFIG_FAILURE_CODES, isConfigCode } from '../readiness/slot-config';
 
 /**
  * Spec 037 FR-010 (T10): the fallback ladder of a slot whose post failed.
@@ -52,6 +53,7 @@ export type StepOutcome =
   | 'published' | 'shadowed' | 'awaiting_approval' | 'approved'      // rescued
   | 'critic_reject' | 'lint' | 'guard'                                // failed again
   | 'no_candidate' | 'unavailable'                                    // the step could not run
+  | 'config'                                                          // spec 073: the slot's setup is wrong; no step can fix it
   | 'ended';                                                          // a non-content end (skip, outage, budget, …)
 
 export interface FallbackStepRecord {
@@ -79,7 +81,7 @@ export interface FallbackStepRecord {
 export interface FallbackFinal {
   /** rescued: a later step went out; skipped: every step failed or the ladder stopped; ended: a step ended the slot otherwise. */
   outcome: 'rescued' | 'skipped' | 'ended';
-  /** exhausted | budget | too_late (skipped); the slot status (rescued / ended). */
+  /** exhausted | budget | too_late | series_skip | config (skipped; `config`: spec 073, the setup is wrong); the slot status (rescued / ended). */
   code:    string;
   step:    LadderStep;
   reason:  string | null;
@@ -89,6 +91,11 @@ export interface FallbackFinal {
 export interface SlotFallback {
   steps: FallbackStepRecord[];
   final: FallbackFinal | null;
+  /**
+   * Spec 073 A32: the config repairs the runner made to the slot at run time (`patchSlotConfig`): the format or the source hints
+   * changed in place at $0. Not a step: the ladder, the digest and the critic-pass counter read only `steps` and `final`.
+   */
+  repairs?: Array<{ at: string; note: string }>;
 }
 
 /** The ladder does not start a new step this long after the slot's time (stale slots are skipped at 3 h). */
@@ -146,7 +153,7 @@ function detailsText(details: unknown): string {
 }
 
 /** Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order). */
-const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch']);
+const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'series_format_mismatch']);
 
 /**
  * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
@@ -173,6 +180,18 @@ export class PublishProbe {
       },
     });
   }
+}
+
+/**
+ * Spec 073 A30: the run's last publish error is a CONFIG failure (the series' format or source does not fit the post, the series is
+ * gone): no rewrite fixes it, so the slot ends skipped with that reason — no ladder step, no 15-minute retry, no row put aside.
+ * `PublishProbe.last` survives a later `skip_slot` of the same run; only a successful publish clears it.
+ */
+export function configStop(probe: Pick<PublishProbe, 'last'> | null): { code: string; reason: string } | null {
+  const last = probe?.last;
+  if (!last || !isConfigCode(last.code)) return null;
+  const text = detailsText(last.details);
+  return { code: last.code, reason: clip(text ? `${last.code}: ${text}` : last.code, 500) };
 }
 
 /** The slot fields the classification reads. */
@@ -221,20 +240,20 @@ export function libraryRefOf(spec: any): string | null {
 }
 
 /** Guard and lint codes that say nothing about the row's fitness: the row stays open for the next attempt (spec 071 A2). */
-const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']);
+const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar', 'quiz_answer_mismatch', ...CONFIG_FAILURE_CODES]);
 
 /**
  * Spec 071 A2: does this failure put the post's library row aside for the round (`passRow`)?
  *   - a critic reject that is not fixable (a reject, a low grounding, a wrong topic), or any critic reject of a
  *     `revise_source` step (the row had its second chance);
- *   - `quiz_answer_mismatch` (the row's answer key is wrong, it will not post);
  * never a guard or lint code (`not_next_in_order`, `library_item_already_posted`, `series_source_mismatch`, `lint_failed`,
- * `too_similar`): those say the attempt was wrong, not the row. The caller still relies on the ledger to ignore every ref
+ * `too_similar`): those say the attempt was wrong, not the row. Spec 073 FR-003: nor `quiz_answer_mismatch` — the code
+ * raises it only when the row HAS a known answer and the writer marked another option, so the row is fine and the attempt
+ * is wrong; the next step retries with the code's own text. The caller still relies on the ledger to ignore every ref
  * that is not a row of a cycle dataset.
  */
 export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' | 'libraryRef'>, step: LadderStep): boolean {
   if (!f.libraryRef || NEVER_PASS.has(f.code)) return false;
-  if (f.code === 'quiz_answer_mismatch') return true;
   return f.kind === 'critic_reject' && (!f.fixable || step === 'revise_source');
 }
 
@@ -289,12 +308,27 @@ export function lighterFormat(format: string, allowed: ReadonlySet<string>): str
   return (LIGHTER_FORMATS[format] ?? []).find((f) => allowed.has(f)) ?? null;
 }
 
-/** The steps after the initial attempt (each at most once). */
-export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind']; fixable?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
+/**
+ * Spec 073 FR-003: is this slot's format not the ladder's to change? A series instance (the series sets the format), a pin
+ * (the owner did) and a poll / quiz slot made from a dataset row (`data://` / `library://`: the row is the question). A quiz
+ * that fails goes to the next row or a rewrite, never to a plain text post.
+ */
+export function formatLocked(slot: { format: string; seriesName?: string | null; scheduleRuleId?: string | null; sourceHints?: readonly string[] | null }): boolean {
+  if (slot.seriesName || slot.scheduleRuleId) return true;
+  const hints = slot.sourceHints ?? [];
+  if (hints.some((h) => h.startsWith('series:'))) return true;
+  return POLL_LIKE.has(slot.format) && hints.some((h) => h.startsWith('data://') || h.startsWith('library://'));
+}
+const POLL_LIKE = new Set(['poll', 'quiz']);
+
+/** The steps after the initial attempt (each at most once). `locked` (spec 073, `formatLocked`): the format stays, so there is no lighter or evergreen step. */
+export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind']; fixable?: boolean; locked?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
   // Spec 063 FR-002: a fixable revise keeps its source; the next candidate is the step after it.
   const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [
     ...(o.fixable ? [{ step: 'revise_source' as const, format: o.format }] : []), { step: 'next_candidate', format: o.format },
   ];
+  // Spec 073 A19: a locked slot keeps its format — an evergreen post would be another format (or another kind of post) altogether.
+  if (o.locked) return out;
   const lighter = lighterFormat(o.format, o.allowed);
   // Spec 053 FR-007: only one step runs — a post that failed lint tries the lighter format first.
   if (lighter) out[o.failure === 'lint' ? 'unshift' : 'push']({ step: 'lighter_format', format: lighter });

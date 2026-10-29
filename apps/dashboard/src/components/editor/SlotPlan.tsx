@@ -19,8 +19,9 @@ import { sanitizeTelegramHtml } from '../../lib/tg-html';
 import { formatIn, zoneLabel } from '../../lib/zoned-time';
 import {
   canPreview, isLive, liveLine, LIVE_ORIGIN_LABEL, plannedAtLine, plannedEveningBefore, planScheduleNote, previewCostHint, previewFootnote,
-  previewRunning, PREVIEW_STATUS_LABEL, runLabel, skipReason, type PlanSlotLike, type SlotPreviewView,
+  previewRunning, PREVIEW_STATUS_LABEL, runLabel, skipReason, type PlanSlotLike, type SkipReason, type SlotPreviewView,
 } from '../../lib/slot-plan';
+import { reasonLink, type ReasonLinkProps, type ReasonLinkVars } from '../../lib/reasons';
 import { usePreviewSlot } from '../../api/editor';
 
 export interface SlotPlanView extends PlanSlotLike {
@@ -35,11 +36,50 @@ export interface SlotPlanView extends PlanSlotLike {
   preview?:     string | null;
 }
 
+/** Where a reason's "fix" link points to, as words. */
+const REASON_LINK_LABEL: Record<ReasonLinkProps['to'], string> = {
+  '/app/editor/$channel': 'Open the channel card',
+  '/app/agents/$handle': 'Open the agent',
+  '/app/data/$key': 'Open the dataset',
+  '/app/agents/inbox': 'Open the approvals',
+};
+
+function ReasonLink({ link }: { link: ReasonLinkProps }) {
+  const text = <>{REASON_LINK_LABEL[link.to]} →</>;
+  switch (link.to) {
+    case '/app/editor/$channel': return <Link to={link.to} params={link.params} className="link-accent">{text}</Link>;
+    case '/app/agents/$handle': return <Link to={link.to} params={link.params} search={link.search} className="link-accent">{text}</Link>;
+    case '/app/data/$key': return <Link to={link.to} params={link.params} search={link.search} className="link-accent">{text}</Link>;
+    case '/app/agents/inbox': return <Link to={link.to} search={link.search} className="link-accent">{text}</Link>;
+  }
+}
+
+/** Spec 073 FR-014: the catalogue's one-sentence "what to change" under a skip reason, with a link when the page knows where. */
+function ReasonFix({ reason, vars }: { reason: SkipReason; vars: ReasonLinkVars }) {
+  if (!reason.fix) return null;
+  const link = reasonLink(reason, vars);
+  return (
+    <div style={{ overflowWrap: 'anywhere' }} data-testid="skip-fix">
+      <span className="ink-dim">What to change: </span>{reason.fix}{link && <>{' '}<ReasonLink link={link} /></>}
+    </div>
+  );
+}
+
+/** The dataset a slot's source hints name (`data://prompts/12` → `prompts`), for a reason's dataset link. */
+function datasetOf(hints: string[] | undefined): string | undefined {
+  for (const h of hints ?? []) {
+    const m = /^data:\/\/([a-z0-9_]+)/.exec(h);
+    if (m) return m[1];
+  }
+  return undefined;
+}
+
 /**
  * What the slot will do (or why it did not): the live call or the fixed details, plus the skip reason.
- * `compact`: one or two muted lines for list rows.
+ * `compact`: one or two muted lines for list rows. `links`: the channel and agent the page knows, for the links of a reason's fix
+ * (the full view only; a link whose target is not known is left out).
  */
-export function SlotDescription({ slot, tz, feeds, compact = false }: { slot: SlotPlanView; tz: string; feeds?: Record<string, string>; compact?: boolean }) {
+export function SlotDescription({ slot, tz, feeds, compact = false, links }: { slot: SlotPlanView; tz: string; feeds?: Record<string, string>; compact?: boolean; links?: ReasonLinkVars }) {
   const live = isLive(slot);
   const item = slot.liveSpec?.item;
   const skip = slot.status === 'skipped' || slot.status === 'failed' || slot.status === 'expired' ? skipReason(slot.error) : null;
@@ -75,6 +115,7 @@ export function SlotDescription({ slot, tz, feeds, compact = false }: { slot: Sl
           {skip.detail && <span style={{ overflowWrap: 'anywhere' }}>{skip.detail}</span>}
         </div>
       )}
+      {skip && !compact && <ReasonFix reason={skip} vars={{ ...links, dataset: links?.dataset ?? datasetOf(slot.sourceHints) }} />}
     </div>
   );
 }

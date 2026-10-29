@@ -107,8 +107,13 @@ export function validatePlaybook(p: Playbook, resources: NetworkResource[], tele
     if (seen.has(s.resource_ref)) errors.push(`${label}: секція повторюється`);
     seen.add(s.resource_ref);
     const allowed = allowedFormats(r.platform, telegramFormats);
-    const bad = Object.keys(s.formats).filter((f) => !allowed.has(f));
-    if (bad.length) errors.push(`${label}: формати ${bad.join(', ')} недоступні; доступні: ${[...allowed].join(', ')}`);
+    // Spec 073 FR-002: a weight-0 key governs nothing (a series has its own format), so only a key with weight > 0 must exist.
+    const bad = Object.entries(s.formats).filter(([f, w]) => w > 0 && !allowed.has(f)).map(([f]) => f);
+    if (bad.length) {
+      errors.push(r.platform === 'telegram'
+        ? `${label}: формати ${bad.join(', ')} недоступні — у картці каналу їх немає (або вага 0); доданий у картку формат або вага 0 в секції це виправить; доступні: ${[...allowed].join(', ')}`
+        : `${label}: формати ${bad.join(', ')} недоступні; доступні: ${[...allowed].join(', ')}`);
+    }
     if (!Object.values(s.formats).some((w) => w > 0)) errors.push(`${label}: потрібен хоча б один формат з вагою > 0`);
     if (s.per_day.min > s.per_day.max) errors.push(`${label}: per_day.min > per_day.max`);
     if (r.platform !== 'telegram' && s.per_day.max > CAPABILITIES[r.platform].dailyApiCap) {
@@ -122,7 +127,8 @@ export function validatePlaybook(p: Playbook, resources: NetworkResource[], tele
   for (const se of p.series) {
     const r = byRef.get(se.resource_ref);
     if (!r) { errors.push(`серія «${se.name}»: ресурс ${se.resource_ref} не в мережі`); continue; }
-    if (!allowedFormats(r.platform, telegramFormats).has(se.format)) errors.push(`серія «${se.name}»: формат ${se.format} недоступний для ${r.platform}`);
+    // Spec 073 FR-002: the series' own format is authoritative — it only has to be one the platform implements, not one of the card's weights.
+    if (!implementedFormats(r.platform).includes(se.format)) errors.push(`серія «${se.name}»: формат ${se.format} недоступний для ${r.platform}`);
     if (!p.platforms.some((x) => x.resource_ref === se.resource_ref)) errors.push(`серія «${se.name}»: для ${se.resource_ref} немає секції платформи`);
     // Series v2 (spec 023 FR-002).
     const cad = parseCadence(se.cadence);

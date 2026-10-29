@@ -19,14 +19,14 @@ import { fmtDate, fmtRelative } from '../lib/format';
 import { DATASET_STATUS, fmtInt } from '../lib/data-store';
 import { ApiError } from '../api/client';
 import { useDataset, useDatasets } from '../api/data';
+import { isDataTab, type DataTab } from '../lib/data-tabs';
 import '../components/data/data.css';
 
-const TABS = ['items', 'schema', 'imports'] as const;
-type Tab = typeof TABS[number];
+type Tab = DataTab;
 
 export const Route = createFileRoute('/app/data_/$key')({
   validateSearch: (s: Record<string, unknown>): { tab?: Tab } => ({
-    tab: (TABS as readonly string[]).includes(String(s.tab)) ? (s.tab as Tab) : undefined,
+    tab: isDataTab(s.tab) ? s.tab : undefined,
   }),
   component: DatasetPage,
 });

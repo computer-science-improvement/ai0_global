@@ -132,6 +132,7 @@ import { ConfigConflictsService } from './rules/config-conflicts.service';
 import { buildBuilderTools, FIX_CONFIG_CONFLICTS_KIND } from './agents/builder-tools';
 import { buildContentExamplesTool, CONTENT_EXAMPLES_KIND, examplesFromChoice, type ContentExamplesPayload } from './agents/content-examples';
 import { applyOwnerRule, buildAgentChatTools, OWNER_RULE_KIND } from './agents/agent-chat-tools';
+import { requiredSeriesSources } from './agents/series-sources';
 import type { AgentChatPort } from './chat/editor-chat.service';
 import { MetaAccountsRepository } from '../config/meta-accounts.repository';
 import { TikTokTokenService } from '../config/tiktok-token.service';
@@ -180,6 +181,8 @@ import { MapService } from './map/map.service';
 import { launchSource } from './launch/launch-cards';
 import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
 import { launchQueries } from './launch/launch-queries';
+import { planTodayAndTomorrow } from './launch/plan-ahead';
+import { lastToolErrors } from './schedule/planner-runs';
 import { launchJson, LaunchService } from './launch/launch.service';
 import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
@@ -262,10 +265,8 @@ import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleRepository } from './schedule/schedule.repository';
 import { buildScheduleTools, registerScheduleActions, registerSlotRunActions } from './schedule/schedule-tools';
 import { SCHEDULE_SERVICE, ScheduleController } from './schedule/schedule.controller';
-import { buildCatalog } from '../data/data-catalog';
-import { kyivMonthDay } from '../data/data-query';
 import { ContentLedger } from '../data/content-ledger';
-import { nextRowPort } from './schedule/next-row';
+import { nextRowPort, unpostedPort } from './schedule/next-row';
 import { isCycleRef } from '../data/data-rounds';
 import { resolveContentRef } from '../data/data-refs';
 import { makePassRow } from './silent/pass-row';
@@ -455,6 +456,26 @@ async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text:
     skillExists: async (name) => !!((await infra.skills.findForAgent(orch.id, name)) ?? (await infra.skills.findShared(name))),
     handles: (await infra.agents.list()).map((x) => x.handle),
   });
+}
+
+/**
+ * Spec 073 FR-012: the owner-rule lint by channel key (the orchestrator's skills, the network's handles). The memory form, the Rules
+ * artifact and the Apply of an `owner_rule` card all run this one.
+ */
+function channelRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>) {
+  return async (text: string, key: string) => {
+    const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
+    return orch ? ownerRuleLint(infra, text, orch) : lintOwnerRule(text);
+  };
+}
+
+/** Spec 073 FR-012: a channel's rules-vs-config conflicts by channel key (none when the channel has no orchestrator yet). */
+function channelConflictNotes(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'channels'>, infra: Pick<AgentInfra, 'profiles' | 'skills' | 'agents'>) {
+  const svc = configConflictsOf(pool, repos, infra);
+  return async (key: string) => {
+    const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
+    return orch ? svc.forAgent(orch) : [];
+  };
 }
 
 /** Every top-level orchestrator's conflicts, for the manager digest. */
@@ -1044,7 +1065,8 @@ export const EDITOR_PROVIDERS = [
       ): AgentInfra => {
         const logger = new Logger('Agents');
         const agents = new AgentsRepository(pool);
-        const skills = new SkillStore(pool);
+        // Spec 073 FR-012: a skill is checked against the series its channel must run, whoever writes it.
+        const skills = new SkillStore(pool, { seriesSources: requiredSeriesSources({ agents, network: new NetworkRepository(pool) }) });
         const profiles = new ResourceProfilesRepository(pool);
         const loadoutRepo = new LoadoutRepository(pool);
         const loadoutUsage = new LoadoutUsage(pool);
@@ -1190,15 +1212,18 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: SCHEDULE_INFRA,
-      inject: [DB_POOL, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA],
-      useFactory: (pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => {
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA],
+      useFactory: (pool: Pool, cfg: ConfigService, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => {
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const svc = new ScheduleService({
+          // Spec 073 A22: a format that needs hosting (a carousel) is producible only when the hosting is configured; the plan skeleton reads this.
+          formatOk: (f) => formatAvailable(f, env).ok,
           pool, rules: new ScheduleRepository(pool), network: new NetworkRepository(pool), agents: infra.agents,
           card: (k) => repos.channels.get(k), plans: repos.plans, inbox: infra.inbox,
           time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
           sourceCatalog: (card) => seriesSourceCatalog(pool, card),
           pauses: new PlannerPauseView(new SeriesPausesRepository(pool)),   // spec 060: paused series + last skip reasons for the planners
-          unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
+          unposted: unpostedPort(pool),
           nextRow: nextRowPort(pool),   // spec 071: the next row of an in-order dataset (series note + not_next_in_order guard)
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
@@ -1582,6 +1607,8 @@ export const EDITOR_PROVIDERS = [
           env: (k) => cfg.get<string>(k) ?? undefined,
           defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           notify: (t) => notifier.notifyAlert(t),
+          // Spec 073 FR-005: the planner alert says why (the validator's lines from the last refused submit_network_plan).
+          lastToolErrors: (runId, tool) => lastToolErrors(pool, runId, tool),
           // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
           catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
           runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
@@ -1629,9 +1656,13 @@ export const EDITOR_PROVIDERS = [
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
+          // Spec 073 FR-009: the slot's config check before the pre-flight (read-only context; a repair patches the claimed slot only).
+          slotConfig: { context: (card, slot, o) => schedule.slotConfigContext(card, slot, o), patch: (id, r) => repos.plans.patchSlotConfig(id, r) },
           // Spec 071 R4: a post's `library://` alias against the series' next row (`data://`).
           canonicalRef: async (ref) => (await resolveContentRef(pool, ref).catch(() => null))?.dataRef ?? ref,
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          // Spec 073 FR-005: the planner alert says why (the validator's lines from the last refused submit_plan).
+          lastToolErrors: (runId, tool) => lastToolErrors(pool, runId, tool),
           deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
           // Spec 071 A2: a row the critic rejected for good (or whose quiz key is wrong) is put aside for the round on a cycle dataset.
           passRow: makePassRow(new ContentLedger(pool, (m) => logger.warn(m)), (m) => logger.warn(m)),
@@ -1900,8 +1931,8 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_OPS,
-      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS, DB_POOL],
-      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary, pool: Pool) => {
+      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS, DB_POOL, AGENT_INFRA],
+      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary, pool: Pool, infra: AgentInfra) => {
         const logger = new Logger('EditorOps');
         return new EditorOpsService({
           channels: repos.channels, plans: repos.plans, memory: repos.memory, runs: repos.runs,
@@ -1909,6 +1940,9 @@ export const EDITOR_PROVIDERS = [
           enabled: () => isEnabled(cfg),
           log: (m) => logger.warn(m),
           styleProposal: (ref) => proposeStyle(pool, ref),
+          // Spec 073 FR-012: the memory form lints a rule and reports the conflicts it causes, as the Rules artifact does.
+          lint: channelRuleLint(infra),
+          conflicts: channelConflictNotes(pool, repos, infra),
         });
       },
     },
@@ -1987,7 +2021,10 @@ export const EDITOR_PROVIDERS = [
           return configConflictsOf(pool, repos, infra).resolve(orch, skip);
         });
         // Spec 040 FR-010: an owner rule the owner confirmed with a card (its words did not match the chat closely enough).
-        infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>));
+        // Spec 073 FR-012: the card can be days old — the lint runs again at Apply, and the conflicts the rule causes come back.
+        infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>, {
+          lint: channelRuleLint(infra), conflicts: channelConflictNotes(pool, repos, infra),
+        }));
         // Spec 048 FR-002: an agent's change to a live artifact, applied by the owner.
         infra.actions.register(UPDATE_ARTIFACT_KIND, (p) => applyUpdateArtifact(ARTIFACTS.svc, p as Record<string, unknown>));
         // A directive the owner approved in the chat with @manager (spec 021): filed as owner-approved, never shadow.
@@ -2038,13 +2075,7 @@ export const EDITOR_PROVIDERS = [
           adapters: [
             setupAdapter({ setup: new ChannelSetupRepository(pool), versions }),
             steeringAdapter({ repo: new SteeringRepository(pool), editRules: (id, body) => steering.editRules(id, body), versions }),
-            rulesAdapter({
-              pool, memory: repos.memory, versions,
-              lint: async (text, key) => {
-                const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
-                return orch ? ownerRuleLint(infra, text, orch) : lintOwnerRule(text);
-              },
-            }),
+            rulesAdapter({ pool, memory: repos.memory, versions, lint: channelRuleLint(infra), conflicts: channelConflictNotes(pool, repos, infra) }),
             memoryAdapter({ pool, memory: repos.memory }),
             skillAdapter({ pool, skills: infra.skills }),
             playbookAdapter({ pool, history: (agentId) => networkRepo.playbookHistory(agentId), put: (handle, body) => network.putPlaybook(handle, body) }),
@@ -2175,14 +2206,14 @@ export const EDITOR_PROVIDERS = [
             add: (i) => new NetworkRepository(pool).addIdea({ ...i, sources: [], origin: 'owner', status: 'accepted' }),
           },
           setMode: async (key, mode) => {
-            await ops.upsertChannel(key, { mode });
+            await ops.upsertChannel(key, { mode }, { replan: false }); // Start plans by itself (spec 073 L6, FR-006)
             const orch = await orchOf(key);
             if (orch && orch.mode !== mode) await infra.agents.update(orch.id, { mode, shadowUntil: null });
           },
           planAhead: async (key) => {
             const card = await repos.channels.get(key);
             if (!card) return;
-            await runner.runPlanner(card);
+            await planTodayAndTomorrow({ runner, plans: repos.plans, log: (m) => new Logger('LaunchPlanAhead').warn(m) }, card); // spec 073 FR-006
           },
           // T4: growth — network cross-promo first (FR-004).
           promo: {

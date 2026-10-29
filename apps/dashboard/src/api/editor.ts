@@ -158,11 +158,16 @@ export function useEditorMemory(key: string) {
   });
 }
 
+/** Spec 073 FR-012: a rule that contradicts the channel's playbook, profile or card (English line, as the server writes it). */
+export interface MemoryConflict { code: string; ref: string; detail: string }
+/** The memory form's answer: `conflicts` (rules and avoids only) are what the new entry caused; the entry is saved either way. */
+export interface AddMemoryResult { id: number; conflicts?: MemoryConflict[] }
+
 export function useAddEditorMemory(key: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (v: { kind: EditorMemoryEntry['kind']; text: string }) =>
-      api<{ id: number }>(`/api/editor/channels/${enc(key)}/memory`, { method: 'POST', body: JSON.stringify(v) }),
+      api<AddMemoryResult>(`/api/editor/channels/${enc(key)}/memory`, { method: 'POST', body: JSON.stringify(v) }),
     onSuccess: () => qc.invalidateQueries({ queryKey: [...KEY, 'memory', key] }),
   });
 }

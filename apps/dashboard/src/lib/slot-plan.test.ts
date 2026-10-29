@@ -28,7 +28,10 @@ test('a live slot reads as its scheduled tool call, in the resource zone', () =>
 });
 
 test('skip reasons: no_fresh_item, critic reject / failure, replaced, owner, agent; anything else is a plain note', () => {
-  assert.deepEqual(skipReason('no_fresh_item: no item <= 6 h in pravda.com.ua (4 old)'), { code: 'no_fresh_item', label: 'Nothing fresh in the sources', detail: 'no item <= 6 h in pravda.com.ua (4 old)' });
+  assert.deepEqual(skipReason('no_fresh_item: no item <= 6 h in pravda.com.ua (4 old)'), {
+    code: 'no_fresh_item', label: 'Nothing fresh in the sources', detail: 'no item <= 6 h in pravda.com.ua (4 old)',
+    fix: 'Add a source that publishes more often, or raise the maximum age in the channel card.', link: '/app/editor/:channel',
+  });
   assert.equal(skipReason('critic_rejected: reject (sense 1): off topic')!.label, 'Rejected by the critic');
   assert.equal(skipReason('critic_rejected: reject (sense 1): off topic')!.detail, 'reject (sense 1): off topic');
   assert.equal(skipReason('critic_failed: timeout')!.code, 'critic_failed');
@@ -37,16 +40,35 @@ test('skip reasons: no_fresh_item, critic reject / failure, replaced, owner, age
   assert.equal(skipReason('skipped by agent: no verified source')!.code, 'agent');
   // Spec 068: the cause the agent named, and the planner's / pre-flight's own codes.
   assert.deepEqual(skipReason('skipped by agent: no_material: row data://prompts/7 has no prompt_text'),
-    { code: 'agent', label: 'Skipped by the agent — no material', detail: 'row data://prompts/7 has no prompt_text' });
+    { code: 'agent', label: 'Skipped by the agent — no material', detail: 'row data://prompts/7 has no prompt_text',
+      fix: 'Add material: rows in the dataset or another source for the series.', link: '/app/agents/:agent?tab=schedule' });
   assert.equal(skipReason('skipped by agent: source_unreachable: 403')!.label, 'Skipped by the agent — source unreachable');
   assert.deepEqual(skipReason('planner_no_material: the library has no unposted rows'),
-    { code: 'planner_empty', label: 'Declared empty by the planner', detail: 'the library has no unposted rows' });
+    { code: 'planner_empty', label: 'Declared empty by the planner', detail: 'the library has no unposted rows',
+      fix: 'Add material for the series, or pause it until there is some.', link: '/app/agents/:agent?tab=schedule' });
   assert.equal(skipReason('preflight_no_material: row not found')!.code, 'preflight_no_material');
   // Spec 049 FR-002: a slot skipped because its resource's connection is broken.
   assert.deepEqual(skipReason('resource_unavailable: token_invalid — token expired on 2026-08-17'),
-    { code: 'unavailable', label: 'Connection broken', detail: 'token_invalid — token expired on 2026-08-17' });
-  assert.deepEqual(skipReason('retry after max_steps'), { code: 'other', label: 'Note', detail: 'retry after max_steps' });
+    { code: 'unavailable', label: 'Connection broken', detail: 'token_invalid — token expired on 2026-08-17', fix: 'Reconnect the resource in Connections.' });
+  // Spec 073 FR-014: a text the mirror does not know stays unclassified, with the system's words as the detail (never "Note").
+  assert.deepEqual(skipReason('retry after max_steps'), { code: 'other', label: 'Skipped — reason not classified', detail: 'retry after max_steps' });
   assert.equal(skipReason(null), null);
+});
+
+test('skip reasons: any other code of the catalogue mirror gives its label, fix and link', () => {
+  assert.deepEqual(skipReason('planner_skipped: series "Prompt" is not planned today'), {
+    code: 'planner_skipped', label: 'Skipped by the planner', detail: 'series "Prompt" is not planned today',
+    fix: 'Read the reason the planner gave on the slot, and fix what it names.', link: '/app/agents/:agent?tab=schedule',
+  });
+  assert.deepEqual(skipReason('daily_cap_reached: 3 of 3 today'), {
+    code: 'daily_cap_reached', label: 'Daily post limit reached', detail: '3 of 3 today',
+    fix: 'Raise the maximum posts per day in the channel card if more should go out.', link: '/app/editor/:channel',
+  });
+  // An entry without a fix or a link carries neither key.
+  assert.deepEqual(skipReason('mode_changed'), { code: 'mode_changed', label: 'Channel mode changed', detail: '' });
+  // A code that is only a prefix of a word is not a code.
+  assert.equal(skipReason('stale-source')!.code, 'other');
+  assert.equal(skipReason('anything')!.label, 'Skipped — reason not classified');
 });
 
 test('planned at / by and when the agent plans (approval: the evening before)', () => {

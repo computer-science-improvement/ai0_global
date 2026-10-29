@@ -9,7 +9,7 @@ import type { SkillSource } from '../skills/skill-library';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
-import { agentInlineSkills, buildSystemPrompt, executorUserPrompt, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
+import { agentInlineSkills, buildSystemPrompt, executorUserPrompt, moreSkillsLine, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
 import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
 import { parseResourceRef } from '../agents/agent.types';
 import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
@@ -34,14 +34,19 @@ import { alreadyUsedBlock } from '../post/variety/monotony';
 import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
+  classifyFailure, configStop, formatLocked, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import type { PassRow } from '../silent/pass-row';
+import { reasonsClause } from '../schedule/planner-runs';
 import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 import { channelLanguage, readerLanguageRule } from '../post/channel-language';
+import { reasonFor } from '../reasons/catalogue';
+import { checkSlotConfig, isConfigCode, isRepairable, repairSlotConfig, type SlotConfigCtx, type SlotConfigSlot } from '../readiness/slot-config';
+import { slotSeriesOf } from '../post/polls/poll-cap-guard';
+import { isNotAMiss } from '../silent/skip-reasons';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -91,6 +96,21 @@ export interface EditorRunnerDeps {
   preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /**
+   * Spec 073 FR-009 / A15: the slot's config check before the pre-flight. `context` is `ScheduleService.slotConfigContext` (read
+   * only; null = nothing to check), `patch` is `EditorPlansRepository.patchSlotConfig` (a running slot only). Absent = no check.
+   */
+  slotConfig?: {
+    context(card: EditorCard, slot: EditorSlot, o: { tools: ReadonlySet<string> | null }): Promise<SlotConfigCtx | null>;
+    patch(id: string, r: { format?: string; sourceHints?: string[]; note: string }): Promise<EditorSlot | null>;
+  };
+  /**
+   * Spec 073 A30 / L1: a slot ended as a CONFIG skip (its setup is wrong, not its content): `(channelKey, code)`. Not wired in 073;
+   * the lead wires it to the readiness recheck at the 072 merge and deletes the runner's own once-a-day note (`noteConfigSkip`).
+   */
+  onConfigSkip?: (channelKey: string, code: string) => void;
+  /** Spec 073 FR-005: the validator's lines (≤ 5, ≤ 200 chars each) of the last failed call of a run's tool; the planner alert appends them. */
+  lastToolErrors?: (runId: string, tool: string) => Promise<string[]>;
   /**
    * Spec 024 FR-007: derived (duplicate / adapt) slots. `resolve` finds the
    * source; `formatPrefs` renders the target's format_prefs (FR-013);
@@ -207,6 +227,27 @@ export function executorTools(role: CardRole, tools: EditorTool[], allow: string
   return tools.filter((t) => !EXECUTOR_DENY.has(t.name) || allowed.has(t.name));
 }
 
+/**
+ * The tools a role gets before the per-run exclusions: the registry's tools for the role, narrowed by the channel's allow list
+ * and the agent's loadout (`loadoutAllow`, spec 054), minus what a writer never needs (spec 053). `run()` and the config check
+ * (spec 073 A12) both read it, so the check sees the tools the run will hand the model.
+ */
+export function roleTools(role: CardRole, card: Pick<EditorCard, 'toolsAllow'>, registry: Pick<ToolRegistry, 'forRole'>, loadoutAllow: string[] | null): EditorTool[] {
+  return executorTools(role, registry.forRole(role, intersectAllow(card.toolsAllow, loadoutAllow)), card.toolsAllow);
+}
+
+/** The names of the executor's tools for a run, `exclude` being what the attempt leaves out (`PLATFORM_ONLY` on a Telegram slot, `TELEGRAM_ONLY` on a platform slot). Pure. */
+export function executorToolNames(
+  card: Pick<EditorCard, 'toolsAllow'>, ctx: { registry: Pick<ToolRegistry, 'forRole'>; loadoutAllow: string[] | null; exclude?: ReadonlySet<string> },
+): Set<string> {
+  return new Set(roleTools('executor', card, ctx.registry, ctx.loadoutAllow).map((t) => t.name).filter((n) => !ctx.exclude?.has(n)));
+}
+
+/** A slot as the config check reads it; the series comes from the column, else the `series:` hint (A17). */
+export function toConfigSlot(slot: EditorSlot): SlotConfigSlot {
+  return { channelKey: slot.channelKey, resourceRef: slot.resourceRef ?? null, format: slot.format, seriesName: slotSeriesOf(slot), sourceHints: slot.sourceHints ?? [], scheduleRuleId: slot.scheduleRuleId ?? null };
+}
+
 /** Tools of a duplicate's short formatting run (FR-007): publish (it lints) or skip — nothing else. */
 const DUPLICATE_TOOLS: Record<'telegram' | 'platform', Set<string>> = {
   telegram: new Set(['publish_post', 'skip_slot']),
@@ -259,6 +300,9 @@ export interface PreviewOptions {
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
   constructor(private readonly d: EditorRunnerDeps) {}
+
+  /** Spec 073 A27: `${channelKey}:${code}` → the local date (in the card's zone) the owner was last told. In memory: a restart may repeat a note once. */
+  private readonly configNoted = new Map<string, string>();
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
@@ -372,7 +416,7 @@ export class EditorRunnerService {
       }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
-        executorTools(role, this.d.registry.forRole(role, intersectAllow(card.toolsAllow, loadoutAllow)), card.toolsAllow)
+        roleTools(role, card, this.d.registry, loadoutAllow)
           .filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name))
           .filter((t) => !(extras.allowTools as Set<string> | undefined) || (extras.allowTools as Set<string>).has(t.name))),
       maxSteps: typeof extras.maxSteps === 'number' ? extras.maxSteps : MAX_STEPS[role],
@@ -416,7 +460,9 @@ export class EditorRunnerService {
       planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
     }, ctx);
     if (res.terminalTool !== 'submit_plan') {
-      await this.safeNotify(`🗓 Editor: планувальник ${card.channelKey} не склав план (${res.status}${res.error ? `: ${res.error}` : ''}).`);
+      // Spec 073 FR-005: the validator's lines from the last refused submit_plan say why the plan was not made.
+      const why = this.d.lastToolErrors && res.runId ? await this.d.lastToolErrors(res.runId, 'submit_plan').catch(() => []) : [];
+      await this.safeNotify(`🗓 Editor: планувальник ${card.channelKey} не склав план (${res.status}${res.error ? `: ${res.error}` : ''}).${reasonsClause(why)}`);
     }
     return res;
   }
@@ -437,6 +483,10 @@ export class EditorRunnerService {
     const callerNote = note ?? null;
     note = [note, series?.note].filter(Boolean).join('\n') || null;
     if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
+    // Spec 073 FR-009 / A15: what the slot's configuration gets wrong is fixed in place or skipped at $0, before anything is paid for.
+    const gate = await this.configGate(slot, card, ctx);
+    if ('done' in gate) return gate.done;
+    slot = gate.slot;
     // Spec 061 FR-001: what code knows (spent / stale / blocked source, missing hosting) is checked before the writer is paid.
     if (this.d.preflight) {
       const pf = await this.d.preflight.run(slot, card, { nextRow: series?.nextRow ?? null });
@@ -468,6 +518,21 @@ export class EditorRunnerService {
     // Spec 067 FR-003: after the 15-minute retry the critic keeps the level an earlier attempt of the slot ran at.
     const first = await attempt(slot, note ?? null, scan, probe, { passBudget, pinLevel: pinLevelOf(slot.fallback) });
     await this.d.plans.updateSlot(slot.id, { runId: first.runId });
+    // Spec 073 A30: a CONFIG failure (the series' format or source does not fit the post) ends the slot here — no ladder step, no
+    // 15-minute retry, no row put aside: nothing the writer does can fix the setup.
+    const cfg = configStop(probe);
+    if (cfg) {
+      const fresh = await this.d.plans.getSlot(slot.id);
+      if (fresh && (fresh.status === 'running' || fresh.status === 'skipped')) {
+        await this.d.plans.updateSlot(slot.id, {
+          status: 'skipped', error: cfg.reason,
+          fallback: { ...fresh.fallback, steps: fresh.fallback?.steps ?? [], final: { outcome: 'skipped', code: 'config', step: 'initial', reason: cfg.reason } },
+        });
+        await this.noteConfigSkip(slot, card, cfg.code);
+        if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+        return first;
+      }
+    }
     // Spec 037 FR-010: a post the critic rejected or that failed lint / a guard climbs the fallback ladder.
     const res = await this.fallback(slot, card, ctx, { note: callerNote, seriesNote: series?.note ?? null, nextRow: series?.nextRow ?? null, scan, platform: target?.platform ?? 'telegram' }, first, probe, attempt);
 
@@ -487,7 +552,7 @@ export class EditorRunnerService {
         const record = criticPasses(after) > 0 && !(after.fallback?.steps ?? []).some((x) => x.run_id && x.run_id === res.runId);
         await this.d.plans.updateSlot(slot.id, {
           status: 'planned', retryAt, error: `retry after ${reason}`,
-          ...(!record ? {} : { fallback: { steps: [...(after.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, null, res)], final: null } }),
+          ...(!record ? {} : { fallback: { ...after.fallback, steps: [...(after.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, null, res)], final: null } }),
         });
       } else {
         await this.d.plans.updateSlot(slot.id, { status: 'failed', error: content ? content.reason.slice(0, 500) : reason });
@@ -553,13 +618,14 @@ export class EditorRunnerService {
     const avoid: string[] = failure.sourceUrl && !failure.fixable && !keep ? [failure.sourceUrl] : [];
     await afterPass(await this.passFailedRow(slot, failure, 'initial'));
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
-    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable || keep });
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable || keep, locked: formatLocked(slot) });
     let ran = 0;
     const agent = EditorRunnerService.agentBudget(ctx);
     const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
     let res = first;
     let final: FallbackFinal | null = null;
     let last: LadderStep = 'initial';
+    let cfgCode = null as string | null;
     const skipped = (step: FallbackStepRecord['step'], format: string, outcome: 'no_candidate' | 'unavailable', reason: string): FallbackStepRecord =>
       ({ step, at: this.now().toISOString(), format, outcome, reason, verdict: null, run_id: null, cost_usd: 0 });
 
@@ -617,6 +683,14 @@ export class EditorRunnerService {
       res = r;
       await this.d.plans.updateSlot(slot.id, { runId: r.runId });
       after = await this.d.plans.getSlot(slot.id);
+      // Spec 073 A30: a config failure on a step ends the slot with that reason; it is checked before the content classification.
+      const cfg = configStop(p);
+      if (cfg) {
+        steps.push({ ...stepRecord(st.step, st.format, this.now(), after, null, r), outcome: 'config', reason: cfg.reason.slice(0, 300) });
+        final = { outcome: 'skipped', code: 'config', step: st.step, reason: cfg.reason };
+        cfgCode = cfg.code;
+        break;
+      }
       const f = after ? classifyFailure(after, p) : null;
       steps.push(stepRecord(st.step, st.format, this.now(), after, f, r));
       // Spec 037 T10: an evergreen post that did not go out (critic, guard, the writer's skip) skips the slot with the
@@ -640,13 +714,66 @@ export class EditorRunnerService {
     }
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
-      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: (final.code === 'series_skip' && final.reason ? final.reason : failure.reason).slice(0, 500) });
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: ((final.code === 'series_skip' || final.code === 'config') && final.reason ? final.reason : failure.reason).slice(0, 500) });
       if (this.d.deadSource) {
         for (const url of rejectedSources) await this.d.deadSource(slot, url, failure.reason).catch(() => 0);
       }
     }
-    await this.d.plans.updateSlot(slot.id, { fallback: { steps, final } });
+    await this.d.plans.updateSlot(slot.id, { fallback: { ...slot.fallback, steps, final } });
+    if (cfgCode) await this.noteConfigSkip(slot, card, cfgCode);
     return res;
+  }
+
+  /**
+   * Spec 073 FR-009 / A15: check the slot's configuration. A repairable problem (the format, the source hints) is fixed in place
+   * through `patchSlotConfig` and the check runs once more on the patched row; any other problem ends the slot, skipped with
+   * `<code>: <detail>`, without a model call. A check that cannot run (a read error) lets the slot go on as before.
+   */
+  private async configGate(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null): Promise<{ slot: EditorSlot } | { done: AgentLoopResult }> {
+    const dep = this.d.slotConfig;
+    if (!dep) return { slot };
+    let problems: ReturnType<typeof checkSlotConfig>;
+    try {
+      const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
+      const loadoutAllow = this.d.loadout ? await this.d.loadout.allowFor(ctx?.agent, { role: 'executor', registry: this.d.registry }) : null;
+      const tools = executorToolNames(card, { registry: this.d.registry, loadoutAllow, exclude: target && target.platform !== 'telegram' ? TELEGRAM_ONLY : PLATFORM_ONLY });
+      const sctx = await dep.context(card, slot, { tools });
+      if (!sctx) return { slot };
+      problems = checkSlotConfig(toConfigSlot(slot), sctx);
+      if (problems.some((p) => isRepairable(p.code))) {
+        const fix = repairSlotConfig(toConfigSlot(slot), problems, sctx);
+        if (fix.format || fix.sourceHints) {
+          const patched = await dep.patch(slot.id, fix);
+          if (patched) {
+            slot = patched;
+            problems = checkSlotConfig(toConfigSlot(slot), sctx);
+          }
+        }
+      }
+    } catch {
+      return { slot };
+    }
+    const p = problems[0];
+    if (!p) return { slot };
+    const done = await this.skipByCode(slot, `${p.code}: ${p.detail}`.slice(0, 500));
+    // A config code tells the recheck hook and the owner (once a day); `preflight_no_material` is material: it counts toward the breaker and has no note.
+    if (isConfigCode(p.code)) await this.noteConfigSkip(slot, card, p.code);
+    return { done };
+  }
+
+  /**
+   * Spec 073 A27: a config skip tells the lead's recheck hook (`onConfigSkip`, L1) and, once a day per channel and code, the owner,
+   * in Ukrainian: what is wrong and what to change. `config_series_gone` (the owner removed the series) is not a miss: no note.
+   */
+  private async noteConfigSkip(slot: EditorSlot, card: EditorCard, code: string): Promise<void> {
+    try { this.d.onConfigSkip?.(slot.channelKey, code); } catch { /* a hook must not fail the slot */ }
+    if (isNotAMiss(code)) return;
+    const day = localDate(this.now(), card.timezone);
+    const key = `${slot.channelKey}:${code}`;
+    if (this.configNoted.get(key) === day) return;
+    this.configNoted.set(key, day);
+    const entry = reasonFor(code);
+    await this.safeNotify(`⚙️ ${slot.channelKey}: ${entry ? entry.uk : code}${entry?.fix ? `. ${entry.fix.uk}` : ''}`);
   }
 
   /** Spec 071 A2: put the failed post's own library row aside for the round when the failure says the row is the problem. */
@@ -774,6 +901,9 @@ export class EditorRunnerService {
     const voice = await this.voice(targetRef, card);
     // Spec 034 FR-001: an adapt rewrites the text, so it gets the full voice skills (budget-aware); a duplicate keeps it.
     const vs = r.treatment === 'adapt' ? attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []) : null;
+    // Spec 073 FR-013 (A47): the agent's inline skills that did not fit are named in one line (load_skill), not dropped.
+    const own = r.treatment === 'adapt' ? agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...(vs?.names ?? [])]) : null;
+    const more = moreSkillsLine(own?.overflow ?? []);
     const { system, user } = derivedPrompts({
       slot, ready: r, targetRef, targetPlatform: platform, profile: pc?.profile ?? null, formatPrefs, playbook: pc?.playbook ?? null,
       memory: memoryWithoutRules(memory).map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
@@ -781,7 +911,7 @@ export class EditorRunnerService {
       skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
       voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [], examples: pc?.examples ?? null,
       // Spec 040 FR-012: an adapt rewrites the text, so it gets the agent's own skills too.
-      agentSkills: r.treatment === 'adapt' ? agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...(vs?.names ?? [])]).inline : [],
+      agentSkills: own ? [...own.inline, ...(more ? [more] : [])] : [],
     });
     let lintFailedTwice = false;
     const onSecond = async (details: unknown) => {
@@ -854,6 +984,9 @@ export class EditorRunnerService {
     const voice = await this.voice(slot.resourceRef!, card);
     const vs = attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []);
     const own = agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...vs.names]);
+    const listedSkills = skills.list('executor').filter((s) => s.name !== skill?.name && s.name !== VOICE_CORE && !vs.names.includes(s.name));
+    // Spec 073 FR-013 (A47): an inline skill that did not fit is named in one line unless the list below already has it.
+    const moreOwn = moreSkillsLine(own.overflow.filter((n) => !listedSkills.some((s) => s.name === n)));
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
       `${readerLanguageRule(channelLanguage(card))} Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.`,
@@ -885,8 +1018,8 @@ export class EditorRunnerService {
       ...own.inline,
       ...vs.inline,
       ...[voiceReferenceLine(vs.missing)].filter((x): x is string => !!x),
-      skills.list('executor').filter((s) => s.name !== skill?.name && s.name !== VOICE_CORE && !vs.names.includes(s.name))
-        .map((s) => `- ${s.name}: ${s.description}`).join('\n'),
+      ...(moreOwn ? [moreOwn] : []),
+      listedSkills.map((s) => `- ${s.name}: ${s.description}`).join('\n'),
     ].join('\n');
     const user = [
       slot.topicMode === 'live' && slot.liveSpec

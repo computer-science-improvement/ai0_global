@@ -3,7 +3,7 @@ import type { Pool } from 'pg';
 import { z } from 'zod';
 import { loadDirectory, type AgentDirectory, type ArtifactAdapter, type ResolvedFilter } from './artifact-adapters';
 import {
-  ARTIFACT_TYPES, isArtifactType, type ArtifactDetail, type ArtifactEditor, type ArtifactRow, type ArtifactType, type EditResult,
+  ARTIFACT_TYPES, isArtifactType, type ArtifactDetail, type ArtifactEditor, type ArtifactRow, type ArtifactType, type EditNotes, type EditResult,
 } from './artifact.types';
 
 const ListQuery = z.object({
@@ -89,7 +89,8 @@ export class ArtifactsService {
     const r = await a.edit(id, patch, by, dir);
     if (!r.ok) return r;
     const detail = await this.find(type, id, dir);
-    return detail ? { ok: true, detail } : { ok: false, error: 'artifact_not_found' };
+    if (!detail) return { ok: false, error: 'artifact_not_found' };
+    return { ok: true, detail, ...(r.warnings?.length ? { warnings: r.warnings } : {}), ...(r.conflicts?.length ? { conflicts: r.conflicts } : {}) };
   }
 
   /** The type's validation of a change without writing it (an agent's card is refused at once). */
@@ -100,7 +101,7 @@ export class ArtifactsService {
   }
 
   /** PATCH /api/artifacts/:type/:id — the owner's hand edit; refusals answer 400 with the type's reasons. */
-  async patch(type: string, id: string, body: unknown): Promise<ArtifactDetail> {
+  async patch(type: string, id: string, body: unknown): Promise<ArtifactDetail & EditNotes> {
     const a = this.adapter(type);
     const b = z.object({ patch: z.unknown(), reason: z.string().trim().max(300).optional() }).strict().safeParse(body ?? {});
     if (!b.success) throw new BadRequestException({ error: 'invalid_body', details: 'send { patch, reason? }' });
@@ -109,6 +110,6 @@ export class ArtifactsService {
       if (r.error === 'artifact_not_found') throw new NotFoundException({ error: r.error });
       throw new BadRequestException({ error: r.error, details: r.details });
     }
-    return r.detail;
+    return { ...r.detail, ...(r.warnings ? { warnings: r.warnings } : {}), ...(r.conflicts ? { conflicts: r.conflicts } : {}) };
   }
 }

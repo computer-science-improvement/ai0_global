@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import { DEFAULT_POLLS_PER_WEEK, isPollFormat, POLL_FORMATS } from '../audience-asks';
-import { exemptSeries, POLL_WINDOW_DAYS, type SeriesLike } from '../../roles/poll-cap';
+import { pollCapExempt, POLL_WINDOW_DAYS } from '../../roles/poll-cap';
 import { localDate } from '../../roles/time';
 
 /**
@@ -10,9 +10,8 @@ import { localDate } from '../../roles/time';
  * so a live slot, a chat post or an approval-mode post cannot pass the weekly cap the plan was checked against.
  *
  * Same rule as the plan validators: at most `polls_per_week` poll + quiz posts in any 7 local days of the resource
- * (POLL_WINDOW_DAYS); instances of a series the owner created or a strategy migration brought (origin owner /
- * migration, or locked) do not count and are never blocked. A post counts once (a published slot and its
- * published_posts row are one post).
+ * (POLL_WINDOW_DAYS); a series instance or a pin (spec 073 FR-001: the mark is on the slot) does not count and is
+ * never blocked. A post counts once (a published slot and its published_posts row are one post).
  */
 
 const DAY_MS = 86_400_000;
@@ -48,11 +47,11 @@ export interface PollCapGuardInput {
   slotId?: string | null;
   /** The slot's series, when it is an instance of one. */
   series?: string | null;
-  /** The network playbook's series (exempt ones: origin owner / migration, or locked). */
-  playbookSeries?: readonly SeriesLike[];
+  /** The slot is a pin (a schedule rule's slot). */
+  pin?: boolean;
 }
 
-export interface PollCapRow { at: Date; series: string | null }
+export interface PollCapRow { at: Date; series: string | null; pin?: boolean }
 
 /**
  * Poll / quiz posts of the channel around `at` (± the window): published (published_posts, joined to the slot for its
@@ -64,14 +63,16 @@ export async function loadPollPosts(pool: Pick<Pool, 'query'>, i: Pick<PollCapGu
   const to = new Date(i.at.getTime() + (POLL_WINDOW_DAYS + 1) * DAY_MS);
   const { rows } = await pool.query(
     `SELECT p.posted_at AS at,
-            COALESCE(s.series_name, (SELECT substr(h, 8) FROM jsonb_array_elements_text(COALESCE(s.source_hints, '[]'::jsonb)) h WHERE h LIKE 'series:%' LIMIT 1)) AS series
+            COALESCE(s.series_name, (SELECT substr(h, 8) FROM jsonb_array_elements_text(COALESCE(s.source_hints, '[]'::jsonb)) h WHERE h LIKE 'series:%' LIMIT 1)) AS series,
+            (s.schedule_rule_id IS NOT NULL) AS pin
        FROM published_posts p
        LEFT JOIN editor_slots s ON s.id = p.editor_slot_id
       WHERE p.channel_id = $1::text AND p.format = ANY($2::text[]) AND p.posted_at >= $3 AND p.posted_at < $4
         AND ($5::uuid IS NULL OR p.editor_slot_id IS DISTINCT FROM $5::uuid)
      UNION ALL
      SELECT s.scheduled_at AS at,
-            COALESCE(s.series_name, (SELECT substr(h, 8) FROM jsonb_array_elements_text(COALESCE(s.source_hints, '[]'::jsonb)) h WHERE h LIKE 'series:%' LIMIT 1)) AS series
+            COALESCE(s.series_name, (SELECT substr(h, 8) FROM jsonb_array_elements_text(COALESCE(s.source_hints, '[]'::jsonb)) h WHERE h LIKE 'series:%' LIMIT 1)) AS series,
+            (s.schedule_rule_id IS NOT NULL) AS pin
        FROM editor_slots s
       WHERE s.channel_key = $1::text AND (s.resource_ref IS NULL OR s.resource_ref = 'telegram:' || s.channel_key)
         AND s.format = ANY($2::text[])
@@ -80,7 +81,7 @@ export async function loadPollPosts(pool: Pick<Pool, 'query'>, i: Pick<PollCapGu
         AND s.scheduled_at >= $3 AND s.scheduled_at < $4
         AND ($5::uuid IS NULL OR s.id <> $5::uuid)`,
     [i.channelKey, [...POLL_FORMATS], from, to, i.slotId ?? null]);
-  return (rows ?? []).map((r: any) => ({ at: new Date(r.at), series: r.series ?? null }));
+  return (rows ?? []).map((r: any) => ({ at: new Date(r.at), series: r.series ?? null, pin: !!r.pin }));
 }
 
 /** The guard result: null when the post may go out. */
@@ -88,9 +89,8 @@ export function pollCapIssue(i: PollCapGuardInput, rows: readonly PollCapRow[]):
   if (!isPollFormat(i.format)) return null;
   const cap = i.cap === undefined ? DEFAULT_POLLS_PER_WEEK : i.cap;
   if (cap === null) return null;
-  const exempt = exemptSeries(i.playbookSeries ?? []);
-  if (i.series && exempt.has(i.series)) return null;
-  const days = rows.filter((r) => !r.series || !exempt.has(r.series)).map((r) => localDayIndex(r.at, i.timezone));
+  if (pollCapExempt(i)) return null;
+  const days = rows.filter((r) => !pollCapExempt(r)).map((r) => localDayIndex(r.at, i.timezone));
   const before = maxPollsInWindow(days, localDayIndex(i.at, i.timezone));
   if (before + 1 <= cap) return null;
   return {
@@ -107,6 +107,6 @@ export function slotSeriesOf(slot: { seriesName?: string | null; sourceHints?: r
 /** Load + decide; formats other than poll / quiz never touch the DB. */
 export async function pollCapGuard(pool: Pick<Pool, 'query'>, i: PollCapGuardInput) {
   if (!isPollFormat(i.format)) return null;
-  if (i.cap === null) return null;
+  if (i.cap === null || pollCapExempt(i)) return null;
   return pollCapIssue(i, await loadPollPosts(pool, i));
 }

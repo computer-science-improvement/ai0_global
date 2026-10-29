@@ -127,6 +127,21 @@ test('digest quality block from real slots; a new owner rejection changes the ha
   assert.equal(dg3.hash, dg2.hash, 'stable without changes');
 });
 
+test('spec 073: poll slots that are series instances or have a hint are exempt from polls_over_cap; the format mix keeps counting them', { skip }, async () => {
+  const digest = new KpiDigestService({ pool, catalog, globalCapUsd: 3 });
+  await pool.query(`UPDATE editor_slots SET series_name = 'Вікторина тижня' WHERE id = $1`, [slot.poll1]);
+  await pool.query(`UPDATE editor_slots SET source_hints = '["series:Вікторина тижня"]'::jsonb WHERE id = $1`, [slot.poll2]);
+  try {
+    const q = (await digest.build()).resources.find((r) => r.ref === REF)!.quality!;
+    assert.deepEqual([q.polls.count, q.polls.over], [2, false]);
+    assert.ok(!q.flags.includes('polls_over_cap'), q.flags.join(','));
+  } finally {
+    await pool.query(`UPDATE editor_slots SET series_name = NULL, source_hints = '[]'::jsonb WHERE id = ANY($1::uuid[])`, [[slot.poll1, slot.poll2]]);
+  }
+  const back = (await digest.build()).resources.find((r) => r.ref === REF)!.quality!;
+  assert.deepEqual([back.polls.count, back.polls.over], [2, true], 'improvised polls are still capped');
+});
+
 test('migration 071: re-apply is a no-op; the kind CHECK allows voice_fix / format_mix and still refuses unknown kinds', { skip }, async () => {
   const sql = readFileSync(MIGRATION, 'utf8');
   await pool.query(sql);

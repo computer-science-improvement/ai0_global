@@ -3,16 +3,19 @@ import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
 import { normalizeChannelLanguage } from '../post/channel-language';
+import { SCHEMA_KEY_RE } from '../../data/data.types';
 
 /**
  * Defaults of a card created through the API: the editor_channels column
  * defaults (migration 042), except the mode — a new resource starts in
  * `approve` (spec 031 FR-002), so its first posts wait for the owner.
+ * Spec 073 FR-013: `hashtagMin` is 0 (a new card has no vocabulary, so it cannot ask for hashtags; migration 098 moves
+ * the column default to 0 too). An existing card keeps its own minimum (`mergeCard`).
  */
 export const CARD_DEFAULTS: Omit<EditorCard, 'channelKey'> = {
   mode: 'approve', title: null, language: 'uk', timezone: 'Europe/Kyiv',
   postsPerDayMin: 2, postsPerDayMax: 6, quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60, planHour: 6,
-  brief: '', formats: { text: 1, photo: 1 }, hashtags: [], hashtagMin: 1, hashtagMax: 3, footer: null,
+  brief: '', formats: { text: 1, photo: 1 }, hashtags: [], hashtagMin: 0, hashtagMax: 3, footer: null,
   linkStyle: 'inline', emojiPolicy: 'sparse', skills: [], sources: [], toolsAllow: null,
   exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [], crosspost: true,
 };
@@ -34,8 +37,9 @@ const SourceSchema = z.object({
   if ((s.kind === 'rss' || s.kind === 'url') && !/^https?:\/\/\S+$/i.test(s.ref)) {
     ctx.addIssue({ code: 'custom', path: ['ref'], message: 'rss/url sources need an http(s) URL' });
   }
-  if (s.kind === 'library' && !/^[a-z_]+$/.test(s.ref)) {
-    ctx.addIssue({ code: 'custom', path: ['ref'], message: 'library sources take a table name' });
+  // Spec 073 FR-013: a dataset key may carry digits (`pdr_questions_2025`), the same shape as a schema key.
+  if (s.kind === 'library' && !SCHEMA_KEY_RE.test(s.ref)) {
+    ctx.addIssue({ code: 'custom', path: ['ref'], message: 'library sources take a dataset key (a-z, 0-9 and _, starting with a letter)' });
   }
   if (s.kind === 'api' && !(API_SOURCE_NAMES as readonly string[]).includes(s.ref)) {
     ctx.addIssue({ code: 'custom', path: ['ref'], message: `api sources take a fetch_api source: ${API_SOURCE_NAMES.join(', ')}` });

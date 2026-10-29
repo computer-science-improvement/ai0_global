@@ -84,16 +84,22 @@ export const STYLE_DEFAULTED = ['address', 'glossary', 'hashtags', 'content_kind
 /**
  * The style the checks, the prompts and the platform lint use: the stored one plus the owner's defaults. `kind` is
  * what the resource looks like (`resourceKind`); hashtags are off by default on news and games resources.
+ * Spec 073 FR-013: a stored `hashtags: 'vocabulary'` with a KNOWN empty vocabulary (`[]`, a card with no hashtags) reads as
+ * `off`, because the vocabulary it points at has nothing in it: asking for it would ask for tags nobody can name. An unknown
+ * vocabulary (`null` / absent: a platform ref, which has no card) is not judged.
  */
 export function effectiveStyle(stored: ResourceStyle | null | undefined, o: { kind?: StyleKind | null; vocabulary?: readonly string[] | null }): ResourceStyle {
   const s = stored ?? {};
   const kind = s.content_kind ?? o.kind ?? undefined;
+  const emptyVocabulary = Array.isArray(o.vocabulary) && !o.vocabulary.length;
   return {
     ...s,
     address: s.address ?? DEFAULT_ADDRESS,
     glossary: s.glossary ?? DEFAULT_GLOSSARY,
     names: s.names ?? DEFAULT_NAMES,
-    hashtags: s.hashtags ?? (!o.vocabulary?.length && (kind === 'news' || kind === 'games' || Array.isArray(o.vocabulary)) ? 'off' : 'vocabulary'),
+    hashtags: s.hashtags === 'vocabulary' && emptyVocabulary
+      ? 'off'
+      : s.hashtags ?? (!o.vocabulary?.length && (kind === 'news' || kind === 'games' || Array.isArray(o.vocabulary)) ? 'off' : 'vocabulary'),
     ...(kind ? { content_kind: kind } : {}),
   };
 }

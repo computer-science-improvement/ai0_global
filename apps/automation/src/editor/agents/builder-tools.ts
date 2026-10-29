@@ -11,7 +11,7 @@ import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepo
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import { originRefusal, sourceRefusal } from './skill-warnings';
-import { conflictFollowUps, conflictsForModel, conflictsLine } from './skill-conflict-followups';
+import { conflictFollowUps, conflictsForModel, conflictsLine, seriesRefusal } from './skill-conflict-followups';
 import type { SkillStore } from './skill-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
 import { SCRIPT_MIN_SHARE, scriptShares } from '../post/channel-language';
@@ -36,7 +36,7 @@ export interface BuilderToolDeps {
   catalog:  Pick<ResourceCatalog, 'list' | 'inspect'>;
   profiles: Pick<ResourceProfilesRepository, 'get'>;
   creator:  Pick<AgentCreator, 'validate'>;
-  skills:   Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'findForAgent' | 'listForAgent'>>;
+  skills:   Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'findForAgent' | 'listForAgent' | 'writeProblems'>>;
   actions:  Pick<PendingActionsService, 'propose'>;
   /** Spec 040 FR-011 / 047 FR-005: what keeps an orchestrator's config from its owner's rules (fix_config_conflicts). */
   conflicts?: Pick<ConfigConflictsService, 'resolverFor'>;
@@ -281,6 +281,9 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       // Spec 069 FR-007: nor a skill that calls read material «original» (the lint's `origin_mismatch` would reject the post).
       const wrongOrigin = originRefusal(i.body);
       if (wrongOrigin) return wrongOrigin;
+      // Spec 073 FR-012: nor one that contradicts a series the channel must run.
+      const againstSeries = await seriesRefusal(d.skills, a.id, { name: i.name, description: i.description, body: i.body });
+      if (againstSeries) return againstSeries;
       // Spec 069 FR-003: the skills this one contradicts ride on the card as follow-ups.
       const found = await conflictFollowUps(d, a, { name: i.name, description: i.description, body: i.body, appliesTo });
       const card = await proposeCard(d, ctx, 'write_skill',

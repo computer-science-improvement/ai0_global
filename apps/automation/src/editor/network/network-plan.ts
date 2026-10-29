@@ -8,8 +8,8 @@ import { zonedToUtcStrict } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { NetworkCtx, resourceClock } from './network-context';
 import { seriesDue } from './playbook';
-import { NETWORK_EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
-import { type EmptyDaySlot, ShortDaysInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
+import { NETWORK_EMPTY_DAY_WAY_OUT, excludedOn, isExcludedInstance, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { type EmptyDaySlot, excludedPlaceholders, ShortDaysInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
 import { DecisionReason, DecisionSlot, PlannedDecision, PlanSkipInput, TREATMENTS, validateDecisions } from './plan-decisions';
 import type { Treatment } from '../post/duplicate';
 import { pollCapErrors, type PollCapCtx } from '../roles/poll-cap';
@@ -107,7 +107,11 @@ export function validateNetworkPlan(
   if (!net.playbook) return { ok: false, errors: ['немає активного плейбука — план мережі неможливий'] };
   const sections = new Map(net.playbook.platforms.map((s) => [s.resource_ref, s]));
   const resources = new Map(net.resources.map((r) => [r.ref, r]));
-  const due = new Map(seriesDue(net.playbook, o.weekday).map((x) => [x.series.name, x]));
+  // Spec 073 A54: an instance the skeleton check excluded is not due (its setup is wrong); a slot that names it is refused by planScheduleErrors.
+  const sched = o.schedule;
+  const due = new Map(seriesDue(net.playbook, o.weekday).filter((x) => !(sched && isExcludedInstance(sched, x.series, x.time))).map((x) => [x.series.name, x]));
+  const excludedNames = new Set((sched?.excluded ?? []).map((e) => e.series));
+  const knownSeries = (name: string) => due.has(name) || excludedNames.has(name);
   const out: NetworkPlannedSlot[] = [];
   const byResource = new Map<string, NetworkPlannedSlot[]>();
   // Spec 024 FR-006: the decision rules see every submitted slot by its index.
@@ -132,7 +136,10 @@ export function validateNetworkPlan(
       treatment, fromSlot: s.from_slot ?? null, reason: s.reason ?? null, at: null,
     };
     // A unique slot's format must be in the playbook; a derived slot only has to be possible on the platform (plan-decisions).
-    if (treatment === 'unique' && !(sec.formats[s.format] > 0) && !directiveFormat(s, r.platform)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
+    // Spec 073 FR-002: a series slot's format is the series' (code set it), not the section's weights.
+    const ofSeries = !!s.series && knownSeries(s.series);
+    if (ofSeries && !implementedFormats(r.platform).includes(s.format)) errors.push(`${label}: формат ${s.format} серії «${s.series}» недоступний для ${r.platform}`);
+    if (treatment === 'unique' && !ofSeries && !(sec.formats[s.format] > 0) && !directiveFormat(s, r.platform)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
     const { tz, quiet } = resourceClock(r, card);
     const at = zonedToUtcStrict(o.planDate, s.time, tz);
     if (!at) { errors.push(`${label}: ${s.time} не існує ${o.planDate} у ${tz} (перехід на літній час) — обери інший час`); return; }
@@ -147,7 +154,7 @@ export function validateNetworkPlan(
       // Spec 024: the idea's variants are hints, not a requirement.
       if (!idea) errors.push(`${label}: ідея ${s.idea_id} не знайдена або не прийнята рецензентом`);
     }
-    if (s.series && !due.has(s.series)) errors.push(`${label}: серія «${s.series}» ${o.planDate} не за розкладом або неактивна`);
+    if (s.series && !knownSeries(s.series)) errors.push(`${label}: серія «${s.series}» ${o.planDate} не за розкладом або неактивна`);
     // Spec 034 FR-010: a fixed slot needs its topic; a live slot a source (its own, the series' or the anchor card's feeds).
     const idea = s.idea_id ? o.ideas.get(s.idea_id) ?? null : null;
     const t = resolveSlotTopic(s, { label, seriesSource: s.series ? due.get(s.series)?.series.source ?? null : null, cardFeeds: cardFeedIds(card.sources), idea });
@@ -198,7 +205,8 @@ export function validateNetworkPlan(
   for (const [ref, sec] of sections) {
     if (!resources.has(ref)) continue;
     const n = (byResource.get(ref)?.length ?? 0) + (resources.get(ref)!.platform === 'telegram' ? o.reservedAt.length : 0);
-    const min = shortDays.has(ref) ? 0 : Math.max(0, sec.per_day.min - (skippedN.get(ref) ?? 0));
+    // Spec 073 FR-011: an excluded instance cannot be planned, so the resource's minimum loses it like a skipped one.
+    const min = shortDays.has(ref) ? 0 : Math.max(0, sec.per_day.min - (skippedN.get(ref) ?? 0) - (o.schedule ? excludedOn(o.schedule, ref) : 0));
     if (n < min) errors.push(`${ref}: ${n} постів < per_day.min ${min}; ${NETWORK_EMPTY_DAY_WAY_OUT}`);
   }
   // Spec 024 FR-006 (replaces BR-AGT-72 and "Telegram core first"): one decision per idea × resource.
@@ -232,9 +240,9 @@ export function validateNetworkPlan(
   }
   // Spec 023 FR-004: series, pins, blackouts and frequency rules.
   if (o.schedule) errors.push(...planScheduleErrors(plan, o.schedule, o.schedule.defaultRef));
-  if (o.pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ resourceRef: s.resource_ref, format: s.format, series: s.series ?? null })), o.pollCap, net.playbook.series));
+  if (o.pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ resourceRef: s.resource_ref, format: s.format, series: s.series ?? null })), o.pollCap));
   if (errors.length) return { ok: false, errors };
-  const empty = o.schedule ? skippedSeriesPlaceholders(plan, o.schedule, o.schedule.defaultRef) : [];
+  const empty = o.schedule ? [...skippedSeriesPlaceholders(plan, o.schedule, o.schedule.defaultRef), ...excludedPlaceholders(o.schedule, o.schedule.defaultRef)] : [];
   for (const sd of shortDays.values()) {
     const { tz } = resourceClock(resources.get(sd.resource_ref)!, card);
     empty.push(shortDayPlaceholder({

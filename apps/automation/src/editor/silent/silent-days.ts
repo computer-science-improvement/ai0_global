@@ -2,12 +2,14 @@ import type { Pool } from 'pg';
 import type { EditorCard } from '../card';
 import { dailyRef, type InboxItemInput, type OwnerInbox, type SilentDayKind } from '../agents/owner-inbox';
 import { localDate, localHour, localTimeLabel } from '../roles/time';
+import { shiftDate } from '../schedule/schedule-rules';
 import { attemptRejections, type SlotFallback } from './fallback-ladder';
 import { evergreenFilled } from './evergreen-stats';
 import { pauseActions, type PauseTarget } from '../series-pause/note-actions';
 import { seriesIdOf } from '../series-pause/streak';
 import { addSkip, isCriticRejection, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from './skip-reasons';
 import { errText } from '../../common/err-text';
+import { reasonFor, reasonOfError, reasonText } from '../reasons/catalogue';
 
 /**
  * Spec 037 FR-010 (T10): the owner's Inbox notes about silent days, computed by code from the slots (no LLM):
@@ -93,9 +95,50 @@ export function pauseTargets(slots: WatchSlot[]): PauseTarget[] {
 /** Spec 060 FR-003: one subject for the day's misses (series_missed + dark_day merge into it) and one for the critic streak. */
 export const missSubject = (ref: string) => `silent:${ref}:miss`;
 export const criticSubject = (ref: string) => `silent:${ref}:critic`;
+const STATUS_UK: Record<string, string> = { skipped: 'пропущено', failed: 'не вдалося', expired: 'прострочено' };
 const GROUP_UK: Record<string, string> = {
-  critic: 'критик', lint: 'перевірки тексту', cap: 'ліміти й тихі години', nothing_fresh: 'немає свіжого матеріалу', budget: 'бюджет', other: 'інше',
+  critic: 'критик', lint: 'перевірки тексту', config: 'налаштування', cap: 'ліміти й тихі години', nothing_fresh: 'немає свіжого матеріалу', budget: 'бюджет', other: 'інше',
 };
+
+/**
+ * Spec 073 FR-007 (A24): the groups of a close that can make a series STALLED — it stopped for a reason that is not the
+ * material running out (`nothing_fresh`), not the owner's decision, not the critic's verdict and not the budget: the
+ * planner skipped it (`planner_skipped`, group `other`), a check of the text failed (`lint`), the slot's configuration is wrong
+ * (`config`), or anything else (`other`).
+ */
+const STALL_GROUPS = new Set(['lint', 'config', 'other']);
+
+/** The catalogue code of a slot error (`planner_skipped`, `lint_failed`, …), or its skip group (also a catalogue code) for a free-text one. */
+function errorCodeOf(error: string | null | undefined, group: string): string {
+  return reasonOfError(error) ?? group;
+}
+
+/**
+ * The series that have not gone out two local days in a row: on both `today` and the day before, the series has slots, every
+ * one closed (skipped / failed / expired) for a qualifying reason (`STALL_GROUPS`), and none went out. A material close
+ * (nothing left to post) is the breaker's, the owner's own decisions are not a stall, and one post out on either day ends it.
+ * Returns the series name → the code of today's latest close.
+ */
+export function stalledSeries(slots: WatchSlot[], today: string, tz: string): Map<string, string> {
+  const yesterday = shiftDate(today, -1);
+  const byName = new Map<string, { today: WatchSlot[]; before: WatchSlot[] }>();
+  for (const s of slots) {
+    if (!s.seriesName) continue;
+    const d = localDate(s.scheduledAt, tz);
+    if (d !== today && d !== yesterday) continue;
+    const e = byName.get(s.seriesName) ?? { today: [], before: [] };
+    (d === today ? e.today : e.before).push(s);
+    byName.set(s.seriesName, e);
+  }
+  const stalled = (s: WatchSlot) => ENDED_NOT_OUT.has(s.status) && !isOwnerDecision(s.error) && STALL_GROUPS.has(skipGroupOf(s.error, s.criticVerdict));
+  const out = new Map<string, string>();
+  for (const [name, e] of byName) {
+    if (!e.today.length || !e.before.length || !e.today.every(stalled) || !e.before.every(stalled)) continue;
+    const latest = [...e.today].sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())[0];
+    out.set(name, errorCodeOf(latest.error, skipGroupOf(latest.error, latest.criticVerdict)));
+  }
+  return out;
+}
 
 const clip = (s: string, n: number) => {
   const t = s.replace(/\s+/g, ' ').trim();
@@ -162,7 +205,7 @@ export function evaluateSilentDays(i: {
             ? `Planned today: ${planned.length}; out: 0; not out by reason: ${reasonsLine(reasons)}.`
             : `No slot was planned today although the card asks for at least ${r.minPerDay} post(s) a day (check the planner runs).`,
           later.length ? `Still to come: ${later.length} (next at ${localTimeLabel(later[0].scheduledAt, r.tz)}, ${later[0].status}).` : '',
-          lastMiss?.error ? `Latest: ${clip(lastMiss.error, 220)}` : '',
+          lastMiss?.error ? `Latest: ${reasonText(lastMiss.error, 'en')}` : '',
           'Check the slots and the run traces on /app/editor.',
         ].filter(Boolean).join(' ');
         const groups = Object.keys(reasons).sort();
@@ -197,22 +240,39 @@ export function evaluateSilentDays(i: {
       if (d < today && i.reportedDays?.has(`${r.ref}|${d}`)) continue;
       missedByDay.set(d, [...(missedByDay.get(d) ?? []), s]);
     }
+    // Spec 073 FR-007: a series that stopped on two local days in a row is one more part (and line) of today's note.
+    const stalled = stalledSeries(counted, today, r.tz);
     for (const [day, miss] of missedByDay) {
       miss.sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
-      const lines = miss.slice(0, 4).map((s) => {
+      const stalledHere = day === today ? [...stalled].filter(([name]) => miss.some((s) => s.seriesName === name)) : [];
+      // Spec 073 FR-014: the lines read the reason catalogue (label, the system's words, what to change), in English for the
+      // dashboard body and in Ukrainian for the owner's Telegram note.
+      const lineOf = (s: WatchSlot, lang: 'en' | 'uk') => {
         const ever = evergreenFilled(s.fallback);
-        const what = ever ? `filled by an evergreen post (${s.status}); the main post: ${clip(ever.reason, 160)}` : `${s.status}: ${clip(s.error ?? 'no reason recorded', 160)}`;
-        return `${localTimeLabel(s.scheduledAt, r.tz)} ${s.seriesName ? `series "${s.seriesName}"` : 'fixed slot'} — ${what}`;
-      });
-      const parts = [...new Set(miss.map((s) => `missed:${s.seriesName ?? `rule:${s.scheduleRuleId}`}:${evergreenFilled(s.fallback) ? 'evergreen' : skipGroupOf(s.error, s.criticVerdict)}`))].sort();
+        const uk = lang === 'uk';
+        const who = s.seriesName ? (uk ? `серія «${s.seriesName}»` : `series "${s.seriesName}"`) : (uk ? 'слот за розкладом' : 'fixed slot');
+        const status = uk ? (STATUS_UK[s.status] ?? s.status) : s.status;
+        const what = ever
+          ? (uk ? `замінено вічнозеленим постом (${status}); основний пост: ${clip(ever.reason, 160)}` : `filled by an evergreen post (${status}); the main post: ${clip(ever.reason, 160)}`)
+          : `${status}: ${s.error ? reasonText(s.error, lang) : (uk ? 'причину не записано' : 'no reason recorded')}`;
+        return `${localTimeLabel(s.scheduledAt, r.tz)} ${who} — ${what}`;
+      };
+      const lines = miss.slice(0, 4).map((s) => lineOf(s, 'en'));
+      const linesUk = miss.slice(0, 4).map((s) => lineOf(s, 'uk'));
+      const parts = [...new Set([
+        ...miss.map((s) => `missed:${s.seriesName ?? `rule:${s.scheduleRuleId}`}:${evergreenFilled(s.fallback) ? 'evergreen' : skipGroupOf(s.error, s.criticVerdict)}`),
+        ...stalledHere.map(([name]) => `stalled:${name}`),
+      ])].sort();
+      const stalledEn = stalledHere.map(([name, code]) => `Series "${name}" has not gone out two days in a row: ${reasonFor(code)?.en ?? code}`);
+      const stalledUk = stalledHere.map(([name, code]) => `Серія «${name}» не виходить два дні поспіль: ${reasonFor(code)?.uk ?? code}`);
       out.push({
         kind: 'series_missed', ref: r.ref, day, agentId: r.agentId ?? null, slotIds: miss.map((s) => s.id),
         title: `Series or fixed slot missed on ${r.ref} (${day})`,
-        body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : ''].filter(Boolean).join('\n'),
+        body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : '', ...stalledEn].filter(Boolean).join('\n'),
         subject: missSubject(r.ref), parts, pauses: pauseTargets(miss), ...(day < today ? { pastDay: true } : {}),
         alert: {
           title: `Серія чи слот за розкладом не вийшли на ${r.ref} (${day})`,
-          body: [`Не вийшло: ${miss.length}.`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : ''].filter(Boolean).join('\n'),
+          body: [`Не вийшло: ${miss.length}.`, ...linesUk.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : '', ...stalledUk].filter(Boolean).join('\n'),
         },
       });
     }

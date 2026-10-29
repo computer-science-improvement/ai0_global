@@ -94,11 +94,8 @@ test('A2: a failed revise_source step puts the row aside (the row had its second
   assert.deepEqual(s.passed.map((p) => p.ref), [ROW], 'once: the fixable first attempt kept the row, the failed revise_source passed it');
 });
 
-test('A2: quiz_answer_mismatch puts the row aside; guard and lint codes never do', async () => {
-  const quiz = setup([guard('quiz_answer_mismatch'), shadow]);
-  await quiz.runner.runExecutor(baseSlot, quiz.card);
-  assert.deepEqual(quiz.passed.map((p) => p.ref), [ROW]);
-  for (const code of ['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']) {
+test('A2 (spec 073 FR-003): guard and lint codes never put the row aside — nor does quiz_answer_mismatch (the row is fine, the attempt was wrong)', async () => {
+  for (const code of ['quiz_answer_mismatch', 'not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']) {
     const s = setup([guard(code), shadow]);
     await s.runner.runExecutor(baseSlot, s.card);
     assert.deepEqual(s.passed, [], code);
@@ -126,7 +123,8 @@ test('A2 pure: shouldPassRow, libraryRefOf, and classifyFailure carries the post
   assert.equal(shouldPassRow({ ...crit, fixable: true }, 'initial'), false);
   assert.equal(shouldPassRow({ ...crit, fixable: true }, 'revise_source'), true);
   assert.equal(shouldPassRow({ ...crit, fixable: false, libraryRef: null }, 'initial'), false);
-  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_mismatch', libraryRef: ROW }, 'initial'), true);
+  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_mismatch', libraryRef: ROW }, 'initial'), false, 'spec 073: the quiz row is not put aside for a wrong answer key the writer made');
+  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_mismatch', libraryRef: ROW }, 'revise_source'), false);
   assert.equal(shouldPassRow({ kind: 'guard', code: 'too_similar', libraryRef: ROW }, 'revise_source'), false);
   assert.equal(shouldPassRow({ kind: 'lint', code: 'lint_failed', libraryRef: ROW }, 'revise_source'), false);
   assert.equal(libraryRefOf({ library_ref: ' data://a_b/1 ' }), 'data://a_b/1');

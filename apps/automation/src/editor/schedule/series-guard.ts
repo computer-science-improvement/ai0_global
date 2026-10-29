@@ -50,6 +50,8 @@ export interface SeriesForSlot {
   source:      SeriesSource | null;
   sourceMode:  'suggested' | 'required';
   locked:      boolean;
+  /** Spec 073 A4: the series is switched on in the playbook (absent on a pin). A breaker pause is not `active: false`: it lives in `series_pauses`. */
+  active?:     boolean;
   /** An owner pin without a series (its brief and source are the pin's). */
   pin?:        boolean;
 }
@@ -108,7 +110,7 @@ export function seriesNote(s: SeriesForSlot, label: (src: SeriesSource) => strin
     src
       ? s.sourceMode === 'required'
         ? `Джерело серії обовʼязкове: ${src}. Пост має спиратися саме на нього (library_ref з цього датасету або source.url з нього) — інакше publish поверне series_source_mismatch. Якщо матеріалу там немає — skip_slot з причиною.`
-        : `Рекомендоване джерело: ${src} (необовʼязкове). Можеш узяти інше джерело чи формат у межах плейбука — тоді коротко поясни чому в підсумку прогону (notes).`
+        : `Рекомендоване джерело: ${src} (необовʼязкове). Можеш узяти інше джерело в межах плейбука — тоді коротко поясни чому в підсумку прогону (notes); формат задає серія.`
       : 'Джерело серії не задане — обери його сам.',
     ...(o.nextRow ? [nextRowLine(o.nextRow)] : []),
   ].join('\n');

@@ -144,10 +144,12 @@ test('maxPollsInWindow / pollCapIssue: the plan validators\' rule on actual post
   assert.equal(pollCapIssue({ ...base, cap: 2 }, [day('2026-10-07')]), null);
   assert.equal(pollCapIssue({ ...base, cap: null }, [day('2026-10-07')]), null);
   assert.equal(pollCapIssue({ ...base, format: 'text' }, [day('2026-10-07')]), null);
-  const owner = [{ name: 'Вікторина пʼятниці', origin: 'owner' }];
-  assert.equal(pollCapIssue({ ...base, playbookSeries: owner }, [{ ...day('2026-10-07'), series: 'Вікторина пʼятниці' }]), null, 'owner series do not count');
-  assert.equal(pollCapIssue({ ...base, playbookSeries: owner, series: 'Вікторина пʼятниці' }, [day('2026-10-07')]), null, 'and are never blocked');
-  assert.equal(pollCapIssue({ ...base, playbookSeries: [{ name: 'Агентська', origin: 'agent' }] }, [{ ...day('2026-10-07'), series: 'Агентська' }])?.error, 'poll_cap_reached');
+  // Spec 073 FR-001: the mark is on the slot — any series instance or pin is exempt, whoever made the series.
+  assert.equal(pollCapIssue(base, [{ ...day('2026-10-07'), series: 'Вікторина пʼятниці' }]), null, 'series instances do not count');
+  assert.equal(pollCapIssue({ ...base, series: 'Агентська' }, [day('2026-10-07')]), null, 'and are never blocked, an agent series included');
+  assert.equal(pollCapIssue(base, [{ ...day('2026-10-07'), pin: true }]), null, 'pins do not count');
+  assert.equal(pollCapIssue({ ...base, pin: true }, [day('2026-10-07')]), null, 'and are never blocked');
+  assert.equal(pollCapIssue(base, [day('2026-10-07')])?.error, 'poll_cap_reached', 'an improvised poll is still capped');
   assert.equal(slotSeriesOf({ sourceHints: ['feed:x', 'series:Огляд'] }), 'Огляд');
   assert.equal(slotSeriesOf({ seriesName: 'A', sourceHints: ['series:B'] }), 'A');
 });

@@ -5,27 +5,31 @@
  * verdict separates an executor's own skip after a `revise` (the critic drove it) from a plain editorial skip.
  */
 
-export const SKIP_GROUPS = ['critic', 'lint', 'cap', 'nothing_fresh', 'budget', 'other'] as const;
+import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
+
+export const SKIP_GROUPS = ['critic', 'lint', 'config', 'cap', 'nothing_fresh', 'budget', 'other'] as const;
 export type SkipGroup = typeof SKIP_GROUPS[number];
 
 /** Publish-tool errors that mean "this post / this material does not pass" — a content failure the fallback ladder retries. */
 export const CONTENT_FAILURE_CODES = [
   'lint_failed', 'too_similar', 'too_verbatim', 'source_already_posted', 'library_item_already_posted', 'already_posted',
-  'quiz_answer_mismatch', 'library_ref_not_found', 'series_source_mismatch', 'live_source_missing',
+  'quiz_answer_mismatch', 'library_ref_not_found', 'live_source_missing',
   'not_next_in_order',                                  // spec 071 guard (a dataset row out of its round order): a content failure, the ladder retries
 ] as const;
 const CONTENT = new Set<string>(CONTENT_FAILURE_CODES);
 export const isContentFailureCode = (code: string | null | undefined): boolean => !!code && CONTENT.has(code);
 
 /** Skips that are the owner's or the system's own decision, not a missed post (no alert, not counted as planned). */
-const NOT_A_MISS = [/^superseded by a new plan/, /^mode_changed/, /^draft canceled/, /^series_paused\b/];   // series_paused: spec 060, the owner got one note
+const NOT_A_MISS = [/^superseded by a new plan/, /^mode_changed/, /^draft canceled/, /^series_paused\b/, /^config_series_gone\b/];   // series_paused: spec 060, the owner got one note; config_series_gone: spec 073, the owner removed or paused the series
 /** The owner's own decisions: counted as planned and not out, but never a `series_missed` alert. */
 const OWNER = [/^rejected by owner/, /^resource_paused/, /^agent @.* is paused/, /^agent paused/];
 
 const RULES: Array<[SkipGroup, RegExp]> = [
   ['critic', /^critic_(rejected|failed)\b/],
   ['budget', /^(budget_exceeded|budget\b)/],
-  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|series_source_mismatch|live_source_missing|not_next_in_order)\b/],
+  // Spec 073 FR-010: the slot's CONFIGURATION is wrong, not its text — before `lint`, so a config code never reads as a content failure.
+  ['config', new RegExp(`^(${CONFIG_FAILURE_CODES.join('|')})\\b`)],
+  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|live_source_missing|not_next_in_order)\b/],
   ['cap', /^(daily_cap_reached|poll_cap_reached|min_gap|quiet_hours|blackout_window)\b/],
   ['nothing_fresh', /^(no_fresh_item\b|series ".*": required source .* has nothing left|source_not_published\b)/],
 ];
@@ -73,13 +77,14 @@ export function addSkip(c: SkipCounts, g: SkipGroup): SkipCounts {
 
 // ── Spec 061 FR-001: the slot pre-flight's skip codes ─────────────────────────
 // `preflight_source_used` / `preflight_stale` leave nothing to write about (nothing_fresh); `preflight_host_blocked` is the
-// source's host refusing us (nothing_fresh in the digest, `source_unreachable` as a cause); a missing format is `other` here
-// and `infra` as a cause (spec 060 classes).
+// source's host refusing us (nothing_fresh in the digest, `source_unreachable` as a cause); a missing format is `config` in the
+// digest (spec 073: it is a setup problem, from the `config` rule above) and `infra` as a 060 cause.
 RULES.push(
   ['nothing_fresh', /^preflight_(source_used|stale|host_blocked|no_material)\b/],
-  ['other', /^preflight_format_unavailable\b/],
   // Spec 068: the planner's honest empty day (a placeholder slot) and the pre-flight's missing / unpostable library row.
   ['nothing_fresh', /^planner_(no_material|source_unreachable)\b/],
+  // Spec 073 FR-007: the planner skipped a series instance for a non-material reason (a placeholder); its group is `other`.
+  ['other', /^planner_skipped\b/],
 );
 
 /** The 060 cause class of a pre-flight skip (null for any other error). */

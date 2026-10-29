@@ -6,20 +6,21 @@ import type { ToolRegistry } from '../harness/tool-registry';
 import { toToolSpec } from '../harness/tool';
 import type { EditorRole, ToolSpec } from '../llm/llm.types';
 import type { EditorChannelsRepository } from '../repo/editor-channels.repository';
-import type { EditorPlansRepository, EditorSlot, SlotStatus } from '../repo/editor-plans.repository';
+import { isPlaceholderPlan, type EditorPlansRepository, type EditorSlot, type SlotStatus } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorRunsRepository, SpendRow } from '../repo/editor-runs.repository';
 import type { EditorRunnerService } from '../roles/editor-runner.service';
-import { localDate } from '../roles/time';
+import { localDate, localHour } from '../roles/time';
 import { previewWithoutRun, type SlotPreview } from '../roles/preview-run';
 import { mergeCard } from './card-input';
 import type { StyleProposal } from '../post/style/style-proposal';
+import { conflictNote, newConflictsOf, type ConflictNote } from '../rules/config-conflicts';
 import { errText } from '../../common/err-text';
 
 export interface EditorOpsDeps {
   channels: Pick<EditorChannelsRepository, 'get' | 'list' | 'upsert'>;
   plans:    Pick<EditorPlansRepository, 'listPlans' | 'slotStatusCounts' | 'getSlot' | 'claimSlot' | 'skipPlannedSlot'>
-    & Partial<Pick<EditorPlansRepository, 'planOf' | 'claimPreview' | 'setPreview'>>;
+    & Partial<Pick<EditorPlansRepository, 'planOf' | 'claimPreview' | 'setPreview' | 'getActivePlan' | 'listSlots'>>;
   memory:   Pick<EditorMemoryRepository, 'listAll' | 'add' | 'retireByOwner'>;
   runs:     Pick<EditorRunsRepository, 'list' | 'get' | 'spendByDay'> & Partial<Pick<EditorRunsRepository, 'previewEstimates'>>;
   runner:   Pick<EditorRunnerService, 'runPlanner' | 'runExecutor'> & Partial<Pick<EditorRunnerService, 'runPreview'>>;
@@ -30,6 +31,10 @@ export interface EditorOpsDeps {
   log?:     (msg: string) => void;
   /** Spec 037 FR-008: the style bootstrap proposal of a resource (read-only; absent = 503). */
   styleProposal?: (ref: string) => Promise<StyleProposal>;
+  /** Spec 073 FR-012: the owner-rule lint (the Rules artifact's); absent = the form stores a rule as it did. */
+  lint?: (text: string, channelKey: string) => Promise<Array<{ code: string; detail: string }>>;
+  /** Spec 073 FR-012: the channel's rules-vs-config conflicts (`ConfigConflictsService.forAgent`); absent = none are reported. */
+  conflicts?: (channelKey: string) => Promise<ConflictNote[]>;
 }
 
 export interface RunOptions { wait?: boolean }
@@ -146,7 +151,12 @@ export class EditorOpsService {
     return channels.find((c) => c.channelKey === key) ?? card;
   }
 
-  async upsertChannel(key: string, body: unknown) {
+  /**
+   * Save a channel's card. Spec 073 FR-004 (A25): when the owner switches a channel back on (`off` → any other mode) past its
+   * plan hour and today's plan has nothing left to run, the day's replan starts — not awaited, errors logged, the save
+   * never fails because of it. `opts.replan: false` opts out (launch's Start plans by itself).
+   */
+  async upsertChannel(key: string, body: unknown, opts: { replan?: boolean } = {}) {
     const channelKey = (key ?? '').trim();
     if (!channelKey || channelKey.length > 200) throw new BadRequestException({ error: 'invalid_channel_key' });
     const existing = await this.d.channels.get(channelKey);
@@ -159,7 +169,28 @@ export class EditorOpsService {
     if (unknownSkills.length || unknownTools.length) {
       throw new BadRequestException({ error: 'invalid_card', unknownSkills, unknownTools });
     }
-    return this.d.channels.upsert(merged.card);
+    const saved = await this.d.channels.upsert(merged.card);
+    if (opts.replan !== false) await this.replanAfterSwitchOn(saved.card, saved.previousMode);
+    return saved;
+  }
+
+  /** A25: start the day's replan after `off` → on when today's plan is real and nothing is left to run. Never throws. */
+  private async replanAfterSwitchOn(card: EditorCard, previousMode: EditorCard['mode'] | null): Promise<void> {
+    try {
+      if (previousMode !== 'off' || card.mode === 'off') return;
+      const { getActivePlan, listSlots } = this.d.plans;
+      if (!getActivePlan || !listSlots) return;
+      const now = this.now();
+      if (localHour(now, card.timezone) < card.planHour) return;
+      // No plan today, or only a placeholder: the scheduler's `maybePlan` plans it on its next tick (never two planners).
+      const plan = await getActivePlan.call(this.d.plans, card.channelKey, localDate(now, card.timezone));
+      if (!plan || isPlaceholderPlan(plan.rationale)) return;
+      const slots = await listSlots.call(this.d.plans, card.channelKey, plan.id);
+      if (slots.some((x) => x.kind === 'content' && x.status === 'planned' && x.scheduledAt.getTime() > now.getTime())) return;
+      void this.replan(card.channelKey, { wait: false }).catch((err) => this.d.log?.(`replan after switching ${card.channelKey} on skipped: ${err?.getResponse?.()?.error ?? errText(err)}`));
+    } catch (err) {
+      this.d.log?.(`replan check after switching ${card.channelKey} on failed: ${errText(err)}`);
+    }
   }
 
   // ── plans and slots ───────────────────────────────────────────────────────
@@ -332,8 +363,18 @@ export class EditorOpsService {
     const p = MemoryInput.safeParse(body);
     if (!p.success) throw new BadRequestException({ error: 'invalid_memory', issues: p.error.issues });
     await this.card(key);
+    // Spec 073 FR-012: a rule or an avoid goes through the same lint as the Rules artifact; an insight is a note, not an instruction.
+    const instruction = p.data.kind !== 'insight';
+    if (instruction && this.d.lint) {
+      const issues = await this.d.lint(p.data.text, key).catch(() => []);
+      if (issues.length) throw new BadRequestException({ error: 'rule_invalid', details: issues.map((i) => `«${p.data.text.slice(0, 60)}»: ${i.detail}`) });
+    }
+    const before = instruction && this.d.conflicts ? await this.d.conflicts(key).catch(() => []) : [];
     const id = await this.d.memory.add(key, p.data.kind, p.data.text, null, 'owner');
-    return { id };
+    // …and the conflicts it causes with the playbook, the profiles and the card come back with the id (the form shows one line).
+    const after = instruction && this.d.conflicts ? await this.d.conflicts(key).catch(() => []) : [];
+    const conflicts = newConflictsOf(before, after, [id]).map(conflictNote);
+    return { id, ...(conflicts.length ? { conflicts } : {}) };
   }
 
   async retireMemory(key: string, id: number) {

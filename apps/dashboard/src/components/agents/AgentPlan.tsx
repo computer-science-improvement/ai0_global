@@ -66,7 +66,7 @@ interface Lane { ref: string; tz: string; slots: PlanSlot[] }
 const missCandidate = (s: PlanSlot): MissCandidate => ({ status: s.status, error: s.error, seriesName: s.seriesName, scheduleRuleId: s.pinned ? 'pin' : null });
 
 /** Plan-level data the slot views need (spec 034 FR-012): feed names for live slots, the typical Preview cost. */
-interface PlanExtra { feeds: Record<string, string>; estimateUsd: number | null }
+interface PlanExtra { feeds: Record<string, string>; estimateUsd: number | null; handle: string }
 
 export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: string) => void }) {
   const net = useAgentNetwork(handle);
@@ -94,7 +94,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
   }, [slots]);
   const sel = slots.find((s) => s.id === selected) ?? null;
   const decisions = plan.data?.decisions ?? [];
-  const extra: PlanExtra = { feeds: plan.data?.feeds ?? {}, estimateUsd: plan.data?.previewEstimateUsd ?? null };
+  const extra: PlanExtra = { feeds: plan.data?.feeds ?? {}, estimateUsd: plan.data?.previewEstimateUsd ?? null, handle };
   const select = (id: string) => setSelected(id);
 
   const relative = day === today ? 'Today' : day === shiftDay(today, 1) ? 'Tomorrow' : day === shiftDay(today, -1) ? 'Yesterday' : null;
@@ -437,7 +437,7 @@ function SlotDetail({ slot, slots, tzOf, decisions, onSelect, extra }: {
         <CriticBadge critic={slot.critic} />
       </div>
       {slot.kind === 'reserved' && slot.topic && <div className="apl-detail-topic">{slot.topic}</div>}
-      <SlotDescription slot={slot} tz={tz} feeds={extra.feeds} />
+      <SlotDescription slot={slot} tz={tz} feeds={extra.feeds} links={{ agent: extra.handle, channel: tg ? slot.resourceRef.slice('telegram:'.length) : undefined }} />
       {slot.treatment && (
         <div className="text-body-sm apl-treatment">
           <Badge tone={DECISION_TONE[slot.treatment]}>{TREATMENT_LABEL[slot.treatment]}</Badge>

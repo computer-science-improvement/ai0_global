@@ -76,8 +76,8 @@ export function slotLabel(status: string | null | undefined): string {
 // These two lists mirror apps/automation/src/editor/silent/skip-reasons.ts (NOT_A_MISS, OWNER); status-tone.test.ts reads
 // that file and fails when they drift apart.
 
-/** Skips that are the system's own bookkeeping (a replan, a mode change, a cancelled draft, a paused series): never a miss. */
-export const NOT_A_MISS: readonly RegExp[] = [/^superseded by a new plan/, /^mode_changed/, /^draft canceled/, /^series_paused\b/];
+/** Skips that are the system's own bookkeeping (a replan, a mode change, a cancelled draft, a paused series, a series the owner removed): never a miss. */
+export const NOT_A_MISS: readonly RegExp[] = [/^superseded by a new plan/, /^mode_changed/, /^draft canceled/, /^series_paused\b/, /^config_series_gone\b/];
 /** Skips that are the owner's own decision (rejected, paused): not a miss either, the owner knows. */
 export const OWNER_DECISION: readonly RegExp[] = [/^rejected by owner/, /^resource_paused/, /^agent @.* is paused/, /^agent paused/];
 

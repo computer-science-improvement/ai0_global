@@ -5,7 +5,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { exemptSeries, pollCapErrors, windowStartDate, type PollCapCtx } from './poll-cap';
+import { pollCapErrors, pollCapExempt, windowStartDate, type PollCapCtx } from './poll-cap';
 import { validatePlan } from './plan-rules';
 import { makeCard } from '../post/testing/fixtures';
 import { validateNetworkPlan } from '../network/network-plan';
@@ -47,16 +47,17 @@ test('single plan: two polls (or a poll and a quiz) in one plan exceed the defau
   assert.equal(validatePlan(plan, card, '2026-10-01', now, [], undefined, [], { caps: {}, recent: [], defaultRef: ANCHOR }).ok, false);
 });
 
-test('single plan: a raised cap, a quiz resource (null) and owner series do not count', () => {
+test('single plan: a raised cap, a quiz resource (null) and series instances do not count', () => {
   const plan = { rationale: 'Два опитування', slots: [slot('09:00', 'poll'), slot('12:00', 'quiz', { series: 'ПДР щодня' })] };
   assert.equal(validatePlan(plan, card, '2026-10-01', now, [], undefined, [], caps({ caps: { [ANCHOR]: 3 } })).ok, true);
   assert.equal(validatePlan(plan, card, '2026-10-01', now, [], undefined, [], caps({ caps: { [ANCHOR]: null }, recent: Array(9).fill({ resourceRef: ANCHOR, series: null }) })).ok, true);
-  // Series exemption goes through pollCapErrors (validatePlan passes the schedule ctx's series).
+  // Spec 073 FR-001: a slot's own series mark exempts it (no playbook lookup): an agent series too, and a pin among the recent rows.
   const slots = [{ format: 'poll' }, { format: 'quiz', series: 'ПДР щодня' }, { format: 'quiz', sourceHints: ['series:ПДР щодня'] }];
-  const series = [{ name: 'ПДР щодня', origin: 'migration' }, { name: 'Агентська', origin: 'agent' }];
-  assert.deepEqual(pollCapErrors(slots, caps({ recent: [{ resourceRef: ANCHOR, series: 'ПДР щодня' }] }), series), []);
-  assert.equal(pollCapErrors(slots, caps({ recent: [{ resourceRef: ANCHOR, series: 'Агентська' }] }), series).length, 1, 'an agent series counts');
-  assert.deepEqual([...exemptSeries([{ name: 'a', origin: 'owner' }, { name: 'b', locked: true }, { name: 'c', origin: 'agent' }])], ['a', 'b']);
+  assert.deepEqual(pollCapErrors(slots, caps({ recent: [{ resourceRef: ANCHOR, series: 'ПДР щодня' }] })), []);
+  assert.deepEqual(pollCapErrors(slots, caps({ recent: [{ resourceRef: ANCHOR, series: 'Агентська' }] })), [], 'an agent series is exempt too');
+  assert.deepEqual(pollCapErrors(slots, caps({ recent: [{ resourceRef: ANCHOR, series: null, pin: true }] })), [], 'a pin among the recent rows does not count');
+  assert.equal(pollCapErrors([{ format: 'poll' }], caps({ recent: [{ resourceRef: ANCHOR, series: null }] })).length, 1, 'an improvised row counts');
+  assert.deepEqual([pollCapExempt({ series: 'a' }), pollCapExempt({ pin: true }), pollCapExempt({ series: null }), pollCapExempt({})], [true, true, false, false]);
 });
 
 test('single plan: text and photo never count', () => {

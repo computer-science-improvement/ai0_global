@@ -152,7 +152,7 @@ test('skip codes: classified with the skip groups; the 060 cause class', () => {
   const e = preflightSkipError('preflight_stale', 'джерело застаріло');
   assert.equal(e, 'preflight_stale: джерело застаріло');
   for (const c of ['preflight_source_used', 'preflight_stale', 'preflight_host_blocked']) assert.equal(skipGroupOf(`${c}: x`), 'nothing_fresh', c);
-  assert.equal(skipGroupOf('preflight_format_unavailable: x'), 'other');
+  assert.equal(skipGroupOf('preflight_format_unavailable: x'), 'config');   // spec 073: a setup problem, not an unclassified skip
   assert.equal(preflightCauseOf('preflight_source_used: x'), 'no_material');
   assert.equal(preflightCauseOf('preflight_stale: x'), 'no_material');
   assert.equal(preflightCauseOf('preflight_host_blocked: x'), 'source_unreachable');

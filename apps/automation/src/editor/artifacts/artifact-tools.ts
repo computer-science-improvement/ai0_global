@@ -138,7 +138,10 @@ export function buildArtifactTools(d: ArtifactToolDeps): EditorTool[] {
       if (!x.agentIntent) return NEEDS_CHANGE_REQUEST;
       const done = await svc.edit(r.type, r.id, i.patch, { author: 'agent', agentId: agent?.id ?? null, reason: i.reason });
       if (!done.ok) return { error: done.error, details: done.details };
-      return { ok: true, ref: artifactRef(r.type, r.id), version: done.detail.row.version, status: done.detail.row.status, note: 'чернетку змінено; власник бачить нову версію в артефакті' };
+      return {
+        ok: true, ref: artifactRef(r.type, r.id), version: done.detail.row.version, status: done.detail.row.status, note: 'чернетку змінено; власник бачить нову версію в артефакті',
+        ...(done.conflicts ? { conflicts: done.conflicts } : {}),
+      };
     },
   });
 
@@ -152,5 +155,6 @@ export async function applyUpdateArtifact(svc: Pick<ArtifactsService, 'edit'> | 
   if (!p?.type || !p.id) throw new Error('invalid_card: the card has no artifact');
   const r = await svc.edit(p.type, p.id, p.patch, { author: 'agent', agentId: p.agentId ?? null, reason: `${p.reason} (applied by the owner)` });
   if (!r.ok) throw new Error(`${r.error}: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details ?? '')}`);
-  return { ref: artifactRef(p.type, p.id), version: r.detail.row.version, status: r.detail.row.status };
+  // Spec 073 FR-012: what the change caused (rules-vs-config conflicts) comes back with the result.
+  return { ref: artifactRef(p.type, p.id), version: r.detail.row.version, status: r.detail.row.status, ...(r.conflicts ? { conflicts: r.conflicts } : {}) };
 }

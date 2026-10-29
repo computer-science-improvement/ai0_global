@@ -1,12 +1,12 @@
 import { CHAT_FORMAT_RULE, DATA_QUESTION_RULE, NO_REANNOUNCE_RULE, NO_SYSTEM_FOOTERS_RULE } from '../chat/chat-format';
 import type { CardRole } from '../llm/llm.types';
 import { cardSummary, EditorCard } from '../card';
-import type { SkillSource } from '../skills/skill-library';
+import type { SkillMeta, SkillSource } from '../skills/skill-library';
 import type { MemoryEntry } from '../repo/editor-memory.repository';
 import type { EditorSlot } from '../repo/editor-plans.repository';
 import { localDate, localTimeLabel, localWeekday } from './time';
 import { resourceTimeLines } from '../time/resource-time';
-import { attachVoiceSkills, VOICE_CORE, voiceCoreSection, voiceReferenceLine } from './voice';
+import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS, voiceCoreSection, voiceReferenceLine } from './voice';
 import { liveSlotLines, type LiveScan } from '../live/live-slot';
 import { isNewsCard } from '../live/news-watch-config';
 import { examplesPromptSection } from '../network/playbook';
@@ -31,42 +31,78 @@ export const INLINE_SKILLS_BUDGET = 8_000;
  * Inline skills from the shared budget, in order, then (writer roles, spec 034
  * FR-001) human-voice and anti-slop from what is left. voice-core is never
  * part of this list: the writer prompt carries it outside the budget.
+ * Spec 073 FR-013 (A47): `overflow` is the skills that exist but did not fit the budget, in order, never the voice skills
+ * (those have their own reference line). The prompt builders list them with the on-demand skills, so `load_skill` can still
+ * reach a skill the card or the agent asked for; before, they were in neither place.
  */
-function inlineSkills(skills: SkillSource, names: string[], writer: boolean): { inline: string[]; shown: string[]; voiceRef: string | null } {
+function inlineSkills(skills: SkillSource, names: string[], writer: boolean): { inline: string[]; shown: string[]; overflow: string[]; voiceRef: string | null } {
   let budget = INLINE_SKILLS_BUDGET;
   const inline: string[] = [];
   const shown: string[] = [];
+  const overflow: string[] = [];
   for (const name of names) {
     const s = skills.get(name);
-    if (!s || s.body.length > budget) continue;
+    if (!s) continue;
+    if (s.body.length > budget) {
+      if (!isVoiceSkill(s.name)) overflow.push(s.name);
+      continue;
+    }
     budget -= s.body.length;
     inline.push(`### skill: ${s.name}\n${s.body}`);
     shown.push(s.name);
   }
-  if (!writer) return { inline, shown, voiceRef: null };
+  if (!writer) return { inline, shown, overflow, voiceRef: null };
   const v = attachVoiceSkills(skills, budget, shown);
   inline.push(...v.inline);
   shown.push(...v.names);
-  return { inline, shown, voiceRef: voiceReferenceLine(v.missing) };
+  return { inline, shown, overflow, voiceRef: voiceReferenceLine(v.missing) };
+}
+
+const isVoiceSkill = (name: string): boolean => name === VOICE_CORE || (VOICE_SKILLS as readonly string[]).includes(name);
+
+/** The listed (name + description) skills plus the over-budget ones, each name once. The description of an over-budget skill is its own. */
+function withOverflow(listed: readonly SkillMeta[], overflow: readonly string[], skills: SkillSource): Array<Pick<SkillMeta, 'name' | 'description'>> {
+  const seen = new Set(listed.map((s) => s.name));
+  const extra = overflow.flatMap((name) => {
+    const s = seen.has(name) ? undefined : skills.get(name);
+    if (!s) return [];
+    seen.add(name);
+    return [{ name: s.name, description: s.description }];
+  });
+  return [...listed, ...extra];
+}
+
+/**
+ * Spec 073 FR-013 (A47): the one line for the agent's inline skills that did not fit (the prompts of a native platform post
+ * and a derived adapt have no skills list); null when none. `load_skill` is open to every role.
+ */
+export function moreSkillsLine(overflow: readonly string[]): string | null {
+  return overflow.length ? `Ще скіли (load_skill): ${overflow.join(', ')}` : null;
 }
 
 /**
  * Spec 040 FR-012: the agent's always-in-context skills (the owner's and its own skills, the profile's tone skill) for
  * the writer prompts without card skills (a native platform post, a derived adapt), within the inline budget.
+ * Spec 073 FR-013 (A47): `overflow` holds the ones that did not fit (not the voice skills, not the excluded ones).
  */
-export function agentInlineSkills(skills: SkillSource, exclude: readonly string[], budget = INLINE_SKILLS_BUDGET): { inline: string[]; names: string[] } {
+export function agentInlineSkills(skills: SkillSource, exclude: readonly string[], budget = INLINE_SKILLS_BUDGET): { inline: string[]; names: string[]; overflow: string[] } {
   const inline: string[] = [];
   const names: string[] = [];
+  const overflow: string[] = [];
   let left = budget;
   for (const name of skills.inlineNames?.() ?? []) {
     if (exclude.includes(name) || name === VOICE_CORE) continue;
     const s = skills.get(name);
-    if (!s || s.body.length > left) continue;
+    if (!s) continue;
+    if (s.body.length > left) {
+      if (!isVoiceSkill(s.name)) overflow.push(s.name);
+      continue;
+    }
     left -= s.body.length;
     inline.push(`### skill: ${s.name}\n${s.body}`);
     names.push(s.name);
   }
-  return { inline, names };
+  return { inline, names, overflow };
 }
 
 /**
@@ -85,8 +121,12 @@ export function buildSystemPrompt(
 ): string {
   const writer = role === 'executor';
   const names = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])].filter((n) => n !== VOICE_CORE);
-  const { inline, shown, voiceRef } = inlineSkills(skills, names, writer);
-  const listed = skills.list(role).filter((s) => !names.includes(s.name) && !shown.includes(s.name) && !(writer && s.name === VOICE_CORE));
+  const { inline, shown, overflow, voiceRef } = inlineSkills(skills, names, writer);
+  // Spec 073 FR-013 (A47): a skill that did not fit the inline budget is listed here (load_skill), not dropped.
+  const listed = withOverflow(
+    skills.list(role).filter((s) => !names.includes(s.name) && !shown.includes(s.name) && !(writer && s.name === VOICE_CORE)),
+    overflow, skills,
+  );
   // Spec 053 FR-001: the writer's prompt is re-sent on every step — its lessons are the newest 15, each kept short.
   const shownMemory = writer
     ? memoryWithoutRules(memory).slice(0, WRITER_MEMORY_MAX).map((m) => ({ ...m, text: clip(m.text, WRITER_MEMORY_CHARS) }))
@@ -162,8 +202,12 @@ export function buildComposerSystemPrompt(o: {
   const tomorrow = new Date(o.now.getTime() + 86_400_000);
   const names = [...new Set(['editor-composer-workflow', ...(o.hasCard && o.card ? o.card.skills : []), ...(o.skills.inlineNames?.() ?? [])])]
     .filter((n) => n !== VOICE_CORE);
-  const { inline, shown, voiceRef } = inlineSkills(o.skills, names, true);
-  const listed = o.skills.list('composer').filter((s) => !names.includes(s.name) && !shown.includes(s.name) && s.name !== VOICE_CORE);
+  const { inline, shown, overflow, voiceRef } = inlineSkills(o.skills, names, true);
+  // Spec 073 FR-013 (A47): the same for the composer — an over-budget skill is listed, not dropped.
+  const listed = withOverflow(
+    o.skills.list('composer').filter((s) => !names.includes(s.name) && !shown.includes(s.name) && s.name !== VOICE_CORE),
+    overflow, o.skills,
+  );
 
   const channel = o.card
     ? [

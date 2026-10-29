@@ -10,10 +10,11 @@ import { ruleOverlap } from './mentions';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import { originRefusal, skillWarnings, sourceRefusal } from './skill-warnings';
-import { conflictFollowUps, conflictsForModel, conflictsLine } from './skill-conflict-followups';
+import { conflictFollowUps, conflictsForModel, conflictsLine, seriesRefusal } from './skill-conflict-followups';
 import type { AgentsRepository } from './agents.repository';
 import type { SkillStore } from './skill-store';
 import type { ConfigConflictsService } from '../rules/config-conflicts.service';
+import { conflictNote, newConflictsOf, type ConflictNote } from '../rules/config-conflicts';
 import { CHANNEL_SKILL_ROLES, defaultAppliesTo } from '../skills/skill-defaults';
 import { lintOwnerRule, MAX_POINT_CHARS, MAX_RULE_POINTS, multiPointRule, ownerListPoints, type RuleIssue } from './rule-lint';
 
@@ -49,7 +50,7 @@ export function ruleSources(rule: string, recent: string[]): Array<{ text: strin
 export interface AgentChatToolDeps {
   pool:    Pick<Pool, 'query'>;
   memory:  Pick<EditorMemoryRepository, 'add'>;
-  skills:  Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'listForAgent'>>;
+  skills:  Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'listForAgent' | 'writeProblems'>>;
   actions: Pick<PendingActionsService, 'propose'>;
   /** Spec 069 FR-003: the agent's family (the skills a new skill is compared with). Without it no conflicts are looked for. */
   agents?: Partial<Pick<AgentsRepository, 'children' | 'get'>>;
@@ -90,8 +91,7 @@ export async function ruleToStore(
  * (`rule_id`).
  */
 export function newConflicts<C extends { code: string; ref: string; rule_id?: number | null }>(before: readonly C[], after: readonly C[], ruleId: number): C[] {
-  const had = new Set(before.map((c) => `${c.code}:${c.ref}`));
-  return after.filter((c) => c.rule_id === ruleId || !had.has(`${c.code}:${c.ref}`));
+  return newConflictsOf(before, after, [ruleId]);
 }
 
 const agentOf = (ctx: ToolContext): Agent | null => (ctx.extras?.agent as Agent | null | undefined) ?? null;
@@ -109,15 +109,32 @@ export function slotScopeOf(raw: string): { channelKey: string | null; resourceR
   return { channelKey: `@${name}`, resourceRef: `telegram:@${name}` };
 }
 
-/** Spec 040 FR-010: the owner applied an `owner_rule` card — the rule is stored with the quotes it came from. */
-export async function applyOwnerRule(memory: Pick<EditorMemoryRepository, 'add'>, p: Record<string, unknown>): Promise<{ id: number; channel: string }> {
+/** Spec 073 FR-012: what the rule write paths check with — the owner-rule lint and the channel's rules-vs-config conflicts. Each is optional. */
+export interface OwnerRuleChecks {
+  lint?:      (text: string, channelKey: string) => Promise<Array<{ code: string; detail: string }>>;
+  conflicts?: (channelKey: string) => Promise<ConflictNote[]>;
+}
+
+/**
+ * Spec 040 FR-010: the owner applied an `owner_rule` card — the rule is stored with the quotes it came from.
+ * Spec 073 FR-012: the card can be days old, so the lint runs again now (an issue fails the card with the reason, nothing is
+ * stored) and the conflicts the rule causes come back with the result.
+ */
+export async function applyOwnerRule(
+  memory: Pick<EditorMemoryRepository, 'add'>, p: Record<string, unknown>, checks: OwnerRuleChecks = {},
+): Promise<{ id: number; channel: string; conflicts?: ConflictNote[] }> {
   const channel = String(p.channel ?? '');
   const text = String(p.text ?? '').trim();
   const kind = p.kind === 'avoid' ? 'avoid' : 'rule';
   if (!channel || text.length < 8) throw new Error('invalid_rule: the card has no channel or rule text');
+  const issues = checks.lint ? await checks.lint(text, channel).catch(() => []) : [];
+  if (issues.length) throw new Error(`rule_invalid: ${issues.map((i) => `${i.code}: ${i.detail}`).join('; ')}`);
+  const before = checks.conflicts ? await checks.conflicts(channel).catch(() => []) : [];
   const quotes = Array.isArray(p.quotes) ? p.quotes.map(String).filter(Boolean) : [];
   const id = await memory.add(channel, kind, text, { source: 'owner_card' }, 'owner', quotes.join('\n---\n').slice(0, 2000) || null);
-  return { id, channel };
+  const after = checks.conflicts ? await checks.conflicts(channel).catch(() => []) : [];
+  const conflicts = newConflictsOf(before, after, [id]).map(conflictNote);
+  return { id, channel, ...(conflicts.length ? { conflicts } : {}) };
 }
 
 /**
@@ -266,6 +283,9 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       // Spec 069 FR-007: nor a skill that calls read material «original» (the lint's `origin_mismatch` would reject the post).
       const wrongOrigin = originRefusal(i.body);
       if (wrongOrigin) return wrongOrigin;
+      // Spec 073 FR-012: nor one that contradicts a series the channel must run — the store would only warn the owner at Apply.
+      const againstSeries = await seriesRefusal(d.skills, a.id, { name: i.name, description: i.description, body: i.body });
+      if (againstSeries) return againstSeries;
       // Spec 069 FR-003: the skills this one contradicts (a source it rules out that another skill uses, or the reverse) ride on the card.
       const found = await conflictFollowUps(d, a, { name: i.name, description: i.description, body: i.body, appliesTo });
       const card = await proposeCard(d, ctx, 'write_skill',

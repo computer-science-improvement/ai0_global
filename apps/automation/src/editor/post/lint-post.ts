@@ -113,6 +113,8 @@ export interface LintIntegrity {
   ctx?: Partial<AuditContext>;
   /** Spec 037 T9: the planner's topic of a fixed slot (same format + topic twice a day). */
   topic?: string;
+  /** Spec 073 FR-002: the format of a series or pin slot — the schedule's, so `format_not_allowed` does not apply to it. */
+  lockedFormat?: string;
 }
 
 type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
@@ -129,7 +131,7 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
     err('format_not_supported_yet', `формат ${spec.format} ще не підтримується; доступні: ${SUPPORTED_FORMATS.join(', ')}`);
   }
   const allowed = Object.entries(card.formats ?? {}).filter(([, w]) => Number(w) > 0).map(([f]) => f);
-  if (allowed.length && !allowed.includes(spec.format)) {
+  if (allowed.length && !allowed.includes(spec.format) && spec.format !== integrity.lockedFormat) {
     err('format_not_allowed', `формат ${spec.format} не дозволений у каналі; дозволені: ${allowed.join(', ')}`);
   }
 
@@ -205,6 +207,10 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
         const ci = spec.poll.correct_index;
         if (ci === undefined || ci < 0 || ci >= spec.poll.options.length) err('quiz_correct_index', 'вікторина: correct_index має вказувати на існуючий варіант');
         if (spec.poll.explanation && inlineToPlain(spec.poll.explanation).length > 200) err('quiz_explanation', 'пояснення ≤ 200 символів');
+      }
+      // Spec 073 FR-008: a question with a right answer is a quiz, and the plan sets the format — a poll never carries one.
+      if (spec.format === 'poll' && spec.poll.correct_index !== undefined && spec.poll.correct_index !== null) {
+        err('poll_correct_index', 'опитування не має правильної відповіді: прибери correct_index; питання з правильною відповіддю — це формат quiz, його задає план, не пост');
       }
       if (new Set(spec.poll.options.map((o) => o.trim().toLowerCase())).size !== spec.poll.options.length) err('poll_options', 'варіанти не мають повторюватись');
     }

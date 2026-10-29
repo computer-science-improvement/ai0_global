@@ -68,6 +68,11 @@ export interface AuditPost {
    * post of an export has no origin: unset.
    */
   fromLibrary?: boolean;
+  /**
+   * Spec 073 FR-001: the post is a series instance or a pin (its slot has `series_name`, a `series:` hint or `schedule_rule_id`).
+   * The poll cap neither blocks nor counts it. An export post has no slot: unset.
+   */
+  pollCapExempt?: boolean;
 }
 
 /** Spec 037 T2: a post's place in its story. */

@@ -7,6 +7,7 @@ import type { SteeringSet } from '../steering/steering.types';
 import { RulesEdit } from '../steering/steering.service';
 import type { EditorMemoryRepository, MemoryRow } from '../repo/editor-memory.repository';
 import type { SkillStore } from '../agents/skill-store';
+import { conflictNote, newConflictsOf, type ConflictNote } from '../rules/config-conflicts';
 import type { PlaybookRow } from '../network/network.repository';
 import type { ArtifactVersionsRepository } from './artifact-versions.repository';
 import type {
@@ -51,7 +52,11 @@ export interface ResolvedFilter {
   limit:    number;
 }
 
-export type AdapterEdit = { ok: true } | { ok: false; error: string; details?: unknown };
+/**
+ * `warnings` (a skill the owner saved that says something against the channel) and `conflicts` (the rules-vs-config conflicts a
+ * rule write caused) are spec 073 FR-012; the write is done either way.
+ */
+export type AdapterEdit = { ok: true; warnings?: string[]; conflicts?: ConflictNote[] } | { ok: false; error: string; details?: unknown };
 
 export interface ArtifactAdapter {
   type: ArtifactType;
@@ -232,6 +237,8 @@ async function memoryChannels(pool: Pick<Pool, 'query'>, rules: boolean, channel
 export function rulesAdapter(d: {
   pool: Pick<Pool, 'query'>; memory: Pick<EditorMemoryRepository, 'listAll' | 'add' | 'retireByOwner'>;
   lint: (text: string, channelKey: string) => Promise<Array<{ code: string; detail: string }>>; versions: ArtifactVersionsRepository;
+  /** Spec 073 FR-012: the channel's rules-vs-config conflicts; absent = the edit reports none. */
+  conflicts?: (channelKey: string) => Promise<ConflictNote[]>;
 }): ArtifactAdapter {
   const rulesOf = async (key: string) => (await d.memory.listAll(key)).filter((m) => m.active && isOwnerRule(m));
   const snapshot = (rs: MemoryRow[]) => rs.map((r) => ({ id: r.id, text: r.text }));
@@ -279,14 +286,19 @@ export function rulesAdapter(d: {
       if (!v.ok) return v;
       const { p, current } = v;
       const evidence = { source: by.author === 'owner' ? 'artifact' : 'chat', ...(by.agentId ? { agent: by.agentId } : {}) };
+      // Spec 073 FR-012: the conflicts this edit causes — those not there before it, and those that name a rule it wrote.
+      const before = d.conflicts ? await d.conflicts(id).catch(() => []) : [];
+      const wrote: number[] = [];
       for (const e of p.edit ?? []) {
         await d.memory.retireByOwner(id, e.id);
-        await d.memory.add(id, current.find((r) => r.id === e.id)?.kind ?? 'rule', e.text, { ...evidence, replaces: e.id }, 'owner');
+        wrote.push(await d.memory.add(id, current.find((r) => r.id === e.id)?.kind ?? 'rule', e.text, { ...evidence, replaces: e.id }, 'owner'));
       }
       for (const r of p.retire ?? []) await d.memory.retireByOwner(id, r);
-      for (const t of p.add ?? []) await d.memory.add(id, 'rule', t, evidence, 'owner');
+      for (const t of p.add ?? []) wrote.push(await d.memory.add(id, 'rule', t, evidence, 'owner'));
       await d.versions.record('rules', id, snapshot(await rulesOf(id)), by.author, { agentId: by.agentId, reason: by.reason });
-      return { ok: true };
+      const after = d.conflicts ? await d.conflicts(id).catch(() => []) : [];
+      const conflicts = newConflictsOf(before, after, wrote).map(conflictNote);
+      return { ok: true, ...(conflicts.length ? { conflicts } : {}) };
     },
   };
 }
@@ -337,7 +349,7 @@ const SkillPatch = z.object({
   appliesTo:   z.array(z.string().trim().min(1).max(40)).min(1).max(12).optional(),
 }).strict().refine((b) => b.body !== undefined || b.description !== undefined || b.appliesTo !== undefined, { message: 'body, description or appliesTo' });
 
-export function skillAdapter(d: { pool: Pick<Pool, 'query'>; skills: Pick<SkillStore, 'get' | 'versions' | 'writeAgentSkill'> }): ArtifactAdapter {
+export function skillAdapter(d: { pool: Pick<Pool, 'query'>; skills: Pick<SkillStore, 'get' | 'versions' | 'writeAgentSkill'> & Partial<Pick<SkillStore, 'writeProblems'>> }): ArtifactAdapter {
   const toRow = (r: any): ArtifactRow => ({
     type: 'skill', id: r.id, title: r.name, agent: r.owner_handle ?? null, channel: null, target: r.handle ?? 'shared',
     status: r.locked ? 'locked' : 'active', version: Number(r.current_version), updatedAt: iso(r.updated_at),
@@ -371,6 +383,16 @@ export function skillAdapter(d: { pool: Pick<Pool, 'query'>; skills: Pick<SkillS
       return r ? { description: r.description, appliesTo: r.appliesTo, body: r.body } : undefined;
     },
     actions: (r) => (r.status === 'locked' ? [] : [{ key: 'edit', label: 'Edit', method: 'PATCH' }]),
+    // Spec 073 FR-012: an agent's card is refused at once for what the store would refuse it for (a source in the skill, origin=original on
+    // read material, a series it contradicts) — not at the owner's Apply. `check` is only the agent's path.
+    async check(id, patch) {
+      const p = SkillPatch.safeParse(patch ?? {});
+      if (!p.success) return { ok: false, error: 'invalid_body', details: issues(p.error) };
+      const s = await d.skills.get(id);
+      if (!s || s.scope !== 'agent' || !s.agentId || !d.skills.writeProblems) return { ok: true };
+      const problems = await d.skills.writeProblems(s.agentId, { name: s.name, description: p.data.description ?? s.description, body: p.data.body ?? s.body });
+      return problems[0] ? { ok: false, error: problems[0].refusal.error, details: problems[0].refusal.details } : { ok: true };
+    },
     async edit(id, patch, by) {
       const p = SkillPatch.safeParse(patch ?? {});
       if (!p.success) return { ok: false, error: 'invalid_body', details: issues(p.error) };
@@ -381,7 +403,8 @@ export function skillAdapter(d: { pool: Pick<Pool, 'query'>; skills: Pick<SkillS
         agentId: s.agentId, name: s.name, description: p.data.description ?? s.description, appliesTo: p.data.appliesTo ?? s.appliesTo,
         body: p.data.body ?? s.body, author: by.author === 'owner' ? 'owner' : 'agent', authorAgentId: by.agentId ?? null, reason: by.reason ?? null,
       });
-      return 'error' in r ? { ok: false, error: r.error, details: r.details } : { ok: true };
+      if ('error' in r) return { ok: false, error: r.error, details: r.details };
+      return { ok: true, ...(r.warnings?.length ? { warnings: r.warnings.map((w) => w.message) } : {}) };
     },
   };
 }

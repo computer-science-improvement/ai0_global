@@ -4,6 +4,7 @@ import type { Series } from '../network/playbook';
 import { instancesOn, parseCadence } from '../network/series';
 import type { Quiet } from '../time/resource-time';
 import { skipsUk } from '../series-pause/skip-cause';
+import { reasonFor } from '../reasons/catalogue';
 import { blackoutAt,effectivePerDay, frequencyOn, type ScheduleRule, weekdayOf } from './schedule-rules';
 
 /**
@@ -64,7 +65,33 @@ export interface PlanScheduleCtx {
   /** Spec 060: series the dead-series breaker paused (not planned, not required) and the last skip reasons per series. */
   paused?:      PausedSeriesCtx[];
   recentSkips?: Array<{ label: string; lines: string[] }>;
+  /**
+   * Spec 073 FR-011 / A54: series instances of the day that cannot be planned because of their setup (`series_format_unavailable`,
+   * `series_in_quiet_hours`; `checkPlanSkeleton` with the day), matched by `(series, at)`. They are not due: the planner is told not to
+   * plan them, both validators refuse a slot that names one, and each leaves a config placeholder (`excludedPlaceholders`).
+   */
+  excluded?: ExcludedInstance[];
 }
+
+/** One series instance the skeleton check took out of the day; `detail` is the English line, the Ukrainian text is `reasonFor(code).uk`. */
+export interface ExcludedInstance { series: string; resourceRef: string; at: Date; code: string; detail: string }
+
+/** Is this instance (a series on its resource at an instant) one the skeleton check excluded? */
+export function isExcludedAt(ctx: Pick<PlanScheduleCtx, 'excluded'>, series: string, resourceRef: string, at: Date): boolean {
+  return !!ctx.excluded?.some((e) => e.series === series && e.resourceRef === resourceRef && e.at.getTime() === at.getTime());
+}
+
+/** Is the instance of `series` at the resource-local `time` of the plan day excluded? (the network validator's due map is by time, not by instant) */
+export function isExcludedInstance(ctx: Pick<PlanScheduleCtx, 'excluded' | 'clocks' | 'planDate'>, series: Pick<Series, 'name' | 'resource_ref'>, time: string): boolean {
+  const clock = ctx.clocks[series.resource_ref];
+  return !!clock && isExcludedAt(ctx, series.name, series.resource_ref, zonedToUtc(ctx.planDate, time, clock.tz));
+}
+
+/** How many instances the skeleton check excluded on a resource: the day's minimum loses them (nothing can be planned for them). */
+export const excludedOn = (ctx: Pick<PlanScheduleCtx, 'excluded'>, ref: string): number => (ctx.excluded ?? []).filter((e) => e.resourceRef === ref).length;
+
+/** The Ukrainian reason line of an excluded instance (the catalogue's text, the English detail when the code has no entry). */
+export const excludedReasonUk = (e: Pick<ExcludedInstance, 'code' | 'detail'>): string => reasonFor(e.code)?.uk ?? e.detail;
 
 /** A paused series (or pin, or resource) of the plan's scope, as the planner needs it (spec 060). */
 export interface PausedSeriesCtx {
@@ -85,10 +112,42 @@ export function slotSeries(s: PlanSlotLike): string | null {
   return s.series ?? s.source_hints?.find((h) => h.startsWith('series:'))?.slice('series:'.length) ?? null;
 }
 
+/**
+ * Spec 073 FR-002 / A21: the series is authoritative for its slots' format. Each slot that names a series (`series`, else a
+ * `series:` hint) gets that series' format; the resource of a slot is `resource_ref ?? defaultRef`, matched by name and
+ * resource first, then by name alone. A slot that names an unknown series is left as it is. `changed[].i` indexes the
+ * submitted array. Pure: the submit tools call it before the validators.
+ */
+export function lockSeriesFormats<S extends PlanSlotLike & { format: string }>(
+  slots: readonly S[], series: ReadonlyArray<Pick<Series, 'name' | 'resource_ref' | 'format'>>, defaultRef: string,
+): { slots: S[]; changed: Array<{ i: number; from: string; to: string }> } {
+  const changed: Array<{ i: number; from: string; to: string }> = [];
+  const out = slots.map((s, i) => {
+    const name = slotSeries(s);
+    if (!name) return s;
+    const ref = s.resource_ref ?? defaultRef;
+    const found = series.find((x) => x.name === name && x.resource_ref === ref) ?? series.find((x) => x.name === name);
+    if (!found || found.format === s.format) return s;
+    changed.push({ i, from: s.format, to: found.format });
+    return { ...s, format: found.format };
+  });
+  return { slots: out, changed };
+}
+
+/** The tool-result line that tells the planner which slots code gave their series' format (empty = none). */
+export function lockedFormatsNote(slots: ReadonlyArray<PlanSlotLike>, changed: ReadonlyArray<{ i: number; from: string; to: string }>): string | null {
+  if (!changed.length) return null;
+  const parts = changed.map((c) => {
+    const s = slots[c.i];
+    return `слот ${c.i + 1} (${s.resource_ref ? `${s.resource_ref} ` : ''}${s.time}, серія «${slotSeries(s)}»): ${c.from} → ${c.to}`;
+  });
+  return `Формат слота серії задає серія, код виставив його сам: ${parts.join('; ')}.`;
+}
+
 export interface DueInstance { series: Series; time: string; at: Date }
 
 /** Due series instances of the day on the scope's resources (resource-local times). */
-export function dueInstances(ctx: Pick<PlanScheduleCtx, 'series' | 'clocks' | 'planDate' | 'paused'>): DueInstance[] {
+export function dueInstances(ctx: Pick<PlanScheduleCtx, 'series' | 'clocks' | 'planDate' | 'paused' | 'excluded'>): DueInstance[] {
   const wd = weekdayOf(ctx.planDate);
   const out: DueInstance[] = [];
   for (const s of ctx.series) {
@@ -97,10 +156,18 @@ export function dueInstances(ctx: Pick<PlanScheduleCtx, 'series' | 'clocks' | 'p
     const clock = ctx.clocks[s.resource_ref];
     const c = parseCadence(s.cadence);
     if (!clock || !c) continue;
-    for (const time of instancesOn(c, wd)) out.push({ series: s, time, at: zonedToUtc(ctx.planDate, time, clock.tz) });
+    for (const time of instancesOn(c, wd)) {
+      const at = zonedToUtc(ctx.planDate, time, clock.tz);
+      if (isExcludedAt(ctx, s.name, s.resource_ref, at)) continue;  // spec 073 A54: its setup is wrong, it is not owed today
+      out.push({ series: s, time, at });
+    }
   }
   return out.sort((a, b) => a.at.getTime() - b.at.getTime());
 }
+
+/** How many series instances are due on a resource (the series is authoritative: the day's maximum is never below this). */
+export const dueOn = (ctx: Pick<PlanScheduleCtx, 'series' | 'clocks' | 'planDate' | 'paused' | 'excluded'>, ref: string): number =>
+  dueInstances(ctx).filter((d) => d.series.resource_ref === ref).length;
 
 /** The plan's slots with their resource, instant and series (shared by the checks and the due-series matching). */
 function planSlots(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: string) {
@@ -157,6 +224,20 @@ export function materialSkips(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: 
   return out;
 }
 
+export type NonMaterialSkip = DueInstance & { cause: 'other'; reason: string };
+
+/**
+ * Spec 073 FR-007: the due instances the planner skipped for any other cause. They do not lower the day's minimum (that is the
+ * material causes' honest empty day), but each leaves a `planner_skipped` placeholder, so a series that stops leaves a trace.
+ */
+export function nonMaterialSkips(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: string): NonMaterialSkip[] {
+  const out: NonMaterialSkip[] = [];
+  for (const m of matchDue(plan, ctx, planSlots(plan, ctx, defaultRef))) {
+    if (m.state === 'skipped' && !isMaterialCause(m.cause)) out.push({ ...m.due, cause: 'other', reason: m.reason ?? '' });
+  }
+  return out;
+}
+
 /** The way out a planner is told when a day cannot be filled because there is nothing to post from. */
 export const EMPTY_DAY_WAY_OUT = 'якщо матеріалу немає — skipped_series з cause: no_material (для серії) або short_day (для всього дня)';
 /** The same for a network plan: it has `short_days` (a resource's whole day), not `short_day`. */
@@ -193,9 +274,22 @@ export function planScheduleErrors(plan: PlanLike, ctx: PlanScheduleCtx, default
   // Due series: planned within ±90 min, covered by a pin, or skipped with a reason.
   const due = dueInstances(ctx);
   const dueNames = new Set(due.map((d) => d.series.name));
+  // Spec 073 A54: a slot that names an instance the skeleton check excluded is refused with the catalogue's reason (on both planner
+  // paths: this function is shared). A series whose every instance is excluded is not due, and says so rather than «не за розкладом».
+  const refused = new Set<number>();
+  const win = SERIES_WINDOW_MIN * 60_000;
+  for (const x of slots) {
+    if (!x.series) continue;
+    const own = (ctx.excluded ?? []).filter((e) => e.series === x.series);
+    const hit = own.find((e) => e.resourceRef === x.ref && x.at && Math.abs(x.at.getTime() - e.at.getTime()) <= win)
+      ?? (!dueNames.has(x.series) ? own[0] : undefined);
+    if (!hit) continue;
+    refused.add(x.i);
+    errors.push(`${label(x)}: серія «${x.series}» ${ctx.planDate} виключена: ${excludedReasonUk(hit)} — не плануй її`);
+  }
   if (ctx.checkSlotSeries) {
     for (const x of slots) {
-      if (!x.series) continue;
+      if (!x.series || refused.has(x.i)) continue;
       const s = ctx.series.find((y) => y.name === x.series);
       if (!dueNames.has(x.series)) errors.push(`${label(x)}: серія «${x.series}» ${ctx.planDate} не за розкладом або неактивна`);
       else if (s && s.resource_ref !== x.ref) errors.push(`${label(x)}: серія «${x.series}» належить ресурсу ${s.resource_ref}`);
@@ -283,6 +377,12 @@ export function scheduleBlock(ctx: PlanScheduleCtx, withPauses = true): string |
   }
   for (const d of dueInstances(ctx)) {
     lines.push(`- серія «${d.series.name}» ${d.series.resource_ref} о ${d.time} (±${SERIES_WINDOW_MIN} хв, format ${d.series.format})${d.series.locked ? ' — заблокована власником, обовʼязкова (немає матеріалу — skipped_series з cause: no_material)' : ' — або skipped_series з причиною (немає матеріалу — cause: no_material)'}`);
+  }
+  // Spec 073 A53: an instance whose setup is wrong is not due; the planner is told why, once per series and reason (code refuses a slot for it).
+  const told = new Set<string>();
+  for (const e of ctx.excluded ?? []) {
+    const line = `- не плануй «${e.series}»: ${excludedReasonUk(e)}`;
+    if (!told.has(line)) { told.add(line); lines.push(line); }
   }
   for (const p of withPauses ? ctx.paused ?? [] : []) {
     lines.push(`- ${p.name ? `серія «${p.name}»` : p.resourceRef ? `планування ${p.resourceRef}` : p.label} НА ПАУЗІ: ${p.streak} ${skipsUk(p.streak)} поспіль${p.reason ? ` (${p.reason})` : ''} — не плануй слотів цієї серії, код їх відхилить; обери іншу серію чи формат`);

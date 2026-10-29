@@ -2,8 +2,8 @@ import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isQuietHour, zonedToUtc } from './time';
-import { EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
-import { type EmptyDaySlot, ShortDayInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
+import { dueOn, EMPTY_DAY_WAY_OUT, excludedOn, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput, slotSeries } from '../schedule/plan-schedule-rules';
+import { type EmptyDaySlot, excludedPlaceholders, ShortDayInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
 import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
 import { pollCapErrors, type PollCapCtx } from './poll-cap';
 import { cardFeedIds, LIVE_SLOT_FIELDS, resolveSlotTopic, type LiveSpec } from '../live/live-slot';
@@ -94,10 +94,13 @@ export function validatePlan(
   const total = n + reservedAt.length;
   const capacity = remainingCapacity(card, planDate, now);
   // Spec 068 FR-004: an honest empty day lowers the minimum — a `short_day` to 0, a series skipped with a material cause by its instances.
-  const skippedN = schedule ? materialSkips(plan, schedule, schedule.defaultRef).length : 0;
+  // Spec 073 FR-011: an instance the skeleton check excluded cannot be planned, so it is not owed either; and the series is authoritative,
+  // so the day's maximum is never below the series instances due that day.
+  const skippedN = schedule ? materialSkips(plan, schedule, schedule.defaultRef).length + excludedOn(schedule, schedule.defaultRef) : 0;
   const minToday = plan.short_day ? 0 : Math.max(0, Math.min(card.postsPerDayMin - skippedN, capacity + reservedAt.length));
-  if (total < minToday || total > card.postsPerDayMax) {
-    errors.push(`кількість постів (з резервними: ${reservedAt.length}) має бути ${minToday}–${card.postsPerDayMax}, зараз ${total}${total < minToday ? `; ${EMPTY_DAY_WAY_OUT}` : ''}`);
+  const maxToday = schedule ? Math.max(card.postsPerDayMax, dueOn(schedule, schedule.defaultRef)) : card.postsPerDayMax;
+  if (total < minToday || total > maxToday) {
+    errors.push(`кількість постів (з резервними: ${reservedAt.length}) має бути ${minToday}–${maxToday}, зараз ${total}${total < minToday ? `; ${EMPTY_DAY_WAY_OUT}` : ''}`);
   }
 
   const allowed = new Set(Object.entries(card.formats)
@@ -125,7 +128,12 @@ export function validatePlan(
   plan.slots.forEach((s, i) => {
     const at = zonedToUtc(planDate, s.time, card.timezone);
     const label = `слот ${i + 1} (${s.time})`;
-    if (!allowed.has(s.format) && !directiveFormat(s)) errors.push(`${label}: формат ${s.format} не дозволений; дозволені: ${[...allowed].join(', ')}`);
+    // Spec 073 FR-002: a series slot's format is the series' (code set it), not the card's weights; only "can it be produced here" still applies.
+    const seriesName = slotSeries(s);
+    const ofSeries = !!seriesName && !!schedule?.series.some((x) => x.name === seriesName);
+    if (ofSeries) {
+      if (!(SUPPORTED_FORMATS as readonly string[]).includes(s.format) || (formatOk && !formatOk(s.format))) errors.push(`${label}: формат ${s.format} серії «${seriesName}» зараз неможливий тут`);
+    } else if (!allowed.has(s.format) && !directiveFormat(s)) errors.push(`${label}: формат ${s.format} не дозволений; дозволені: ${[...allowed].join(', ')}`);
     if (at.getTime() < now.getTime() + LEAD_MINUTES * 60_000) errors.push(`${label}: час уже минув або менше ніж через ${LEAD_MINUTES} хв`);
     const hour = Number(s.time.slice(0, 2));
     if (isQuietHour(hour, card.quietStartHour, card.quietEndHour)) errors.push(`${label}: тихі години ${card.quietStartHour}:00–${card.quietEndHour}:00`);
@@ -151,10 +159,10 @@ export function validatePlan(
     });
   });
   if (schedule) errors.push(...planScheduleErrors(plan, schedule, schedule.defaultRef));
-  if (pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ format: s.format, series: s.series ?? null, sourceHints: s.source_hints })), pollCap, schedule?.series));
+  if (pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ format: s.format, series: s.series ?? null, sourceHints: s.source_hints })), pollCap));
 
   if (errors.length) return { ok: false, errors };
-  const empty = schedule ? skippedSeriesPlaceholders(plan, schedule, schedule.defaultRef) : [];
+  const empty = schedule ? [...skippedSeriesPlaceholders(plan, schedule, schedule.defaultRef), ...excludedPlaceholders(schedule, schedule.defaultRef)] : [];
   if (plan.short_day) empty.push(shortDayPlaceholder({ resourceRef: null, tz: card.timezone, planDate, now, cause: plan.short_day.cause, reason: plan.short_day.reason }));
   return { ok: true, slots, empty };
 }

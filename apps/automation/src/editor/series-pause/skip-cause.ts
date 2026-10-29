@@ -12,7 +12,7 @@ import { agentCauseOf, isCriticRejection, isNotAMiss, isOwnerDecision, skipGroup
  * The slot's `error` text is the record. A new `skip_slot` writes `skipped by agent: <cause>: <reason>` (spec 068 FR-001)
  * and that cause is read first; the stable codes of the code paths and, for the 14-day window of older rows, the free text
  * of an executor's own `skip_slot` are read by patterns. Owner decisions, budget waits, a slot the breaker itself skipped
- * (`series_paused`) and infra skips (spec 061 `preflight_format_unavailable`) are `ignore`: they neither count nor break a streak.
+ * (`series_paused`) and config skips (spec 073: `preflight_format_unavailable`, `series_source_mismatch`, …) are `ignore`: they neither count nor break a streak.
  */
 export type SkipCause = 'no_material' | 'source_used' | 'source_unreachable' | 'quality' | 'critic';
 /** The causes a pause stores (the 093 CHECK set, besides `owner`). */
@@ -80,6 +80,8 @@ export function classifyClose(s: ClosedSlotLike): SlotClose {
   if (new RegExp(`^${SERIES_PAUSED_CODE}\\b`).test(e)) return { k: 'ignore' };
   const group = skipGroupOf(e, s.criticVerdict);
   if (group === 'budget' || /^waiting for budget\b/.test(e)) return { k: 'ignore' };
+  // Spec 073 FR-010: a slot whose CONFIGURATION is wrong says nothing about the material or the quality of the series: it neither counts nor breaks a streak.
+  if (group === 'config') return { k: 'ignore' };
   if (isCriticRejection(e, s.criticVerdict) || group === 'critic') return { k: 'cause', cause: 'critic' };
   // Spec 061 FR-001: `preflight_<reason>` codes classify by prefix, so the pre-flight can add reasons without touching this file.
   const pre = /^preflight_(\w+)/.exec(e);
@@ -91,6 +93,8 @@ export function classifyClose(s: ClosedSlotLike): SlotClose {
   // Spec 068 FR-004: the planner's own honest empty day (a placeholder slot) is classified by its code, like the pre-flight's.
   if (/^planner_no_material\b/.test(e)) return { k: 'cause', cause: 'no_material' };
   if (/^planner_source_unreachable\b/.test(e)) return { k: 'cause', cause: 'source_unreachable' };
+  // Spec 073 FR-007: the planner skipped the instance for another reason — a trace for the stalled-series note, not a dead source.
+  if (/^planner_skipped\b/.test(e)) return { k: 'ignore' };
   if (STORY_TEXT.test(e)) return { k: 'other' };
   // Spec 071's guard code (the series takes rows in order): the text names a row id («наступний — data://prompts/503»), which the
   // free-text reader below would take for an HTTP status. It is a content failure, never a dead source.

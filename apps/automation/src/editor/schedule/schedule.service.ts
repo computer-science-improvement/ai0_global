@@ -15,13 +15,16 @@ import { Playbook, validatePlaybook } from '../network/playbook';
 import { instancesOn, parseCadence, SeriesSourceCatalog, seriesSourceLabel, type SeriesSource } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
-import { minAfterPauses, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { type ExcludedInstance, minAfterPauses, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { checkPlanSkeleton, EXCLUDING_CODES, skeletonResourcesWith } from '../readiness/plan-skeleton';
 import type { ScheduleRepository } from './schedule.repository';
 import {
   blackoutAt, pinInstant, ruleDto, ruleLabel, ruleOn, ruleProblems, ruleToInput, ScheduleRule, ScheduleRuleInput, ScheduleRulePatch, shiftDate, weekdayOf,
 } from './schedule-rules';
 import { applySeriesOp, SeriesFields, SeriesOp, seriesDiff, seriesKey } from './series-change';
 import { refDataset, SeriesForSlot, seriesNote, seriesSourceMismatch, sourceHints } from './series-guard';
+import { slotSeriesOf } from '../post/polls/poll-cap-guard';
+import type { SlotConfigCtx } from '../readiness/slot-config';
 import { resolveContentRef } from '../../data/data-refs';
 import { LIVE_DEFAULT_MAX_AGE_HOURS, seriesLiveSources, type TopicMode } from '../live/live-slot';
 
@@ -58,12 +61,17 @@ export interface ScheduleServiceDeps {
   /** Library datasets and card feeds a source may name. */
   sourceCatalog?: (card: EditorCard | null) => Promise<SeriesSourceCatalog>;
   /** Unposted rows of a dataset on a resource (content ledger); null = unknown. */
-  unposted?: (resourceRef: string, dataset: string) => Promise<number | null>;
+  unposted?: (resourceRef: string, dataset: string, o?: { roll?: boolean }) => Promise<number | null>;
   /**
    * Spec 071 FR-005: the next row (`data://…`) of a dataset that goes in order, on a resource, within a category; null when
    * the dataset is not an in-order cycle dataset or nothing is left. A cycle dataset with nothing left rolls to the next round first.
    */
-  nextRow?: (resourceRef: string, dataset: string, category: string | null) => Promise<string | null>;
+  nextRow?: (resourceRef: string, dataset: string, category: string | null, o?: { roll?: boolean }) => Promise<string | null>;
+  /**
+   * Spec 073 A22: can this format be produced here right now? (`formatAvailable(f, env).ok`: a carousel needs slide hosting.) The
+   * service has no env of its own; absent = every format the platform implements.
+   */
+  formatOk?: (format: string) => boolean;
   /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
   pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
   now?:     () => Date;
@@ -189,10 +197,39 @@ export class ScheduleService {
     const series = (net?.playbook ? normalizePlaybook(net.playbook).series : []).filter((s) => clocks[s.resource_ref]);
     // Spec 060: paused series are not planned or required; the last skip reasons per series go to the planner.
     const view = this.d.pauses ? await this.d.pauses.forChannel(card.channelKey, now).catch(() => null) : null;
+    const excluded = this.excludedInstances(card, net, clocks, series, planDate, view?.paused ?? []);
     return {
       planDate, defaultRef: anchorRef, now, clocks, rules, pins, series, checkSlotSeries: scope === 'single',
       ...(view ? { paused: view.paused, recentSkips: view.recentSkips } : {}),
+      ...(excluded.length ? { excluded } : {}),
     };
+  }
+
+  /**
+   * Spec 073 FR-011 / A8 / A54: the day's series instances that cannot be planned because of their setup (a format this resource cannot
+   * produce, a time inside its quiet hours). `checkPlanSkeleton` with the day gives one problem per instance with `at`; the planner
+   * leaves them out, and each becomes a config placeholder. A paused series is not due, so it is not excluded either. Never throws:
+   * a check that cannot run excludes nothing.
+   */
+  private excludedInstances(
+    card: EditorCard, net: NetworkCtx | null, clocks: PlanScheduleCtx['clocks'], series: PlanScheduleCtx['series'], planDate: string, paused: PausedSeriesCtx[],
+  ): ExcludedInstance[] {
+    if (!net || !series.length) return [];
+    try {
+      const resources = skeletonResourcesWith(card, net.resources.filter((r) => clocks[r.ref]), this.d.formatOk);
+      const out: ExcludedInstance[] = [];
+      for (const p of checkPlanSkeleton(card, net.playbook, series, resources, planDate)) {
+        if (!EXCLUDING_CODES.has(p.code) || !p.series || !p.at) continue;
+        const s = series.find((x) => x.name === p.series);
+        if (!s || paused.some((x) => x.name === s.name)) continue;
+        const at = new Date(p.at);
+        if (out.some((e) => e.series === s.name && e.at.getTime() === at.getTime())) continue;   // one reason per instance: the first code wins
+        out.push({ series: s.name, resourceRef: s.resource_ref, at, code: p.code, detail: p.detail });
+      }
+      return out;
+    } catch {
+      return [];
+    }
   }
 
   /**
@@ -296,7 +333,7 @@ export class ScheduleService {
       const pb = orch ? await this.d.network.activePlaybook(orch.id) : null;
       const all = pb ? normalizePlaybook(pb.body).series : [];
       const s = all.find((x) => x.name === slot.seriesName && x.resource_ref === ref) ?? all.find((x) => x.name === slot.seriesName);
-      if (s) return { name: s.name, brief: s.brief, format: s.format, source: s.source ?? null, sourceMode: s.source_mode ?? 'suggested', locked: !!s.locked };
+      if (s) return { name: s.name, brief: s.brief, format: s.format, source: s.source ?? null, sourceMode: s.source_mode ?? 'suggested', locked: !!s.locked, active: s.active !== false };
     }
     if (slot.scheduleRuleId) {
       const r = await this.d.rules.get(slot.scheduleRuleId);
@@ -313,23 +350,60 @@ export class ScheduleService {
     const s = await this.seriesForSlot(slot);
     if (!s) return { note: null };
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
-    if (s.sourceMode === 'required' && s.source?.kind === 'library' && this.d.unposted) {
-      const left = await this.d.unposted(ref, s.source.table).catch(() => null);
-      if (left === 0) {
-        await this.sourceEmpty(slot, s).catch(() => {});
-        return { note: null, skip: `series "${s.name}": required source library:${s.source.table} has nothing left on ${ref}` };
-      }
+    // A run: a cycle dataset whose round is done starts the next one here (`roll`), so the slot is not told «nothing left».
+    const { left, nextRow } = await this.seriesMaterial(s, ref, { roll: true });
+    if (left === 0 && s.source?.kind === 'library') {
+      await this.sourceEmpty(slot, s).catch(() => {});
+      return { note: null, skip: `series "${s.name}": required source library:${s.source.table} has nothing left on ${ref}` };
     }
     // Spec 071 FR-005: a series (or pin) on a dataset that goes in order takes the next row of the round.
-    const next = await this.nextRowOf(s, ref);
     // `nextRow` also goes back as data: the ladder keeps the row the series is waiting for (spec 071 R3 / R4).
-    return { note: seriesNote(s, seriesSourceLabel, { nextRow: next }), nextRow: next };
+    return { note: seriesNote(s, seriesSourceLabel, { nextRow }), nextRow };
+  }
+
+  /**
+   * The material of a series on a resource, read only (spec 073 A3): `left` is the unposted count of a REQUIRED library source
+   * (null for any other, or when unknown) and `nextRow` the next in-order row (null when `left` is 0, which needs none). It never
+   * posts to the inbox. `roll: false` (spec 073 I1) also never starts a round: the config check reads through it.
+   */
+  private async seriesMaterial(s: SeriesForSlot, resourceRef: string, o: { roll: boolean }): Promise<{ left: number | null; nextRow: string | null }> {
+    const left = s.sourceMode === 'required' && s.source?.kind === 'library' && this.d.unposted
+      ? await this.d.unposted(resourceRef, s.source.table, { roll: o.roll }).catch(() => null)
+      : null;
+    return { left, nextRow: left === 0 ? null : await this.nextRowOf(s, resourceRef, o) };
   }
 
   /** The next in-order row of the slot's library source on a resource, or null (not a library source, not in order, nothing left, no dep, a read error). */
-  private async nextRowOf(s: Pick<SeriesForSlot, 'source'>, resourceRef: string): Promise<string | null> {
+  private async nextRowOf(s: Pick<SeriesForSlot, 'source'>, resourceRef: string, o?: { roll?: boolean }): Promise<string | null> {
     if (s.source?.kind !== 'library' || !this.d.nextRow) return null;
-    return this.d.nextRow(resourceRef, s.source.table, s.source.category ?? null).catch(() => null);
+    return this.d.nextRow(resourceRef, s.source.table, s.source.category ?? null, o).catch(() => null);
+  }
+
+  /**
+   * Spec 073 FR-009 / A3 / A12 / A16: the context `checkSlotConfig` reads, for the runner (which passes its `tools`), the 072 doctor,
+   * the 074 repair and the 077 bring-up (which pass none). READ ONLY: no inbox post, and no round is started (`roll: false`, I1).
+   * Null when the slot names no series, or the channel has no orchestrator or no active playbook (nothing to check).
+   * `series` is the playbook's full list, inactive series included.
+   */
+  async slotConfigContext(card: EditorCard, slot: EditorSlot, o: { tools?: ReadonlySet<string> | null } = {}): Promise<SlotConfigCtx | null> {
+    const name = slotSeriesOf(slot);
+    if (!name) return null;
+    const orch = await this.d.agents.findTop('orchestrator', 'resource', `telegram:${slot.channelKey}`);
+    const pb = orch ? await this.d.network.activePlaybook(orch.id) : null;
+    if (!pb) return null;
+    const series = normalizePlaybook(pb.body).series;
+    const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
+    const s = series.find((x) => x.name === name && x.resource_ref === ref) ?? series.find((x) => x.name === name);
+    const catalog = this.d.sourceCatalog ? await this.d.sourceCatalog(card).catch(() => null) : null;
+    let nextRow: string | null = null;
+    let material: SlotConfigCtx['material'] = null;
+    if (s && s.active !== false) {
+      const m = await this.seriesMaterial(
+        { name: s.name, brief: s.brief, format: s.format, source: s.source ?? null, sourceMode: s.source_mode ?? 'suggested', locked: !!s.locked }, ref, { roll: false });
+      nextRow = m.nextRow;
+      material = m.left === null ? null : m.left === 0 ? 'empty' : 'ok';
+    }
+    return { series, catalog, tools: o.tools ?? null, nextRow, material };
   }
 
   private async sourceEmpty(slot: EditorSlot, s: SeriesForSlot): Promise<void> {
@@ -354,8 +428,10 @@ export class ScheduleService {
    * Publish guard of a slot: a live post inside the owner's blackout (`blackout_window`; owner pins are
    * exempt), a `required` series source the post does not use (`series_source_mismatch`) and (spec 034)
    * a live slot's post without its item's source URL (`live_source_missing`).
+   * Spec 073 A20 / A34: a series or pin slot's post in another format than the series (or the pin) gives is refused as
+   * `series_format_mismatch` (a config failure) — `refs.format` is the post's format, absent = not checked.
    */
-  async publishGuard(slot: EditorSlot, refs: { libraryRef?: string | null; sourceUrl?: string | null }, o: { live: boolean; now: Date; card?: EditorCard | null; feeds?: CardSource[] }): Promise<Fail | null> {
+  async publishGuard(slot: EditorSlot, refs: { libraryRef?: string | null; sourceUrl?: string | null; format?: string | null }, o: { live: boolean; now: Date; card?: EditorCard | null; feeds?: CardSource[] }): Promise<Fail | null> {
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
     // Spec 034 FR-010: a live slot's post names the item it is about, so the ledger can stop a repeat.
     if (slot.topicMode === 'live' && !refs.sourceUrl) {
@@ -370,6 +446,16 @@ export class ScheduleService {
       }
     }
     const s = await this.seriesForSlot(slot);
+    // Spec 073 A20: the format check runs once the series or pin resolves, before the source and order checks. An improvised slot
+    // (no series, no pin) has no `s` and is never checked.
+    if (s && refs.format && refs.format !== s.format) {
+      return {
+        error: 'series_format_mismatch',
+        details: s.pin
+          ? `закріплений слот має формат ${s.format}, а пост — ${refs.format}: зроби пост у ${s.format}`
+          : `серія «${s.name}» виходить у форматі ${s.format}, а пост — ${refs.format}. Формат задає серія: зроби пост у ${s.format}`,
+      };
+    }
     if (s && !s.pin) {
       const why = seriesSourceMismatch(s, refs, (o.feeds ?? []).filter((f) => f.kind === 'rss' || f.kind === 'url'));
       if (why) return { error: 'series_source_mismatch', details: why };
@@ -601,7 +687,8 @@ export class ScheduleService {
       const r = sc.net.resources.find((x) => x.ref === s.resource_ref);
       if (!r) errors.push(`${s.resource_ref} is not a resource of @${sc.agent.handle}`);
       else {
-        const allowed = r.platform === 'telegram' ? sc.net.telegramFormats : implementedFormats(r.platform);
+        // Spec 073 FR-002: a series' format is the series' own — it only has to be one the platform implements (not the card's weights).
+        const allowed = implementedFormats(r.platform);
         if (!allowed.includes(s.format)) errors.push(`format ${s.format} is not available on ${r.ref} (available: ${allowed.join(', ')})`);
         if (!body.platforms.some((p) => p.resource_ref === s.resource_ref)) errors.push(`the playbook has no section for ${s.resource_ref}`);
       }

@@ -88,7 +88,7 @@ export interface ChannelLine {
 }
 
 const SKIP_UK: Record<string, string> = {
-  critic: 'критик', lint: 'перевірки тексту', cap: 'ліміти', nothing_fresh: 'нема свіжого матеріалу', budget: 'бюджет',
+  critic: 'критик', lint: 'перевірки тексту', config: 'налаштування', cap: 'ліміти', nothing_fresh: 'нема свіжого матеріалу', budget: 'бюджет',
   other: 'інше', owner: 'ваше рішення',
 };
 

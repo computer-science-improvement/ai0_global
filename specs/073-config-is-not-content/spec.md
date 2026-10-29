@@ -1,6 +1,6 @@
 # 073 — Config is not content
 
-Status: draft · Builds on 034 (poll cap, ladder steps), 037 (fallback ladder), 047 (dataset formats), 060 (series breaker), 061 (slot pre-flight), 068 (honest empty days), 069 (skill source refusals), 071 (rows in order) · Migration 098 · Linear AI0-251
+Status: done · Builds on 034 (poll cap, ladder steps), 037 (fallback ladder), 047 (dataset formats), 060 (series breaker), 061 (slot pre-flight), 068 (honest empty days), 069 (skill source refusals), 071 (rows in order) · Migration 098 · Linear AI0-251
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.
 

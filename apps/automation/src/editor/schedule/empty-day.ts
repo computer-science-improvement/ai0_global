@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { zonedToUtc } from '../roles/time';
 import { shiftDate } from './schedule-rules';
-import { materialSkips, type PlanLike, type PlanScheduleCtx } from './plan-schedule-rules';
+import { materialSkips, nonMaterialSkips, type PlanLike, type PlanScheduleCtx } from './plan-schedule-rules';
 
 /**
  * Spec 068 FR-004: an honest empty day. A planner with nothing to post from says so (a series skipped with a material
@@ -41,17 +41,43 @@ export interface EmptyDaySlot {
   day?:        { from: Date; to: Date };
 }
 
-/** The SQL regex (Postgres `~`) that recognises a placeholder by its error; no quotes inside, it is spliced into queries. */
-export const EMPTY_DAY_ERROR_RE = '^planner_(no_material|source_unreachable)';
+/**
+ * The SQL regex (Postgres `~`) that recognises a placeholder by its error; no quotes inside, it is spliced into queries.
+ * Spec 073 (A42): it also names the placeholders of a non-material skip (`planner_skipped`) and of the skeleton check
+ * (`series_format_unavailable`, `series_in_quiet_hours`). It has NO `\b`: in Postgres `~` a `\b` is a backspace, not a word edge.
+ */
+export const EMPTY_DAY_ERROR_RE = '^(planner_(no_material|source_unreachable|skipped)|series_format_unavailable|series_in_quiet_hours)';
 
-export const emptyDayError = (cause: ShortDayCause, reason: string): string => `planner_${cause}: ${reason.trim()}`.slice(0, 500);
+/** `planner_<cause>: <reason>`; `skipped` is the spec 073 cause of a series the planner skipped for no material reason. */
+export const emptyDayError = (cause: ShortDayCause | 'skipped', reason: string): string => `planner_${cause}: ${reason.trim()}`.slice(0, 500);
 
-/** One placeholder per due instance of a series the planner skipped with a material cause, at the instance's time. */
+/**
+ * One placeholder per due instance of a series the planner skipped, at the instance's time: `planner_<cause>: <reason>` for a
+ * material cause, `planner_skipped: <reason>` for any other (spec 073 FR-007) — so a series that stops leaves a trace.
+ */
 export function skippedSeriesPlaceholders(plan: PlanLike, ctx: PlanScheduleCtx, anchorRef: string): EmptyDaySlot[] {
-  return materialSkips(plan, ctx, ctx.defaultRef).map((m) => ({
+  const slot = (m: { at: Date; series: { resource_ref: string; format: string; name: string } }, error: string): EmptyDaySlot => ({
     scheduledAt: m.at, resourceRef: m.series.resource_ref === anchorRef ? null : m.series.resource_ref,
     format: m.series.format, topic: `Порожній випуск: ${m.series.name}`.slice(0, 300), sourceHints: [`series:${m.series.name}`],
-    seriesName: m.series.name, error: emptyDayError(m.cause, m.reason),
+    seriesName: m.series.name, error,
+  });
+  return [
+    ...materialSkips(plan, ctx, ctx.defaultRef).map((m) => slot(m, emptyDayError(m.cause, m.reason))),
+    ...nonMaterialSkips(plan, ctx, ctx.defaultRef).map((m) => slot(m, emptyDayError('skipped', m.reason))),
+  ];
+}
+
+/**
+ * Spec 073 A54: one config placeholder per series instance the skeleton check excluded (`ctx.excluded`), at the instance's time, with
+ * the error `<code>: <detail>` (`series_format_unavailable` or `series_in_quiet_hours`; both are in `EMPTY_DAY_ERROR_RE`). Both
+ * validators add them to `empty`, so the owner sees the series that cannot go out (`series_missed`) and the breaker ignores it (config).
+ */
+export function excludedPlaceholders(ctx: Pick<PlanScheduleCtx, 'excluded' | 'series'>, anchorRef: string): EmptyDaySlot[] {
+  return (ctx.excluded ?? []).map((e) => ({
+    scheduledAt: e.at, resourceRef: e.resourceRef === anchorRef ? null : e.resourceRef,
+    format: ctx.series.find((s) => s.name === e.series && s.resource_ref === e.resourceRef)?.format ?? 'text',
+    topic: `Порожній випуск: ${e.series}`.slice(0, 300), sourceHints: [`series:${e.series}`], seriesName: e.series,
+    error: `${e.code}: ${e.detail}`.slice(0, 500),
   }));
 }
 

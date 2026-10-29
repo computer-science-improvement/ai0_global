@@ -512,13 +512,18 @@ export class EditorPlansRepository {
     }
   }
 
-  /** Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). */
+  /**
+   * Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). Spec 073
+   * FR-004: only slots of a channel that is not off — an off channel's slot stays `planned` (then `skipStale` /
+   * the scheduler close it as `mode_changed`) instead of being claimed, dropped by the scheduler and swept as «stuck».
+   */
   async claimDue(now: Date, limit: number): Promise<EditorSlot[]> {
     const { rows } = await this.pool.query(
       `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, retry_at = NULL, updated_at = now()
         WHERE id IN (
           SELECT s.id FROM editor_slots s
            WHERE s.status = 'planned' AND s.kind = 'content' AND COALESCE(s.retry_at, s.scheduled_at) <= $1 AND ${DERIVED_READY}
+             AND EXISTS (SELECT 1 FROM editor_channels c WHERE c.channel_key = s.channel_key AND c.mode <> 'off')
            ORDER BY COALESCE(s.retry_at, s.scheduled_at)
            LIMIT $2
            FOR UPDATE OF s SKIP LOCKED)
@@ -573,11 +578,18 @@ export class EditorPlansRepository {
           AND EXISTS (SELECT 1 FROM editor_slots src WHERE src.id = d.derived_from_slot_id
                          AND src.status IN ('planned','running','awaiting_approval','approved'))`,
       [new Date(now.getTime() - maxLateMs)]);
+    // Spec 073 FR-004: a slot of a channel the owner switched off says so (`mode_changed`), not «missed its window».
+    // A deleted channel has no row: its slots fall to the stale line below.
+    const off = await this.pool.query(
+      `UPDATE editor_slots s SET status = 'skipped', error = 'mode_changed', updated_at = now()
+        WHERE s.status = 'planned' AND s.kind = 'content' AND COALESCE(s.retry_at, s.scheduled_at) < $1
+          AND EXISTS (SELECT 1 FROM editor_channels c WHERE c.channel_key = s.channel_key AND c.mode = 'off')`,
+      [new Date(now.getTime() - maxLateMs)]);
     const { rowCount } = await this.pool.query(
       `UPDATE editor_slots SET status = 'skipped', error = 'stale: missed its time window', updated_at = now()
         WHERE status = 'planned' AND kind = 'content' AND COALESCE(retry_at, scheduled_at) < $1`,
       [new Date(now.getTime() - maxLateMs)]);
-    return (rowCount ?? 0) + (derived?.rowCount ?? 0);
+    return (rowCount ?? 0) + (derived?.rowCount ?? 0) + (off?.rowCount ?? 0);
   }
 
   /** Slots stuck in running (process crash mid-run) → failed. */
@@ -721,6 +733,25 @@ export class EditorPlansRepository {
         resourceRef: rows[0].resource_ref ?? rows[0].channel_key, origin: 'editor', status: 'shadowed', slotId: id,
       });
     }
+  }
+
+  /**
+   * Spec 073 A7 / A32: the runner fixes a CLAIMED slot's configuration in place at $0 (`repairSlotConfig`): the format and / or the
+   * source hints, and the note is appended to `fallback.repairs`. Running slots only (074 writes planned ones through its own
+   * guarded patch); returns the patched slot, or null for a slot that is not running (nothing is written).
+   */
+  async patchSlotConfig(id: string, p: { format?: string; sourceHints?: string[]; note: string }, at: Date = new Date()): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET
+              format = COALESCE($2::text, format),
+              source_hints = COALESCE($3::jsonb, source_hints),
+              fallback = COALESCE(fallback, '{"steps":[],"final":null}'::jsonb)
+                         || jsonb_build_object('repairs', COALESCE(fallback->'repairs', '[]'::jsonb)
+                                                          || jsonb_build_array(jsonb_build_object('at', $4::text, 'note', $5::text))),
+              updated_at = now()
+        WHERE id = $1 AND status = 'running' RETURNING *`,
+      [id, p.format ?? null, p.sourceHints ? JSON.stringify(p.sourceHints) : null, at.toISOString(), p.note]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
   }
 
   /** Spec 061 FR-001: the pre-flight gave the planned slot another idea (topic, angle and source hints follow it); `note` is kept as a lint warning. */

@@ -32,7 +32,7 @@ function playbook(over: Partial<Record<string, any>> = {}): Playbook {
 
 const rule = (id: number, text: string) => ({ id, text });
 
-test('rules-vs-config: hashtags off, poll cap, slang, audience — each conflict with its fix', () => {
+test('rules-vs-config: hashtags off, slang, audience — each conflict with its fix (no poll-series conflict: series are exempt from the cap)', () => {
   const out = configConflicts({
     rules: [rule(3, 'Без хештегів у постах'), rule(4, 'Без сленгу, пиши нормативною мовою'), rule(5, 'Пишемо для розробників-початківців')],
     playbook: playbook(),
@@ -42,14 +42,11 @@ test('rules-vs-config: hashtags off, poll cap, slang, audience — each conflict
     }],
   });
   const codes = out.map((c) => c.code).sort();
-  assert.deepEqual(codes, ['audience_mismatch', 'hashtags_off_playbook', 'hashtags_off_profile', 'poll_series_over_cap', 'slang_in_tone', 'slang_in_tone']);
+  assert.deepEqual(codes, ['audience_mismatch', 'hashtags_off_playbook', 'hashtags_off_profile', 'slang_in_tone', 'slang_in_tone']);
   const hash = out.find((c) => c.code === 'hashtags_off_playbook')!;
   assert.equal(hash.rule_id, 3);
   assert.match(hash.detail, /3–5 hashtags.*owner rule #3/);
-  const polls = out.find((c) => c.code === 'poll_series_over_cap')!;
-  assert.match(polls.detail, /8 posts a week/);
-  // The busiest series is paused first; the quiz (1/week) then fits the cap of 3.
-  assert.deepEqual(polls.fix, { target: 'playbook', op: 'pause_series', names: ['Ранкове опитування'] });
+  assert.ok(!out.some((c) => (c.code as string) === 'poll_series_over_cap'), 'spec 073: poll series over the weekly cap are the owner\'s choice, not a conflict');
   const aud = out.find((c) => c.code === 'audience_mismatch')!;
   assert.deepEqual(aud.fix, { target: 'profile', op: 'audience', ref: TG, who: 'Пишемо для розробників-початківців' });
 });
@@ -76,14 +73,13 @@ test('patchPlaybook applies only the playbook fixes; nothing to change → null'
   const pb = playbook();
   const next = patchPlaybook(pb, [
     { target: 'playbook', op: 'hashtags_off', ref: TG },
-    { target: 'playbook', op: 'pause_series', names: ['Ранкове опитування'] },
     { target: 'playbook', op: 'tone', ref: TG, tone: 'Дружньо, з гумором.' },
     { target: 'profile', op: 'hashtags_off', ref: TG },
   ])!;
   const tg = next.platforms.find((p) => p.resource_ref === TG)!;
   assert.deepEqual(tg.hashtag_policy, { vocab: [], min: 0, max: 0 });
   assert.equal(tg.tone, 'Дружньо, з гумором.');
-  assert.equal(next.series.find((s) => s.name === 'Ранкове опитування')!.active, false);
+  assert.equal(next.series.find((s) => s.name === 'Ранкове опитування')!.active, true, 'series are never paused by a config fix');
   assert.equal(next.series.find((s) => s.name === 'Огляд тижня')!.active, true);
   assert.equal(pb.platforms[0].hashtag_policy.max, 5, 'the input is not mutated');
   assert.equal(patchPlaybook(next, [{ target: 'playbook', op: 'hashtags_off', ref: TG }]), null);
