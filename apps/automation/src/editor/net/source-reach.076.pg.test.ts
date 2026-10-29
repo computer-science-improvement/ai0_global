@@ -12,6 +12,15 @@ import { createProbeDb, MIGRATIONS_DIR, type ProbeDb } from '../agents/testing/p
 import { PgHostFailures, feedKey } from './host-failures';
 import { probeSource, type ProbeOpts, type ProbeResult } from '../sources/probe';
 import { PgSourceProbes } from '../sources/source-probes.repository';
+import { SourceHealthRepository } from '../sources/source-health.repository';
+import { SourceHealthService } from '../sources/source-health.service';
+import { OwnerInbox } from '../agents/owner-inbox';
+import { makeCard } from '../post/testing/fixtures';
+import { DataStore } from '../../data/data-store';
+import { ContentLedger } from '../../data/content-ledger';
+import { AgentsRepository } from '../agents/agents.repository';
+import { sourceHealthOf } from '../sources/source-wiring';
+import { NetworkHealthService } from '../health/network-health.service';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -249,4 +258,122 @@ test('probeSource over the real cache and host record: a geoblocked host is read
   now = plus(now, 0.2);
   assert.equal((await probe('https://ok.example/rss', getFeed, { kind: 'rss' })).cached, false);
   assert.equal(feedCalls, 2);
+});
+
+// ── the host notes through the note gate (A9) ────────────────────────────────────────────────────────────────────────
+/** Three timeouts two hours apart from `start`: an `unreachable` strike. Returns the clock after them. */
+async function makeUnreachable(hosts: PgHostFailures, setNow: (d: Date) => void, host: string, start: Date): Promise<Date> {
+  let t = start;
+  for (let i = 0; i < 3; i++) { setNow(t); await hosts.record(host, 'timeout'); t = plus(t, 2); }
+  return t;
+}
+const rssCard = (channelKey: string, host: string) => makeCard({ channelKey, sources: [{ id: 'feed', kind: 'rss', ref: `https://${host}/rss` }] });
+const hostNotes = async (like: string) => (await pool.query(
+  `SELECT title, severity, ref_type, ref_id, subject, parts FROM agent_inbox WHERE kind = 'host_struck' AND ref_id LIKE $1 ORDER BY id`, [like])).rows;
+
+test('host notes: two channels on one struck host get one note each, and a second run gets none', { skip }, async () => {
+  let now = new Date('2026-10-20T08:00:00Z');
+  const hosts = new PgHostFailures(pool, () => now);
+  await makeUnreachable(hosts, (d) => { now = d; }, 'shared.example', now);
+  assert.equal((await row('shared.example')).reason, 'unreachable');
+  const inbox = new OwnerInbox(pool);
+  const repo = new SourceHealthRepository(pool);
+  const cardA = rssCard('@note_a', 'shared.example');
+  const cardB = rssCard('@note_b', 'shared.example');
+  const svc = (card: ReturnType<typeof makeCard>) => new SourceHealthService({ repo, channels: { get: async () => card }, pool, inbox });
+  assert.deepEqual(await svc(cardA).noteStruckHosts(cardA, null), ['shared.example']);
+  assert.deepEqual(await svc(cardB).noteStruckHosts(cardB, null), ['shared.example']);
+  const notes = await hostNotes('@note_%/shared.example%');
+  assert.deepEqual(notes.map((n) => [n.ref_type, n.subject, n.severity]), [
+    ['host', 'host_struck:@note_a/shared.example', 'action'], ['host', 'host_struck:@note_b/shared.example', 'action'],
+  ]);
+  assert.equal(notes[0].title, 'shared.example cannot be reached from the server');
+  assert.deepEqual(notes[0].parts, ['unreachable', 'strikes:1', 'since:never']);
+  assert.ok(notes[0].ref_id.startsWith('@note_a/shared.example#'), 'the gate adds the parts key; the channel/host prefix stays');
+  assert.deepEqual(await svc(cardA).noteStruckHosts(cardA, null), [], 'the same streak says nothing new');
+  assert.deepEqual(await svc(cardB).noteStruckHosts(cardB, null), []);
+  assert.equal((await hostNotes('@note_%/shared.example%')).length, 2);
+});
+
+test('host notes: a success, then a new streak is a new `since:` part and a new note', { skip }, async () => {
+  let now = new Date('2026-10-20T08:00:00Z');
+  const hosts = new PgHostFailures(pool, () => now);
+  const end = await makeUnreachable(hosts, (d) => { now = d; }, 'again.example', now);
+  const inbox = new OwnerInbox(pool);
+  const card = rssCard('@note_c', 'again.example');
+  const svc = new SourceHealthService({ repo: new SourceHealthRepository(pool), channels: { get: async () => card }, pool, inbox });
+  assert.deepEqual(await svc.noteStruckHosts(card, null), ['again.example']);
+  now = plus(end, 30);
+  await hosts.succeeded('again.example', 'page');
+  const r = await row('again.example');
+  assert.deepEqual([r.strikes, r.consecutive_timeouts, r.noted_at], [0, 0, null]);
+  assert.deepEqual(await svc.noteStruckHosts(card, null), [], 'recovered: no strike, nothing to say');
+  await makeUnreachable(hosts, (d) => { now = d; }, 'again.example', plus(now, 1));
+  assert.deepEqual(await svc.noteStruckHosts(card, null), ['again.example']);
+  const notes = await hostNotes('@note_c/again.example%');
+  assert.equal(notes.length, 2);
+  assert.deepEqual(notes[0].parts.slice(0, 2), ['unreachable', 'strikes:1']);
+  assert.equal(notes[0].parts[2], 'since:never');
+  assert.equal(notes[1].parts[2], 'since:20261021T2000', 'the streak now starts at the success of 2026-10-21 20:00');
+});
+
+test('host notes: a legacy host the 061 code already noted (noted_at set) stays quiet until a success clears it', { skip }, async () => {
+  let now = new Date('2026-10-20T08:00:00Z');
+  const hosts = new PgHostFailures(pool, () => now);
+  const end = await makeUnreachable(hosts, (d) => { now = d; }, 'legacy.example', now);
+  await pool.query(`UPDATE source_host_failures SET noted_at = now() WHERE host = 'legacy.example'`);
+  const inbox = new OwnerInbox(pool);
+  const card = rssCard('@note_d', 'legacy.example');
+  const svc = new SourceHealthService({ repo: new SourceHealthRepository(pool), channels: { get: async () => card }, pool, inbox });
+  assert.deepEqual(await svc.noteStruckHosts(card, null), []);
+  assert.equal((await hostNotes('@note_d/%')).length, 0);
+  now = plus(end, 30);
+  await hosts.succeeded('legacy.example', 'page');
+  await makeUnreachable(hosts, (d) => { now = d; }, 'legacy.example', plus(now, 1));
+  assert.deepEqual(await svc.noteStruckHosts(card, null), ['legacy.example'], 'the next streak is heard of');
+  // The new code never sets noted_at.
+  assert.equal((await row('legacy.example')).noted_at, null);
+});
+
+// ── coverage (A22, A23): the shape of @ai0_prompts_dev ───────────────────────────────────────────────────────────────
+test('a card with no sources and a library series: one source row with its runway on the agent report and on network health; empty = exhausted', { skip }, async () => {
+  const CHAN = '@e2e_prompts076';
+  const RES = `telegram:${CHAN}`;
+  const key = 'p076_prompts';
+  const store = new DataStore(pool);
+  await store.createSchema({
+    key, title: key, description: 'series source runway', entity: 'item',
+    fields: [{ name: 'label', type: 'text', description: 'Label' }], roles: { title: 'label' }, dedup_key: [], language: 'uk', default_license: 'own',
+    reuse_policy: { kind: 'never' }, suitable_for: 'tests', contains_personal_data: false, status: 'active',
+  } as any, 'pgtest');
+  await store.upsert(key, [{ label: 'a' }, { label: 'b' }, { label: 'c' }, { label: 'd' }] as any);
+  const ids = (await pool.query(`SELECT d.id::text AS id FROM data_items d JOIN data_schemas s ON s.id = d.schema_id WHERE s.key = $1 ORDER BY d.id`, [key])).rows.map((r) => r.id as string);
+
+  const orch = await new AgentsRepository(pool).insert({ kind: 'orchestrator', scope: 'resource', scopeId: RES, name: 'P076P', handle: 'p076_prompts_orch', mode: 'live', createdBy: 'owner' });
+  const body = {
+    platforms: [{ resource_ref: RES, role: 'core', formats: { text: 1 }, per_day: { min: 1, max: 2 } }],
+    series: [{ name: 'Prompt of the day', cadence: 'daily@10:00', resource_ref: RES, source: { kind: 'library', table: key } }], rules: [],
+  };
+  await pool.query(`INSERT INTO playbooks (agent_id, version, status, body, created_by) VALUES ($1, 1, 'active', $2, 'orchestrator')`, [orch.id, JSON.stringify(body)]);
+
+  const card = makeCard({ channelKey: CHAN, sources: [] });
+  const svc = sourceHealthOf(pool, { get: async () => card });
+  const report = (await svc.forChannel(CHAN))!;
+  assert.equal(report.noSources, false);
+  assert.deepEqual(report.sources.map((x) => [x.id, x.kind, x.ref, x.origin, x.state]), [['series:Prompt of the day', 'library', key, 'playbook', 'unused']]);
+  assert.deepEqual(report.sources[0].runway, { unposted: 4, days: 4, rounds: false }, 'four rows left, one a day');
+
+  // Every row posted on this resource: no unposted rows and no rounds.
+  const ledger = new ContentLedger(pool);
+  for (const id of ids) await ledger.record(`data://${key}/${id}`, { resourceRef: RES, origin: 'editor', status: 'published' });
+  const empty = (await svc.forChannel(CHAN))!;
+  assert.deepEqual([empty.sources[0].state, empty.sources[0].detail, empty.sources[0].runway?.unposted], ['exhausted', 'no unposted rows left', 0]);
+
+  // Network health lists it although the card has no source of its own; a channel with nothing at all is skipped.
+  const blank = makeCard({ channelKey: '@e2e_blank076', sources: [] });
+  const health = await new NetworkHealthService({
+    pool, channels: { listActive: async () => [card, blank] }, budgets: async () => ({ rows: [], agentCaps: [], blocking: [] }),
+    sources: (c) => sourceHealthOf(pool, { get: async () => c }).forCard(c),
+  }).health();
+  assert.deepEqual(health.sources.map((x) => [x.channelKey, x.id, x.state, x.runway?.unposted]), [[CHAN, 'series:Prompt of the day', 'exhausted', 0]]);
 });

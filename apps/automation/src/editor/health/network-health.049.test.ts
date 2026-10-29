@@ -78,7 +78,7 @@ test('the service keeps going when a part fails: a broken source report or budge
   const svc = new NetworkHealthService({
     pool, now: () => NOW,
     channels: { listActive: async () => [card, { ...card, channelKey: '@d' }] },
-    sources: async (c) => { if (c.channelKey === '@d') throw new Error('boom'); return { channelKey: '@c', days: 14, sources: [src('f', 'failing')], otherHosts: [] }; },
+    sources: async (c) => { if (c.channelKey === '@d') throw new Error('boom'); return { channelKey: '@c', days: 14, sources: [src('f', 'failing')], otherHosts: [], noSources: false, proxyConfigured: false }; },
     budgets: async () => { throw new Error('spend down'); },
     catalog: { list: async () => [{ ref: 'telegram:@c', title: 'Channel C', agent: null }] },
   });
@@ -87,4 +87,37 @@ test('the service keeps going when a part fails: a broken source report or budge
   assert.deepEqual(h.sources.map((s) => [s.channelKey, s.id, s.agent]), [['@c', 'f', 'c_editor']]);
   assert.deepEqual(h.stuck.map((g) => [g.kind, g.count, g.oldestAt]), [['slot_failed', 7, NOW.toISOString()]]);
   assert.deepEqual(h.budget, { lines: [], blocking: [], slotsHit: 0 });
+});
+
+// Spec 076 A22: a channel whose card lists no source can still have playbook sources (@ai0_prompts_dev: a dataset series, no card
+// sources), so every active card is asked; a report that names no source at all (`noSources`) is skipped.
+test('spec 076: a card with no sources of its own but a library series is in network health; a card with nothing at all is not', async () => {
+  const pool = { query: async () => ({ rows: [] }) } as any;
+  const series: SourceIssue = { ...src('series:Prompt of the day', 'exhausted'), kind: 'library', ref: 'prompts', origin: 'playbook', runway: { unposted: 0, days: null, rounds: false }, errors: 0, calls: 0 };
+  const report = (channelKey: string, sources: SourceIssue[], noSources: boolean) => ({ channelKey, days: 14, sources, otherHosts: [], noSources, proxyConfigured: false });
+  const svc = new NetworkHealthService({
+    pool, now: () => NOW,
+    channels: { listActive: async () => [{ channelKey: '@prompts', sources: [] } as any, { channelKey: '@blank', sources: [] } as any] },
+    sources: async (c) => (c.channelKey === '@prompts' ? report('@prompts', [series], false) : report('@blank', [], true)),
+    budgets: async () => ({ rows: [], agentCaps: [], blocking: [] }),
+  });
+  const h = await svc.health();
+  assert.deepEqual(h.sources.map((s) => [s.channelKey, s.id, s.state, s.runway]), [['@prompts', 'series:Prompt of the day', 'exhausted', { unposted: 0, days: null, rounds: false }]]);
+});
+
+test('spec 076: a source the server cannot read is a problem even while its state is ok, and the weekly section says so', async () => {
+  const probe = (ok: boolean) => ({ ok, failure_class: ok ? null : 'timeout' as const, status: ok ? 200 : null, kind: 'rss' as const, items: ok ? 5 : 0, newest_at: null, checked_at: NOW.toISOString(), via_proxy: false, detail: ok ? '5 items' : 'no answer in 10 s' });
+  const geo: SourceIssue = { ...src('geo', 'ok'), errors: 0, calls: 0, probe: probe(false) };
+  const fine: SourceIssue = { ...src('fine', 'ok'), errors: 0, calls: 3, probe: probe(true) };
+  const never: SourceIssue = { ...src('never', 'unused'), errors: 0, calls: 0, probe: null };
+  const svc = new NetworkHealthService({
+    pool: { query: async () => ({ rows: [] }) } as any, now: () => NOW,
+    channels: { listActive: async () => [{ channelKey: '@c', sources: [] } as any] },
+    sources: async () => ({ channelKey: '@c', days: 14, sources: [geo, fine, never], otherHosts: [], noSources: false, proxyConfigured: true }),
+    budgets: async () => ({ rows: [], agentCaps: [], blocking: [] }),
+  });
+  const h = await svc.health();
+  assert.deepEqual(h.sources.map((s) => s.id), ['geo'], 'a good probe and a source never read are not problems');
+  assert.equal(h.problems, 1);
+  assert.match(healthReportSection(h), /- @c «geo» \(rss\): the server cannot read it — /);
 });

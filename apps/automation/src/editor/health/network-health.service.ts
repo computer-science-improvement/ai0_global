@@ -92,11 +92,13 @@ export class NetworkHealthService {
   }
 
   private async sources(agents: Map<string, string>): Promise<SourceIssue[]> {
-    const cards = (await this.d.channels.listActive().catch(() => [] as EditorCard[])).filter((c) => c.sources.length);
+    // Spec 076 A22: a card with no sources of its own can still have playbook sources (a feed, a dataset series), so every active
+    // card is asked and a report with no source at all (`noSources`) is skipped instead.
+    const cards = await this.d.channels.listActive().catch(() => [] as EditorCard[]);
     const out: SourceIssue[] = [];
     for (const card of cards) {
       const report = await this.d.sources(card).catch(() => null);
-      if (!report) continue;
+      if (!report || report.noSources) continue;
       const agent = agents.get(`resource:telegram:${card.channelKey}`) ?? null;
       for (const s of report.sources.filter(isTroubled)) out.push({ ...s, channelKey: card.channelKey, agent });
     }

@@ -1,7 +1,7 @@
 /**
  * Spec 061 FR-004 against a throwaway Postgres (init.sql + every migration, own database, dropped at the end): host
  * blocks escalate 1 d -> 3 d -> 7 d in `source_host_failures`, a timeout is a one-hour block without a strike, a success
- * starts the strikes over (and clears `noted_at`), the third strike is claimed once, and source health reads the active
+ * starts the strikes over (and clears `noted_at`), the third strike is noted once per streak through the note gate (spec 076), and source health reads the active
  * playbook of the channel's orchestrator. Skipped unless EDITOR_PG_TEST_URL is set.
  */
 import { test, before, after } from 'node:test';
@@ -13,6 +13,7 @@ import { SourceHealthRepository } from '../sources/source-health.repository';
 import { SourceHealthService } from '../sources/source-health.service';
 import { PgHostFailures } from './host-failures';
 import { makeCard } from '../post/testing/fixtures';
+import { OwnerInbox } from '../agents/owner-inbox';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -120,31 +121,33 @@ test('struck / claimNote / blocks / playbookOf over the real tables', { skip }, 
   assert.deepEqual(await repo.playbookOf(`telegram:${CH}`), body);
 });
 
-test('the daily note over the real tables: one inbox note for the struck playbook feed, then nothing; the next streak is noted again', { skip }, async () => {
+test('the daily note over the real tables: one inbox note for the struck playbook feed, then nothing; after a success a new streak is a new note (spec 076 A9)', { skip }, async () => {
   const card = makeCard({ channelKey: CH, sources: [] });
   const repo = new SourceHealthRepository(pool);
-  const posts: any[] = [];
-  const svc = new SourceHealthService({
-    repo, channels: { get: async () => card }, pool, inbox: { post: async (i: any) => { posts.push(i); return 1; } },
-  });
+  const svc = new SourceHealthService({ repo, channels: { get: async () => card }, pool, inbox: new OwnerInbox(pool) });
+  const notes = async () => (await pool.query(`SELECT title, parts FROM agent_inbox WHERE kind = 'host_struck' AND ref_id LIKE $1 ORDER BY id`, [`${CH}/marktechpost.com%`])).rows;
   const hosts = new PgHostFailures(pool);
   const expire = () => pool.query(`UPDATE source_host_failures SET blocked_until = now() - interval '1 minute' WHERE host = 'marktechpost.com'`);
   for (let i = 0; i < 3; i++) { await hosts.record('marktechpost.com', 'refused', 403); await expire(); }
   await hosts.record('marktechpost.com', 'refused', 403);
   assert.deepEqual(await svc.noteStruckHosts(card, null), ['marktechpost.com']);
-  assert.equal(posts.length, 1);
-  assert.match(posts[0].title, /^marktechpost\.com відмовляє нам 4 рази поспіль — прибрати з плейбука @pg061host\?$/);
+  assert.equal((await notes()).length, 1);
+  assert.equal((await notes())[0].title, 'marktechpost.com refuses the server');
+  assert.deepEqual((await notes())[0].parts, ['refused', 'strikes:4', 'since:never']);
+  // Gated once: the same streak says nothing new. (The new code never sets noted_at, so the host is still in `struck()`.)
   assert.deepEqual(await svc.noteStruckHosts(card, null), []);
   // The daily run entry point does the same and never fails the run.
   assert.deepEqual(await svc.toReplaceToday(card, null), []);
-  assert.equal(posts.length, 1);
-  // A success, then three more strikes: a new streak, a new note.
+  assert.equal((await notes()).length, 1);
+  // A success, then three more strikes: a new streak, so a new `since:` part and a new note.
   await expire();
   await hosts.succeeded('marktechpost.com');
   for (let i = 0; i < 3; i++) { await hosts.record('marktechpost.com', 'refused', 403); await expire(); }
   await hosts.record('marktechpost.com', 'refused', 403);
   await svc.toReplaceToday(card, null);
-  assert.equal(posts.length, 2);
+  const later = await notes();
+  assert.equal(later.length, 2);
+  assert.match(later[1].parts[2], /^since:\d{8}T\d{4}$/);
   // Spec 070: the host's page refusals (4 strikes, still noted above) no longer stop its feed; only the feed's own row does, with no strikes.
   const report = await svc.forCard(card);
   assert.deepEqual(report.sources.map((s) => [s.id, s.origin, s.state]), [['playbook:marktechpost.com', 'playbook', 'unused']]);
@@ -154,5 +157,5 @@ test('the daily note over the real tables: one inbox note for the struck playboo
   assert.deepEqual(own.sources.map((s) => [s.id, s.state]), [['playbook:marktechpost.com', 'blocked']]);
   assert.deepEqual([own.sources[0].blocked?.host, own.sources[0].blocked?.reason, own.sources[0].blocked?.strikes], ['marktechpost.com/feed', 'feed_refused', 0]);
   await svc.toReplaceToday(card, null);
-  assert.equal(posts.length, 2, 'a feed\'s own refusal carries no strike, so no owner note');
+  assert.equal((await notes()).length, 2, 'a feed\'s own refusal carries no strike, so no owner note');
 });

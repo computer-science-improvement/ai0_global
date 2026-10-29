@@ -50,6 +50,12 @@ export interface ProbeResult {
 
 export type ProbeSummary = Pick<ProbeResult, 'ok' | 'failure_class' | 'status' | 'kind' | 'items' | 'newest_at' | 'checked_at' | 'via_proxy' | 'detail'>;
 
+/** The part of a probe that source health, the doctor and the panel carry (no titles, no addresses). */
+export const summaryOf = (r: ProbeResult): ProbeSummary => ({
+  ok: r.ok, failure_class: r.failure_class, status: r.status, kind: r.kind, items: r.items, newest_at: r.newest_at,
+  checked_at: r.checked_at, via_proxy: r.via_proxy, detail: r.detail,
+});
+
 /** The cache of probes (`source_probes`); without one nothing is cached. */
 export interface SourceProbeStore {
   get(url: string): Promise<ProbeResult | null>;

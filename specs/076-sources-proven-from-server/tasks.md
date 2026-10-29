@@ -141,7 +141,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - a live slot whose only feeds are blocked or timing out skips with `preflight_host_blocked` and makes no model call;
     - a slot with a `url` card source still runs.
 
-- [ ] **T5 Source health covers every source; host notes go through the gate** (FR-006, A9, A10, A22, A23, A26, backend half of A31)
+- [x] **T5 Source health covers every source; host notes go through the gate** (FR-006, A9, A10, A22, A23, A26, backend half of A31)
   - **What:**
     - `playbookSeriesSources(body, cardSources)` in `sources/playbook-feeds.ts` (A23), appended in `sourcesOf` as playbook rows.
     - `SourceHealth.probe` (from `PgSourceProbes.latest`) and `SourceHealth.runway` (from the `catalogOverview` row, A23).
@@ -381,7 +381,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T1 `439ba106` — three timeouts in a row are an `unreachable` strike; migration 100.
 - T2 `8ee7e6a2` — the per-host egress proxy (`EGRESS_PROXY_URL`, `EGRESS_PROXY_HOSTS`).
 - T3 `083d39bc` — `probeSource`, the 6 h cache in `source_probes`, the bound prober, the candidate check through it.
-- T4 — (commit hash filled in the next commit) guarded live scan, the $0 all-unreachable skip, pre-flight feed hints.
+- T4 `3260597d` — guarded live scan, the $0 all-unreachable skip, pre-flight feed hints.
+- T5 — (commit hash filled in the next commit) source health covers every source (playbook series, runway, probe), host notes through the note gate, the `resync_failed` note.
 
 ## Deltas from the spec
 
@@ -391,3 +392,13 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
   - `live/feed-items.test.ts` (the `liveFeeds` `deepEqual`) gains `kind`, as A20 says.
   - The gate condition is the exported pure function `feedsAllUnreachable(scan)` in `live/live-slot.ts` (A20's condition word for word), so a test can feed it a typed fake. The runner names the hosts from `liveFeeds(slot.liveSpec.sources, card.sources)`, because `LiveScan` carries no host list and A20 adds only two fields.
   - `reliability.040.pg.test.ts` ("a refused host is blocked for 24 h") uses the shared scratch database, which has no migration 100, so `record` (which now reads the timeout count) stored nothing and the test failed. It now skips when `consecutive_timeouts` is missing, as it already does for migration 094. The same applies in production: code that writes host records must not be deployed before migration 100 (the README line for migration 100 says so).
+- **T5.**
+  - Changed 061 tests, as the task said: `net/host-strikes.061.test.ts` (the fake inbox gains a `postOnce` that gates on subject and parts; the Ukrainian title assertions move to `alert.title` and the stored title is English; "claimed once" is "gated once"; a new case for an `unreachable` host) and `net/host-strikes.061.pg.test.ts` (a real `OwnerInbox(pool)`; "the next streak is noted again" is "a success gives a new `since:` part and a new note"). Lines 99-122 of the PG file are unchanged.
+  - The `resync_failed` test through `resyncAll` with a failing fake fetch is in `docs/import-list.pg.test.ts`, which already has the imported dataset and the fake page; building that fixture again in `net/source-reach.076.pg.test.ts` would copy 80 lines. The note texts and the error class are unit-tested in `sources/source-health.076.test.ts`.
+  - `SourceHealthReport.noSources` and `proxyConfigured` are required fields (A23 gives the no-card fallback both), so the one test fixture that built a report by hand (`health/network-health.049.test.ts`) gains them.
+  - `SourceHealthDeps.inbox` is `Pick<OwnerInbox, 'post'> & Partial<Pick<OwnerInbox, 'postOnce'>>`: `sourceHealthOf` passes the full inbox, and `noteStruckHosts` does nothing without `postOnce` (as it did without `claimNote`). A fake with `post` only still builds.
+  - `noteStruckHosts` skips a row whose reason is not `unreachable`, `refused`, `dns` or `tls`: a one-hour `timeout` block that sits on top of old refusal strikes has no text in A31 and is not a streak. This is the "last reason decides" rule of A10.
+  - A failed probe shows in the weekly network-health section as "the server cannot read it": `network-health.ts` `SOURCE_TEXT` gains `ok` and `unused` for that case (a source is listed there with state `ok` only when its probe failed).
+  - New exports: `orderSources`, `withReach`, `isSeriesExhausted` (`source-health.ts`), `hostStruckNote` and `sinceStamp` (`source-health.service.ts`), `summaryOf` (`probe.ts`), `resyncFailedNote` and `errorClassOf` (`list-resync.worker.ts`), `SERIES_SOURCE_PREFIX` and `playbookSeriesSources` (`playbook-feeds.ts`). `toReplaceToday` still calls `noteStruckHosts` (A26); T7 removes the call.
+  - Code that runs before migration 100: `struck()` returns no rows (its query reads the new columns), so no host note is sent until the migration is applied. The README line for migration 100 says to apply it first.
+

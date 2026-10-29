@@ -42,3 +42,27 @@ export function playbookSources(body: unknown, cardSources: CardSource[] = []): 
   }
   return out;
 }
+
+/** The id prefix of a source a playbook series names (`series:<name>`), as `playbook:<host>` is for a feed. */
+export const SERIES_SOURCE_PREFIX = 'series:';
+
+/**
+ * Spec 076 A23: the library and api sources the playbook's active series name, as `CardSource` rows for source health
+ * (`id = series:<name>`, `ref` = the dataset key or the api name). Feed series are left out (`playbookSources` lists them).
+ * A (kind, ref) the card already lists is skipped, and there is one row per (kind, ref): the first series that names it.
+ */
+export function playbookSeriesSources(body: unknown, cardSources: CardSource[] = []): CardSource[] {
+  const pb = body && typeof body === 'object' ? body as { series?: unknown } : {};
+  const have = new Set(cardSources.map((c) => `${c.kind}|${c.ref}`));
+  const out: CardSource[] = [];
+  for (const s of Array.isArray(pb.series) ? pb.series as Array<Record<string, any>> : []) {
+    if (s?.active === false || typeof s?.name !== 'string' || !s.name.trim()) continue;
+    const src = s.source;
+    const kind = src?.kind === 'library' || src?.kind === 'api' ? src.kind as 'library' | 'api' : null;
+    const ref = kind === 'library' ? src.table : kind === 'api' ? src.source : null;
+    if (!kind || typeof ref !== 'string' || !ref.trim() || have.has(`${kind}|${ref}`)) continue;
+    have.add(`${kind}|${ref}`);
+    out.push({ id: `${SERIES_SOURCE_PREFIX}${s.name.trim()}`, kind, ref } as CardSource);
+  }
+  return out;
+}

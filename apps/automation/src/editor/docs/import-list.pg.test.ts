@@ -17,6 +17,7 @@ import { fetchDocument } from './doc-fetch';
 import { buildPlan, IMPORT_LIST_KIND, ImportListInput, listImports, payloadOf, RESYNC_IMPORT_KIND, runImport } from './import-list';
 import { buildImportListTools, importActionHandlers } from './import-list-tools';
 import { resyncAll } from './list-resync.worker';
+import { OwnerInbox } from '../agents/owner-inbox';
 import { NANOBANANA_README, NANOBANANA_URL } from './testing/nanobanana-fixture';
 
 const url = process.env.EDITOR_PG_TEST_URL;
@@ -181,6 +182,28 @@ test('the weekly job re-reads every auto list and survives a page that fails', {
   assert.equal(bad.length, 1);
   assert.ok(bad[0].error, 'the failure is reported, not thrown');
   assert.equal((await rows()).length, 6);
+});
+
+// Spec 076 A31: the weekly job tells the owner when a list cannot be re-read — once per cause (the note gate), not once a week.
+test('a failing weekly re-sync posts one resync_failed note per cause; the same cause again is quiet, a new one is news', { skip }, async () => {
+  const inbox = new OwnerInbox(pool);
+  const notes = async () => (await pool.query(
+    `SELECT title, body, severity, ref_type, subject, parts FROM agent_inbox WHERE kind = 'resync_failed' AND ref_id LIKE $1 ORDER BY id`, [`${DATASET}%`])).rows;
+  const http500 = { ...http, get: async () => ({ status: 500, headers: {}, data: 'boom' }) };
+  const slow = { ...http, get: async () => { throw Object.assign(new Error('timeout of 10000ms exceeded'), { code: 'ECONNABORTED' }); } };
+  const bad = await resyncAll({ pool, docs: new DocStore(), http: http500 as any }, () => {}, inbox);
+  assert.ok(bad[0].error);
+  const first = await notes();
+  assert.equal(first.length, 1);
+  assert.deepEqual([first[0].title, first[0].severity, first[0].ref_type, first[0].subject, first[0].parts],
+    [`Re-sync of ${DATASET} failed`, 'action', 'dataset', `resync:${DATASET}`, ['http_error']]);
+  assert.match(first[0].body, /^http_error: .*If the server cannot reach [\w.-]+, upload the page \(Data → Upload page\)\.$/s);
+  await resyncAll({ pool, docs: new DocStore(), http: http500 as any }, () => {}, inbox);
+  assert.equal((await notes()).length, 1, 'the same failure a week later says nothing new');
+  await resyncAll({ pool, docs: new DocStore(), http: slow as any }, () => {}, inbox);
+  const second = await notes();
+  assert.equal(second.length, 2, 'another cause is a new note');
+  assert.deepEqual(second[1].parts, ['host_unreachable']);
 });
 
 test('undo of an import removes exactly its rows', { skip }, async () => {
