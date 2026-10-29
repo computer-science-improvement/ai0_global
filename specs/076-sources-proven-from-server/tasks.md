@@ -211,7 +211,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - The 065, 066 and 070 import tests stay green.
   - **Done when:** an uploaded page is in the store with `origin: 'upload'`, and a 6 MB JSON body reaches the route while a 13 MB one gets 413.
 
-- [ ] **T6b Upload the page: import marks and the manual re-sync** (FR-005, A15)
+- [x] **T6b Upload the page: import marks and the manual re-sync** (FR-005, A15)
   - **What:**
     - `ImportPayload` and `ListImportOptions` gain `uploaded`.
     - `payloadOf` gains its 4th parameter `o?: { uploaded?: boolean }`, and `import_list` passes `{ uploaded: doc.origin === 'upload' }`.
@@ -397,7 +397,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T3 `083d39bc` — `probeSource`, the 6 h cache in `source_probes`, the bound prober, the candidate check through it.
 - T4 `3260597d` — guarded live scan, the $0 all-unreachable skip, pre-flight feed hints.
 - T5 `ccb89849` — source health covers every source (playbook series, runway, probe), host notes through the note gate, the `resync_failed` note.
-- T6a — (commit hash filled in the next commit) `docFromBody` out of `fetchLive`, `origin: 'upload'` docs kept 7 days, `uploadPage`, the 12 MB body middleware, nginx 12m.
+- T6a `1f0b39f2` — `docFromBody` out of `fetchLive`, `origin: 'upload'` docs kept 7 days, `uploadPage`, the 12 MB body middleware, nginx 12m.
+- T6b — (commit hash filled in the next commit) import marks (`uploaded`, `auto_resync: false`), `upload_expired`, `resync_manual`, and `uploadPage` with `dataset` re-syncing from memory.
 
 ## Deltas from the spec
 
@@ -421,3 +422,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
   - `docFromBody(base, res, asked)` takes the address asked for as a third argument (the `.md` path rule of `isMarkdown` reads it) and returns `NewDoc | FetchFailure`; it is exported with a `DocBase` type. The `unsupported_content` check for the content type moved into it with the rest of lines 86-123.
   - `uploadPage` is async from the start (T6b adds the re-sync, which is). It refuses a JSON body in every case, not only without `dataset`, and also a page with no text (`empty_page`); `UploadPageBody.url` accepts only `http(s)` addresses.
   - `tasks.md` itself: an earlier status edit had replaced the text of the T10 bullet "Fill in `## Status` and `## Deltas…`" and the real `## Status` heading. Both are restored.
+- **T6b.**
+  - `resyncDataset` also refuses an uploaded import on its own (`resync_manual`) when it is called without `fromUpload`, so no other caller can send an uploaded import to a live fetch. `resyncAll` skips on `uploaded` as well as on `auto_resync`.
+  - `ListImportOptions` is exported (the upload tests read the stored marks); `RESYNC_MANUAL_DETAILS` and `UPLOAD_EXPIRED_MESSAGE` are exported from `docs/import-list.ts`, so the tool, the card handler and the worker say the same words.
+  - `runImport` forces `fresh: false` for an uploaded payload, whatever the caller passed, and stores `auto_resync: false` for it even when the Apply handler passes `autoResync: true`.
+  - `uploadPage` checks the dataset (`not_available` without the database, `no_list_import`, `url_mismatch`) before it parses or stores anything, so a refused upload leaves nothing in the store. A failed re-sync answers `{ error: <class of the failure>, details }` (the class is the part before the first colon: `no_entries`, `upload_expired`, ...) and the page stays stored.

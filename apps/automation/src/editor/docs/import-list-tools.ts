@@ -11,7 +11,7 @@ import type { DocStore } from './doc-store';
 import { docExpired } from './doc-tools';
 import {
   buildPlan, ImportListInput, IMPORT_LIST_KIND, listImports, payloadOf, PlanError, previewOf, RESYNC_IMPORT_KIND, resyncDataset, runImport,
-  summaryOf, type ImportDeps, type ImportPayload,
+  RESYNC_MANUAL_DETAILS, summaryOf, type ImportDeps, type ImportPayload,
 } from './import-list';
 import { importCaps, pagingPreview } from './json-pages';
 import { buildBundle, thenLine, type BundleDeps } from './import-bundle';
@@ -57,6 +57,7 @@ export function importActionHandlers(d: Omit<ImportToolDeps, 'actions'>) {
     [RESYNC_IMPORT_KIND]: async (p: Record<string, unknown>) => {
       const [li] = await listImports(d.pool, String(p.dataset ?? ''));
       if (!li) throw new Error(`no_list_import: dataset "${String(p.dataset)}" has no committed list import`);
+      if (li.options.uploaded) throw new Error(`resync_manual: ${RESYNC_MANUAL_DETAILS}`);
       return resyncDataset(deps, li, OWNER);
     },
   };
@@ -95,7 +96,7 @@ export function buildImportListTools(d: ImportToolDeps): EditorTool[] {
       const x = ctx.extras as Extras | undefined;
       const action = await d.actions.propose({
         chatId: x?.chat?.chatId ?? null, agentId: x?.agent?.id ?? null, kind: IMPORT_LIST_KIND,
-        payload: { ...payloadOf(plan, i.dataset, i.pages), ...(bundle.then.length ? { then: bundle.then } : {}) } as unknown as Record<string, unknown>,
+        payload: { ...payloadOf(plan, i.dataset, i.pages, { uploaded: doc.origin === 'upload' }), ...(bundle.then.length ? { then: bundle.then } : {}) } as unknown as Record<string, unknown>,
         summary: [summaryOf(plan, i.dataset, !!existing, paging), thenLine(bundle.then)].filter(Boolean).join(' ').slice(0, 2000),
       });
       try { x?.onAction?.(action); } catch { /* UI stream only */ }
@@ -116,6 +117,8 @@ export function buildImportListTools(d: ImportToolDeps): EditorTool[] {
     execute: async ({ dataset }, ctx) => {
       const [li] = await listImports(d.pool, dataset);
       if (!li) return { error: 'no_list_import', details: `dataset "${dataset}" has no committed list import (made by import_list)` };
+      // Spec 076 A15(b): an import made from an uploaded page cannot be read again by the server; no card, no request.
+      if (li.options.uploaded) return { error: 'resync_manual', details: RESYNC_MANUAL_DETAILS };
       if (li.options.auto_resync && resyncAuto(d.env)) {
         try {
           return { ok: true, silent: true, url: li.options.url, ...(await resyncDataset(deps, li, OWNER)) };

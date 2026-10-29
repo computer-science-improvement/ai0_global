@@ -42,7 +42,8 @@ export async function resyncAll(
 ): Promise<Array<{ dataset: string; inserted: number; updated: number; error?: string }>> {
   const out: Array<{ dataset: string; inserted: number; updated: number; error?: string }> = [];
   for (const li of await listImports(deps.pool)) {
-    if (!li.options.auto_resync) continue;
+    // Spec 076: an import from an uploaded page is re-synced by uploading the page again, never by the weekly job.
+    if (!li.options.auto_resync || li.options.uploaded) continue;
     try {
       const r = await resyncDataset(deps, li, `${OWNER} weekly`);
       out.push({ dataset: li.dataset, inserted: r.inserted, updated: r.updated });
