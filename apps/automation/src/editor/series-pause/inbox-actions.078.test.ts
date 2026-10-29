@@ -113,12 +113,14 @@ test('a refused or repeated dashboard press still reads the note (as a Telegram 
 
 test('the A10 lookups count a dashboard-stamped card as a reaction, next to a Telegram one', async () => {
   const day = 86_400_000;
+  const hour = 3_600_000;
   const post = async (reacted: boolean) => {
     const seen: Array<{ text: string; params: unknown[] }> = [];
     const pool = {
       query: async (text: string, params: unknown[] = []) => {
         seen.push({ text, params });
-        if (/FROM agent_inbox WHERE subject/.test(text)) return { rows: [{ parts: ['x'], created_at: new Date(Date.now() - 3 * day) }, { parts: ['x'], created_at: new Date(Date.now() - 6 * day) }] };
+        // Clear of the 3-day window's edge: a note exactly 3 days old read a millisecond later falls inside it and nothing fires.
+        if (/FROM agent_inbox WHERE subject/.test(text)) return { rows: [{ parts: ['x'], created_at: new Date(Date.now() - 3 * day - hour) }, { parts: ['x'], created_at: new Date(Date.now() - 6 * day - 2 * hour) }] };
         if (/owner_cards/.test(text)) return { rows: reacted ? [{ one: 1 }] : [] };
         return { rows: [{ id: 5 }] };
       },
