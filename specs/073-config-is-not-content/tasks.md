@@ -52,7 +52,7 @@ The tasks follow the spec's section "Amendments after the builder check". `A<n>`
     - then run A44's PG list with `EDITOR_PG_TEST_URL`, adding an `editor_channels` row (mode not `off`) where a test inserts slots for a key that has none.
   - Done when: an off channel's due slot stays `planned`, then is skipped `mode_changed` (never «stuck»); switching on at 14:00 with an empty afternoon starts one replan, and with no plan for today starts none (the scheduler plans it).
 
-- [ ] **T5 Launch quick fixes (FR-006; A26).**
+- [x] **T5 Launch quick fixes (FR-006; A26).**
   - What: the checklist link `/app/agents/inbox?tab=approvals`; new `launch/plan-ahead.ts` `planTodayAndTomorrow` (A26), which the `planAhead` closure calls.
   - Files: `launch/launch-checklist.ts` (:86), `launch/plan-ahead.ts` (new), `editor.module.ts` (`planAhead` :2182-2186 only).
   - Tests: `launch/plan-ahead.073.test.ts` (fake runner and `getActivePlan`: each day once; a non-placeholder tomorrow is left alone; a throwing today still plans tomorrow; tomorrow is right across a DST change); `launch/launch-checklist.073.test.ts` asserts the `first_posts` link from `buildChecklist` (no test pins it today).

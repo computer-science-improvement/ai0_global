@@ -83,7 +83,7 @@ export function buildChecklist(l: ChannelLaunch, f: ChecklistFacts): LaunchStep[
   steps.push({
     key: 'first_posts', who: 'code', state: !started ? 'waiting' : f.published >= FIRST_POSTS ? 'done' : 'waiting',
     title: f.published >= FIRST_POSTS ? `First ${FIRST_POSTS} posts published` : `First posts: ${Math.min(f.published, FIRST_POSTS)} of ${FIRST_POSTS} published`,
-    detail: started && f.published < FIRST_POSTS ? 'Approve the waiting posts in Approvals or in the owner bot' : null, link: started ? '/app/approvals' : null,
+    detail: started && f.published < FIRST_POSTS ? 'Approve the waiting posts in Approvals or in the owner bot' : null, link: started ? '/app/agents/inbox?tab=approvals' : null,
   });
 
   const promo = l.promo;

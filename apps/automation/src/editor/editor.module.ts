@@ -180,6 +180,7 @@ import { MapService } from './map/map.service';
 import { launchSource } from './launch/launch-cards';
 import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
 import { launchQueries } from './launch/launch-queries';
+import { planTodayAndTomorrow } from './launch/plan-ahead';
 import { launchJson, LaunchService } from './launch/launch.service';
 import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
@@ -2182,7 +2183,7 @@ export const EDITOR_PROVIDERS = [
           planAhead: async (key) => {
             const card = await repos.channels.get(key);
             if (!card) return;
-            await runner.runPlanner(card);
+            await planTodayAndTomorrow({ runner, plans: repos.plans, log: (m) => new Logger('LaunchPlanAhead').warn(m) }, card); // spec 073 FR-006
           },
           // T4: growth — network cross-promo first (FR-004).
           promo: {
