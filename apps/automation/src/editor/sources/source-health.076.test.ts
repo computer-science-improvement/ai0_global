@@ -173,7 +173,7 @@ test('A31 texts: one title and body in English and one alert in Ukrainian per re
   ]);
   assert.deepEqual(unreachable.alert, {
     title: 'theverge.com недоступний із сервера',
-    body: 'Тайм-аутів поспіль: 4 (з 2026-10-26); наступна спроба після 2026-10-30 06:30 UTC. Відкрий джерела каналу: проксі, завантажити сторінку або прибрати джерело.',
+    body: 'Тайм-аутів поспіль: 4 (з 2026-10-26); наступна спроба після 2026-10-30 06:30 UTC. Відкрийте джерела каналу: там можна пустити сайт через проксі, завантажити сторінку або прибрати джерело.',
   });
   assert.deepEqual(unreachable.parts, ['unreachable', 'strikes:1', 'since:never']);
 
@@ -181,19 +181,19 @@ test('A31 texts: one title and body in English and one alert in Ukrainian per re
   assert.deepEqual([refused.title, refused.body], ['theverge.com refuses the server', 'Refused 3 times in a row (status 403); blocked until 2026-10-30 06:30 UTC. Route it through the proxy or remove the source.']);
   assert.deepEqual(refused.alert, {
     title: 'theverge.com відмовляє серверу',
-    body: 'Відмов поспіль: 3 (status 403); заблоковано до 2026-10-30 06:30 UTC. Відкрий джерела каналу: проксі або прибрати джерело.',
+    body: 'Відмов поспіль: 3 (status 403); заблоковано до 2026-10-30 06:30 UTC. Відкрийте джерела каналу: там можна пустити сайт через проксі або прибрати джерело.',
   });
   assert.equal(hostStruckNote(struck({ statusCode: null }), where)!.body.startsWith('Refused 3 times in a row; blocked until'), true, 'no status, no parentheses');
 
   const dns = hostStruckNote(struck({ reason: 'dns', statusCode: null }), where)!;
   assert.deepEqual([dns.title, dns.body, dns.alert.title, dns.alert.body], [
     'theverge.com does not resolve', 'DNS failed 3 times in a row; blocked until 2026-10-30 06:30 UTC. Check the address or remove the source.',
-    'Домен theverge.com не знаходиться (DNS)', 'Збоїв DNS поспіль: 3; заблоковано до 2026-10-30 06:30 UTC. Перевір адресу або прибери джерело.',
+    'Домен theverge.com не знаходиться (DNS)', 'Збоїв DNS поспіль: 3; заблоковано до 2026-10-30 06:30 UTC. Перевірте адресу або приберіть джерело.',
   ]);
   const tls = hostStruckNote(struck({ reason: 'tls', statusCode: null }), where)!;
   assert.deepEqual([tls.title, tls.body, tls.alert.title, tls.alert.body], [
     'theverge.com has a TLS error', 'TLS failed 3 times in a row; blocked until 2026-10-30 06:30 UTC. Check the address or remove the source.',
-    'theverge.com: помилка TLS-сертифіката', 'Збоїв TLS поспіль: 3; заблоковано до 2026-10-30 06:30 UTC. Перевір адресу або прибери джерело.',
+    'theverge.com: помилка TLS-сертифіката', 'Збоїв TLS поспіль: 3; заблоковано до 2026-10-30 06:30 UTC. Перевірте адресу або приберіть джерело.',
   ]);
   assert.equal(hostStruckNote(struck({ reason: 'timeout' }), where), null, 'a one-hour timeout block is not a streak to report');
   assert.equal(hostStruckNote(struck({ reason: 'feed_refused' }), where), null);
@@ -205,7 +205,7 @@ test('A31 where the host is: the card sentence, the playbook sentence, both', ()
   assert.match(card.alert.body, / Джерело картки: агент шукає заміну і покаже картку Apply \/ Discard\.$/);
   const pb = hostStruckNote(struck(), { inCard: false, inPlaybook: true })!;
   assert.match(pb.body, / The address is in the channel's playbook: remove it there \(a directive to the manager\) or keep it if the site may come back\.$/);
-  assert.match(pb.alert.body, / Адреса є в плейбуку каналу — прибери її з плейбука \(директива менеджеру\) або залиш, якщо сайт ще оживе\.$/);
+  assert.match(pb.alert.body, / Адреса є в плейбуку каналу — приберіть її з плейбука \(директива менеджеру\) або залиште, якщо сайт ще оживе\.$/);
   const both = hostStruckNote(struck(), { inCard: true, inPlaybook: true })!;
   assert.match(both.body, /Apply \/ Discard card\. The address is in the channel's playbook/);
   assert.doesNotMatch(hostStruckNote(struck(), where)!.body, /card source|playbook/);
@@ -226,7 +226,7 @@ test('A31 resync_failed: severity action, the dataset as the reference, gate res
   assert.equal(n.body, 'host_unreachable: zakon.rada.gov.ua: сайт не відповів вчасно. If the server cannot reach zakon.rada.gov.ua, upload the page (Data → Upload page).');
   assert.deepEqual(n.alert, {
     title: 'Не вдалося оновити датасет pdr_rules',
-    body: 'host_unreachable: zakon.rada.gov.ua: сайт не відповів вчасно. Якщо сервер не бачить zakon.rada.gov.ua, завантаж сторінку вручну.',
+    body: 'host_unreachable: zakon.rada.gov.ua: сайт не відповів вчасно. Якщо сервер не бачить zakon.rada.gov.ua, завантажте сторінку вручну.',
   });
   assert.deepEqual(n.gate, { subject: 'resync:pdr_rules', parts: ['host_unreachable'] });
   assert.ok(resyncFailedNote('d', 'x'.repeat(500), undefined).body?.startsWith(`${'x'.repeat(200)}. If the server cannot reach the site`), 'the error is cut to 200 characters');

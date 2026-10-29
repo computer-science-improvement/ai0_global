@@ -169,3 +169,17 @@ test('reasonText: the label and the fix from the catalogue, the system words as 
   assert.equal(reasonText('', 'uk'), 'причину не записано');
   assert.ok(reasonText(`no_fresh_item: ${'x'.repeat(500)}`, 'en').length <= 260);
 });
+
+test('W1 integration review: the Ukrainian texts address the owner formally and carry no internal tokens', () => {
+  // Informal imperatives the 076 entries used («Пусти», «завантаж», «Перевір»…); the owner bot says «ви» everywhere.
+  const INFORMAL = /(?<![\p{L}])(?:Пусти|пусти|Завантаж|завантаж|Перевір|перевір|Натисни|натисни|Додай|додай|Прибери|прибери|Заміни|заміни|Відкрий|відкрий|Залиш|залиш|Постав|постав)(?![\p{L}])/u;
+  // `origin=original`, `post_requires`, a mode name in quotes: words the owner does not use.
+  const TOKEN = /[a-z_]+=|[a-z]+_[a-z_]+|«(?:suggested|required)»/;
+  for (const e of REASONS) {
+    for (const [field, text] of [['uk', e.uk], ['fix.uk', e.fix?.uk]] as const) {
+      if (!text) continue;
+      assert.doesNotMatch(text, INFORMAL, `${e.code} ${field}: «${text}»`);
+      assert.doesNotMatch(text, TOKEN, `${e.code} ${field}: «${text}»`);
+    }
+  }
+});

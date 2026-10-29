@@ -27,7 +27,7 @@ export function resyncFailedNote(dataset: string, error: string, url: string | u
     kind: 'resync_failed', refType: 'dataset', refId: dataset, severity: 'action',
     title: `Re-sync of ${dataset} failed`,
     body: `${text}. If the server cannot reach ${host}, upload the page (Data → Upload page).`,
-    alert: { title: `Не вдалося оновити датасет ${dataset}`, body: `${text}. Якщо сервер не бачить ${hostUk}, завантаж сторінку вручну.` },
+    alert: { title: `Не вдалося оновити датасет ${dataset}`, body: `${text}. Якщо сервер не бачить ${hostUk}, завантажте сторінку вручну.` },
     gate: { subject: `resync:${dataset}`, parts: [errorClassOf(error)] },
   };
 }

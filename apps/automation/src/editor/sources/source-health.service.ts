@@ -69,32 +69,32 @@ export function hostStruckNote(b: StruckHost, o: { inCard: boolean; inPlaybook: 
       title: `${b.host} cannot be reached from the server`,
       body: `Timed out ${n} times in a row${sinceEn}; blocked until ${until}. Route it through the proxy, upload the page, or remove the source.`,
       alertTitle: `${b.host} недоступний із сервера`,
-      alertBody: `Тайм-аутів поспіль: ${n}${sinceUk}; наступна спроба після ${until}. Відкрий джерела каналу: проксі, завантажити сторінку або прибрати джерело.`,
+      alertBody: `Тайм-аутів поспіль: ${n}${sinceUk}; наступна спроба після ${until}. Відкрийте джерела каналу: там можна пустити сайт через проксі, завантажити сторінку або прибрати джерело.`,
     },
     refused: {
       title: `${b.host} refuses the server`,
       body: `Refused ${s} times in a row${status}; blocked until ${until}. Route it through the proxy or remove the source.`,
       alertTitle: `${b.host} відмовляє серверу`,
-      alertBody: `Відмов поспіль: ${s}${statusUk}; заблоковано до ${until}. Відкрий джерела каналу: проксі або прибрати джерело.`,
+      alertBody: `Відмов поспіль: ${s}${statusUk}; заблоковано до ${until}. Відкрийте джерела каналу: там можна пустити сайт через проксі або прибрати джерело.`,
     },
     dns: {
       title: `${b.host} does not resolve`,
       body: `DNS failed ${s} times in a row; blocked until ${until}. Check the address or remove the source.`,
       alertTitle: `Домен ${b.host} не знаходиться (DNS)`,
-      alertBody: `Збоїв DNS поспіль: ${s}; заблоковано до ${until}. Перевір адресу або прибери джерело.`,
+      alertBody: `Збоїв DNS поспіль: ${s}; заблоковано до ${until}. Перевірте адресу або приберіть джерело.`,
     },
     tls: {
       title: `${b.host} has a TLS error`,
       body: `TLS failed ${s} times in a row; blocked until ${until}. Check the address or remove the source.`,
       alertTitle: `${b.host}: помилка TLS-сертифіката`,
-      alertBody: `Збоїв TLS поспіль: ${s}; заблоковано до ${until}. Перевір адресу або прибери джерело.`,
+      alertBody: `Збоїв TLS поспіль: ${s}; заблоковано до ${until}. Перевірте адресу або приберіть джерело.`,
     },
   }[b.reason as typeof NOTE_REASONS[number]];
   // Where the host is (the 061 sentences).
   const whereEn = (o.inCard ? ' A card source: the channel agent looks for a replacement and shows an Apply / Discard card.' : '')
     + (o.inPlaybook ? " The address is in the channel's playbook: remove it there (a directive to the manager) or keep it if the site may come back." : '');
   const whereUk = (o.inCard ? ' Джерело картки: агент шукає заміну і покаже картку Apply / Discard.' : '')
-    + (o.inPlaybook ? ' Адреса є в плейбуку каналу — прибери її з плейбука (директива менеджеру) або залиш, якщо сайт ще оживе.' : '');
+    + (o.inPlaybook ? ' Адреса є в плейбуку каналу — приберіть її з плейбука (директива менеджеру) або залиште, якщо сайт ще оживе.' : '');
   return {
     title: text.title, body: `${text.body}${whereEn}`,
     alert: { title: text.alertTitle, body: `${text.alertBody}${whereUk}` },

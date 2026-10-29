@@ -269,7 +269,7 @@ test('the third strike on a playbook feed is one owner note (the English text is
   assert.match(posts[0].body, /Refused 3 times in a row \(status 403\); blocked until 2026-10-27 00:00 UTC\./);
   assert.match(posts[0].body, /The address is in the channel's playbook: remove it there/);
   assert.match(posts[0].alert.body, /Відмов поспіль: 3 \(status 403\); заблоковано до 2026-10-27 00:00 UTC\./);
-  assert.match(posts[0].alert.body, /прибери її з плейбука/);
+  assert.match(posts[0].alert.body, /приберіть її з плейбука/);
   assert.equal(posts[1].title, 'theverge.com refuses the server');
   assert.match(posts[1].body, /A card source: the channel agent looks for a replacement/);
   assert.match(posts[1].alert.body, /агент шукає заміну/);
@@ -287,7 +287,7 @@ test('spec 076 A9/A10: an unreachable host is noted at its first strike, with th
   assert.equal(posts[0].title, 'theverge.com cannot be reached from the server');
   assert.equal(posts[0].body.startsWith('Timed out 3 times in a row since 2026-10-18; blocked until 2026-10-21 04:00 UTC. Route it through the proxy, upload the page, or remove the source.'), true, posts[0].body);
   assert.equal(posts[0].alert.title, 'theverge.com недоступний із сервера');
-  assert.equal(posts[0].alert.body.startsWith('Тайм-аутів поспіль: 3 (з 2026-10-18); наступна спроба після 2026-10-21 04:00 UTC. Відкрий джерела каналу: проксі, завантажити сторінку або прибрати джерело.'), true, posts[0].alert.body);
+  assert.equal(posts[0].alert.body.startsWith('Тайм-аутів поспіль: 3 (з 2026-10-18); наступна спроба після 2026-10-21 04:00 UTC. Відкрийте джерела каналу: там можна пустити сайт через проксі, завантажити сторінку або прибрати джерело.'), true, posts[0].alert.body);
   assert.deepEqual(posts[0].gate.parts, ['unreachable', 'strikes:1', 'since:20261012T0941'], 'the streak starts at the last success');
 });
 
