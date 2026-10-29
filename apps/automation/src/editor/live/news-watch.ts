@@ -3,7 +3,8 @@ import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isPlaceholderPlan } from '../repo/editor-plans.repository';
 import { isQuietHour, localDate, localHour, zonedToUtc } from '../roles/time';
-import { filterFresh, readFeed, type FeedItem, type HttpSeams } from './feed-items';
+import { filterFresh, readFeedGuarded, type FeedItem, type HttpSeams } from './feed-items';
+import type { HostFailures } from '../net/host-failures';
 import { liveTopicLabel, type LiveSpec } from './live-slot';
 import {
   itemScore, keywordHits, NEWS_WATCH_MIN_SCORE, newsWatchConfig, type NewsWatch, type ResolvedNewsWatch,
@@ -22,6 +23,8 @@ export interface NewsWatchDeps {
   /** The resource profile of `telegram:<key>` (topic and the owner's news_watch settings). */
   profile: (ref: string) => Promise<{ topic?: string | null; news_watch?: NewsWatch | null } | null>;
   http?:   HttpSeams;
+  /** Spec 076 A19: blocked hosts and their records (the same reader the live scan uses). Optional: without it the feeds are just read. */
+  hosts?:  HostFailures;
   log?:    (msg: string) => void;
 }
 
@@ -93,7 +96,12 @@ export class NewsWatchService {
     let failed = 0;
     for (const f of cfg.feeds) {
       try {
-        items.push(...(await readFeed(f.url, now, this.d.http)).items.map((it) => ({ ...it, feed: f.id })));
+        const r = await readFeedGuarded(f.url, now, { http: this.d.http, hosts: this.d.hosts });
+        if (r.ok) items.push(...r.feed.items.map((it) => ({ ...it, feed: f.id })));
+        else {
+          failed++;
+          this.d.log?.(`news watch ${card.channelKey}: feed ${f.id} failed: ${r.unreachable ? `${r.host} unreachable (${r.why})` : r.error}`);
+        }
       } catch (err: any) {
         failed++;
         this.d.log?.(`news watch ${card.channelKey}: feed ${f.id} failed: ${errText(err)}`);

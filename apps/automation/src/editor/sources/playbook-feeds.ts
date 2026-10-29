@@ -10,7 +10,7 @@ import { feedKey, hostOf } from '../net/host-failures';
 export const PLAYBOOK_SOURCE_PREFIX = 'playbook:';
 
 const URL_RE = /https?:\/\/[^\s)"'<>\]]+/gi;
-const FEEDISH = /(^|[/._-])(rss|atom|feed|feeds)([/._?-]|$)|\.xml(\?|$)/i;
+export const FEEDISH = /(^|[/._-])(rss|atom|feed|feeds)([/._?-]|$)|\.xml(\?|$)/i;
 
 const trimUrl = (u: string): string => u.replace(/[.,;:!?»]+$/, '');
 

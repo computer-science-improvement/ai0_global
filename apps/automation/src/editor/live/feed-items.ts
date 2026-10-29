@@ -2,6 +2,10 @@ import type { Pool } from 'pg';
 import Parser from 'rss-parser';
 import type { CardSource } from '../card';
 import { safeGet, type RawGet } from '../net/safe-http';
+import {
+  classifyFetchError, classifyTimeout, classifyTransient, feedKey, hostOf, retryReset, type HostFailures,
+} from '../net/host-failures';
+import { FEEDISH } from '../sources/playbook-feeds';
 import type { Lookup } from '../net/ssrf-guard';
 import { ledgerResource } from '../../data/content-ledger';
 import { containment, similarity } from '../post/similarity';
@@ -74,6 +78,45 @@ export async function parseFeedBody(body: string, now: Date): Promise<{ title: s
       };
     }),
   };
+}
+
+/**
+ * Spec 076 A19: one feed read for the live scan and the news watch, with the host records `fetch_feed` keeps. An active block
+ * (the host, or this feed address) answers without a request. A DNS, TLS, timeout or reset failure is recorded on the host and
+ * the address and comes back as `unreachable`. An HTTP status, a body that is not a feed and any other error are `failed`
+ * and are NOT recorded: a `url` source is a page, and a `feed_*` row on a page's key would make it look unreachable next time.
+ * A read calls `succeeded` on the host and the address.
+ */
+export type GuardedFeed =
+  | { ok: true; feed: { title: string | null; items: FeedItem[] } }
+  | { ok: false; unreachable: true; host: string; why: 'blocked' | 'dns' | 'tls' | 'timeout' }
+  | { ok: false; unreachable: false; error: string };
+
+export async function readFeedGuarded(
+  url: string, now: Date, d: { http?: HttpSeams; hosts?: HostFailures; retryMs?: number } = {},
+): Promise<GuardedFeed> {
+  const host = hostOf(url);
+  const key = feedKey(url);
+  if (host && d.hosts) {
+    const b = (await d.hosts.blocked(host, 'feed').catch(() => null)) ?? (key ? await d.hosts.blocked(key, 'feed').catch(() => null) : null);
+    if (b) return { ok: false, unreachable: true, host, why: 'blocked' };
+  }
+  let feed: Awaited<ReturnType<typeof readFeed>>;
+  try {
+    feed = await retryReset(() => readFeed(url, now, d.http), d.retryMs);
+  } catch (err: any) {
+    if (/^status \d+/.test(err?.message ?? '') || err instanceof FeedParseError) return { ok: false, unreachable: false, error: errText(err) };
+    const net = classifyFetchError(err);
+    const why: 'dns' | 'tls' | 'timeout' | null = net ?? (classifyTimeout(err) || classifyTransient(err) ? 'timeout' : null);
+    if (!why || !host) return { ok: false, unreachable: false, error: errText(err) };
+    // A reset that survived the retry is recorded like a timeout (spec 070); the address is recorded too, so a live `refused` row on the host cannot hide it.
+    await d.hosts?.record(host, why);
+    if (key) await d.hosts?.record(key, why);
+    return { ok: false, unreachable: true, host, why };
+  }
+  if (host) await d.hosts?.succeeded?.(host, 'feed');
+  if (key) await d.hosts?.succeeded?.(key, 'feed');
+  return { ok: true, feed };
 }
 
 /** How close a title is to the closest recent text (0–1). */
@@ -172,16 +215,16 @@ export async function filterFresh<T extends { title: string | null; link: string
   return { kept, dropped };
 }
 
-/** A live slot's sources split into feed URLs the code reads and the rest (api:…), resolved against the card. */
-export function liveFeeds(sources: string[], card: CardSource[]): { feeds: Array<{ url: string; id: string }>; other: string[] } {
-  const feeds: Array<{ url: string; id: string }> = [];
+/** A live slot's sources split into feed URLs the code reads and the rest (api:…), resolved against the card. `kind`: the card source's, or `FEEDISH` for a bare URL (spec 076 A20). */
+export function liveFeeds(sources: string[], card: CardSource[]): { feeds: Array<{ url: string; id: string; kind: 'rss' | 'url' }>; other: string[] } {
+  const feeds: Array<{ url: string; id: string; kind: 'rss' | 'url' }> = [];
   const other: string[] = [];
   for (const raw of sources) {
     const s = raw.trim();
-    if (/^https?:\/\//i.test(s)) { feeds.push({ url: s, id: s }); continue; }
+    if (/^https?:\/\//i.test(s)) { feeds.push({ url: s, id: s, kind: FEEDISH.test(s) ? 'rss' : 'url' }); continue; }
     const id = s.replace(/^(feed|rss):/i, '');
     const src = card.find((c) => c.id === id || c.ref === id);
-    if (src && (src.kind === 'rss' || src.kind === 'url') && /^https?:\/\//i.test(src.ref)) feeds.push({ url: src.ref, id: src.id });
+    if (src && (src.kind === 'rss' || src.kind === 'url') && /^https?:\/\//i.test(src.ref)) feeds.push({ url: src.ref, id: src.id, kind: src.kind });
     else other.push(s);
   }
   return { feeds: feeds.filter((f, i) => feeds.findIndex((g) => g.url === f.url) === i), other };
@@ -191,27 +234,34 @@ export function liveFeeds(sources: string[], card: CardSource[]): { feeds: Array
  * The code-side scan of a live slot before the executor runs: read its feeds, keep fresh unposted
  * non-repeating items, freshest first. The executor sees them in its prompt; zero of them (and no
  * api sources) skips the slot with `no_fresh_item` without an LLM call.
+ * Spec 076: every entry is read through `readFeedGuarded`. `feedsUnreachable` counts the entries a block or a network failure
+ * stopped (a subset of `feedsFailed`); `pageSources` counts the `url` entries, which the writer can still open with web_fetch.
  */
 export async function scanLive(
-  d: { pool: Pick<Pool, 'query'>; http?: HttpSeams },
+  d: { pool: Pick<Pool, 'query'>; http?: HttpSeams; hosts?: HostFailures; retryMs?: number },
   o: { spec: Pick<LiveSpec, 'sources' | 'max_age_hours'>; resourceRef: string; card: CardSource[]; now: Date; excludeSlotId?: string | null },
 ): Promise<LiveScan> {
   const { feeds, other } = liveFeeds(o.spec.sources, o.card);
   const all: Array<FeedItem & { feed: string }> = [];
   let read = 0;
   let failed = 0;
+  let unreachable = 0;
   for (const f of feeds) {
-    try {
-      const r = await readFeed(f.url, o.now, d.http);
+    const r = await readFeedGuarded(f.url, o.now, { http: d.http, hosts: d.hosts, retryMs: d.retryMs });
+    if (r.ok) {
       read++;
-      all.push(...r.items.map((it) => ({ ...it, feed: f.id })));
-    } catch {
+      all.push(...r.feed.items.map((it) => ({ ...it, feed: f.id })));
+    } else {
       failed++;
+      if (r.unreachable) unreachable++;
     }
   }
   const r = await filterFresh(all, { sinceHours: o.spec.max_age_hours, pool: d.pool, resourceRef: o.resourceRef, now: o.now, excludeSlotId: o.excludeSlotId });
   const items: LiveCandidate[] = r.kept
     .sort((a, b) => a.age_hours - b.age_hours)
     .map((x) => ({ title: x.title ?? x.link!, url: x.link!, ageHours: x.age_hours, snippet: x.snippet || null, feed: x.feed }));
-  return { items, feedsRead: read, feedsFailed: failed, otherSources: other, dropped: r.dropped };
+  return {
+    items, feedsRead: read, feedsFailed: failed, feedsUnreachable: unreachable, pageSources: feeds.filter((f) => f.kind === 'url').length,
+    otherSources: other, dropped: r.dropped,
+  };
 }

@@ -1651,7 +1651,7 @@ export const EDITOR_PROVIDERS = [
           // Spec 034 FR-010: a live slot's feeds are read by code first (fresh, unposted, not a repeat).
           live: {
             scan: async (slot, card) => slot.liveSpec
-              ? scanLive({ pool }, { spec: slot.liveSpec, resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, card: card.sources, now: new Date(), excludeSlotId: slot.id })
+              ? scanLive({ pool, hosts: new PgHostFailures(pool) }, { spec: slot.liveSpec, resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, card: card.sources, now: new Date(), excludeSlotId: slot.id })
               : null,
           },
           // Spec 034 FR-004: the pre-publish critic of every executor run (live, shadow, approval write-ahead).
@@ -1756,6 +1756,7 @@ export const EDITOR_PROVIDERS = [
         // Spec 034 FR-011: news resources check their feeds on a cadence and add live slots for fresh items (no LLM).
         const newsWatch = new NewsWatchService({
           pool, profile: async (ref) => (await infra.profiles.get(ref))?.profile ?? null, log: (m) => logger.warn(m),
+          hosts: new PgHostFailures(pool),   // spec 076 A19: the news watch reads through the same guarded reader as the live scan
         });
         // Spec 037 FR-010: silent-day notes (dark_day, series_missed, critic_reject_streak), once per resource per day.
         const silent = new SilentDaysWatch({

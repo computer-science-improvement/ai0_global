@@ -20,7 +20,9 @@ import { DERIVED_STEPS, derivedPrompts, slotResource, type DerivedResolution } f
 import type { VoicePrefs } from '../post/slop-lint';
 import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
 import { styleSection } from '../post/style/resource-style';
-import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
+import { feedsAllUnreachable, liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
+import { liveFeeds } from '../live/feed-items';
+import { hostOf } from '../net/host-failures';
 import { CriticGate } from '../critic/critic-gate';
 import { slotSkillsContext } from '../critic/critic-skills';
 import { examplesPromptSection } from '../network/playbook';
@@ -447,6 +449,12 @@ export class EditorRunnerService {
     const scan = slot.topicMode === 'live' && slot.liveSpec && this.d.live ? await this.d.live.scan(slot, card).catch(() => null) : null;
     if (scan && slot.liveSpec && scan.feedsRead > 0 && !scan.items.length && !scan.otherSources.length) {
       return this.skipByCode(slot, noFreshReason(slot.liveSpec, scan));
+    }
+    // Spec 076 FR-007 (L5): every feed of the slot is blocked or timing out, and no page or api source is left for the writer:
+    // skip at $0 with the pre-flight's class, naming the hosts. A scan that threw (null) and a scan without the new fields never get here.
+    if (scan && slot.liveSpec && feedsAllUnreachable(scan)) {
+      const hosts = [...new Set(liveFeeds(slot.liveSpec.sources, card.sources ?? []).feeds.map((f) => hostOf(f.url)).filter(Boolean))].join(', ');
+      return this.skipByCode(slot, preflightSkipError('preflight_host_blocked', `усі стрічки слота недоступні з сервера: ${hosts}`));
     }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const attempt: Attempt = (s, n, sc, probe, opts) => target && target.platform !== 'telegram'

@@ -2,8 +2,9 @@ import type { ContentLedger, LedgerVerdict } from '../../data/content-ledger';
 import type { EditorCard } from '../card';
 import type { EditorSlot } from '../repo/editor-plans.repository';
 import type { IdeaRow } from '../network/network.repository';
-import type { HostFailures } from '../net/host-failures';
-import { hostOf } from '../net/host-failures';
+import type { HostBlock, HostFailures } from '../net/host-failures';
+import { feedKey, hostOf } from '../net/host-failures';
+import { liveFeeds } from '../live/feed-items';
 import { dateFromUrl, sourceAgeHours } from '../post/dates';
 import { refDataset } from '../schedule/series-guard';
 
@@ -93,6 +94,8 @@ const LABEL_HINT = /^(series|directive):/i;
 const ROW_HINT = /^(data|library):\/\//i;
 /** `library:<table>` or `library:<table>/<category>` (a dataset, not a row). */
 const DATASET_HINT = /^library:([a-z][a-z0-9_]*)(?:\/.*)?$/i;
+/** `feed:<id>` / `rss:<id>`: a card source the live scan resolves too (spec 076 A21). */
+const FEED_HINT = /^(feed|rss):/i;
 
 /** The slot as the plan-time check sees it: what a planned (not yet stored) slot carries. */
 export type PlannedSlotLike = Pick<EditorSlot, 'channelKey' | 'format' | 'sourceHints'>
@@ -183,15 +186,22 @@ export class SlotPreflight {
     // A live slot picks its item from the feeds at run time (the live scan already skips an empty feed).
     if (slot.topicMode === 'live') return null;
     const all = sources.map((s) => s.trim()).filter((s) => s && !LABEL_HINT.test(s));
-    const material = all.filter((h) => isHttp(h) || ROW_HINT.test(h) || DATASET_HINT.test(h));
-    // Any other kind (feed:, api:, network_highlights:) cannot be judged here, so the rest does not stop the slot.
+    // Spec 076 A21: a `feed:` / `rss:` hint that resolves to an http card source (as the live scan resolves it) is material: it can be blocked.
+    const feedHints = new Map<string, { url: string; id: string; kind: 'rss' | 'url' }>();
+    for (const h of all) {
+      const f = FEED_HINT.test(h) ? liveFeeds([h], card.sources ?? []).feeds[0] : undefined;
+      if (f) feedHints.set(h, f);
+    }
+    const material = all.filter((h) => isHttp(h) || ROW_HINT.test(h) || DATASET_HINT.test(h) || feedHints.has(h));
+    // Any other kind (api:, network_highlights:, a feed id the card does not have) cannot be judged here, so the rest does not stop the slot.
     if (!material.length || material.length < all.length) return null;
 
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
     const limit = material.some(isHttp) ? await this.d.freshnessHours(slot, card).catch(() => null) : null;
     const problems: PreflightProblem[] = [];
     for (const hint of material) {
-      const p = isHttp(hint) ? await this.assessUrl(hint, ref, slot, idea, limit)
+      const p = feedHints.has(hint) ? await this.assessFeed(feedHints.get(hint)!)
+        : isHttp(hint) ? await this.assessUrl(hint, ref, slot, idea, limit)
         : ROW_HINT.test(hint) ? await this.assessRow(hint, ref, slot)
         : await this.assessDataset(DATASET_HINT.exec(hint)![1], ref);
       if (!p) return null; // one usable source is enough: the executor picks it
@@ -223,6 +233,23 @@ export class SlotPreflight {
     if (!this.d.material) return null;
     const n = await this.d.material.unposted(ref, table);
     return n === 0 ? { code: 'preflight_no_material', reason: `у датасеті ${table} немає непублікованих рядків для ${ref}` } : null;
+  }
+
+  /**
+   * Spec 076 A21: a feed hint is judged by its blocks only (no ledger, no staleness: the feed's items are new every hour and the idea's
+   * age says nothing about them). An `rss` source is asked with use `'feed'` on its host and on its own address; a `url` source with `'page'`.
+   * A one-hour `timeout` block is a slow site, not a dead one, so it passes (as in `assessUrl`). One usable source is enough.
+   */
+  private async assessFeed(f: { url: string; id: string; kind: 'rss' | 'url' }): Promise<PreflightProblem | null> {
+    const host = hostOf(f.url);
+    if (!host) return null;
+    const use = f.kind === 'rss' ? 'feed' : 'page';
+    const key = f.kind === 'rss' ? feedKey(f.url) : null;
+    const hit = (b: HostBlock | null): HostBlock | null => (b && b.reason !== 'timeout' ? b : null);
+    const block = hit(await this.d.hosts.blocked(host, use)) ?? (key ? hit(await this.d.hosts.blocked(key, 'feed')) : null);
+    return block
+      ? { code: 'preflight_host_blocked', reason: `стрічка ${f.id} недоступна з сервера до ${block.until.toISOString().slice(0, 16)}Z (${block.reason})` }
+      : null;
   }
 
   private async assessUrl(url: string, ref: string, slot: PlannedSlotLike, idea: IdeaRow | null, limit: number | null): Promise<PreflightProblem | null> {

@@ -110,7 +110,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - a feed gives items, `newest_at` and 5 titles;
     - a page with a feed link reads that feed.
 
-- [ ] **T4 Guarded live scan, the $0 all-unreachable skip, and pre-flight feed hints** (FR-007, L5, A19–A21)
+- [x] **T4 Guarded live scan, the $0 all-unreachable skip, and pre-flight feed hints** (FR-007, L5, A19–A21)
   - **What:**
     - `readFeedGuarded` and `GuardedFeed` in `live/feed-items.ts` (A19).
     - `liveFeeds` entries gain `kind: 'rss' | 'url'` (`FEEDISH` exported from `sources/playbook-feeds.ts`) (A20).
@@ -374,20 +374,20 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - `specs/README.md`:
       - the 076 row between 071 (`:78`) and 078 (`:79`), DONE, migration 100, depends on 049, 061, 065, 070;
       - line 87 gains "100 spec 076 (source probes, unreachable strikes: apply before deploying the code that writes them)".
-    - Fill in `## Status` and `## Deltas from the spec` below. At least these Deltas:
-      - `area: 'channel'` declared locally (A4);
-      - repeat and demotion of host notes, and the changed 061 tests (A9);
-      - `feed-items.test.ts:51-57` (A20);
-      - `inbox-kinds.test.ts:383` (A24);
-      - the T6 and T9 splits and the T2/T3 swap (A27).
-  - **Files:**
-    - `docs/runbooks/agent-platform.md`;
-    - `specs/076-sources-proven-from-server/spec.md`;
-    - `specs/076-sources-proven-from-server/tasks.md`;
-    - `specs/README.md`.
-  - **Tests:** none new. The full automation suite, the PG suite on the scratch DB, the dashboard tests and `tsc`, and `npm run build` on Node 20 all pass once more.
-  - **Done when:** the runbook section reads end to end for the owner, and the README row and the spec status say done.
+    - Fill in `## Status
 
-## Status
+Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per task:
+
+- T1 `439ba106` — three timeouts in a row are an `unreachable` strike; migration 100.
+- T2 `8ee7e6a2` — the per-host egress proxy (`EGRESS_PROXY_URL`, `EGRESS_PROXY_HOSTS`).
+- T3 `083d39bc` — `probeSource`, the 6 h cache in `source_probes`, the bound prober, the candidate check through it.
+- T4 — (commit hash filled in the next commit) guarded live scan, the $0 all-unreachable skip, pre-flight feed hints.
 
 ## Deltas from the spec
+
+- **T1.** `net/host-failures.test.ts` asserted the exact 8-element INSERT parameter array. The two new columns need two more parameters (`$9`, `$10`), so its three expectations now end `, 0, null`, and `'unreachable'` joins the blocked-reason loop. The spec said the file stayed unchanged.
+- **T3.** `ProbeOpts` has one additive field, `retryMs` (the pause before the second read after a timeout or reset; tests pass 0), as `fetch_feed` has for its own retry.
+- **T4.**
+  - `live/feed-items.test.ts` (the `liveFeeds` `deepEqual`) gains `kind`, as A20 says.
+  - The gate condition is the exported pure function `feedsAllUnreachable(scan)` in `live/live-slot.ts` (A20's condition word for word), so a test can feed it a typed fake. The runner names the hosts from `liveFeeds(slot.liveSpec.sources, card.sources)`, because `LiveScan` carries no host list and A20 adds only two fields.
+  - `reliability.040.pg.test.ts` ("a refused host is blocked for 24 h") uses the shared scratch database, which has no migration 100, so `record` (which now reads the timeout count) stored nothing and the test failed. It now skips when `consecutive_timeouts` is missing, as it already does for migration 094. The same applies in production: code that writes host records must not be deployed before migration 100 (the README line for migration 100 says so).
