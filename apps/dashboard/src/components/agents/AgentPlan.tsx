@@ -17,15 +17,20 @@
 // the evening before), the day's earlier plans, and per slot either the live call
 // ("At 14:00: fetch … → pick the freshest item → write …") or the fixed details with a
 // dry-run Preview, the written post and the critic's verdict.
+//
+// Spec 078 D1.1: the look is agent-plan.css (prefix apl-); inline styles keep only the geometry of the time axis (left, top,
+// width, height). A slot on the timeline is a StatusMark (its shape tells the status), in rows a Badge from lib/status-tone.ts.
 
 import { Link } from '@tanstack/react-router';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { EmptyState } from '../ui/primitives';
+import { EmptyState, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
+import { StatusMark } from '../ui/StatusMark';
 import { CompactCard } from '../ui/CompactCard';
 import { Modal } from '../Modal';
-import { SLOT_TONE, SLOT_ORDER } from '../editor/EditorUi';
+import { SLOT_ORDER, SlotStatus } from '../editor/EditorUi';
+import { MARK_LABEL, slotLabel, slotMark, slotTone, type MissCandidate } from '../../lib/status-tone';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { dayIn, dual, formatIn, zoneLabel } from '../../lib/zoned-time';
 import { isLive, liveLine, planScheduleNote } from '../../lib/slot-plan';
@@ -53,6 +58,12 @@ const DECIDED_BY_LABEL: Record<ContentDecision['decidedBy'], string> = {
 };
 
 interface Lane { ref: string; tz: string; slots: PlanSlot[] }
+
+/**
+ * What the miss rule reads from a plan slot (lib/status-tone.ts isMissed): a series or pinned post that did not go out reads
+ * "Missed" (amber), not "Skipped". `pinned` stands in for the schedule rule id the plan API does not send.
+ */
+const missCandidate = (s: PlanSlot): MissCandidate => ({ status: s.status, error: s.error, seriesName: s.seriesName, scheduleRuleId: s.pinned ? 'pin' : null });
 
 /** Plan-level data the slot views need (spec 034 FR-012): feed names for live slots, the typical Preview cost. */
 interface PlanExtra { feeds: Record<string, string>; estimateUsd: number | null }
@@ -88,27 +99,25 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
 
   const relative = day === today ? 'Today' : day === shiftDay(today, 1) ? 'Tomorrow' : day === shiftDay(today, -1) ? 'Yesterday' : null;
   const toolbar = (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+    <div className="apl-bar">
       <button type="button" className="btn-act" title="Previous day" aria-label="Previous day" onClick={() => setDay((d) => shiftDay(d, -1))}>
         <Icon name="chevron-left" size={15} />
       </button>
-      <input type="date" className="input-field tabular-nums" aria-label="Plan date" value={day}
-        onChange={(e) => { if (/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)) setPicked(e.target.value); }}
-        style={{ width: 150, padding: '6px 10px', fontSize: 13, colorScheme: 'dark' }} />
+      <input type="date" className="input-field tabular-nums apl-date" aria-label="Plan date" value={day}
+        onChange={(e) => { if (/^\d{4}-\d{2}-\d{2}$/.test(e.target.value)) setPicked(e.target.value); }} />
       <button type="button" className="btn-act" title="Next day" aria-label="Next day" onClick={() => setDay((d) => shiftDay(d, 1))}>
         <Icon name="chevron-right" size={15} />
       </button>
-      <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
+      <span className="text-body-sm apl-day">
         {relative ?? fmtDay(day)}
-        {relative && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', fontWeight: 400, marginLeft: 6 }}>{fmtDay(day)}</span>}
+        {relative && <span className="text-micro apl-day-sub">{fmtDay(day)}</span>}
       </span>
-      {day !== today && <button type="button" className="btn-tiny" onClick={() => setPicked(null)}>Today</button>}
-      <span className="text-micro" title="The plan day and the time axis follow the network's (anchor channel's) time zone"
-        style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+      {day !== today && <button type="button" className="btn-secondary btn-sm" onClick={() => setPicked(null)}>Today</button>}
+      <span className="text-micro apl-zone" title="The plan day and the time axis follow the network's (anchor channel's) time zone">
         <Icon name="clock" size={12} /> {zoneLabel(anchorTz)} time
       </span>
-      <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap', marginLeft: 'auto' }}>
-        {SLOT_ORDER.filter((s) => (counts[s] ?? 0) > 0).map((s) => <Badge key={s} tone={SLOT_TONE[s]}>{counts[s]} {s}</Badge>)}
+      <span className="apl-counts">
+        {SLOT_ORDER.filter((s) => (counts[s] ?? 0) > 0).map((s) => <Badge key={s} tone={slotTone(s)}>{counts[s]} {slotLabel(s).toLowerCase()}</Badge>)}
       </span>
     </div>
   );
@@ -118,10 +127,10 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
   return (
     <div>
       {toolbar}
-      {!plan.data && <div className="panel compose-rise" style={{ height: 180, opacity: 0.55 }} />}
+      {!plan.data && <div className="panel apl-skeleton compose-rise" style={{ height: 180 }} aria-hidden />}
       {plan.data && (
         <>
-          <div className="card compose-rise" style={{ padding: '10px 14px', marginBottom: 14, display: 'grid', gap: 8, minWidth: 0 }}>
+          <div className="panel apl-stamp compose-rise">
             <PlanStamp tz={anchorTz} data={{
               planDate: day, plannedAt: plan.data.plannedAt, runId: plan.data.runId, runRole: plan.data.runRole,
               schedule: plan.data.schedule ?? null, history: plan.data.history,
@@ -138,22 +147,16 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
           ) : wide ? (
             <>
               <Timeline lanes={lanes} day={day} today={today} anchorTz={anchorTz} selected={selected} onSelect={select} />
-              <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 2px 0' }}>Click a slot to open its topic, treatment, preview and links.</p>
+              <p className="text-micro apl-hint">Click a slot to open its topic, treatment, preview and links.</p>
             </>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {lanes.filter((l) => l.slots.length > 0).map((l) => (
-                <section key={l.ref} className="panel compose-rise" style={{ padding: 12 }}>
-                  <div className="text-body-sm" style={{ marginBottom: 8, display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
-                    <ResourceLabel refId={l.ref} strong />
-                    <LaneClock tz={l.tz} />
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    {l.slots.map((s) => (
-                      <ListSlot key={s.id} slot={s} tz={l.tz} open={selected === s.id} onOpen={() => select(s.id)} extra={extra} />
-                    ))}
-                  </div>
-                </section>
+            <div className="apl-lanes">
+              {lanes.filter((l) => l.slots.length > 0).map((l, i) => (
+                <SectionCard key={l.ref} title={<ResourceLabel refId={l.ref} strong />} flush delay={Math.min(i, 6) * 30} action={<LaneClock tz={l.tz} />}>
+                  {l.slots.map((s) => (
+                    <ListSlot key={s.id} slot={s} tz={l.tz} open={selected === s.id} onOpen={() => select(s.id)} extra={extra} />
+                  ))}
+                </SectionCard>
               ))}
             </div>
           )}
@@ -171,14 +174,14 @@ function Rationale({ text, day }: { text: string; day: string }) {
   const [open, setOpen] = useState(false);
   const long = text.length > 220 || text.split('\n').length > 2;
   return (
-    <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8, minWidth: 0 }}>
-      <span style={{ color: 'var(--color-accent)', display: 'inline-flex', marginTop: 2 }}><Icon name="sparkles" size={14} /></span>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <p className="text-body-sm clamp" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>{text}</p>
-        {long && <button type="button" className="btn-tiny" style={{ marginTop: 6 }} onClick={() => setOpen(true)}>Read all</button>}
+    <div className="apl-rationale">
+      <span className="apl-rationale-icon"><Icon name="sparkles" size={14} /></span>
+      <div className="apl-rationale-body">
+        <p className="text-body-sm clamp apl-rationale-text">{text}</p>
+        {long && <button type="button" className="btn-ghost btn-sm apl-readall" onClick={() => setOpen(true)}>Read all</button>}
       </div>
       <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="sparkles" title="Plan rationale" subtitle={fmtDay(day)}>
-        <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{text}</p>
+        <p className="text-body-sm apl-rationale-full">{text}</p>
       </Modal>
     </div>
   );
@@ -198,16 +201,16 @@ function SlotDialog({ slot, slots, tzOf, decisions, extra, onSelect, onIdea, onC
       {slot && (
         <div className="modal-foot">
           {slot.ideaId && (
-            <button type="button" className="btn-tiny" style={{ gap: 5 }} onClick={() => onIdea(slot.ideaId!)}>
-              <Icon name="sparkles" size={12} /> Idea
+            <button type="button" className="btn-secondary" onClick={() => onIdea(slot.ideaId!)}>
+              <Icon name="sparkles" size={14} /> Idea
             </button>
           )}
-          <Link to="/app/editor/slot/$id" params={{ id: slot.id }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
-            <Icon name="calendar" size={12} /> Slot
+          <Link to="/app/editor/slot/$id" params={{ id: slot.id }} className="btn-secondary">
+            <Icon name="calendar" size={14} /> Slot
           </Link>
           {slot.runId && (
-            <Link to="/app/editor/run/$id" params={{ id: slot.runId }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
-              <Icon name="logs" size={12} /> Run
+            <Link to="/app/editor/run/$id" params={{ id: slot.runId }} className="btn-secondary">
+              <Icon name="logs" size={14} /> Run
             </Link>
           )}
         </div>
@@ -219,7 +222,7 @@ function SlotDialog({ slot, slots, tzOf, decisions, extra, onSelect, onIdea, onC
 /** "Kyiv · now 16:04" — a resource's zone and its local now. */
 function LaneClock({ tz }: { tz: string }) {
   return (
-    <span className="text-micro tabular-nums" title={`Time zone: ${tz}`} style={{ color: 'var(--color-ink-dim)', fontSize: 10.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+    <span className="mono apl-lane-clock" title={`Time zone: ${tz}`}>
       {zoneLabel(tz)} · now {formatIn(new Date(), tz)}
     </span>
   );
@@ -271,13 +274,13 @@ function Timeline({ lanes, day, today, anchorTz, selected, onSelect }: {
   const links = connectors(all).filter((c) => pos.has(c.from.id) && pos.has(c.to.id));
 
   return (
-    <div className="panel compose-rise" style={{ padding: '12px 14px', overflow: 'hidden' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: `${LABEL_W}px minmax(0, 1fr)`, columnGap: COL_GAP, position: 'relative' }}>
+    <div className="panel apl-tl compose-rise">
+      <div className="apl-tl-grid" style={{ gridTemplateColumns: `${LABEL_W}px minmax(0, 1fr)`, columnGap: COL_GAP }}>
         <div />
-        <div ref={track} style={{ position: 'relative', height: AXIS_H }}>
+        <div ref={track} className="apl-axis" style={{ height: AXIS_H }}>
           {width > 0 && hours.filter((h) => (h - start) % step === 0).map((h) => (
-            <span key={h} className="text-micro tabular-nums"
-              style={{ position: 'absolute', left: ((h - start) * 60 / span) * usable, transform: 'translateX(-2px)', color: h >= 24 ? 'var(--color-ink-muted)' : 'var(--color-ink-dim)', fontSize: 10 }}
+            <span key={h} className={`mono apl-tick${h >= 24 ? ' is-next' : ''}`}
+              style={{ left: ((h - start) * 60 / span) * usable }}
               title={h >= 24 ? `${axisLabel(h)}:00 the next day (${zoneLabel(anchorTz)})` : `${axisLabel(h)}:00 ${zoneLabel(anchorTz)}`}>
               {axisLabel(h)}{h === 24 ? '+1' : ''}
             </span>
@@ -288,10 +291,10 @@ function Timeline({ lanes, day, today, anchorTz, selected, onSelect }: {
             hours={hours} nowX={nowX} selected={selected} onSelect={onSelect} />
         ))}
         {width > 0 && links.length > 0 && (
-          <svg aria-hidden width="100%" height={y} style={{ position: 'absolute', left: 0, top: 0, pointerEvents: 'none', overflow: 'visible', zIndex: 2 }}>
+          <svg aria-hidden className="apl-links" width="100%" height={y}>
             <defs>
               <marker id="plan-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0,0 L8,4 L0,8 z" fill="var(--color-accent)" />
+                <path className="apl-arrow" d="M0,0 L8,4 L0,8 z" />
               </marker>
             </defs>
             {links.map(({ from, to }) => {
@@ -305,9 +308,8 @@ function Timeline({ lanes, day, today, anchorTz, selected, onSelect }: {
               const mid = (y1 + y2) / 2;
               const hot = selected === from.id || selected === to.id;
               return (
-                <path key={to.id} d={`M${x1},${y1} C${x1},${mid} ${x2},${mid} ${x2},${y2}`} fill="none"
-                  stroke="var(--color-accent)" strokeWidth={hot ? 1.8 : 1.2} strokeDasharray={hot ? undefined : '4 3'} opacity={hot ? 0.95 : 0.55}
-                  markerEnd="url(#plan-arrow)" />
+                <path key={to.id} d={`M${x1},${y1} C${x1},${mid} ${x2},${mid} ${x2},${y2}`}
+                  className={`apl-link${hot ? ' is-hot' : ''}`} markerEnd="url(#plan-arrow)" />
               );
             })}
           </svg>
@@ -324,16 +326,16 @@ function LaneRow({ lane, placed, rows, width, usable, start, span, hours, nowX, 
   const h = rows * ROW_H + 8;
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 2, minWidth: 0, borderTop: '1px solid var(--color-hairline-soft)', minHeight: h }} className="text-body-sm">
-        <ResourceLabel refId={lane.ref} strong extra={<span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{placed.length}</span>} />
+      <div className="text-body-sm apl-lane-label" style={{ minHeight: h }}>
+        <ResourceLabel refId={lane.ref} strong extra={<span className="mono apl-lane-count">{placed.length}</span>} />
         <LaneClock tz={lane.tz} />
       </div>
-      <div style={{ position: 'relative', height: h, borderTop: '1px solid var(--color-hairline-soft)' }}>
+      <div className="apl-lane" style={{ height: h }}>
         {width > 0 && hours.map((hr) => (
-          <span key={hr} aria-hidden style={{ position: 'absolute', top: 0, bottom: 0, left: ((hr - start) * 60 / span) * usable, width: 1, background: hr === 24 ? 'var(--color-hairline)' : 'var(--color-hairline-soft)' }} />
+          <span key={hr} aria-hidden className={`apl-gridline${hr === 24 ? ' is-midnight' : ''}`} style={{ left: ((hr - start) * 60 / span) * usable }} />
         ))}
         {width > 0 && nowX != null && nowX >= 0 && nowX <= usable && (
-          <span aria-hidden title="now" style={{ position: 'absolute', top: 0, bottom: 0, left: nowX, width: 2, background: 'var(--color-accent)', opacity: 0.6 }} />
+          <span aria-hidden title="now" className="apl-now" style={{ left: nowX }} />
         )}
         {width > 0 && placed.map(({ s, left, row }) => (
           <SlotPill key={s.id} slot={s} tz={lane.tz} left={left} top={4 + row * ROW_H} active={selected === s.id} onClick={() => onSelect(s.id)} />
@@ -343,20 +345,11 @@ function LaneRow({ lane, placed, rows, width, usable, start, span, hours, nowX, 
   );
 }
 
-const TONE_VAR = { neutral: 'var(--color-ink-dim)', warning: 'var(--color-warning)', accent: 'var(--color-accent)', success: 'var(--color-success)', danger: 'var(--color-danger)' } as const;
-
 /** U / D / A in a tiny square. */
 function TreatmentMark({ treatment }: { treatment: PlanSlot['treatment'] }) {
   if (!treatment) return null;
   return (
-    <span aria-label={TREATMENT_LABEL[treatment]} title={TREATMENT_LABEL[treatment]}
-      style={{
-        display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 15, height: 15, flexShrink: 0,
-        borderRadius: 3, fontSize: 9.5, fontWeight: 700, lineHeight: 1,
-        background: 'var(--color-surface-3)',
-        color: treatment === 'unique' ? 'var(--color-ink-muted)' : 'var(--color-accent)',
-        border: '1px solid var(--color-hairline)',
-      }}>
+    <span aria-label={TREATMENT_LABEL[treatment]} title={TREATMENT_LABEL[treatment]} className={`apl-treat${treatment === 'unique' ? ' is-unique' : ''}`}>
       {TREATMENT_LETTER[treatment]}
     </span>
   );
@@ -364,31 +357,23 @@ function TreatmentMark({ treatment }: { treatment: PlanSlot['treatment'] }) {
 
 function slotTitle(slot: PlanSlot, tz: string): string {
   const what = isLive(slot) ? liveLine(slot, tz) : slot.topic;
-  return `${dual(slot.at, tz)} · ${slot.status} · ${slot.format}${slot.treatment ? ` · ${TREATMENT_LABEL[slot.treatment]}` : ''}\n${what}`;
+  return `${dual(slot.at, tz)} · ${MARK_LABEL[slotMark(missCandidate(slot))]} · ${slot.format}${slot.treatment ? ` · ${TREATMENT_LABEL[slot.treatment]}` : ''}\n${what}`;
 }
 
 function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz: string; left: number; top: number; active: boolean; onClick: () => void }) {
-  const tone = TONE_VAR[SLOT_TONE[slot.status]];
-  const dim = slot.status === 'skipped';
+  // The shape of the mark tells the status; only a plain skip is dimmed (a missed series or pin keeps its amber mark at full strength).
+  const mark = slotMark(missCandidate(slot));
   const t = pillTimes(slot.at, tz);
   return (
     <button type="button" onClick={onClick} aria-pressed={active} title={slotTitle(slot, tz)}
-      style={{
-        position: 'absolute', left, top, width: PILL_W, height: ROW_H - 4, boxSizing: 'border-box', zIndex: 1,
-        display: 'flex', alignItems: 'center', gap: 5, padding: '0 7px', cursor: 'pointer', font: 'inherit', textAlign: 'left',
-        background: active ? 'var(--color-surface-3)' : 'var(--color-surface-2)', color: 'var(--color-ink)',
-        borderStyle: 'solid', borderWidth: '1px 1px 1px 3px',
-        borderColor: active ? `var(--color-accent) var(--color-accent) var(--color-accent) ${tone}` : `var(--color-hairline) var(--color-hairline) var(--color-hairline) ${tone}`,
-        borderRadius: 'var(--radius-sm)', opacity: dim ? 0.55 : 1,
-        textDecoration: dim ? 'line-through' : undefined,
-      }}>
+      className={`apl-pill${active ? ' is-active' : ''}${mark === 'skipped' ? ' is-dim' : ''}`}
+      style={{ left, top, width: PILL_W, height: ROW_H - 4 }}>
+      <StatusMark status={mark} size={12} />
       <TreatmentMark treatment={slot.treatment ?? null} />
-      {isLive(slot) && <span aria-label="live" style={{ color: 'var(--color-accent)', display: 'inline-flex', flexShrink: 0 }}><Icon name="radar" size={11} /></span>}
-      <span className="tabular-nums" style={{ fontSize: 11, fontWeight: 600, flexShrink: 0 }}>{t.local}</span>
-      {t.kyiv && <span className="tabular-nums" style={{ fontSize: 10, color: 'var(--color-ink-dim)', flexShrink: 0 }}>· {t.kyiv} Kyiv</span>}
-      <span style={{ fontSize: 11, color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
-        {slot.kind === 'reserved' ? 'reserved' : slot.topic}
-      </span>
+      {isLive(slot) && <span aria-label="live" className="apl-pill-live"><Icon name="radar" size={11} /></span>}
+      <span className="mono apl-pill-time">{t.local}</span>
+      {t.kyiv && <span className="tabular-nums apl-pill-kyiv">· {t.kyiv} Kyiv</span>}
+      <span className="apl-pill-topic">{slot.kind === 'reserved' ? 'reserved' : slot.topic}</span>
     </button>
   );
 }
@@ -400,25 +385,23 @@ function ListSlot({ slot, tz, open, onOpen, extra }: {
 }) {
   const t = pillTimes(slot.at, tz);
   return (
-    <button type="button" className="card row-lift" onClick={onOpen} aria-haspopup="dialog" title={slotTitle(slot, tz)}
-      style={{ display: 'flex', gap: 10, alignItems: 'flex-start', width: '100%', padding: '10px 12px', color: 'inherit', font: 'inherit', textAlign: 'left', cursor: 'pointer',
-        boxShadow: open ? 'inset 0 0 0 1px var(--color-accent)' : undefined }}>
-      <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)', width: 44, flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
+    <button type="button" className={`panel-row apl-slot${open ? ' is-selected' : ''}`} onClick={onOpen} aria-haspopup="dialog" title={slotTitle(slot, tz)}>
+      <span className="mono apl-slot-time">
         {t.local}
-        {t.kyiv && <span style={{ fontSize: 10, fontWeight: 400, color: 'var(--color-ink-dim)' }}>{t.kyiv} Kyiv</span>}
+        {t.kyiv && <span className="apl-slot-kyiv">{t.kyiv} Kyiv</span>}
       </span>
-      <span style={{ flex: 1, minWidth: 0 }}>
-        <span style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 3 }}>
+      <span className="apl-slot-body">
+        <span className="apl-slot-tags">
           <TreatmentMark treatment={slot.treatment ?? null} />
-          <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
-          <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
-          {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
+          <SlotStatus slot={missCandidate(slot)} mark={false} />
+          <span className="chip">{slot.format}</span>
+          {slot.kind === 'reserved' && <span className="chip">reserved</span>}
           <CriticBadge critic={slot.critic} />
         </span>
-        <span className="text-body-sm clamp" style={{ color: 'var(--color-ink)', ['--clamp' as string]: 2 }}>{slot.topic}</span>
-        <span style={{ display: 'block', marginTop: 3 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} compact /></span>
+        <span className="text-body-sm clamp apl-slot-topic">{slot.topic}</span>
+        <span className="apl-slot-desc"><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} compact /></span>
       </span>
-      <span style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', marginTop: 2 }}><Icon name="chevron-right" size={14} /></span>
+      <span className="apl-slot-chev"><Icon name="chevron-right" size={14} /></span>
     </button>
   );
 }
@@ -426,10 +409,10 @@ function ListSlot({ slot, tz, open, onOpen, extra }: {
 /** A small button that jumps to another slot of the plan (source or derived). */
 function SlotJump({ slot, tz, onSelect }: { slot: PlanSlot; tz: string; onSelect: (id: string) => void }) {
   return (
-    <button type="button" className="btn-tiny" style={{ gap: 5, maxWidth: '100%' }} title={slotTitle(slot, tz)} onClick={() => onSelect(slot.id)}>
+    <button type="button" className="btn-tiny apl-jump" title={slotTitle(slot, tz)} onClick={() => onSelect(slot.id)}>
       <TreatmentMark treatment={slot.treatment ?? null} />
-      <span style={{ display: 'inline-flex', minWidth: 0 }}><ResourceLabel refId={slot.resourceRef} /></span>
-      <span className="tabular-nums">{formatIn(slot.at, tz)}</span>
+      <span className="apl-jump-label"><ResourceLabel refId={slot.resourceRef} /></span>
+      <span className="mono">{formatIn(slot.at, tz)}</span>
     </button>
   );
 }
@@ -445,24 +428,24 @@ function SlotDetail({ slot, slots, tzOf, decisions, onSelect, extra }: {
   const derived = slots.filter((s) => s.derivedFrom === slot.id);
   const ideaDecisions = slot.ideaId ? decisions.filter((d) => d.ideaId === slot.ideaId) : [];
   return (
-    <div style={{ minWidth: 0 }}>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 8 }}>
-        <span className="text-body-sm" style={{ display: 'inline-flex', minWidth: 0 }}><ResourceLabel refId={slot.resourceRef} /></span>
-        <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
-        <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
-        {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
+    <div className="apl-detail">
+      <div className="apl-detail-head">
+        <span className="text-body-sm apl-detail-res"><ResourceLabel refId={slot.resourceRef} /></span>
+        <SlotStatus slot={missCandidate(slot)} mark={false} />
+        <span className="chip">{slot.format}</span>
+        {slot.kind === 'reserved' && <span className="chip">reserved</span>}
         <CriticBadge critic={slot.critic} />
       </div>
-      {slot.kind === 'reserved' && slot.topic && <div style={{ color: 'var(--color-ink)', fontWeight: 500, overflowWrap: 'anywhere' }}>{slot.topic}</div>}
-      <div style={{ marginTop: 4 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} /></div>
+      {slot.kind === 'reserved' && slot.topic && <div className="apl-detail-topic">{slot.topic}</div>}
+      <SlotDescription slot={slot} tz={tz} feeds={extra.feeds} />
       {slot.treatment && (
-        <div className="text-body-sm" style={{ marginTop: 8, display: 'flex', gap: 8, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+        <div className="text-body-sm apl-treatment">
           <Badge tone={DECISION_TONE[slot.treatment]}>{TREATMENT_LABEL[slot.treatment]}</Badge>
-          {slot.treatmentReason && <span style={{ color: 'var(--color-ink-muted)', flex: 1, minWidth: 180, overflowWrap: 'anywhere' }}>{slot.treatmentReason}</span>}
+          {slot.treatmentReason && <span className="apl-treatment-why">{slot.treatmentReason}</span>}
         </div>
       )}
       {(source || slot.derivedFrom) && (
-        <div className="text-micro" style={{ marginTop: 8, display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
+        <div className="text-micro apl-related">
           <span>Source:</span>
           {source ? <SlotJump slot={source} tz={tzOf.get(source.resourceRef) ?? tz} onSelect={onSelect} /> : (
             <Link to="/app/editor/slot/$id" params={{ id: slot.derivedFrom! }} className="link-accent">another day's slot →</Link>
@@ -470,18 +453,18 @@ function SlotDetail({ slot, slots, tzOf, decisions, onSelect, extra }: {
         </div>
       )}
       {derived.length > 0 && (
-        <div className="text-micro" style={{ marginTop: 8, display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
+        <div className="text-micro apl-related">
           <span>Derived:</span>
           {derived.map((d) => <SlotJump key={d.id} slot={d} tz={tzOf.get(d.resourceRef) ?? tz} onSelect={onSelect} />)}
         </div>
       )}
       {slot.error && slot.status !== 'skipped' && slot.status !== 'failed' && (
-        <div className="callout-warning" style={{ marginTop: 8, overflowWrap: 'anywhere' }}>{slot.error}</div>
+        <div className="callout-warning apl-detail-error">{slot.error}</div>
       )}
-      {slot.kind !== 'reserved' && <div style={{ marginTop: 10 }}><SlotPost slot={slot} tz={tz} estimateUsd={extra.estimateUsd} plain={!tg} /></div>}
+      {slot.kind !== 'reserved' && <SlotPost slot={slot} tz={tz} estimateUsd={extra.estimateUsd} plain={!tg} />}
       {ideaDecisions.length > 0 && (
-        <div style={{ marginTop: 10 }}>
-          <div className="text-eyebrow" style={{ marginBottom: 4 }}>Decisions for this idea</div>
+        <div className="apl-detail-decs">
+          <div className="text-overline">Decisions for this idea</div>
           <DecisionRows decisions={ideaDecisions} />
         </div>
       )}
@@ -494,16 +477,15 @@ function SlotDetail({ slot, slots, tzOf, decisions, onSelect, extra }: {
 /** One row per resource: the decision, its reason (and reason code), who decided. */
 export function DecisionRows({ decisions }: { decisions: ContentDecision[] }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+    <div className="apl-decs">
       {decisions.map((d) => (
-        <div key={`${d.ideaId}:${d.resourceRef}`} className="text-body-sm"
-          style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 150px) auto minmax(0, 1fr)', gap: 8, alignItems: 'baseline', opacity: d.decision === 'skip' ? 0.85 : 1 }}>
-          <span style={{ display: 'inline-flex', minWidth: 0 }}><ResourceLabel refId={d.resourceRef} /></span>
+        <div key={`${d.ideaId}:${d.resourceRef}`} className={`text-body-sm apl-dec${d.decision === 'skip' ? ' is-skip' : ''}`}>
+          <span className="apl-dec-res"><ResourceLabel refId={d.resourceRef} /></span>
           <Badge tone={DECISION_TONE[d.decision]}>{d.decision}</Badge>
-          <span style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', minWidth: 0 }}>
+          <span className="apl-dec-reason">
             {d.reason}
-            {d.reasonCode && <span className="chip" style={{ fontSize: 10.5, marginLeft: 6 }}>{REASON_CODE_LABEL[d.reasonCode] ?? d.reasonCode}</span>}
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 6 }}>by {DECIDED_BY_LABEL[d.decidedBy] ?? d.decidedBy}</span>
+            {d.reasonCode && <span className="chip apl-dec-code">{REASON_CODE_LABEL[d.reasonCode] ?? d.reasonCode}</span>}
+            <span className="text-micro apl-dec-by">by {DECIDED_BY_LABEL[d.decidedBy] ?? d.decidedBy}</span>
           </span>
         </div>
       ))}
@@ -524,11 +506,8 @@ function DecisionsPanel({ decisions, slots, tzOf, onIdea, onSelect }: {
     return order.map((id) => ({ id, decisions: by.get(id)!, slot: slots.find((s) => s.ideaId === id && !s.derivedFrom) ?? slots.find((s) => s.ideaId === id) ?? null }));
   }, [decisions, slots]);
   return (
-    <section className="panel compose-rise" style={{ padding: '12px 14px', marginTop: 14 }} aria-label="Decisions">
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-        <span className="text-eyebrow">Decisions</span>
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>per idea and resource: duplicate, adapt, unique or skip — with the reason</span>
-      </div>
+    <SectionCard title="Decisions" icon="sparkles" delay={60} style={{ marginTop: 16 }}>
+      <p className="text-micro apl-section-hint">Per idea and resource: duplicate, adapt, unique or skip — with the reason.</p>
       <div className="compact-grid">
         {ideas.map((i, n) => {
           const skips = i.decisions.filter((d) => d.decision === 'skip').length;
@@ -538,7 +517,7 @@ function DecisionsPanel({ decisions, slots, tzOf, onIdea, onSelect }: {
             <CompactCard key={i.id} delay={Math.min(n, 12) * 25} hint="Open the decisions for this idea"
               title={topic}
               extra={(
-                <span className="text-micro" style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
+                <span className="text-micro apl-dec-counts">
                   <Badge tone="accent">{i.decisions.length - skips} planned</Badge>
                   {skips > 0 && <Badge tone="warning">{skips} skipped</Badge>}
                 </span>
@@ -549,13 +528,13 @@ function DecisionsPanel({ decisions, slots, tzOf, onIdea, onSelect }: {
                 actions: (close) => (
                   <>
                     {i.slot && (
-                      <button type="button" className="btn-tiny" style={{ gap: 5 }} title={slotTitle(i.slot, tzOf.get(i.slot.resourceRef) ?? 'Europe/Kyiv')}
+                      <button type="button" className="btn-secondary" title={slotTitle(i.slot, tzOf.get(i.slot.resourceRef) ?? 'Europe/Kyiv')}
                         onClick={() => { close(); onSelect(i.slot!.id); }}>
-                        <Icon name="calendar" size={12} /> Slot
+                        <Icon name="calendar" size={14} /> Slot
                       </button>
                     )}
-                    <button type="button" className="btn-tiny" style={{ gap: 5 }} onClick={() => { close(); onIdea(i.id); }}>
-                      <Icon name="sparkles" size={12} /> Idea
+                    <button type="button" className="btn-secondary" onClick={() => { close(); onIdea(i.id); }}>
+                      <Icon name="sparkles" size={14} /> Idea
                     </button>
                   </>
                 ),
@@ -563,6 +542,6 @@ function DecisionsPanel({ decisions, slots, tzOf, onIdea, onSelect }: {
           );
         })}
       </div>
-    </section>
+    </SectionCard>
   );
 }
