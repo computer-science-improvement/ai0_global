@@ -47,7 +47,7 @@ const toRow = (r: any): ReadinessRow => ({
  * The channels the sweep keeps checked and may notify about: a card in approve or live mode, or a channel with an open launch
  * (ready or running). Shadow and off cards are looked at when somebody opens them, never by the sweep.
  */
-const IN_SWEEP = `(c.mode IN ('approve', 'live')
+export const IN_SWEEP = `(c.mode IN ('approve', 'live')
     OR EXISTS (SELECT 1 FROM channel_launches l WHERE lower(l.channel_key) = lower(c.channel_key) AND lower(l.status) IN ('ready', 'running')))`;
 
 export class ReadinessRepository {

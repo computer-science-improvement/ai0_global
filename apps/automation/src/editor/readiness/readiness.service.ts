@@ -6,6 +6,8 @@ import { channelDoctor } from './doctor';
 import { canonical, ChannelNotFound, configHash } from './facts';
 import type { ChannelFacts } from './facts.types';
 import { mkFinding } from './finding';
+import { doctorReason } from './codes';
+import { notifiable } from './notify';
 import type { ReadinessRepository, ReadinessRow, ReadinessWrite } from './readiness.repository';
 import {
   AUTO_FIXED_CODE, buildView, countFindings, isAutoFixed, selectFixes, type ClosedSlotRow, type FixSelection, type ReadinessView,
@@ -168,6 +170,40 @@ export class ReadinessService {
     return this.recheckKey(key, 'view');
   }
 
+  /**
+   * FR-010: how many blockers the stored row holds and the first one's Ukrainian line, for the launch card. Reads the stored
+   * row only (no facts, no doctor) and never throws: a channel without a card or without a row is `null`, and so is a read that
+   * fails (the card then says nothing about readiness).
+   */
+  async blockerSummary(keyIn: string): Promise<{ count: number; first: string } | null> {
+    try {
+      const key = await this.d.resolveKey((keyIn ?? '').trim());
+      if (!key) return null;
+      const row = await this.d.repo.get(key);
+      if (!row) return null;
+      const open = row.findings.filter((f) => f.severity === 'error' && !isAutoFixed(f));
+      if (!open.length) return null;
+      // Every open blocker costs slots, so all are counted; the one named is the first that the card does not say elsewhere
+      // (the launch card has its own line about the bot).
+      const first = notifiable(open, { launchOpen: true })[0] ?? open[0];
+      return { count: open.length, first: doctorReason(first.check)?.uk ?? first.title };
+    } catch (err: any) {
+      this.log(`readiness: blockerSummary of ${keyIn} failed: ${err?.message ?? err}`);
+      return null;
+    }
+  }
+
+  /**
+   * A22: the number of open blockers for the graduation check. The stored row when there is one; a channel that has none yet
+   * gets one `sweep` recheck and that count is used. Throws for an unknown channel (the caller decides what a failed read means).
+   */
+  async blockerCount(keyIn: string): Promise<number> {
+    const key = await this.keyOf(keyIn);
+    const row = await this.d.repo.get(key);
+    if (row) return row.blockers;
+    return (await this.recheckKey(key, 'sweep')).blockers;
+  }
+
   // ── recheck ──────────────────────────────────────────────────────────────────────────────────────────────────────
 
   async recheck(keyIn: string, reason: RecheckReason): Promise<ReadinessView> {
@@ -216,7 +252,7 @@ export class ReadinessService {
 
     const write: ReadinessWrite = {
       channelKey: key, findings, blockers: counts.blockers, warnings: counts.warnings, configHash: hash, checkedAt: now,
-      ...(STAMP_REASONS.has(reason) && inSet ? this.notifyChange(prev, open, now) : {}),
+      ...(STAMP_REASONS.has(reason) && inSet ? this.notifyChange(prev, open, now, !!facts.launch) : {}),
     };
     const row = await this.d.repo.upsert(write);
     const view = buildView(row, { mode: facts.card.mode, agent: facts.agent?.handle ?? null }, facts.slots24h);
@@ -224,13 +260,16 @@ export class ReadinessService {
   }
 
   /**
-   * A9, I5: what to write into `notified_blockers` / `notified_at`. Only the blockers that have been open for 5 minutes count
-   * (one recheck never sends a card). No such blocker: the stored set is cleared at once, outside the 24 hour gate, and
-   * `notified_at` stays. A different non-empty set is stamped only when nothing was stamped in the last 24 hours.
+   * A9, I5, I9: what to write into `notified_blockers` / `notified_at`. Only the blockers that have been open for 5 minutes count
+   * (one recheck never sends a card), and not those another note already covers (`notifiable`). No such blocker: the stored
+   * set is cleared at once, outside the 24 hour gate, and `notified_at` stays. A different non-empty set is stamped only when
+   * nothing was stamped in the last 24 hours.
    */
-  private notifyChange(prev: ReadinessRow | null, open: readonly Finding[], now: Date): Pick<ReadinessWrite, 'notifiedBlockers' | 'notifiedAt'> {
-    const stable = open
-      .filter((f) => f.severity === 'error' && now.getTime() - Date.parse(f.firstSeenAt ?? now.toISOString()) >= BLOCKER_STABLE_MS)
+  private notifyChange(
+    prev: ReadinessRow | null, open: readonly Finding[], now: Date, launchOpen: boolean,
+  ): Pick<ReadinessWrite, 'notifiedBlockers' | 'notifiedAt'> {
+    const stable = notifiable(open, { launchOpen })
+      .filter((f) => now.getTime() - Date.parse(f.firstSeenAt ?? now.toISOString()) >= BLOCKER_STABLE_MS)
       .map((f) => f.key).sort();
     const was = [...(prev?.notifiedBlockers ?? [])].sort();
     if (!stable.length) return was.length ? { notifiedBlockers: [] } : {};

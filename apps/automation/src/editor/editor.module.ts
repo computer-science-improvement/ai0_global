@@ -197,6 +197,7 @@ import { playbookPort, retireMemoryPort } from './sysadmin/audit-ports';
 import { loadChannelFacts, resolveChannelKey } from './readiness/facts';
 import { closedSlotsPort, readinessFixPorts } from './readiness/readiness-ports';
 import { READINESS_SERVICE, ReadinessController } from './readiness/readiness.controller';
+import { readinessSource } from './readiness/readiness-cards';
 import { ReadinessRepository } from './readiness/readiness.repository';
 import { ReadinessService } from './readiness/readiness.service';
 import { ReadinessWorker } from './readiness/readiness.worker';
@@ -2160,6 +2161,7 @@ export const EDITOR_PROVIDERS = [
       inject: [
         DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, STEERING_SERVICE, MODEL_DEFAULTS, TelegramNotifier, ChannelConfigService,
         AGENTS_SERVICE, NETWORK_SERVICE, EDITOR_RUNNER, AUTONOMY_SERVICE, APPROVAL_INFRA, PLATFORM_INFRA, EDITOR_MANAGER, PROMO_INFRA,
+        READINESS_SERVICE,
         { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
         { token: TrackingService, optional: true }, { token: TrackedChannelsRepository, optional: true },
       ],
@@ -2168,6 +2170,7 @@ export const EDITOR_PROVIDERS = [
         models: WorkspaceModelStore, notifier: TelegramNotifier, channelConfig: ChannelConfigService,
         agentsSvc: AgentsService, networkSvc: NetworkService, runner: EditorRunnerService,
         autonomy: AutonomyService, approval: ApprovalInfra, platform: PlatformInfra, manager: ManagerInfra, promoInfra: PromoInfra,
+        readinessSvc: ReadinessService,
         prices?: PriceService, caps?: LlmBudgetService, tracking?: TrackingService, trackedRepo?: TrackedChannelsRepository,
       ): LaunchService => {
         const logger = new Logger('Launch');
@@ -2232,6 +2235,8 @@ export const EDITOR_PROVIDERS = [
             if (!card) return;
             await runner.runPlanner(card);
           },
+          // Spec 072 FR-010: Start runs one readiness recheck in the background (never waited for, never fails the Start).
+          readiness: { recheck: (key, reason) => readinessSvc.recheck(key, reason) },
           // T4: growth — network cross-promo first (FR-004).
           promo: {
             candidates: async (key) => {
@@ -2289,6 +2294,8 @@ export const EDITOR_PROVIDERS = [
               return card ? approval.mode(card) : 'off';
             },
             goLive: (key) => autonomy.switchMode({ channel: key, mode: 'live', approve_waiting: true }),
+            // Spec 072 FR-011, A22: open readiness blockers hold the switch to Live (the stored row; one sweep recheck when there is none).
+            blockers: (key) => readinessSvc.blockerCount(key),
             note: async (l, stats) => {
               const orch = await orchOf(l.channelKey).catch(() => null);
               await infra.inbox.post({
@@ -2451,11 +2458,11 @@ export const EDITOR_PROVIDERS = [
       provide: OWNER_BOT,
       inject: [
         DB_POOL, ConfigService, APPROVALS_SERVICE, MANAGER_SERVICE, AGENT_INFRA, STEERING_SERVICE, CHANNEL_SETUP_SERVICE, NETWORK_SERVICE, NETWORK_HEALTH,
-        LAUNCH_SERVICE,
+        LAUNCH_SERVICE, READINESS_SERVICE,
       ],
       useFactory: (
         pool: Pool, cfg: ConfigService, approvals: ApprovalsService, manager: ManagerService, infra: AgentInfra, steering: SteeringService,
-        setup: ChannelSetupService, network: NetworkService, health: NetworkHealthService, launches: LaunchService,
+        setup: ChannelSetupService, network: NetworkService, health: NetworkHealthService, launches: LaunchService, readinessSvc: ReadinessService,
       ): OwnerBotInfra => {
         const logger = new Logger('OwnerBot');
         const token = cfg.get<string>('TELEGRAM_BOT_TOKEN');
@@ -2477,7 +2484,13 @@ export const EDITOR_PROVIDERS = [
               noteActions: new SeriesPauseActions({ pool, repo: new SeriesPausesRepository(pool), profiles: infra.profiles }),
             }),
             // Spec 052 FR-002: a launch plan waiting for Start, a Start waiting for the bot.
-            launchSource({ pool, launches }),
+            // The Start card names the open readiness blockers (spec 072 FR-010).
+            launchSource({ pool, launches, readiness: { blockers: (key) => readinessSvc.blockerSummary(key) } }),
+            // Spec 072 FR-009: the blockers the doctor found, with «Виправити все».
+            readinessSource({
+              pool, readiness: readinessSvc,
+              agentOf: async (key) => (await infra.agents.findTop('orchestrator', 'resource', resourceRef('telegram', key)))?.handle ?? null,
+            }),
           ],
           status: () => reports.statusLines(),
           reports: { today: () => reports.daily(), week: () => reports.weekly() },

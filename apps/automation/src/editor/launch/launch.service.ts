@@ -102,6 +102,8 @@ export interface LaunchDeps {
   setMode:  (channelKey: string, mode: 'approve' | 'live') => Promise<void>;
   /** Plan today (when hours are left) and tomorrow — in the background after Start. */
   planAhead?: (channelKey: string) => Promise<void>;
+  /** Spec 072 FR-010: the readiness doctor. Start runs one recheck (reason `start`) in the background, beside `planAhead`. */
+  readiness?: { recheck(channelKey: string, reason: 'start'): Promise<unknown> };
   // ── T3: graduation from approval ──
   graduation: {
     settings(): GraduationSettings;
@@ -112,6 +114,11 @@ export interface LaunchDeps {
     goLive(channelKey: string): Promise<unknown>;
     /** `auto`: the action note that the channel went live. */
     note?(l: ChannelLaunch, stats: GraduationStats): Promise<void>;
+    /**
+     * Spec 072 FR-011, A22: the channel's open readiness blockers. In `auto` mode the switch to Live waits while this is above 0
+     * (`graduation.heldBy = 'readiness'`); a read that throws holds it too. Absent = nothing holds it.
+     */
+    blockers?(channelKey: string): Promise<number>;
   };
   // ── T4: growth ──
   promo: {
@@ -280,23 +287,36 @@ export class LaunchService {
     if (mode === 'live') {
       return this.d.repo.transition(l.id, ['running'], {
         status: 'graduated', graduatedAt: now,
-        graduation: { ...g, proposedAt: null, decidedAt: now.toISOString(), by: g.by ?? 'owner_elsewhere', checkedAt: now.toISOString(), paused: false },
+        graduation: { ...g, proposedAt: null, decidedAt: now.toISOString(), by: g.by ?? 'owner_elsewhere', checkedAt: now.toISOString(), paused: false, heldBy: null, heldBlockers: null },
       });
     }
     const settings = this.d.graduation.settings();
     const stats = evaluateGraduation(await this.d.graduation.facts(l.channelKey, l.startedAt ?? l.createdAt), settings, l.startedAt ?? l.createdAt, now);
     const due = mode === 'approve' && settings.mode !== 'off' && dueToGraduate(stats, g, now);
     if (due && settings.mode === 'auto') {
+      // FR-011, A22: the criteria are met, but open readiness blockers hold the switch. Nothing changes the channel's mode here;
+      // the next hourly check looks again. A count that cannot be read holds it too (it is never read as 0).
+      if (this.d.graduation.blockers) {
+        const held = await this.d.graduation.blockers(l.channelKey).then((n) => ({ n }), (err) => {
+          this.d.log?.(`launch ${l.channelKey}: readiness blockers: ${errText(err)}`);
+          return { n: null as number | null };
+        });
+        if (held.n == null || held.n > 0) {
+          return this.d.repo.update(l.id, {
+            graduation: { ...g, stats, proposedAt: null, checkedAt: now.toISOString(), paused: false, heldBy: 'readiness', heldBlockers: held.n },
+          });
+        }
+      }
       await this.d.graduation.goLive(l.channelKey);
       const next = await this.d.repo.transition(l.id, ['running'], {
         status: 'graduated', graduatedAt: now,
-        graduation: { ...g, stats, proposedAt: null, decidedAt: now.toISOString(), by: 'auto', checkedAt: now.toISOString(), paused: false },
+        graduation: { ...g, stats, proposedAt: null, decidedAt: now.toISOString(), by: 'auto', checkedAt: now.toISOString(), paused: false, heldBy: null, heldBlockers: null },
       });
       if (next) await this.d.graduation.note?.(next, stats).catch((err) => this.d.log?.(`launch ${l.channelKey}: note: ${errText(err)}`));
       return next;
     }
     const proposedAt = due ? (g.proposedAt ?? now.toISOString()) : null;
-    return this.d.repo.update(l.id, { graduation: { ...g, stats, proposedAt, checkedAt: now.toISOString(), paused: mode === 'off' } });
+    return this.d.repo.update(l.id, { graduation: { ...g, stats, proposedAt, checkedAt: now.toISOString(), paused: mode === 'off', heldBy: null, heldBlockers: null } });
   }
 
   /** The owner's Go live (dashboard, chat panel or the owner bot card). */
@@ -308,7 +328,7 @@ export class LaunchService {
     const now = this.now();
     const next = await this.d.repo.transition(id, ['running'], {
       status: 'graduated', graduatedAt: now,
-      graduation: { ...l.graduation, proposedAt: null, decidedAt: now.toISOString(), by: 'owner', paused: false },
+      graduation: { ...l.graduation, proposedAt: null, decidedAt: now.toISOString(), by: 'owner', paused: false, heldBy: null, heldBlockers: null },
     });
     return { launch: await this.view(next ?? l), changed: true };
   }
@@ -551,6 +571,11 @@ export class LaunchService {
     });
     if (next && this.d.planAhead) {
       void this.d.planAhead(l.channelKey).catch((err) => this.d.log?.(`launch ${l.channelKey}: plan ahead: ${errText(err)}`));
+    }
+    // Spec 072 FR-010: the doctor looks at the channel as it is now; Start never waits for it and never fails because of it.
+    if (next && this.d.readiness) {
+      void Promise.resolve().then(() => this.d.readiness!.recheck(l.channelKey, 'start'))
+        .catch((err) => this.d.log?.(`launch ${l.channelKey}: readiness recheck: ${errText(err)}`));
     }
     return next;
   }

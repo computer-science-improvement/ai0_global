@@ -113,6 +113,10 @@ export function graduationStep(l: Pick<ChannelLaunch, 'status' | 'graduation'>, 
   const g = l.graduation;
   const st = g?.stats as GraduationStats | null | undefined;
   if (paused) return { state: 'waiting', detail: 'Paused: the channel is off' };
+  if (g?.heldBy === 'readiness') {
+    const n = g.heldBlockers;
+    return { state: 'waiting', detail: n == null ? 'Waiting: readiness blockers' : `Waiting: ${n} readiness ${n === 1 ? 'blocker' : 'blockers'}` };
+  }
   if (g?.proposedAt && !g.decidedAt) return { state: 'needs_you', detail: 'Ready: press Go live, or Not yet to wait a week more' };
   const missing = st ? st.criteria.filter((c) => !c.ok).map((c) => c.label) : [];
   const mode = s.mode === 'off' ? 'Automatic graduation is off; ' : s.mode === 'auto' ? 'Goes live by itself when ready; ' : '';

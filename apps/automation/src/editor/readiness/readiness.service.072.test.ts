@@ -501,3 +501,93 @@ test('A27: @X and @x are one channel: one stored row under the card\'s spelling;
   await assert.rejects(h.svc.fix('@nobody', {}), ChannelNotFound);
   await assert.rejects(h.svc.view('@nobody'), ChannelNotFound);
 });
+
+// ── T7: I9 (noted elsewhere), the launch card's summary, the graduation's count ────────────────────────────────────────
+
+const PAUSED = () => mkF('series_paused', 'error', { id: 'paused-1' });
+const PROBE = () => mkF('source_probe_failed', 'error', { id: 'probe-1' });
+const NOT_ADMIN = () => mkF('bot_not_admin', 'error', { id: 'bot-1' });
+const RUNNING_LAUNCH = { id: 'l1', status: 'running' as const, botState: null, graduation: null };
+
+test('I9: blockers another note already covers are counted but never stamped for the readiness card', async () => {
+  const h = harness();
+  h.state.autoFix = false;
+  h.state.findings = [blockerB(), PAUSED(), PROBE()];
+  await h.svc.recheck(CH, 'sweep');
+  h.clock.advance(BLOCKER_STABLE_MS + 1);
+  await h.svc.recheck(CH, 'sweep');
+  const row = h.repo.rows.get(CH)!;
+  assert.equal(row.blockers, 3, 'the panel still counts them');
+  assert.deepEqual(row.notifiedBlockers, [blockerB().key], 'the card names only the rest');
+});
+
+test('I9: bot_not_admin is left out of the card only while a launch is open for the channel', async () => {
+  for (const [launch, want] of [[RUNNING_LAUNCH, [blockerB().key]], [null, [blockerB().key, NOT_ADMIN().key].sort()]] as const) {
+    const h = harness({ deps: { load: async (_k, now) => makeFacts({ now, launch }) } });
+    h.state.autoFix = false;
+    h.state.findings = [blockerB(), NOT_ADMIN()];
+    await h.svc.recheck(CH, 'sweep');
+    h.clock.advance(BLOCKER_STABLE_MS + 1);
+    await h.svc.recheck(CH, 'sweep');
+    assert.deepEqual(h.repo.rows.get(CH)!.notifiedBlockers, want, launch ? 'launch open' : 'no launch');
+  }
+});
+
+test('I9: when only covered blockers are left the stored set is cleared at once', async () => {
+  const h = harness();
+  h.state.autoFix = false;
+  h.state.findings = [blockerB(), PAUSED()];
+  await h.svc.recheck(CH, 'sweep');
+  h.clock.advance(BLOCKER_STABLE_MS + 1);
+  await h.svc.recheck(CH, 'sweep');
+  assert.deepEqual(h.repo.rows.get(CH)!.notifiedBlockers, [blockerB().key]);
+  h.state.findings = [PAUSED()];
+  h.clock.advance(MIN);
+  await h.svc.recheck(CH, 'sweep');
+  assert.deepEqual(h.repo.rows.get(CH)!.notifiedBlockers, []);
+  assert.equal(h.repo.rows.get(CH)!.blockers, 1);
+});
+
+test('blockerSummary: all open errors are counted, the first one named is the first the card does not say elsewhere', async () => {
+  const h = harness();
+  h.repo.rows.set(CH, {
+    channelKey: CH, findings: [NOT_ADMIN(), blockerB(), mkF('info_only', 'info'), mkF('warn_only', 'warn')], blockers: 2, warnings: 1, configHash: 'h',
+    appliedHash: null, checkedAt: h.clock.now, notifiedAt: null, notifiedBlockers: [],
+  });
+  const s = await h.svc.blockerSummary('@FX072');
+  assert.equal(s?.count, 2);
+  assert.match(s!.first, /Скіл, правило чи настанова велить брати матеріал не з того джерела/, 'the Ukrainian line of the catalogue');
+  assert.equal(h.calls.load, 0, 'the stored row only: no facts, no doctor');
+  assert.equal(h.calls.doctor, 0);
+
+  h.repo.rows.set(CH, { ...h.repo.rows.get(CH)!, findings: [NOT_ADMIN()] });
+  assert.match((await h.svc.blockerSummary(CH))!.first, /./, 'only the bot left: it is named');
+});
+
+test('blockerSummary: no row, no blockers, an unknown channel or a failing read give null and never throw', async () => {
+  const h = harness();
+  assert.equal(await h.svc.blockerSummary(CH), null, 'no row');
+  h.repo.rows.set(CH, { channelKey: CH, findings: [mkF('warn_only', 'warn')], blockers: 0, warnings: 1, configHash: 'h', appliedHash: null, checkedAt: h.clock.now, notifiedAt: null, notifiedBlockers: [] });
+  assert.equal(await h.svc.blockerSummary(CH), null, 'warnings are not blockers');
+  assert.equal(await h.svc.blockerSummary('@nobody'), null, 'unknown channel');
+  const broken = harness();
+  (broken.repo as any).get = async () => { throw new Error('db down'); };
+  assert.equal(await broken.svc.blockerSummary(CH), null, 'failing read');
+  assert.ok(broken.calls.logs.some((l) => /blockerSummary/.test(l)));
+});
+
+test('blockerCount (A22): the stored row answers; a channel with no row gets one sweep recheck; an unknown channel throws', async () => {
+  const h = harness();
+  h.state.autoFix = false;
+  h.repo.rows.set(CH, { channelKey: CH, findings: [], blockers: 4, warnings: 0, configHash: 'h', appliedHash: null, checkedAt: new Date(h.clock.now.getTime() - HOUR), notifiedAt: null, notifiedBlockers: [] });
+  assert.equal(await h.svc.blockerCount(CH), 4);
+  assert.equal(h.calls.load, 0, 'the stored count is used as it is');
+
+  const fresh = harness();
+  fresh.state.autoFix = false;
+  fresh.state.findings = [blockerB(), PAUSED()];
+  assert.equal(await fresh.svc.blockerCount('@fx072'), 2);
+  assert.equal(fresh.calls.load, 1, 'one recheck');
+  assert.equal(fresh.repo.rows.get(CH)!.blockers, 2, 'and its result is stored');
+  await assert.rejects(fresh.svc.blockerCount('@nobody'), ChannelNotFound);
+});
