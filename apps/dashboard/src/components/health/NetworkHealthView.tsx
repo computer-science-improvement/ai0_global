@@ -16,6 +16,7 @@ import type { BudgetState } from '../../api/spend';
 import {
   useNetworkHealth, type BadConnectionState, type NetworkHealth, type BudgetLine, type ConnectionIssue, type SourceIssue, type StuckGroup, type StuckItem, type StuckKind,
 } from '../../api/health';
+import { DigestSection } from './DigestSection';
 import './health.css';
 
 type Tone = 'success' | 'warning' | 'danger' | 'accent' | 'neutral';
@@ -248,6 +249,7 @@ export function NetworkHealthView() {
       <SourcesSection rows={h.sources} delay={60} />
       <BudgetSection budget={h.budget} delay={120} />
       <StuckSection groups={h.stuck} delay={180} />
+      <DigestSection delay={210} />
     </div>
   );
 }
