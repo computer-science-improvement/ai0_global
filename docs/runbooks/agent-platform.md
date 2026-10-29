@@ -1059,3 +1059,85 @@ The dashboard and the landing page have a new look: dark panels with hairlines, 
 - Tests:
   - Dashboard: `nav/migrate.test.ts`, `nav/registry.test.ts`, `nav/badges.test.ts`, `lib/today.test.ts`, `lib/inbox-*.test.ts`, `lib/calendar.test.ts`, `lib/agent-tabs.test.ts`, `lib/landing-*.test.ts`, `lib/status-tone.test.ts`.
   - Backend: `editor/series-pause/inbox-actions.078.test.ts` and `inbox-actions.078.pg.test.ts`.
+
+## 33. Config is not content (spec 073)
+
+A wrong setting used to look like bad content: the writer was paid, a guard failed, the ladder retried in a lighter format, the row was put aside and the breaker counted a dead source. Now a slot whose **setup** is wrong is its own class, `config`; it is caught before the writer when it can be, it ends the slot at once when it cannot, and it never counts against a series. The same release closes the poll-cap block on series, locks a series' format, makes "off" mean off, and puts one reason catalogue behind every skip line. This section is what changed, what to do on deploy and how to read it.
+
+**Needs**
+
+- Migration `098_card_hashtag_default` (`editor_channels.hashtag_min` DEFAULT 0, and every channel with no hashtags and a minimum above 0 is set to 0; a channel with a vocabulary keeps its minimum). Apply it with the deploy; the code works without it, but a card created by SQL would still demand a hashtag. Down: `database/migrations/down/098_card_hashtag_default.down.sql` (restores DEFAULT 1; the backfill is not undone, a channel set to 0 stays 0).
+- Nothing to enable. No new setting. The hook `onConfigSkip` exists on the runner and is **not wired** here: the readiness service of spec 072 connects it at its merge.
+
+**The config class**
+
+- The codes (`CONFIG_FAILURE_CODES`, `readiness/slot-config.ts`): `config_series_gone`, `config_format_mismatch`, `config_source_mismatch`, `config_source_missing`, `config_tools_missing`, `series_format_mismatch`, `series_source_mismatch`, `preflight_format_unavailable`, `series_format_unavailable`, `series_in_quiet_hours`.
+- A slot that ends with one of them is `skipped` at once: no ladder step, no 15-minute retry, no row put aside (they are in `NEVER_PASS`), and the breaker of § 19 ignores them. The idea goes back to the pool and the owner report and the silent-day line call the group «налаштування».
+- `config_series_gone` (the owner removed or paused the series) is **not a miss** (`NOT_A_MISS`): it neither pauses anything nor raises a note.
+- For every other config code the owner gets one Ukrainian note per channel and code per local day: `⚙️ <channel>: <what is wrong>. <what to change>`. The memory of "already told today" is in the process, so a restart can repeat a note once that day.
+- `preflight_no_material` stays **material**: an empty required source still pauses a dead series (§ 19, § 27).
+
+**The pre-flight (before the writer)**
+
+`checkSlotConfig` reads the slot, its series (inactive ones too), the source catalogue and the executor's tool set, and costs nothing. It runs after the derived branch and before the material pre-flight of § 20.
+
+- Fixed in place at $0 and written to `fallback.repairs` (the slot dialog shows it): `config_format_mismatch` (the slot's format becomes the series' format) and `config_source_mismatch` (the hints become `series:<name>` plus the next row, else the dataset's own hints; this is the Prompt slot that named PromptHero).
+- Everything else skips the slot with `<code>: <detail>`: a gone series, a dataset that does not exist or has the wrong format, a source kind whose read tool the executor does not have (`SOURCE_READ_TOOLS`).
+- The check fails open: if it cannot read its context it lets the slot run as before.
+- The read is read-only: a finished round of a cycle dataset is not rolled by it (the run rolls it).
+
+**The plan**
+
+- **Format lock.** `submit_plan` and `submit_network_plan` set a series slot's format to the series' format before validating, and the tool result says which slots changed (`format_locked`). A series slot is exempt from the card's format weights and the section weights; a format that cannot be produced on its resource is still refused. A playbook is checked against the formats the platform implements, and a section key is flagged only when its weight is above 0 (the message names the card). At publish, a series slot whose post has another format ends `series_format_mismatch`. The ladder never gives a series, a pin or a quiz/poll row slot a `lighter_format` or evergreen step; a `quiz_answer_mismatch` retries with the code's text and never puts the row aside.
+- **Skeleton.** `checkPlanSkeleton` runs when the day is planned. A series whose format cannot be produced, or whose time is inside the quiet hours, is left out of the day, the planner is told «не плануй «<series>»: …», and a config placeholder is written for it (so no `plan_invalid`). A weekday with more instances than the card's daily maximum is only a warning (`series_rate_over_card_max`); the maximum rises to the due series.
+- **A series that stops is noticed.** Every skipped series leaves a placeholder: `planner_<cause>` for a material cause, `planner_skipped: <reason>` for any other. Two local days in a row of non-material closes (`planner_skipped`, config, lint, other) add `stalled:<series>` to that day's `series_missed` note. No new inbox kind.
+
+**The poll cap**
+
+A poll or quiz that is a **series instance or a pin** is exempt: it neither blocks nor counts toward the card's `polls_per_week`. Only improvised polls are capped (the refusal text stays). The conflict `poll_series_over_cap` and its fix are gone. A daily quiz series passes the guard every day, and the digest and the post audit do not flag it.
+
+**Polls with an answer**
+
+A post with `format: poll` and a `correct_index` now fails lint as `poll_correct_index`: a question with a right answer is a **quiz**, and the plan sets the format, not the post. This also reaches a chat draft and an owner rule that asks for «poll з correct_index»: the agent reads the Ukrainian hint and re-writes it only if the plan's format is quiz.
+
+**Off is off**
+
+- `claimDue` skips a channel in mode `off`; a due slot the scheduler cannot run ends `skipped` with `mode_changed` (never «stuck in running»), and `skipStale` writes the same for an off channel.
+- Switching a channel back on skips its overdue planned content slots with `mode_changed`. If the local hour is past the plan hour and today's active plan has no future planned content slot, one replan starts (not awaited; a save never fails because of it). With no plan for today, or only a placeholder, nothing starts: the scheduler plans it. Launch's Start does not replan on the mode switch, because it plans by itself, **today and tomorrow** (a tomorrow plan that already exists is kept). The launch checklist's «first posts» link opens `/app/agents/inbox?tab=approvals`.
+- Planner retries survive a restart: the scheduler seeds its three tries from the channel's failed planner runs in the window, and the failure alert ends with «Причини: …» (the validator's own lines).
+
+**One reason catalogue**
+
+`reasons/catalogue.ts` (`reasonFor`, `reasonOfError`, `reasonText`) holds, for every skip code, a label, the Ukrainian text, what to change and a link; the dashboard mirror `lib/reasons.ts` carries the English side, and a drift test fails when they differ. The slot dialog shows «What to change» and the link; an unknown text reads "Skipped — reason not classified". The silent-day lines and the stalled-series note use the same entries. To add a code: add it to the server list, the catalogue and the mirror together (the coverage test and the drift test name what is missing).
+
+**Write paths**
+
+- A skill that contradicts a **required** series of the channel (it prescribes another source, rules the series' source out, or calls read material `origin=original`) is **refused** when an agent writes it (chat `edit_my_skill`, the builder's `write_skill`, the self-edit, the skill artifact) and **saved with a warning** when the owner writes it (`warnings` in the answer, shown by the skills tab). The old Prompt skill «origin=original, PromptHero» is the case.
+- The memory form (kinds `rule` and `avoid`), the Rules artifact `edit` and the Apply of a rule card run the rule lint (`rule_invalid` on the form, a failed card at Apply when the rule became invalid in the meantime), and answer `conflicts` (the config conflicts the write added). The form on `/app/editor/<channel>` shows one amber line.
+
+**Defaults that do not invent**
+
+- A new card has `hashtag_min` 0; an existing card keeps its own. A stored style `hashtags: vocabulary` on a card with **no** hashtags reads as off (the writer is told «хештегів не став»); a platform ref, which has no card, is not judged.
+- A card's library source takes a dataset key with digits (`pdr_questions_2025`).
+- An inline skill over the prompt's 8,000-character budget is no longer dropped: it is listed once with the on-demand skills («Інші скіли», `load_skill`) for the executor, planner, reviewer and composer, and named in one line («Ще скіли (load_skill): …») in the native-platform and adapt prompts.
+
+**Reading it**
+
+- A slot skipped as `config_*` or `series_*_mismatch` is not a content failure: read its «What to change» line, fix the series or the card, and the next slot runs. It will not pause the series.
+- «⚙️ <channel>: …» in Telegram is that same line, once a day per code.
+- `fallback.repairs` on a slot says what the pre-flight changed before the writer ran.
+
+**Accepted limits**
+
+- Owner replans and Start's planner runs count toward the scheduler's three tries; after 20:00 the ahead window and today's retries overlap, so either can lose tries. After a restart the next day's `maybePlan` does not see the previous evening's failed ahead tries and may try up to three more times (A14).
+- The once-a-day config note is kept in memory, so a restart can repeat it once (A27).
+- A deleted channel's slots have no channel row; they stay planned until `skipStale` writes «stale: …» (A44).
+
+**Troubleshooting**
+
+- A series slot still skips right after deploy with `series_source_mismatch`: its hints named another source and the pre-flight could not repair it (a `suggested` series may name other material; a `required` one is repaired). Fix the series' source or the skill that tells the agent otherwise (the skills tab shows the warning).
+- A quiz went out as a plain poll: the slot was not a series or pin and the plan's format was `poll`; set the format on a series so it is locked.
+- The planner skips a series with «не плануй»: the format cannot be produced here (hosting) or the time is in quiet hours; the line says which. Change the series or the card.
+- Switching a channel on did not start a replan: the hour is before the plan hour, today's plan still has future slots, or there is no plan yet (then the scheduler plans it on its next tick).
+- Rolling back 098 only restores the column default; nothing else changes.
+- Tests: `silent/skip-class.073.test.ts`, `silent/fallback-ladder.073.test.ts`, `roles/editor-runner.073.test.ts`, `readiness/slot-config.073.test.ts`, `readiness/plan-skeleton.073.test.ts`, `readiness/stage-replay.073.test.ts` (skips without a stage capture), `schedule/series-format.073.test.ts`, `post/polls/poll-cap.073.test.ts`, `post/lint-post.073.test.ts`, `reasons/catalogue.073.test.ts`, `agents/skill-series.073.test.ts`, `agents/skill-store.073.pg.test.ts`, `api/editor-ops.073.test.ts`, `api/card-input.073.test.ts`, `post/style/resource-style.073.test.ts`, `roles/prompts.073.test.ts`, `repo/card-hashtag.098.migration.pg.test.ts` (own database: the backfill, the default, idempotence, the down file); dashboard `lib/reasons.test.ts`.
