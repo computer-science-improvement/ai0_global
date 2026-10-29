@@ -162,3 +162,85 @@ export function sourceErrorMessage(status: number, body: string): string | null 
     default:                     return null;
   }
 }
+
+/** The headline of a read, for the badge of the details dialog: what the server saw, in one or two words. */
+export function probeResult(p: SourceProbe): { label: string; tone: Tone } {
+  if (p.ok) return { label: 'Readable', tone: 'success' };
+  const label: Record<NonNullable<SourceProbe['failure_class']>, string> = {
+    timeout: 'Timed out', refused: 'Refused', tls: 'TLS error', dns: 'Address not found', http: 'HTTP error', empty: 'Empty', invalid: 'Not a valid address',
+  };
+  return { label: (p.failure_class && label[p.failure_class]) || 'Failed', tone: probeTone(p) };
+}
+
+export interface ProbeFact { key: string; label: string; value: string; wide?: boolean; mono?: boolean }
+
+/** What only a fresh "Test from server" answer carries (`ProbeResult` of api/sources.ts); optional here so the row's own probe fits. */
+export interface FreshProbe { feed_url?: string | null; ms?: number | null; cached?: boolean }
+
+/**
+ * The facts of the details dialog, in order: the address, what the server said, the numbers, when, and how it got there.
+ * Facts with nothing to say are left out; `now` is a parameter so the ages can be tested.
+ */
+export function probeFacts(address: string, p: SourceProbe, fresh: FreshProbe = {}, now: number = Date.now()): ProbeFact[] {
+  const out: ProbeFact[] = [{ key: 'address', label: 'Address', value: address, wide: true, mono: true }];
+  if (p.detail) out.push({ key: 'detail', label: 'What the server saw', value: p.detail, wide: true });
+  if (p.status !== null) out.push({ key: 'status', label: 'HTTP status', value: String(p.status), mono: true });
+  if (p.ok || p.items > 0) out.push({ key: 'items', label: p.kind === 'rss' ? 'Feed items' : 'Page sections', value: String(p.items), mono: true });
+  if (p.newest_at) out.push({ key: 'newest', label: 'Newest item', value: ageText(p.newest_at, now), mono: true });
+  if (fresh.feed_url) out.push({ key: 'feed', label: 'Feed found at', value: fresh.feed_url, wide: true, mono: true });
+  if (fresh.ms !== null && fresh.ms !== undefined) out.push({ key: 'ms', label: 'Took', value: `${fresh.ms} ms`, mono: true });
+  if (p.failure_class !== 'invalid') out.push({ key: 'checked', label: 'Checked', value: `${ageText(p.checked_at, now)}${fresh.cached ? ' (answer kept for 6 h)' : ''}`, mono: true });
+  out.push({ key: 'route', label: 'Route', value: p.via_proxy ? 'Through the egress proxy' : 'Straight from the server' });
+  return out;
+}
+
+/** The line about a blocked host, or null for a host that is not blocked. `when` is the end of the block, already formatted. */
+export function blockLine(b: SourceHealth['blocked'] | undefined, when: string): string | null {
+  if (!b) return null;
+  if (b.reason === 'unreachable') {
+    return `${b.host} did not answer in time, repeatedly${b.strikes && b.strikes > 1 ? ` (block ${b.strikes})` : ''}. The server leaves it alone until ${when}; Test from server tries it now.`;
+  }
+  return `${b.host} is blocked (${b.reason.replace(/_/g, ' ')}${b.statusCode ? `, HTTP ${b.statusCode}` : ''}) until ${when}.`;
+}
+
+/** A saved page above this size is refused in the dialog before it is read (the server takes a 12 MB JSON body). */
+export const UPLOAD_FILE_MAX_BYTES = 5 * 1024 * 1024;
+/**
+ * The most text the server takes in one upload: its `UPLOAD_PAGE_MAX_CHARS` (apps/automation/src/editor/sources/upload-limits.ts).
+ * Keep the two in step; a longer page is refused there with 413 `too_large`.
+ */
+export const UPLOAD_PAGE_MAX_CHARS = 5_000_000;
+
+/** "340 B", "12 KB", "1.4 MB": the size of a chosen file. */
+export function fileSizeText(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+/** An address the upload can be filed under: http or https only. */
+export function isHttpUrl(s: string): boolean {
+  try {
+    const u = new URL(s.trim());
+    return (u.protocol === 'http:' || u.protocol === 'https:') && !!u.hostname;
+  } catch {
+    return false;
+  }
+}
+
+/** What is wrong with the address of an upload, in words; null when it is fine. An empty address is not reported (the button just waits). */
+export function urlProblem(url: string): string | null {
+  if (!url.trim()) return null;
+  return isHttpUrl(url) ? null : 'The address must start with http:// or https://';
+}
+
+/** What is wrong with the page itself, in words; null when it can go. `fileBytes` is the size of a chosen file. */
+export function contentProblem(o: { fileBytes?: number | null; text: string }): string | null {
+  if (o.fileBytes !== null && o.fileBytes !== undefined && o.fileBytes > UPLOAD_FILE_MAX_BYTES) {
+    return `The file is ${(o.fileBytes / (1024 * 1024)).toFixed(1)} MB; the limit is 5 MB.`;
+  }
+  if (o.text.length > UPLOAD_PAGE_MAX_CHARS) {
+    return `The page has ${o.text.length.toLocaleString('en-GB')} characters; the limit is ${UPLOAD_PAGE_MAX_CHARS.toLocaleString('en-GB')}.`;
+  }
+  return null;
+}

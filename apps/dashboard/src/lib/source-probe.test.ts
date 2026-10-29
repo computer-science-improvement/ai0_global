@@ -3,7 +3,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ageText, hostOfRef, INK_OF_TONE, isReadFromServer, isUnreachable, probeFailed, probeLine, probeTone, rowFixes, runwayLine, sourceBadge, sourceErrorMessage, sourceName,
+  ageText, blockLine, contentProblem, fileSizeText, hostOfRef, INK_OF_TONE, isHttpUrl, isReadFromServer, isUnreachable, probeFacts, probeFailed, probeLine, probeResult, probeTone, rowFixes,
+  UPLOAD_FILE_MAX_BYTES, UPLOAD_PAGE_MAX_CHARS, urlProblem, runwayLine, sourceBadge, sourceErrorMessage, sourceName,
 } from './source-probe';
 import type { SourceProbe } from '../api/agents';
 
@@ -160,4 +161,64 @@ test('sourceErrorMessage: the codes of the source endpoints in words, anything e
   assert.equal(sourceErrorMessage(400, body('invalid_body')), null);
   assert.equal(sourceErrorMessage(500, 'oops'), null);
   assert.equal(sourceErrorMessage(400, ''), null);
+});
+
+test('probeResult: the badge of the details dialog', () => {
+  assert.deepEqual(probeResult(ok()), { label: 'Readable', tone: 'success' });
+  assert.deepEqual(probeResult(bad('timeout')), { label: 'Timed out', tone: 'danger' });
+  assert.deepEqual(probeResult(bad('empty')), { label: 'Empty', tone: 'warning' });
+  assert.deepEqual(probeResult(bad('invalid')), { label: 'Not a valid address', tone: 'danger' });
+  assert.deepEqual(probeResult(bad(null)), { label: 'Failed', tone: 'danger' });
+});
+
+test('probeFacts: a good read lists the address, status, items, newest, age and route', () => {
+  const f = probeFacts('https://example.com/feed.xml', ok({ detail: '24 items' }), {}, NOW);
+  assert.deepEqual(f.map((x) => x.key), ['address', 'detail', 'status', 'items', 'newest', 'checked', 'route']);
+  assert.equal(f.find((x) => x.key === 'items')?.label, 'Feed items');
+  assert.equal(f.find((x) => x.key === 'newest')?.value, '2 h ago');
+  assert.equal(f.find((x) => x.key === 'checked')?.value, '3 h ago');
+  assert.equal(f.find((x) => x.key === 'route')?.value, 'Straight from the server');
+});
+
+test('probeFacts: a failed read leaves out what it has no value for', () => {
+  const f = probeFacts('https://example.com/p', bad('timeout', { kind: 'page', detail: 'timed out twice', via_proxy: true }), {}, NOW);
+  assert.deepEqual(f.map((x) => x.key), ['address', 'detail', 'checked', 'route']);
+  assert.equal(f.find((x) => x.key === 'route')?.value, 'Through the egress proxy');
+});
+
+test('probeFacts: an address that is not valid has no time, and a fresh answer adds the feed, the duration and the cache note', () => {
+  assert.ok(!probeFacts('ftp://x', bad('invalid'), {}, NOW).some((x) => x.key === 'checked'));
+  const f = probeFacts('https://example.com', ok(), { feed_url: 'https://example.com/rss', ms: 412, cached: true }, NOW);
+  assert.equal(f.find((x) => x.key === 'feed')?.value, 'https://example.com/rss');
+  assert.equal(f.find((x) => x.key === 'ms')?.value, '412 ms');
+  assert.match(f.find((x) => x.key === 'checked')?.value ?? '', /kept for 6 h/);
+  assert.equal(probeFacts('https://example.com/p', ok({ kind: 'page', items: 3 }), {}, NOW).find((x) => x.key === 'items')?.label, 'Page sections');
+});
+
+test('upload checks: the address is http(s), a 6 MB file and a page over 5,000,000 characters are refused', () => {
+  assert.equal(isHttpUrl('https://zakon.rada.gov.ua/laws/show/1306-2001-%D0%BF'), true);
+  assert.equal(isHttpUrl('  http://example.com/a '), true);
+  assert.equal(isHttpUrl('ftp://example.com/a'), false);
+  assert.equal(isHttpUrl('javascript:alert(1)'), false);
+  assert.equal(isHttpUrl('example.com/a'), false);
+  assert.equal(urlProblem(''), null, 'an empty address is not an error yet');
+  assert.equal(urlProblem('example.com'), 'The address must start with http:// or https://');
+  assert.equal(urlProblem('https://example.com'), null);
+
+  assert.equal(contentProblem({ text: 'x' }), null);
+  assert.equal(contentProblem({ fileBytes: UPLOAD_FILE_MAX_BYTES, text: 'x' }), null, 'exactly 5 MB is fine');
+  assert.equal(contentProblem({ fileBytes: 6 * 1024 * 1024, text: '' }), 'The file is 6.0 MB; the limit is 5 MB.');
+  assert.equal(contentProblem({ text: 'a'.repeat(UPLOAD_PAGE_MAX_CHARS) }), null);
+  assert.match(contentProblem({ text: 'a'.repeat(UPLOAD_PAGE_MAX_CHARS + 1) }) ?? '', /5,000,001 characters; the limit is 5,000,000/);
+  assert.equal(UPLOAD_PAGE_MAX_CHARS, 5_000_000, 'the server limit of upload-limits.ts');
+  assert.deepEqual([fileSizeText(340), fileSizeText(2048), fileSizeText(1024 * 1024 * 1.5)], ['340 B', '2 KB', '1.5 MB']);
+});
+
+test('blockLine: unreachable, another block, and no block', () => {
+  assert.equal(blockLine(null, 'x'), null);
+  assert.equal(blockLine(undefined, 'x'), null);
+  const un = { host: 'zakon.rada.gov.ua', reason: 'unreachable', statusCode: null, until: ago(-60), failures: 3, strikes: 2 };
+  assert.match(blockLine(un, '30 Oct, 12:00') ?? '', /zakon\.rada\.gov\.ua did not answer in time, repeatedly \(block 2\)\. .* until 30 Oct, 12:00/);
+  assert.doesNotMatch(blockLine({ ...un, strikes: 1 }, 'x') ?? '', /block 1/);
+  assert.equal(blockLine({ host: 'a.com', reason: 'rate_limited', statusCode: 429, until: ago(-60), failures: 2 }, 'tomorrow'), 'a.com is blocked (rate limited, HTTP 429) until tomorrow.');
 });

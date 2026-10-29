@@ -6,6 +6,7 @@
 // shows how much material is left, and a channel with no sources says it writes from its brief only.
 // Spec 078 D4: a flush panel of rows (the shape of the Health page's Sources section). Styles: agent-settings.css (ast-).
 
+import { useState } from 'react';
 import { SectionCard, type Tone } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
@@ -14,6 +15,8 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { fmtRelative } from '../../lib/format';
 import { useAgentSources, type SourceHealth, type SourceState } from '../../api/agents';
 import { useAddProxyHost, useDropSource, useProbeSource } from '../../api/sources';
+import { SourceProbeDialog } from '../sources/SourceProbeDialog';
+import { UploadPageDialog } from '../sources/UploadPageDialog';
 import { hostOfRef, INK_OF_TONE, isReadFromServer, probeLine, probeTone, rowFixes, runwayLine, sourceBadge, sourceName } from '../../lib/source-probe';
 
 const STATE: Record<SourceState, { label: string; tone: Tone }> = {
@@ -97,6 +100,10 @@ function SourceRow({ s, channel, proxyConfigured, onDetails, onUpload }: RowProp
 export function SourcesSection({ handle, delay = 60 }: { handle: string; delay?: number }) {
   const q = useAgentSources(handle);
   const r = q.data;
+  // The two dialogs are rendered once for the whole panel. The details dialog names its source by id, so it follows the
+  // row when the report is read again after a test.
+  const [detailsId, setDetailsId] = useState<string | null>(null);
+  const [uploadFor, setUploadFor] = useState<string | null>(null);
   if (!r) return null;
   if (!r.sources.length && !r.otherHosts.length) {
     // A server from before spec 076 never says `noSources`, so the panel stays hidden there.
@@ -113,13 +120,17 @@ export function SourcesSection({ handle, delay = 60 }: { handle: string; delay?:
       </SectionCard>
     );
   }
+  const detail = detailsId === null ? undefined : r.sources.find((s) => s.id === detailsId);
   const bad = r.sources.filter((s) => s.state === 'blocked' || s.state === 'failing' || s.state === 'exhausted' || sourceBadge(s) !== null).length;
   return (
     <SectionCard title="Sources" icon="radar" flush delay={delay} style={{ marginBottom: 16 }}
       action={<span className={`mono ast-count${bad ? ' is-warn' : ''}`}>
         {bad ? `${bad} not working · ` : ''}{r.days} days
       </span>}>
-      {r.sources.map((s) => <SourceRow key={s.id} s={s} channel={r.channelKey} proxyConfigured={!!r.proxyConfigured} />)}
+      {r.sources.map((s) => (
+        <SourceRow key={s.id} s={s} channel={r.channelKey} proxyConfigured={!!r.proxyConfigured}
+          onDetails={(x) => setDetailsId(x.id)} onUpload={(x) => setUploadFor(x.ref)} />
+      ))}
       {bad > 0 && (
         <div className="panel-foot text-caption ast-muted">
           The agent looks for a replacement of a source that keeps failing; its proposal waits in "Waiting for you" with Apply / Discard.
@@ -137,6 +148,8 @@ export function SourcesSection({ handle, delay = 60 }: { handle: string; delay?:
           </div>
         </div>
       )}
+      {detail && <SourceProbeDialog key={detail.id} source={detail} onClose={() => setDetailsId(null)} />}
+      {uploadFor !== null && <UploadPageDialog open initialUrl={uploadFor} onClose={() => setUploadFor(null)} />}
     </SectionCard>
   );
 }

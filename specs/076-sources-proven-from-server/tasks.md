@@ -338,7 +338,7 @@ The order is T1, T2, T3, T4, T5, T6a, T6b, T7, T8, T9a, T9b, T10 (A27). Paths be
     - a card with no sources shows the brief-only line;
     - an older server's report (no new fields) still renders.
 
-- [ ] **T9b Dashboard: the dialogs, the charset and the browser check** (FR-009, A13, A14, A32)
+- [x] **T9b Dashboard: the dialogs, the charset and the browser check** (FR-009, A13, A14, A32)
   - **What:**
     - `SourceProbeDialog`, opened by "Details".
     - `UploadPageDialog`:
@@ -401,7 +401,8 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
 - T6b `8f4e8859` — import marks (`uploaded`, `auto_resync: false`), `upload_expired`, `resync_manual`, and `uploadPage` with `dataset` re-syncing from memory.
 - T7 `34d0e9f4` `SourceProbeWorker` (daily + paused re-probe), `SourcesController` (`probe`, `upload`, `drop`, `proxy-host`), `source-fixes.ts`, background probes on card save and series bind, `reach` in the `import_list` preview; host notes move from `toReplaceToday` to the worker.
 - T8 `3e6afbce` pure `sourceFindings` and `SOURCE_REASONS` (seven codes), the 10-27 fixtures and the three acceptance replays.
-- T9a — (commit hash filled in the next commit) `api/sources.ts` (four hooks), `lib/source-probe.ts`, the probe line / badge / runway / buttons / no-sources line in `SourcesSection`, the probe line on the Health page, `resync_failed` and the new `host_struck` steps in `inbox-kinds`.
+- T9a `005bace7` `api/sources.ts` (four hooks), `lib/source-probe.ts`, the probe line / badge / runway / buttons / no-sources line in `SourcesSection`, the probe line on the Health page, `resync_failed` and the new `host_struck` steps in `inbox-kinds`.
+- T9b — (commit hash filled in the next commit) `lib/page-charset.ts` (`decodePageBytes`, `contentTypeOf`), `SourceProbeDialog`, `UploadPageDialog`, both wired into `SourcesSection`, and an "Upload page" button in the Data header.
 
 ## Deltas from the spec
 
@@ -461,3 +462,16 @@ Built in this worktree (`wf_77f463e3-89e-3`, base `ae131b3b`), one commit per ta
   - The Health page's `Row` gained a `foot` slot for the probe line. A source whose state is `ok` or `unused` appears there only when its probe failed, so its label is "Cannot be read".
   - `lib/inbox-kinds.ts`: `host_struck` has the sentence of A24, "Open sources" (the agent's Settings tab) first with the channel page as the fallback, and "Open network health" second. `lib/inbox-kinds.test.ts:383` now expects 'Open sources', as A24 says, and the test gains the `resync_failed` row in `FIXTURES` and `BRIEF_KINDS`.
   - The panel shows the no-sources row only when the server says `noSources: true`; an older server's report (no new fields) renders as before. This is checked by hand on the mock in T9b, since the dashboard tests run in Node without a DOM.
+
+- **T9b.**
+  - The upload limits and the checks on them live in `lib/source-probe.ts` (`UPLOAD_FILE_MAX_BYTES`, `UPLOAD_PAGE_MAX_CHARS` with the comment naming the server's constant in `sources/upload-limits.ts`, `isHttpUrl`, `urlProblem`, `contentProblem`, `fileSizeText`), not in the dialog file, so Node tests reach them. The dialog only calls them.
+  - The details dialog's text comes from three more pure helpers of `lib/source-probe.ts` (`probeResult`, `probeFacts`, `blockLine`), all tested. The dialog reads its source by id from the live report, so after "Test again" the badges, the age and the block line follow the refreshed row; sample titles and the duration come from the fresh answer only.
+  - `lib/page-charset.ts` also has `contentTypeOf(fileName, text)`: the upload endpoint assumes `text/html` when no type is sent, so the dialog sends one (the extension for a file; for pasted text, tags mean HTML, a heading or list marker means markdown, anything else plain text).
+  - "Upload and re-sync" (a dataset chosen) closes the dialog with a toast ("<dataset>: N new, M changed", plus invalid rows and the server's note) whose action opens the dataset. Without a dataset the dialog stays open and shows the kept page (title, sections, characters, page id) with "Continue in chat", a link to `/app/chat?q=Import the uploaded page <doc_id> (<url>) with import_list`.
+  - The Data header's button is "Upload page" with the `link` icon, left of "Import file" (which keeps `arrow-up`).
+  - The dialogs add seven small `ast-` rules to `agent-settings.css` (`ast-probe-head`, `ast-probe-note`, `ast-titles`, `ast-fill`, `ast-paste`, `ast-up-result`, and the mono size of `ast-fact-value`), because `data.css` is only loaded with the Data route.
+  - Browser check (mock on port 3176, `tmp/mock076/server.mjs`, never committed; the dashboard built with `VITE_ALLOW_DEV_AUTH=true` into the ignored `dist/`):
+    - Settings → Sources: five rows (a good feed, an unreachable page, an older-style row with none of the new fields, a library with a runway badge, an empty page). Test from server, Details (with "Test again"), Upload the page (pasted text and a file) and the 409 `url_mismatch` message all work; a file input set to a windows-1251 page says "read as windows-1251", and a 6 MB file is refused in the dialog with the Upload button disabled.
+    - Health → Sources shows the same probe lines; Data → Upload page opens the same dialog, rejects an address without `http(s)://` inline and re-syncs a dataset with the toast.
+    - At 375 px both dialogs are bottom sheets and nothing scrolls sideways (document and dialog widths equal the viewport).
+    - The dashboard has one dark theme (no `prefers-color-scheme` or `data-theme` rules in `index.css`), so there is no light mode to check; emulating light changes nothing.

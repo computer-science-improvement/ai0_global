@@ -9,6 +9,7 @@ import { describeError, toast } from '../components/ui/Toast';
 import { SkeletonRows } from '../components/SkeletonRows';
 import { ImportWizard } from '../components/data/ImportWizard';
 import { ImportHistory } from '../components/data/ImportHistory';
+import { UploadPageDialog } from '../components/sources/UploadPageDialog';
 import { fmtDate, fmtRelative } from '../lib/format';
 import { DATASET_STATUS, fmtInt, summarizeDatasets } from '../lib/data-store';
 import { useDatasets, useRefreshStats } from '../api/data';
@@ -21,6 +22,8 @@ function DataPage() {
   const refresh = useRefreshStats();
   const navigate = useNavigate();
   const [importing, setImporting] = useState<string | null>(null);
+  // Spec 076: a saved page of a site the server cannot open, given under its address (re-syncs a list dataset or waits for the chat).
+  const [uploadingPage, setUploadingPage] = useState(false);
   const rows = q.data ?? [];
   const sum = summarizeDatasets(rows);
 
@@ -34,6 +37,9 @@ function DataPage() {
           <button type="button" className="btn-secondary" disabled={refresh.isPending}
             onClick={() => refresh.mutate(undefined, { onSuccess: (r) => toast.success(`Stats refreshed for ${r.refreshed} datasets`), onError: (e) => toast.error(describeError(e)) })}>
             <Icon name="refresh" size={14} /> Refresh stats
+          </button>
+          <button type="button" className="btn-secondary" onClick={() => setUploadingPage(true)}>
+            <Icon name="link" size={14} /> Upload page
           </button>
           <button type="button" className="btn-primary" onClick={() => setImporting('')}>
             <Icon name="arrow-up" size={14} /> Import file
@@ -114,6 +120,7 @@ function DataPage() {
       {importing !== null && (
         <ImportWizard open onClose={() => setImporting(null)} initialSchema={importing || undefined} />
       )}
+      {uploadingPage && <UploadPageDialog open onClose={() => setUploadingPage(false)} />}
     </div>
   );
 }
