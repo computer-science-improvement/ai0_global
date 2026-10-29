@@ -10,7 +10,7 @@ import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { Field, SectionCard } from '../ui/primitives';
 import { Icon } from '../ui/Icon';
-import { toast } from '../ui/Toast';
+import { toast, describeError } from '../ui/Toast';
 import { SkeletonRows } from '../SkeletonRows';
 import {
   useLandingAdminConfig, useLandingDmPreview, useSaveLandingConfig,
@@ -51,7 +51,7 @@ export function PublicPageCard(): JSX.Element {
     return (
       <SectionCard title="Public page" delay={0}>
         <div className="callout-danger" role="alert">
-          Couldn’t load the public page settings{error ? `: ${(error as Error).message}` : ''}
+          Couldn’t load the public page settings{error ? `: ${describeError(error)}` : ''}
         </div>
       </SectionCard>
     );

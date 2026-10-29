@@ -6,7 +6,7 @@ export function Pagination({ page, pageSize, total, onPage }: {
   if (pages <= 1) return null;
   return (
     <div className="mt-6 flex items-center justify-between text-[13px]">
-      <span className="tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>
+      <span className="tabular-nums ink-muted">
         {total} items · page {page} of {pages}
       </span>
       <div className="flex gap-2">

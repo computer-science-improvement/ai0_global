@@ -29,7 +29,7 @@ export function AgentsPanel({ day, delay }: { day: TodayDay; delay?: number }) {
         <EmptyState icon="warning" title="The agents could not be loaded" note="The server did not answer. The rest of the page still works."
           action={<Button type="button" variant="secondary" size="sm" onClick={() => { void day.channelsQ.refetch(); }}>Try again</Button>} />
       ) : day.channelsQ.isLoading ? (
-        <p className="text-caption" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center', color: 'var(--color-ink-muted)' }}>Loading agents…</p>
+        <p className="text-caption ink-muted" role="status" style={{ margin: 0, padding: '28px 20px', textAlign: 'center' }}>Loading agents…</p>
       ) : channels.length === 0 ? (
         <EmptyState icon="agents" title="No channel agents yet" note="A channel gets an agent when you set it up. Until then nothing is planned or posted for it."
           action={<Link to="/app/setup" className="btn-secondary btn-sm">Set up a channel</Link>} />
@@ -59,7 +59,7 @@ export function AgentsPanel({ day, delay }: { day: TodayDay; delay?: number }) {
       )}
 
       {day.editorOff && (
-        <div className="panel-foot text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+        <div className="panel-foot text-micro ink-muted">
           The editor is switched off on the server, so a mode change has no effect until it is on.
         </div>
       )}

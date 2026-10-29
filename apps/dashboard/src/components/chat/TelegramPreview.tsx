@@ -22,8 +22,8 @@ export function TelegramPreview({ messages, channelTitle, channelKey, time }: {
       <div className="tg-head">
         <span className="tg-avatar" aria-hidden>{name.replace(/^@/, '').slice(0, 1).toUpperCase()}</span>
         <div style={{ minWidth: 0 }}>
-          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
-          <div style={{ fontSize: 11, color: 'var(--color-tg-meta)' }}>channel · preview</div>
+          <div className="tg-head-name">{name}</div>
+          <div className="tg-head-sub">channel · preview</div>
         </div>
       </div>
       {messages.map((m, i) => <TgMessageView key={i} m={m} time={time} />)}
@@ -62,7 +62,7 @@ function TgMessageView({ m, time }: { m: TgMessage; time: string }) {
     case 'sendMessage': {
       const link = m.preview && (
         <div className="tg-preview-link">
-          <div style={{ color: 'var(--color-tg-link)', fontWeight: 600 }}>{host(m.preview.url)}</div>
+          <div className="tg-host">{host(m.preview.url)}</div>
           <a href={m.preview.url} target="_blank" rel="noopener noreferrer nofollow" style={{ wordBreak: 'break-all' }}>{m.preview.url}</a>
         </div>
       );

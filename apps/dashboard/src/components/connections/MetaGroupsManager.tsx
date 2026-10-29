@@ -183,11 +183,11 @@ export function MetaGroupsManager() {
                 <label className="grp-source" title="The member you publish to — its posts are duplicated to every other member of the group while auto-duplication is on">
                   <span className="text-eyebrow">Auto-duplicate source</span>
                   <select
-                    className="input-field"
+                    className="input-field conn-select-sm"
                     value={g.source_platform}
                     disabled={busy || wired.length === 0}
                     onChange={e => setSource.mutate({ id: g.id, sourcePlatform: e.target.value as GroupSourcePlatform })}
-                    style={{ padding: '5px 10px', fontSize: 13, minWidth: 130 }}
+                    style={{ minWidth: 130 }}
                   >
                     {sourceOptions.map(o => (
                       <option key={o.key} value={o.key}>{LABEL[o.key] ?? o.key} — {o.label}</option>

@@ -70,7 +70,7 @@ function ArtifactsPage() {
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 16 }}>
         <SegmentedTabs value={view} onChange={(v) => set({ view: v === 'all' ? undefined : v })} ariaLabel="Status"
           options={VIEWS.map((v) => ({ key: v.key, label: v.label, count: ofType?.filter((r) => inView(v.key, r.status)).length }))} />
-        <label className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginLeft: 'auto', color: 'var(--color-ink-muted)' }}>
+        <label className="text-micro ink-muted" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
           Agent
           <select className="input-field" value={agent ?? ''} onChange={(e) => set({ agent: e.target.value || undefined })} style={{ minWidth: 160 }}>
             <option value="">All agents</option>
@@ -90,7 +90,7 @@ function TypeChip({ label, icon, count, active, onClick }: { label: string; icon
   return (
     <button type="button" className="chip-toggle" aria-pressed={active} onClick={onClick}>
       {icon && <Icon name={icon} size={13} />}{label}
-      {count != null && <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{count}</span>}
+      {count != null && <span className="text-micro mono tabular-nums ink-dim">{count}</span>}
     </button>
   );
 }

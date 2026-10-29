@@ -21,6 +21,7 @@ import { dayEyebrow, dayHeading, fmtDayShort, groupByDay } from '../lib/day-grou
 import { markTone, type MarkKind } from '../lib/status-tone';
 import { KYIV_TZ, dayIn, fmtDateTimeIn, formatIn } from '../lib/zoned-time';
 import type { ActivityEvent, ActivityType, RunStep } from '../api/types';
+import { describeError } from '../components/ui/Toast';
 import '../components/activity/activity.css';
 
 export const Route = createFileRoute('/app/logs')({ component: LogsPage });
@@ -211,7 +212,6 @@ function LogsPage() {
   // The API counts only the filter in force, so the number sits on the selected type tab (never a stale one while a new filter loads).
   const typeOptions = TYPE_TABS.map((t) => (t.key === type && q.data && !q.isPlaceholderData ? { ...t, count: total } : t));
 
-  const selectStyle: React.CSSProperties = { padding: '6px 10px', fontSize: 12, minWidth: 130 };
 
   return (
     <div>
@@ -236,12 +236,12 @@ function LogsPage() {
           options={[...RANGE_TABS.map(r => ({ key: r.key, label: r.label })), { key: 'custom', label: 'Custom' }]} />
         {range === 'custom' && (
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-            <input type="date" aria-label="From" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field" style={selectStyle} />
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>→</span>
-            <input type="date" aria-label="To" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field" style={selectStyle} />
+            <input type="date" aria-label="From" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field log-filter" />
+            <span className="text-micro ink-dim">→</span>
+            <input type="date" aria-label="To" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field log-filter" />
           </span>
         )}
-        <select aria-label="Strategy" value={strategy} onChange={(e) => resetPage(setStrategy)(e.target.value)} className="input-field" style={selectStyle}>
+        <select aria-label="Strategy" value={strategy} onChange={(e) => resetPage(setStrategy)(e.target.value)} className="input-field log-filter">
           <option value="">All strategies</option>
           {strategyOptions.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
@@ -249,8 +249,7 @@ function LogsPage() {
           aria-label={resourceLabel}
           value={channelId}
           onChange={(e) => resetPage(setChannelId)(e.target.value)}
-          className="input-field"
-          style={selectStyle}
+          className="input-field log-filter"
           disabled={resourceOptions.length === 0}
           title={resourceOptions.length === 0 ? 'No accounts for this platform' : undefined}
         >
@@ -266,7 +265,7 @@ function LogsPage() {
           <Icon name="warning" size={16} />
           <div style={{ flex: '1 1 220px', minWidth: 0 }}>
             <div className="text-heading-md">Couldn’t load activity</div>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2, overflowWrap: 'anywhere' }}>{(q.error as Error).message}</div>
+            <div className="text-body-sm ink-muted" style={{ marginTop: 2, overflowWrap: 'anywhere' }}>{describeError(q.error)}</div>
           </div>
           <button className="btn-secondary btn-sm" onClick={() => q.refetch()}>
             <Icon name="refresh" size={13} /> Retry
@@ -285,14 +284,14 @@ function LogsPage() {
       {!q.isLoading && !q.error && items.length > 0 && (
         <>
           <SectionCard title="Activity" flush delay={40}
-            action={<span className="mono text-caption" style={{ color: 'var(--color-ink-dim)' }}>Kyiv time</span>}>
+            action={<span className="mono text-caption ink-dim">Kyiv time</span>}>
             {groups.map((g, gi) => {
               const heading = dayHeading(g.day, today);
               return (
                 <div key={`${g.day}-${gi}`} className="log-group">
                   <div className="log-day">
                     <span className="text-overline">{heading}</span>
-                    {(heading === 'Today' || heading === 'Yesterday') && <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{fmtDayShort(g.day)}</span>}
+                    {(heading === 'Today' || heading === 'Yesterday') && <span className="mono text-micro ink-dim">{fmtDayShort(g.day)}</span>}
                     <span className="log-day-count mono tabular-nums">{g.items.length}</span>
                   </div>
                   <div>

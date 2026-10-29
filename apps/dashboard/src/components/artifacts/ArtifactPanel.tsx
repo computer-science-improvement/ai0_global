@@ -41,19 +41,19 @@ export function ArtifactPanel({ type, id, onClose, onAsk, bare = false }: {
   const d = q.data;
   return (
     <div style={bare ? { display: 'grid' } : { display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' }}>
-      {!bare && <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '14px 16px 12px', borderBottom: '1px solid var(--color-hairline)' }}>
+      {!bare && <div className="art-head">
         <span className="section-glyph" aria-hidden><Icon name={meta.icon} size={15} /></span>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, minWidth: 0 }}>
             <span className="text-overline">{meta.label}</span>
-            {d?.row.agent && <span className="text-micro mono clamp" style={{ color: 'var(--color-ink-muted)', ['--clamp' as string]: 1 }}>@{d.row.agent}</span>}
+            {d?.row.agent && <span className="text-micro mono clamp ink-muted" style={{ ['--clamp' as string]: 1 }}>@{d.row.agent}</span>}
           </div>
-          <h2 className="text-heading-md clamp" style={{ margin: '2px 0 0', color: 'var(--color-ink)', ['--clamp' as string]: 2 }}>{d?.row.title ?? '…'}</h2>
+          <h2 className="text-heading-md clamp art-ink" style={{ margin: '2px 0 0', ['--clamp' as string]: 2 }}>{d?.row.title ?? '…'}</h2>
           {d && (
             <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginTop: 6 }}>
               <Badge tone={artifactTone(d.row.status)}>{statusLabel(d.row.status)}</Badge>
-              {d.row.version != null && <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>v{d.row.version}</span>}
-              {d.row.live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>shapes posts now</span>}
+              {d.row.version != null && <span className="text-micro mono tabular-nums ink-muted">v{d.row.version}</span>}
+              {d.row.live && <span className="text-micro ink-muted">shapes posts now</span>}
             </div>
           )}
         </div>
@@ -137,7 +137,7 @@ function RulesBody({ d }: { d: ArtifactDetail }) {
               <div key={r.id} className="panel-row" style={{ flexWrap: 'nowrap', alignItems: 'flex-start', gap: 8 }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{r.kind === 'avoid' ? 'Avoid: ' : ''}{r.text}</div>
-                  <div className="text-micro mono" style={{ color: 'var(--color-ink-dim)' }}>#{r.id}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}{r.source ? ` · ${r.source}` : ''}</div>
+                  <div className="text-micro mono ink-dim">#{r.id}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}{r.source ? ` · ${r.source}` : ''}</div>
                 </div>
                 <button type="button" className="btn-act" title="Edit" aria-label="Edit the rule" onClick={() => setEditing(r)}><Icon name="pencil" size={13} /></button>
                 <button type="button" className="btn-act btn-act-danger" title="Retire" aria-label="Retire the rule" disabled={patch.isPending}
@@ -167,14 +167,14 @@ function MemoryBody({ d }: { d: ArtifactDetail }) {
   const confirm = useConfirm();
   return (
     <Field label={`Learnt lines (${lines.length})`} hint="Written by the agents from reviews and your approvals. You can retire a line; the agents add new ones.">
-      {lines.length === 0 && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Nothing learnt yet.</span>}
+      {lines.length === 0 && <span className="text-micro ink-dim">Nothing learnt yet.</span>}
       {lines.length > 0 && (
         <div className="panel is-flush">
           {lines.map((r) => (
             <div key={r.id} className="panel-row" style={{ flexWrap: 'nowrap', alignItems: 'flex-start', gap: 8 }}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{r.text}</div>
-                <div className="text-micro mono" style={{ color: 'var(--color-ink-dim)' }}>{r.kind ?? 'note'}{r.by ? ` · ${r.by}` : ''}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}</div>
+                <div className="text-micro mono ink-dim">{r.kind ?? 'note'}{r.by ? ` · ${r.by}` : ''}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}</div>
               </div>
               <button type="button" className="btn-act btn-act-danger" title="Retire" aria-label="Retire the line" disabled={patch.isPending}
                 onClick={async () => {
@@ -212,7 +212,7 @@ function SkillBody({ d }: { d: ArtifactDetail }) {
           <Icon name="pencil" size={13} /> Edit the skill
         </button>
       )}
-      {b.scope && b.scope !== 'agent' && <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>A shared skill: change it per agent on the agent's Skills tab.</div>}
+      {b.scope && b.scope !== 'agent' && <div className="text-micro ink-dim">A shared skill: change it per agent on the agent's Skills tab.</div>}
       {open && (
         <TextEditDialog title={`Edit ${d.row.title}`} initial={b.body ?? ''} rows={16} mono busy={patch.isPending} onClose={() => setOpen(false)}
           onSave={(body) => patch.mutate({ type: 'skill', id: d.row.id, patch: { body } }, {
@@ -236,7 +236,7 @@ function JsonBody({ d }: { d: ArtifactDetail }) {
       {pb?.pending && (
         <div className="callout-warning"><Icon name="clock" size={16} /><div>A new version waits for your approval{pb.pending.rationale ? `: ${pb.pending.rationale}` : '.'}</div></div>
       )}
-      {d.row.summary && <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{d.row.summary}</div>}
+      {d.row.summary && <div className="text-body-sm ink-muted">{d.row.summary}</div>}
       <Field label={isPlaybook ? 'Active version' : 'Fields'}>
         <Pre>{shown == null ? 'No active version yet.' : JSON.stringify(shown, null, 2)}</Pre>
       </Field>
@@ -286,8 +286,7 @@ function GenericActions({ d }: { d: ArtifactDetail }) {
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {actions.map((a) => (
-        <button key={a.key} type="button" className={a.danger ? 'btn-ghost' : a === main ? 'btn-primary' : 'btn-secondary'} disabled={act.isPending} onClick={() => run(a)}
-          style={a.danger ? { color: 'var(--color-danger)' } : undefined}>{a.label}</button>
+        <button key={a.key} type="button" className={a.danger ? 'btn-ghost ink-danger' : a === main ? 'btn-primary' : 'btn-secondary'} disabled={act.isPending} onClick={() => run(a)}>{a.label}</button>
       ))}
     </div>
   );
@@ -305,10 +304,10 @@ function Versions({ d }: { d: ArtifactDetail }) {
           <Fragment key={v.version}>
             <button type="button" className={`panel-row${open === v.version ? ' is-selected' : ''}`} onClick={() => setOpen(open === v.version ? null : v.version)}
               aria-expanded={open === v.version} style={{ flexWrap: 'nowrap', gap: 8, padding: '10px 14px' }}>
-              <span className="text-body-sm mono tabular-nums" style={{ fontWeight: 600 }}>v{v.version}</span>
-              <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{authorLabel(v)}</span>
-              <span className="text-micro clamp" style={{ color: 'var(--color-ink-dim)', flex: 1, minWidth: 0, ['--clamp' as string]: 1 }}>{v.reason ?? ''}</span>
-              <span className="text-micro mono" style={{ color: 'var(--color-ink-dim)', flexShrink: 0 }}>{fmtRelative(v.createdAt)}</span>
+              <span className="text-body-sm mono tabular-nums art-version">v{v.version}</span>
+              <span className="text-micro ink-muted">{authorLabel(v)}</span>
+              <span className="text-micro clamp ink-dim" style={{ flex: 1, minWidth: 0, ['--clamp' as string]: 1 }}>{v.reason ?? ''}</span>
+              <span className="text-micro mono ink-dim" style={{ flexShrink: 0 }}>{fmtRelative(v.createdAt)}</span>
             </button>
             {open === v.version && <VersionDiff type={d.row.type} id={d.row.id} v={v.version} prev={prevOf(d.versions, v.version)} />}
           </Fragment>
@@ -347,7 +346,7 @@ function TextEditDialog({ title, initial, onSave, onClose, busy, rows = 4, mono:
   return (
     <Modal open onClose={onClose} title={title} icon="pencil" size={rows > 8 ? 'lg' : 'md'}>
       <div style={{ display: 'grid', gap: 8 }}>
-        {hint && <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{hint}</div>}
+        {hint && <div className="text-micro ink-muted">{hint}</div>}
         <textarea className={`input-field${isMono ? ' mono' : ''}`} value={text} rows={rows} onChange={(e) => setText(e.target.value)} autoFocus aria-label={title}
           style={{ width: '100%', resize: 'vertical' }} />
         <div className="modal-foot">

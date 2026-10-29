@@ -73,7 +73,7 @@ Dark surfaces, hairlines instead of shadows, one green accent, **amber is the co
 
 ### Colour, radius, space, elevation
 
-- Colour: `var(--color-*)` only. No literal hex or rgb, except a per-destination tint (Telegram blue and the like). Tints of a token: `color-mix(in srgb, var(--color-accent) 8%, transparent)`. Ink ladder: `ink` (text), `ink-muted` (secondary), `ink-dim` (tertiary: labels, placeholders; AA contrast). Text on a solid accent, warning or danger fill uses `--color-on-accent`, `--color-on-warning`, `--color-on-danger`.
+- Colour: `var(--color-*)` only. No literal hex or rgb, except a per-destination tint (Telegram blue and the like). Tints of a token: `color-mix(in srgb, var(--color-accent) 8%, transparent)`. Ink ladder: `ink` (text), `ink-muted` (secondary), `ink-dim` (tertiary: labels, placeholders; AA contrast). Text on a solid accent, warning or danger fill uses `--color-on-accent`, `--color-on-warning`, `--color-on-danger`. For one-off text colour use the ink helpers `.ink-muted`, `.ink-dim`, `.ink-accent`, `.ink-warning`, `.ink-danger`, `.ink-success` (never on an element whose own class already sets `color`); a status tone computed at runtime is the only colour left inline.
 - Radius: `--radius-xl` panels and dialogs; `--radius-lg` insets, callouts, KPI tiles, tab tracks; `--radius-md` inputs, tabs, toggles; `--radius-sm` buttons; `--radius-pill` pills. No numeric `borderRadius` except `'50%'` for dots.
 - Elevation: hairlines first. `--shadow-1`, `--shadow-2`, `--shadow-pop`, `--shadow-modal` only for things that float or lift: a hovered panel, a sticky bar, a menu, a toast, a dialog.
 - Space: 8px base (`--space-*`). Panel padding is 20px (16px on phones), row padding 12px 20px. The page gutter is set by `AppShell`.

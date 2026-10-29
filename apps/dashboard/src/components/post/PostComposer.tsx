@@ -61,25 +61,11 @@ function PlatformTabs() {
           disabled={!p.enabled}
           aria-pressed={p.enabled}
           title={p.enabled ? p.label : `${p.label} — soon`}
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '8px 14px',
-            borderRadius: 'var(--radius-pill)',
-            border: '1px solid',
-            borderColor: p.enabled ? 'var(--color-accent)' : 'var(--color-hairline)',
-            background: p.enabled ? 'var(--color-success-soft)' : 'var(--color-surface-1)',
-            color: p.enabled ? 'var(--color-accent)' : 'var(--color-ink-muted)',
-            fontSize: 13, fontWeight: 500, letterSpacing: '-0.13px',
-            cursor: p.enabled ? 'default' : 'not-allowed',
-            opacity: p.enabled ? 1 : 0.45,
-            transition: 'background 0.12s ease, color 0.12s ease',
-          }}
+          className={`pc-platform${p.enabled ? ' is-on' : ''}`}
         >
           <Icon name={p.icon} size={15} />
           {p.label}
-          {!p.enabled && (
-            <span className="chip" style={{ padding: '1px 6px', fontSize: 11, lineHeight: 1.3 }}>soon</span>
-          )}
+          {!p.enabled && <span className="chip">soon</span>}
         </button>
       ))}
     </div>
@@ -322,8 +308,8 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
       <div className="pc-preview-head">
         <ChannelAvatar name={channelTitle} src={null} size={36} />
         <div style={{ minWidth: 0 }}>
-          <div className="text-body-sm pc-preview-name" style={{ color: 'var(--color-ink)' }}>{channelTitle ?? 'Select a channel'}</div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Telegram</div>
+          <div className="text-body-sm pc-preview-name">{channelTitle ?? 'Select a channel'}</div>
+          <div className="text-micro ink-dim">Telegram</div>
         </div>
       </div>
       <TelegramPreview post={post} />
@@ -359,7 +345,7 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
               ))}
             </div>
             {!channels.length && !channelsQ.isLoading && (
-              <p className="pc-note" style={{ color: 'var(--color-ink-muted)' }}>
+              <p className="pc-note is-muted">
                 {channelsQ.isError ? 'Your channels did not load. Close this and try again.' : 'No channels yet. Add one under Channels first.'}
               </p>
             )}
@@ -373,7 +359,7 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
               placeholder={agentMode ? 'e.g. a short post about this week’s MCP releases, with a source link' : 'Write the post…'}
               value={post.text} onChange={e => set({ text: e.target.value })} onBlur={() => touch('text')} />
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{agentMode ? 'Plain words are fine.' : 'Telegram HTML: <b>, <i>, <a href>'}</span>
+              <span className="text-micro ink-dim">{agentMode ? 'Plain words are fine.' : 'Telegram HTML: <b>, <i>, <a href>'}</span>
               {counter}
             </div>
             {err('text')}
@@ -413,7 +399,7 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
             {agentMode ? (
               <div className="inset">
                 <div className="text-overline" style={{ marginBottom: 6 }}>Brief for the agent</div>
-                <p className="text-body-sm" style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', color: post.text.trim() ? 'var(--color-ink)' : 'var(--color-ink-dim)' }}>
+                <p className={post.text.trim() ? 'text-body-sm' : 'text-body-sm ink-dim'} style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
                   {post.text.trim() || 'The agent’s draft will appear here for your approval.'}
                 </p>
               </div>
@@ -479,10 +465,10 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
               value={toLocalInput(post.scheduledAt)}
               onChange={e => set({ scheduledAt: e.target.value ? new Date(e.target.value).toISOString() : '' })}
               onBlur={() => touch('time')} />
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>(local time)</span>
+            <span className="text-micro ink-dim">(local time)</span>
             {err('time')}
           </div>
-          {failure && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }} role="alert">{failure}</p>}
+          {failure && <p className="text-body-sm ink-danger" role="alert">{failure}</p>}
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 4 }}>
             <button className="btn-secondary" onClick={cancel}>Cancel</button>
             <button className="btn-primary" disabled={blocked} onClick={submit}>{save.isPending ? 'Saving…' : 'Schedule'}</button>

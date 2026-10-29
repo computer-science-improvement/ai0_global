@@ -9,7 +9,7 @@ import { SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { TableAction } from '../ui/table';
-import { toast } from '../ui/Toast';
+import { toast, describeError } from '../ui/Toast';
 import { SkeletonRows } from '../SkeletonRows';
 import {
   landingApi, type LandingAdminNetwork, type LandingAdminNetworks,
@@ -61,7 +61,7 @@ export function NetworksCard({ data, isLoading, error }: { data: LandingAdminNet
       qc.invalidateQueries({ queryKey: ['landing', 'admin', 'networks'] });
       qc.invalidateQueries({ queryKey: ['landing', 'networks'] });
     },
-    onError: (e) => toast.error(`Couldn’t save the network: ${(e as Error).message}`),
+    onError: (e) => toast.error(`Couldn’t save the network: ${describeError(e)}`),
   });
 
   if (isLoading) {
@@ -75,7 +75,7 @@ export function NetworksCard({ data, isLoading, error }: { data: LandingAdminNet
     return (
       <SectionCard title="Networks">
         <div className="callout-danger" role="alert">
-          Couldn’t load the networks{error ? `: ${(error as Error).message}` : ''}
+          Couldn’t load the networks{error ? `: ${describeError(error)}` : ''}
         </div>
       </SectionCard>
     );

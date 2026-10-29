@@ -14,6 +14,7 @@ import {
   useCrossposts, useCreateCrosspost, useToggleCrosspost, useDeleteCrosspost,
 } from '../api/crossposts';
 import type { MetaPlatform, CrosspostMode } from '../api/types';
+import { describeError } from './ui/Toast';
 
 /** Spec 024 FR-011: the stored value stays `mirror`; the UI says "duplicate". */
 const CROSSPOST_MODE_LABEL: Record<string, string> = { 'mirror': 'duplicate', 'teaser': 'teaser' };
@@ -128,7 +129,7 @@ export function CrosspostSection({ channelId, delay }: {
             Instagram supports only <b>duplicate</b> (an image is required; links in captions aren&apos;t clickable).
           </p>
         )}
-        {create.error && <p className="ch-form-error ch-note-inline">{(create.error as Error).message}</p>}
+        {create.error && <p className="ch-form-error ch-note-inline">{describeError(create.error)}</p>}
       </div>
     </SectionCard>
   );

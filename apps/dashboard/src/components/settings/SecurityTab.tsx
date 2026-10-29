@@ -13,6 +13,7 @@ import { TableAction } from '../ui/table';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { EVENT_LABEL, METHOD_LABEL, codeLabel } from '../../auth/messages';
+import { describeError } from '../ui/Toast';
 
 const SESSIONS_KEY = ['auth', 'sessions'] as const;
 const EVENTS_KEY = ['auth', 'events'] as const;
@@ -73,7 +74,7 @@ export function SecurityTab() {
         }
       >
         {sessions.isLoading && <div className="set-pad" role="status">Loading…</div>}
-        {sessions.error && <div className="set-pad"><div className="callout-danger" role="alert">{(sessions.error as Error).message}</div></div>}
+        {sessions.error && <div className="set-pad"><div className="callout-danger" role="alert">{describeError(sessions.error)}</div></div>}
         {sessions.data && list.length === 0 && (
           <EmptyState icon="lock" title="No active sessions" note="Scripts using the access token as a Bearer header don't open sessions." />
         )}
@@ -83,7 +84,7 @@ export function SecurityTab() {
       <SectionCard title="Recent sign-in activity" delay={40}
         action={events.data && events.data.length > 0 ? <span className="set-count mono">last {events.data.length}</span> : undefined}>
         {events.isLoading && <div className="set-loading" role="status">Loading…</div>}
-        {events.error && <div className="callout-danger" role="alert">{(events.error as Error).message}</div>}
+        {events.error && <div className="callout-danger" role="alert">{describeError(events.error)}</div>}
         {events.data && events.data.length === 0 && <EmptyState icon="history" title="No events yet" note="Sign-ins, sign-outs and failed attempts are listed here." />}
         {events.data && events.data.length > 0 && <EventsTable events={events.data} />}
       </SectionCard>

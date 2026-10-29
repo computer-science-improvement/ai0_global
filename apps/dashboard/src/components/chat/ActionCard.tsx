@@ -77,7 +77,7 @@ export function GoalChips({ goals }: { goals: string[] }) {
     <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>
       {goals.map((g, i) => (
         <span key={g} className="chip" style={{ gap: 5 }}>
-          <span className="tabular-nums" style={{ color: 'var(--color-accent)', fontWeight: 600 }}>{i + 1}</span>
+          <span className="tabular-nums card-rank">{i + 1}</span>
           {(KPI_GOALS as readonly string[]).includes(g) ? GOAL_LABEL[g as KpiGoal] : g}
         </span>
       ))}
@@ -109,14 +109,14 @@ function CreateAgentView({ p }: { p: Record<string, unknown> }) {
   return (
     <>
       <Row label="Agent">
-        <span style={{ fontWeight: 500 }}>{str(p.emoji) ?? '📣'} {str(p.name) ?? '—'}</span>
-        {handle && <span style={{ color: 'var(--color-ink-muted)' }}> · @{handle}</span>}
+        <span className="card-name">{str(p.emoji) ?? '📣'} {str(p.name) ?? '—'}</span>
+        {handle && <span className="ink-muted"> · @{handle}</span>}
       </Row>
       <Row label="Resource"><code className="mono text-micro">{str(p.resource_ref) ?? (str(p.network_id) ? `network:${p.network_id}` : '—')}</code></Row>
       {str(profile.topic) && <Row label="Topic">{profile.topic as string}</Row>}
       {who && <Row label="Audience">{who}</Row>}
       {strs(profile.goals).length > 0 && <Row label="Goals"><GoalChips goals={strs(profile.goals)} /></Row>}
-      <Row label="Brief">{str(p.brief) ? <LongText text={p.brief as string} /> : <span style={{ color: 'var(--color-ink-dim)' }}>none — the profile is the brief</span>}</Row>
+      <Row label="Brief">{str(p.brief) ? <LongText text={p.brief as string} /> : <span className="ink-dim">none — the profile is the brief</span>}</Row>
       {str(profile.tone) && <Row label="Tone">{profile.tone as string}</Row>}
       <Row label="Taboo topics">{taboo.length ? taboo.join(', ') : '—'}</Row>
       {banned.length > 0 && <Row label="Banned words">{banned.join(', ')}</Row>}
@@ -127,7 +127,7 @@ function CreateAgentView({ p }: { p: Record<string, unknown> }) {
               <span key={f.format}><span className="chip" style={{ marginRight: 6 }}>{f.format}</span>{f.reason ?? ''}</span>
             ))}
           </span>
-        ) : <span><span className="chip">text</span> <span className="chip">photo</span> <span style={{ color: 'var(--color-ink-dim)' }}>default</span></span>}
+        ) : <span><span className="chip">text</span> <span className="chip">photo</span> <span className="ink-dim">default</span></span>}
       </Row>
       <Row label="Schedule">{times.length ? `orchestrator runs at ${times.join(', ')} (Kyiv)` : 'orchestrator runs at 06:30 (Kyiv)'}</Row>
       <Row label="Mode"><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}><span style={{ flexShrink: 0, whiteSpace: 'nowrap' }}><Badge tone="warning">approval</Badge></span> Starts in approval mode: every post waits for your approval</span></Row>
@@ -227,7 +227,7 @@ function FollowUpsView({ action, items }: { action: PendingAction; items: Follow
   const outcomes = new Map(outcomesOf(action.result).map((o) => [o.key, o]));
   return (
     <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+      <span className="text-micro ink-muted">
         {decided ? 'Then' : 'Then, in this order — untick what you do not want'}
       </span>
       <span style={{ display: 'grid', gap: 6 }}>
@@ -243,7 +243,7 @@ function FollowUpsView({ action, items }: { action: PendingAction; items: Follow
                 {decided && (
                   <>
                     {' '}<Badge tone={badge.tone}>{badge.text}</Badge>
-                    {badge.detail && <span className="text-micro" style={{ color: 'var(--color-danger)', display: 'block' }}>{badge.detail}</span>}
+                    {badge.detail && <span className="text-micro ink-danger" style={{ display: 'block' }}>{badge.detail}</span>}
                   </>
                 )}
               </span>
@@ -262,7 +262,7 @@ function ExamplesResult({ result }: { result: unknown }) {
     : r.target === 'pending' ? `the playbook draft v${String(r.version)} waiting for your approval`
       : r.target === 'held' ? 'the first playbook (it is still being built)' : 'the playbook';
   return (
-    <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-muted)' }}>
+    <p className="text-micro ink-muted" style={{ margin: '10px 0 0' }}>
       Saved {saved ?? 'the'} examples to {where}.
     </p>
   );
@@ -281,7 +281,7 @@ function ImportResultView({ result }: { result: unknown }) {
   const stop = str(r.stopped);
   const short = read != null && stop && STOP_TEXT[stop] && (total == null || read < total);
   return (
-    <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
+    <p className="text-micro ink-muted" style={{ margin: '10px 0 0', overflowWrap: 'anywhere' }}>
       {n('inserted')} added, {n('updated')} updated, {n('skipped')} unchanged{n('not_postable') ? `, ${n('not_postable')} not postable` : ''}{str(r.dataset) ? ` in ${r.dataset as string}` : ''}.
       {short && ` Read ${read}${total != null ? ` of ${total}` : ''} pages: stopped at ${STOP_TEXT[stop]}${stop === 'failed' && str(r.failure) ? ` (${r.failure as string})` : ''}.`}
     </p>
@@ -312,7 +312,7 @@ function WriteSkillView({ p }: { p: Record<string, unknown> }) {
     <>
       <Row label="Skill">
         <code className="mono text-micro">{str(p.name) ?? '—'}</code>
-        {str(p.handle) && <span style={{ color: 'var(--color-ink-muted)' }}> · @{p.handle as string}</span>}
+        {str(p.handle) && <span className="ink-muted"> · @{p.handle as string}</span>}
         {p.inline === true && <> <Badge>always in context</Badge></>}
       </Row>
       {str(p.description) && <Row label="Description">{p.description as string}</Row>}
@@ -423,7 +423,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
       <CompactCard hint="Open the card" attention={pending} focused={focusedId === a.id}
         top={<>
           <Icon name={meta.icon} size={13} />
-          <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{meta.label}</span>
+          <span className="text-caption card-label">{meta.label}</span>
           <Badge tone={ACTION_TONE[a.status] ?? 'neutral'}>{pending ? 'needs your confirmation' : a.status}</Badge>
         </>}
         meta={!pending && a.decidedAt ? <span title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span> : undefined}
@@ -446,7 +446,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
           ),
           actions: pending ? (close) => (
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginRight: 'auto' }}>Nothing changes until you apply</span>
+              <span className="text-micro ink-dim" style={{ marginRight: 'auto' }}>Nothing changes until you apply</span>
               <button className="btn-secondary" disabled={decide.isPending} onClick={() => run('discard', close)}>
                 <Icon name="x" size={14} /> Discard
               </button>
@@ -465,9 +465,9 @@ export function ActionCard({ action }: { action: PendingAction }) {
 function ResolverLines({ lines, more }: { lines: string[]; more: number }) {
   if (!lines.length) return null;
   return (
-    <span className="text-micro" style={{ display: 'grid', gap: 2, color: 'var(--color-ink-muted)', textAlign: 'left' }}>
+    <span className="text-micro ink-muted" style={{ display: 'grid', gap: 2, textAlign: 'left' }}>
       {lines.map((l, i) => <span key={i} className="clamp" style={{ ['--clamp' as string]: 1 }}>• {l}</span>)}
-      {more > 0 && <span style={{ color: 'var(--color-ink-dim)' }}>+ {more} more</span>}
+      {more > 0 && <span className="ink-dim">+ {more} more</span>}
     </span>
   );
 }
@@ -479,7 +479,7 @@ function CreatedLink({ handle }: { handle: string }) {
         style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
         Open @{handle} <Icon name="chevron-right" size={14} />
       </Link>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 8 }}>Starts in approval mode</span>
+      <span className="text-micro ink-dim" style={{ marginLeft: 8 }}>Starts in approval mode</span>
     </div>
   );
 }
@@ -493,11 +493,11 @@ function ActionDetails({ a, pending, createdHandle, error, examples }: {
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
         <Badge tone={ACTION_TONE[a.status] ?? 'neutral'}>{pending ? 'needs your confirmation' : a.status}</Badge>
         {!pending && a.decidedAt && (
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span>
+          <span className="text-micro ink-dim" title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span>
         )}
       </div>
 
-      <p className="text-body-sm" style={{ margin: '0 0 10px', color: 'var(--color-ink)', lineHeight: 1.5, overflowWrap: 'anywhere' }}>{a.summary}</p>
+      <p className="text-body-sm card-text" style={{ margin: '0 0 10px', overflowWrap: 'anywhere' }}>{a.summary}</p>
 
       {BOXED.has(a.kind) && (
         <div className="inset" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

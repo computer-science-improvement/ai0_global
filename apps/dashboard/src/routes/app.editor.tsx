@@ -105,16 +105,16 @@ function ChannelRow({ c, plan }: { c: EditorChannel; plan: EditorPlan | null }) 
       <HubGlyph size={32}>{name.replace(/^@/, '').charAt(0).toUpperCase()}</HubGlyph>
       <div style={{ flex: '1 1 260px', minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
-          <Link to="/app/editor/$channel" params={{ channel: c.channelKey }} className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, textDecoration: 'none' }}>
+          <Link to="/app/editor/$channel" params={{ channel: c.channelKey }} className="text-body-sm ed-name">
             {name}
           </Link>
-          <span className="mono text-micro" style={{ color: 'var(--color-ink-muted)' }}>{c.channelKey}</span>
+          <span className="mono text-micro ink-muted">{c.channelKey}</span>
         </div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="text-micro ink-muted" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
           <span className="mono">{c.postsPerDayMin}–{c.postsPerDayMax}/day</span>
           <SlotCounts slots={c.today.slots} />
         </div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginTop: 3 }}>
+        <div className="text-micro ink-dim" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginTop: 3 }}>
           {planned
             ? <>
                 <span>{planned} by</span>
@@ -125,8 +125,8 @@ function ChannelRow({ c, plan }: { c: EditorChannel; plan: EditorPlan | null }) 
         </div>
       </div>
       <div style={{ textAlign: 'right', minWidth: 80 }}>
-        <div className="mono tabular-nums" style={{ fontWeight: 600 }}>{fmtUsd(c.today.spendUsd)}</div>
-        <div className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{c.today.runs} runs today</div>
+        <div className="mono tabular-nums ed-figure">{fmtUsd(c.today.spendUsd)}</div>
+        <div className="mono text-micro ink-dim">{c.today.runs} runs today</div>
       </div>
       <ModeSwitch channelKey={c.channelKey} mode={c.mode} title={c.title} />
       <RowActions>
@@ -152,7 +152,7 @@ function SpendSection() {
 
   return (
     <SectionCard title="Spend · last 30 days" delay={120}
-      action={spend.data ? <span className="mono text-caption tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>{fmtUsd(spend.data.totalUsd)} total</span> : undefined}>
+      action={spend.data ? <span className="mono text-caption tabular-nums ink-muted">{fmtUsd(spend.data.totalUsd)} total</span> : undefined}>
       {days.length === 0
         ? <EmptyState icon="analytics" title="No LLM spend yet" note="Planner, executor and reviewer runs show up here once a channel is planned." />
         : (

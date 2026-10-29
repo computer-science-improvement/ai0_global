@@ -56,7 +56,7 @@ export const fmtDuration = (from: string, to: string | null) => {
 /** Slot counts of the day as compact status badges ("5 published"). */
 export function SlotCounts({ slots }: { slots: Partial<Record<EditorSlotStatus, number>> }) {
   const present = SLOT_ORDER.filter((s) => (slots[s] ?? 0) > 0);
-  if (!present.length) return <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>no plan yet</span>;
+  if (!present.length) return <span className="text-micro ink-dim">no plan yet</span>;
   return (
     <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>
       {present.map((s) => <Badge key={s} tone={slotTone(s)}>{slots[s]} {slotLabel(s).toLowerCase()}</Badge>)}
@@ -143,7 +143,7 @@ export function SlotRow({ slot, showChannel = false, tz, feeds, estimateUsd }: {
 
   return (
     <div className="panel-row" style={{ alignItems: 'flex-start' }}>
-      <div className="mono tabular-nums text-caption" style={{ width: 48, flexShrink: 0, fontWeight: 600, marginTop: 2 }}
+      <div className="mono tabular-nums text-caption slot-time"
         title={tz ? `${zoneLabel(zone)} time` : undefined}>
         {tz ? formatIn(slot.scheduledAt, zone) : fmtTime(slot.scheduledAt)}
       </div>
@@ -154,18 +154,18 @@ export function SlotRow({ slot, showChannel = false, tz, feeds, estimateUsd }: {
           {slot.kind === 'reserved' && <span className="chip">reserved</span>}
           {slot.isExperiment && <span className="chip">experiment</span>}
           <CriticBadge critic={slot.critic} />
-          {showChannel && <span className="mono text-micro" style={{ color: 'var(--color-ink-muted)' }}>{slot.channelKey}</span>}
+          {showChannel && <span className="mono text-micro ink-muted">{slot.channelKey}</span>}
         </div>
         <Link
           to="/app/editor/slot/$id"
           params={{ id: slot.id }}
-          className="text-body-sm clamp"
-          style={{ ['--clamp' as string]: 1, color: 'var(--color-ink)', textDecoration: 'none' }}
+          className="text-body-sm clamp slot-topic"
+          style={{ ['--clamp' as string]: 1 }}
         >
           {slot.topic}
         </Link>
         <div style={{ marginTop: 3 }}><SlotDescription slot={view} tz={zone} feeds={feeds} compact /></div>
-        {note && <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 3 }}>{note}</div>}
+        {note && <div className="text-micro ink-dim" style={{ marginTop: 3 }}>{note}</div>}
         {planned && (
           <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginTop: 6 }}>
             <PreviewButton slot={view} estimateUsd={estimateUsd} />
@@ -193,7 +193,7 @@ export function SlotRow({ slot, showChannel = false, tz, feeds, estimateUsd }: {
             disabled={busy}
             onClick={async () => {
               if (await confirm(`run the slot "${slot.topic}" now`, { danger: false, confirmLabel: 'Run now', details: (
-                <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+                <p className="text-micro ink-muted" style={{ margin: 0 }}>
                   The executor runs immediately with the normal tools and guards. In shadow mode it only stores a preview; in live mode it may publish.
                 </p>
               ) })) run.mutate(slot.id);

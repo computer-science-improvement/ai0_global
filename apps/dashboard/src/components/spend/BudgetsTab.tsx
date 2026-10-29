@@ -49,8 +49,8 @@ function Meter({ label, spent, cap, state, title }: { label: string; spent: numb
   return (
     <div className="spend-today" title={title}>
       <div className="spend-today-line">
-        <span className="mono tabular-nums" style={{ color: 'var(--color-ink)' }}>{fmtUsd(spent)}</span>
-        <span className="mono tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>/ {cap == null ? 'no daily cap' : fmtUsd(cap)}</span>
+        <span className="mono tabular-nums spend-ink">{fmtUsd(spent)}</span>
+        <span className="mono tabular-nums ink-dim">/ {cap == null ? 'no daily cap' : fmtUsd(cap)}</span>
       </div>
       <div className="spend-bar" role="meter" aria-label={`${label} today`} aria-valuemin={0} aria-valuemax={cap ?? 0} aria-valuenow={spent}>
         <span className="anim-grow-x" style={{ width: `${barPct(spent, cap)}%`, ['--bar' as string]: budgetBarColor(state) }} />
@@ -71,9 +71,9 @@ function BudgetModal({ initial, before, onClose }: { initial: Draft; before: Bud
     const ok = await confirm(before ? `change the cap "${before.label}"` : 'add this cap', {
       danger: false, confirmLabel: 'Save cap',
       details: (
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', lineHeight: 1.7 }}>
+        <div className="text-micro ink-muted" style={{ lineHeight: 1.7 }}>
           {before && <div>Before: daily {money(before.dailyUsd)} · monthly {money(before.monthlyUsd)} · alert at {before.alertPct}% · {before.enforce ? 'blocks calls' : 'alert only'}</div>}
-          <div style={{ color: 'var(--color-ink)' }}>After: daily {money(body.dailyUsd)} · monthly {money(body.monthlyUsd)} · alert at {body.alertPct}% · {body.enforce ? 'blocks calls' : 'alert only'}</div>
+          <div className="spend-ink">After: daily {money(body.dailyUsd)} · monthly {money(body.monthlyUsd)} · alert at {body.alertPct}% · {body.enforce ? 'blocks calls' : 'alert only'}</div>
           <div style={{ marginTop: 6 }}>Takes effect within seconds, no restart. {body.enforce ? 'Calls over the daily cap are refused until Kyiv midnight.' : 'Over the cap you only get an alert.'}</div>
         </div>
       ),
@@ -173,12 +173,12 @@ export function BudgetsTab() {
           return (
             <div key={b.id} className="panel-row">
               <div className="spend-id">
-                <div className="text-body-sm" style={{ fontWeight: 600, overflowWrap: 'anywhere' }}>{b.label}</div>
-                <div className="mono text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>
+                <div className="text-body-sm spend-name" style={{ overflowWrap: 'anywhere' }}>{b.label}</div>
+                <div className="mono text-micro ink-dim" style={{ overflowWrap: 'anywhere' }}>
                   {b.scopeKind}{b.scopeKey ? ` · ${b.scopeKey}` : ''}{b.seededFrom ? ` · built-in (${b.seededFrom})` : ''}
                 </div>
                 {b.resources && b.resources.length > 0 && (
-                  <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 2, overflowWrap: 'anywhere' }}>
+                  <div className="text-micro ink-danger" style={{ marginTop: 2, overflowWrap: 'anywhere' }}>
                     {b.resources.map((r) => `${r.ref} ${fmtUsd(r.spentUsd)}`).join(' · ')}
                   </div>
                 )}
@@ -189,7 +189,7 @@ export function BudgetsTab() {
                 <span className="text-overline">This month</span>
                 <span className="mono tabular-nums">
                   {everyResource ? '—' : fmtUsd(b.spentMonthUsd)}
-                  {b.monthlyUsd != null && <span style={{ color: 'var(--color-ink-dim)' }}> / {fmtUsd(b.monthlyUsd)}</span>}
+                  {b.monthlyUsd != null && <span className="ink-dim"> / {fmtUsd(b.monthlyUsd)}</span>}
                 </span>
               </div>
               <div className="spend-fact is-narrow">
@@ -205,7 +205,7 @@ export function BudgetsTab() {
           );
         })}
         <div className="panel-foot">
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+          <span className="text-micro ink-dim">
             Daily caps reset at Kyiv midnight. Monthly caps are tracked here but do not block calls. Built-in caps can be edited or made alert only, not deleted.
           </span>
         </div>
@@ -226,7 +226,7 @@ export function BudgetsTab() {
             );
           })}
           <div className="panel-foot">
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Per-agent caps always block; change them on the agent's page.</span>
+            <span className="text-micro ink-dim">Per-agent caps always block; change them on the agent's page.</span>
           </div>
         </SectionCard>
       )}

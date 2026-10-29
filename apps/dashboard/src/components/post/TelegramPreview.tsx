@@ -4,15 +4,15 @@ import type { ComposedPostInput } from '../../api/types';
 export function TelegramPreview({ post }: { post: ComposedPostInput }) {
   const media = post.mediaType !== 'none' && post.mediaUrl ? (
     post.mediaType === 'photo'
-      ? <img src={post.mediaUrl} alt="" style={{ width: '100%', borderRadius: 8, display: 'block' }} />
-      : <video src={post.mediaUrl} controls style={{ width: '100%', borderRadius: 8, display: 'block' }} />
+      ? <img src={post.mediaUrl} alt="" className="pc-bubble-media" />
+      : <video src={post.mediaUrl} controls className="pc-bubble-media" />
   ) : null;
 
   return (
-    <div style={{ background: 'var(--color-surface-2)', borderRadius: 12, padding: 10, maxWidth: 360 }}>
+    <div className="pc-bubble">
       {post.mediaPlacement === 'above' && media}
       {/* Operator-authored Telegram HTML; rendered as-is for fidelity (trusted input). */}
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', margin: '8px 2px' }}
+      <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', margin: '8px 2px' }}
            dangerouslySetInnerHTML={{ __html: post.text || '<span style="opacity:.5">(empty)</span>' }} />
       {post.mediaPlacement === 'below' && media}
       {post.buttons.some(r => r.buttons.length > 0) && (
@@ -20,8 +20,7 @@ export function TelegramPreview({ post }: { post: ComposedPostInput }) {
           {post.buttons.map((row, ri) => (
             <div key={ri} style={{ display: 'flex', gap: 4 }}>
               {row.buttons.map((b, bi) => (
-                <span key={bi} style={{ flex: 1, textAlign: 'center', padding: '6px 8px',
-                  background: 'var(--color-surface-3)', borderRadius: 6, color: 'var(--color-accent)', fontSize: 13 }}>
+                <span className="pc-bubble-btn" key={bi}>
                   {b.label || 'button'}
                 </span>
               ))}

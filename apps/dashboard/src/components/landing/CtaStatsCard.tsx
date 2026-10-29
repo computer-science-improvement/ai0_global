@@ -7,6 +7,7 @@ import type { JSX } from 'react';
 import { SectionCard, EmptyState, StatStrip, StatTile } from '../ui/primitives';
 import { SkeletonRows } from '../SkeletonRows';
 import { useLandingCtaStats } from '../../api/landing';
+import { describeError } from '../ui/Toast';
 import './landing-admin.css';
 
 const PLACEMENT_LABEL: Record<string, string> = {
@@ -30,7 +31,7 @@ export function CtaStatsCard(): JSX.Element {
       {isLoading && <SkeletonRows rows={3} height={48} label="Loading CTA stats" />}
       {error && (
         <div className="callout-danger" role="alert">
-          Couldn’t load CTA stats: {(error as Error).message}
+          Couldn’t load CTA stats: {describeError(error)}
         </div>
       )}
       {empty && (

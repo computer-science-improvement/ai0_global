@@ -16,6 +16,7 @@ import { SectionCard, EmptyState } from './ui/primitives';
 import { LoadingNote, SectionCaption } from './channels/ChannelsUi';
 import { useConfirm } from './ui/ConfirmDialog';
 import { channelOptionLabel } from '../lib/labels';
+import { describeError } from './ui/Toast';
 
 interface Props {
   sourceChannelId: string;
@@ -49,7 +50,7 @@ export function ForwardRoutesPanel({ sourceChannelId, delay }: Props) {
 
       {isLoading && <LoadingNote note="Loading forward routes…" />}
 
-      {error && <EmptyState icon="warning" title="Couldn’t load forward routes" note={(error as Error).message} />}
+      {error && <EmptyState icon="warning" title="Couldn’t load forward routes" note={describeError(error)} />}
 
       {data && data.length === 0 && !adding && (
         <EmptyState
@@ -144,7 +145,7 @@ function AddForwardForm({ sourceChannelId, onDone }: { sourceChannelId: string; 
           style={{ width: '100%' }}
         />
       </label>
-      {create.error && <p className="ch-form-error">{(create.error as Error).message}</p>}
+      {create.error && <p className="ch-form-error">{describeError(create.error)}</p>}
       <div className="ch-form-actions">
         <button type="button" onClick={onDone} className="btn-ghost">Cancel</button>
         <button type="button" onClick={submit} disabled={!valid || create.isPending} className="btn-primary btn-sm">

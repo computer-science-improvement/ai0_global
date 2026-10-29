@@ -193,3 +193,14 @@ textarea.chat-input:disabled { opacity: 0.55; cursor: not-allowed; }
 .inset.example-item { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 12px; }
 .inset.example-warning { display: flex; gap: 10px; align-items: flex-start; min-width: 0; padding: 10px; transition: opacity var(--dur-base) ease; }
 .inset.example-warning.is-off { opacity: 0.55; }
+
+/* ── Card text in the thread and its dialogs (ActionCard, DraftCard, ContentExamplesCard) ── */
+.text-caption.card-label, .text-body-sm.card-label { color: var(--color-ink); font-weight: 600; }
+.text-body-sm.card-text { color: var(--color-ink); line-height: 1.5; }
+.card-rank { color: var(--color-accent); font-weight: 600; }
+.card-name { font-weight: 500; }
+
+/* ── The Telegram preview frame: channel header and link-preview host (per-destination tints) ── */
+.tg-head-name { font-size: 13px; font-weight: 600; color: var(--color-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tg-head-sub { font-size: 11px; color: var(--color-tg-meta); }
+.tg-preview-link .tg-host { color: var(--color-tg-link); font-weight: 600; }

@@ -16,7 +16,6 @@ import { NetworkPicker } from './MapActions';
 // (a × unlinks, after a confirm) and the "Link resources…" picker. Every change is a real change: a break makes the line
 // disappear at once.
 
-const MUTED = { margin: 0, color: 'var(--color-ink-muted)' } as const;
 
 function Chip({ res, onPick, onRemove }: { res: MapResource; onPick: (ref: string) => void; onRemove?: () => void }) {
   const meta = PLATFORM_META[res.platform];
@@ -43,7 +42,7 @@ export function LinksSection({ snap, res, onPick }: { snap: MapSnapshot; res: Ma
   const unlink = async (other: MapResource) => {
     const ok = await confirm(`unlink «${title}» and «${resourceTitle(other)}»`, {
       confirmLabel: 'Unlink',
-      details: <p className="text-micro" style={MUTED}>{UNLINK_HELP}</p>,
+      details: <p className="text-micro map-note">{UNLINK_HELP}</p>,
     });
     if (!ok) return;
     try {
@@ -62,14 +61,14 @@ export function LinksSection({ snap, res, onPick }: { snap: MapSnapshot; res: Ma
         {res.groupId && (
           mates.length
             ? <div className="map-chips" aria-label="Other members of the network">{mates.map((m) => <Chip key={m.ref} res={m} onPick={onPick} />)}</div>
-            : <p className="text-micro" style={MUTED}>It is the only member of its network.</p>
+            : <p className="text-micro map-note">It is the only member of its network.</p>
         )}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <h4 className="map-subhead">Promo partners</h4>
         {partners.length
           ? <div className="map-chips" aria-label="Promo partners">{partners.map((p) => <Chip key={p.ref} res={p} onPick={onPick} onRemove={() => void unlink(p)} />)}</div>
-          : <p className="text-micro" style={MUTED}>No promo partners yet. Link resources to let them promote each other; the manager then proposes promos, each one still needs your approval.</p>}
+          : <p className="text-micro map-note">No promo partners yet. Link resources to let them promote each other; the manager then proposes promos, each one still needs your approval.</p>}
         <div>
           <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }} onClick={() => setPicking(true)}>
             <Icon name="link" size={14} />Link resources…
@@ -98,7 +97,7 @@ function LinkResourcesModal({ snap, res, onClose }: { snap: MapSnapshot; res: Ma
     if (remove.length) {
       const ok = await confirm(`unlink «${title}» from ${remove.length} ${remove.length === 1 ? 'resource' : 'resources'}`, {
         confirmLabel: 'Apply', danger: true,
-        details: <p className="text-micro" style={MUTED}>{UNLINK_HELP}</p>,
+        details: <p className="text-micro map-note">{UNLINK_HELP}</p>,
       });
       if (!ok) return;
     }
@@ -117,7 +116,7 @@ function LinkResourcesModal({ snap, res, onClose }: { snap: MapSnapshot; res: Ma
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <input className="input-field" type="search" autoFocus placeholder="Search by name, handle or network" aria-label="Search resources" value={query} onChange={(e) => setQuery(e.target.value)} />
         <div className="map-pick-list" role="group" aria-label="Resources">
-          {sections.length === 0 && <p className="text-caption" style={MUTED}>{query ? 'No resource matches.' : 'There are no other resources yet.'}</p>}
+          {sections.length === 0 && <p className="text-caption map-note">{query ? 'No resource matches.' : 'There are no other resources yet.'}</p>}
           {sections.map((s) => (
             <section key={s.id}>
               <h4 className="map-subhead" style={{ margin: '8px 0 4px' }}>{s.title}</h4>
@@ -129,7 +128,7 @@ function LinkResourcesModal({ snap, res, onClose }: { snap: MapSnapshot; res: Ma
                     <span style={{ color: meta.tint, display: 'inline-flex', flex: 'none' }}><Icon name={meta.icon} size={15} /></span>
                     <span className="map-pick-title">{resourceTitle(r)}</span>
                     <span className="map-pick-meta">
-                      {networkName && !s.id.startsWith('network:') && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{networkName}</span>}
+                      {networkName && !s.id.startsWith('network:') && <span className="text-micro ink-dim">{networkName}</span>}
                       {linked && <Badge tone="success">linked</Badge>}
                       {stopped && <Badge tone="warning" title="You unlinked this pair; the manager does not propose it">stopped</Badge>}
                     </span>
@@ -139,10 +138,10 @@ function LinkResourcesModal({ snap, res, onClose }: { snap: MapSnapshot; res: Ma
             </section>
           ))}
         </div>
-        {tooMany && <p className="text-micro" style={{ margin: 0, color: 'var(--color-warning)' }}>At most {LINK_LIMIT} changes at a time. Apply these, then open the list again.</p>}
+        {tooMany && <p className="text-micro ink-warning" style={{ margin: 0 }}>At most {LINK_LIMIT} changes at a time. Apply these, then open the list again.</p>}
       </div>
       <div className="modal-foot" style={{ alignItems: 'center' }}>
-        <span className="text-caption" style={{ marginRight: 'auto', color: 'var(--color-ink-muted)' }} aria-live="polite">{diffLine(add.length, remove.length)}</span>
+        <span className="text-caption ink-muted" style={{ marginRight: 'auto' }} aria-live="polite">{diffLine(add.length, remove.length)}</span>
         <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={(!add.length && !remove.length) || tooMany || setLinks.isPending} onClick={() => void apply()}>Apply</button>
       </div>
@@ -178,7 +177,7 @@ export function MembersModal({ snap, network, onClose }: { snap: MapSnapshot; ne
       const ok = await confirm(`take ${remove.length} ${remove.length === 1 ? 'resource' : 'resources'} out of «${network.name}»`, {
         confirmLabel: 'Apply', danger: true,
         details: (
-          <p className="text-micro" style={MUTED}>
+          <p className="text-micro map-note">
             The line to each disappears: the network's posts are no longer copied or adapted to them, copies already planned for them are skipped, and they move
             to their platform section. You can put them back any time.
           </p>
@@ -210,7 +209,7 @@ export function MembersModal({ snap, network, onClose }: { snap: MapSnapshot; ne
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <input className="input-field" type="search" autoFocus placeholder="Search by name or handle" aria-label="Search resources" value={query} onChange={(e) => setQuery(e.target.value)} />
         <div className="map-pick-list" role="group" aria-label="Resources">
-          {sections.length === 0 && <p className="text-caption" style={MUTED}>{query ? 'No resource matches.' : 'No resource can be added: every other one is in a network.'}</p>}
+          {sections.length === 0 && <p className="text-caption map-note">{query ? 'No resource matches.' : 'No resource can be added: every other one is in a network.'}</p>}
           {sections.map((s) => (
             <section key={s.id}>
               <h4 className="map-subhead" style={{ margin: '8px 0 4px' }}>{s.title}</h4>
@@ -224,7 +223,7 @@ export function MembersModal({ snap, network, onClose }: { snap: MapSnapshot; ne
                     <span className="map-pick-meta">
                       {member && <Badge tone="success">member</Badge>}
                       {r.ref === network.anchorRef && <Badge tone="accent" title="The network's Telegram channel: its agent and playbook are anchored on it">anchor</Badge>}
-                      {blockedBy && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>network already has {resourceTitle(blockedBy)}</span>}
+                      {blockedBy && <span className="text-micro ink-dim">network already has {resourceTitle(blockedBy)}</span>}
                     </span>
                   </label>
                 );
@@ -240,10 +239,10 @@ export function MembersModal({ snap, network, onClose }: { snap: MapSnapshot; ne
             </ul>
           </div>
         )}
-        {tooMany && <p className="text-micro" style={{ margin: 0, color: 'var(--color-warning)' }}>At most {LINK_LIMIT} additions and {LINK_LIMIT} removals at a time. Apply these, then open the list again.</p>}
+        {tooMany && <p className="text-micro ink-warning" style={{ margin: 0 }}>At most {LINK_LIMIT} additions and {LINK_LIMIT} removals at a time. Apply these, then open the list again.</p>}
       </div>
       <div className="modal-foot" style={{ alignItems: 'center' }}>
-        <span className="text-caption" style={{ marginRight: 'auto', color: 'var(--color-ink-muted)' }} aria-live="polite">
+        <span className="text-caption ink-muted" style={{ marginRight: 'auto' }} aria-live="polite">
           {!add.length && !remove.length ? 'No changes' : [add.length ? `${add.length} to add` : '', remove.length ? `${remove.length} to take out` : ''].filter(Boolean).join(', ')}
         </span>
         <button type="button" className="btn-secondary" onClick={onClose}>{failed.length ? 'Close' : 'Cancel'}</button>

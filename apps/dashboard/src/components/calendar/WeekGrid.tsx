@@ -139,7 +139,7 @@ export function WeekGrid({ rows, days, today, onAdd, onOpenPost }: { rows: CalRo
     <div className="cal-scroll">
       <div className="cal-grid" role="table" aria-label="Calendar, agents by day" aria-rowcount={rows.length + 1} aria-colcount={days.length + 1}>
         <div role="row" className="cal-row">
-          <div role="columnheader" className="cal-hd"><span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Channel</span></div>
+          <div role="columnheader" className="cal-hd"><span className="text-micro ink-dim">Channel</span></div>
           {days.map((day) => {
             const p = dayParts(day);
             return (
@@ -194,7 +194,7 @@ export function DayAgenda({ rows, days, today, onAdd, onOpenPost }: { rows: CalR
                     <RowGlyph row={row} size={26} />
                     <div className="cal-lh-text">
                       <RowName row={row} />
-                      {row.state === 'error' && <div className="text-micro" style={{ color: 'var(--color-danger)' }}>{scheduleErrorText(row.error)}</div>}
+                      {row.state === 'error' && <div className="text-micro ink-danger">{scheduleErrorText(row.error)}</div>}
                     </div>
                   </div>
                   {chips.map((c) => <ChipView key={c.key} chip={c} onOpenPost={onOpenPost} />)}

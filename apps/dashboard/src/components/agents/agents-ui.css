@@ -1,0 +1,32 @@
+/*
+ * Spec 078 wave E: the few classes of AgentsUi (Toggle, the pause dialog) and AgentOverview. Both are loaded by a node test,
+ * which cannot import CSS, so routes/app.tsx imports this file for them. Tokens only.
+ */
+
+/* Toggle: a compact on/off switch (role="switch"). */
+.agent-toggle {
+  display: inline-flex; align-items: center; gap: 7px; padding: 0; background: none; border: 0;
+  color: var(--color-ink-muted); font-size: 12px; cursor: pointer;
+}
+.agent-toggle:disabled { cursor: not-allowed; opacity: 0.5; }
+.agent-toggle-track {
+  position: relative; flex-shrink: 0; width: 28px; height: 16px; border-radius: var(--radius-pill);
+  background: var(--color-surface-3); box-shadow: inset 0 0 0 1px var(--color-hairline);
+  transition: background var(--dur-fast) ease;
+}
+.agent-toggle[aria-checked="true"] .agent-toggle-track { background: var(--color-accent); }
+.agent-toggle-thumb {
+  position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: var(--radius-pill);
+  background: var(--color-ink-dim); transition: left var(--dur-fast) ease;
+}
+.agent-toggle[aria-checked="true"] .agent-toggle-thumb { left: 14px; background: var(--color-on-accent); }
+
+/* The pause dialog's radio choices. */
+input.agent-radio { accent-color: var(--color-accent); }
+
+/* A link that keeps the colour of the text around it (the Models link in a field hint). */
+.link-inherit { color: inherit; }
+
+/* The post times of an agent: a chip's remove button and the time input. */
+.time-remove { display: inline-flex; padding: 2px; background: none; border: 0; color: var(--color-ink-dim); cursor: pointer; }
+.input-field.time-input { width: 120px; padding: 6px 10px; font-size: 13px; color-scheme: dark; }

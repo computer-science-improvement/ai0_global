@@ -57,7 +57,7 @@ export function CompactCard({
 
   const close = () => setOpen(false);
   const ring = focused ? 'var(--color-accent)' : attention ? 'var(--color-warning-soft)' : null;
-  const noteColor = noteTone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)';
+  const noteInk = noteTone === 'danger' ? 'ink-danger' : 'ink-warning';
 
   return (
     <>
@@ -67,18 +67,18 @@ export function CompactCard({
         {(top || meta) && (
           <span className="compact-card-top">
             {top}
-            {meta && <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }}>{meta}</span>}
+            {meta && <span className="text-micro ink-dim" style={{ marginLeft: 'auto', whiteSpace: 'nowrap' }}>{meta}</span>}
           </span>
         )}
         {title && <span className="compact-card-title">{title}</span>}
         {body && (
-          <span className="text-body-sm clamp" style={{ ['--clamp' as string]: lines, color: title ? 'var(--color-ink-muted)' : 'var(--color-ink)' }}>
+          <span className={title ? 'text-body-sm clamp ink-muted' : 'text-body-sm clamp'} style={{ ['--clamp' as string]: lines }}>
             {body}
           </span>
         )}
         {extra}
         {note && (
-          <span className="text-micro" style={{ display: 'inline-flex', gap: 5, alignItems: 'center', color: noteColor }}>
+          <span className={`text-micro ${noteInk}`} style={{ display: 'inline-flex', gap: 5, alignItems: 'center' }}>
             <Icon name="warning" size={12} /> {note}
           </span>
         )}

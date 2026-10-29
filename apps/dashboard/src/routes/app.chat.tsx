@@ -377,7 +377,7 @@ function ChatPage() {
                   <div className="chat-suggest-group">
                     {EXAMPLES.map((x) => <button key={x} type="button" className="chat-suggest" onClick={() => pick(x)}>{x}</button>)}
                   </div>
-                  <div className="text-micro" style={{ color: 'var(--color-ink-muted)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                  <div className="text-micro ink-muted" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                     <Icon name="agents" size={13} /> Type <kbd className="kbd">@</kbd> to talk to an agent
                   </div>
                   <div className="chat-suggest-group">
@@ -418,7 +418,7 @@ function ChatPage() {
                       {Object.values(live.drafts).map((d) => <DraftCard key={d.id} draft={d} />)}
                       {Object.values(live.actions).map((a) => <ActionCard key={a.id} action={a} />)}
                     </div>
-                    <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>…</span>
+                    <span className="text-micro ink-dim">…</span>
                   </div>
                 </div>
               </>

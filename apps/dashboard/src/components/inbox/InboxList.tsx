@@ -48,7 +48,7 @@ export function InboxList({ groups, selectedKey, onSelect, showUnreadDot, popup,
           </button>
         );
       })}
-      {footer && <div className="panel-foot text-micro" style={{ color: 'var(--color-ink-dim)' }}>{footer}</div>}
+      {footer && <div className="panel-foot text-micro ink-dim">{footer}</div>}
     </section>
   );
 }

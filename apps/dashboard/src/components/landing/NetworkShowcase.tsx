@@ -131,8 +131,8 @@ export function NetworkShowcase({ networks }: { networks: LandingNetwork[] }): J
       {withResources.length === 0 ? (
         <div className="rs-empty">
           <span className="rs-empty-orb" aria-hidden />
-          <span className="text-subhead" style={{ color: 'var(--color-ink)' }}>No resources yet</span>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
+          <span className="text-subhead rs-empty-title">No resources yet</span>
+          <span className="text-body-sm ink-muted">
             Featured channels and profiles will appear here once they’re published.
           </span>
         </div>

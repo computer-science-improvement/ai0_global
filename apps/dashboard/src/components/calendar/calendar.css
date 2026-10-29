@@ -122,3 +122,6 @@ a.cal-chip:hover, button.cal-chip:hover { box-shadow: 0 0 0 1px color-mix(in srg
 .cal-agenda-who { display: flex; align-items: center; gap: 8px; min-width: 0; }
 
 .cal-banner { margin-bottom: 16px; }
+
+/* /app/scheduled: a row's channel name. */
+.text-body-sm.sched-channel { font-weight: 600; }

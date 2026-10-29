@@ -416,3 +416,5 @@
   .lp-seg { width: 100%; }
   .lp-lanes { margin-top: 28px; gap: 20px; }
 }
+
+.rs-empty-title { color: var(--color-ink); }

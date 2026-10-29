@@ -21,11 +21,11 @@ export function ArtifactChip({ chip, active, onOpen }: { chip: Chip; active?: bo
       style={{ maxWidth: '100%', minWidth: 0, padding: '6px 10px', textAlign: 'left', opacity: gone ? 0.6 : 1 }}>
       <Icon name={meta.icon} size={14} />
       <span style={{ display: 'grid', minWidth: 0 }}>
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{meta.label}</span>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</span>
+        <span className="text-micro ink-dim">{meta.label}</span>
+        <span className="text-body-sm art-ink" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</span>
       </span>
       {status && <Badge tone={artifactTone(status)}>{statusLabel(status)}</Badge>}
-      {row?.version != null && <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-ink-muted)', flexShrink: 0 }}>v{row.version}</span>}
+      {row?.version != null && <span className="text-micro mono tabular-nums ink-muted" style={{ flexShrink: 0 }}>v{row.version}</span>}
     </button>
   );
 }

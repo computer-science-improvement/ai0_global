@@ -43,7 +43,7 @@ export interface NoteActionsProps {
   className?: string;
 }
 
-const SMALL: CSSProperties = { padding: '6px 12px', fontSize: 12 };
+const SMALL: CSSProperties = { padding: '6px 12px' };
 const NO_UNDERLINE: CSSProperties = { textDecoration: 'none' };
 
 /** The agent with this handle anywhere in the tree. */
@@ -216,7 +216,7 @@ export function NoteActions({ item, size = 'md', onDone, onRead, className }: No
         const ok = step.decision === 'approve'
           ? await confirm('approve this playbook', {
             danger: false, confirmLabel: 'Approve',
-            details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>It becomes the active playbook at once, and the next plan follows it.</p>,
+            details: <p className="text-micro ink-muted" style={{ margin: 0 }}>It becomes the active playbook at once, and the next plan follows it.</p>,
           })
           : await confirm('reject this playbook', { confirmLabel: 'Reject' });
         if (!ok) return;
@@ -258,14 +258,14 @@ export function NoteActions({ item, size = 'md', onDone, onRead, className }: No
       const cls = rank === 0 ? (settled ? 'btn-secondary' : 'btn-primary') : rank === 1 ? 'btn-secondary' : 'link-accent text-micro';
       return (
         <Link key={stepKey(s)} to={s.link.to as any} params={s.link.params as any} search={s.link.search as any}
-          className={cls} style={rank < 2 ? { ...NO_UNDERLINE, ...style } : NO_UNDERLINE}>
+          className={rank < 2 && size === 'sm' ? `${cls} note-act` : cls} style={rank < 2 ? { ...NO_UNDERLINE, ...style } : NO_UNDERLINE}>
           {s.label}
         </Link>
       );
     }
     const isBusy = busy === stepKey(s);
     return (
-      <Button key={stepKey(s)} type="button" variant={variant} style={rank < 2 ? style : { fontSize: 12 }}
+      <Button key={stepKey(s)} type="button" variant={variant} className={rank >= 2 || size === 'sm' ? 'note-act' : undefined} style={rank < 2 ? style : undefined}
         disabled={!!busy} aria-busy={isBusy} onClick={() => { void run(s); }}>
         {s.label}{isBusy ? '…' : ''}
       </Button>

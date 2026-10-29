@@ -111,8 +111,8 @@ export function SlashMenu({ matches, hi, onHover, onPick, isMobile }: {
           onClick={() => onPick(c)}>
           <div className="chat-menu-main">
             <div className="chat-menu-line">
-              <span className="text-body-sm mono chat-menu-key" style={{ fontWeight: 500 }}>/{c.name}</span>
-              {c.args && <span className="text-micro mono" style={{ color: 'var(--color-ink-muted)' }}>{c.args}</span>}
+              <span className="text-body-sm mono chat-menu-key">/{c.name}</span>
+              {c.args && <span className="text-micro mono ink-muted">{c.args}</span>}
             </div>
             <div className="text-micro chat-menu-sub">{c.description}</div>
           </div>

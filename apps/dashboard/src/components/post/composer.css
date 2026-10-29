@@ -31,3 +31,25 @@
 
 /* The page variant's list of problems. */
 .pc-errors { margin: 0; padding-left: 16px; }
+
+/* The platform tabs of /app/compose: only Telegram is on, the others are announced. */
+.pc-platform {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-pill);
+  background: var(--color-surface-1); color: var(--color-ink-muted);
+  font-size: 13px; font-weight: 500; letter-spacing: -0.13px;
+  cursor: not-allowed; opacity: 0.45;
+  transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+.pc-platform.is-on { border-color: var(--color-accent); background: var(--color-success-soft); color: var(--color-accent); cursor: default; opacity: 1; }
+.pc-platform .chip { padding: 1px 6px; font-size: 11px; line-height: 1.3; }
+
+/* Inline code in the hint band, a field note in muted ink, body-coloured name in the preview head. */
+.pc-code { color: var(--color-ink); }
+.pc-note.is-muted { color: var(--color-ink-muted); }
+.pc-preview-name { color: var(--color-ink); }
+
+/* The faux Telegram bubble of the page variant (post/TelegramPreview): media, text and the URL buttons. */
+.pc-bubble { max-width: 360px; padding: 10px; border-radius: var(--radius-lg); background: var(--color-surface-2); }
+.pc-bubble-media { display: block; width: 100%; border-radius: var(--radius-md); }
+.pc-bubble-btn { flex: 1; padding: 6px 8px; border-radius: var(--radius-sm); background: var(--color-surface-3); color: var(--color-accent); font-size: 13px; text-align: center; }

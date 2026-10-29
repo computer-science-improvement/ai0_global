@@ -12,6 +12,7 @@ import { Modal } from '../Modal';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { useLandingLeads, usePatchLead, type LandingLead, type LeadKind, type LeadStatus } from '../../api/landing';
 import type { Tone } from '../ui/primitives';
+import { describeError } from '../ui/Toast';
 import './landing-admin.css';
 
 type KindFilter = 'all' | LeadKind;
@@ -81,7 +82,7 @@ function LeadModal({ lead, onClose }: { lead: LandingLead; onClose: () => void }
         <Field label="Your note">
           <textarea id="ld-note" aria-label="Your note" className="input-field ld-area" rows={3} maxLength={2000} value={note} onChange={(e) => setNote(e.target.value)} />
         </Field>
-        {patch.error && <div role="alert" className="callout-danger ld-error">Couldn’t save: {(patch.error as Error).message}</div>}
+        {patch.error && <div role="alert" className="callout-danger ld-error">Couldn’t save: {describeError(patch.error)}</div>}
       </div>
       <div className="modal-foot">
         <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
@@ -117,7 +118,7 @@ export function LeadsCard(): JSX.Element {
       </div>
 
       {leads.isLoading && <SkeletonRows rows={3} height={48} label="Loading leads" />}
-      {leads.error && <div role="alert" className="callout-danger">Couldn’t load leads: {(leads.error as Error).message}</div>}
+      {leads.error && <div role="alert" className="callout-danger">Couldn’t load leads: {describeError(leads.error)}</div>}
       {leads.data && leads.data.length === 0 && (
         <EmptyState icon="inbox" title="No leads here" note="Requests sent from the landing forms appear here, and a new one also lands in the agents’ inbox." />
       )}

@@ -80,11 +80,11 @@ export function StateBadges({ agent, follows }: { agent: Pick<Agent, 'handle' | 
 
 /** Last run status badge + relative time (absolute in the tooltip). */
 export function LastRun({ activity }: { activity: AgentActivity | null }) {
-  if (!activity?.lastRunAt) return <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>no runs yet</span>;
+  if (!activity?.lastRunAt) return <span className="text-micro ink-dim">no runs yet</span>;
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} title={fmtDate(activity.lastRunAt)}>
       {activity.lastStatus && <Badge tone={RUN_TONE[activity.lastStatus]}>{activity.lastStatus}</Badge>}
-      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{fmtRelative(activity.lastRunAt)}</span>
+      <span className="text-micro ink-muted">{fmtRelative(activity.lastRunAt)}</span>
     </span>
   );
 }
@@ -170,10 +170,10 @@ export function PauseModal({ handle, onClose }: { handle: string; onClose: () =>
 
   const opt = (key: PauseChoice, label: string, note: string) => (
     <label className="card" style={{ display: 'flex', gap: 10, alignItems: 'flex-start', padding: '10px 14px', cursor: 'pointer', boxShadow: choice === key ? 'inset 0 0 0 1px var(--color-accent)' : undefined }}>
-      <input type="radio" name="pause" checked={choice === key} onChange={() => setChoice(key)} style={{ marginTop: 3, accentColor: 'var(--color-accent)' }} />
+      <input type="radio" name="pause" className="agent-radio" checked={choice === key} onChange={() => setChoice(key)} style={{ marginTop: 3 }} />
       <span>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500, display: 'block' }}>{label}</span>
-        <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{note}</span>
+        <span className="text-body-sm" style={{ display: 'block' }}>{label}</span>
+        <span className="text-micro ink-muted">{note}</span>
       </span>
     </label>
   );
@@ -204,7 +204,7 @@ export function Toggle({ checked, onChange, label, disabled, title }: {
   checked: boolean; onChange: (v: boolean) => void; label: string; disabled?: boolean; title?: string;
 }) {
   return (
-    <button
+    <button className="agent-toggle"
       type="button"
       role="switch"
       aria-checked={checked}
@@ -212,21 +212,8 @@ export function Toggle({ checked, onChange, label, disabled, title }: {
       title={title ?? label}
       disabled={disabled}
       onClick={() => onChange(!checked)}
-      style={{
-        display: 'inline-flex', alignItems: 'center', gap: 7, background: 'none', border: 0, padding: 0,
-        cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.5 : 1, color: 'var(--color-ink-muted)', fontSize: 12,
-      }}
     >
-      <span style={{
-        position: 'relative', width: 28, height: 16, borderRadius: 'var(--radius-pill)', flexShrink: 0,
-        background: checked ? 'var(--color-accent)' : 'var(--color-surface-3)',
-        boxShadow: 'inset 0 0 0 1px var(--color-hairline)', transition: 'background 0.15s ease',
-      }}>
-        <span style={{
-          position: 'absolute', top: 2, left: checked ? 14 : 2, width: 12, height: 12, borderRadius: 'var(--radius-pill)',
-          background: checked ? 'var(--color-on-accent)' : 'var(--color-ink-dim)', transition: 'left 0.15s ease',
-        }} />
-      </span>
+      <span className="agent-toggle-track"><span className="agent-toggle-thumb" /></span>
       {label}
     </button>
   );

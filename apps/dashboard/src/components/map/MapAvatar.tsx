@@ -45,7 +45,7 @@ export function Avatar({ handle, kind, emoji, size = 28, label }: { handle: stri
       <svg width={size} height={size} viewBox={SPRITE_VIEWBOX} aria-hidden>
         <PixelSprite handle={handle} kind={kind} />
       </svg>
-      {emoji && <span className="map-avatar-emoji" style={{ fontSize: Math.max(9, Math.round(size * 0.36)) }}>{emoji}</span>}
+      {emoji && <span className="map-avatar-emoji" style={{ fontSize: Math.max(11, Math.round(size * 0.36)) }}>{emoji}</span>}
     </span>
   );
 }

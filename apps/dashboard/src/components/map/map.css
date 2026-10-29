@@ -29,10 +29,10 @@
 .map-focus-ring { fill: none; stroke-width: 2; opacity: 0; }
 .map-plate { transition: filter 0.15s; }
 .map-building:hover .map-plate, .map-building.is-selected .map-plate { filter: brightness(1.25); }
-.map-building-title { font-size: 12.5px; font-weight: 600; fill: var(--color-ink); paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; }
-.map-building-meta { font-size: 10.5px; fill: var(--color-ink-muted); paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; }
+.map-building-title { font-size: 13px; font-weight: 600; fill: var(--color-ink); paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; }
+.map-building-meta { font-size: 11px; fill: var(--color-ink-muted); paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; }
 .map-mode-pill text { font-size: 7.5px; font-weight: 700; letter-spacing: 0.08em; text-anchor: middle; dominant-baseline: central; }
-.map-badge-text { font-size: 10px; font-weight: 700; fill: var(--color-on-accent); text-anchor: middle; dominant-baseline: central; }
+.map-badge-text { font-size: 11px; font-weight: 700; fill: var(--color-on-accent); text-anchor: middle; dominant-baseline: central; }
 .map-beacon { fill: none; stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: map-beacon 2.6s ease-out infinite; }
 .map-selected-ring { fill: none; stroke: var(--color-ink); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: 0.9; }
 
@@ -44,7 +44,7 @@
 .map-unit.is-working .map-unit-bob { animation: map-bob 1.7s ease-in-out infinite; }
 .map-unit.is-working .map-unit-ring { animation: map-ring 1.8s ease-in-out infinite; }
 .map-unit:hover .map-unit-body, .map-unit.is-selected .map-unit-body { filter: brightness(1.2); }
-.map-unit-label { font-size: 10px; fill: var(--color-ink-muted); text-anchor: middle; paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.map-unit-label { font-size: 11px; fill: var(--color-ink-muted); text-anchor: middle; paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
 .map-unit-label.is-child { opacity: 0; transition: opacity 0.15s; }
 .map-unit:hover .map-unit-label.is-child, .map-unit.is-selected .map-unit-label.is-child, .map-unit:focus-visible .map-unit-label.is-child { opacity: 1; }
 .map-level-badge circle { fill: var(--color-surface-3); stroke: var(--color-hairline-strong); stroke-width: 1; }
@@ -283,3 +283,7 @@
   .map-world.is-animated, .map-meter > i, .map-plate, .map-unit .map-unit-body, .map-road { transition: none !important; }
   /* colour changes stay: the ring still changes colour, it just does not fade */
 }
+
+/* Icon colour of a badge drawn inside the SVG (currentColor of the Icon). */
+.map-ico-ink { color: var(--color-ink); }
+.map-ico-canvas { color: var(--color-canvas); }

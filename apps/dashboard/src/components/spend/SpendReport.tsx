@@ -127,10 +127,10 @@ export function SpendReport({ search, setSearch }: { search: SpendSearch; setSea
           {rangeTab === 'custom' && (
             <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
               <input type="date" className="input-field" aria-label="From (Kyiv day)" value={from} max={today} onChange={(e) => setFrom(e.target.value)} style={{ width: 150 }} />
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>to</span>
+              <span className="text-micro ink-dim">to</span>
               <input type="date" className="input-field" aria-label="To (Kyiv day)" value={to} max={today} onChange={(e) => setTo(e.target.value)} style={{ width: 150 }} />
               <button type="button" className="btn-secondary btn-sm" disabled={!!rangeError} onClick={() => setSearch({ from, to, range: undefined })}>Apply</button>
-              {rangeError && <span className="text-micro" style={{ color: 'var(--color-warning)' }}>{rangeError}</span>}
+              {rangeError && <span className="text-micro ink-warning">{rangeError}</span>}
             </div>
           )}
         </div>
@@ -243,7 +243,7 @@ export function SpendReport({ search, setSearch }: { search: SpendSearch; setSea
                                 ? <Link to="/app/editor/run/$id" params={{ id: r.runId }} className="link-accent">{r.runId.slice(0, 8)}</Link>
                                 : groupBy === 'agent' && r.label.startsWith('@')
                                   ? <Link to="/app/agents/$handle" params={{ handle: r.label.slice(1) }} className="link-accent">{r.label}</Link>
-                                  : <span style={{ color: r.key ? 'var(--color-ink)' : 'var(--color-ink-dim)' }}>{r.label}</span>}
+                                  : <span className={r.key ? 'spend-ink' : 'ink-dim'}>{r.label}</span>}
                             </td>
                             <RowCells r={r} />
                             <td style={{ textAlign: 'right' }}>
@@ -260,7 +260,7 @@ export function SpendReport({ search, setSearch }: { search: SpendSearch; setSea
                 </table>
               </div>
             )}
-        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>
+        <p className="text-micro ink-dim" style={{ margin: '10px 0 0' }}>
           Days are Europe/Kyiv. {d?.source === 'rollup' ? 'Read from the daily rollup (today is at most 5 minutes behind).' : 'Read from the raw ledger.'}
           {' '}Totals are our own ledger; a provider invoice can differ (e.g. requests that timed out on our side but were billed).
           {ledger.data && ledger.data.callsBeforeLedger > 0 && <> {ledger.data.callsBeforeLedger.toLocaleString('en-US')} older AI calls predate the ledger and carry no tokens or cost.</>}

@@ -4,6 +4,7 @@ import { Icon } from '../ui/Icon';
 import { Field } from '../ui/primitives';
 import { useCreateMetaAccount } from '../../api/meta-accounts';
 import type { MetaPlatform } from '../../api/types';
+import { describeError } from '../ui/Toast';
 import './connections.css';
 
 const DEFAULTS: Record<MetaPlatform, { label: string; tokenEnv: string; targetHint: string }> = {
@@ -58,8 +59,8 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
     <Modal open={open} onClose={onClose} title={`Add ${d.label}`} icon={platform}>
       <Field label="Name (logical identifier)">
         <input value={accountId} onChange={e => setAccountId(e.target.value)}
-          placeholder="my_page" className="input-field"
-          style={{ width: '100%', borderColor: idError ? 'var(--color-danger)' : undefined }} />
+          placeholder="my_page" className={`input-field${idError ? ' is-invalid' : ''}`}
+          style={{ width: '100%' }} />
         <span className={`conn-field-note${idError ? ' is-error' : ''}`}>
           {idError
             ? 'Only letters, digits, . _ - — no spaces (e.g. ai0-recipes).'
@@ -96,7 +97,7 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
 
       {create.error && (
         <p className="conn-form-error" role="alert">
-          {(create.error as Error).message}
+          {describeError(create.error)}
         </p>
       )}
 

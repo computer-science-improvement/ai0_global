@@ -17,6 +17,7 @@ import { useQuery } from '@tanstack/react-query';
 import type { AdCreative, AdFormat, AdOrder, AdPrice } from '../api/types';
 import { fmtDate } from '../lib/format';
 import { flagLabel, isFlagged, ORDER_STATUS_LABEL, ORDER_STATUS_TONE, summarizeOrders } from '../lib/ad-orders';
+import { describeError } from '../components/ui/Toast';
 import '../components/ads/ads.css';
 
 export const Route = createFileRoute('/app/ads')({ component: AdsPage });
@@ -90,11 +91,11 @@ function AdsPage() {
       )}
 
       <SectionCard title="Orders" flush delay={60}
-        action={orders.length > 0 ? <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{orders.length} total</span> : undefined}>
+        action={orders.length > 0 ? <span className="mono text-micro ink-dim">{orders.length} total</span> : undefined}>
         {ordersQ.isLoading && <SkeletonRows flush rows={3} height={64} label="Loading orders" />}
         {ordersQ.error && (
           <div className="callout-danger ad-error" role="alert" style={{ margin: '0 20px 16px' }}>
-            Couldn’t load the orders: {(ordersQ.error as Error).message}
+            Couldn’t load the orders: {describeError(ordersQ.error)}
           </div>
         )}
         {!ordersQ.isLoading && !ordersQ.error && orders.length === 0 && (
@@ -135,7 +136,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
 
   return (
     <SectionCard title="Price list" delay={120} style={{ marginTop: 16 }}
-      action={prices.length > 0 ? <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{prices.length} active</span> : undefined}>
+      action={prices.length > 0 ? <span className="mono text-micro ink-dim">{prices.length} active</span> : undefined}>
       <p className="ad-note">
         Public on the landing media kit and used for order amounts. Saving a price for the same channel and format replaces the old one (history is kept).
       </p>
@@ -165,7 +166,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
           </button>
         </div>
       </form>
-      {upsert.isError && <div className="callout-danger ad-error" role="alert">{(upsert.error as Error).message}</div>}
+      {upsert.isError && <div className="callout-danger ad-error" role="alert">{describeError(upsert.error)}</div>}
 
       {prices.length === 0 ? (
         <EmptyState icon="spend" title="No active prices yet" note="Pick a channel, a format and a price above." />
@@ -192,7 +193,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
                     )}
                   </td>
                   <td className="num">{p.price_uah.toLocaleString('en-GB')}</td>
-                  <td style={{ color: 'var(--color-ink-muted)' }}>{p.note ?? '—'}</td>
+                  <td><span className="ink-muted">{p.note ?? '—'}</span></td>
                   <td style={{ textAlign: 'right' }}>
                     <RowActions danger={
                       <TableAction action="delete" title="Deactivate" onClick={async () => {
@@ -309,7 +310,7 @@ function NewOrder({ open, onClose, prices, channels }: { open: boolean; onClose:
           <input className="input-field ad-fill" placeholder="Post in @channel on Mon" value={description} onChange={e => setDescription(e.target.value)} />
         </Field>
         {createMut.isError && (
-          <div className="callout-danger" role="alert">{(createMut.error as Error).message}</div>
+          <div className="callout-danger" role="alert">{describeError(createMut.error)}</div>
         )}
       </form>
       <div className="modal-foot">
@@ -473,7 +474,7 @@ function OrderRow({
             </Field>
           )}
           {scheduleMut.isError && (
-            <div className="callout-danger" role="alert" style={{ marginBottom: 8 }}>{(scheduleMut.error as Error).message}</div>
+            <div className="callout-danger" role="alert" style={{ marginBottom: 8 }}>{describeError(scheduleMut.error)}</div>
           )}
           <div className="modal-foot">
             <button type="button" className="btn-ghost" onClick={() => setShowSched(false)}>Cancel</button>

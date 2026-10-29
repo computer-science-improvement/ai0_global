@@ -32,6 +32,7 @@ import {
   type LandingAdminResource, type LandingPlatform,
 } from '../api/landing';
 import { PLATFORM_META as PUBLIC_PLATFORM_META, PLATFORM_ORDER as PUBLIC_PLATFORM_ORDER } from '../lib/landing-view';
+import { describeError } from '../components/ui/Toast';
 import '../components/landing/landing-admin.css';
 
 // Tabs (spec 026 FR-015): the page setup, the leads from the public forms and the CTA stats.
@@ -181,9 +182,9 @@ function PageSetup(): JSX.Element {
             <div className="callout-danger" role="alert">
               <Icon name="warning" size={16} />
               <div>
-                <div className="text-body" style={{ fontWeight: 500 }}>Couldn’t load landing resources</div>
-                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
-                  {(error as Error).message}
+                <div className="text-body ld-callout-title">Couldn’t load landing resources</div>
+                <div className="text-body-sm ink-muted" style={{ marginTop: 2 }}>
+                  {describeError(error)}
                 </div>
               </div>
             </div>
@@ -291,7 +292,7 @@ function PageSetup(): JSX.Element {
             {networks.isLoading && <SkeletonRows rows={1} height={160} label="Loading the preview" />}
             {networks.error && (
               <div className="callout-danger" role="alert">
-                Couldn’t load the preview: {(networks.error as Error).message}
+                Couldn’t load the preview: {describeError(networks.error)}
               </div>
             )}
             {networks.data && <NetworkShowcase networks={preview} />}
