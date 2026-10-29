@@ -16,6 +16,8 @@ import '../components/editor/editor.css';
 import '../components/artifacts/artifacts.css';
 import '../components/agents/agents-ui.css';
 import '../components/inbox/inbox.css';
+// Spec 072: the Readiness panel (the launch panel that shows it is loaded by node tests, so the panel imports no CSS itself).
+import '../components/readiness/readiness.css';
 
 // Layout route for the entire authenticated app (everything under /app).
 // The guard runs in the router, before anything renders (spec 028 FR-011): the

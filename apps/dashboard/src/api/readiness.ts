@@ -34,7 +34,9 @@ export interface ReadinessFixResult {
 /** What a fix request selects (A13): nothing = Fix all; `codes` = the open findings with those codes; `keys` = those findings only. */
 export interface ReadinessFixSelection { codes?: string[]; keys?: string[] }
 
-export const readinessKey = (channelKey: string) => ['readiness', channelKey] as const;
+/** The prefix of every cached Readiness result (`router.ts` invalidates it after a change). */
+export const READINESS_ROOT = ['readiness'] as const;
+export const readinessKey = (channelKey: string) => [...READINESS_ROOT, channelKey] as const;
 
 // A11: a plain GET answers from the stored row (under a minute old). After any successful change the next reads ask for a fresh
 // look for a few seconds: `router.ts` opens the window in the mutation cache, before it invalidates ['readiness'].

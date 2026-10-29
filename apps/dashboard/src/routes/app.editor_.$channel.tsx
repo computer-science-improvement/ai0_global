@@ -9,6 +9,7 @@ import { CompactCard } from '../components/ui/CompactCard';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { describeError } from '../components/ui/Toast';
 import { CardEditorModal } from '../components/editor/CardEditorModal';
+import { ReadinessPanel } from '../components/readiness/ReadinessPanel';
 import { ModeSwitch, RUN_TONE, SlotCounts, SlotRow, fmtDuration, fmtUsd, runStatusLabel } from '../components/editor/EditorUi';
 import '../components/editor/editor.css';
 import {
@@ -76,6 +77,9 @@ function EditorChannelPage() {
           <StatTile label="Posts per day" value={`${c.postsPerDayMin}–${c.postsPerDayMax}`} delta={`quiet ${c.quietStartHour}:00–${c.quietEndHour}:00 · gap ${c.minGapMinutes}m`} />
         </StatStrip>
       </div>
+
+      {/* Spec 072: what keeps this channel from posting. Nothing is drawn (and no gap left) when the check has no result. */}
+      <div className="rdy-slot"><ReadinessPanel channelKey={c.channelKey} delay={15} /></div>
 
       <CardSummary c={c} />
 

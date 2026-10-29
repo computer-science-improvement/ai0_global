@@ -1,6 +1,9 @@
 /* Spec 072 FR-008: the Readiness panel (one compact card + a details dialog). Prefix rdy-. Colour only through tokens and the ink helpers. */
 
 .rdy-skeleton { height: 96px; opacity: 0.55; }
+/* A wrapper for pages that stack blocks with margins: no result means an empty wrapper, and an empty wrapper leaves no gap. */
+.rdy-slot { margin-bottom: 16px; min-width: 0; }
+.rdy-slot:empty { display: none; }
 .rdy-stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .rdy-lead { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .rdy-wrap { overflow-wrap: anywhere; min-width: 0; }

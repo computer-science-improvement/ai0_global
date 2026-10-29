@@ -15,7 +15,7 @@ import { fmtDate, fmtRelative } from '../../lib/format';
 import {
   AUTO_FIXED_CODE, badgesOf, bodyLine, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix, last24hLine, sectionsOf, splitLink,
 } from '../../lib/readiness';
-import './readiness.css';
+// The stylesheet (readiness.css) is imported by routes/app.tsx: node tests load this module through the launch panel.
 
 const lowerFirst = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 

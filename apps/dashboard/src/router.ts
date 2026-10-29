@@ -6,6 +6,7 @@ import { describeError, toast } from './components/ui/Toast';
 import { SESSION_KEY, type SessionInfo } from './auth/session';
 import { createUnauthorizedHandler } from './auth/unauthorized';
 import { NAV_ATTENTION_KEY, NAV_BADGES_KEY, requestFreshBadges } from './api/nav';
+import { READINESS_ROOT, markReadinessStale } from './api/readiness';
 
 const is401 = (e: unknown) => e instanceof ApiError && e.status === 401;
 
@@ -27,7 +28,15 @@ export const queryClient = new QueryClient({
     // directive decided, pending action applied, DM thread / agent action handled,
     // scheduled post edited…): refresh the badges now, past the server's 10 s cache.
     // Menu edits themselves opt out with meta.skipNavBadges.
+    //
+    // Spec 072 A11: the same change may have cured or caused a Readiness blocker, so the next reads of the doctor's
+    // result ask for a fresh look for a few seconds and the cached results are marked stale. The Recheck and Fix
+    // mutations carry meta.readiness (they write the new result themselves); this runs before the badges early return.
     onSuccess: (_data, _vars, _ctx, mutation) => {
+      if (!mutation.meta?.readiness) {
+        markReadinessStale();
+        void queryClient.invalidateQueries({ queryKey: READINESS_ROOT });
+      }
       if (mutation.meta?.skipNavBadges) return;
       requestFreshBadges();
       void queryClient.invalidateQueries({ queryKey: NAV_BADGES_KEY });

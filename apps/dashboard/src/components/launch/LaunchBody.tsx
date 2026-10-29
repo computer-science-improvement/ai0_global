@@ -8,6 +8,7 @@ import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { StatStrip, StatTile, StatusDot } from '../ui/primitives';
 import { Modal } from '../Modal';
+import { ReadinessPanel } from '../readiness/ReadinessPanel';
 import type { ArtifactDetail } from '../../api/artifacts';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import {
@@ -25,6 +26,13 @@ export function LaunchBody({ d }: { d: ArtifactDetail }) {
       {v.status === 'failed' && v.reason && <div className="callout-danger"><Icon name="warning" size={16} /><div>{v.reason}</div></div>}
       {v.status === 'ready' && v.reason && <div className="callout-warning"><Icon name="warning" size={16} /><div>{v.reason}</div></div>}
       {headline && <div className="text-body-sm amg-muted">{headline}</div>}
+
+      {/* Spec 072 I8: the doctor's stored result, only once the launch has started (before Start the checklist is the whole story). */}
+      {started && v.channelKey && (
+        <section className="amg-section" aria-label="Readiness">
+          <ReadinessPanel channelKey={v.channelKey} whenMissing="empty" />
+        </section>
+      )}
 
       <section className="amg-section" aria-label="Checklist">
         <div className="amg-sechead">

@@ -2,6 +2,8 @@
 // Spec 072 FR-008/FR-010, A11, A13, A23: the words of the Readiness panel and of the Start-anyway confirms.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import type { ReadinessFinding, ReadinessView } from '../api/readiness';
 import {
   FRESH_WINDOW_MS, START_ANYWAY, badgesOf, blockerLines, bodyLine, fixAllNote, fixAllPhrase, fixLabels, fixToasts, hasFix, isFreshWindow,
@@ -136,4 +138,27 @@ test('blockerLines: up to five open blockers by title, then "…and N more"', ()
   assert.deepEqual(blockerLines({ findings: [f('e', 'error', { subject: { type: 'channel', id: 'x', label: 'Title of e' } })] }), ['Title of e']);
   assert.deepEqual(blockerLines({ findings: [f('w', 'warn')] }), []);
   assert.deepEqual(blockerLines({ findings: [f('e', 'error'), f('e2', 'error')] }, 2), ['Title of e — label of e', 'Title of e2 — label of e2']);
+});
+
+// ── where it is wired (T8b) ──────────────────────────────────────────────────
+
+const read = (rel: string) => readFileSync(fileURLToPath(new URL(rel, import.meta.url)), 'utf8');
+
+test('the panel is placed on the Overview, the editor page and the started launch panel, and the deep link reaches the Overview', () => {
+  assert.ok(read('../components/agents/AgentOverview.tsx').includes('<ReadinessPanel channelKey'));
+  assert.ok(read('../routes/app.editor_.$channel.tsx').includes('<ReadinessPanel channelKey={c.channelKey}'));
+  const launch = read('../components/launch/LaunchBody.tsx');
+  assert.ok(launch.includes('started && v.channelKey') && launch.includes('whenMissing="empty"'), 'only after Start, with the empty state on a 404');
+  const route = read('../routes/app.agents_.$handle.tsx');
+  assert.ok(route.includes('parseReadinessFlag(s.readiness)') && route.includes('focusReadiness={!!search.readiness}'));
+});
+
+test('a successful change opens the fresh window and invalidates the results before the badges early return, except for the doctor\'s own mutations', () => {
+  const src = read('../router.ts');
+  const guard = src.indexOf('meta?.readiness');
+  const stale = src.indexOf('markReadinessStale()');
+  const root = src.indexOf('READINESS_ROOT', stale);
+  const early = src.indexOf('meta?.skipNavBadges');
+  assert.ok(guard > 0 && guard < stale && stale < early, 'markReadinessStale sits behind the readiness guard and before the skipNavBadges return');
+  assert.ok(root > stale && root < early, 'the invalidation sits there too');
 });

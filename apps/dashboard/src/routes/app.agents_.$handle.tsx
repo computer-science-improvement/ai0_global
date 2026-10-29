@@ -29,12 +29,15 @@ import { errorBody, useAgent } from '../api/agents';
 import type { DirectiveBinding } from '../api/manager';
 import { directiveFilterSearch, parseDirectiveFilters, type DirectiveFilters } from '../lib/directive-view';
 import { MANAGER_TABS, isAgentTab, resolveTab, tabContext, tabSearch, type AgentTab } from '../lib/agent-tabs';
+import { parseReadinessFlag } from '../lib/readiness';
 
 type Tab = AgentTab;
 
 export const Route = createFileRoute('/app/agents_/$handle')({
-  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string; directive?: string; binding?: DirectiveBinding; kind?: string } => ({
+  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string; directive?: string; binding?: DirectiveBinding; kind?: string; readiness?: true } => ({
     tab: isAgentTab(s.tab) ? s.tab : undefined,
+    // Overview tab (spec 072): `?readiness=1` opens the Readiness dialog (the owner-bot card and the doctor's links use it).
+    readiness: parseReadinessFlag(s.readiness) ? true : undefined,
     // Ideas tab: an idea to scroll to (from a plan slot).
     idea: typeof s.idea === 'string' && s.idea ? s.idea : undefined,
     // Directives tab (@manager): a directive to scroll to (from a review or an Inbox entry; `d` is the short alias).
@@ -102,7 +105,7 @@ function AgentPage() {
       )}
 
       <AgentEditDialog data={d} open={editing} onClose={() => setEditing(false)} />
-      {tab === 'overview' && <AgentOverview data={d} />}
+      {tab === 'overview' && <AgentOverview data={d} focusReadiness={!!search.readiness} />}
       {tab === 'settings' && <AgentSettings data={d} />}
       {tab === 'effects' && <ActiveEffects agent={a} delay={0} />}
       {tab === 'approvals' && d.channelKey && <ApprovalStatsPanel channel={d.channelKey} />}
