@@ -262,7 +262,7 @@ function ExamplesResult({ result }: { result: unknown }) {
     : r.target === 'pending' ? `the playbook draft v${String(r.version)} waiting for your approval`
       : r.target === 'held' ? 'the first playbook (it is still being built)' : 'the playbook';
   return (
-    <p className="text-micro ink-muted" style={{ margin: '10px 0 0'}}>
+    <p className="text-micro ink-muted" style={{ margin: '10px 0 0' }}>
       Saved {saved ?? 'the'} examples to {where}.
     </p>
   );

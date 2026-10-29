@@ -55,9 +55,9 @@ function PriceModal({ initial, editing, onClose }: { initial: Draft; editing: Pr
     const ok = await confirm(sameRow ? `overwrite the price of ${body.model} from ${body.effectiveFrom}` : `add a price for ${body.model} from ${body.effectiveFrom}`, {
       danger: false, confirmLabel: 'Save price',
       details: (
-        <div className="text-micro" style={{ color: 'var(--color-ink-muted)', lineHeight: 1.7 }}>
+        <div className="text-micro ink-muted" style={{ lineHeight: 1.7 }}>
           {editing && <div>Before: in {perM(editing.inPerM)} · out {perM(editing.outPerM)} · cache read {perM(editing.cachedReadPerM)} · cache write {perM(editing.cachedWritePerM)} per 1M</div>}
-          <div style={{ color: 'var(--color-ink)' }}>After: in ${body.inPerM} · out ${body.outPerM} · cache read {perM(body.cachedReadPerM ?? null)} · cache write {perM(body.cachedWritePerM ?? null)} per 1M{body.perRequestUsd ? ` · $${body.perRequestUsd} per request` : ''}</div>
+          <div className="spend-ink">After: in ${body.inPerM} · out ${body.outPerM} · cache read {perM(body.cachedReadPerM ?? null)} · cache write {perM(body.cachedWritePerM ?? null)} per 1M{body.perRequestUsd ? ` · $${body.perRequestUsd} per request` : ''}</div>
           <div style={{ marginTop: 6 }}>New calls use it at once. Past rows keep their cost until you run "Reprice estimates".</div>
         </div>
       ),
@@ -101,7 +101,7 @@ function RepricePanel({ maxDays }: { maxDays: number }) {
   const run = async () => {
     const ok = await confirm(`reprice estimated and unpriced calls of the last ${n} day${n === 1 ? '' : 's'}`, {
       danger: false, confirmLabel: 'Reprice',
-      details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Only rows costed from the price table (estimate) or without a price (unpriced) change. Provider-billed and backfilled rows keep their cost. The daily rollup of those days is rebuilt.</p>,
+      details: <p className="text-micro ink-muted" style={{ margin: 0 }}>Only rows costed from the price table (estimate) or without a price (unpriced) change. Provider-billed and backfilled rows keep their cost. The daily rollup of those days is rebuilt.</p>,
     });
     if (!ok) return;
     reprice.mutate(n, {
@@ -110,9 +110,9 @@ function RepricePanel({ maxDays }: { maxDays: number }) {
   };
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>Reprice estimates for the last</span>
+      <span className="text-micro ink-muted">Reprice estimates for the last</span>
       <input className="input-field" inputMode="numeric" aria-label="Days" value={days} onChange={(e) => setDays(e.target.value)} style={{ width: 64 }} />
-      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>days (max {maxDays})</span>
+      <span className="text-micro ink-muted">days (max {maxDays})</span>
       <button type="button" className="btn-secondary btn-sm" disabled={!valid || reprice.isPending} onClick={run}>
         <Icon name="refresh" size={13} /> {reprice.isPending ? 'Repricing…' : 'Reprice'}
       </button>
@@ -194,13 +194,13 @@ export function PricesTab() {
             </table>
           </div>
         )}
-        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>
+        <p className="text-micro ink-dim" style={{ margin: '10px 0 0' }}>
           Seed prices were not fetched from the providers — check them against the provider pricing pages.
         </p>
       </SectionCard>
 
       <SectionCard title="Reprice estimates" delay={40}>
-        <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '0 0 10px' }}>
+        <p className="text-micro ink-muted" style={{ margin: '0 0 10px' }}>
           Historical rows are never repriced on their own. After fixing a price, re-cost the calls that were estimated or unpriced.
         </p>
         <RepricePanel maxDays={q.data?.repriceMaxDays ?? 88} />

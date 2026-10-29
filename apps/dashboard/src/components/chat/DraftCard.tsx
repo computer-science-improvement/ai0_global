@@ -140,7 +140,7 @@ function DraftActions({ draft, onDone }: { draft: EditorDraft; onDone: () => voi
     const ok = await confirm(`publish "${title}" to ${draft.channelKey} now`, {
       danger: false, confirmLabel: 'Publish now',
       details: (
-        <p className="text-micro ink-muted" style={{ margin: 0}}>
+        <p className="text-micro ink-muted" style={{ margin: 0 }}>
           The post goes to the real channel right away. Lint, the channel pause and the 7-day source dedup still apply.
           {draft.status === 'scheduled' ? ' The scheduled copy is canceled.' : ''}
         </p>
@@ -213,7 +213,7 @@ function ScheduleModal({ draft, onClose, onSubmit, busy }: {
         <input className="input-field" type="datetime-local" value={value} min={min} step={300}
           onChange={(e) => setValue(e.target.value)} style={{ width: '100%', colorScheme: 'dark' }} />
       </Field>
-      <p className="text-micro ink-muted" style={{ margin: 0}}>
+      <p className="text-micro ink-muted" style={{ margin: 0 }}>
         Code publishes it at this time without the LLM, even when the editor is off. At least 2 minutes ahead, at most 60 days.
       </p>
       <div className="modal-foot">

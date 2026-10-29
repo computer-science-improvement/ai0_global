@@ -90,7 +90,7 @@ function AdsPage() {
       )}
 
       <SectionCard title="Orders" flush delay={60}
-        action={orders.length > 0 ? <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{orders.length} total</span> : undefined}>
+        action={orders.length > 0 ? <span className="mono text-micro ink-dim">{orders.length} total</span> : undefined}>
         {ordersQ.isLoading && <SkeletonRows flush rows={3} height={64} label="Loading orders" />}
         {ordersQ.error && (
           <div className="callout-danger ad-error" role="alert" style={{ margin: '0 20px 16px' }}>
@@ -135,7 +135,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
 
   return (
     <SectionCard title="Price list" delay={120} style={{ marginTop: 16 }}
-      action={prices.length > 0 ? <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{prices.length} active</span> : undefined}>
+      action={prices.length > 0 ? <span className="mono text-micro ink-dim">{prices.length} active</span> : undefined}>
       <p className="ad-note">
         Public on the landing media kit and used for order amounts. Saving a price for the same channel and format replaces the old one (history is kept).
       </p>
@@ -192,7 +192,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
                     )}
                   </td>
                   <td className="num">{p.price_uah.toLocaleString('en-GB')}</td>
-                  <td style={{ color: 'var(--color-ink-muted)' }}>{p.note ?? '—'}</td>
+                  <td><span className="ink-muted">{p.note ?? '—'}</span></td>
                   <td style={{ textAlign: 'right' }}>
                     <RowActions danger={
                       <TableAction action="delete" title="Deactivate" onClick={async () => {

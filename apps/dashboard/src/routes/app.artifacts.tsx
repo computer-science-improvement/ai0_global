@@ -70,7 +70,7 @@ function ArtifactsPage() {
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 16 }}>
         <SegmentedTabs value={view} onChange={(v) => set({ view: v === 'all' ? undefined : v })} ariaLabel="Status"
           options={VIEWS.map((v) => ({ key: v.key, label: v.label, count: ofType?.filter((r) => inView(v.key, r.status)).length }))} />
-        <label className="text-micro ink-muted" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginLeft: 'auto'}}>
+        <label className="text-micro ink-muted" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
           Agent
           <select className="input-field" value={agent ?? ''} onChange={(e) => set({ agent: e.target.value || undefined })} style={{ minWidth: 160 }}>
             <option value="">All agents</option>

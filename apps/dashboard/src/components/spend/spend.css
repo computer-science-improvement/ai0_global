@@ -30,3 +30,7 @@
 .table td.spend-role-label { color: var(--color-ink-muted); padding-left: 32px; }
 .table tr.spend-role-row td { background: color-mix(in srgb, var(--color-ink) 3%, transparent); }
 .table tr.is-superseded td { opacity: 0.6; }
+
+/* Body-coloured text where the parent is muted (a meter's spent figure, the "After" line of a diff, a row key). */
+.spend-ink { color: var(--color-ink); }
+.text-body-sm.spend-name { font-weight: 600; }

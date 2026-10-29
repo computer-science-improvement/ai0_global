@@ -105,7 +105,7 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
         </div>
       )}
       {pending && (
-        <p className="text-micro ink-dim" style={{ margin: '10px 0 0'}}>
+        <p className="text-micro ink-dim" style={{ margin: '10px 0 0' }}>
           Apply saves {count.good} good and {count.bad} bad examples to @{payload.handle || 'the agent'}&apos;s playbook. The writer follows the good ones; the critic checks posts against both.
         </p>
       )}
