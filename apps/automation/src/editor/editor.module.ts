@@ -2099,7 +2099,7 @@ export const EDITOR_PROVIDERS = [
             agentByHandle: (h) => infra.agents.getByHandle(h),
             patchSkill: (handle, name, patch) => agentsSvc.patchSkill(handle, name, patch),
             retireMemory: retireMemoryPort(repos.memory),
-            applyConflicts: (orch) => conflicts.apply(orch),
+            applyConflicts: (orch, o) => conflicts.apply(orch, o && (o.codes || o.ref) ? (c) => (!o.codes || o.codes.includes(c.code)) && (!o.ref || c.ref === o.ref) : undefined),
           },
         });
         AUDIT.svc = svc;

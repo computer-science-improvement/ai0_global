@@ -6,6 +6,12 @@
 
 export const AUDIT_AREAS = ['skills', 'memory', 'rules', 'tools', 'prompt'] as const;
 export type AuditArea = typeof AUDIT_AREAS[number];
+/**
+ * Spec 072 FR-001: the areas a finding may carry. `AUDIT_AREAS` stays as it is, so the weekly audit's model pass
+ * (`auditor-input.ts` `isArea`) cannot emit a `channel` finding; only the channel doctor does.
+ */
+export const FINDING_AREAS = [...AUDIT_AREAS, 'channel'] as const;
+export type FindingArea = typeof FINDING_AREAS[number];
 export const AUDIT_SEVERITIES = ['info', 'warn', 'error'] as const;
 export type AuditSeverity = typeof AUDIT_SEVERITIES[number];
 export const SUBJECT_TYPES = ['skill', 'memory', 'rule', 'steering', 'playbook', 'agent', 'tool', 'channel'] as const;
@@ -26,14 +32,22 @@ export type Fix =
   | { kind: 'skill_disable';     agent: string; skill: string }
   | { kind: 'skill_inline_off';  agent: string; skill: string }
   | { kind: 'memory_retire';     channel: string; id: number }
-  | { kind: 'conflicts_resolve'; agent: string };
+  /** Spec 072: `codes` keeps only those conflict codes, `channel` only that channel's resource (the group's other resources stay). */
+  | { kind: 'conflicts_resolve'; agent: string; codes?: string[]; channel?: string }
+  | { kind: 'tools_allow_add';       channel: string; tools: string[] }
+  | { kind: 'hashtag_min_zero';      channel: string }
+  | { kind: 'series_resume';         channel: string; pauseId: string }
+  | { kind: 'series_source_require'; channel: string; series: string };
 export type FixKind = Fix['kind'];
-export const FIX_KINDS: readonly FixKind[] = ['skill_disable', 'skill_inline_off', 'memory_retire', 'conflicts_resolve'];
+export const FIX_KINDS: readonly FixKind[] = [
+  'skill_disable', 'skill_inline_off', 'memory_retire', 'conflicts_resolve',
+  'tools_allow_add', 'hashtag_min_zero', 'series_resume', 'series_source_require',
+];
 
 export interface Finding {
   /** A stable hash of area + check + subject: the same problem has the same key every week. */
   key:      string;
-  area:     AuditArea;
+  area:     FindingArea;
   /** The check that found it (`skill_lint`, `memory_duplicate`…). */
   check:    string;
   severity: AuditSeverity;
@@ -42,6 +56,10 @@ export interface Finding {
   detail:   string;
   evidence: Record<string, unknown>;
   fix?:     Fix;
+  /** Spec 072: a resolved dashboard path (doctor findings only; absent on the weekly audit's). */
+  link?:    string;
+  /** Spec 072: ISO time the doctor first saw this key open. */
+  firstSeenAt?: string;
 }
 
 // ── facts ───────────────────────────────────────────────────────────────────
