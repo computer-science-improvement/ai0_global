@@ -1084,6 +1084,7 @@ One check of the whole channel, at $0 (no model call), that names what keeps it 
 | Config | `hashtag_min_without_vocabulary`, `config_conflict`, `formats_diverge`, and spec 073's own codes | owner rules against the card (one finding per rule and code), hashtag minimum with no vocabulary, formats the card and the playbook disagree on. Spec 073's checks run here too, under their own codes: the plan skeleton (`series_format_unavailable` and `series_in_quiet_hours` are errors, `series_rate_over_card_max` a warning) and the pre-flight of today's and tomorrow's planned slots (`config_*`, `series_*_mismatch`; the two the run repairs by itself, `config_format_mismatch` and `config_source_mismatch`, are info «It will be repaired before the run», and `config_series_gone` is info: the slot is skipped at no cost) |
 | Pauses | `series_paused`, `series_paused_by_owner`, `pause_cause_gone` | a paused series, one the owner paused (never offered a Resume), and one whose cause (no material) is gone |
 | Launch and playbook | `playbook_draft_waiting`, `bot_not_admin` | a playbook draft that has waited over a day for your decision; the launch's bot cannot post (not an admin of the channel, or its token is no longer accepted) |
+| Sources (spec 076, § 36) | `source_probe_failed`, `source_empty`, `source_untested`, `card_without_sources`, `dataset_resync_manual` | each feed and page against the server's latest stored read (`source_probes`, never a live read from the doctor) and the host's block; a channel with no sources; a dataset imported from an uploaded page. `source_probe_failed` is an error for a required source (a required series' source, or the card's only one), else a warning; its fix is **Read the host through the proxy** (a timeout or refusal, with a proxy set) or **Remove the source from the card** |
 | Code's own | `auto_fixed` | an info row «Fixed by code» for a fix applied by itself, kept 24 h |
 
 Severity is the doctor's: an **error** is a blocker (it stops posts or makes them wrong), a **warning** is worth a look, **info** is for the record. Counts of blockers and warnings never include `auto_fixed` rows. The titles and the owner-bot lines come from spec 073's one reason catalogue (`reasons/catalogue.ts`, entries of kind `doctor`; `readiness/codes.ts` lists the doctor's codes in `DOCTOR_CODES`), and the dashboard reads the labels from its mirror `lib/reasons.ts`. Change a text in both: the drift test fails otherwise.
@@ -1112,7 +1113,7 @@ Each applied fix is logged once and shows in the panel as **Fixed by code** for 
 
 - On the agent's **Overview** (above «Today, step by step»), on the **editor page** (between the numbers and the Card block) and in the **launch panel** (above the checklist, after Start). The card shows the count, the first blocker, the last 24 hours («6 planned · 2 published · 1 waiting · 3 skipped (2 lint, 1 config)») and, when something can be fixed in one tap, «Fix all can resolve N».
 - The dialog lists **Blockers**, **Warnings**, **Info** and **Fixed by code** as rows: the label from the reason mirror (the server's title for a code it does not hold), the server's detail, «what to change» from the mirror on a row with no Fix, since when, **Open** (the page that fixes it), **Fix** (the one fix of that row, after a confirm), and **Resolve in one card** on a `config_conflict` row (prefills `/align @handle` in the chat). **Recheck** looks again now. **Fix all** (only when something can be fixed) confirms with the list of fixes and applies every open error and warning that has one.
-- **Fix all's scope.** Info rows keep their own Fix button («Resume the series»). Kinds that need your eyes on one row (spec 075's `bind_dataset` and `dataset_patch`, once they exist) are never in Fix all, neither in the dashboard nor in the owner bot's «Виправити все».
+- **Fix all's scope.** Info rows keep their own Fix button («Resume the series»). Kinds that need your eyes on one row (spec 075's `bind_dataset` and `dataset_patch`, once they exist, and spec 076's `source_drop`, which takes a source off the card) are never in Fix all, neither in the dashboard nor in the owner bot's «Виправити все»; their rows keep their own Fix button and the Fix all confirm does not list them. Routing a host through the proxy (`host_proxy_add`) may run in Fix all. Neither source fix is ever applied by code.
 - `/app/agents/<handle>?tab=overview&readiness=1` opens the dialog on arrival (the owner-bot card links there).
 
 **Start anyway**
@@ -1300,6 +1301,12 @@ For a site the server cannot reach and no proxy helps. The first use is the road
 | Remove | Takes the source off the channel's card, after a confirmation | a card source whose read failed (not a source only the playbook reads) |
 
 A library or api source is not read from the server, so its row has no buttons.
+
+**In Readiness (§ 32)**
+
+- The channel doctor runs these checks with its own: `source_probe_failed`, `source_empty`, `source_untested`, `card_without_sources` and `dataset_resync_manual`. It reads the latest stored probe of each address and the host's last success (migration 100), never the site itself, so a Recheck costs nothing and a source the server has never read is «untested», not «dead».
+- `source_probe_failed` stays out of the owner-bot Readiness card: the host note (`host_struck`) is the one note for an unreachable host.
+- **Remove the source from the card** and **Read the host through the proxy** are the same calls as the panel's Remove and Route via proxy. Remove is never part of Fix all.
 
 **Owner steps after deploy**
 

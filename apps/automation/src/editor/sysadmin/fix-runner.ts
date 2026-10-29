@@ -1,4 +1,5 @@
 import type { Agent } from '../agents/agent.types';
+import { applyHostProxyAdd, applySourceDrop, type HostProxyAddDeps, type SourceDropDeps } from '../sources/source-fixes';
 import type { Fix } from './audit.types';
 import { clip } from './audit-text';
 import { errText } from '../../common/err-text';
@@ -35,6 +36,10 @@ export interface FixPorts extends AuditFixPorts {
   resumeSeriesPause?(pauseId: string): Promise<unknown>;
   /** ScheduleService.commitSeriesChange 'update' `{ name, source_mode: 'required' }`; a refusal (`series_invalid`) throws. */
   requireSeriesSource?(channelKey: string, series: string): Promise<unknown>;
+  /** Spec 076: what `applySourceDrop` (`sources/source-fixes.ts`) needs: the card as saved and the validating card save. */
+  sourceDrop?: SourceDropDeps;
+  /** Spec 076: what `applyHostProxyAdd` needs: the live settings and the save of `EGRESS_PROXY_HOSTS`. */
+  hostProxy?: HostProxyAddDeps;
 }
 
 /** What a fix did. A fix that proposes a card instead of writing (075's `bind_dataset`) returns `proposal`. */
@@ -70,6 +75,8 @@ export function describeFix(fix: Fix, extra?: string): string {
     case 'hashtag_min_zero':       return `Minimum hashtags of ${fix.channel} set to 0`;
     case 'series_resume':          return `Paused series of ${fix.channel} resumed`;
     case 'series_source_require':  return `Series "${fix.series}" of ${fix.channel} now requires its source (locked as the owner's)`;
+    case 'source_drop':            return `Source ${fix.sourceId} removed from ${fix.channel}`;
+    case 'host_proxy_add':         return `${fix.host} is now read through the proxy`;
   }
 }
 
@@ -84,10 +91,18 @@ export function fixLabel(fix: Fix): string {
     case 'hashtag_min_zero':       return 'Set minimum hashtags to 0';
     case 'series_resume':          return 'Resume the series';
     case 'series_source_require':  return 'Require the source (the series becomes yours and is locked)';
+    case 'source_drop':            return 'Remove the source from the card';
+    case 'host_proxy_add':         return `Read ${fix.host} through the proxy`;
   }
 }
 
 const unavailable = (what: string) => refusal('fix_unavailable', `${what} is not wired in this process`);
+
+/** A 076 fix's answer as a fix result; its refusal (`source_not_found`, `proxy_not_configured`, …) is thrown like the others. */
+function sourceFixResult(r: { ok: boolean; applied?: string; error?: string }, subject: string, fix: Fix): FixResult {
+  if (!r.ok) throw refusal(r.error ?? 'fix_failed', subject);
+  return { ok: true, applied: r.applied ?? describeFix(fix) };
+}
 
 /** Each fix is one call to the service that owns the change; anything that does not apply throws with the reason. */
 export async function runFix(p: FixPorts, fix: Fix): Promise<FixResult> {
@@ -137,6 +152,15 @@ export async function runFix(p: FixPorts, fix: Fix): Promise<FixResult> {
       if (!p.requireSeriesSource) throw unavailable('requiring a series source');
       await p.requireSeriesSource(fix.channel, fix.series);
       return { ok: true, applied: describeFix(fix) };
+    }
+    // Spec 076 (lead, 076 merge): the two source fixes run through 076's own functions, which the Sources panel's buttons call too.
+    case 'source_drop': {
+      if (!p.sourceDrop) throw unavailable('removing a source');
+      return sourceFixResult(await applySourceDrop(p.sourceDrop, fix), `${fix.channel} ${fix.sourceId}`, fix);
+    }
+    case 'host_proxy_add': {
+      if (!p.hostProxy) throw unavailable('the source proxy');
+      return sourceFixResult(await applyHostProxyAdd(p.hostProxy, fix), fix.host, fix);
     }
   }
 }

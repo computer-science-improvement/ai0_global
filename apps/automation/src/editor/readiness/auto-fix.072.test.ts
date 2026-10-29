@@ -18,11 +18,15 @@ test('no other kind is auto-safe', () => {
   assert.equal(isAutoSafeFix('tools_allow_add'), true);
 });
 
-test('FIX_ALL_EXCLUDED_KINDS is bind_dataset and dataset_patch (075 adds the kinds in W2); every current kind is in Fix all', () => {
-  assert.deepEqual([...FIX_ALL_EXCLUDED_KINDS], ['bind_dataset', 'dataset_patch']);
+test('FIX_ALL_EXCLUDED_KINDS is bind_dataset, dataset_patch (075, W2) and source_drop (lead S9: destructive); every other kind is in Fix all', () => {
+  assert.deepEqual([...FIX_ALL_EXCLUDED_KINDS], ['bind_dataset', 'dataset_patch', 'source_drop']);
   assert.equal(isFixAllKind('bind_dataset'), false);
   assert.equal(isFixAllKind('dataset_patch'), false);
-  for (const k of FIX_KINDS) assert.equal(isFixAllKind(k), true, k);
+  assert.equal(isFixAllKind('source_drop'), false, 'removing a source is one row at a time');
+  assert.equal(isFixAllKind('host_proxy_add'), true, 'adding a host to the proxy list may run in Fix all');
+  for (const k of FIX_KINDS.filter((x) => x !== 'source_drop')) assert.equal(isFixAllKind(k), true, k);
+  assert.equal(isAutoSafeFix('source_drop'), false);
+  assert.equal(isAutoSafeFix('host_proxy_add'), false, 'neither 076 fix is applied by code');
 });
 
 test('lead I5: the runner\'s own slot repairs are a closed list of two, and isRepairable reads exactly that list', () => {

@@ -9,6 +9,7 @@ import { LoadoutRepository } from '../loadout/loadout.repository';
 import { intersectAllow, LoadoutService } from '../loadout/loadout.service';
 import type { LaunchBotState, LaunchGraduation } from '../launch/launch.types';
 import { feedKey, hostOf } from '../net/host-failures';
+import { egressProxyConfigured } from '../net/safe-http';
 import { NetworkRepository } from '../network/network.repository';
 import type { Playbook, Series } from '../network/playbook';
 import { instancesPerDay, parseCadence, seriesSourceLabel, SeriesSourceSchema } from '../network/series';
@@ -22,6 +23,7 @@ import type { ConflictInput, OwnerRule, ResourceConfig } from '../rules/config-c
 import { ownerRulesOf } from '../rules/owner-rules-prompt';
 import { SeriesPausesRepository } from '../series-pause/series-pauses.repository';
 import { SteeringRepository } from '../steering/steering.repository';
+import { PgSourceProbes } from '../sources/source-probes.repository';
 import { ledgerUsage } from '../tools/catalog-context';
 import { resourceKeys, usedRefsCte } from '../../data/data-refs';
 import type { ChannelFacts, DatasetFact, PlannedSlotFact, SkillFact, SourceFact } from './facts.types';
@@ -66,6 +68,8 @@ function bindingOf(key: string, card: Pick<EditorCard, 'sources'>, series: reado
 /** A source before its host block is looked up. */
 export interface SourceRef {
   url: string; kind: SourceFact['kind']; origin: SourceFact['origin']; host: string | null;
+  /** The card source's id (card sources only). */
+  id?: string;
   /** The key a feed failure is stored under (rss only). */
   feedKey: string | null;
 }
@@ -74,8 +78,8 @@ export interface SourceRef {
 export function sourceRefsOf(card: Pick<EditorCard, 'sources'>, series: readonly Series[]): SourceRef[] {
   const out: SourceRef[] = [];
   for (const s of card.sources) {
-    if (s.kind === 'rss' || s.kind === 'url') out.push({ url: s.ref, kind: s.kind, origin: 'card', host: hostOf(s.ref), feedKey: s.kind === 'rss' ? feedKey(s.ref) : null });
-    else out.push({ url: s.kind === 'library' ? `library:${s.ref}` : `api:${s.ref}`, kind: s.kind, origin: 'card', host: null, feedKey: null });
+    if (s.kind === 'rss' || s.kind === 'url') out.push({ url: s.ref, kind: s.kind, origin: 'card', host: hostOf(s.ref), feedKey: s.kind === 'rss' ? feedKey(s.ref) : null, id: s.id });
+    else out.push({ url: s.kind === 'library' ? `library:${s.ref}` : `api:${s.ref}`, kind: s.kind, origin: 'card', host: null, feedKey: null, id: s.id });
   }
   for (const se of series) {
     if (se.active === false || !se.source) continue;
@@ -218,6 +222,7 @@ export function applyOverlay(facts: ChannelFacts, o: FactsOverlay): ChannelFacts
       const old = known.get(r.url);
       return {
         url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: old?.hostBlock ?? (r.host ? hosts.get(r.host) ?? null : null),
+        ...(r.id ? { id: r.id } : {}),
         ...(old?.lastSuccessAt !== undefined ? { lastSuccessAt: old.lastSuccessAt } : {}), ...(old?.probe !== undefined ? { probe: old.probe } : {}),
       };
     });
@@ -294,6 +299,30 @@ const addDays = (date: string, n: number): string => {
 
 function zoneOk(tz: string): string {
   try { localDate(new Date(), tz); return tz; } catch { return 'Europe/Kyiv'; }
+}
+
+/** The schema ids whose latest committed list import was an upload (076 A15). Empty before 076's marks exist or on any error. */
+async function uploadedImportsOf(pool: Pick<Pool, 'query'>, schemaIds: string[]): Promise<Set<string>> {
+  try {
+    const { rows } = await pool.query(
+      `SELECT DISTINCT ON (i.schema_id) i.schema_id, coalesce((i.options -> 'list_import' ->> 'uploaded')::boolean, false) AS uploaded
+         FROM data_imports i WHERE i.schema_id = ANY($1::uuid[]) AND i.status = 'committed' AND i.options ? 'list_import'
+        ORDER BY i.schema_id, i.created_at DESC`, [schemaIds]);
+    return new Set(rows.filter((r: any) => r.uploaded).map((r: any) => String(r.schema_id)));
+  } catch {
+    return new Set();
+  }
+}
+
+/** `source_host_failures.last_success_at` per host (migration 100); empty before 100 (the column is missing) or on any error. */
+async function lastSuccessOf(pool: Pick<Pool, 'query'>, hosts: string[]): Promise<Map<string, string>> {
+  if (!hosts.length) return new Map();
+  try {
+    const { rows } = await pool.query(`SELECT host, last_success_at FROM source_host_failures WHERE host = ANY($1::text[]) AND last_success_at IS NOT NULL`, [hosts]);
+    return new Map(rows.map((r: any) => [r.host as string, new Date(r.last_success_at).toISOString()]));
+  } catch {
+    return new Map();
+  }
 }
 
 /** What the loader may be given besides the pool (wired in `editor.module.ts`; a test passes what it needs). */
@@ -373,11 +402,14 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: Load
     `SELECT s.id, s.key, s.entity, s.version, s.roles, s.reuse_policy, s.post_requires, st.fill_rate
        FROM data_schemas s LEFT JOIN data_schema_stats st ON st.schema_id = s.id
       WHERE s.status = 'active' AND lower(s.key) = ANY($1::text[]) ORDER BY s.key`, [keys]) : { rows: [] as any[] };
-  const [counts, ledger] = schemas.length ? await Promise.all([countPostable(pool, schemas.map((s: any) => s.id), ref), ledgerUsage(pool, ref)]) : [new Map<string, Counts>(), {}];
+  const [counts, ledger, uploadedKeys] = schemas.length
+    ? await Promise.all([countPostable(pool, schemas.map((s: any) => s.id), ref), ledgerUsage(pool, ref), uploadedImportsOf(pool, schemas.map((s: any) => s.id))])
+    : [new Map<string, Counts>(), {}, new Set<string>()];
   const datasets: RawFacts['datasets'] = schemas.map((s: any) => {
     const c = counts.get(s.id) ?? { rows: 0, notPostable: 0, unusedPostable: 0 };
     return {
       id: s.id, key: s.key, entity: s.entity, version: Number(s.version), roles: s.roles ?? {}, reusePolicy: s.reuse_policy ?? { kind: 'never' },
+      ...(uploadedKeys.has(s.id) ? { uploaded: true } : {}),
       postRequires: Array.isArray(s.post_requires) && s.post_requires.length ? s.post_requires : null, fillRate: s.fill_rate && Object.keys(s.fill_rate).length ? s.fill_rate : null,
       ...c, used28: (ledger as Record<string, { used28: number }>)[s.key]?.used28 ?? 0,
     };
@@ -389,7 +421,22 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: Load
   const { rows: blockRows } = hostKeys.length ? await pool.query(
     `SELECT host, reason, blocked_until AS until, strikes FROM source_host_failures WHERE host = ANY($1::text[]) AND blocked_until > $2`, [hostKeys, now]) : { rows: [] as any[] };
   const blocks = new Map<string, BlockRow>(blockRows.map((r: any) => [r.host, { host: r.host, reason: r.reason, until: r.until, strikes: Number(r.strikes ?? 0) }]));
-  const sources: RawFacts['sources'] = refsOfSources.map((r) => ({ url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: blockOf(r, blocks), lastSuccessAt: null }));
+  // 076 (S10): the latest stored probe of each feed and page (the cache, never a live read) and when its host last answered.
+  const readFromServer = refsOfSources.filter((r) => r.kind === 'rss' || r.kind === 'url');
+  const [probes, answered] = await Promise.all([
+    new PgSourceProbes(pool).latest(readFromServer.map((r) => r.url)),
+    lastSuccessOf(pool, [...new Set(readFromServer.map((r) => r.host).filter((h): h is string => !!h))]),
+  ]);
+  const sources: RawFacts['sources'] = refsOfSources.map((r) => {
+    const p = r.kind === 'rss' || r.kind === 'url' ? probes.get(r.url) ?? null : undefined;
+    return {
+      url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: blockOf(r, blocks), ...(r.id ? { id: r.id } : {}),
+      lastSuccessAt: r.host ? answered.get(r.host) ?? null : null,
+      ...(p === undefined ? {} : {
+        probe: p && { ok: p.ok, failure_class: p.failure_class, items: p.items, newest_at: p.newest_at, checked_at: p.checked_at, ...(p.detail ? { detail: p.detail } : {}) },
+      }),
+    };
+  });
 
   // The open launch, the slots planned for today and tomorrow, and the closed slots of the last 24 hours.
   const tz = zoneOk(card.timezone || 'Europe/Kyiv');
@@ -447,6 +494,7 @@ export async function loadChannelFacts(pool: Pool, channelKeyIn: string, o: Load
     datasets,
     pauses,
     sources,
+    proxyConfigured: o.env ? egressProxyConfigured(o.env) : false,
     loadoutTools,
     conflictBase: { rules: memory.filter((m) => m.createdBy === 'owner').map((m): OwnerRule => ({ id: m.id, text: m.text })), refs, others },
     launch: l ? { id: l.id, status: l.status, botState: (l.bot_state ?? null) as LaunchBotState | null, graduation: (l.graduation ?? null) as LaunchGraduation | null } : null,

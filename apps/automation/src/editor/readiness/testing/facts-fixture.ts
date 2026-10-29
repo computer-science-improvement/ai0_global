@@ -70,7 +70,7 @@ export function makeFacts(i: FactsInit = {}): ChannelFacts {
   const card = { ...makeCard({ channelKey, toolsAllow: null, ...i.card }), createdAt: new Date('2026-09-01T00:00:00.000Z') };
   const playbook = i.playbook === undefined ? mkPlaybook() : i.playbook;
   const series = seriesOn(playbook, ref);
-  const sources = i.sources ?? sourceRefsOf(card, series).map((r) => ({ url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: null, lastSuccessAt: null }));
+  const sources = i.sources ?? sourceRefsOf(card, series).map((r) => ({ url: r.url, kind: r.kind, origin: r.origin, host: r.host, hostBlock: null, lastSuccessAt: null, ...(r.id ? { id: r.id } : {}) }));
   return deriveFacts({
     now: i.now ?? NOW, channelKey, resourceRef: ref, card,
     agent: { id: 'a1', handle: i.agentHandle ?? (i.channelKey ? channelKey.replace(/^@/, '').replace(/-/g, '_') : 'fx072'), mode: card.mode },

@@ -37,11 +37,16 @@ export type Fix =
   | { kind: 'tools_allow_add';       channel: string; tools: string[] }
   | { kind: 'hashtag_min_zero';      channel: string }
   | { kind: 'series_resume';         channel: string; pauseId: string }
-  | { kind: 'series_source_require'; channel: string; series: string };
+  | { kind: 'series_source_require'; channel: string; series: string }
+  /** Spec 076 (lead, 076 merge): remove one card source (`sourceId` is its id, else its address). Never auto-safe, never in Fix all. */
+  | { kind: 'source_drop';           channel: string; sourceId: string }
+  /** Spec 076: read this host through the egress proxy (`EGRESS_PROXY_HOSTS`). Never auto-safe; Fix all may apply it. */
+  | { kind: 'host_proxy_add';        host: string };
 export type FixKind = Fix['kind'];
 export const FIX_KINDS: readonly FixKind[] = [
   'skill_disable', 'skill_inline_off', 'memory_retire', 'conflicts_resolve',
   'tools_allow_add', 'hashtag_min_zero', 'series_resume', 'series_source_require',
+  'source_drop', 'host_proxy_add',
 ];
 
 export interface Finding {

@@ -18,6 +18,7 @@ import { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { SeriesPausesRepository } from '../series-pause/series-pauses.repository';
 import { SteeringRepository } from '../steering/steering.repository';
+import { PgSourceProbes } from '../sources/source-probes.repository';
 import { makeCard } from '../post/testing/fixtures';
 import { ChannelNotFound, configHash, loadChannelFacts } from './facts';
 import { mkPlaybook, mkSeries } from './testing/facts-fixture';
@@ -279,6 +280,41 @@ test('073 × 072 seams (S4): the resources carry what the skeleton check needs; 
   assert.equal(failing.planned.find((p) => p.seriesName === 'Tip of the day')?.configCtx, null, 'a failed read is no context: the seam skips the slot');
   const plain = await loadChannelFacts(pool, CH);
   assert.ok(plain.planned.every((p) => p.configCtx === undefined));
+});
+
+test('076 × 072 seams (S10): the stored probe, the host\'s last success, the card source id, the proxy and an uploaded import', { skip }, async () => {
+  const before = await loadChannelFacts(pool, CH);
+  const feed = before.sources.find((s) => s.origin === 'card' && s.kind === 'rss')!;
+  assert.equal(feed.probe, null, 'never probed');
+  assert.equal(feed.id, 'feed1');
+  assert.equal(before.sources.find((s) => s.kind === 'library')!.probe, undefined, 'a library source is never read from the server');
+  assert.equal(before.proxyConfigured, false);
+
+  await new PgSourceProbes(pool).put({
+    url: RSS, ok: false, failure_class: 'timeout', status: null, kind: 'rss', feed_url: null, items: 0, newest_at: null, sample_titles: [],
+    detail: 'timed out after 15 s', ms: 15000, via_proxy: false, checked_at: new Date(Date.now() - 3_600_000).toISOString(),
+  } as any);
+  await pool.query(`UPDATE source_host_failures SET last_success_at = now() - interval '2 hours' WHERE host = 'feeds.fx072.example'`);
+  const { rows: [tips] } = await pool.query(`SELECT id, version FROM data_schemas WHERE key = 'fx072_tips'`);
+  const { rows: [imp] } = await pool.query(
+    `INSERT INTO data_imports (schema_id, schema_version, source, options, status) VALUES ($1, $2, 'pipeline', $3::jsonb, 'committed') RETURNING id`,
+    [tips.id, tips.version, JSON.stringify({ list_import: { url: 'https://x.example/page', uploaded: true, auto_resync: false } })]);
+  try {
+    const f = await loadChannelFacts(pool, CH, { env: (k) => (k === 'EGRESS_PROXY_URL' ? 'http://proxy.example:3128' : undefined) });
+    const card = f.sources.find((s) => s.origin === 'card' && s.kind === 'rss')!;
+    assert.equal(card.probe?.ok, false);
+    assert.equal(card.probe?.failure_class, 'timeout');
+    assert.equal(card.probe?.detail, 'timed out after 15 s');
+    assert.ok(card.lastSuccessAt && Date.now() - Date.parse(card.lastSuccessAt) < 3 * 3_600_000);
+    assert.equal(f.sources.find((s) => s.origin === 'series:Feed digest')!.probe?.failure_class, 'timeout', 'the series feed is the same address');
+    assert.equal(f.proxyConfigured, true);
+    assert.equal(f.datasets.find((d) => d.key === 'fx072_tips')?.uploaded, true);
+    assert.equal(f.datasets.find((d) => d.key === 'fx072_aft')?.uploaded, undefined);
+  } finally {
+    await pool.query(`DELETE FROM data_imports WHERE id = $1`, [imp.id]);
+    await pool.query(`DELETE FROM source_probes`);
+    await pool.query(`UPDATE source_host_failures SET last_success_at = NULL`);
+  }
 });
 
 test('loading changes nothing: every table it reads is byte-for-byte the same', { skip }, async () => {

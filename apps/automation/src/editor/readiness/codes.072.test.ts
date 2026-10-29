@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DOCTOR_CODES, DOCTOR_REASONS, doctorReason, LINK_PLACEHOLDERS, resolveLink } from './codes';
+import { SOURCE_FINDING_CODES } from '../sources/source-findings';
 import { DOCTOR_CHECKS } from './checks';
 import { REASONS, reasonFor } from '../reasons/catalogue';
 
@@ -85,7 +86,8 @@ test('resolveLink fills and URL-encodes placeholders; a missing value gives null
 /** The codes the checks write as string literals (`code: 'x'`); the service's `auto_fixed` is the only catalogue entry no check emits. */
 function emittedCodes(): Set<string> {
   const dir = join(__dirname, 'checks');
-  const out = new Set<string>();
+  // 076's checks write their codes in sources/source-findings.ts; `checks/sources.ts` only wraps them (its own test pins the list).
+  const out = new Set<string>(SOURCE_FINDING_CODES);
   for (const name of readdirSync(dir)) {
     if (!name.endsWith('.ts') || name.endsWith('.test.ts')) continue;
     for (const m of readFileSync(join(dir, name), 'utf8').matchAll(/\bcode:\s*'([a-z][a-z0-9_]*)'/g)) out.add(m[1]);
@@ -102,8 +104,16 @@ test('every code a check can emit is in the catalogue, and every catalogue code 
   assert.ok(!emitted.has('auto_fixed'));
 });
 
-test('all seven check files are in DOCTOR_CHECKS, once each', () => {
+test('all eight check files are in DOCTOR_CHECKS, once each (076\'s sources check last, S8)', () => {
   assert.deepEqual(DOCTOR_CHECKS.map((c) => c.code), [
     'series_source_contradicted', 'series_source_not_required', 'material_exhausted', 'tools_missing_for_source', 'config_conflict', 'series_paused', 'bot_not_admin',
+    'source_probe_failed',
   ]);
+});
+
+test('S8: source_probe_failed is a doctor code of the catalogue; source_unreachable stays a skip class and is never a doctor code', () => {
+  assert.equal(reasonFor('source_probe_failed')?.kind, 'doctor');
+  for (const c of SOURCE_FINDING_CODES) assert.ok((DOCTOR_CODES as readonly string[]).includes(c), c);
+  assert.ok(!(DOCTOR_CODES as readonly string[]).includes('source_unreachable'));
+  assert.equal(reasonFor('source_unreachable')?.kind, 'skip');
 });

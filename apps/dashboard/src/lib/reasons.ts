@@ -111,6 +111,13 @@ export const REASONS: readonly ReasonView[] = [
   { code: 'playbook_draft_waiting', en: 'A playbook draft has waited for your decision for over a day.', fix: { en: 'Approve or reject the draft.' }, link: '/app/agents/:agent?tab=playbook' },
   { code: 'bot_not_admin', en: 'The bot cannot post to the channel.', fix: { en: 'Add the bot as an administrator of the channel.' } },
   { code: 'auto_fixed', en: 'Readiness fixed this by itself.' },
+  { code: 'source_probe_failed', en: 'The server cannot read this source', fix: { en: 'Route the site through the proxy, upload the page, or remove the source.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'source_empty', en: 'The source is empty or not a feed', fix: { en: 'Check the address, then replace or remove the source.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'source_untested', en: 'The server has not read this source yet', fix: { en: 'Press "Test from server" on the source.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'card_without_sources', en: 'No sources: the channel writes from its brief only', fix: { en: 'Add a feed, a page or a dataset if posts need facts.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'dataset_resync_manual', en: 'Imported from an uploaded page: re-sync is manual', fix: { en: 'Upload the page again to add new entries.' }, link: '/app/data/:dataset' },
+  { code: 'host_struck', en: 'A site refuses the server or cannot be reached from it', fix: { en: 'Route it through the proxy, upload the page, or remove the source.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'resync_failed', en: 'Re-sync of an imported dataset failed', fix: { en: 'Upload the page if the server cannot reach the site.' }, link: '/app/data/:dataset' },
 ];
 
 const BY_CODE = new Map<string, ReasonView>(REASONS.map((e) => [e.code, e]));

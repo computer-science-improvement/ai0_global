@@ -49,6 +49,8 @@ export interface ChannelFacts {
   /** Open. */
   pauses:          SeriesPause[];
   sources:         SourceFact[];
+  /** 076: an egress proxy is configured (`EGRESS_PROXY_URL`), so a refused or timing-out host can be routed through it. Absent = no. */
+  proxyConfigured?: boolean;
   /** The executor's loadout allowlist; null = the role default. */
   loadoutTools:    string[] | null;
   /** `intersectAllow(card.toolsAllow, loadoutTools)`; null = no limit. */
@@ -75,6 +77,8 @@ export interface SkillFact {
 
 export interface DatasetFact {
   id: string; key: string; entity: string; version: number;
+  /** 076: the dataset's latest committed list import was made from a page the owner uploaded (re-synced only by uploading again). */
+  uploaded?: boolean;
   roles: Record<string, string | string[]>; reusePolicy: ReusePolicy; postRequires: PostRequires | null;
   /** data_schema_stats; null = no stats. */
   fillRate: Record<string, number> | null;
@@ -91,11 +95,17 @@ export interface DatasetFact {
 export interface SourceFact {
   url: string; kind: 'rss' | 'url' | 'library' | 'api'; origin: 'card' | `series:${string}`; host: string | null;
   hostBlock: { reason: string; until: string; strikes: number } | null;
-  /** A12; null in W1 (076's migration adds the column). */
+  /** The card source's id, for `origin: 'card'` (076's `source_drop` names the source by it). */
+  id?: string;
+  /** A12: `source_host_failures.last_success_at` of the host (migration 100); null when it never answered or before 100. */
   lastSuccessAt?: string | null;
   /** A required series' source, or the card's only source. */
   required?: boolean;
-  probe?: { ok: boolean; failure_class: string | null; items: number | null; newest_at: string | null; checked_at: string } | null;
+  /**
+   * 076's latest stored probe of the address (`source_probes`, read from the cache only, never a live fetch); null = never probed,
+   * absent for a library or api source. `detail` is the display line of the probe.
+   */
+  probe?: { ok: boolean; failure_class: string | null; items: number | null; newest_at: string | null; checked_at: string; detail?: string } | null;
 }
 
 export interface PlannedSlotFact {

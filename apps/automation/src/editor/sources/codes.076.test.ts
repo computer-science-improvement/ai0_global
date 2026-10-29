@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { SOURCE_REASONS, sourceReason, type ReasonEntry } from './codes';
+import { reasonFor } from '../reasons/catalogue';
 import { SOURCE_FINDING_CODES, sourceFindings } from './source-findings';
 import { HOST_STRUCK_KIND } from './source-health.service';
 import { resyncFailedNote } from '../docs/list-resync.worker';
@@ -78,10 +79,16 @@ test('what the checks say is English, whatever they are asked about', () => {
   for (const f of out) assert.doesNotMatch(JSON.stringify([f.title, f.detail, f.link]), CYRILLIC, f.check);
 });
 
-test('W1 isolation (L10): no file of the sources folder imports the readiness or the reasons code', () => {
+test('after the lead merge (S8): only codes.ts imports the reasons catalogue, and nothing in sources imports the readiness code', () => {
   const files = readdirSync(__dirname, { recursive: true } as any) as string[];
   const sources = files.filter((f) => f.endsWith('.ts') && !/\.test\.ts$/.test(f));
   assert.ok(sources.length > 10, 'the folder was read');
-  const offenders = sources.filter((f) => /from\s+['"][^'"]*\/(readiness|reasons)(\/|['"])/.test(readFileSync(join(__dirname, f), 'utf8')));
-  assert.deepEqual(offenders, []);
+  const importing = (dir: string) => sources.filter((f) => new RegExp(`from\\s+['"][^'"]*\\/${dir}(\\/|['"])`).test(readFileSync(join(__dirname, f), 'utf8')));
+  assert.deepEqual(importing('readiness'), [], 'the doctor wraps sourceFindings, not the reverse');
+  assert.deepEqual(importing('reasons'), ['codes.ts']);
+});
+
+test('the seven entries are the catalogue\'s own (S8): one source of truth, the same objects', () => {
+  for (const r of SOURCE_REASONS) assert.equal(reasonFor(r.code), r, r.code);
+  assert.equal(reasonFor('source_unreachable')?.kind, 'skip', 'the skip class stays a catalogue skip entry');
 });

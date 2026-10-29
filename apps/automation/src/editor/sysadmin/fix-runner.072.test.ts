@@ -5,7 +5,7 @@ import { describeFix, fixLabel, mergeToolsAllow, runFix, tryFix, type FixPorts }
 import { applySeriesOp } from '../schedule/series-change';
 import { PlaybookSchema } from '../network/playbook';
 
-/** Spec 072 T1: the shared fix runner, the eight kinds, the ports they call and their refusals. */
+/** Spec 072 T1: the shared fix runner, its kinds (eight of 072, two of 076 since the lead's merge), the ports they call and their refusals. */
 
 const CYRILLIC = /[Ѐ-ӿ]/;
 
@@ -19,6 +19,8 @@ const ALL_FIXES: Fix[] = [
   { kind: 'hashtag_min_zero', channel: '@c' },
   { kind: 'series_resume', channel: '@c', pauseId: 'p1' },
   { kind: 'series_source_require', channel: '@c', series: 'Prompt' },
+  { kind: 'source_drop', channel: '@c', sourceId: 'feed1' },
+  { kind: 'host_proxy_add', host: 'zakon.rada.gov.ua' },
 ];
 
 function ports(over: Partial<FixPorts> = {}) {
@@ -43,10 +45,11 @@ const refusalOf = async (fn: () => Promise<unknown>): Promise<{ error: string; d
   return assert.fail('expected a refusal');
 };
 
-test('FIX_KINDS lists exactly the eight kinds; the weekly audit areas do not gain `channel`', () => {
+test('FIX_KINDS lists exactly the ten kinds (076 adds source_drop and host_proxy_add); the weekly audit areas do not gain `channel`', () => {
   assert.deepEqual([...FIX_KINDS], [
     'skill_disable', 'skill_inline_off', 'memory_retire', 'conflicts_resolve',
     'tools_allow_add', 'hashtag_min_zero', 'series_resume', 'series_source_require',
+    'source_drop', 'host_proxy_add',
   ]);
   assert.deepEqual([...AUDIT_AREAS], ['skills', 'memory', 'rules', 'tools', 'prompt']);
   assert.deepEqual([...FINDING_AREAS], [...AUDIT_AREAS, 'channel']);
@@ -165,4 +168,33 @@ test('A32: a series_invalid refusal of the port reaches tryFix as ok: false', as
   const r = await tryFix(refused.p, { kind: 'series_source_require', channel: '@c', series: 'Prompt' });
   assert.equal(r.ok, false);
   assert.match(r.error!, /^series_invalid: /);
+});
+
+// ── 076's two source fixes (lead, 076 merge, S9): run through sources/source-fixes.ts ─────────────────────────────
+
+test('S9: source_drop and host_proxy_add run 076\'s functions through their ports; without the ports they are fix_unavailable', async () => {
+  const saved: any[] = [];
+  const card = { sources: [{ id: 'feed1', kind: 'rss', ref: 'https://zakon.rada.gov.ua/rss' }, { id: 'lib', kind: 'library', ref: 'pdr' }] };
+  const setHosts: string[] = [];
+  const env: Record<string, string> = { EGRESS_PROXY_URL: 'http://proxy.example:3128', EGRESS_PROXY_HOSTS: 'example.org' };
+  const { p } = ports({
+    sourceDrop: { card: async () => card as any, upsert: async (key, body) => { saved.push([key, body]); } },
+    hostProxy: { env: (k) => env[k], setHosts: async (v) => { setHosts.push(v); } },
+  });
+  const drop = await runFix(p, { kind: 'source_drop', channel: '@c', sourceId: 'feed1' });
+  assert.equal(drop.ok, true);
+  assert.match(drop.applied!, /Removed source “feed1”/);
+  assert.deepEqual(saved, [['@c', { sources: [card.sources[1]] }]]);
+  const proxy = await runFix(p, { kind: 'host_proxy_add', host: 'www.zakon.rada.gov.ua' });
+  assert.equal(proxy.applied, 'zakon.rada.gov.ua is now read through the proxy');
+  assert.deepEqual(setHosts, ['example.org,zakon.rada.gov.ua']);
+  // Their refusals are thrown like every other kind's, so tryFix reports them.
+  const gone = await tryFix(p, { kind: 'source_drop', channel: '@c', sourceId: 'nope' });
+  assert.equal(gone.ok, false);
+  assert.match(gone.error!, /^source_not_found: /);
+  const noProxy = ports({ hostProxy: { env: () => undefined, setHosts: async () => {} } });
+  assert.match((await tryFix(noProxy.p, { kind: 'host_proxy_add', host: 'a.example' })).error!, /^proxy_not_configured: /);
+  const bare = ports().p;
+  assert.equal((await refusalOf(() => runFix(bare, { kind: 'source_drop', channel: '@c', sourceId: 'x' }))).error, 'fix_unavailable');
+  assert.equal((await refusalOf(() => runFix(bare, { kind: 'host_proxy_add', host: 'a.example' }))).error, 'fix_unavailable');
 });

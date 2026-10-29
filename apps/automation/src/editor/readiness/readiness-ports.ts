@@ -1,4 +1,5 @@
 import { resourceRef, type Agent } from '../agents/agent.types';
+import type { HostProxyAddDeps, SourceDropDeps } from '../sources/source-fixes';
 import { mergeToolsAllow, refusal, type FixPorts } from '../sysadmin/fix-runner';
 import type { ReadinessService } from './readiness.service';
 import type { ClosedSlotRow } from './view';
@@ -30,6 +31,10 @@ export interface ReadinessPortDeps {
     scopeByChannel(channelKey: string): Promise<unknown>;
     commitSeriesChange(scope: any, op: 'update', fields: unknown): Promise<unknown>;
   };
+  /** Spec 076 `source_drop`: the card as saved and the validating save (the Sources panel's "Remove" uses the same two). */
+  sourceDrop?: SourceDropDeps;
+  /** Spec 076 `host_proxy_add`: the live settings and the save of `EGRESS_PROXY_HOSTS`. */
+  hostProxy?: HostProxyAddDeps;
 }
 
 export function readinessFixPorts(d: ReadinessPortDeps): FixPorts {
@@ -38,6 +43,8 @@ export function readinessFixPorts(d: ReadinessPortDeps): FixPorts {
     patchSkill: (handle, name, patch) => d.patchSkill(handle, name, patch),
     retireMemory: (channel, id) => d.retireMemory(channel, id),
     applyConflicts: (orch, o) => d.applyConflicts(orch, o),
+    ...(d.sourceDrop ? { sourceDrop: d.sourceDrop } : {}),
+    ...(d.hostProxy ? { hostProxy: d.hostProxy } : {}),
 
     // A card with no list means "no limit": adding a tool would turn "everything" into "only these", so nothing is written.
     async addCardTools(channelKey, tools) {

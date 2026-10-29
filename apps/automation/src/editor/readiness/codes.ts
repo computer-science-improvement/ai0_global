@@ -23,6 +23,8 @@ export const DOCTOR_CODES = [
   'dataset_post_requires_missing', 'dataset_low_fill', 'material_exhausted', 'material_low', 'dataset_order_random',
   'tools_missing_for_source', 'hashtag_min_without_vocabulary', 'config_conflict', 'formats_diverge',
   'series_paused', 'series_paused_by_owner', 'pause_cause_gone', 'playbook_draft_waiting', 'bot_not_admin', 'auto_fixed',
+  // 076's source checks (`checks/sources.ts` wraps `sources/source-findings.ts`, lead S8): kind `doctor` in the catalogue too.
+  'source_probe_failed', 'source_empty', 'source_untested', 'card_without_sources', 'dataset_resync_manual',
 ] as const;
 
 /** The catalogue entries of the doctor's codes, in `DOCTOR_CODES` order (a code without an entry throws at load: a test pins it). */

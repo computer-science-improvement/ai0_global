@@ -220,6 +220,23 @@ export const REASONS: ReasonEntry[] = [
   { code: 'bot_not_admin', kind: 'doctor', en: 'The bot cannot post to the channel.', uk: 'Бот не може публікувати в каналі.',
     fix: { en: 'Add the bot as an administrator of the channel.', uk: 'Додайте бота адміністратором каналу.' } },
   { code: 'auto_fixed', kind: 'doctor', en: 'Readiness fixed this by itself.', uk: 'Готовність виправила це сама.' },
+
+  // ── the sources (spec 076, merged into the one catalogue by the lead): five doctor codes and the two notes' Inbox kinds.
+  // `source_unreachable` stays the skip class and pause cause above; the doctor's code for the same fact is `source_probe_failed`.
+  { code: 'source_probe_failed', kind: 'doctor', en: 'The server cannot read this source', uk: 'Сервер не може прочитати це джерело',
+    fix: { en: 'Route the site through the proxy, upload the page, or remove the source.', uk: 'Пусти сайт через проксі, завантаж сторінку вручну або прибери джерело.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'source_empty', kind: 'doctor', en: 'The source is empty or not a feed', uk: 'Джерело порожнє або це не стрічка',
+    fix: { en: 'Check the address, then replace or remove the source.', uk: 'Перевір адресу, потім заміни або прибери джерело.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'source_untested', kind: 'doctor', en: 'The server has not read this source yet', uk: 'Сервер ще не читав це джерело',
+    fix: { en: 'Press "Test from server" on the source.', uk: 'Натисни «Test from server» біля джерела в налаштуваннях агента.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'card_without_sources', kind: 'doctor', en: 'No sources: the channel writes from its brief only', uk: 'Без джерел: канал пише лише з брифу',
+    fix: { en: 'Add a feed, a page or a dataset if posts need facts.', uk: 'Додай стрічку, сторінку або датасет, якщо постам потрібні факти.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'dataset_resync_manual', kind: 'doctor', en: 'Imported from an uploaded page: re-sync is manual', uk: 'Імпортовано із завантаженої сторінки: оновлення лише вручну',
+    fix: { en: 'Upload the page again to add new entries.', uk: 'Щоб додати нові записи, завантаж сторінку ще раз.' }, link: '/app/data/:dataset' },
+  { code: 'host_struck', kind: 'source', en: 'A site refuses the server or cannot be reached from it', uk: 'Сайт відмовляє серверу або недоступний із нього',
+    fix: { en: 'Route it through the proxy, upload the page, or remove the source.', uk: 'Пусти його через проксі, завантаж сторінку або прибери джерело.' }, link: '/app/agents/:agent?tab=settings' },
+  { code: 'resync_failed', kind: 'source', en: 'Re-sync of an imported dataset failed', uk: 'Не вдалося оновити імпортований датасет',
+    fix: { en: 'Upload the page if the server cannot reach the site.', uk: 'Якщо сервер не бачить сайту, завантаж сторінку вручну.' }, link: '/app/data/:dataset' },
 ];
 
 const BY_CODE = new Map<string, ReasonEntry>(REASONS.map((e) => [e.code, e]));

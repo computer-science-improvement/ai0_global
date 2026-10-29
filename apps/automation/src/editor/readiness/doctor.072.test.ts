@@ -9,15 +9,17 @@ import { channelDoctor } from './doctor';
 import { mkFinding } from './finding';
 import { DOCTOR_CODES } from './codes';
 import { NANOBANANA_SKILL, PROMPTHERO_SKILL } from './fixtures/real-skills-1027';
-import { deepFreeze, makeFacts, mkDataset, mkPlaybook, mkSkill, NOW, promptSeries } from './testing/facts-fixture';
+import { deepFreeze, makeFacts, mkDataset, mkPlaybook, mkSeries, mkSkill, NOW, promptSeries } from './testing/facts-fixture';
 
 /** Spec 072 FR-003, L5: the doctor runs the checks, drops repeated keys, sorts, and does nothing else. */
 
 const fake = (code: string, sev: Finding['severity'], id: string): Finding => mkFinding(makeFacts(), { code, severity: sev, subject: { type: 'channel', id, label: id }, detail: `${code} ${id}` });
 const one = (...list: Finding[]): DoctorCheck => ({ code: 'x', run: () => list });
 
-test('a healthy channel has no findings', () => {
-  assert.deepEqual(channelDoctor(makeFacts()), []);
+test('a healthy channel has no findings but 076\'s record that it writes from its brief (the fixture card has no sources)', () => {
+  assert.deepEqual(channelDoctor(makeFacts()).map((x) => [x.check, x.severity]), [['card_without_sources', 'info']]);
+  const lib = makeFacts({ card: { sources: [{ id: 'lib', kind: 'library', ref: 'tips' }] }, playbook: mkPlaybook([mkSeries({ source: { kind: 'library', table: 'tips' }, source_mode: 'required' })]), datasets: [] });
+  assert.deepEqual(channelDoctor(lib).filter((x) => x.check.startsWith('source_') || x.check === 'card_without_sources'), [], 'a library source is never read from the server');
 });
 
 test('findings are sorted error, warn, info, then by code, subject and key', () => {

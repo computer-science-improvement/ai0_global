@@ -1,5 +1,6 @@
 import { Inject, Injectable, Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { SettingsService } from '../settings/settings.service';
 import { Cron } from '@nestjs/schedule';
 import type { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
@@ -2158,12 +2159,15 @@ export const EDITOR_PROVIDERS = [
     {
       // Spec 072: the channel doctor (checks in code at no cost, a stored result per channel, a sweep every ten minutes, closed-list fixes).
       provide: READINESS_SERVICE,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, EDITOR_OPS, SCHEDULE_INFRA, AGENTS_SERVICE],
+      // SettingsService is global in the app; optional so a module built without it (the module tests) still resolves: host_proxy_add is then fix_unavailable.
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, EDITOR_OPS, SCHEDULE_INFRA, AGENTS_SERVICE, { token: SettingsService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, infra: AgentInfra, ops: EditorOpsService, schedule: ScheduleService, agentsSvc: AgentsService,
+        settings?: SettingsService,
       ): ReadinessService => {
         const logger = new Logger('Readiness');
-        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        // `SettingsService.setValue` writes process.env at once (a live setting such as the egress proxy), so that is read first.
+        const env = (k: string) => process.env[k] ?? cfg.get<string>(k) ?? undefined;
         const conflicts = configConflictsOf(pool, repos, infra);
         const pauseRepo = new SeriesPausesRepository(pool);
         const pauseActions = new SeriesPauseActions({ pool, repo: pauseRepo, profiles: infra.profiles });
@@ -2188,6 +2192,9 @@ export const EDITOR_PROVIDERS = [
             upsertChannel: (key, patch) => ops.upsertChannel(key, patch),
             pauses: { get: (id) => pauseRepo.get(id), resume: (id, via) => pauseActions.resume(id, via) },
             schedule,
+            // Spec 076 (lead, 076 merge): the same two calls as the Sources panel's "Remove" and "Route via proxy".
+            sourceDrop: { card: (key) => repos.channels.get(key), upsert: (key, body) => ops.upsertChannel(key, body) },
+            ...(settings ? { hostProxy: { env, setHosts: (v: string) => settings.setValue('EGRESS_PROXY_HOSTS', v) } } : {}),
           }),
           // READINESS_AUTO_FIX is live: read on every recheck. Anything but off/false/0/no is on.
           autoFix: () => !['off', 'false', '0', 'no'].includes((cfg.get<string>('READINESS_AUTO_FIX') ?? '').trim().toLowerCase()),
