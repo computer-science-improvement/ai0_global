@@ -106,7 +106,7 @@ export class SourceHealthService {
         }
         await this.d.inbox.post({
           agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'info',
-          title: `${b.host} відмовляє нам ${razy(b.strikes)} поспіль — агенти ${card.channelKey} ходять туди поза джерелами`,
+          title: `${b.host} відмовляє нам ${razy(b.strikes ?? STRIKES_FOR_OWNER)} поспіль — агенти ${card.channelKey} ходять туди поза джерелами`,
           body: `Сайт ${b.host} заблоковано до ${b.until.toISOString().slice(0, 10)} (${b.reason}${b.statusCode ? ` ${b.statusCode}` : ''}); блокування 1 → 3 → 7 діб, до його кінця запитів не робимо.`
             + ` Його немає серед джерел каналу: агенти читали його ${razy(outside.calls)} за ${rep!.days} днів (посилання з новин чи пошуку).`
             + ' Якщо матеріал звідти потрібен — додайте джерело тієї ж теми; якщо ні — нічого робити не треба.',
@@ -120,7 +120,7 @@ export class SourceHealthService {
       const where = inCard ? `джерел ${card.channelKey} (картка каналу)` : `плейбука ${card.channelKey}`;
       await this.d.inbox.post({
         agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'action',
-        title: `${b.host} відмовляє нам ${razy(b.strikes)} поспіль — прибрати з ${where}?`,
+        title: `${b.host} відмовляє нам ${razy(b.strikes ?? STRIKES_FOR_OWNER)} поспіль — прибрати з ${where}?`,
         body: `Сайт ${b.host} заблоковано до ${b.until.toISOString().slice(0, 10)} (${b.reason}${b.statusCode ? ` ${b.statusCode}` : ''}); блокування 1 → 3 → 7 діб, до його кінця запитів не робимо.`
           + (inCard ? ' Джерело картки: агент шукає заміну і покаже картку Apply / Discard.' : '')
           + (inPlaybook ? ' Адреса є в плейбуку каналу — приберіть її з плейбука (директива менеджеру) або залиште, якщо сайт ще оживе.' : ''),
