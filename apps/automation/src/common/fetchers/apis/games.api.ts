@@ -15,45 +15,72 @@ export const STEAM_APPDETAILS_URL = 'https://store.steampowered.com/api/appdetai
 export const steamReviewsUrl = (appId: number | string) => `https://store.steampowered.com/appreviews/${appId}`;
 export const STEAM_MIN_DISCOUNT = 50;
 
-/** Epic `freeGamesPromotions` elements → games that are free right now (100% off, offer window open). */
+/** One Epic promotional offer with its window as instants. */
+export interface EpicOffer { startMs: number; endMs: number; startDate: string; endDate: string; percent: unknown }
+
+function epicOffers(groups: any): EpicOffer[] {
+  return (Array.isArray(groups) ? groups : [])
+    .flatMap((g: any) => (Array.isArray(g?.promotionalOffers) ? g.promotionalOffers : []))
+    .map((o: any) => ({
+      startMs: new Date(o?.startDate).getTime(), endMs: new Date(o?.endDate).getTime(),
+      startDate: o?.startDate, endDate: o?.endDate, percent: o?.discountSetting?.discountPercentage,
+    }));
+}
+
+/**
+ * Spec 086 FR-001: the offer that makes the game free right now — `start <= now < end` and 100% off — across all
+ * `promotionalOffers` groups. Never a sale offer (any other discount) or an offer that has not started.
+ */
+export function epicFreeNowOffer(el: any, nowMs: number): EpicOffer | null {
+  return epicOffers(el?.promotions?.promotionalOffers)
+    .find((o) => o.startMs <= nowMs && o.endMs > nowMs && o.percent === 0) ?? null;
+}
+
+/** Spec 086 FR-001: the next free offer — in `upcomingPromotionalOffers`, 100% off, starting after now. */
+export function epicUpcomingFreeOffer(el: any, nowMs: number): EpicOffer | null {
+  return epicOffers(el?.promotions?.upcomingPromotionalOffers)
+    .filter((o) => o.percent === 0 && o.startMs > nowMs)
+    .sort((a, b) => a.startMs - b.startMs)[0] ?? null;
+}
+
+function epicItem(el: any, offer: EpicOffer): GameChannelItem {
+  const image =
+    el.keyImages?.find((img: any) => img.type === 'OfferImageWide')?.url ??
+    el.keyImages?.find((img: any) => img.type === 'Thumbnail')?.url ??
+    null;
+
+  const slug = el.productSlug || el.urlSlug || el.catalogNs?.mappings?.[0]?.pageSlug;
+  const url  = slug ? `https://store.epicgames.com/en-US/p/${slug}` : 'https://store.epicgames.com/free-games';
+
+  return {
+    type:        'giveaway' as const,
+    title:       el.title,
+    description: el.description ?? '',
+    source:      url,
+    imageUrl:    image,
+    publishedAt: offer.startDate ?? null,
+    platform:    'PC (Epic Games Store)',
+    startDate:   offer.startDate ?? undefined,
+    endDate:     offer.endDate ?? undefined,
+    instructions: 'Додати у бібліотеку через Epic Games Store.',
+  };
+}
+
+/** Epic `freeGamesPromotions` elements → games that are free right now (100% off, offer window open); dates of that offer. */
 export function mapEpicFreeGames(elements: any[] | null | undefined, nowMs: number): GameChannelItem[] {
-  return (elements ?? [])
-    .filter((el) => {
-      // Must have an active promotional offer (currently free)
-      const offers: any[] = el.promotions?.promotionalOffers ?? [];
-      return offers.some((group) =>
-        (group.promotionalOffers ?? []).some((offer: any) => {
-          const start = new Date(offer.startDate).getTime();
-          const end   = new Date(offer.endDate).getTime();
-          return start <= nowMs && end > nowMs && offer.discountSetting?.discountPercentage === 0;
-        }),
-      );
-    })
-    .map((el) => {
-      const offer = el.promotions.promotionalOffers
-        .flatMap((g: any) => g.promotionalOffers)
-        .find((o: any) => new Date(o.endDate).getTime() > nowMs);
+  return (elements ?? []).flatMap((el) => {
+    const offer = epicFreeNowOffer(el, nowMs);
+    return offer ? [epicItem(el, offer)] : [];
+  });
+}
 
-      const image =
-        el.keyImages?.find((img: any) => img.type === 'OfferImageWide')?.url ??
-        el.keyImages?.find((img: any) => img.type === 'Thumbnail')?.url ??
-        null;
-
-      const slug = el.productSlug || el.urlSlug || el.catalogNs?.mappings?.[0]?.pageSlug;
-      const url  = slug ? `https://store.epicgames.com/en-US/p/${slug}` : 'https://store.epicgames.com/free-games';
-
-      return {
-        type:        'giveaway' as const,
-        title:       el.title,
-        description: el.description ?? '',
-        source:      url,
-        imageUrl:    image,
-        publishedAt: offer?.startDate ?? null,
-        platform:    'PC (Epic Games Store)',
-        endDate:     offer?.endDate ?? undefined,
-        instructions: 'Додати у бібліотеку через Epic Games Store.',
-      };
-    });
+/** Spec 086 FR-001: games with a free offer that has not started yet (not the ones free right now); `startDate` / `endDate` of that offer. */
+export function mapEpicUpcomingFreeGames(elements: any[] | null | undefined, nowMs: number): GameChannelItem[] {
+  return (elements ?? []).flatMap((el) => {
+    if (epicFreeNowOffer(el, nowMs)) return [];
+    const offer = epicUpcomingFreeOffer(el, nowMs);
+    return offer ? [epicItem(el, offer)] : [];
+  });
 }
 
 interface GamerPowerItem {
@@ -68,6 +95,16 @@ interface GamerPowerItem {
   image:             string;
   published_date:    string;
   status:            string;
+}
+
+/**
+ * Spec 086 FR-002: «YYYY-MM-DD 23:59[:SS]» (space or T, no zone) is the end of a day, not a moment — it becomes the date,
+ * so no `*_local` time is invented. Any other form stays as it is.
+ */
+export function gamerPowerEnd(raw: string | null | undefined): string | undefined {
+  if (!raw || raw === 'N/A') return undefined;
+  const m = /^(\d{4}-\d{2}-\d{2})[ T]23:59(?::\d{2})?$/.exec(raw.trim());
+  return m ? m[1] : raw;
 }
 
 /** GamerPower giveaways → active ones whose end date (if any) is still ahead. */
@@ -87,7 +124,7 @@ export function mapGamerPowerGiveaways(items: GamerPowerItem[] | null | undefine
       imageUrl:     g.image || null,
       publishedAt:  g.published_date,
       platform:     g.platforms,
-      endDate:      g.end_date !== 'N/A' ? g.end_date : undefined,
+      endDate:      gamerPowerEnd(g.end_date),
       instructions: g.instructions,
     }));
 }
@@ -134,6 +171,8 @@ export function mapSteamDeal(item: any, details: SteamAppDetails | null, reviews
     imageUrl:    item.large_capsule_image || item.header_image || null,
     publishedAt: null,
     platform:    'PC (Steam)',
+    // Spec 086 FR-003: the deal ends when the discount does (Unix seconds).
+    endDate:     Number(item.discount_expiration) > 0 ? new Date(Number(item.discount_expiration) * 1000).toISOString() : undefined,
     discount:    item.discount_percent,
     salePrice:   `${fmt(finalCents)} ${currency}`,
     origPrice:   `${fmt(origCents)} ${currency}`,

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { apodPageUrl, mapApod } from './nasa-apod.api';
 import { mapSpaceflightArticles, spaceflightArticlesUrl } from './spaceflight-news.api';
 import { mapTmdbTrending, tmdbTrendingUrl } from './tmdb.api';
-import { mapEpicFreeGames, mapGamerPowerGiveaways, mapSteamDeal, steamSpecials } from './games.api';
+import { mapEpicFreeGames, mapEpicUpcomingFreeGames, mapGamerPowerGiveaways, mapSteamDeal, steamSpecials } from './games.api';
 import { byabbeUrl, mapByabbeEntries } from './byabbe.api';
 
 const NOW = Date.parse('2026-10-01T12:00:00Z');
@@ -71,6 +71,60 @@ test('steamSpecials + mapSteamDeal: discount filter, prices, requirements', () =
   assert.equal(deal.origPrice, '19.99 USD');
   assert.equal(deal.minRam, '8 GB RAM');
   assert.equal(deal.source, 'https://store.steampowered.com/app/10');
+});
+
+test('spec 086 FR-003: mapSteamDeal ends when the discount does (discount_expiration, Unix seconds)', () => {
+  const base = { id: 10, name: 'Game', discount_percent: 75, final_price: 499, original_price: 1999, currency: 'USD' };
+  assert.equal(mapSteamDeal({ ...base, discount_expiration: 1793894400 }, null, null).endDate, '2026-11-05T16:00:00.000Z');
+  assert.equal(mapSteamDeal({ ...base, discount_expiration: 0 }, null, null).endDate, undefined);
+  assert.equal(mapSteamDeal(base, null, null).endDate, undefined);
+});
+
+test('spec 086 FR-002: mapGamerPowerGiveaways turns a zone-less 23:59 into a date, keeps other forms', () => {
+  const base = { id: 1, description: 'd', instructions: 'i', type: 'Game', platforms: 'PC', gamerpower_url: 'https://g', image: '', published_date: '2026-09-30', status: 'Active' };
+  const ends = (end_date: string) => mapGamerPowerGiveaways([{ ...base, title: 'A', end_date }] as any, NOW)[0].endDate;
+  assert.equal(ends('2026-11-05 23:59:00'), '2026-11-05');
+  assert.equal(ends('2026-11-05 23:59'), '2026-11-05');
+  assert.equal(ends('2026-11-05T23:59:59'), '2026-11-05');
+  assert.equal(ends('2026-11-05 12:00:00'), '2026-11-05 12:00:00');
+  assert.equal(ends('N/A'), undefined);
+  // The whole last day stays open.
+  assert.equal(mapGamerPowerGiveaways([{ ...base, title: 'A', end_date: '2026-10-01 23:59:00' }] as any, NOW).length, 1);
+});
+
+const epicOffer = (start: string, end: string, pct: number) => ({ startDate: start, endDate: end, discountSetting: { discountPercentage: pct } });
+const epicEl = (title: string, promotions: unknown) => ({ title, productSlug: title.toLowerCase(), promotions });
+
+test('spec 086 FR-001: the Epic deadline is the free offer, whatever the order of the offers', () => {
+  const sale = epicOffer('2026-09-20T15:00:00Z', '2026-10-02T15:00:00Z', 50);
+  const free = epicOffer('2026-09-25T15:00:00Z', '2026-10-05T15:00:00Z', 0);
+  for (const offers of [[sale, free], [free, sale]]) {
+    const [item] = mapEpicFreeGames([epicEl('Game', { promotionalOffers: [{ promotionalOffers: offers }] })], NOW);
+    assert.equal(item.endDate, '2026-10-05T15:00:00Z');
+    assert.equal(item.publishedAt, '2026-09-25T15:00:00Z');
+  }
+  // Offers in separate groups too; an offer that has not started is never the deadline.
+  const later = epicOffer('2026-10-03T15:00:00Z', '2026-10-09T15:00:00Z', 0);
+  const [item] = mapEpicFreeGames([epicEl('Game', { promotionalOffers: [{ promotionalOffers: [later] }, { promotionalOffers: [free] }] })], NOW);
+  assert.equal(item.endDate, '2026-10-05T15:00:00Z');
+  assert.deepEqual(mapEpicFreeGames([epicEl('Game', { promotionalOffers: [{ promotionalOffers: [later] }] }), epicEl('Null', null)], NOW), []);
+});
+
+test('spec 086 FR-001: mapEpicUpcomingFreeGames lists free offers that start later, not sales, not games free now', () => {
+  const next = epicOffer('2026-10-08T15:00:00Z', '2026-10-15T15:00:00Z', 0);
+  const els = [
+    epicEl('Next', { promotionalOffers: [], upcomingPromotionalOffers: [{ promotionalOffers: [epicOffer('2026-10-08T15:00:00Z', '2026-10-15T15:00:00Z', 30), next] }] }),
+    epicEl('Sale', { promotionalOffers: [], upcomingPromotionalOffers: [{ promotionalOffers: [epicOffer('2026-10-08T15:00:00Z', '2026-10-15T15:00:00Z', 50)] }] }),
+    epicEl('Now', {
+      promotionalOffers: [{ promotionalOffers: [epicOffer('2026-09-25T15:00:00Z', '2026-10-05T15:00:00Z', 0)] }],
+      upcomingPromotionalOffers: [{ promotionalOffers: [next] }],
+    }),
+    epicEl('Null', null),
+  ];
+  const up = mapEpicUpcomingFreeGames(els, NOW);
+  assert.deepEqual(up.map((i) => i.title), ['Next']);
+  assert.deepEqual([up[0].startDate, up[0].endDate], ['2026-10-08T15:00:00Z', '2026-10-15T15:00:00Z']);
+  assert.deepEqual(mapEpicFreeGames(els, NOW).map((i) => i.title), ['Now']);
 });
 
 test('mapByabbeEntries limits and falls back to the wikipedia title', () => {

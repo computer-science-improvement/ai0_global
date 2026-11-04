@@ -10,6 +10,7 @@ export interface GameChannelItem {
 
   // Giveaway / deal specific
   platform?:    string;
+  startDate?:   string;       // upcoming Epic giveaways: when the free offer starts
   endDate?:     string;
   instructions?: string;
 

@@ -208,12 +208,12 @@ test('spec 070 source health: a dead feed reaches the owner as failing (3 failed
   assert.equal(needsReplacement(noBlock), true);
 });
 
-function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; struck?: Array<HostBlockRow & { notedAt: Date | null }>; noted?: Set<string>; posts?: any[] }) {
+function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; steps?: any[]; blocks?: HostBlockRow[]; struck?: Array<HostBlockRow & { notedAt: Date | null }>; noted?: Set<string>; posts?: any[] }) {
   const posts = o.posts ?? [];
   const noted = o.noted ?? new Set<string>();
   const svc = new SourceHealthService({
     repo: {
-      steps: async () => [], blocks: async () => [],
+      steps: async () => o.steps ?? [], blocks: async () => o.blocks ?? [],
       playbookOf: async () => o.playbook ?? null,
       struck: async (keys: string[]) => (o.struck ?? []).filter((b) => keys.includes(b.host)),
       claimNote: async (host: string) => { if (noted.has(host)) return false; noted.add(host); return true; },
@@ -249,7 +249,7 @@ test('the third strike on a playbook feed is one owner note in Ukrainian (once p
   assert.equal(posts[0].severity, 'action');
   assert.equal(posts[0].refId, '@ai0_global/marktechpost.com');
   assert.match(posts[0].body, /заблоковано до 2026-10-27/);
-  assert.match(posts[0].body, /прибери її з плейбука/);
+  assert.match(posts[0].body, /приберіть її з плейбука/);
   assert.match(posts[1].title, /^theverge\.com відмовляє нам 4 рази поспіль — прибрати з джерел @ai0_global \(картка каналу\)\?$/);
   assert.match(posts[1].body, /агент шукає заміну/);
   assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), [], 'claimed once — no second note');
@@ -260,4 +260,30 @@ test('without the repository hooks or the inbox the note step does nothing', asy
   const card = makeCard({ channelKey: '@c', sources: [FEED] });
   const bare = new SourceHealthService({ repo: { steps: async () => [], blocks: async () => [] }, channels: { get: async () => card } });
   assert.deepEqual(await bare.noteStruckHosts(card, null), []);
+});
+
+const hit = (url: string, h: number) => ({ at: plus(T0, -h), tool: 'web_fetch', input: { url }, isError: true, error: 'host_blocked', details: null, items: null, slotId: null, slotStatus: null });
+
+test('spec 086 FR-004: a struck host outside the sources (otherHosts) gets its own info note, once; a host of the sources keeps the source note only', async () => {
+  const card = makeCard({ channelKey: '@ai0_global', sources: [FEED] });
+  const elsewhere = block('elsewhere.example', { strikes: 3, until: plus(T0, 160) });
+  const verge = block('theverge.com', { strikes: 3, until: plus(T0, 160) });
+  const struck = [{ ...elsewhere, notedAt: null }, { ...verge, notedAt: null }];
+  const steps = [hit('https://elsewhere.example/a', 5), hit('https://elsewhere.example/b', 4), hit('https://theverge.com/ai', 3)];
+  const noted = new Set<string>();
+  const { svc, posts } = service({ card, struck, noted, steps, blocks: [elsewhere, verge] });
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), ['elsewhere.example', 'theverge.com']);
+  assert.equal(posts.length, 2);
+  assert.equal(posts[0].title, 'elsewhere.example відмовляє нам 3 рази поспіль — агенти @ai0_global ходять туди поза джерелами');
+  assert.equal(posts[0].severity, 'info');
+  assert.equal(posts[0].kind, 'host_struck');
+  assert.equal(posts[0].refType, 'host');
+  assert.equal(posts[0].refId, '@ai0_global/elsewhere.example');
+  assert.match(posts[0].body, /заблоковано до 2026-10-27 \(refused 403\)/);
+  assert.match(posts[0].body, /агенти читали його 2 раз\(и\) за 14 днів/);
+  assert.match(posts[0].body, /додайте джерело тієї ж теми/);
+  assert.match(posts[1].title, /прибрати з джерел @ai0_global \(картка каналу\)\?$/, 'a host of the sources keeps the source note');
+  assert.equal(posts[1].severity, 'action');
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), [], 'claimed once per streak');
+  assert.equal(posts.length, 2);
 });
