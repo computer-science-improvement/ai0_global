@@ -7,7 +7,7 @@ import { clip, defineAdapter } from './types';
 /** Steam featured specials with a big discount (same source as the game-channel strategy). */
 export const steamDealsAdapter = defineAdapter({
   name: 'steam_deals',
-  description: 'steam_deals — знижки Steam (ціна, знижка, відгуки, жанри). params: {min_discount?: 1–100 (50), limit?: 1–10 (5), enrich?: bool (true — опис, жанри, відгуки; +2 запити на гру)}',
+  description: 'steam_deals — знижки Steam (ціна, знижка, ends_at — коли знижка закінчується, відгуки, жанри). params: {min_discount?: 1–100 (50), limit?: 1–10 (5), enrich?: bool (true — опис, жанри, відгуки; +2 запити на гру)}',
   params: z.object({
     min_discount: z.number().int().min(1).max(100).default(50),
     limit:        z.number().int().min(1).max(10).default(5),
@@ -31,7 +31,7 @@ export const steamDealsAdapter = defineAdapter({
       items: deals.map((g) => ({
         title: g.title, summary: clip(g.description), url: g.source, image: g.imageUrl, date: null,
         extra: {
-          discount_percent: g.discount, sale_price: g.salePrice, original_price: g.origPrice,
+          ends_at: g.endDate ?? null, discount_percent: g.discount, sale_price: g.salePrice, original_price: g.origPrice,
           review_score: g.reviewScore ?? null, review_count: g.reviewCount ?? null, genres: g.genres ?? [],
         },
       })),

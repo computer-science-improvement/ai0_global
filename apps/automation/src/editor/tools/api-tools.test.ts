@@ -96,6 +96,60 @@ test('epic_free_games: only currently-free offers, end date in extra', async () 
   assert.equal(r.items[0].date_local, '25.09, 18:00 (Київ)');
 });
 
+const epicOf = (...elements: unknown[]) => ({ data: { Catalog: { searchStore: { elements } } } });
+const offerOf = (startDate: string, endDate: string, pct: number) => ({ startDate, endDate, discountSetting: { discountPercentage: pct } });
+
+test('spec 086 FR-001: epic_free_games lists free_now first, then upcoming with starts_at and the note; a sale never sets the deadline', async () => {
+  const { call } = fakeHttp(() => ({ body: epicOf(
+    { title: 'Next', productSlug: 'next', promotions: { promotionalOffers: [], upcomingPromotionalOffers: [{ promotionalOffers: [offerOf('2026-10-08T15:00:00Z', '2026-10-15T15:00:00Z', 0)] }] } },
+    { title: 'Now', productSlug: 'now', promotions: { promotionalOffers: [{ promotionalOffers: [offerOf('2026-09-20T15:00:00Z', '2026-10-02T15:00:00Z', 50), offerOf('2026-09-25T15:00:00Z', '2026-10-05T15:00:00Z', 0)] }] } },
+  ) }));
+  const r = await call('epic_free_games');
+  assert.deepEqual(r.items.map((i: any) => [i.title, i.extra.status]), [['Now', 'free_now'], ['Next', 'upcoming']]);
+  assert.equal(r.items[0].extra.ends_at, '2026-10-05T15:00:00Z');
+  assert.equal(r.items[0].extra.ends_at_local, '05.10, 18:00 (Київ)');
+  assert.equal(r.items[1].extra.starts_at, '2026-10-08T15:00:00Z');
+  assert.equal(r.items[1].extra.starts_at_local, '08.10, 18:00 (Київ)');
+  assert.equal(r.items[1].date, '2026-10-08T15:00:00Z');
+  assert.match(r.note, /status upcoming — гра ще не безкоштовна/);
+  const none = fakeHttp(() => ({ body: epicOf({ title: 'Now', promotions: { promotionalOffers: [{ promotionalOffers: [offerOf('2026-09-25T15:00:00Z', '2026-10-05T15:00:00Z', 0)] }] } }) }));
+  assert.equal((await none.call('epic_free_games')).note, undefined, 'no upcoming item, no note');
+});
+
+const GP = (o: Record<string, unknown>) => ({ id: 1, description: 'd', instructions: 'i', type: 'Game', gamerpower_url: 'https://gamerpower.com/1', image: '', published_date: '2026-09-30 10:00:00', status: 'Active', ...o });
+const isEpicUrl = (u: URL) => u.hostname.includes('epicgames');
+
+test('spec 086 FR-002: gamerpower_giveaways: 23:59 is a date; the Epic moment wins for an Epic giveaway; a failed Epic read keeps the date; non-Epic never reads Epic', async () => {
+  const route = (epic: () => { status?: number; body: unknown }) => (u: URL) => isEpicUrl(u) ? epic() : { body: [
+    GP({ title: 'Hogwarts Legacy (Epic Games) Giveaway', platforms: 'PC, Epic Games Store', end_date: '2026-10-05 23:59:00' }),
+    GP({ id: 2, title: 'Other Game Giveaway', platforms: 'PC, Steam', end_date: '2026-10-05 23:59:00' }),
+  ] };
+  const epicBody = epicOf({ title: 'Hogwarts Legacy', promotions: { promotionalOffers: [{ promotionalOffers: [offerOf('2026-09-25T15:00:00Z', '2026-10-05T15:00:00Z', 0)] }] } });
+  const ok = await fakeHttp(route(() => ({ body: epicBody }))).call('gamerpower_giveaways');
+  assert.deepEqual([ok.items[0].extra.ends_at, ok.items[0].extra.ends_at_source, ok.items[0].extra.ends_at_local], ['2026-10-05T15:00:00Z', 'epic', '05.10, 18:00 (Київ)']);
+  assert.deepEqual([ok.items[1].extra.ends_at, ok.items[1].extra.ends_at_source, ok.items[1].extra.ends_at_local], ['2026-10-05', 'gamerpower', undefined]);
+
+  const down = await fakeHttp(route(() => ({ status: 503, body: {} }))).call('gamerpower_giveaways');
+  assert.deepEqual([down.items[0].extra.ends_at, down.items[0].extra.ends_at_source], ['2026-10-05', 'gamerpower']);
+
+  const plain = fakeHttp((u) => isEpicUrl(u) ? { body: epicBody } : { body: [GP({ title: 'Loot', platforms: 'PC, Steam', end_date: '2026-10-05 23:59' })] });
+  await plain.call('gamerpower_giveaways');
+  assert.ok(!plain.urls.some(isEpicUrl), 'a non-Epic result never triggers the Epic read');
+});
+
+test('spec 086 FR-003: steam_deals returns ends_at from discount_expiration, null without it', async () => {
+  const { call } = fakeHttp(() => ({ body: { specials: { items: [
+    { id: 1, name: 'A', discount_percent: 80, discount_expiration: 1793894400 },
+    { id: 2, name: 'B', discount_percent: 80, discount_expiration: 0 },
+    { id: 3, name: 'C', discount_percent: 80 },
+  ] } } }));
+  const r = await call('steam_deals', { enrich: false });
+  assert.equal(r.items[0].extra.ends_at, '2026-11-05T16:00:00.000Z');
+  assert.equal(r.items[0].extra.ends_at_local, '05.11, 18:00 (Київ)');
+  assert.equal(r.items[1].extra.ends_at, null);
+  assert.equal(r.items[2].extra.ends_at, null);
+});
+
 test('steam_deals: discount filter, limit, best-effort enrichment', async () => {
   const { call, urls } = fakeHttp((u) => {
     if (u.pathname === '/api/featuredcategories/') {

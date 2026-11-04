@@ -54,9 +54,9 @@ export class SourceHealthService {
    * Spec 049 FR-004: the card's blocked, failing or exhausted sources with no change card waiting for the owner and
    * none the owner discarded in the last week — what the channel agent's daily run is asked to replace.
    */
-  async needingReplacement(card: EditorCard): Promise<SourceHealth[]> {
+  async needingReplacement(card: EditorCard, report?: SourceHealthReport): Promise<SourceHealth[]> {
     // Only card sources: a `change_source` card edits the card, a playbook feed is noted to the owner instead (noteStruckHosts).
-    const troubled = (await this.forCard(card)).sources.filter((h) => h.origin !== 'playbook' && needsReplacement(h));
+    const troubled = (report ?? await this.forCard(card)).sources.filter((h) => h.origin !== 'playbook' && needsReplacement(h));
     if (!troubled.length || !this.d.pool) return troubled;
     const { rows } = await this.d.pool.query(
       `SELECT payload->>'sourceId' AS source_id FROM pending_actions
@@ -71,17 +71,42 @@ export class SourceHealthService {
    * Spec 061 FR-004: a host of this channel's sources (card or playbook) blocked 3 times in a row (the 7-day cap) gets ONE
    * owner note, in Ukrainian, written once per streak (`noted_at`; a successful fetch starts the next streak). A card
    * source is also in the daily replacement run (`needingReplacement`, the `change_source` card); a playbook feed has no
-   * such path, so the note is how the owner hears about it.
+   * such path, so the note is how the owner hears about it. Spec 086 FR-004: a struck host the channel's runs hit outside its
+   * sources (`otherHosts` of the source health report) gets an info note of its own, once per streak too.
    */
-  async noteStruckHosts(card: EditorCard, agentId: string | null): Promise<string[]> {
+  async noteStruckHosts(card: EditorCard, agentId: string | null, report?: SourceHealthReport): Promise<string[]> {
     if (!this.d.repo.struck || !this.d.repo.claimNote || !this.d.inbox) return [];
     const { all, playbook } = await this.sourcesOf(card);
     const hosts = [...new Set(all.map((s) => hostOf(s.ref)).filter(Boolean) as string[])];
-    const struck = await this.d.repo.struck(hosts, STRIKES_FOR_OWNER);
+    // Spec 086 FR-004: blocked hosts the channel's runs hit outside its sources (one report read; the caller may pass its own).
+    const rep = report ?? await this.forCard(card).catch(() => null);
+    const others = new Map((rep?.otherHosts ?? []).map((o) => [o.host, o]));
+    const struck = await this.d.repo.struck([...new Set([...hosts, ...others.keys()])], STRIKES_FOR_OWNER);
     const noted: string[] = [];
     for (const b of struck) {
-      if (!(await this.d.repo.claimNote(b.host))) continue;
       const mine = all.filter((s) => hostOf(s.ref) === b.host);
+      const outside = others.get(b.host);
+      if (!mine.length && !outside) continue;
+      if (!mine.length && outside) {
+        // Spec 086 FR-004: the host-wide claim belongs to the source note — an info note must not use it up, or the channel
+        // that has the host as a source would never get its action note. Dedupe per channel and block instead.
+        if (this.d.pool) {
+          const { rows } = await this.d.pool.query(
+            `SELECT 1 FROM agent_inbox WHERE kind = $1 AND ref_type = 'host' AND ref_id = $2 AND created_at > $3 LIMIT 1`,
+            [HOST_STRUCK_KIND, `${card.channelKey}/${b.host}`, new Date(b.until.getTime() - 7 * 86_400_000)]).catch(() => ({ rows: [{}] }));
+          if (rows.length) continue;
+        }
+        await this.d.inbox.post({
+          agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'info',
+          title: `${b.host} відмовляє нам ${b.strikes} рази поспіль — агенти ${card.channelKey} ходять туди поза джерелами`,
+          body: `Сайт ${b.host} заблоковано до ${b.until.toISOString().slice(0, 10)} (${b.reason}${b.statusCode ? ` ${b.statusCode}` : ''}); блокування 1 → 3 → 7 діб, до його кінця запитів не робимо.`
+            + ` Його немає серед джерел каналу: агенти читали його ${outside.calls} раз(и) за ${rep!.days} днів (посилання з новин чи пошуку).`
+            + ' Якщо матеріал звідти потрібен — додайте джерело тієї ж теми; якщо ні — нічого робити не треба.',
+        }).catch(() => null);
+        noted.push(b.host);
+        continue;
+      }
+      if (!(await this.d.repo.claimNote(b.host))) continue;
       const inCard = mine.some((s) => !s.id.startsWith(PLAYBOOK_SOURCE_PREFIX));
       const inPlaybook = playbook.some((s) => hostOf(s.ref) === b.host);
       const where = inCard ? `джерел ${card.channelKey} (картка каналу)` : `плейбука ${card.channelKey}`;
@@ -90,7 +115,7 @@ export class SourceHealthService {
         title: `${b.host} відмовляє нам ${b.strikes} рази поспіль — прибрати з ${where}?`,
         body: `Сайт ${b.host} заблоковано до ${b.until.toISOString().slice(0, 10)} (${b.reason}${b.statusCode ? ` ${b.statusCode}` : ''}); блокування 1 → 3 → 7 діб, до його кінця запитів не робимо.`
           + (inCard ? ' Джерело картки: агент шукає заміну і покаже картку Apply / Discard.' : '')
-          + (inPlaybook ? ' Адреса є в плейбуку каналу — прибери її з плейбука (директива менеджеру) або залиш, якщо сайт ще оживе.' : ''),
+          + (inPlaybook ? ' Адреса є в плейбуку каналу — приберіть її з плейбука (директива менеджеру) або залиште, якщо сайт ще оживе.' : ''),
       }).catch(() => null);
       noted.push(b.host);
     }
@@ -102,8 +127,9 @@ export class SourceHealthService {
    * this week. Each gets one owner Inbox note ("… is failing; the agent looks for a replacement"), at most weekly.
    */
   async toReplaceToday(card: EditorCard, agentId: string | null): Promise<SourceHealth[]> {
-    await this.noteStruckHosts(card, agentId).catch(() => null);
-    const need = await this.needingReplacement(card);
+    const report = await this.forCard(card).catch(() => undefined); // one read for the note and the replacement list
+    await this.noteStruckHosts(card, agentId, report).catch(() => null);
+    const need = await this.needingReplacement(card, report);
     if (!need.length || !this.d.pool) return need;
     const refs = need.map((h) => `${card.channelKey}/${h.id}`);
     const { rows } = await this.d.pool.query(
