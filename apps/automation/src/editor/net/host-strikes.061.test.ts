@@ -208,7 +208,7 @@ test('spec 070 source health: a dead feed reaches the owner as failing (3 failed
   assert.equal(needsReplacement(noBlock), true);
 });
 
-function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; steps?: any[]; blocks?: HostBlockRow[]; struck?: Array<HostBlockRow & { notedAt: Date | null }>; noted?: Set<string>; posts?: any[] }) {
+function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; steps?: any[]; blocks?: HostBlockRow[]; struck?: Array<HostBlockRow & { notedAt: Date | null }>; noted?: Set<string>; posts?: any[]; inboxPool?: boolean }) {
   const posts = o.posts ?? [];
   const noted = o.noted ?? new Set<string>();
   const svc = new SourceHealthService({
@@ -220,6 +220,8 @@ function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; ste
     },
     channels: { get: async () => o.card }, now: () => T0,
     inbox: { post: async (i: any) => { posts.push(i); return 1; } },
+    // Fake agent_inbox lookup (Spec 086 FR-004 per-channel dedupe of the info note): a row exists when that ref was posted.
+    ...(o.inboxPool ? { pool: { query: async (_q: string, a: any[]) => ({ rows: posts.filter((p) => p.refId === a[1]).map(() => ({})) }) } as any } : {}),
   });
   return { svc, posts };
 }
@@ -271,7 +273,7 @@ test('spec 086 FR-004: a struck host outside the sources (otherHosts) gets its o
   const struck = [{ ...elsewhere, notedAt: null }, { ...verge, notedAt: null }];
   const steps = [hit('https://elsewhere.example/a', 5), hit('https://elsewhere.example/b', 4), hit('https://theverge.com/ai', 3)];
   const noted = new Set<string>();
-  const { svc, posts } = service({ card, struck, noted, steps, blocks: [elsewhere, verge] });
+  const { svc, posts } = service({ card, struck, noted, steps, blocks: [elsewhere, verge], inboxPool: true });
   assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), ['elsewhere.example', 'theverge.com']);
   assert.equal(posts.length, 2);
   assert.equal(posts[0].title, 'elsewhere.example відмовляє нам 3 рази поспіль — агенти @ai0_global ходять туди поза джерелами');
@@ -286,4 +288,34 @@ test('spec 086 FR-004: a struck host outside the sources (otherHosts) gets its o
   assert.equal(posts[1].severity, 'action');
   assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), [], 'claimed once per streak');
   assert.equal(posts.length, 2);
+});
+
+test('spec 086 FR-004: a host in both the sources and otherHosts gets the action note only (source precedence)', async () => {
+  const card = makeCard({ channelKey: '@ai0_global', sources: [FEED] });
+  const verge = block('theverge.com', { strikes: 3, until: plus(T0, 160) });
+  const { svc, posts } = service({ card, struck: [{ ...verge, notedAt: null }], inboxPool: true });
+  const r = await svc.forCard(card);
+  const report = { ...r, otherHosts: [...r.otherHosts, { host: 'theverge.com', reason: 'refused', statusCode: 403, until: plus(T0, 160), calls: 1 }] } as any;
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch', report), ['theverge.com']);
+  assert.equal(posts.length, 1);
+  assert.equal(posts[0].severity, 'action');
+  assert.match(posts[0].title, /прибрати з джерел @ai0_global \(картка каналу\)\?$/);
+});
+
+test('spec 086 FR-004: an info note for a channel that only hits the host outside its sources does not use up the claim of a channel that has it as a playbook source', async () => {
+  const noted = new Set<string>();
+  const mp = block('marktechpost.com', { strikes: 3, until: plus(T0, 160) });
+  const struck = [{ ...mp, notedAt: null }];
+  const cardB = makeCard({ channelKey: '@b', sources: [FEED] });
+  const cardA = makeCard({ channelKey: '@a', sources: [] });
+  const playbook = { series: [{ name: 'AI news', source: { kind: 'feed', ref: 'https://www.marktechpost.com/feed/' } }], rules: [] };
+  const b = service({ card: cardB, struck, noted, inboxPool: true });
+  const report = { ...(await b.svc.forCard(cardB)), days: 14, otherHosts: [{ host: 'marktechpost.com', reason: 'refused', statusCode: 403, until: plus(T0, 160), calls: 2 }] } as any;
+  assert.deepEqual(await b.svc.noteStruckHosts(cardB, 'b', report), ['marktechpost.com']);
+  assert.equal(b.posts[0].severity, 'info');
+  assert.deepEqual(await b.svc.noteStruckHosts(cardB, 'b', report), [], 'once per block for the channel');
+  const a = service({ card: cardA, playbook, struck, noted, inboxPool: true });
+  assert.deepEqual(await a.svc.noteStruckHosts(cardA, 'a'), ['marktechpost.com']);
+  assert.equal(a.posts[0].severity, 'action');
+  assert.equal(a.posts[0].refId, '@a/marktechpost.com');
 });

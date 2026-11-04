@@ -87,8 +87,15 @@ export class SourceHealthService {
       const mine = all.filter((s) => hostOf(s.ref) === b.host);
       const outside = others.get(b.host);
       if (!mine.length && !outside) continue;
-      if (!(await this.d.repo.claimNote(b.host))) continue;
       if (!mine.length && outside) {
+        // Spec 086 FR-004: the host-wide claim belongs to the source note — an info note must not use it up, or the channel
+        // that has the host as a source would never get its action note. Dedupe per channel and block instead.
+        if (this.d.pool) {
+          const { rows } = await this.d.pool.query(
+            `SELECT 1 FROM agent_inbox WHERE kind = $1 AND ref_type = 'host' AND ref_id = $2 AND created_at > $3 LIMIT 1`,
+            [HOST_STRUCK_KIND, `${card.channelKey}/${b.host}`, new Date(b.until.getTime() - 7 * 86_400_000)]).catch(() => ({ rows: [{}] }));
+          if (rows.length) continue;
+        }
         await this.d.inbox.post({
           agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'info',
           title: `${b.host} відмовляє нам ${b.strikes} рази поспіль — агенти ${card.channelKey} ходять туди поза джерелами`,
@@ -99,6 +106,7 @@ export class SourceHealthService {
         noted.push(b.host);
         continue;
       }
+      if (!(await this.d.repo.claimNote(b.host))) continue;
       const inCard = mine.some((s) => !s.id.startsWith(PLAYBOOK_SOURCE_PREFIX));
       const inPlaybook = playbook.some((s) => hostOf(s.ref) === b.host);
       const where = inCard ? `джерел ${card.channelKey} (картка каналу)` : `плейбука ${card.channelKey}`;
