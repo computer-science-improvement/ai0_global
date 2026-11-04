@@ -94,11 +94,11 @@ test('A2: a failed revise_source step puts the row aside (the row had its second
   assert.deepEqual(s.passed.map((p) => p.ref), [ROW], 'once: the fixable first attempt kept the row, the failed revise_source passed it');
 });
 
-test('A2: quiz_answer_mismatch puts the row aside; guard and lint codes never do', async () => {
-  const quiz = setup([guard('quiz_answer_mismatch'), shadow]);
+test('A2 (spec 079): quiz_answer_key_invalid puts the row aside; quiz_answer_mismatch, guard and lint codes never do', async () => {
+  const quiz = setup([guard('quiz_answer_key_invalid'), shadow]);
   await quiz.runner.runExecutor(baseSlot, quiz.card);
   assert.deepEqual(quiz.passed.map((p) => p.ref), [ROW]);
-  for (const code of ['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']) {
+  for (const code of ['quiz_answer_mismatch', 'not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']) {
     const s = setup([guard(code), shadow]);
     await s.runner.runExecutor(baseSlot, s.card);
     assert.deepEqual(s.passed, [], code);
@@ -126,7 +126,10 @@ test('A2 pure: shouldPassRow, libraryRefOf, and classifyFailure carries the post
   assert.equal(shouldPassRow({ ...crit, fixable: true }, 'initial'), false);
   assert.equal(shouldPassRow({ ...crit, fixable: true }, 'revise_source'), true);
   assert.equal(shouldPassRow({ ...crit, fixable: false, libraryRef: null }, 'initial'), false);
-  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_mismatch', libraryRef: ROW }, 'initial'), true);
+  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_key_invalid', libraryRef: ROW }, 'initial'), true);
+  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_key_invalid', libraryRef: null }, 'initial'), false);
+  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_mismatch', libraryRef: ROW }, 'initial'), false);
+  assert.equal(shouldPassRow({ kind: 'guard', code: 'quiz_answer_mismatch', libraryRef: ROW }, 'revise_source'), false);
   assert.equal(shouldPassRow({ kind: 'guard', code: 'too_similar', libraryRef: ROW }, 'revise_source'), false);
   assert.equal(shouldPassRow({ kind: 'lint', code: 'lint_failed', libraryRef: ROW }, 'revise_source'), false);
   assert.equal(libraryRefOf({ library_ref: ' data://a_b/1 ' }), 'data://a_b/1');
@@ -155,7 +158,7 @@ test('the PublishProbe records the library_ref of the post it was given', async 
 });
 
 test('R5: a row the guards refused is forgotten — a later post without a row, then a non-fixable reject, has no row to put aside', async () => {
-  for (const code of ['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch']) {
+  for (const code of ['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'quiz_answer_mismatch']) {
     const probe = new PublishProbe();
     let result: any = { error: code, details: 'x' };
     const [wrapped] = probe.wrap([{ name: 'publish_post', execute: async () => result } as any]);
@@ -172,6 +175,43 @@ test('R5: a row the guards refused is forgotten — a later post without a row, 
   const [wrapped] = probe.wrap([{ name: 'publish_post', execute: async () => ({ error: 'too_similar', details: 'x' }) } as any]);
   await wrapped.execute({ spec: { library_ref: ROW } }, {} as any);
   assert.equal(probe.libraryRef, ROW);
+});
+
+test('079 FR-003: skip_slot with ref after a quiz_answer_mismatch keeps the row (ref_kept); after another error it passes the row', async () => {
+  const seen: any[] = [];
+  const mk = (publishResult: any) => {
+    const probe = new PublishProbe();
+    const [pub, skip] = probe.wrap([
+      { name: 'publish_post', execute: async () => publishResult } as any,
+      { name: 'skip_slot', execute: async (i: any) => { seen.push(i); return { ok: true, skipped: true, ...(i.ref ? { passed_ref: i.ref } : {}) }; } } as any,
+    ]);
+    return { probe, pub, skip };
+  };
+  const a = mk({ error: 'quiz_answer_mismatch', details: 'x' });
+  await a.pub.execute({ spec: { library_ref: ROW } }, {} as any);
+  const kept: any = await a.skip.execute({ reason: 'не виходить', cause: 'quality', ref: ROW }, {} as any);
+  assert.equal(seen[0].ref, undefined, 'ref dropped from the input');
+  assert.equal(seen[0].reason, 'не виходить');
+  assert.deepEqual([kept.ok, kept.skipped, kept.ref_kept, kept.passed_ref], [true, true, 'quiz_answer_mismatch', undefined]);
+
+  const b = mk({ error: 'too_similar', details: 'x' });
+  await b.pub.execute({ spec: { library_ref: ROW } }, {} as any);
+  const passed: any = await b.skip.execute({ reason: 'не виходить', cause: 'quality', ref: ROW }, {} as any);
+  assert.equal(seen[1].ref, ROW);
+  assert.deepEqual([passed.passed_ref, passed.ref_kept], [ROW, undefined]);
+
+  // No mismatch before it, or no ref: untouched.
+  const c = mk({ ok: true });
+  await c.pub.execute({ spec: { library_ref: ROW } }, {} as any);
+  assert.equal(((await c.skip.execute({ reason: 'не виходить', cause: 'quality', ref: ROW }, {} as any)) as any).passed_ref, ROW);
+  const d = mk({ error: 'quiz_answer_mismatch', details: 'x' });
+  await d.pub.execute({ spec: { library_ref: ROW } }, {} as any);
+  assert.equal(((await d.skip.execute({ reason: 'не виходить', cause: 'quality' }, {} as any)) as any).ref_kept, undefined);
+});
+
+test('quiz_answer_key_invalid is a content failure the ladder retries and the digest groups with lint', () => {
+  assert.ok((CONTENT_FAILURE_CODES as readonly string[]).includes('quiz_answer_key_invalid'));
+  assert.equal(skipGroupOf('quiz_answer_key_invalid: 42: correct_answer_num = 5'), 'lint');
 });
 
 const ROW2 = 'data://pdr_questions/43';

@@ -145,8 +145,11 @@ function detailsText(details: unknown): string {
   return String(details);
 }
 
-/** Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order). */
-const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch']);
+/**
+ * Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order).
+ * Spec 079 FR-003: `quiz_answer_mismatch` too — the writer marked the wrong option, the row is fine.
+ */
+const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'quiz_answer_mismatch']);
 
 /**
  * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
@@ -159,7 +162,7 @@ export class PublishProbe {
   libraryRef: string | null = null;
 
   wrap(tools: EditorTool[]): EditorTool[] {
-    return tools.map((t) => (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
+    return tools.map((t) => t.name === 'skip_slot' ? this.wrapSkip(t) : (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
       ...t,
       execute: async (input: any, ctx: any) => {
         this.source = sourceOf(input?.spec) ?? this.source;
@@ -172,6 +175,24 @@ export class PublishProbe {
         return r;
       },
     });
+  }
+
+  /**
+   * Spec 079 FR-003: after a `quiz_answer_mismatch` the row is fine (the writer marked the wrong option), so `skip_slot`
+   * with `ref` skips the slot but does not put the row aside; the result says `ref_kept` for the run log.
+   */
+  private wrapSkip(t: EditorTool): EditorTool {
+    return {
+      ...t,
+      execute: async (input: any, ctx: any) => {
+        if (input?.ref && this.last?.code === 'quiz_answer_mismatch') {
+          const { ref: _ref, ...rest } = input;
+          const r = await t.execute(rest, ctx);
+          return isToolError(r) ? r : { ...(r as object), ref_kept: 'quiz_answer_mismatch' };
+        }
+        return t.execute(input, ctx);
+      },
+    };
   }
 }
 
@@ -221,20 +242,20 @@ export function libraryRefOf(spec: any): string | null {
 }
 
 /** Guard and lint codes that say nothing about the row's fitness: the row stays open for the next attempt (spec 071 A2). */
-const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']);
+const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar', 'quiz_answer_mismatch']);
 
 /**
  * Spec 071 A2: does this failure put the post's library row aside for the round (`passRow`)?
  *   - a critic reject that is not fixable (a reject, a low grounding, a wrong topic), or any critic reject of a
  *     `revise_source` step (the row had its second chance);
- *   - `quiz_answer_mismatch` (the row's answer key is wrong, it will not post);
+ *   - `quiz_answer_key_invalid` (spec 079: the row's answer key names no option, it cannot post as a quiz);
  * never a guard or lint code (`not_next_in_order`, `library_item_already_posted`, `series_source_mismatch`, `lint_failed`,
- * `too_similar`): those say the attempt was wrong, not the row. The caller still relies on the ledger to ignore every ref
+ * `too_similar`, `quiz_answer_mismatch`): those say the attempt was wrong, not the row. The caller still relies on the ledger to ignore every ref
  * that is not a row of a cycle dataset.
  */
 export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' | 'libraryRef'>, step: LadderStep): boolean {
   if (!f.libraryRef || NEVER_PASS.has(f.code)) return false;
-  if (f.code === 'quiz_answer_mismatch') return true;
+  if (f.code === 'quiz_answer_key_invalid') return true;
   return f.kind === 'critic_reject' && (!f.fixable || step === 'revise_source');
 }
 

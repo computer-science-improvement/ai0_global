@@ -15,7 +15,7 @@ export const EDITOR_DRAFTS = 'EDITOR_DRAFTS';
 const NOT_FOUND = new Set(['draft_not_found']);
 const CONFLICT = new Set([
   'already_published', 'slot_in_progress', 'in_progress', 'cancel_first', 'channel_paused',
-  'source_already_posted', 'library_item_already_posted', 'quiz_answer_mismatch',
+  'source_already_posted', 'library_item_already_posted', 'quiz_answer_mismatch', 'quiz_answer_key_invalid',
 ]);
 
 /** A refused draft action → the matching HTTP error, with the same {error, details} body the tools return. */
