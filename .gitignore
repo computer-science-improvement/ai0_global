@@ -59,3 +59,6 @@ apps/pipeline/src/data/normalized/pdr/auth.json
 # editor eval run outputs (baseline-*.md is committed)
 apps/automation/evals/results/*
 !apps/automation/evals/results/baseline-*.md
+
+# Local exports and server snapshots (logs, post texts)
+tmp/
