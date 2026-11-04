@@ -108,8 +108,9 @@ test('FR-002: apostrophes (\' ’ ʼ) are one and the same in the exact and the 
   const cut = 'Водій зобовʼязаний подати сигнал світловими покажчиками повороту завчасно до початку';
   assert.ok(cut.length <= 100);
   assert.equal(await checkQuizGroundTruth(pool(row), quiz(['Ні', 'Так', cut], 2)), null);
-  assert.equal(await checkQuizGroundTruth(pool(row), quiz(['Ні', 'Так', full.replace("'", 'ʼ')], 2)), null);
-  assert.equal(await checkQuizGroundTruth(pool(row), quiz(['Ні', 'Так', full.replace("'", '’')], 2)), null);
+  const short = { answers: opts('Ні', "Водій зобов'язаний зупинитися"), correct_answer_num: 1, zero_based: true };
+  assert.equal(await checkQuizGroundTruth(pool(short), quiz(['Ні', 'Водій зобовʼязаний зупинитися'], 1)), null);
+  assert.equal(await checkQuizGroundTruth(pool(short), quiz(['Ні', 'Водій зобов’язаний зупинитися'], 1)), null);
 });
 
 test('a cut that is also the start of another option is refused as ambiguous', async () => {
