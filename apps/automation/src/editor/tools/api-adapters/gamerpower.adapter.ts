@@ -6,6 +6,8 @@ import { clip, defineAdapter } from './types';
 
 const normTitle = (s: unknown): string =>
   typeof s === 'string' ? s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim() : '';
+/** The Epic read is a refinement: it gets its own short budget so a silent Epic host cannot eat the tool's 30 s and lose the GamerPower values. */
+export const EPIC_READ_BUDGET_MS = 5_000;
 const isEpic = (platforms: string | undefined): boolean => /epic games store/i.test(platforms ?? '');
 
 /** GamerPower active giveaways (no key; the game-channel strategy's "gamerpower" source). */
@@ -17,7 +19,7 @@ export const gamerpowerAdapter = defineAdapter({
     type:     z.enum(['game', 'loot', 'beta']).optional(),
     limit:    z.number().int().min(1).max(20).default(10),
   }).strict(),
-  async fetch(p, ctx) {
+  async fetch(p, ctx, epicBudgetMs: number = EPIC_READ_BUDGET_MS) {
     const data = await ctx.getJson(GAMERPOWER_GIVEAWAYS_URL, { ...GAMERPOWER_PARAMS, platform: p.platform, type: p.type });
     const list = Array.isArray(data) ? data : [];
     const games = mapGamerPowerGiveaways(list, ctx.now().getTime()).slice(0, p.limit);
@@ -27,7 +29,11 @@ export const gamerpowerAdapter = defineAdapter({
     const epicEnds: Array<{ title: string; endsAt: string }> = [];
     if (games.some((g) => isEpic(g.platform))) {
       try {
-        const epic = await ctx.getJson(EPIC_FREE_GAMES_URL, EPIC_FREE_GAMES_PARAMS);
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const epic = await Promise.race([
+          ctx.getJson(EPIC_FREE_GAMES_URL, EPIC_FREE_GAMES_PARAMS),
+          new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('epic read over budget')), epicBudgetMs); }),
+        ]).finally(() => clearTimeout(timer));
         const nowMs = ctx.now().getTime();
         for (const el of epic?.data?.Catalog?.searchStore?.elements ?? []) {
           const offer = epicFreeNowOffer(el, nowMs);

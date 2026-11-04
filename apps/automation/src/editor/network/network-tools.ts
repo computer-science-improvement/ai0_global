@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { isEvergreenTopic, RECENT_TOPIC_DAYS, recentTopicHit, recentTopicsOf } from '../story/recent-topics';
+import { kyivDay } from '../../common/ai/usage/kyiv-day';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { similarity } from '../post/similarity';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
@@ -338,7 +339,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
             agentId: orch.id, kind: 'orchestrator_owner_attention', severity: 'action' as const,
             title: `${handle} asks for your attention`, body,
             alert: { title: `${handle} просить вашої уваги`, body },
-            refType: 'agent', refId: orch.handle,
+            refType: 'agent', refId: `${orch.handle}|${kyivDay(now())}`, // a day in the ref, so postOnce's «same ref exists» never swallows a repeat the gate lets through
             gate: { subject: `owner_attention:${orch.id}`, parts: lines.map((l) => l.toLowerCase().replace(/\s+/g, ' ')) },
           };
           if (d.inbox.postOnce) ownerNote = (await d.inbox.postOnce(item)) !== null;

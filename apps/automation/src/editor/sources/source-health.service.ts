@@ -89,11 +89,11 @@ export class SourceHealthService {
       if (!mine.length && !outside) continue;
       if (!mine.length && outside) {
         // Spec 086 FR-004: the host-wide claim belongs to the source note — an info note must not use it up, or the channel
-        // that has the host as a source would never get its action note. Dedupe per channel and block instead.
+        // that has the host as a source would never get its action note. Dedupe per channel and streak instead: any earlier note for the pair counts, and a successful fetch of the host (PgHostFailures.succeeded) retires them.
         if (this.d.pool) {
           const { rows } = await this.d.pool.query(
-            `SELECT 1 FROM agent_inbox WHERE kind = $1 AND ref_type = 'host' AND ref_id = $2 AND created_at > $3 LIMIT 1`,
-            [HOST_STRUCK_KIND, `${card.channelKey}/${b.host}`, new Date(b.until.getTime() - 7 * 86_400_000)]).catch(() => ({ rows: [{}] }));
+            `SELECT 1 FROM agent_inbox WHERE kind = $1 AND ref_type = 'host' AND ref_id = $2 LIMIT 1`,
+            [HOST_STRUCK_KIND, `${card.channelKey}/${b.host}`]).catch(() => ({ rows: [{}] }));
           if (rows.length) continue;
         }
         await this.d.inbox.post({

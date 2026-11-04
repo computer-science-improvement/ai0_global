@@ -156,3 +156,37 @@ test('the daily note over the real tables: one inbox note for the struck playboo
   await svc.toReplaceToday(card, null);
   assert.equal(posts.length, 2, 'a feed\'s own refusal carries no strike, so no owner note');
 });
+
+test('spec 086 FR-004: the info note of a host outside the sources is one per streak, not per block; a success retires it', { skip }, async () => {
+  const card = makeCard({ channelKey: '@pg086out', sources: [] });
+  const repo = new SourceHealthRepository(pool);
+  const posts: any[] = [];
+  const inbox = { post: async (i: any) => {
+    posts.push(i);
+    await pool.query(`INSERT INTO agent_inbox (kind, ref_type, ref_id, severity, title, body) VALUES ($1, $2, $3, $4, $5, $6)`, [i.kind, i.refType, i.refId, i.severity, i.title, i.body]);
+    return 1;
+  } };
+  const svc = new SourceHealthService({ repo, channels: { get: async () => card }, pool, inbox });
+  const host = 'outside086.example';
+  const hosts = new PgHostFailures(pool);
+  const expire = () => pool.query(`UPDATE source_host_failures SET blocked_until = now() - interval '1 minute' WHERE host = $1`, [host]);
+  const report = async () => {
+    const b = (await repo.blocks([host], new Date(Date.now() - 86_400_000)))[0];
+    return { ...(await svc.forCard(card)), days: 14, otherHosts: [{ host, reason: 'refused', statusCode: 403, until: b.until, calls: 2 }] } as any;
+  };
+  for (let i = 0; i < 3; i++) { await hosts.record(host, 'refused', 403); await expire(); }
+  await hosts.record(host, 'refused', 403); // strike 4
+  assert.deepEqual(await svc.noteStruckHosts(card, null, await report()), [host]);
+  // The block ended and a 5th strike moved blocked_until a week on: still the same streak, no second note.
+  await pool.query(`UPDATE agent_inbox SET created_at = now() - interval '9 days' WHERE ref_id = $1`, [`@pg086out/${host}`]);
+  await expire();
+  await hosts.record(host, 'refused', 403);
+  assert.deepEqual(await svc.noteStruckHosts(card, null, await report()), []);
+  assert.equal(posts.length, 1);
+  // A success ends the streak: the next one is noted again.
+  await hosts.succeeded(host);
+  for (let i = 0; i < 3; i++) { await hosts.record(host, 'refused', 403); await expire(); }
+  await hosts.record(host, 'refused', 403);
+  assert.deepEqual(await svc.noteStruckHosts(card, null, await report()), [host]);
+  assert.equal(posts.length, 2);
+});

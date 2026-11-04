@@ -2,6 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { buildNetworkTools, ownerAttentionLines } from './network-tools';
+import { kyivDay } from '../../common/ai/usage/kyiv-day';
 import type { ToolContext } from '../harness/tool';
 
 const ORCH = { id: 'o-1', handle: 'nova', kind: 'orchestrator' };
@@ -29,7 +30,7 @@ test('a summary with «УВАГА ВЛАСНИКУ» lines posts one gated actio
   assert.equal(n.kind, 'orchestrator_owner_attention');
   assert.equal(n.severity, 'action');
   assert.equal(n.agentId, 'o-1');
-  assert.deepEqual([n.refType, n.refId], ['agent', 'nova']);
+  assert.deepEqual([n.refType, n.refId], ['agent', `nova|${kyivDay(new Date())}`]);
   assert.equal(n.title, '@nova asks for your attention');
   assert.match(n.body, /zakon\.rada\.gov\.ua віддає 403/);
   assert.match(n.body, /рішення щодо серії/);
