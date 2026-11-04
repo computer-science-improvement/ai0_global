@@ -1,6 +1,6 @@
 # 079 — The quiz answer key comes from the data
 
-Status: in progress (AI0-256) · P0 hotfix · Builds on 032 (data store), 071 (`passed` rows, `skip_slot` `ref`), 060 (Inbox note gate) · Migration 102
+Status: done (AI0-256, hotfix/079-086) · P0 hotfix · Builds on 032 (data store), 071 (`passed` rows, `skip_slot` `ref`), 060 (Inbox note gate) · Migration 102
 
 > Source: review 5 (`docs/reviews/2026-11-04-agent-review-5.md` §3 #7, §5 «079»; the review lives on `feat/editor-agent`). This hotfix is built on `develop` (branch `hotfix/079-086`) so it can ship without wave 1. The section «Integration into feat/editor-agent» at the end lists what changes when it is merged there.
 

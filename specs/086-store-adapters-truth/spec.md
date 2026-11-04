@@ -1,6 +1,6 @@
 # 086 — Store adapters tell the truth
 
-Status: in progress (AI0-257) · P0 hotfix · Builds on 009 (fetch_api adapters), 063 FR-005 (`*_local` times), 061 FR-004 (host strikes) · No migration
+Status: done (AI0-257, hotfix/079-086) · P0 hotfix · Builds on 009 (fetch_api adapters), 063 FR-005 (`*_local` times), 061 FR-004 (host strikes) · No migration
 
 > Source: review 5 (`docs/reviews/2026-11-04-agent-review-5.md` §3 #16, #20–#23, §5 «086»; the review lives on `feat/editor-agent`). Built on `develop` (branch `hotfix/079-086`) so it can ship without wave 1.
 

@@ -5,4 +5,4 @@
 - [x] T3 Migration 102 + down (FR-004): descriptions, `content_ledger_repairs`, the eight rows, stats refresh; PG migration test (apply, re-apply, down); README migration note.
 - [x] T4 Writer skill (FR-005): `editor-skills/format-poll-quiz.md` ПДР line.
 - [x] T5 Owner note (FR-006): `finish_orchestration` → `orchestrator_owner_attention` Inbox note (gate, alert on «ви»), tool description; dashboard `inbox-kinds.ts` rule + test.
-- [ ] T6 Docs: `specs/README.md` row 079, spec status; the «Integration into feat/editor-agent» list stays for the merge.
+- [x] T6 Docs: `specs/README.md` row 079, spec status; the «Integration into feat/editor-agent» list stays for the merge.
