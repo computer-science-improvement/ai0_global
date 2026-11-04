@@ -60,7 +60,7 @@ test('bare strings: base 0 when a 0 is present, base 1 otherwise', async () => {
 
 test('a key that names no option is quiz_answer_key_invalid, never a pass', async () => {
   const cases: Array<[string, any]> = [
-    ['out of range', { answers: opts('A', 'B', 'C'), correct_answer_num: 5, zero_based: true }],
+    ['out of range', { answers: opts('A', 'B', 'C'), correct_answer_num: '5', zero_based: true }],
     ['null', { answers: opts('A', 'B', 'C'), correct_answer_num: null, zero_based: true }],
     ['not a number', { answers: opts('A', 'B', 'C'), correct_answer_num: 'x', zero_based: true }],
     ['no answers', { answers: [], correct_answer_num: 0, zero_based: true }],
@@ -99,6 +99,17 @@ test('a long correct option cut at a word boundary passes (with or without «…
   // a short correct option never matches by prefix
   const short = { answers: opts('Так, можна', 'Ні'), correct_answer_num: 0, zero_based: true };
   assert.equal((await checkQuizGroundTruth(pool(short), quiz(['Так', 'Ні'], 0)))?.error, 'quiz_answer_mismatch');
+});
+
+test('FR-002: apostrophes (\' ’ ʼ) are one and the same in the exact and the cut comparison', async () => {
+  const full = "Водій зобов'язаний подати сигнал світловими покажчиками повороту завчасно до початку маневру, а також переконатися у безпеці.";
+  assert.ok(full.length > 100);
+  const row = { answers: opts('Ні', 'Так', full), correct_answer_num: 2, zero_based: true };
+  const cut = 'Водій зобовʼязаний подати сигнал світловими покажчиками повороту завчасно до початку';
+  assert.ok(cut.length <= 100);
+  assert.equal(await checkQuizGroundTruth(pool(row), quiz(['Ні', 'Так', cut], 2)), null);
+  assert.equal(await checkQuizGroundTruth(pool(row), quiz(['Ні', 'Так', full.replace("'", 'ʼ')], 2)), null);
+  assert.equal(await checkQuizGroundTruth(pool(row), quiz(['Ні', 'Так', full.replace("'", '’')], 2)), null);
 });
 
 test('a cut that is also the start of another option is refused as ambiguous', async () => {

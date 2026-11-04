@@ -941,6 +941,7 @@ A dataset can now be set to **repeat in rounds**: every row is posted once on ea
 **Needs**
 
 - Migration `096_data_reuse_rounds.sql` (down: `down/096_data_reuse_rounds.down.sql`; it sets cycle datasets back to «never again», deletes the `passed` ledger rows and drops the round table). Nothing to enable: the setting is per dataset and a dataset stays «never again» until you change it.
+- Migration `102_quiz_answer_key` (spec 079). It changes the two `pdr_questions` field descriptions only while they are still the 058 text, and moves the eight `passed` ledger rows of `pdr_questions` that the old quiz guard put aside by mistake (57829, 57245, 57827, 57258, 57433, 57758, 57242, 57256) into `content_ledger_repairs`. The code does not need 102, but the eight rows return to the round only with it. Owner step: run `bash database/migrate.sh` (or let the boot runner apply it) before the new image. Down: `database/migrations/down/102_quiz_answer_key.down.sql` (puts the rows and the descriptions back).
 - Nothing is redeployed for the dashboard beyond the normal build: the Reuse field and the Rounds panel are in the Data pages.
 
 **The setting (Data → a dataset → Schema → Reuse)**

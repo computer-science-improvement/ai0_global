@@ -276,6 +276,16 @@ test('R4: a failure that does not put the series\' next row aside fixes that row
   assert.equal(other.st.fallback.steps[1].step, 'next_candidate');
 });
 
+test('R4 (spec 079): quiz_answer_mismatch on the series\' next row keeps the row — revise_source, not «take other material»', async () => {
+  const series = { seriesContext: async () => ({ note: seriesNoteFor(ROW), nextRow: ROW }) };
+  const s = setup([guard('quiz_answer_mismatch'), shadow], series);
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.equal(s.st.fallback.steps[1].step, 'revise_source');
+  assert.ok(!s.runs[1].user.includes('ІНШИЙ матеріал'));
+  assert.ok(!s.runs[1].user.includes('ІНШИЙ материал'));
+  assert.deepEqual(s.passed, []);
+});
+
 test('R4: a failed revise_source on the next row does not turn into next_candidate; the legacy alias counts as the same row', async () => {
   const series = { seriesContext: async () => ({ note: seriesNoteFor(ROW), nextRow: ROW }) };
   const s = setup([guard('too_similar'), guard('too_similar'), shadow], series);

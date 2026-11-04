@@ -160,6 +160,12 @@ export class PublishProbe {
   source: string | null = null;
   /** Spec 071: the `library_ref` of the last post it was given (a rejected post is never stored on the slot). */
   libraryRef: string | null = null;
+  /**
+   * Spec 079 FR-003: the `library_ref` of the post the last publish call refused with a row-guard code; cleared on the
+   * next publish call. Only `quiz_answer_mismatch` reads it (the row is fine, so the ladder must know it is still the
+   * series' next row); the sticky `libraryRef` stays null for R5.
+   */
+  refusedRef: string | null = null;
 
   wrap(tools: EditorTool[]): EditorTool[] {
     return tools.map((t) => t.name === 'skip_slot' ? this.wrapSkip(t) : (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
@@ -167,11 +173,12 @@ export class PublishProbe {
       execute: async (input: any, ctx: any) => {
         this.source = sourceOf(input?.spec) ?? this.source;
         this.libraryRef = libraryRefOf(input?.spec) ?? this.libraryRef;
+        this.refusedRef = null;
         const r = await t.execute(input, ctx);
         this.last = isToolError(r) ? { code: r.error, details: (r as any).details } : null;
         // Spec 071 R5: a row the guards refused was never judged on its merits, and a later post without a row must not
         // inherit it — the sticky value is for a post that reached the critic.
-        if (isToolError(r) && ROW_GUARD_CODES.has(r.error)) this.libraryRef = null;
+        if (isToolError(r) && ROW_GUARD_CODES.has(r.error)) { this.refusedRef = libraryRefOf(input?.spec); this.libraryRef = null; }
         return r;
       },
     });
@@ -263,11 +270,11 @@ export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' |
  * Did this attempt fail for a content reason the ladder retries? `probe` is the run's last publish-tool error: a
  * run that ran out of steps on a lint / guard error leaves the slot `running`.
  */
-export function classifyFailure(slot: SlotState, run: (Pick<PublishProbe, 'last' | 'source'> & Partial<Pick<PublishProbe, 'libraryRef'>>) | null): SlotFailure | null {
+export function classifyFailure(slot: SlotState, run: (Pick<PublishProbe, 'last' | 'source'> & Partial<Pick<PublishProbe, 'libraryRef' | 'refusedRef'>>) | null): SlotFailure | null {
   const f = classify(slot, run?.last ?? null);
   if (!f) return f;
   // Spec 071: the post's own library row, from the stored post, else from what the publish tool saw.
-  const libraryRef = f.libraryRef ?? libraryRefOf(slot.postSpec) ?? libraryRefOf(slot.platformSpec) ?? run?.libraryRef ?? null;
+  const libraryRef = f.libraryRef ?? libraryRefOf(slot.postSpec) ?? libraryRefOf(slot.platformSpec) ?? run?.libraryRef ?? (f.code === 'quiz_answer_mismatch' ? run?.refusedRef : null) ?? null;
   return { ...f, ...(!f.sourceUrl && run?.source ? { sourceUrl: run.source } : {}), ...(libraryRef ? { libraryRef } : {}) };
 }
 

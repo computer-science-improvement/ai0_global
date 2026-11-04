@@ -6,7 +6,7 @@ const PDR = 'pdr_questions';
 /** Telegram allows 100 characters per poll option; a longer correct answer is cut by the writer. */
 const POLL_OPTION_LIMIT = 100;
 
-const norm = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+const norm = (s: string) => s.toLowerCase().replace(/[ʼ'’]/g, '').replace(/[^\p{L}\p{N}]+/gu, '');
 /** Words of an option for the cut-prefix comparison: case, punctuation and apostrophes inside words ignored. */
 const words = (s: string) => s.split(/\s+/).map(norm).filter(Boolean);
 
@@ -43,7 +43,8 @@ export function resolveAnswerKey(
   });
   const raw = Array.isArray(row.answers) ? row.answers : [];
   const key = parseKey(row.correct_answer_num);
-  const shown = row.correct_answer_num === null || row.correct_answer_num === undefined ? 'немає' : JSON.stringify(row.correct_answer_num);
+  const rawKey = row.correct_answer_num;
+  const shown = rawKey === null || rawKey === undefined ? 'немає' : typeof rawKey === 'string' && /^\s*-?\d+\s*$/.test(rawKey) ? rawKey.trim() : JSON.stringify(rawKey);
   if (raw.length === 0) return fail(`correct_answer_num = ${shown}, але варіантів відповіді немає`);
 
   let options: AnswerOption[];
