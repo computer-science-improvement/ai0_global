@@ -234,10 +234,12 @@ export class PgHostFailures implements HostFailures {
   async succeeded(host: string): Promise<void> {
     try {
       const { rows } = await this.pool.query(`UPDATE source_host_failures SET strikes = 0, noted_at = NULL WHERE host = $1 AND strikes > 0 RETURNING host`, [host]);
-      // Spec 086 FR-004: the streak is over, so the notes of it no longer dedupe the next streak's info note (see noteStruckHosts).
+      // Spec 086 FR-004: the streak is over, so its info notes (hosts outside a channel's sources) no longer dedupe the next
+      // streak's info note (see noteStruckHosts). Only those: an action note of a source host is deduped by `noted_at` above.
       if (rows?.length) {
         await this.pool.query(
-          `UPDATE agent_inbox SET ref_type = 'host_streak_over' WHERE kind = 'host_struck' AND ref_type = 'host' AND right(ref_id, length($1) + 1) = '/' || $1`, [host]);
+          `UPDATE agent_inbox SET ref_type = 'host_streak_over'
+            WHERE kind = 'host_struck' AND ref_type = 'host' AND severity = 'info' AND right(ref_id, length($1) + 1) = '/' || $1`, [host]);
       }
     } catch { /* never stops a fetch */ }
   }

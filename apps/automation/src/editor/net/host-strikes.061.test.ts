@@ -16,7 +16,7 @@ import {
   type HostBlock, type HostFailureReason, type HostFailures, type PrevBlock,
 } from './host-failures';
 import { playbookSources } from '../sources/playbook-feeds';
-import { SourceHealthService } from '../sources/source-health.service';
+import { razy, SourceHealthService } from '../sources/source-health.service';
 import { needsReplacement, sourceHealthOf, type HostBlockRow } from '../sources/source-health';
 
 const T0 = new Date('2026-10-20T08:00:00Z');
@@ -282,7 +282,7 @@ test('spec 086 FR-004: a struck host outside the sources (otherHosts) gets its o
   assert.equal(posts[0].refType, 'host');
   assert.equal(posts[0].refId, '@ai0_global/elsewhere.example');
   assert.match(posts[0].body, /заблоковано до 2026-10-27 \(refused 403\)/);
-  assert.match(posts[0].body, /агенти читали його 2 раз\(и\) за 14 днів/);
+  assert.match(posts[0].body, /агенти читали його 2 рази за 14 днів/);
   assert.match(posts[0].body, /додайте джерело тієї ж теми/);
   assert.match(posts[1].title, /прибрати з джерел @ai0_global \(картка каналу\)\?$/, 'a host of the sources keeps the source note');
   assert.equal(posts[1].severity, 'action');
@@ -318,4 +318,9 @@ test('spec 086 FR-004: an info note for a channel that only hits the host outsid
   assert.deepEqual(await a.svc.noteStruckHosts(cardA, 'a'), ['marktechpost.com']);
   assert.equal(a.posts[0].severity, 'action');
   assert.equal(a.posts[0].refId, '@a/marktechpost.com');
+});
+
+test('spec 086 FR-004: the owner notes count in Ukrainian — раз / рази / разів', () => {
+  assert.deepEqual([1, 2, 3, 4, 5, 11, 12, 14, 21, 22, 25, 111].map(razy),
+    ['1 раз', '2 рази', '3 рази', '4 рази', '5 разів', '11 разів', '12 разів', '14 разів', '21 раз', '22 рази', '25 разів', '111 разів']);
 });

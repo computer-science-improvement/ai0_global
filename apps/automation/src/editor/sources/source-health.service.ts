@@ -21,6 +21,14 @@ export const DECLINED_DAYS = 7;
 export const SOURCE_FAILING_KIND = 'source_failing';
 export const HOST_STRUCK_KIND = 'host_struck';
 
+/** «1 раз», «3 рази», «5 разів», «11 разів», «21 раз» — the owner notes count in Ukrainian. */
+export function razy(n: number): string {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return `${n} раз`;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return `${n} рази`;
+  return `${n} разів`;
+}
+
 /** Spec 049 FR-003 / FR-004: the source health of a channel card, and the sources that need a replacement. */
 export class SourceHealthService {
   constructor(private readonly d: SourceHealthDeps) {}
@@ -92,15 +100,15 @@ export class SourceHealthService {
         // that has the host as a source would never get its action note. Dedupe per channel and streak instead: any earlier note for the pair counts, and a successful fetch of the host (PgHostFailures.succeeded) retires them.
         if (this.d.pool) {
           const { rows } = await this.d.pool.query(
-            `SELECT 1 FROM agent_inbox WHERE kind = $1 AND ref_type = 'host' AND ref_id = $2 LIMIT 1`,
+            `SELECT 1 FROM agent_inbox WHERE kind = $1 AND ref_type = 'host' AND ref_id = $2 AND severity = 'info' LIMIT 1`,
             [HOST_STRUCK_KIND, `${card.channelKey}/${b.host}`]).catch(() => ({ rows: [{}] }));
           if (rows.length) continue;
         }
         await this.d.inbox.post({
           agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'info',
-          title: `${b.host} відмовляє нам ${b.strikes} рази поспіль — агенти ${card.channelKey} ходять туди поза джерелами`,
+          title: `${b.host} відмовляє нам ${razy(b.strikes)} поспіль — агенти ${card.channelKey} ходять туди поза джерелами`,
           body: `Сайт ${b.host} заблоковано до ${b.until.toISOString().slice(0, 10)} (${b.reason}${b.statusCode ? ` ${b.statusCode}` : ''}); блокування 1 → 3 → 7 діб, до його кінця запитів не робимо.`
-            + ` Його немає серед джерел каналу: агенти читали його ${outside.calls} раз(и) за ${rep!.days} днів (посилання з новин чи пошуку).`
+            + ` Його немає серед джерел каналу: агенти читали його ${razy(outside.calls)} за ${rep!.days} днів (посилання з новин чи пошуку).`
             + ' Якщо матеріал звідти потрібен — додайте джерело тієї ж теми; якщо ні — нічого робити не треба.',
         }).catch(() => null);
         noted.push(b.host);
@@ -112,7 +120,7 @@ export class SourceHealthService {
       const where = inCard ? `джерел ${card.channelKey} (картка каналу)` : `плейбука ${card.channelKey}`;
       await this.d.inbox.post({
         agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'action',
-        title: `${b.host} відмовляє нам ${b.strikes} рази поспіль — прибрати з ${where}?`,
+        title: `${b.host} відмовляє нам ${razy(b.strikes)} поспіль — прибрати з ${where}?`,
         body: `Сайт ${b.host} заблоковано до ${b.until.toISOString().slice(0, 10)} (${b.reason}${b.statusCode ? ` ${b.statusCode}` : ''}); блокування 1 → 3 → 7 діб, до його кінця запитів не робимо.`
           + (inCard ? ' Джерело картки: агент шукає заміну і покаже картку Apply / Discard.' : '')
           + (inPlaybook ? ' Адреса є в плейбуку каналу — приберіть її з плейбука (директива менеджеру) або залиште, якщо сайт ще оживе.' : ''),

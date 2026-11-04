@@ -190,3 +190,18 @@ test('spec 086 FR-004: the info note of a host outside the sources is one per st
   assert.deepEqual(await svc.noteStruckHosts(card, null, await report()), [host]);
   assert.equal(posts.length, 2);
 });
+
+test('spec 086 FR-004: a success retires only the info notes of the host — an action note of a source host keeps its ref', { skip }, async () => {
+  const host = 'kept086.example';
+  await pool.query(
+    `INSERT INTO agent_inbox (kind, ref_type, ref_id, severity, title, body) VALUES
+       ('host_struck', 'host', $1, 'action', 'a', 'b'), ('host_struck', 'host', $2, 'info', 'c', 'd')`,
+    [`@pg086src/${host}`, `@pg086out/${host}`]);
+  const hosts = new PgHostFailures(pool);
+  await hosts.record(host, 'refused', 403);
+  await hosts.succeeded(host);
+  const { rows } = await pool.query(`SELECT ref_id, severity, ref_type FROM agent_inbox WHERE ref_id LIKE $1 ORDER BY ref_id`, [`%/${host}`]);
+  assert.deepEqual(rows.map((r: any) => [r.severity, r.ref_type]), [['info', 'host_streak_over'], ['action', 'host']]);
+  await pool.query(`DELETE FROM agent_inbox WHERE ref_id LIKE $1`, [`%/${host}`]);
+  await pool.query(`DELETE FROM source_host_failures WHERE host = $1`, [host]);
+});
