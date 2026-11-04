@@ -311,6 +311,10 @@ const RULES: Record<string, Rule> = {
       return [link('Open network health', '/app/health'), agentLink(c, 'Open agent') ?? channelLink('Open channel', h?.channelKey ?? null)];
     },
   },
+  orchestrator_owner_attention: {
+    why: 'The network orchestrator found something it cannot settle itself and needs your decision.',
+    steps: (c) => [agentLink(c, 'Open agent'), read()],
+  },
   event_not_covered: {
     why: 'An event was announced but no post followed it, so a recap is missing. Planning one now still catches readers.',
     steps: (c) => {

@@ -2,8 +2,9 @@ import type { ContentLedger } from '../../data/content-ledger';
 
 /**
  * Spec 071 FR-004: put a library row aside for the current round. A dataset that repeats in rounds must not stall on a
- * row no post can be made from: when the critic rejected the post for good, the revise step failed, a quiz answer key is
- * wrong, or the executor says so (`skip_slot` with `ref`), the row is recorded as `passed` on the slot's resource. It
+ * row no post can be made from: when the critic rejected the post for good, the revise step failed, the row's quiz
+ * answer key names no option (`quiz_answer_key_invalid`, spec 079; a `quiz_answer_mismatch` is the writer's error and
+ * keeps the row), or the executor says so (`skip_slot` with `ref`), the row is recorded as `passed` on the slot's resource. It
  * counts as done in this round and comes back in the next. The ledger ignores every ref that is not a row of a cycle
  * dataset, so a `never` / `after_days` dataset is untouched.
  *

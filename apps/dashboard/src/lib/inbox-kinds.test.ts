@@ -58,6 +58,7 @@ const FIXTURES: Record<string, Partial<NoteItem>> = {
   critic_failed: { refType: 'slot', refId: 'slot1' },
   audit_report: { refType: 'audit', refId: 'aud1' },
   host_struck: { agentId: 'o1', refType: 'host', refId: '@space/example.com', title: 'example.com refuses us' },
+  orchestrator_owner_attention: { agentId: 'o1', refType: 'agent', refId: 'space' },
   event_not_covered: { refType: 'story_event', refId: 'story1|2026-10-28T09:30:00.000Z', body: 'The event "Launch" was announced.\n• telegram:@space: announced 2 time(s)' },
   legacy_bindings_enabled: { refType: 'legacy_bindings_day', refId: '2026-10-28' },
   strategy_cutover_ready: { refType: 'channel', refId: '@space' },
@@ -88,7 +89,7 @@ const BRIEF_KINDS = [
   'series_paused', 'dark_day', 'series_missed', 'critic_reject_streak', 'manager_escalation',
   'directive_structural', 'directive_contested', 'directive_ignored', 'directive_failed', 'playbook_pending',
   'network_independent_offer', 'shadow_ended', 'landing_lead', 'ad_orders_stuck', 'ad_order_unfulfilled', 'sponsor_cutover',
-  'low_runway', 'series_source_empty', 'derived_post_failed', 'audit_report', 'host_struck', 'event_not_covered',
+  'low_runway', 'series_source_empty', 'derived_post_failed', 'audit_report', 'host_struck', 'orchestrator_owner_attention', 'event_not_covered',
   'legacy_bindings_enabled', 'strategy_cutover_ready', 'launch_graduated', 'critic_failed',
   'skill_self_edit', 'skill_rolled_back', 'skill_probe', 'ready_for_autonomy', 'approval_dedup', 'evergreen_fallback',
   'loadout_suggestions', 'resource_paused', 'resource_resumed', 'resource_health_ok', 'directive_expired', 'directive_auto_applied',
@@ -381,6 +382,7 @@ test('pages with one obvious target', () => {
   assert.equal(plan('audit_report', { severity: 'action' }).secondary, null);
   for (const kind of ['legacy_bindings_enabled', 'strategy_cutover_ready']) assert.deepEqual((plan(kind).primary as any).link, { to: '/app/strategies' }, kind);
   assert.equal(plan('host_struck').primary.label, 'Open network health');
+  assert.equal(plan('orchestrator_owner_attention').primary.label, 'Open agent');
 });
 
 test('info kinds lead with Got it unless the handoff names a page', () => {

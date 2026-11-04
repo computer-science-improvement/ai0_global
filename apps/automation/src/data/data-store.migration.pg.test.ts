@@ -137,13 +137,13 @@ test('legacy tables are read-only', { skip }, async () => {
 test('pipeline-style INSERT through a view: new rows inserted with RETURNING id, duplicates skipped', { skip }, async () => {
   const ins = await pool.query(
     `INSERT INTO pdr_questions (question_id, ticket_number, question_num, text, answers, correct_answer_num, explanation, source_name)
-     VALUES (99001, 99, 1, 'Нове питання?', '["Так","Ні"]', 2, '', 'pgtest') RETURNING id, posted, created_at, license`);
+     VALUES (99001, 99, 1, 'Нове питання?', '[{"num":0,"text":"Так"},{"num":1,"text":"Ні"}]', 1, '', 'pgtest') RETURNING id, posted, created_at, license`);
   assert.equal(ins.rowCount, 1);
   assert.match(ins.rows[0].id, /^[0-9a-f-]{36}$/);
   assert.deepEqual(ins.rows[0].posted, {});
   assert.equal(ins.rows[0].license, 'unknown', 'view defaults mirror the old column defaults');
   const view = (await pool.query(`SELECT * FROM pdr_questions WHERE id = $1`, [ins.rows[0].id])).rows[0];
-  assert.deepEqual(view.answers, ['Так', 'Ні']);
+  assert.deepEqual(view.answers, [{ num: 0, text: 'Так' }, { num: 1, text: 'Ні' }]);
   assert.equal((await pool.query(`SELECT legacy_ref FROM data_items WHERE legacy_ref = $1`, [`library://pdr_questions/${ins.rows[0].id}`])).rowCount, 1);
   // Same dedup key again: skipped like ON CONFLICT DO NOTHING (an untargeted ON CONFLICT is accepted).
   const dup = await pool.query(
