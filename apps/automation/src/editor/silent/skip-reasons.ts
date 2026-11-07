@@ -13,7 +13,7 @@ export type SkipGroup = typeof SKIP_GROUPS[number];
 /** Publish-tool errors that mean "this post / this material does not pass" — a content failure the fallback ladder retries. */
 export const CONTENT_FAILURE_CODES = [
   'lint_failed', 'too_similar', 'too_verbatim', 'source_already_posted', 'library_item_already_posted', 'already_posted',
-  'quiz_answer_mismatch', 'library_ref_not_found', 'live_source_missing',
+  'quiz_answer_mismatch', 'quiz_answer_key_invalid', 'library_ref_not_found', 'live_source_missing',
   'not_next_in_order',                                  // spec 071 guard (a dataset row out of its round order): a content failure, the ladder retries
 ] as const;
 const CONTENT = new Set<string>(CONTENT_FAILURE_CODES);
@@ -29,7 +29,7 @@ const RULES: Array<[SkipGroup, RegExp]> = [
   ['budget', /^(budget_exceeded|budget\b)/],
   // Spec 073 FR-010: the slot's CONFIGURATION is wrong, not its text — before `lint`, so a config code never reads as a content failure.
   ['config', new RegExp(`^(${CONFIG_FAILURE_CODES.join('|')})\\b`)],
-  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|live_source_missing|not_next_in_order)\b/],
+  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|quiz_answer_key_invalid|live_source_missing|not_next_in_order)\b/],
   ['cap', /^(daily_cap_reached|poll_cap_reached|min_gap|quiet_hours|blackout_window)\b/],
   ['nothing_fresh', /^(no_fresh_item\b|series ".*": required source .* has nothing left|source_not_published\b)/],
 ];

@@ -16,7 +16,7 @@ import {
   type HostBlock, type HostFailureReason, type HostFailures, type PrevBlock,
 } from './host-failures';
 import { playbookSources } from '../sources/playbook-feeds';
-import { SourceHealthService } from '../sources/source-health.service';
+import { razy, SourceHealthService } from '../sources/source-health.service';
 import type { StruckHost } from '../sources/source-health.repository';
 import { needsReplacement, sourceHealthOf, type HostBlockRow } from '../sources/source-health';
 
@@ -213,13 +213,13 @@ test('spec 070 source health: a dead feed reaches the owner as failing (3 failed
 const struckRow = (host: string, o: Partial<HostBlockRow> & { timeouts?: number; timeoutsSince?: Date | null; lastSuccessAt?: Date | null } = {}) =>
   ({ ...block(host, o), notedAt: null, timeouts: 0, timeoutsSince: null, lastSuccessAt: null, ...o }) as StruckHost;
 
-function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; struck?: StruckHost[]; posts?: any[] }) {
+function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; steps?: any[]; blocks?: HostBlockRow[]; struck?: StruckHost[]; posts?: any[] }) {
   const posts = o.posts ?? [];
   // The note gate in miniature (spec 076 A9): a note with the same subject and parts as one already stored is not posted again.
   const seen = new Set<string>();
   const svc = new SourceHealthService({
     repo: {
-      steps: async () => [], blocks: async () => [],
+      steps: async () => o.steps ?? [], blocks: async () => o.blocks ?? [],
       playbookOf: async () => o.playbook ?? null,
       struck: async (keys: string[]) => (o.struck ?? []).filter((b) => keys.includes(b.host)),
     },
@@ -295,4 +295,68 @@ test('without the repository hooks or the inbox the note step does nothing', asy
   const card = makeCard({ channelKey: '@c', sources: [FEED] });
   const bare = new SourceHealthService({ repo: { steps: async () => [], blocks: async () => [] }, channels: { get: async () => card } });
   assert.deepEqual(await bare.noteStruckHosts(card, null), []);
+});
+
+const hit = (url: string, h: number) => ({ at: plus(T0, -h), tool: 'web_fetch', input: { url }, isError: true, error: 'host_blocked', details: null, items: null, slotId: null, slotStatus: null });
+
+test('spec 086 FR-004: a struck host outside the sources (otherHosts) gets its own info note, once per streak; a host of the sources keeps the source note only', async () => {
+  const card = makeCard({ channelKey: '@ai0_global', sources: [FEED] });
+  const elsewhere = block('elsewhere.example', { strikes: 3, until: plus(T0, 160) });
+  const verge = block('theverge.com', { strikes: 3, until: plus(T0, 160) });
+  const struck = [struckRow('elsewhere.example', elsewhere), struckRow('theverge.com', verge)];
+  const steps = [hit('https://elsewhere.example/a', 5), hit('https://elsewhere.example/b', 4), hit('https://theverge.com/ai', 3)];
+  const { svc, posts } = service({ card, struck, steps, blocks: [elsewhere, verge] });
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), ['elsewhere.example', 'theverge.com']);
+  assert.equal(posts.length, 2);
+  assert.equal(posts[0].title, "elsewhere.example is blocked for the server — @ai0_global's agents reach it outside the sources");
+  assert.equal(posts[0].severity, 'info');
+  assert.equal(posts[0].kind, 'host_struck');
+  assert.equal(posts[0].refType, 'host');
+  assert.equal(posts[0].refId, '@ai0_global/elsewhere.example');
+  assert.equal(posts[0].alert, undefined, 'an info note sends no Telegram alert');
+  assert.equal(posts[0].gate.subject, 'host_struck_outside:@ai0_global/elsewhere.example');
+  assert.deepEqual(posts[0].gate.parts, ['refused', 'since:never']);
+  assert.match(posts[0].body, /Blocked until 2026-10-27 00:00 UTC \(refused 403\)/);
+  assert.match(posts[0].body, /its agents read it 2 times in 14 days/);
+  assert.match(posts[0].body, /add a source on the same topic/);
+  assert.equal(posts[1].title, 'theverge.com refuses the server', 'a host of the sources keeps the source note');
+  assert.equal(posts[1].severity, 'action');
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch'), [], 'gated once per streak');
+  assert.equal(posts.length, 2);
+});
+
+test('spec 086 FR-004: a host in both the sources and otherHosts gets the action note only (source precedence)', async () => {
+  const card = makeCard({ channelKey: '@ai0_global', sources: [FEED] });
+  const verge = block('theverge.com', { strikes: 3, until: plus(T0, 160) });
+  const { svc, posts } = service({ card, struck: [struckRow('theverge.com', verge)] });
+  const r = await svc.forCard(card);
+  const report = { ...r, otherHosts: [...r.otherHosts, { host: 'theverge.com', reason: 'refused', statusCode: 403, until: plus(T0, 160).toISOString(), calls: 1 }] };
+  assert.deepEqual(await svc.noteStruckHosts(card, 'orch', report), ['theverge.com']);
+  assert.equal(posts.length, 1);
+  assert.equal(posts[0].severity, 'action');
+  assert.equal(posts[0].gate.subject, 'host_struck:@ai0_global/theverge.com');
+});
+
+test('spec 086 FR-004: an info note for a channel that only hits the host outside its sources does not use up the note of a channel that has it as a playbook source', async () => {
+  const mp = block('marktechpost.com', { strikes: 3, until: plus(T0, 160) });
+  const struck = [struckRow('marktechpost.com', mp)];
+  const cardB = makeCard({ channelKey: '@b', sources: [FEED] });
+  const cardA = makeCard({ channelKey: '@a', sources: [] });
+  const playbook = { series: [{ name: 'AI news', source: { kind: 'feed', ref: 'https://www.marktechpost.com/feed/' } }], rules: [] };
+  // One posts list for both channels; their notes have different gate subjects.
+  const posts: any[] = [];
+  const b = service({ card: cardB, struck, posts });
+  const report = { ...(await b.svc.forCard(cardB)), days: 14, otherHosts: [{ host: 'marktechpost.com', reason: 'refused', statusCode: 403, until: plus(T0, 160).toISOString(), calls: 2 }] };
+  assert.deepEqual(await b.svc.noteStruckHosts(cardB, 'b', report), ['marktechpost.com']);
+  assert.equal(posts[0].severity, 'info');
+  assert.deepEqual(await b.svc.noteStruckHosts(cardB, 'b', report), [], 'once per streak for the channel');
+  const a = service({ card: cardA, playbook, struck, posts });
+  assert.deepEqual(await a.svc.noteStruckHosts(cardA, 'a'), ['marktechpost.com']);
+  assert.equal(posts[1].severity, 'action');
+  assert.equal(posts[1].refId, '@a/marktechpost.com');
+});
+
+test('spec 086 FR-004: the owner notes count in Ukrainian — раз / рази / разів', () => {
+  assert.deepEqual([1, 2, 3, 4, 5, 11, 12, 14, 21, 22, 25, 111].map(razy),
+    ['1 раз', '2 рази', '3 рази', '4 рази', '5 разів', '11 разів', '12 разів', '14 разів', '21 раз', '22 рази', '25 разів', '111 разів']);
 });

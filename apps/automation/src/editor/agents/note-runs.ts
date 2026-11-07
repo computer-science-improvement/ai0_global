@@ -77,5 +77,10 @@ export function subjectLabelUk(subject: string, title: string): string {
   if (connection) return `Підключення ${connection[1]}`;
   const resource = /^resource:(.+)$/.exec(subject);
   if (resource) return `Ресурс ${resource[1]}`;
+  // Spec 079 FR-006: the orchestrator's «УВАГА ВЛАСНИКУ» note; its stored title is the dashboard's English one.
+  if (subject.startsWith('owner_attention:')) {
+    const handle = /^(@\S+) asks for your attention/.exec(title)?.[1];
+    return handle ? `${handle} просить вашої уваги` : 'Оркестратор просить вашої уваги';
+  }
   return title.replace(/ — still going.*$/, '').slice(0, 100);
 }

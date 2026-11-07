@@ -1,24 +1,61 @@
 import { z } from 'zod';
-import { GAMERPOWER_GIVEAWAYS_URL, GAMERPOWER_PARAMS, mapGamerPowerGiveaways } from '../../../common/fetchers/apis/games.api';
+import {
+  EPIC_FREE_GAMES_PARAMS, EPIC_FREE_GAMES_URL, epicFreeNowOffer, GAMERPOWER_GIVEAWAYS_URL, GAMERPOWER_PARAMS, mapGamerPowerGiveaways,
+} from '../../../common/fetchers/apis/games.api';
 import { clip, defineAdapter } from './types';
+
+const normTitle = (s: unknown): string =>
+  typeof s === 'string' ? s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim() : '';
+/** The Epic read is a refinement: it gets its own short budget so a silent Epic host cannot eat the tool's 30 s and lose the GamerPower values. */
+export const EPIC_READ_BUDGET_MS = 5_000;
+const isEpic = (platforms: string | undefined): boolean => /epic games store/i.test(platforms ?? '');
 
 /** GamerPower active giveaways (no key; the game-channel strategy's "gamerpower" source). */
 export const gamerpowerAdapter = defineAdapter({
   name: 'gamerpower_giveaways',
-  description: 'gamerpower_giveaways — активні роздачі ігор і лута на всіх платформах. params: {platform?: pc|steam|epic-games-store|gog|ps5|xbox-series-xs|switch|android|ios, type?: game|loot|beta, limit?: 1–20}',
+  description: 'gamerpower_giveaways — активні роздачі ігор і лута на всіх платформах. ends_at — дата (без часу) або момент магазину (ends_at_source); точний час роздачі в Epic бери з epic_free_games. params: {platform?: pc|steam|epic-games-store|gog|ps5|xbox-series-xs|switch|android|ios, type?: game|loot|beta, limit?: 1–20}',
   params: z.object({
     platform: z.enum(['pc', 'steam', 'epic-games-store', 'gog', 'ps5', 'xbox-series-xs', 'switch', 'android', 'ios']).optional(),
     type:     z.enum(['game', 'loot', 'beta']).optional(),
     limit:    z.number().int().min(1).max(20).default(10),
   }).strict(),
-  async fetch(p, ctx) {
+  async fetch(p, ctx, epicBudgetMs: number = EPIC_READ_BUDGET_MS) {
     const data = await ctx.getJson(GAMERPOWER_GIVEAWAYS_URL, { ...GAMERPOWER_PARAMS, platform: p.platform, type: p.type });
     const list = Array.isArray(data) ? data : [];
+    const games = mapGamerPowerGiveaways(list, ctx.now().getTime()).slice(0, p.limit);
+
+    // Spec 086 FR-002: the store's own moment beats GamerPower's date. Epic is read once, only when an Epic giveaway is
+    // in the result, and best-effort: a failed read leaves the GamerPower values.
+    const epicEnds: Array<{ title: string; endsAt: string }> = [];
+    if (games.some((g) => isEpic(g.platform))) {
+      try {
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const epic = await Promise.race([
+          ctx.getJson(EPIC_FREE_GAMES_URL, EPIC_FREE_GAMES_PARAMS),
+          new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('epic read over budget')), epicBudgetMs); }),
+        ]).finally(() => clearTimeout(timer));
+        const nowMs = ctx.now().getTime();
+        for (const el of epic?.data?.Catalog?.searchStore?.elements ?? []) {
+          const offer = epicFreeNowOffer(el, nowMs);
+          const title = normTitle(el?.title);
+          if (offer && title.length >= 3) epicEnds.push({ title, endsAt: offer.endDate });
+        }
+      } catch { /* the GamerPower values stay */ }
+    }
+    const epicEnd = (g: { title: string; platform?: string }): string | null =>
+      isEpic(g.platform) ? epicEnds.find((e) => normTitle(g.title).includes(e.title))?.endsAt ?? null : null;
+
     return {
-      items: mapGamerPowerGiveaways(list, ctx.now().getTime()).slice(0, p.limit).map((g) => ({
-        title: g.title, summary: clip(g.description), url: g.source, image: g.imageUrl, date: g.publishedAt,
-        extra: { platforms: g.platform ?? null, ends_at: g.endDate ?? null, instructions: clip(g.instructions, 300) },
-      })),
+      items: games.map((g) => {
+        const fromEpic = epicEnd(g);
+        return {
+          title: g.title, summary: clip(g.description), url: g.source, image: g.imageUrl, date: g.publishedAt,
+          extra: {
+            platforms: g.platform ?? null, ends_at: fromEpic ?? g.endDate ?? null, ends_at_source: fromEpic ? 'epic' : 'gamerpower',
+            instructions: clip(g.instructions, 300),
+          },
+        };
+      }),
     };
   },
 });

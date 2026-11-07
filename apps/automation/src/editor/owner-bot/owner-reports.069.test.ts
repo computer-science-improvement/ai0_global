@@ -66,6 +66,8 @@ test('repeatingSubjects: two notes, a broken run, a critical newest note, an all
 test('the subject label is the owner\'s words for the known shapes, the title otherwise', () => {
   assert.equal(subjectLabelUk('silent:telegram:@x:miss', 't'), 'Не виходять серії чи пости на telegram:@x');
   assert.equal(subjectLabelUk('silent:telegram:@x:critic', 't'), 'Критик відхиляє пости на telegram:@x');
+  assert.equal(subjectLabelUk('owner_attention:o-1', '@nova asks for your attention — still going, 3 days'), '@nova просить вашої уваги');
+  assert.equal(subjectLabelUk('owner_attention:o-1', 'odd title'), 'Оркестратор просить вашої уваги');
   assert.equal(subjectLabelUk('escalation:main:posts', 't'), 'Менеджер: постів менше за норму (@main)', 'no advice was given: the posts are below the norm');
   assert.equal(subjectLabelUk('escalation:main:format_shift', 't'), 'Менеджер: поради не виконуються (@main, зміна формату)', 'the kind in Ukrainian, not the slug');
   assert.equal(subjectLabelUk('escalation:main:voice_fix', 't'), 'Менеджер: поради не виконуються (@main, правка голосу)');

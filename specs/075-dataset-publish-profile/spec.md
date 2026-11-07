@@ -82,7 +82,9 @@ The fix: a dataset gets a **publish profile**. Guards, the writer's rows, the im
 
 | Dataset | `publish` | Also |
 |---|---|---|
-| `pdr_questions` | `{format:'quiz', answer_key:{options_field:'answers', correct_field:'correct_answer_num', base:1}, text_use:'verbatim'}` | `post_requires` = `[["text"],["answers"],["correct_answer_num"]]` while it is `[]` |
+| `pdr_questions` | `{format:'quiz', answer_key:{options_field:'answers', correct_field:'correct_answer_num', base:0}, text_use:'verbatim'}` | `post_requires` = `[["text"],["answers"],["correct_answer_num"]]` while it is `[]` |
+
+> Corrected by spec 079 (review 5): `pdr_questions` options are `{num, text}` with `num` counting from 0, and `correct_answer_num` is that `num` — base 0. The «off-by-one» this spec first described ran the other way: the data is 0-based, the guard read it as 1-based. With `num` present the guard matches by `num` and the base does not matter.
 | other schemas with entity `quiz_question` / `poll_question` | `{format:'quiz'}` / `{format:'poll'}` | — |
 | `recipes` | `{text_use:'retell', retell_fields:['description',['instructions_uk','instructions']]}` | — |
 | `facts` / `articles` / `tg_posts` | `retell` with `['content']` / `['excerpt','content']` / `['post']` | — |

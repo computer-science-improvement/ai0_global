@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { isEvergreenTopic, RECENT_TOPIC_DAYS, recentTopicHit, recentTopicsOf } from '../story/recent-topics';
+import { kyivDay } from '../../common/ai/usage/kyiv-day';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { similarity } from '../post/similarity';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
@@ -66,11 +67,22 @@ const REASON_UK: Record<typeof REASON_CODES[number], string> = {
   weak: 'слабкі, загальні ідеї без конкретики', risky: 'ризиковані теми', platform_mismatch: 'формати, що не пасують платформі', off_playbook: 'ідеї поза плейбуком',
 };
 
+/**
+ * Spec 079 FR-006: the lines of an orchestrator summary that start with «УВАГА ВЛАСНИКУ» (any case; leading emoji, `*`,
+ * `#`, `-`, `!` and spaces allowed; «УВАГА, ВЛАСНИКУ» and «ВЛАСНИКОВІ» count). Nobody reads the summary, so these lines
+ * become one Inbox note. No `\b`: it is ASCII-only in JS.
+ */
+const OWNER_ATTENTION_RE = /^(?:[\s*#!_>\-–—]|\p{Extended_Pictographic}|\uFE0F|\u200D)*УВАГА,?\s+ВЛАСНИК(?:У|ОВІ)(?!\p{L})[\s*_:\-–—]*(.*)$/iu;
+export function ownerAttentionLines(summary: string): string[] {
+  return summary.split(/\r?\n/).map((l) => l.trim()).filter((l) => OWNER_ATTENTION_RE.test(l) && (OWNER_ATTENTION_RE.exec(l)?.[1] ?? '').trim() !== '');
+}
+
 export interface NetworkToolDeps {
   repo:   NetworkRepository;
   plans:  Pick<EditorPlansRepository, 'reservedSlots' | 'createNetworkPlan'>;
   memory: Pick<EditorMemoryRepository, 'add'>;
-  inbox:  Pick<OwnerInbox, 'post'>;
+  /** Spec 079 FR-006: `postOnce` (the spec 060 gate) when the inbox has it, else `post`. */
+  inbox:  Pick<OwnerInbox, 'post'> & Partial<Pick<OwnerInbox, 'postOnce'>>;
   /** Spec 023: datasets and card feeds a series source may name. */
   sourceCatalog?: SubmitDeps['sourceCatalog'];
   /** Spec 025: `directive_lock` on submit_playbook. */
@@ -311,10 +323,32 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
 
   const finishOrchestration = defineTool({
     name: 'finish_orchestration',
-    description: 'Завершити щоденний прогін оркестратора коротким підсумком (що в пулі, які директиви прийнято/відхилено).',
+    description: 'Завершити щоденний прогін оркестратора коротким підсумком (що в пулі, які директиви прийнято/відхилено). '
+      + 'Рядок, що починається з «УВАГА ВЛАСНИКУ:», стане нотаткою власнику в Inbox — лише для того, що потребує його рішення.',
     kind: 'terminal', roles: ['orchestrator'],
     input: z.object({ summary: longText(10, 1500).describe(`Підсумок; ${longTextNote(1500)}`) }),
-    execute: async ({ summary }) => ({ ok: true, summary }),
+    execute: async ({ summary }, ctx) => {
+      // Spec 079 FR-006: the summary is read by nobody; its «УВАГА ВЛАСНИКУ» lines are one owner note. Best-effort.
+      let ownerNote = false;
+      const lines = ownerAttentionLines(summary);
+      const orch = (ctx?.extras?.network as NetworkCtx | undefined)?.orchestrator;
+      if (lines.length && orch) {
+        try {
+          const handle = `@${String(orch.handle).replace(/^@/, '')}`;
+          const body = lines.join('\n');
+          const item = {
+            agentId: orch.id, kind: 'orchestrator_owner_attention', severity: 'action' as const,
+            title: `${handle} asks for your attention`, body,
+            alert: { title: `${handle} просить вашої уваги`, body },
+            refType: 'agent', refId: `${orch.handle}|${kyivDay(now())}`, // a day in the ref, so postOnce's «same ref exists» never swallows a repeat the gate lets through
+            gate: { subject: `owner_attention:${orch.id}`, parts: lines.map((l) => l.toLowerCase().replace(/\s+/g, ' ')) },
+          };
+          if (d.inbox.postOnce) ownerNote = (await d.inbox.postOnce(item)) !== null;
+          else { await d.inbox.post(item); ownerNote = true; }
+        } catch { /* best-effort: a failed note never fails the tool */ }
+      }
+      return { ok: true, summary, ...(ownerNote ? { owner_note: true } : {}) };
+    },
   });
 
   // ── idea reviewer ─────────────────────────────────────────────────────────

@@ -316,6 +316,10 @@ const RULES: Record<string, Rule> = {
     why: 'A dataset made from a web page could not be re-read; its new entries are missing until the page is uploaded again.',
     steps: (c) => [c.ref ? link('Open dataset', '/app/data/$key', { params: { key: c.ref.base } }) : link('Open data', '/app/data'), read()],
   },
+  orchestrator_owner_attention: {
+    why: 'The network orchestrator found something it cannot settle itself and needs your decision.',
+    steps: (c) => [agentLink(c, 'Open agent'), read()],
+  },
   event_not_covered: {
     why: 'An event was announced but no post followed it, so a recap is missing. Planning one now still catches readers.',
     steps: (c) => {

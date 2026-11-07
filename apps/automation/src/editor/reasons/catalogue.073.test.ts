@@ -32,7 +32,7 @@ const RULE_CODES: Array<[string, string]> = [
   ['critic_rejected', 'critic'], ['critic_failed', 'critic'],
   ['budget_exceeded', 'budget'], ['budget', 'budget'],
   ['lint_failed', 'lint'], ['guard_failed', 'lint'], ['too_similar', 'lint'], ['too_verbatim', 'lint'], ['source_already_posted', 'lint'],
-  ['library_item_already_posted', 'lint'], ['already_posted', 'lint'], ['quiz_answer_mismatch', 'lint'],
+  ['library_item_already_posted', 'lint'], ['already_posted', 'lint'], ['quiz_answer_mismatch', 'lint'], ['quiz_answer_key_invalid', 'lint'],
   ['live_source_missing', 'lint'], ['not_next_in_order', 'lint'],
   ...CONFIG_FAILURE_CODES.map((c) => [c, 'config'] as [string, string]),
   ['daily_cap_reached', 'cap'], ['poll_cap_reached', 'cap'], ['min_gap', 'cap'], ['quiet_hours', 'cap'], ['blackout_window', 'cap'],

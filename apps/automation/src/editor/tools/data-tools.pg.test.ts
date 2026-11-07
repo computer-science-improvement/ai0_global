@@ -67,7 +67,7 @@ before(async () => {
   pdrRef = `library://pdr_questions/${uuid}`;
   const res = await store.upsert('pdr_questions', [{
     question_id: 990000 + Math.floor(Math.random() * 9999), ticket_number: 99, question_num: 1, text: 'Швидкість у місті?',
-    answers: ['40', '50', '60'], correct_answer_num: 2, explanation: 'п. 12.4', source_name: MARK, _legacy_ref: pdrRef,
+    answers: [{ num: 0, text: '40' }, { num: 1, text: '50' }, { num: 2, text: '60' }], correct_answer_num: 0, explanation: 'п. 12.4', source_name: MARK, _legacy_ref: pdrRef,
   }]);
   assert.equal(res.inserted, 1, JSON.stringify(res));
   const { rows: p } = await pool.query(`SELECT id::text FROM data_items WHERE legacy_ref = $1`, [pdrRef]);
@@ -120,9 +120,11 @@ test('publish dedup: a data:// ref and its library:// alias are the same row', {
 
 test('the PDR answer key is checked through a data:// ref too', { skip }, async () => {
   const quiz = (ref: string, correct: number) => makeSpec({ format: 'quiz', media: [], body: [], hashtags: [], origin: 'library', source: undefined, library_ref: ref, poll: { question: 'Q?', options: ['40', '50', '60'], correct_index: correct } });
-  assert.equal(await checkQuizGroundTruth(pool, quiz(pdrDataRef, 1)), null);
-  assert.equal((await checkQuizGroundTruth(pool, quiz(pdrDataRef, 0)))?.error, 'quiz_answer_mismatch');
-  assert.equal((await checkQuizGroundTruth(pool, quiz(pdrRef, 0)))?.error, 'quiz_answer_mismatch');
+  // Spec 079: the real shape — options are {num, text}, num counts from 0, correct_answer_num 0 is the first option.
+  assert.equal(await checkQuizGroundTruth(pool, quiz(pdrDataRef, 0)), null);
+  assert.equal((await checkQuizGroundTruth(pool, quiz(pdrDataRef, 1)))?.error, 'quiz_answer_mismatch');
+  assert.equal((await checkQuizGroundTruth(pool, quiz(pdrRef, 2)))?.error, 'quiz_answer_mismatch');
+  assert.equal(await checkQuizGroundTruth(pool, quiz(pdrRef, 0)), null);
 });
 
 test('the owner applies a description fix without a version bump', { skip }, async () => {

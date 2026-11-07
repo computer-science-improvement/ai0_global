@@ -17,7 +17,7 @@ What happened on stage (review `docs/reviews/2026-10-27-channel-onboarding.md` �
   - A poll went out with no correct answer.
   - `pdr_questions` was on reuse `never`. All 866 rows were used, and the channel was dark for about 10 days.
   - Every clause post was rejected, because the critic could not see `read_doc` (F22, fixed in 067).
-  - On 10-27 four things were wrong at once. The card had quiz, but the playbook gave quiz weight 0. A rule said «poll з correct_index». There was no series. `correct_answer_num` was off by one in the brief.
+  - On 10-27 four things were wrong at once. The card had quiz, but the playbook gave quiz weight 0. A rule said «poll з correct_index». There was no series. The brief and the guard read the 0-based `correct_answer_num` as 1-based (spec 079 fixed the guard: it matches by `num`).
   - The rules site is geoblocked from the server.
 - **@ai0_prompts_dev.**
   - Migration 083 made 4 764 text-less PromptHero rows "postable".

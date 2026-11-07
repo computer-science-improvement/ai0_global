@@ -102,6 +102,14 @@ export function hostStruckNote(b: StruckHost, o: { inCard: boolean; inPlaybook: 
   };
 }
 
+/** «1 раз», «3 рази», «5 разів», «11 разів», «21 раз» — the owner notes count in Ukrainian. */
+export function razy(n: number): string {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return `${n} раз`;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return `${n} рази`;
+  return `${n} разів`;
+}
+
 /** Spec 049 FR-003 / FR-004: the source health of a channel card, and the sources that need a replacement. */
 export class SourceHealthService {
   constructor(private readonly d: SourceHealthDeps) {}
@@ -160,9 +168,9 @@ export class SourceHealthService {
    * Spec 049 FR-004: the card's blocked, failing or exhausted sources with no change card waiting for the owner and
    * none the owner discarded in the last week — what the channel agent's daily run is asked to replace.
    */
-  async needingReplacement(card: EditorCard): Promise<SourceHealth[]> {
+  async needingReplacement(card: EditorCard, report?: SourceHealthReport): Promise<SourceHealth[]> {
     // Only card sources: a `change_source` card edits the card, a playbook feed is noted to the owner instead (noteStruckHosts).
-    const troubled = (await this.forCard(card)).sources.filter((h) => h.origin !== 'playbook' && needsReplacement(h));
+    const troubled = (report ?? await this.forCard(card)).sources.filter((h) => h.origin !== 'playbook' && needsReplacement(h));
     if (!troubled.length || !this.d.pool) return troubled;
     const { rows } = await this.d.pool.query(
       `SELECT payload->>'sourceId' AS source_id FROM pending_actions
@@ -183,18 +191,41 @@ export class SourceHealthService {
    * strikes and the start of the streak). It is sent when the host is new, when its reason or its streak changes, and as «still …»
    * after a few days, and the third unanswered note is posted as info. `struck()` keeps its `noted_at IS NULL` filter, and the new
    * code never sets that column, so a host the 061 code already told the owner about stays quiet until a success clears it.
+   *
+   * Spec 086 FR-004: a struck host the channel's runs hit OUTSIDE its sources (`otherHosts` of the source health report) gets an
+   * info note of its own, gated per channel and streak (subject `host_struck_outside:<channel>/<host>`), so it never uses up the
+   * action note of a channel that has the host as a source. A host in both gets the action note only.
    */
-  async noteStruckHosts(card: EditorCard, agentId: string | null): Promise<string[]> {
+  async noteStruckHosts(card: EditorCard, agentId: string | null, report?: SourceHealthReport): Promise<string[]> {
     const inbox = this.d.inbox;
     if (!this.d.repo.struck || !inbox?.postOnce) return [];
     const { all, playbook } = await this.sourcesOf(card);
     const hosts = [...new Set(all.map((s) => hostOf(s.ref)).filter(Boolean) as string[])];
-    const struck = await this.d.repo.struck(hosts, 1);
+    // Spec 086 FR-004: blocked hosts the channel's runs hit outside its sources (one report read; the caller may pass its own).
+    const rep = report ?? await this.forCard(card).catch(() => null);
+    const others = new Map((rep?.otherHosts ?? []).map((o) => [o.host, o]));
+    const struck = await this.d.repo.struck([...new Set([...hosts, ...others.keys()])], 1);
     const noted: string[] = [];
     for (const b of struck) {
       // The row's LAST reason decides: an `unreachable` streak that turns into a refusal at strike 2 waits for strike 3.
       if (!(b.reason === 'unreachable' || b.strikes >= STRIKES_FOR_OWNER)) continue;
-      const inCard = all.some((s) => hostOf(s.ref) === b.host && !s.id.startsWith(PLAYBOOK_SOURCE_PREFIX));
+      const mine = all.filter((s) => hostOf(s.ref) === b.host);
+      const outside = others.get(b.host);
+      if (!mine.length && !outside) continue;
+      if (!mine.length && outside) {
+        const status = b.statusCode ? ` ${b.statusCode}` : '';
+        const id = await inbox.postOnce({
+          agentId, kind: HOST_STRUCK_KIND, refType: 'host', refId: `${card.channelKey}/${b.host}`, severity: 'info',
+          title: `${b.host} is blocked for the server — ${card.channelKey}'s agents reach it outside the sources`,
+          body: `Blocked until ${fmtTime(b.until)} (${b.reason}${status}); blocks last 1 → 3 → 7 days and no request goes out until one ends.`
+            + ` It is not one of the channel's sources: its agents read it ${outside.calls} time${outside.calls === 1 ? '' : 's'} in ${rep!.days} days (links from news or search).`
+            + ' If material from it is needed, add a source on the same topic; otherwise nothing to do.',
+          gate: { subject: `host_struck_outside:${card.channelKey}/${b.host}`, parts: [b.reason, `since:${sinceStamp(b.lastSuccessAt)}`] },
+        }).catch(() => null);
+        if (id != null) noted.push(b.host);
+        continue;
+      }
+      const inCard = mine.some((s) => !s.id.startsWith(PLAYBOOK_SOURCE_PREFIX));
       const inPlaybook = playbook.some((s) => hostOf(s.ref) === b.host);
       const note = hostStruckNote(b, { inCard, inPlaybook });
       if (!note) continue;
@@ -215,7 +246,8 @@ export class SourceHealthService {
    * active card, whether or not the agent proposes source changes (SOURCE_PROPOSALS).
    */
   async toReplaceToday(card: EditorCard, agentId: string | null): Promise<SourceHealth[]> {
-    const need = await this.needingReplacement(card);
+    const report = await this.forCard(card).catch(() => undefined); // one read for the replacement list
+    const need = await this.needingReplacement(card, report);
     if (!need.length || !this.d.pool) return need;
     const refs = need.map((h) => `${card.channelKey}/${h.id}`);
     const { rows } = await this.d.pool.query(

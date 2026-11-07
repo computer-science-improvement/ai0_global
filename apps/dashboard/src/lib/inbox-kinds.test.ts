@@ -59,6 +59,7 @@ const FIXTURES: Record<string, Partial<NoteItem>> = {
   audit_report: { refType: 'audit', refId: 'aud1' },
   host_struck: { agentId: 'o1', refType: 'host', refId: '@space/example.com', title: 'example.com refuses us' },
   resync_failed: { refType: 'dataset', refId: 'pdr_rules#ab12cd34', title: 'Re-sync of pdr_rules failed' },
+  orchestrator_owner_attention: { agentId: 'o1', refType: 'agent', refId: 'space' },
   event_not_covered: { refType: 'story_event', refId: 'story1|2026-10-28T09:30:00.000Z', body: 'The event "Launch" was announced.\n• telegram:@space: announced 2 time(s)' },
   legacy_bindings_enabled: { refType: 'legacy_bindings_day', refId: '2026-10-28' },
   strategy_cutover_ready: { refType: 'channel', refId: '@space' },
@@ -89,7 +90,7 @@ const BRIEF_KINDS = [
   'series_paused', 'dark_day', 'series_missed', 'critic_reject_streak', 'manager_escalation',
   'directive_structural', 'directive_contested', 'directive_ignored', 'directive_failed', 'playbook_pending',
   'network_independent_offer', 'shadow_ended', 'landing_lead', 'ad_orders_stuck', 'ad_order_unfulfilled', 'sponsor_cutover',
-  'low_runway', 'series_source_empty', 'derived_post_failed', 'audit_report', 'host_struck', 'resync_failed', 'event_not_covered',
+  'low_runway', 'series_source_empty', 'derived_post_failed', 'audit_report', 'host_struck', 'resync_failed', 'orchestrator_owner_attention', 'event_not_covered',
   'legacy_bindings_enabled', 'strategy_cutover_ready', 'launch_graduated', 'critic_failed',
   'skill_self_edit', 'skill_rolled_back', 'skill_probe', 'ready_for_autonomy', 'approval_dedup', 'evergreen_fallback',
   'loadout_suggestions', 'resource_paused', 'resource_resumed', 'resource_health_ok', 'directive_expired', 'directive_auto_applied',
@@ -390,6 +391,7 @@ test('pages with one obvious target', () => {
   assert.equal(plan('resync_failed').primary.label, 'Open dataset');
   assert.deepEqual(plan('resync_failed').secondary, { type: 'read', label: 'Got it' });
   assert.deepEqual((planNote(note({ kind: 'resync_failed' }), {}).primary as any).link, { to: '/app/data' }, 'no dataset in the ref: the data page');
+  assert.equal(plan('orchestrator_owner_attention').primary.label, 'Open agent');
 });
 
 test('info kinds lead with Got it unless the handoff names a page', () => {

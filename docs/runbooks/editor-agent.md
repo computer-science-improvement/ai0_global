@@ -173,9 +173,9 @@ Every source returns `{items:[{title, summary, url, image, date, extra}]}` (text
 | `nasa_apod` | NASA astronomy picture of the day | `NASA_API_KEY` (falls back to `DEMO_KEY`) | `date?` |
 | `spaceflight_news` | Spaceflight News API, newest first | — | `limit?`, `search?` |
 | `tmdb_trending` | TMDB trending movies/series | `TMDB_API_KEY` (required) | `media?`, `window?`, `language?`, `limit?`, `min_votes?` |
-| `epic_free_games` | Games free right now on Epic | — | — |
-| `steam_deals` | Steam specials ≥ N % off | — | `min_discount?`, `limit?`, `enrich?` |
-| `gamerpower_giveaways` | Active giveaways, all stores | — | `platform?`, `type?`, `limit?` |
+| `epic_free_games` | Epic giveaways: free now (status `free_now`, `ends_at`) and upcoming (status `upcoming`, `starts_at`) | — | — |
+| `steam_deals` | Steam specials ≥ N % off; `ends_at` = `discount_expiration` | — | `min_discount?`, `limit?`, `enrich?` |
+| `gamerpower_giveaways` | Active giveaways, all stores; `ends_at` is a date, or Epic's own end instant (`ends_at_source`) | — | `platform?`, `type?`, `limit?` |
 | `on_this_day` | Byabbe "on this day" (Wikipedia) | — | `kind?`, `month?`, `day?`, `limit?` |
 
 These are the same endpoints and mappings the legacy daily-photo, space, movies, game-channel and on-this-day strategies use

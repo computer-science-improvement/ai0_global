@@ -152,8 +152,11 @@ function detailsText(details: unknown): string {
   return String(details);
 }
 
-/** Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order). */
-const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'series_format_mismatch']);
+/**
+ * Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order).
+ * Spec 079 FR-003: `quiz_answer_mismatch` too — the writer marked the wrong option, the row is fine (kept as `refusedRef`).
+ */
+const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'series_format_mismatch', 'quiz_answer_mismatch']);
 
 /**
  * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
@@ -164,21 +167,46 @@ export class PublishProbe {
   source: string | null = null;
   /** Spec 071: the `library_ref` of the last post it was given (a rejected post is never stored on the slot). */
   libraryRef: string | null = null;
+  /**
+   * Spec 079 FR-003: the `library_ref` of the post the last publish call refused with a row-guard code; cleared on the
+   * next publish call. Only `quiz_answer_mismatch` reads it (the row is fine, so the ladder must know it is still the
+   * series' next row); the sticky `libraryRef` stays null for R5.
+   */
+  refusedRef: string | null = null;
 
   wrap(tools: EditorTool[]): EditorTool[] {
-    return tools.map((t) => (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
+    return tools.map((t) => t.name === 'skip_slot' ? this.wrapSkip(t) : (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
       ...t,
       execute: async (input: any, ctx: any) => {
         this.source = sourceOf(input?.spec) ?? this.source;
         this.libraryRef = libraryRefOf(input?.spec) ?? this.libraryRef;
+        this.refusedRef = null;
         const r = await t.execute(input, ctx);
         this.last = isToolError(r) ? { code: r.error, details: (r as any).details } : null;
         // Spec 071 R5: a row the guards refused was never judged on its merits, and a later post without a row must not
         // inherit it — the sticky value is for a post that reached the critic.
-        if (isToolError(r) && ROW_GUARD_CODES.has(r.error)) this.libraryRef = null;
+        if (isToolError(r) && ROW_GUARD_CODES.has(r.error)) { this.refusedRef = libraryRefOf(input?.spec); this.libraryRef = null; }
         return r;
       },
     });
+  }
+
+  /**
+   * Spec 079 FR-003: after a `quiz_answer_mismatch` the row is fine (the writer marked the wrong option), so `skip_slot`
+   * with `ref` skips the slot but does not put the row aside; the result says `ref_kept` for the run log.
+   */
+  private wrapSkip(t: EditorTool): EditorTool {
+    return {
+      ...t,
+      execute: async (input: any, ctx: any) => {
+        if (input?.ref && this.last?.code === 'quiz_answer_mismatch') {
+          const { ref: _ref, ...rest } = input;
+          const r = await t.execute(rest, ctx);
+          return isToolError(r) ? r : { ...(r as object), ref_kept: 'quiz_answer_mismatch' };
+        }
+        return t.execute(input, ctx);
+      },
+    };
   }
 }
 
@@ -246,6 +274,7 @@ const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 
  * Spec 071 A2: does this failure put the post's library row aside for the round (`passRow`)?
  *   - a critic reject that is not fixable (a reject, a low grounding, a wrong topic), or any critic reject of a
  *     `revise_source` step (the row had its second chance);
+ *   - `quiz_answer_key_invalid` (spec 079: the row's answer key names no option, it cannot post as a quiz);
  * never a guard or lint code (`not_next_in_order`, `library_item_already_posted`, `series_source_mismatch`, `lint_failed`,
  * `too_similar`): those say the attempt was wrong, not the row. Spec 073 FR-003: nor `quiz_answer_mismatch` — the code
  * raises it only when the row HAS a known answer and the writer marked another option, so the row is fine and the attempt
@@ -254,6 +283,7 @@ const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 
  */
 export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' | 'libraryRef'>, step: LadderStep): boolean {
   if (!f.libraryRef || NEVER_PASS.has(f.code)) return false;
+  if (f.code === 'quiz_answer_key_invalid') return true;
   return f.kind === 'critic_reject' && (!f.fixable || step === 'revise_source');
 }
 
@@ -261,11 +291,11 @@ export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' |
  * Did this attempt fail for a content reason the ladder retries? `probe` is the run's last publish-tool error: a
  * run that ran out of steps on a lint / guard error leaves the slot `running`.
  */
-export function classifyFailure(slot: SlotState, run: (Pick<PublishProbe, 'last' | 'source'> & Partial<Pick<PublishProbe, 'libraryRef'>>) | null): SlotFailure | null {
+export function classifyFailure(slot: SlotState, run: (Pick<PublishProbe, 'last' | 'source'> & Partial<Pick<PublishProbe, 'libraryRef' | 'refusedRef'>>) | null): SlotFailure | null {
   const f = classify(slot, run?.last ?? null);
   if (!f) return f;
   // Spec 071: the post's own library row, from the stored post, else from what the publish tool saw.
-  const libraryRef = f.libraryRef ?? libraryRefOf(slot.postSpec) ?? libraryRefOf(slot.platformSpec) ?? run?.libraryRef ?? null;
+  const libraryRef = f.libraryRef ?? libraryRefOf(slot.postSpec) ?? libraryRefOf(slot.platformSpec) ?? run?.libraryRef ?? (f.code === 'quiz_answer_mismatch' ? run?.refusedRef : null) ?? null;
   return { ...f, ...(!f.sourceUrl && run?.source ? { sourceUrl: run.source } : {}), ...(libraryRef ? { libraryRef } : {}) };
 }
 

@@ -49,7 +49,7 @@ Current: `ladderPlan` (`silent/fallback-ladder.ts:293-305`) adds `lighter_format
 Change:
 - `ladderPlan` takes `locked: boolean`. When it is set there is no `lighter_format` step, and the evergreen step keeps the slot's format or is left out.
 - The runner's `fallback` (`editor-runner.service.ts:521-650`, `ladderPlan` at :556) passes `locked = formatLocked(slot)`. That new pure helper in `fallback-ladder.ts` is true for a series instance, a pin, or a poll/quiz slot with a `data://` or `library://` row hint.
-- `quiz_answer_mismatch` joins `NEVER_PASS` (:224), and the `:237` line goes. The ladder's next step retries with the code's own text («Познач саме її як correct_index»).
+- `quiz_answer_mismatch` joins `NEVER_PASS` (:224), and the `:237` line goes. The ladder's next step retries with the code's own text, which since spec 079 names the option by its `num` («правильна відповідь у базі — варіант num=N: "…". Познач саме його як correct_index»).
 
 ### FR-004 A channel switched off is off (F29)
 
