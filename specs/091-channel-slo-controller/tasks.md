@@ -1,0 +1,14 @@
+# 091 tasks
+
+- [ ] T1 Target and state (FR-001, FR-002 states): `slo/slo-target.ts` `dailyTarget`, `slo/slo-state.ts` `sloState`, both pure, with unit tests for every rule and state.
+- [ ] T2 Replacement test first (FR-003): a scheduler test that pins today's `plainPaused` gate behaviour and the new expected behaviour (a skipped plain slot gets a replacement, the channel keeps planning). It fails until T5.
+- [ ] T3 Migration 104 + down (FR-002): `channel_slo`; close open non-owner `resource:telegram:%` pauses with `resumed_by='slo'` and an inbox line; `ChannelSloRepository` (upsert day row, grouped counts query); PG migration test.
+- [ ] T4 Breaker (FR-002): no `resource:` pauses from `SeriesBreaker.check`; `onPlainStreak` hand-off; the repository guard refuses a `resource:telegram:` key without cause `owner`; remove `plainPausedChannels` and the scheduler gate; update the `series-pause.060*` tests.
+- [ ] T5 Replacements (FR-003): move `freeTime`/`roomBlock` to `slo/slot-time.ts` (news-watch imports them); `controller.onSlotClosed` from `skipByCode`, the ladder's final skip and `skipStale`; insert with `replaces_slot_id` + `ON CONFLICT DO NOTHING`, chain depth 2, `meta.slo`; `REPLACEABLE` keeps `meta.slo` slots; budget gate check; PG tests.
+- [ ] T6 Recovery ladder (FR-004): `slo/recovery-ladder.ts` `nextRung`; the wider live window up to `SLO_WIDEN_MAX_HOURS` (reuse `scanLive` widening from `72bd12c8`); other pillar by dataset runway; another probed source; evergreen with the dark cap; `starved` note. Optional: `preflight_stale` drops the idea instead of the slot.
+- [ ] T7 Dark recovery (FR-005): clear `plannerTries` and the persisted counter; the recovery planner context; the evergreen fallback when the planner returns nothing; caps; the 72 h action note keyed by `dark_since`; decision rows (090 `autonomy_decisions`, gate `slo_recovery`).
+- [ ] T8 Controller tick (FR-010): `SloController` in `EditorScheduler.tick` after the breaker check and before claiming; per-tick caps with a unit test; `SLO_CONTROLLER=off` restores today's path (keep the old gate behind the flag until the 14-day check passes).
+- [ ] T9 Detectors and manager (FR-006, FR-007): `silent-days` and `escalation` read `dailyTarget`; `dark_day` note becomes `info`; KPI digest `slo` signal; manager prompt line; `task` directives on `recovering`/`dark` channels get `meta.slo.rung='directive'`.
+- [ ] T10 API + dashboard + report (FR-008): `GET /api/editor/slo`; `/app/health` Channels panel (English, compact card + details dialog, 7-day strip); «Канали» in the daily report shows published/target; dashboard test with the mock API.
+- [ ] T11 Settings (FR-009): catalog entries with English help texts; catalog test.
+- [ ] T12 Verify: unit, PG (scratch DB), `npx tsc --noEmit`, `npm run build` on Node 26; dashboard `tsc` + tests; `specs/README.md` row and the migration note.
