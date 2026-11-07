@@ -1,5 +1,5 @@
 # --- builder ---
-FROM node:20-alpine AS builder
+FROM node:26-alpine AS builder
 WORKDIR /repo
 
 # Vite bakes VITE_* envs into the bundle at build time, so they must be present
@@ -21,7 +21,7 @@ ENV VITE_ENV_LABEL=$VITE_ENV_LABEL
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/dashboard/package.json apps/dashboard/
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install --frozen-lockfile --filter dashboard
+RUN npm install -g pnpm@9.15.0 && pnpm install --frozen-lockfile --filter dashboard
 COPY apps/dashboard apps/dashboard
 RUN if [ -z "$VITE_AUTH_MODE" ] && [ -z "$VITE_TG_BOT_USERNAME" ]; then export VITE_AUTH_MODE=token; fi; \
     pnpm --filter dashboard run build

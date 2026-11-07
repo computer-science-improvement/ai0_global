@@ -1,10 +1,10 @@
 # Monorepo: build context = repo root (see docker-compose.yml).
 
-FROM node:20-alpine
+FROM node:26-alpine
 
 WORKDIR /repo
 
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+RUN npm install -g pnpm@9.15.0
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/pipeline/package.json ./apps/pipeline/

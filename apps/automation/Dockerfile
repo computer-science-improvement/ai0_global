@@ -1,11 +1,11 @@
 # Monorepo: build context must be repo root (pnpm-lock.yaml + pnpm-workspace.yaml).
 # docker compose: context: ., dockerfile: apps/automation/Dockerfile
 
-FROM node:20-alpine AS builder
+FROM node:26-alpine AS builder
 
 WORKDIR /repo
 
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+RUN npm install -g pnpm@9.15.0
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/automation/package.json ./apps/automation/
@@ -17,11 +17,11 @@ COPY apps/automation ./apps/automation
 RUN pnpm --filter automation run build
 
 # --- Production ---
-FROM node:20-alpine AS runner
+FROM node:26-alpine AS runner
 
 WORKDIR /repo
 
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+RUN npm install -g pnpm@9.15.0
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/automation/package.json ./apps/automation/
