@@ -84,6 +84,20 @@ export class SeriesPausesRepository {
     return rows[0] ? toPause(rows[0]) : null;
   }
 
+  /**
+   * Lifts an open pause by code (`resumed_by = 'auto'`) and adds a line to its Inbox note (read: nothing to do). Null when
+   * it was not open.
+   */
+  async autoResume(id: string, line: string): Promise<SeriesPause | null> {
+    const p = await this.resume(id, 'auto');
+    if (!p) return null;
+    await this.pool.query(
+      `UPDATE agent_inbox SET read_at = COALESCE(read_at, now()), body = COALESCE(body, '') || $2
+        WHERE kind = 'series_paused' AND ref_type = 'series_pause' AND ref_id = $1`,
+      [id, `\n\n${line.charAt(0).toUpperCase()}${line.slice(1)} (${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC)`]);
+    return p;
+  }
+
   /** The latest resume per `<channelKey>|<key>`: slots closed before it do not count towards a new streak. */
   async lastResumes(): Promise<Map<string, Date>> {
     const { rows } = await this.pool.query(

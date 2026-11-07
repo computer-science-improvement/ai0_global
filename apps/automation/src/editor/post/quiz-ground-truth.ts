@@ -109,3 +109,23 @@ export async function checkQuizGroundTruth(pool: Pick<Pool, 'query'>, spec: Post
       : `правильна відповідь у базі — варіант num=${truth.num}: "${truth.text}". ${how}`,
   };
 }
+
+/**
+ * 2026-11-07: query_data rows of pdr_questions carry the answer key resolved by code — `correct_index` (the position in
+ * `answers`, from 0, which is what poll.correct_index takes) — or `answer_key_error` for a broken key. The writer used to
+ * compute it from a playbook rule («correct_answer_num − 1», wrong since spec 079: num counts from 0), and the guard
+ * refused the quiz. Rows without both fields are returned as they are.
+ */
+export async function withAnswerKeys<R extends Record<string, any>>(pool: Pick<Pool, 'query'>, schema: { id: number | string; key: string }, rows: R[]): Promise<R[]> {
+  if (schema.key !== PDR || !rows.some((r) => r && 'answers' in r && 'correct_answer_num' in r)) return rows;
+  const { rows: z } = await pool.query(
+    `SELECT EXISTS (SELECT 1 FROM data_items WHERE schema_id = $1 AND data->>'correct_answer_num' = '0') AS zero_based`, [schema.id]);
+  const zeroBased = z[0]?.zero_based === true;
+  return rows.map((r) => {
+    if (!r || !('answers' in r) || !('correct_answer_num' in r) || !Array.isArray(r.answers)) return r;
+    const k = resolveAnswerKey({ answers: r.answers, correct_answer_num: r.correct_answer_num }, { zeroBased, id: String(r.ref ?? PDR) });
+    if (!k.ok) return { ...r, answer_key_error: k.details };
+    const at = k.options.indexOf(k.truth);
+    return { ...r, correct_index: at, correct_answer_text: k.truth.text };
+  });
+}

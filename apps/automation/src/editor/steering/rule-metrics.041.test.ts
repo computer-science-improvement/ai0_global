@@ -70,3 +70,11 @@ test('lint: brief_media_missing blocks a bare poll when the brief asks for a pic
   assert.ok(!pic.errors.some((e) => e.code === 'brief_media_missing'));
   assert.ok(!lintPost(poll, makeCard({ brief: 'Канал про ШІ.', formats: { poll: 1 } })).errors.some((e) => e.code === 'brief_media_missing'));
 });
+
+test('lint: brief_media_missing is a warning, not a refusal, on a dataset row (the picture is the row\'s, 2026-11-07)', () => {
+  const quiz = makeSpec({ format: 'quiz', library_ref: 'data://pdr_questions/57156', hashtags: [], media: [],
+    poll: { question: 'Яка максимальна швидкість у населеному пункті?', options: ['50 км/год', '60 км/год', '90 км/год'], correct_index: 0, explanation: 'п. 12.4' } } as any);
+  const r = lintPost(quiz, makeCard({ brief: 'Публікувати запитання у форматі вікторин із картинкою до запитання.', formats: { quiz: 1 } }));
+  assert.ok(!r.errors.some((e) => e.code === 'brief_media_missing'), JSON.stringify(r.errors));
+  assert.ok(r.warnings.some((w) => w.code === 'brief_media_missing' && /публікуй без картинки/.test(w.message)), JSON.stringify(r.warnings));
+});

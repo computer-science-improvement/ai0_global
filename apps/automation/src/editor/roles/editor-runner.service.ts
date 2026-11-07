@@ -495,6 +495,8 @@ export class EditorRunnerService {
     if (scan && slot.liveSpec && scan.feedsRead > 0 && !scan.items.length && !scan.otherSources.length) {
       return this.skipByCode(slot, noFreshReason(slot.liveSpec, scan));
     }
+    // Nothing within the slot's window, something within the wider one: the writer works with the wider window.
+    if (scan?.widenedTo && slot.liveSpec) slot = { ...slot, liveSpec: { ...slot.liveSpec, max_age_hours: scan.widenedTo } };
     // Spec 076 FR-007 (L5): every feed of the slot is blocked or timing out, and no page or api source is left for the writer:
     // skip at $0 with the pre-flight's class, naming the hosts. A scan that threw (null) and a scan without the new fields never get here.
     if (scan && slot.liveSpec && feedsAllUnreachable(scan)) {

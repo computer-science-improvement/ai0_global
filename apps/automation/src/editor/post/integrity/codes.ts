@@ -76,7 +76,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   language_case:              { task: '041', level: 'warning', what: 'a suspect case («трапляється у найвідоміших сервісів» → «з …ими»)' },
   language_suspect:           { task: '041', level: 'warning', what: 'a contested or context-dependent calque («вражаючий», «на борту» outside a vehicle, «по рампі» for a path)' },
   language_euphony:           { task: '041', level: 'warning', what: 'у/в, і/й against the alternation rule, with the exact replacement' },
-  brief_media_missing:        { task: '041', level: 'error',   what: 'the brief asks for a picture on this format and the post has none' },
+  brief_media_missing:        { task: '041', level: 'error',   what: 'the brief asks for a picture on this format and the post has none (a warning on a dataset row: the picture is the row\'s)' },
   topic_repeat:               { task: 'T2', level: 'error',   what: '(041) an evergreen post (explainer, how-to, glossary, listicle) on a topic of the last 30 days' },
 };
 

@@ -119,12 +119,35 @@ export interface StoryMatch {
   via: 'post' | 'section';
 }
 
+const withoutKeys = (e: PostEntities, ignore?: ReadonlySet<string>): PostEntities =>
+  !ignore?.size ? e : { entities: new Map([...e.entities].filter(([k]) => !ignore.has(k))), stems: e.stems };
+
+/** A resource's boilerplate needs this many earlier posts before it is told apart from a story. */
+export const BOILERPLATE_MIN_POSTS = 3;
+/** An entity in at least this share of the resource's earlier posts is its boilerplate. */
+export const BOILERPLATE_SHARE = 0.6;
+
+/**
+ * 2026-11-07: the entities a resource repeats in most of its posts — a fixed caption template («💬 Prompt:», «Модель: Nano
+ * Banana Pro»), a series label — are the channel's form, not a story. With them in the overlap every prompt post of
+ * @ai0_prompts_dev scored 0.46 (shared 5) against every earlier one and was refused as story_repeat. They are left out of
+ * the match with the resource's own posts (not with siblings: two channels share a story, not a template).
+ */
+export function boilerplateOf(posts: AuditPost[]): Set<string> {
+  const withText = posts.filter(hasText);
+  if (withText.length < BOILERPLATE_MIN_POSTS) return new Set();
+  const seen = new Map<string, number>();
+  for (const p of withText) for (const k of storyView(p).entities.entities.keys()) seen.set(k, (seen.get(k) ?? 0) + 1);
+  return new Set([...seen].filter(([, n]) => n >= Math.max(BOILERPLATE_MIN_POSTS, Math.ceil(withText.length * BOILERPLATE_SHARE))).map(([k]) => k));
+}
+
 /** Whether `a` (the new post) tells the story of `b` (an earlier post): the best overlap that passes, or null. */
-export function storyMatch(a: StoryView, b: StoryView): StoryMatch | null {
-  const tries: Array<[Overlap, 'post' | 'section']> = [[entityOverlap(a.entities, b.entities), 'post']];
+export function storyMatch(a: StoryView, b: StoryView, ignore?: ReadonlySet<string>): StoryMatch | null {
+  const ov = (x: PostEntities, y: PostEntities) => entityOverlap(withoutKeys(x, ignore), withoutKeys(y, ignore));
+  const tries: Array<[Overlap, 'post' | 'section']> = [[ov(a.entities, b.entities), 'post']];
   // A post about one item of a digest is that item's story; two digests sharing an item are not one story.
-  if (b.roundup && !a.roundup) for (const s of b.sections) tries.push([entityOverlap(a.entities, s), 'section']);
-  if (a.roundup && !b.roundup) for (const s of a.sections) tries.push([entityOverlap(s, b.entities), 'section']);
+  if (b.roundup && !a.roundup) for (const s of b.sections) tries.push([ov(a.entities, s), 'section']);
+  if (a.roundup && !b.roundup) for (const s of a.sections) tries.push([ov(s, b.entities), 'section']);
   // The bypass is off for an explainer / evergreen post on either side: it is judged by its topic words (topicMatch).
   // Only asked when some overlap has no shared topic words, so the common case costs nothing.
   const evergreen = tries.some(([o]) => o.stems < STORY_MATCH.stems)
@@ -232,12 +255,13 @@ export function assessStory(post: AuditPost, ctx: AuditContext): StoryAssessment
   const windowH = (evergreen ? EVERGREEN_WINDOW_DAYS : STORY_WINDOW_DAYS) * 24;
 
   const matches: StoryMatch[] = [];
+  const boilerplate = boilerplateOf((ctx.previous ?? []).filter((p) => p.id !== post.id));
   for (const p of ctx.previous ?? []) {
     const h = hoursBetween(p.publishedAt, post.publishedAt);
     if (Math.abs(h) > windowH || p.id === post.id || !hasText(p)) continue;
     // An evergreen topic is compared with every post of 30 days; any other post with 14 days of posts. A post
     // scheduled later (approved, waiting) counts too: the slot that goes out second is the repeat.
-    const m = storyMatch(me, storyView(p));
+    const m = storyMatch(me, storyView(p), boilerplate);
     if (m) matches.push(m);
   }
   const siblings: StoryMatch[] = [];

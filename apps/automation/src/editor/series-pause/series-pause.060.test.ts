@@ -280,3 +280,26 @@ test('scheduler: the breaker runs every tick before slots are claimed; a channel
   assert.ok(order.includes('claim2'));
   assert.equal(logs.length, 2);
 });
+
+test('SERIES_PAUSE_RETRY_HOURS: a no-material pause is lifted by code after the window; owner / unreadable pauses and 0 = off are not', async () => {
+  const now = new Date('2026-11-07T18:00:00.000Z');
+  const mk = (id: string, cause: SeriesPause['cause'], hoursAgo: number): SeriesPause => ({
+    id, channelKey: '@c', key: `series:${id}`, label: id, cause, reason: '', streak: 3,
+    pausedAt: new Date(now.getTime() - hoursAgo * 3_600_000), resumedAt: null, resumedBy: null,
+  } as SeriesPause);
+  let open = [mk('old', 'no_material', 30), mk('fresh', 'no_material', 5), mk('own', 'owner', 100), mk('dead', 'source_unreachable', 100)];
+  const resumed: string[] = [];
+  const repo: any = {
+    closedSlots: async () => [], lastResumes: async () => new Map(), insertOpen: async () => null, agentOf: async () => null,
+    open: async () => open, skipPlanned: async () => 0,
+    autoResume: async (id: string) => { resumed.push(id); open = open.filter((p) => p.id !== id); return mk(id, 'no_material', 0); },
+  };
+  let hours = 0;
+  const breaker = new SeriesBreaker({ repo, inbox: { post: async () => 1 }, threshold: () => 3, retryHours: () => hours, everyMs: 0 });
+  await breaker.check(now, true);
+  assert.deepEqual(resumed, [], '0 = off');
+  hours = 24;
+  await breaker.check(now, true);
+  assert.deepEqual(resumed, ['old']);
+  assert.deepEqual(open.map((p) => p.id), ['fresh', 'own', 'dead']);
+});

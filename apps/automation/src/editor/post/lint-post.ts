@@ -163,8 +163,13 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
   // ── media ─────────────────────────────────────────────────────────────────
   const n = spec.media.length;
   // Spec 041 FR-008: the brief's picture requirement («опитування з картинкою», «кожен пост — фото»).
+  // 2026-11-07: a post from a dataset row shows the row's picture; a row without one cannot meet the brief by any other
+  // picture (a stranger's image is image_not_from_source), so the brief's wish is a warning there, not a refusal —
+  // @pdr_dev_channel skipped 11 of 12 quizzes on pdr_questions rows with no image_url.
   const briefMedia = briefMediaMissing(spec.format, specHasPicture(spec), card.brief);
-  if (briefMedia) err('brief_media_missing', briefMedia);
+  if (briefMedia && spec.library_ref) {
+    warn('brief_media_missing', `${briefMedia.replace(/ — додай media.*$/u, '')}, але пост з рядка датасету (${spec.library_ref}): картинку бери лише з цього рядка; немає її в рядку — публікуй без картинки, це не причина пропускати слот`);
+  } else if (briefMedia) err('brief_media_missing', briefMedia);
   if (spec.format === 'photo' && n !== 1) {
     err('media_count', n === 0
       ? 'photo потребує рівно 1 зображення, зараз 0 — додай media: [{"url": "https://…"}] (пряме посилання на картинку з джерела, бібліотеки чи від власника) або зміни format на text'

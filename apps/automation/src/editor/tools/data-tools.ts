@@ -10,6 +10,7 @@ import { DataQueryError, filterSchema, kyivMonthDay, MAX_AGENT_LIMIT, ORDERS, qu
 import { DATA_REF_RE, LIBRARY_REF_RE } from '../../data/data-refs';
 import { reuseOrderByIssue, reusePolicySchema, type DataSchema } from '../../data/data.types';
 import { isCycle, repeatOf, rollIfDone, roundsOf } from '../../data/data-rounds';
+import { withAnswerKeys } from '../post/quiz-ground-truth';
 
 /**
  * Agents work from dataset descriptions (spec 032 FR-010):
@@ -110,7 +111,7 @@ async function queryByRefs(d: DataToolDeps, s: DataSchema, i: QueryDataArgs & { 
     ...(r.truncated.length ? ['long texts cut at 2000 characters; ask again with full: true and only that field if you need all of it'] : []),
   ];
   return {
-    dataset: s.key, rows,
+    dataset: s.key, rows: await withAnswerKeys(d.pool, s, rows as any[]),
     ...(r.truncated.length ? { truncated: r.truncated } : {}),
     ...(notes.length ? { note: notes.join('; ') } : {}),
     ...(s.contains_personal_data ? { personal_data: true } : {}),
@@ -154,7 +155,7 @@ export async function runQueryData(d: DataToolDeps, i: QueryDataArgs, ctx: ToolC
     if (rolled && r.rows.length) notes.push('щойно почалось нове коло — усі рядки датасету знову доступні');
     if (next) notes.push('датасет іде по черзі — бери перший рядок');
     return {
-      dataset: s.key, rows: r.rows,
+      dataset: s.key, rows: await withAnswerKeys(d.pool, s, r.rows),
       ...(repeat ? { repeat } : {}),
       ...(next ? { next } : {}),
       ...(r.truncated.length ? { truncated: r.truncated } : {}),

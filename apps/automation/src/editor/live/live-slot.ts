@@ -16,6 +16,12 @@ export type TopicMode = typeof TOPIC_MODES[number];
 export const LIVE_DEFAULT_MAX_AGE_HOURS = 6;
 /** The skip code of a live slot with nothing fresh. */
 export const NO_FRESH_ITEM = 'no_fresh_item';
+/**
+ * 2026-11-07: nothing within the slot's window (6 h by default) → the scan looks once more within this many hours before the
+ * slot is skipped. @ai0_news_dev lost 4 of 22 slots to «no item ≤ 6 h» on feeds full of 7–20 h old news; a day-old story not
+ * posted yet is still news for the channel. The writer is told the wider window (LiveScan.widenedTo).
+ */
+export const LIVE_WIDEN_MAX_AGE_HOURS = 24;
 
 export interface LiveItemRef {
   url:           string;
@@ -147,6 +153,8 @@ export interface LiveScan {
   /** api:… sources the code does not read — the agent reads them with fetch_api. */
   otherSources:  string[];
   dropped:       { old: number; undated: number; posted: number; similar: number };
+  /** Set when nothing was fresh within the slot's window and the items come from the wider LIVE_WIDEN_MAX_AGE_HOURS. */
+  widenedTo?:    number;
 }
 
 /**

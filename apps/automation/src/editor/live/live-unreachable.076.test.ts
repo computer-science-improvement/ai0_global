@@ -254,3 +254,20 @@ test('the news watch reads its feeds through the guarded reader: a blocked feed 
   assert.ok(logs.some((l) => /feed f2 failed: b\.example unreachable \(blocked\)/.test(l)), logs.join('|'));
   assert.deepEqual(hosts.ok, [['a.example', 'feed'], ['a.example/rss', 'feed']]);
 });
+
+test('scanLive: nothing within the slot window → items within 24 h, widenedTo set; older than a day still skips (2026-11-07)', async () => {
+  const day = rss([{ title: 'Google показала нову модель для перекладу', link: 'https://a.example/day', date: '2030-05-05T22:00:00Z' }]);
+  const wide = await scanLive({ pool: emptyPool, http: http({ [A]: [ok(day)] }).seams }, {
+    spec: { sources: [A], max_age_hours: 6 }, resourceRef: 'telegram:@x', card: [], now: NOW,
+  });
+  assert.deepEqual([wide.items.length, wide.widenedTo], [1, 24]);
+  const fresh = await scanLive({ pool: emptyPool, http: http({ [A]: [ok(FRESH)] }).seams }, {
+    spec: { sources: [A], max_age_hours: 6 }, resourceRef: 'telegram:@x', card: [], now: NOW,
+  });
+  assert.equal(fresh.widenedTo, undefined, 'a fresh item needs no wider window');
+  const old = rss([{ title: 'Стара новина', link: 'https://a.example/old', date: '2030-05-04T09:00:00Z' }]);
+  const none = await scanLive({ pool: emptyPool, http: http({ [A]: [ok(old)] }).seams }, {
+    spec: { sources: [A], max_age_hours: 6 }, resourceRef: 'telegram:@x', card: [], now: NOW,
+  });
+  assert.deepEqual([none.items.length, none.widenedTo], [0, undefined]);
+});

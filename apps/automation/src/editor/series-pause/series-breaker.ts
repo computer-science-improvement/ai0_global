@@ -7,6 +7,14 @@ import { pauseMapKey, seriesIdOf, skipStreaks, type StreakHit, type StreakSlot }
 /** Spec 060 FR-001: SERIES_SKIP_STREAK (default 3, 0 = off). */
 export const DEFAULT_SERIES_SKIP_STREAK = 3;
 export const BREAKER_EVERY_MS = 2 * 60_000;
+/**
+ * SERIES_PAUSE_RETRY_HOURS (default 24, 0 = off): a pause for «no material» is lifted by code after this long, so a series
+ * or a whole channel is never dark for days waiting for the owner (2026-11-07: @ai0_global was dark 10 days, @game_exchange_dev
+ * 6 days on one quiet Sunday). The streak counts again from the resume: still nothing to post → paused again after
+ * SERIES_SKIP_STREAK skips. An owner pause and an unreadable source (the source probe lifts that one) are never lifted here.
+ */
+export const DEFAULT_SERIES_PAUSE_RETRY_HOURS = 24;
+export const AUTO_RESUMED_BY = 'auto';
 /** How many recent skip lines per series the planner reads (FR-002). */
 export const PLANNER_SKIPS_PER_SERIES = 3;
 
@@ -45,10 +53,13 @@ export function pausedNote(p: SeriesPause): { title: string; body: string; alert
 }
 
 export interface SeriesBreakerDeps {
-  repo:     Pick<SeriesPausesRepository, 'closedSlots' | 'lastResumes' | 'insertOpen' | 'open' | 'skipPlanned' | 'agentOf'>;
+  repo:     Pick<SeriesPausesRepository, 'closedSlots' | 'lastResumes' | 'insertOpen' | 'open' | 'skipPlanned' | 'agentOf'>
+    & Partial<Pick<SeriesPausesRepository, 'autoResume'>>;
   inbox:    Pick<OwnerInbox, 'post'>;
   /** SERIES_SKIP_STREAK, read at each check (a live setting); 0 = off. */
   threshold: () => number;
+  /** SERIES_PAUSE_RETRY_HOURS, read at each check; 0 = a pause waits for the owner. */
+  retryHours?: () => number;
   everyMs?: number;
   log?:     (m: string) => void;
 }
@@ -81,6 +92,7 @@ export class SeriesBreaker {
         try { if (await this.pause(h)) created++; } catch (err: any) { this.d.log?.(`series pause of ${h.channelKey} ${h.key} failed: ${err?.message ?? err}`); }
       }
     }
+    await this.retryStale(now);
     // Planned slots of every open pause (including a pause the owner made, and slots added after the pause).
     for (const p of await this.d.repo.open()) {
       try {
@@ -89,6 +101,24 @@ export class SeriesBreaker {
       } catch (err: any) { this.d.log?.(`skipping planned slots of ${p.channelKey} ${p.key} failed: ${err?.message ?? err}`); }
     }
     return created;
+  }
+
+  /** Lifts the «no material» pauses older than SERIES_PAUSE_RETRY_HOURS. Returns how many. */
+  async retryStale(now: Date): Promise<number> {
+    const hours = this.d.retryHours?.() ?? 0;
+    if (!(hours > 0) || !this.d.repo.autoResume) return 0;
+    const cutoff = now.getTime() - hours * 3_600_000;
+    let n = 0;
+    for (const p of await this.d.repo.open()) {
+      if (p.cause !== 'no_material' || new Date(p.pausedAt).getTime() > cutoff) continue;
+      try {
+        if (await this.d.repo.autoResume(p.id, `resumed by code after ${hours} h; paused again after new skips if there is still nothing to post`)) {
+          n++;
+          this.d.log?.(`series "${p.label}" on ${p.channelKey}: pause lifted after ${hours} h (SERIES_PAUSE_RETRY_HOURS)`);
+        }
+      } catch (err: any) { this.d.log?.(`auto-resume of ${p.channelKey} ${p.key} failed: ${err?.message ?? err}`); }
+    }
+    return n;
   }
 
   private async pause(h: StreakHit): Promise<SeriesPause | null> {

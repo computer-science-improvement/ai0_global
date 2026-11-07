@@ -25,7 +25,7 @@ import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
-import { DEFAULT_SERIES_SKIP_STREAK, SeriesBreaker } from './series-pause/series-breaker';
+import { DEFAULT_SERIES_PAUSE_RETRY_HOURS, DEFAULT_SERIES_SKIP_STREAK, SeriesBreaker } from './series-pause/series-breaker';
 import { SeriesPauseActions } from './series-pause/pause-actions';
 import { registerPauseResumeAction } from './series-pause/pause-resume-action';
 import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
@@ -1817,6 +1817,7 @@ export const EDITOR_PROVIDERS = [
         const breaker = new SeriesBreaker({
           repo: seriesPausesRepo, inbox: infra.inbox, log: (m) => logger.warn(m),
           threshold: () => Math.max(0, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_SKIP_STREAK', DEFAULT_SERIES_SKIP_STREAK))),
+          retryHours: () => Math.max(0, envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_PAUSE_RETRY_HOURS', DEFAULT_SERIES_PAUSE_RETRY_HOURS)),
         });
         // Spec 037 FR-014: the daily post audit (and at once after a rule change), code only.
         const audit = new PostAuditService({ pool, cardOf: editorCardAudit((k) => repos.channels.get(k)), log: (m) => logger.warn(m) });

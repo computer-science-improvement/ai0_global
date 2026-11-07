@@ -9,7 +9,7 @@ import { FEEDISH } from '../sources/playbook-feeds';
 import type { Lookup } from '../net/ssrf-guard';
 import { ledgerResource } from '../../data/content-ledger';
 import { containment, similarity } from '../post/similarity';
-import type { LiveCandidate, LiveScan, LiveSpec } from './live-slot';
+import { LIVE_WIDEN_MAX_AGE_HOURS, type LiveCandidate, type LiveScan, type LiveSpec } from './live-slot';
 import { errText } from '../../common/err-text';
 
 /**
@@ -256,12 +256,18 @@ export async function scanLive(
       if (r.unreachable) unreachable++;
     }
   }
-  const r = await filterFresh(all, { sinceHours: o.spec.max_age_hours, pool: d.pool, resourceRef: o.resourceRef, now: o.now, excludeSlotId: o.excludeSlotId });
+  const fresh = (sinceHours: number) => filterFresh(all, { sinceHours, pool: d.pool, resourceRef: o.resourceRef, now: o.now, excludeSlotId: o.excludeSlotId });
+  let r = await fresh(o.spec.max_age_hours);
+  let widenedTo: number | undefined;
+  if (!r.kept.length && all.length && o.spec.max_age_hours < LIVE_WIDEN_MAX_AGE_HOURS) {
+    const wide = await fresh(LIVE_WIDEN_MAX_AGE_HOURS);
+    if (wide.kept.length) { r = wide; widenedTo = LIVE_WIDEN_MAX_AGE_HOURS; }
+  }
   const items: LiveCandidate[] = r.kept
     .sort((a, b) => a.age_hours - b.age_hours)
     .map((x) => ({ title: x.title ?? x.link!, url: x.link!, ageHours: x.age_hours, snippet: x.snippet || null, feed: x.feed }));
   return {
     items, feedsRead: read, feedsFailed: failed, feedsUnreachable: unreachable, pageSources: feeds.filter((f) => f.kind === 'url').length,
-    otherSources: other, dropped: r.dropped,
+    otherSources: other, dropped: r.dropped, ...(widenedTo ? { widenedTo } : {}),
   };
 }
