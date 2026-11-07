@@ -41,6 +41,19 @@ export function evergreenPerDay(env: (k: string) => string | undefined): number 
   return Number.isFinite(n) && n >= 0 ? Math.floor(n) : DEFAULT_EVERGREEN_PER_DAY;
 }
 
+/**
+ * Spec 091 FR-004: the controller may exceed EDITOR_EVERGREEN_PER_DAY only while the channel is dark, up to
+ * SLO_EVERGREEN_DARK_MAX (default 2) evergreen posts a day. Normal days keep the existing cap (and 0 stays "off").
+ */
+export const DEFAULT_SLO_EVERGREEN_DARK_MAX = 2;
+export function evergreenDarkMax(env: (k: string) => string | undefined): number {
+  const raw = env('SLO_EVERGREEN_DARK_MAX');
+  const n = raw == null || raw.trim() === '' ? DEFAULT_SLO_EVERGREEN_DARK_MAX : Number(raw);
+  return Number.isFinite(n) && n >= 0 ? Math.min(5, Math.floor(n)) : DEFAULT_SLO_EVERGREEN_DARK_MAX;
+}
+/** The evergreen cap of a channel-day: `perDay`, raised to `darkMax` while the channel is dark. */
+export const evergreenCap = (perDay: number, darkMax: number, dark: boolean): number => (dark ? Math.max(perDay, darkMax) : perDay);
+
 /** Is this a post spec the writer (or the code) marked evergreen? */
 export const isEvergreenSpec = (spec: unknown): boolean => (spec as any)?.story?.kind === 'evergreen';
 
@@ -133,6 +146,9 @@ export interface EvergreenStepDeps {
   plans:   Pick<EditorPlansRepository, 'getSlot'>;
   /** EDITOR_EVERGREEN_PER_DAY (0 = off). */
   perDay:  number;
+  /** Spec 091: SLO_EVERGREEN_DARK_MAX and whether the channel is dark today; both absent = the plain cap. */
+  darkMax?: () => number;
+  isDark?:  (channelKey: string, at: Date) => Promise<boolean>;
   inbox?:  Pick<OwnerInbox, 'postOnce'>;
   log?:    (m: string) => void;
 }
@@ -153,7 +169,11 @@ export class EvergreenStep {
     if (this.d.perDay <= 0) return null;
     if (slot.resourceRef && parseResourceRef(slot.resourceRef)?.platform !== 'telegram') return null;
     if (slot.treatment === 'duplicate' || slot.treatment === 'adapt') return null;
-    if (await this.usedToday(slot, card) >= this.d.perDay) return null;
+    let cap = this.d.perDay;
+    if (this.d.darkMax && this.d.isDark && await this.d.isDark(card.channelKey, slot.scheduledAt).catch(() => false)) {
+      cap = evergreenCap(this.d.perDay, this.d.darkMax(), true);
+    }
+    if (await this.usedToday(slot, card) >= cap) return null;
     const res = await req.run({ slot: evergreenSlot(slot, card), note: evergreenNote({ failure, original: slot, format: slot.format }) });
     const after = await this.d.plans.getSlot(slot.id).catch(() => null);
     if (after && isRescued(after.status) && isEvergreenSpec(after.postSpec) && this.d.inbox) {
