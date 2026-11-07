@@ -66,7 +66,9 @@ import { EventRecapWatch } from './story/event-watch';
 import { buildStoryTools, storyRepostLimits } from './story/story-tools';
 import { StoryBackfill } from './story/story-backfill';
 import { buildApiTools } from './tools/api-tools';
-import { applyDataSchemaSuggestion, buildDataTools } from './tools/data-tools';
+import { applyDataSchemaSuggestion, buildDataTools, dataSchemaSilence, undoDataSchemaEdit } from './tools/data-tools';
+import { changeSourceSilence, undoSourceChange } from './sources/source-silence';
+import { PgSourceProbes } from './sources/source-probes.repository';
 import { DataStore } from '../data/data-store';
 import { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { EditorPlansRepository } from './repo/editor-plans.repository';
@@ -914,7 +916,7 @@ export class AgentsUpkeep implements OnModuleInit {
   @Cron('23 * * * *', { name: 'agents-housekeeping' })
   async housekeeping(): Promise<void> {
     try {
-      await this.infra.actionsRepo.expireOld(new Date());
+      await this.infra.actions.expireOld(new Date());
       for (const a of await this.infra.agents.list()) {
         if (a.parentId || a.mode !== 'shadow' || !a.shadowUntil || a.shadowUntil.getTime() > Date.now()) continue;
         await this.infra.inbox.post({
@@ -1121,7 +1123,7 @@ export const EDITOR_PROVIDERS = [
           inbox: new OwnerInbox(pool, (t) => notifier.notifyAlert(t), cfg.get<string>('DASHBOARD_URL') ?? null),
           kpi: new TelegramScopeKpi(pool),
           runtime: new AgentRuntime({ agents, store: skills, fallback: files, log: (m) => logger.warn(m) }),
-          actions: new PendingActionsService(actionsRepo),
+          actions: new PendingActionsService(actionsRepo, undefined, { env: (k) => cfg.get<string>(k) ?? undefined, decisions }),
           creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels, loadout: loadoutCreation }),
           loadout: new LoadoutService({ repo: loadoutRepo, log: (m) => logger.warn(m) }),
           loadoutRepo, loadoutUsage, decisions, autonomyUndo: new AutonomyUndo(decisions),
@@ -1563,8 +1565,8 @@ export const EDITOR_PROVIDERS = [
         const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
           loop, registry, runtime: infra.runtime, loadout: infra.loadout, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
-          timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
-          timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
+          // Spec 090 FR-002: DIRECTIVE_TIMEOUT_HOURS / _APPLY_KINDS are read live by the runner (the owner-gate registry decides).
+          decisions: infra.decisions,
           exec: directiveExecution(pool, repos, infra, platform, buildPort, env),
           // Spec 025 FR-008: the contest timeout and the health guard on uphold.
           contestTimeoutHours: envNum(env, 'DIRECTIVE_CONTEST_TIMEOUT_HOURS', 24),
@@ -2076,6 +2078,11 @@ export const EDITOR_PROVIDERS = [
         });
         // Spec 032 FR-010: an agent's description fix for a dataset, applied by the owner (description-only, never a version bump).
         infra.actions.register('edit_data_schema', (p) => applyDataSchemaSuggestion(new DataStore(pool), p));
+        // Spec 090 FR-003/FR-010: on owner silence an edit_data_schema and an add/replace change_source card are applied (not from a chat); undo restores them.
+        infra.actions.registerSilence('edit_data_schema', dataSchemaSilence(new DataStore(pool)));
+        infra.autonomyUndo.register('edit_data_schema', (u, c) => undoDataSchemaEdit(new DataStore(pool), u, c.by));
+        infra.actions.registerSilence(SOURCE_CHANGE_KIND, changeSourceSilence({ probes: new PgSourceProbes(pool), channels: { get: async (k) => (await ops.getChannel(k)) as EditorCard | null } }));
+        infra.autonomyUndo.register(SOURCE_CHANGE_KIND, (u) => undoSourceChange(u, { channels: { get: async (k) => (await ops.getChannel(k)) as EditorCard | null }, upsert: (k, patch) => ops.upsertChannel(k, patch) }));
         // Spec 065 FR-003: a list page imported into a dataset (and its re-sync), applied by the owner.
         for (const [kind, handler] of Object.entries(importActionHandlers({ pool, docs: sharedDocStore(), hosts: new PgHostFailures(pool) }))) infra.actions.register(kind, handler);
         svc.setBriefHook(async (agent, brief) => {

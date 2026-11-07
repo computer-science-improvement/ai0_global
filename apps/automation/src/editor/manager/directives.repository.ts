@@ -455,13 +455,4 @@ export class DirectivesRepository {
       `SELECT * FROM agent_memory WHERE agent_id = $1 AND active ORDER BY (created_by = 'owner') DESC, created_at DESC LIMIT $2`, [agentId, limit]);
     return rows.map((r) => ({ id: Number(r.id), kind: r.kind, text: r.text, createdBy: r.created_by, createdAt: r.created_at }));
   }
-
-  /** Structural directives dropped by owner timeout in a row (the "owner is not responding" lesson). */
-  async droppedInARow(): Promise<number> {
-    const { rows } = await this.pool.query(
-      `SELECT owner_decision FROM agent_directives WHERE structural AND NOT shadow AND owner_decision IS NOT NULL ORDER BY updated_at DESC LIMIT 10`);
-    let n = 0;
-    for (const r of rows) { if (r.owner_decision === 'timeout_dropped') n++; else break; }
-    return n;
-  }
 }

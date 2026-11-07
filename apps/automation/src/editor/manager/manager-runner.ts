@@ -16,6 +16,8 @@ import { dayBefore, type ScopeKpis } from './kpi-math';
 import { DirectiveExecution, PROMO_KINDS } from './executors';
 import { isQualityMetric, qualityMetricValue } from './quality-digest';
 import { requiredQualityRefs } from './directive-tools';
+import { directiveSilence, directiveTimeoutHours } from './directive-silence';
+import type { AutonomyDecisionsRepository } from '../autonomy/autonomy-decisions.repository';
 
 /**
  * Spec 046 FR-004: two looks a day (the skip rule makes the second one cheap when nothing changed); was four.
@@ -46,7 +48,6 @@ export const WAKE_INTERVAL_MS = 60 * 60_000;
  */
 export const WAKE_KINDS = ['task', 'experiment', 'cross_promo'] as const;
 export const RESOLVE_WITHIN_MS = 24 * 3600_000;
-export const NOT_RESPONDING_AFTER = 5;
 
 export interface ManagerRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -64,9 +65,15 @@ export interface ManagerRunnerDeps {
   defaultModel?: (ws?: Workspace) => Promise<string | null>;
   /** Spec 038: the active model workspace. */
   workspace?: () => Promise<Workspace>;
-  /** Hours an owner card waits before its default action, and the kinds whose default is "apply". */
+  /**
+   * Hours an owner card waits before its default action, and the kinds whose default is "apply". Spec 090 FR-002: both are
+   * overrides (tests); without them the runner reads DIRECTIVE_TIMEOUT_HOURS / DIRECTIVE_TIMEOUT_APPLY_KINDS live from `env`
+   * and the owner-gate registry decides (an empty kind list means the registry default).
+   */
   timeoutHours?: number;
   timeoutApplyKinds?: string[];
+  /** Spec 090 FR-010: the log of decisions taken on owner silence. Optional (tests). */
+  decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
   /** Spec 025 FR-009: the executors. Without it no kind has one (advice self-reported; T4/T5 kinds unverified; the rest fail). */
   exec?:    DirectiveExecution;
   /** Spec 025 FR-008: hours a contested directive waits for the owner before the refusal stands (DIRECTIVE_CONTEST_TIMEOUT_HOURS). */
@@ -84,6 +91,14 @@ export const DEFAULT_CONTEST_TIMEOUT_HOURS = 24;
 export function paramRefs(params: Record<string, unknown> | null | undefined): string[] {
   const p = params ?? {};
   return ['resource_ref', 'source_ref', 'target_ref', 'to_ref'].map((k) => p[k]).filter((x): x is string => typeof x === 'string' && x.includes(':'));
+}
+
+/** The channel a directive is about, when its params name one (`resource_ref: telegram:@key`, `channel_key`). */
+export function channelKeyOf(dir: Pick<Directive, 'params'>): string | null {
+  const p = dir.params ?? {};
+  if (typeof p.channel_key === 'string' && p.channel_key) return p.channel_key;
+  const ref = ['resource_ref', 'source_ref'].map((k) => p[k]).find((x): x is string => typeof x === 'string' && x.includes(':'));
+  return ref ? ref.slice(ref.indexOf(':') + 1) : null;
 }
 
 export type OwnerDecisionResult = { directive: Directive } | { error: 'directive_not_found' | 'not_contested' | 'not_executable'; details?: string };
@@ -375,22 +390,60 @@ export class ManagerRunner {
         });
         continue;
       }
-      const acc = await this.d.repo.update(dir.id, { status: 'accepted', resolution: AUTO_APPLIED }, ['new']);
-      if (!acc) continue;
-      // Promo kinds are scheduled by PromoPlanner after the orchestrator's next run (spec 022).
-      const done = PROMO_KINDS.includes(dir.kind) ? acc : (await this.exec.execute(acc, orch!)) ?? acc;
-      if (done.status === 'applied') await this.recordBaseline(done, null);
-      out.autoApplied++;
-      const state = done.status === 'applied' ? 'applied' : PROMO_KINDS.includes(dir.kind) ? 'scheduled with the next orchestrator run' : `not applied yet (${done.execError ?? 'retrying hourly'})`;
-      await this.d.inbox.post({
-        agentId: dir.toAgentId, kind: 'directive_auto_applied', severity: 'info',
-        title: `🤖 Directive for ${who} applied without an answer: ${dir.kind}`,
-        body: `${dir.body}\n\n${who} did not answer within 24 h, so the code carried it out: ${state}.`,
-        alert: { title: `🤖 Директиву для ${who} застосовано без відповіді: ${dir.kind}`, body: `${dir.body}\n\n${who} не відповів за 24 год — код виконав її сам.` },
-        refType: 'directive', refId: dir.id,
-      });
+      if (await this.autoApply(dir, orch!, who, '24 h')) out.autoApplied++;
     }
     return out;
+  }
+
+  /**
+   * Carry out a binding directive with an executor by code, without the orchestrator's answer. `waited` words the Inbox note
+   * ("24 h" for an unanswered directive; spec 090: the owner's timeout for one applied on owner silence).
+   * Returns the directive after the executor ran, or null when it was not `new` any more.
+   */
+  private async autoApply(dir: Directive, orch: Agent, who: string, waited: string, owner = false): Promise<Directive | null> {
+    const acc = await this.d.repo.update(dir.id, { status: 'accepted', resolution: owner ? 'auto-applied: owner did not answer' : AUTO_APPLIED }, ['new']);
+    if (!acc) return null;
+    // Promo kinds are scheduled by PromoPlanner after the orchestrator's next run (spec 022).
+    const done = PROMO_KINDS.includes(dir.kind) ? acc : (await this.exec.execute(acc, orch)) ?? acc;
+    if (done.status === 'applied') await this.recordBaseline(done, null);
+    const state = done.status === 'applied' ? 'applied' : PROMO_KINDS.includes(dir.kind) ? 'scheduled with the next orchestrator run' : `not applied yet (${done.execError ?? 'retrying hourly'})`;
+    await this.d.inbox.post({
+      agentId: dir.toAgentId, kind: 'directive_auto_applied', severity: 'info',
+      title: `🤖 Directive for ${who} applied without an answer: ${dir.kind}`,
+      body: `${dir.body}\n\n${owner ? 'The owner' : who} did not answer within ${waited}, so the code carried it out: ${state}.`,
+      alert: { title: `🤖 Директиву для ${who} застосовано без відповіді: ${dir.kind}`, body: `${dir.body}\n\n${owner ? 'Власник' : who} не відповів за ${waited} — код виконав її сам.` },
+      refType: 'directive', refId: dir.id,
+    });
+    return done;
+  }
+
+  /**
+   * Spec 090 FR-002: a directive decided on owner silence. One `autonomy_decisions` row; an applied one with an executor
+   * (or a promo kind) goes to it now, in this pass, instead of waiting for the orchestrator's 24 h answer window. The
+   * orchestrator still receives it in its next run. Advice and `task` (no executor) stay `new`: the orchestrator does those.
+   * Undo is null: the executors write playbook versions / card edits that have no inverse the code can name yet.
+   */
+  private async onTimeout(dir: Directive, apply: boolean, hours: number): Promise<void> {
+    const base = { gate: `directive:${dir.kind}`, refType: 'directive', refId: dir.id, channelKey: channelKeyOf(dir) };
+    const rec = (action: 'applied' | 'dropped' | 'failed', summary: string) => this.d.decisions?.record({ ...base, action, summary, undo: null });
+    if (!apply) { await rec('dropped', `Directive ${dir.kind} expired: no answer in ${hours} h`); return; }
+    let state = 'queued for the orchestrator';
+    let action: 'applied' | 'failed' = 'applied';
+    try {
+      const executable = dir.binding === 'directive' && (!!this.exec.executorFor(dir.kind) || PROMO_KINDS.includes(dir.kind));
+      const orch = executable ? await this.d.agents.get(dir.toAgentId) : null;
+      if (executable && orch && orch.mode !== 'off' && !isPaused(orch, this.now())) {
+        const done = await this.autoApply(dir, orch, `@${orch.handle}`, `${hours} h`, true);
+        if (done) {
+          state = done.status === 'applied' ? 'applied' : done.status === 'failed' ? 'failed' : PROMO_KINDS.includes(dir.kind) ? 'scheduled with the next orchestrator run' : 'executor will retry';
+          if (done.status === 'failed') action = 'failed';
+        }
+      }
+    } catch (err: any) {
+      action = 'failed';
+      state = `failed: ${String(err?.message ?? err).slice(0, 150)}`;
+    }
+    await rec(action, `Directive ${dir.kind} applied after ${hours} h without an answer: ${state}`);
   }
 
   /** FR-008: contested directives the owner did not decide in time — the refusal stands (rejected, timeout_dropped). */
@@ -453,16 +506,15 @@ export class ManagerRunner {
   async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number; executed: number; failed: number; resumed: number; verified: number; autoApplied: number; ignored: number; contestTimedOut: number; escalated: number }> {
     for (const a of await this.d.agents.list()) this.handleCache.set(a.id, a.handle);
     let timedOut = 0;
-    const hours = this.d.timeoutHours ?? 12;
+    const hours = this.d.timeoutHours ?? directiveTimeoutHours(this.d.env);
     for (const dir of await this.d.repo.awaitingOwnerOlderThan(hours * 3600_000)) {
-      const apply = (this.d.timeoutApplyKinds ?? []).includes(dir.kind);
-      await this.d.repo.update(dir.id, apply ? { status: 'new', ownerDecision: 'timeout_applied' } : { status: 'expired', ownerDecision: 'timeout_dropped', resolution: 'owner did not answer' }, ['awaiting_owner']);
+      const apply = directiveSilence(dir.kind, this.d.env, this.d.timeoutApplyKinds) === 'apply';
+      const moved = await this.d.repo.update(dir.id, apply ? { status: 'new', ownerDecision: 'timeout_applied' } : { status: 'expired', ownerDecision: 'timeout_dropped', resolution: 'owner did not answer' }, ['awaiting_owner']);
       timedOut++;
+      if (moved) await this.onTimeout(moved, apply, hours);
     }
-    const m = await this.manager();
-    if (timedOut && m && await this.d.repo.droppedInARow() === NOT_RESPONDING_AFTER) {
-      await this.d.repo.addMemory(m.id, 'insight', 'Власник не відповідає на структурні директиви (5 поспіль скасовано за таймаутом) — пропонуй їх рідше і лише з сильними підставами.', null, 'system');
-    }
+    // Spec 090 FR-002: no "owner is not responding" memory line: silence must not teach the manager to do less. The KPI
+    // digest carries the fact instead (owner_answers).
     const { expired, autoApplied, ignored } = await this.resolveUnanswered();
     const contestTimedOut = await this.contestTimeouts();
     // Spec 025 FR-009: retry executors, resume paused series, verify applied changes — before evaluating.

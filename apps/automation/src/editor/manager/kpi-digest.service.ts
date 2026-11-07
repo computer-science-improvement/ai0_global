@@ -1,3 +1,4 @@
+import { ownerAnswersLine } from './directive-silence';
 import { createHash } from 'crypto';
 import { localDate } from '../roles/time';
 import type { Pool } from 'pg';
@@ -51,8 +52,29 @@ export interface KpiDigest {
    * when none is open. `submit_review.escalations` has to answer each; they count in the hash and the review signature.
    */
   escalations?: DigestEscalation[];
+  /**
+   * Spec 090 FR-002: a fact, not an instruction: how many of the structural directives of the last 14 days the owner answered
+   * (approved or declined) rather than let time out. Absent when there were none. Not part of the hash.
+   */
+  owner_answers?: { answered: number; total: number; days: number; line: string };
   hash:        string;
   raw:         Map<string, ScopeKpis>;
+}
+
+/** Spec 090 FR-002: structural directives of the last 14 days that reached the owner, and how many he answered. Best effort. */
+export async function ownerAnswersOf(pool: Pick<Pool, 'query'>, days = 14): Promise<KpiDigest['owner_answers'] | undefined> {
+  try {
+    const { rows } = await pool.query(
+      `SELECT count(*) FILTER (WHERE owner_decision IN ('approved','declined'))::int AS answered,
+              count(*) FILTER (WHERE owner_decision IN ('approved','declined','timeout_applied','timeout_dropped') OR status = 'awaiting_owner')::int AS total
+         FROM agent_directives WHERE structural AND NOT shadow AND created_at >= now() - ($1 || ' days')::interval`, [String(days)]);
+    const total = Number(rows[0]?.total ?? 0);
+    if (!total) return undefined;
+    const answered = Number(rows[0]?.answered ?? 0);
+    return { answered, total, days, line: ownerAnswersLine(answered, total) };
+  } catch {
+    return undefined;
+  }
 }
 
 export interface AuditDigestLine { reportId: string; week: string; at: string; open: number; error: number; warn: number; info: number; fixable: number }
@@ -226,6 +248,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
       return {
         budget: d.budget, config_conflicts: d.config_conflicts?.map((c) => ({ agent: c.agent, ref: c.ref, code: c.code })),
         ...(d.audit ? { audit: d.audit } : {}),
+        ...(d.owner_answers ? { owner_answers: d.owner_answers.line } : {}),
         ...(d.escalations?.length ? { escalations: d.escalations.map((e) => ({ subject: e.subject, agent: e.agent, kind: e.kind })) } : {}),
         directives: { open: dir.open.map((x) => ({ id: x.id, to: x.to, kind: x.kind, status: x.status })) },
         agents: d.agents.map((a) => ({ handle: a.handle, mode: a.mode, paused: a.paused, spentTodayUsd: a.spentTodayUsd })),
@@ -245,6 +268,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
       ...(d.lint_overruled?.length ? { lint_overruled: d.lint_overruled } : {}),
       ...(d.loadout?.length ? { loadout: d.loadout } : {}),
       ...(d.audit ? { audit: d.audit } : {}),
+      ...(d.owner_answers ? { owner_answers: d.owner_answers.line } : {}),
       ...(d.escalations?.length ? { escalations: d.escalations } : {}),
     };
   };
@@ -428,6 +452,7 @@ export class KpiDigestService {
 
     // Spec 069 FR-005: the escalations the code raised and nobody has read yet (best effort: an unreadable table means none).
     const escalations = await openEscalations(this.d.pool, now).catch(() => []);
+    const ownerAnswers = await ownerAnswersOf(this.d.pool);
 
     const digest: Omit<KpiDigest, 'hash' | 'raw'> = {
       generatedAt: now.toISOString(), today, resources: out, agents,
@@ -447,6 +472,7 @@ export class KpiDigestService {
       ...(loadout.length ? { loadout } : {}),
       ...(audit ? { audit } : {}),
       ...(escalations.length ? { escalations } : {}),
+      ...(ownerAnswers ? { owner_answers: ownerAnswers } : {}),
     };
     return { ...digest, hash: digestHash(digest), raw };
   }

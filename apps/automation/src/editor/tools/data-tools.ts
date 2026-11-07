@@ -1,7 +1,8 @@
 import type { Pool } from 'pg';
 import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
-import type { PendingActionsService, PendingAction } from '../agents/pending-actions';
+import type { PendingActionsService, PendingAction, SilenceHooks } from '../agents/pending-actions';
+import type { UndoRecord } from '../autonomy/autonomy-decisions.repository';
 import { DataStore, DataStoreError } from '../../data/data-store';
 import { buildCatalog, reuseText } from '../../data/data-catalog';
 import type { CardSource } from '../card';
@@ -225,6 +226,43 @@ export async function applyDataSchemaSuggestion(store: DataStore, payload: Recor
   const r = await store.updateSchema(s.key, patch, { changedBy: 'owner (agent suggestion)', reason: `agent suggestion: ${p.evidence}`.slice(0, 500) });
   if (r.diff.structural) throw new DataStoreError('invalid', 'a suggestion may only change descriptions');
   return { dataset: s.key, version: r.schema.version };
+}
+
+/**
+ * Spec 090 FR-003/FR-010: an `edit_data_schema` card applied on owner silence. The previous value of the edited target is read
+ * right before the apply and goes into the undo record; `undoDataSchemaEdit` writes it back (a description-only edit, as the apply).
+ */
+export function dataSchemaSilence(store: DataStore): SilenceHooks {
+  return {
+    capture: async (a) => {
+      const p = EditSchemaInput.parse(a.payload);
+      const s = await store.requireSchema(p.dataset);
+      if (p.target === 'reuse') return { reuse_policy: s.reuse_policy ?? null };
+      const cur = currentText(s, p);
+      return typeof cur === 'string' ? { text: cur } : undefined;
+    },
+    undo: (a, _result, captured): UndoRecord | null => {
+      const p = EditSchemaInput.safeParse(a.payload);
+      const c = captured as { text?: string; reuse_policy?: unknown } | undefined;
+      if (!p.success || !c) return null;
+      if (p.data.target === 'reuse') return c.reuse_policy ? { kind: 'edit_data_schema', dataset: p.data.dataset, target: 'reuse', reuse_policy: c.reuse_policy } : null;
+      if (typeof c.text !== 'string') return null;
+      return { kind: 'edit_data_schema', dataset: p.data.dataset, target: p.data.target, field: p.data.field ?? null, text: c.text };
+    },
+  };
+}
+
+export async function undoDataSchemaEdit(store: DataStore, u: UndoRecord, by: string): Promise<void> {
+  const dataset = String(u.dataset);
+  const s = await store.requireSchema(dataset);
+  const target = String(u.target);
+  const text = String(u.text ?? '');
+  const patch = target === 'reuse' ? { reuse_policy: u.reuse_policy as DataSchema['reuse_policy'] }
+    : target === 'description' ? { description: text }
+    : target === 'suitable_for' ? { suitable_for: text }
+    : { fields: s.fields.map((f) => (f.name === u.field ? { ...f, description: text } : f)) };
+  if (target === 'field' && !s.fields.some((f) => f.name === u.field)) throw new DataStoreError('invalid', `dataset "${dataset}" has no field "${String(u.field)}" any more`);
+  await store.updateSchema(dataset, patch as any, { changedBy: by, reason: 'undo of an edit applied on owner silence' });
 }
 
 /** Last use and runway of one dataset on a resource (spec 023 FR-008). */

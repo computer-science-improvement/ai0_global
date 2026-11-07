@@ -1,5 +1,7 @@
 import type { Pool } from 'pg';
 import { errText } from '../../common/err-text';
+import { gateHours, pendingActionGate, silenceFor, type Env } from '../autonomy/owner-gates';
+import type { AutonomyDecisionsRepository, UndoRecord } from '../autonomy/autonomy-decisions.repository';
 
 export type ActionStatus = 'pending' | 'applied' | 'discarded' | 'expired' | 'failed';
 
@@ -17,6 +19,7 @@ export interface PendingAction {
   decidedAt: Date | null;
 }
 
+/** Default TTL of a pending card. Spec 090 FR-003: the live setting PENDING_ACTION_TTL_HOURS decides (see `PendingActionsService.ttlMs`). */
 export const ACTION_TTL_MS = 24 * 3600_000;
 
 const toAction = (r: any): PendingAction => ({
@@ -53,10 +56,17 @@ export class PendingActionsRepository {
     return rows.map(toAction);
   }
 
-  async expireOld(now: Date): Promise<number> {
+  /** Pending cards created before `cutoff` (oldest first). */
+  async pendingOlderThan(cutoff: Date): Promise<PendingAction[]> {
+    const { rows } = await this.pool.query(`SELECT * FROM pending_actions WHERE status = 'pending' AND created_at < $1 ORDER BY created_at`, [cutoff]);
+    return rows.map(toAction);
+  }
+
+  /** Plain expiry (no routing): kept for callers without a service. */
+  async expireOld(now: Date, ttlMs: number = ACTION_TTL_MS): Promise<number> {
     const { rowCount } = await this.pool.query(
       `UPDATE pending_actions SET status = 'expired', decided_at = now() WHERE status = 'pending' AND created_at < $1`,
-      [new Date(now.getTime() - ACTION_TTL_MS)]);
+      [new Date(now.getTime() - ttlMs)]);
     return rowCount ?? 0;
   }
 }
@@ -129,7 +139,34 @@ const withThen = (main: unknown, then: FollowUpResult[]): Record<string, unknown
     ? { ...(main as Record<string, unknown>), then }
     : { ok: true, ...(main !== undefined && main !== null ? { value: main } : {}), then };
 
+const markSilence = (result: unknown): Record<string, unknown> =>
+  result && typeof result === 'object' && !Array.isArray(result)
+    ? { ...(result as Record<string, unknown>), applied_by: APPLIED_BY_SILENCE }
+    : { ok: true, value: result, applied_by: APPLIED_BY_SILENCE };
+
 const errorText = (err: any): string => (typeof err?.response === 'object' && err.response ? JSON.stringify(err.response) : errText(err));
+
+/**
+ * Spec 090 FR-003: what a card kind needs to be applied on owner silence. All three are optional; a kind the registry
+ * says `apply` for and that registers no hooks is applied as is, with no undo.
+ */
+export interface SilenceHooks {
+  /** Why this card must NOT be applied on silence (null = go ahead). A reason makes the card expire (dropped). */
+  guard?:   (a: PendingAction) => Promise<string | null>;
+  /** State read right before the apply, handed to `undo` (e.g. the previous description). */
+  capture?: (a: PendingAction) => Promise<unknown>;
+  /** The undo record for what the handler wrote; null when it is not cleanly expressible. */
+  undo?:    (a: PendingAction, result: unknown, captured: unknown) => UndoRecord | null;
+}
+
+/** Wiring for the owner-silence sweep (spec 090). Without it a card past its TTL simply expires (the pre-090 behaviour). */
+export interface SilenceDeps {
+  env:        Env;
+  decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
+}
+
+/** The marker the silence path leaves in the card's result (the table has no actor column). */
+export const APPLIED_BY_SILENCE = 'auto:silence';
 
 /**
  * Confirmation cards (spec 018 FR-005): tools only propose; the owner's
@@ -139,7 +176,86 @@ const errorText = (err: any): string => (typeof err?.response === 'object' && er
 export class PendingActionsService {
   private readonly handlers = new Map<string, ActionHandler>();
 
-  constructor(private readonly repo: PendingActionsRepository, private readonly now: () => Date = () => new Date()) {}
+  private readonly silenceHooks = new Map<string, SilenceHooks>();
+
+  constructor(
+    private readonly repo: PendingActionsRepository, private readonly now: () => Date = () => new Date(),
+    private readonly silence?: SilenceDeps,
+  ) {}
+
+  registerSilence(kind: string, hooks: SilenceHooks): void {
+    this.silenceHooks.set(kind, hooks);
+  }
+
+  /** The live card TTL: PENDING_ACTION_TTL_HOURS (default 24). */
+  ttlMs(): number {
+    const h = this.silence ? gateHours('pending_action:*', this.silence.env) : null;
+    return (h && h > 0 ? h : ACTION_TTL_MS / 3600_000) * 3600_000;
+  }
+
+  /**
+   * Spec 090 FR-003: cards past the TTL, each routed by the owner-gate registry: `apply` runs the same handler as the
+   * owner's Apply (result marked `applied_by: auto:silence`, decision logged with an undo where there is one); `drop`
+   * expires the card (decision logged). Returns how many cards were settled.
+   */
+  async expireOld(now: Date = this.now()): Promise<number> {
+    if (!this.silence) return this.repo.expireOld(now, this.ttlMs());
+    let n = 0;
+    for (const a of await this.repo.pendingOlderThan(new Date(now.getTime() - this.ttlMs()))) {
+      try {
+        if (await this.settleOverdue(a)) n++;
+      } catch { /* one bad card never stops the sweep */ }
+    }
+    return n;
+  }
+
+  /** One overdue card by the registry. Null when it was not pending any more (or the gate says wait). */
+  private async settleOverdue(a: PendingAction, held = false): Promise<PendingAction | null> {
+    const env = this.silence!.env;
+    const gate = pendingActionGate(a);
+    const action = silenceFor(gate, env);
+    if (action === 'wait') return null;
+    const channelKey = typeof a.payload.channelKey === 'string' ? a.payload.channelKey : null;
+    const what = `${a.kind} card "${a.summary.replace(/\s+/g, ' ').slice(0, 100)}"`;
+    const log = (act: 'applied' | 'dropped' | 'failed', summary: string, undo: UndoRecord | null = null) =>
+      this.silence!.decisions?.record({ gate, refType: 'pending_action', refId: a.id, channelKey, action: act, summary, undo });
+    const drop = async (why: string): Promise<PendingAction | null> => {
+      const out = await this.repo.decide(a.id, 'expired');
+      if (out) await log('dropped', `${what} expired: ${why}`);
+      return out;
+    };
+    if (action === 'drop') return drop(a.chatId ? 'it came from a chat and nobody applied it' : 'no answer in time');
+    const h = this.handlers.get(a.kind);
+    if (!h) return drop('no handler for this kind');
+    const hooks = this.silenceHooks.get(a.kind);
+    const reason = hooks?.guard ? await hooks.guard(a).catch((err) => `guard failed: ${errorText(err)}`) : null;
+    if (reason) return drop(reason);
+    if (!held && this.applying.has(a.id)) return null;
+    if (!held) this.applying.add(a.id);
+    try {
+      const captured = hooks?.capture ? await hooks.capture(a).catch(() => undefined) : undefined;
+      try {
+        const result = await h(a.payload, a, null);
+        const then = await this.runFollowUps(a, result, null);
+        const stored = markSilence(then.length ? withThen(result, then) : result ?? { ok: true });
+        const out = await this.repo.decide(a.id, 'applied', stored);
+        if (out) {
+          let undo: UndoRecord | null = null;
+          try { undo = hooks?.undo ? hooks.undo(a, result, captured) : null; } catch { undo = null; }
+          await log('applied', `${what} applied after ${gateHours(gate, env) ?? 24} h without an answer`, undo);
+        }
+        return out;
+      } catch (err: any) {
+        if (err instanceof KeepPendingError) return drop('it needs choices only the owner can make');
+        const msg = errorText(err).slice(0, 1000);
+        const out = await this.repo.decide(a.id, 'failed', null, msg);
+        if (out) await log('failed', `${what} could not be applied on silence: ${msg.slice(0, 200)}`);
+        return out;
+      }
+    } finally {
+      if (!held) this.applying.delete(a.id);
+    }
+  }
 
   register(kind: string, handler: ActionHandler): void {
     if (this.handlers.has(kind)) throw new Error(`duplicate action handler ${kind}`);
@@ -193,7 +309,9 @@ export class PendingActionsService {
     if (!a) throw Object.assign(new Error('action_not_found'), { status: 404 });
     if (a.status === 'applied') return a; // idempotent
     if (a.status !== 'pending') throw Object.assign(new Error(`action_${a.status}`), { status: 409 });
-    if (this.now().getTime() - a.createdAt.getTime() > ACTION_TTL_MS) {
+    if (this.now().getTime() - a.createdAt.getTime() > this.ttlMs()) {
+      // Spec 090 FR-003: an overdue card is settled by the registry (the sweep runs hourly; this closes the gap).
+      if (this.silence) return (await this.settleOverdue(a, true)) ?? (await this.repo.get(id)) ?? a;
       return (await this.repo.decide(id, 'expired')) ?? a;
     }
     const h = this.handlers.get(a.kind);
