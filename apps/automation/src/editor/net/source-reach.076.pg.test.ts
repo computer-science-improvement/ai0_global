@@ -285,7 +285,7 @@ test('host notes: two channels on one struck host get one note each, and a secon
   assert.deepEqual(await svc(cardB).noteStruckHosts(cardB, null), ['shared.example']);
   const notes = await hostNotes('@note_%/shared.example%');
   assert.deepEqual(notes.map((n) => [n.ref_type, n.subject, n.severity]), [
-    ['host', 'host_struck:@note_a/shared.example', 'action'], ['host', 'host_struck:@note_b/shared.example', 'action'],
+    ['host', 'host_struck:@note_a/shared.example', 'info'], ['host', 'host_struck:@note_b/shared.example', 'info'], // spec 090 FR-011
   ]);
   assert.equal(notes[0].title, 'shared.example cannot be reached from the server');
   assert.deepEqual(notes[0].parts, ['unreachable', 'strikes:1', 'since:never']);

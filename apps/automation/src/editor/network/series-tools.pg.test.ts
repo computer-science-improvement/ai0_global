@@ -79,7 +79,7 @@ test('a 60-min shift in live is the new active version; a new series waits as pe
   const pending = await repo.pendingPlaybook(agentId);
   assert.ok(pending && normalizePlaybook(pending.body).series.some((s) => s.name === 'Факт тижня'));
   const { rows } = await pool.query(`SELECT kind, severity, ref_id FROM agent_inbox WHERE agent_id = $1 ORDER BY id`, [agentId]);
-  assert.deepEqual(rows.map((x) => [x.kind, x.severity]), [['playbook_updated', 'info'], ['playbook_pending', 'action']]);
+  assert.deepEqual(rows.map((x) => [x.kind, x.severity]), [['playbook_updated', 'info'], ['playbook_pending', 'info']]); // spec 090 FR-011: no Telegram card on its own
   assert.equal(rows[1].ref_id, pending!.id);
 });
 

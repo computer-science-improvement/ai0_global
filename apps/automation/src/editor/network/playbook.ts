@@ -327,7 +327,8 @@ export interface PlaybookOrigin {
  *  - changes or deletes a series with `locked: true` or `origin: 'owner'`;
  *  - adds or removes a platform section;
  *  - was built for a `strategy` directive (a directive link) or by a strategy migration;
- *  - drops or rewrites a rule line that came from an owner rule (only when the caller knows those lines).
+ *  - drops or rewrites a rule line that came from an owner rule (when the caller passes those lines), or any rule line
+ *    when it does not (the playbook does not record a rule's origin).
  * With no active version there is nothing to compare: it waits.
  */
 export function structuralForSilenceReasons(prev: Playbook | null, next: Playbook, origin: PlaybookOrigin = {}): string[] {
@@ -349,6 +350,12 @@ export function structuralForSilenceReasons(prev: Playbook | null, next: Playboo
   for (const line of origin.ownerRuleLines ?? []) {
     const t = line.trim();
     if (t && prev.rules.some((r) => r.trim() === t) && !nextRules.has(t)) reasons.push(`owner rule line changed: ${t.slice(0, 60)}`);
+  }
+  // The playbook does not record which rule lines came from the owner, so without `ownerRuleLines` any dropped or
+  // rewritten rule line waits (lead decision 2026-11-07): adding rule lines may go ahead, removing one never does on silence.
+  if (!origin.ownerRuleLines) {
+    const dropped = prev.rules.map((r) => r.trim()).filter((t) => t && !nextRules.has(t));
+    if (dropped.length) reasons.push(`rule line dropped or rewritten: ${dropped[0].slice(0, 60)}`);
   }
   return reasons;
 }

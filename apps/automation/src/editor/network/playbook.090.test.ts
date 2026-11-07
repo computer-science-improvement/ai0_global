@@ -77,7 +77,10 @@ test('a dropped or rewritten owner rule line is structural when the caller knows
   const prev = pb();
   const next = structuredClone(prev);
   next.rules = ['Не більше двох емодзі'];
-  assert.equal(structuralForSilence(prev, next), false, 'the playbook does not record a rule origin: unknown lines are not protected');
+  assert.equal(structuralForSilence(prev, next), true, 'the playbook does not record a rule origin: without the owner lines any dropped line waits');
+  const added = structuredClone(prev);
+  added.rules = [...prev.rules, 'Посилання тільки на першоджерело'];
+  assert.equal(structuralForSilence(prev, added), false, 'adding a rule line may go ahead on silence');
   assert.equal(structuralForSilence(prev, next, { ownerRuleLines: ['Без астрології'] }), true);
   assert.equal(structuralForSilence(prev, next, { ownerRuleLines: ['Не більше двох емодзі'] }), false, 'a kept owner line is fine');
 });

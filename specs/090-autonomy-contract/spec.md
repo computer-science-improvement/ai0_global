@@ -1,6 +1,6 @@
 # 090 — Autonomy contract: owner silence is a default, not a veto
 
-Status: proposed · P0 · Builds on 012 (owner bot), 025 (resource pauses), 042/057 (setup proposals), 053/065 (directives), 055 (audit), 060 (series pauses), 072 (readiness), 078 D5 (note demotion) · Pairs with 091 (channel SLO controller) · Migration 103
+Status: implemented (2026-11-07, feat/editor-agent) · P0 · Builds on 012 (owner bot), 025 (resource pauses), 042/057 (setup proposals), 053/065 (directives), 055 (audit), 060 (series pauses), 072 (readiness), 078 D5 (note demotion) · Pairs with 091 (channel SLO controller) · Migration 103
 
 > Source: the autonomy review (`docs/reviews/2026-11-07-autonomy-review.md` §3.1, §4, §5.1, §5.8) and the owner's goal of 2026-11-07: "the system runs the channels with no owner action, or very little". The gate inventory below was read from the code at `72bd12c8`. Paths are relative to `apps/automation/src/editor/` unless stated otherwise.
 
