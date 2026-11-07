@@ -78,7 +78,7 @@ test('the panel rows: worst state first, then the channel; percent bar and misse
 test('bar percent and effort text', () => {
   assert.equal(barPct(1, 3), 33);
   assert.equal(barPct(5, 3), 100);
-  assert.equal(barPct(0, 0), 100);
+  assert.equal(barPct(0, 0), 0, 'a held channel owes nothing: an empty bar');
   assert.equal(effortText({ replacements: 0, recoveryRuns: 0 }), '');
   assert.equal(effortText({ replacements: 1, recoveryRuns: 2 }), '1 replacement · 2 recovery runs');
 });

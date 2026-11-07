@@ -66,7 +66,8 @@ export interface ChannelView {
   missed:  number;
 }
 
-export const barPct = (published: number, target: number): number => (target <= 0 ? 100 : Math.max(0, Math.min(100, Math.round((published / target) * 100))));
+/** Share of the target published, for the bar. A channel that owes nothing (held, target 0) shows an empty bar, not a full green one. */
+export const barPct = (published: number, target: number): number => (target <= 0 ? 0 : Math.max(0, Math.min(100, Math.round((published / target) * 100))));
 
 /** The panel's rows: worst state first, then the channel key. */
 export function channelViews(data: SloResponse): ChannelView[] {

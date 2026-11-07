@@ -37,7 +37,7 @@ function ChannelRow({ v }: { v: ChannelView }) {
         </span>
         <span className="slo-bar">
           <span className="mono text-caption">{r.published} / {r.target}</span>
-          <span className="hl-meter" aria-hidden="true"><span className={`hl-meter-fill${r.published >= r.target ? ' is-ok' : ''}`} style={{ width: `${v.pct}%`, display: 'block' }} /></span>
+          <span className="hl-meter" aria-hidden="true"><span className={`hl-meter-fill${r.target > 0 && r.published >= r.target ? ' is-ok' : ''}`} style={{ width: `${v.pct}%`, display: 'block' }} /></span>
           {effort && <span className="mono text-micro ink-dim">{effort}</span>}
         </span>
         <Strip v={v} />

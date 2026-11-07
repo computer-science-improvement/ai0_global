@@ -22,7 +22,7 @@ export const sloRowView = (r: ChannelSloRow): SloRowView => ({
 /** Spec 091 FR-008: the SLO controller's day rows for /app/health → Channels. */
 @Controller('api/editor/slo')
 @UseGuards(TrackingAuthGuard)
-export class SloController {
+export class SloApiController {
   /** Replaced in tests. */
   now: () => Date = () => new Date();
 

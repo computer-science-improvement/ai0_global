@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { BadRequestException } from '@nestjs/common';
 import type { ChannelSloRow } from './channel-slo.repository';
-import { SloController } from './slo.controller';
+import { SloApiController } from './slo.controller';
 
 const row = (o: Partial<ChannelSloRow> = {}): ChannelSloRow => ({
   channelKey: '@a', day: '2026-11-07', target: 2, published: 1, plannedAhead: 0, skipped: 1, replacements: 1, recoveryRuns: 0, state: 'behind',
@@ -16,7 +16,7 @@ function setup() {
     async forDay(d: string) { asked.push(['forDay', d]); return [row({ day: d })]; },
     async history(d: string, n: number) { asked.push(['history', d, n]); return [row({ day: d }), row({ day: '2026-11-06', state: 'met', published: 2 })]; },
   };
-  return { c: new SloController(repo), asked };
+  return { c: new SloApiController(repo), asked };
 }
 
 test('returns the day, its rows and the 7-day history with ISO dates', async () => {

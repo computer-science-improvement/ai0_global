@@ -1,6 +1,6 @@
 # 091 — Channel SLO controller: every channel posts its daily minimum
 
-Status: proposed · P0 · Builds on 034 (fallback ladder, evergreen), 036/037 (silent days), 053 (budget gate), 057 (`replaces_slot_id`), 060 (series pauses), 062 (escalation), 073 (planner retries) · Pairs with 090 (autonomy contract) · Migration 104
+Status: implemented (2026-11-07, feat/editor-agent) · P0 · Builds on 034 (fallback ladder, evergreen), 036/037 (silent days), 053 (budget gate), 057 (`replaces_slot_id`), 060 (series pauses), 062 (escalation), 073 (planner retries) · Pairs with 090 (autonomy contract) · Migration 104
 
 > Source: the autonomy review (`docs/reviews/2026-11-07-autonomy-review.md` §3.2, §4, §5.2) and the dev-stage diagnosis of 2026-11-07. The code facts below were read at `72bd12c8`. Paths are relative to `apps/automation/src/editor/` unless stated otherwise.
 

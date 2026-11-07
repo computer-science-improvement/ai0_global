@@ -60,13 +60,7 @@ export class StubDarkRecovery implements DarkRecovery {
     ].filter(Boolean).join('\n');
     let error: string | null = null;
     try { await this.d.runPlanner(card, extra); } catch (err: any) { error = String(err?.message ?? err).slice(0, 200); }
-    const day = localDate(now, card.timezone);
-    const from = zonedToUtc(day, '00:00', card.timezone);
-    const { rows } = await this.d.pool.query(
-      `SELECT count(*)::int AS n FROM editor_slots WHERE channel_key = $1 AND kind = 'content' AND resource_ref IS NULL
-          AND status IN ('planned','running','awaiting_approval','approved') AND scheduled_at >= $2 AND scheduled_at < $3`,
-      [card.channelKey, now, new Date(from.getTime() + 86_400_000)]);
-    const planned = Number(rows[0]?.n ?? 0);
+    const planned = await plannedRestOfDay(this.d.pool, card, now);
     if (planned > 0) return { planned, evergreenSlotId: null, summary: `planner run planned ${planned} slot(s) for the rest of today` };
     const spec = evergreenSpec(card);
     const id = spec ? await this.d.inserter.insert(card, spec, { replaces: null, rung: 'evergreen', cause: null, depth: 1 }, now) : null;
@@ -75,4 +69,15 @@ export class StubDarkRecovery implements DarkRecovery {
       summary: `${error ? `planner run failed (${error})` : 'planner run planned nothing'}; ${id ? 'one evergreen slot inserted' : 'no room for an evergreen slot'}`,
     };
   }
+}
+
+/** Content slots of the channel still to run in the rest of its local day (what a recovery planner run left planned). */
+export async function plannedRestOfDay(pool: Pick<Pool, 'query'>, card: Pick<EditorCard, 'channelKey' | 'timezone'>, now: Date): Promise<number> {
+  const day = localDate(now, card.timezone);
+  const from = zonedToUtc(day, '00:00', card.timezone);
+  const { rows } = await pool.query(
+    `SELECT count(*)::int AS n FROM editor_slots WHERE channel_key = $1 AND kind = 'content' AND resource_ref IS NULL
+        AND status IN ('planned','running','awaiting_approval','approved') AND scheduled_at >= $2 AND scheduled_at < $3`,
+    [card.channelKey, now, new Date(from.getTime() + 86_400_000)]);
+  return Number(rows[0]?.n ?? 0);
 }

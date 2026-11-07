@@ -28,14 +28,17 @@ import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
 import { ChannelSloRepository } from './slo/channel-slo.repository';
 import { SloController } from './slo/slo-controller';
 import { SloSlotInserter } from './slo/slot-inserter';
-import { StubDarkRecovery, StubRungPlanner } from './slo/slo-stubs';
+import { plannedRestOfDay } from './slo/slo-stubs';
+import { localDate as sloLocalDate } from './roles/time';
+import { PgLadderStore, RecoveryLadder } from './slo/recovery-ladder';
+import { DarkRecoveryService } from './slo/dark-recovery';
 import { DEFAULT_SERIES_PAUSE_RETRY_HOURS, DEFAULT_SERIES_SKIP_STREAK, registerSeriesPauseUndo, SeriesBreaker } from './series-pause/series-breaker';
 import { SeriesPauseActions } from './series-pause/pause-actions';
 import { registerPauseResumeAction } from './series-pause/pause-resume-action';
 import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
 import { AutonomyDecisionsRepository, AutonomyUndo } from './autonomy/autonomy-decisions.repository';
 import { PlannerPauseView } from './series-pause/planner-view';
-import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
+import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenDarkMax, evergreenPerDay } from './silent/evergreen';
 import { ReadonlyQueryService } from './db/readonly-query.service';
 import { SkillLibrary } from './skills/skill-library';
 import { buildReadTools } from './tools/read-tools';
@@ -225,8 +228,7 @@ import { STEERING_SERVICE, SteeringController } from './steering/steering.contro
 import { telegramReader } from './steering/steering-source';
 import { OwnerBotService } from './owner-bot/owner-bot.service';
 import { AUTONOMY_DECISIONS, AutonomyDecisionsController } from './autonomy/autonomy-decisions.controller';
-import { EDITOR_SLO_REPO, SloController } from './slo/slo.controller';
-import { ChannelSloRepository } from './slo/channel-slo.repository';
+import { EDITOR_SLO_REPO, SloApiController } from './slo/slo.controller';
 import { OWNER_BOT, OwnerBotWorker, type OwnerBotInfra } from './owner-bot/owner-bot.worker';
 import { OwnerReports } from './owner-bot/owner-reports';
 import { OwnerBotController } from './owner-bot/owner-bot.controller';
@@ -1759,7 +1761,16 @@ export const EDITOR_PROVIDERS = [
           stories: new StoryContextService(new StoryRegistry(pool)),
           // Spec 037 T10: the evergreen step of the ladder (≤ EDITOR_EVERGREEN_PER_DAY per channel per day, default 1; 0 = off).
           fallbackEvergreen: (() => {
-            const step = new EvergreenStep({ pool, plans: repos.plans, perDay: evergreenPerDay(env), inbox: infra.inbox, log: (m) => logger.warn(m) });
+            const sloRows = new ChannelSloRepository(pool);
+            const step = new EvergreenStep({
+              pool, plans: repos.plans, perDay: evergreenPerDay(env), inbox: infra.inbox, log: (m) => logger.warn(m),
+              // Spec 091 FR-004: while a channel is dark, up to SLO_EVERGREEN_DARK_MAX evergreen posts a day.
+              darkMax: () => evergreenDarkMax((k) => cfg.get<string>(k) ?? undefined),
+              isDark: async (ch, at) => {
+                const card = await repos.channels.get(ch);
+                return card ? (await sloRows.get(ch, sloLocalDate(at, card.timezone)))?.state === 'dark' : false;
+              },
+            });
             return (req) => step.run(req);
           })(),
         });
@@ -1853,15 +1864,21 @@ export const EDITOR_PROVIDERS = [
         const sloOn = () => (sloEnv('SLO_CONTROLLER') ?? 'on').trim() !== 'off';
         const seriesPausesRepo = new SeriesPausesRepository(pool, { sloOn, log: (m) => logger.warn(m) });
         const sloRef: { scheduler?: EditorScheduler } = {};
+        const sloLadder = new RecoveryLadder({ store: new PgLadderStore(pool), env: sloEnv, log: (m) => logger.warn(m) });
         const sloController = new SloController({
           pool, repo: new ChannelSloRepository(pool, (m) => logger.warn(m)),
           inserter: new SloSlotInserter({ pool, env: sloEnv, log: (m) => logger.warn(m) }),
-          // Stubs until spec 091 T6/T7 land (recovery-ladder.ts, dark-recovery.ts): an evergreen rung, a simple forced planner run.
-          planner: new StubRungPlanner(),
-          dark: new StubDarkRecovery({
-            pool, inserter: new SloSlotInserter({ pool, env: sloEnv, log: (m) => logger.warn(m) }),
-            resetTries: (k, now) => sloRef.scheduler?.resetPlannerTries(k, now),
-            runPlanner: (card, extra) => sloRef.scheduler!.runPlannerNow(card, extra),
+          // Spec 091 FR-004: the recovery ladder ($0 facts: series runway, probed sources, today's evergreen count).
+          planner: sloLadder,
+          // Spec 091 FR-005: a forced planner run for a dark channel, one evergreen slot when it plans nothing.
+          dark: new DarkRecoveryService({
+            pool, env: sloEnv, log: (m) => logger.warn(m), ladder: sloLadder,
+            inserter: new SloSlotInserter({ pool, env: sloEnv, log: (m) => logger.warn(m) }),
+            resetPlannerTries: (k) => sloRef.scheduler?.resetPlannerTries(k, new Date()),
+            runPlanner: async (card, extra, now) => {
+              await sloRef.scheduler!.runPlannerNow(card, extra);
+              return plannedRestOfDay(pool, card, now);
+            },
           }),
           env: sloEnv,
           card: (k) => repos.channels.get(k),
@@ -2719,7 +2736,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController, SloController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController, SloApiController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
