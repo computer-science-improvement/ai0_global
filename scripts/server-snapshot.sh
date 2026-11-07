@@ -12,7 +12,7 @@
 #     bash scripts/server-snapshot.sh 6          # last 6 hours
 #     bash scripts/server-snapshot.sh 48 --full  # + agent history export for the same days
 #
-# Or from a laptop without copying anything to the server: scripts/pull-server-snapshot.sh streams this file over
+# Or from a laptop without checking this branch out on the server: scripts/pull-server-snapshot.sh copies this file over
 # ssh and downloads the archive. The archive holds post texts and log lines: keep it out of git.
 #
 set -uo pipefail
@@ -30,7 +30,8 @@ PGDB="$(grep -E '^POSTGRES_DB=' .env 2>/dev/null | cut -d= -f2- || true)"
 PGUSER="${PGUSER:-ai0}"
 PGDB="${PGDB:-ai0global}"
 dc() { docker compose --profile prod "$@"; }
-psql() { dc exec -T postgres psql -X -U "$PGUSER" -d "$PGDB" -P pager=off -P footer=off "$@"; }
+# </dev/null everywhere docker exec runs: streamed over ssh (bash -s) this script IS stdin, and exec would eat it.
+psql() { dc exec -T postgres psql -X -U "$PGUSER" -d "$PGDB" -P pager=off -P footer=off "$@" </dev/null; }
 # Testing against a throwaway database instead of the compose one.
 if [ -n "${SNAPSHOT_PG_URL:-}" ]; then
   psql() { command psql -X "$SNAPSHOT_PG_URL" -P pager=off -P footer=off "$@"; }
@@ -77,7 +78,7 @@ sed -E 's/^[a-z_-]+ +[0-9T:.Z-]+ +//; s/[0-9a-f]{8}-[0-9a-f-]{27}/<id>/g; s/[0-9
 # ── Health ───────────────────────────────────────────────────────────────────
 {
   for p in /api/health /health; do
-    echo "GET $p"; dc exec -T automation wget -qO- -T 5 "http://localhost:3000$p" 2>&1; echo
+    echo "GET $p"; dc exec -T automation wget -qO- -T 5 "http://localhost:3000$p" </dev/null 2>&1; echo
   done
 } > "$OUT/health.txt"
 note "wrote  health.txt"
@@ -102,11 +103,11 @@ note "wrote  db/state.txt (a query on a missing table/column just prints its err
 
 DAYS=$(( (HOURS + 23) / 24 ))
 if [ -f scripts/llm-cost-report.sh ]; then
-  bash scripts/llm-cost-report.sh "$DAYS" > "$OUT/db/llm-cost.txt" 2>&1 && note "wrote  db/llm-cost.txt" || note "warn   llm-cost-report failed (see db/llm-cost.txt)"
+  bash scripts/llm-cost-report.sh "$DAYS" </dev/null > "$OUT/db/llm-cost.txt" 2>&1 && note "wrote  db/llm-cost.txt" || note "warn   llm-cost-report failed (see db/llm-cost.txt)"
 fi
 if [ "$FULL" = "--full" ] && [ -f scripts/export-agent-history.sh ]; then
   note "running export-agent-history.sh $DAYS …"
-  EXP="$(bash scripts/export-agent-history.sh "$DAYS" 2>&1 | tee "$OUT/db/export.txt" | sed -n 's/.*→ \(tmp\/agent-export-[^ ]*\.tar\.gz\).*/\1/p')"
+  EXP="$(bash scripts/export-agent-history.sh "$DAYS" </dev/null 2>&1 | tee "$OUT/db/export.txt" | sed -n 's/.*→ \(tmp\/agent-export-[^ ]*\.tar\.gz\).*/\1/p')"
   [ -n "$EXP" ] && [ -f "$EXP" ] && mv "$EXP" "$OUT/" && rm -rf "${EXP%.tar.gz}" && note "added  $(basename "$EXP")"
 fi
 
