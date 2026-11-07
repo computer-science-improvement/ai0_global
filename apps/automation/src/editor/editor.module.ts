@@ -29,6 +29,7 @@ import { DEFAULT_SERIES_PAUSE_RETRY_HOURS, DEFAULT_SERIES_SKIP_STREAK, SeriesBre
 import { SeriesPauseActions } from './series-pause/pause-actions';
 import { registerPauseResumeAction } from './series-pause/pause-resume-action';
 import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
+import { AutonomyDecisionsRepository, AutonomyUndo } from './autonomy/autonomy-decisions.repository';
 import { PlannerPauseView } from './series-pause/planner-view';
 import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
 import { ReadonlyQueryService } from './db/readonly-query.service';
@@ -400,6 +401,9 @@ export interface AgentInfra {
   loadout:  LoadoutService;
   loadoutRepo:  LoadoutRepository;
   loadoutUsage: LoadoutUsage;
+  /** Spec 090 FR-010: decisions made on owner silence, and their undo (modules register undo handlers at wiring). */
+  decisions: AutonomyDecisionsRepository;
+  autonomyUndo: AutonomyUndo;
   /** The Telegram channel an orchestrator publishes to: its resource, or its network's channel. */
   channelKeyOf(agent: Agent): Promise<string | null>;
 }
@@ -1101,6 +1105,7 @@ export const EDITOR_PROVIDERS = [
           }),
         });
         const actionsRepo = new PendingActionsRepository(pool);
+        const decisions = new AutonomyDecisionsRepository(pool, (m) => logger.warn(m));
         const channelKeyOf = async (agent: Agent): Promise<string | null> => {
           const orch = agent.parentId ? (await agents.get(agent.parentId)) ?? agent : agent;
           const direct = telegramKeyOf(orch);
@@ -1119,7 +1124,7 @@ export const EDITOR_PROVIDERS = [
           actions: new PendingActionsService(actionsRepo),
           creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels, loadout: loadoutCreation }),
           loadout: new LoadoutService({ repo: loadoutRepo, log: (m) => logger.warn(m) }),
-          loadoutRepo, loadoutUsage,
+          loadoutRepo, loadoutUsage, decisions, autonomyUndo: new AutonomyUndo(decisions),
         };
       },
     },
