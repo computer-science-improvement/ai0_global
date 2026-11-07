@@ -73,7 +73,7 @@ test('health: all clear, or the connections, sources, blocking caps and stuck wo
 });
 
 /** A pool that answers the report's queries. */
-function reportPool(o: { slots?: any[]; waiting?: any[]; subs?: any[]; info?: number } = {}) {
+function reportPool(o: { slots?: any[]; waiting?: any[]; subs?: any[]; info?: number; slo?: any[] } = {}) {
   const calls: string[] = [];
   return {
     calls,
@@ -84,6 +84,7 @@ function reportPool(o: { slots?: any[]; waiting?: any[]; subs?: any[]; info?: nu
       if (/status = 'awaiting_approval' GROUP BY/.test(sql)) return { rows: o.waiting ?? [] };
       if (/unnest\(\$1::text\[\]\)/.test(sql)) return { rows: (o.subs ?? []).filter((r) => params[0].includes(r.key)) };
       if (/FROM agent_inbox WHERE severity = 'info'/.test(sql)) return { rows: [{ n: o.info ?? 0 }] };
+      if (/FROM channel_slo/.test(sql)) { if (!o.slo) throw new Error('relation "channel_slo" does not exist'); return { rows: o.slo }; }
       throw new Error(`unexpected: ${sql}`);
     },
   } as any;
@@ -243,4 +244,39 @@ test('a report lists at most 25 channels and says how many more', () => {
   assert.equal(out.length, MAX_CHANNEL_LINES + 1);
   assert.equal(out.at(-1), '…і ще 5 (дашборд → Analytics)');
   assert.deepEqual(channelBlock([], 'none'), ['none']);
+});
+
+test('spec 091 FR-008: the daily «Канали» shows published/target, a state word below target, and a dark channel with no slots; no row keeps the old line', async () => {
+  const slots = [
+    { ref: 'telegram:@a', channel_key: '@a', title: 'Канал А', status: 'published', error: null, verdict: null },
+    { ref: 'telegram:@m', channel_key: '@m', title: 'Канал М', status: 'published', error: null, verdict: null },
+    { ref: 'telegram:@m', channel_key: '@m', title: 'Канал М', status: 'published', error: null, verdict: null },
+  ];
+  const slo = [
+    { channel_key: '@a', target: 3, published: 1, state: 'behind', title: 'Канал А' },
+    { channel_key: '@m', target: 2, published: 2, state: 'met', title: 'Канал М' },
+    { channel_key: '@d', target: 2, published: 0, state: 'dark', title: 'Темний' },
+    { channel_key: '@s', target: 2, published: 0, state: 'starved', title: 'Голодний' },
+    { channel_key: '@h', target: 0, published: 0, state: 'held', title: 'Пауза' },
+  ];
+  const { text } = await reports({ pool: reportPool({ slots, slo }) }).r.daily();
+  assert.match(text, /• <b>Канал А<\/b>: ✅ 1\/3 · не встигає/);
+  assert.match(text, /• <b>Канал М<\/b>: ✅ 2\/2$/m);
+  assert.match(text, /• <b>Темний<\/b>: ✅ 0\/2 · без постів/);
+  assert.match(text, /• <b>Голодний<\/b>: ✅ 0\/2 · бракує матеріалу/);
+  assert.doesNotMatch(text, /Пауза/, 'a held channel with nothing to count is not listed');
+  // No channel_slo table / rows: the old line.
+  const old = (await reports({ pool: reportPool({ slots }) }).r.daily()).text;
+  assert.match(old, /• <b>Канал А<\/b>: ✅ 1$/m);
+});
+
+test('spec 091 FR-008: channelText words for every state below target; held at target 0 says «на паузі»', () => {
+  const base = { ref: 'telegram:@a', title: 'A', skipped: 0, skipWhy: null, failed: 0, awaiting: 0, subs: null };
+  const t = (state: string, published: number, target: number) => channelText({ ...base, published, target, sloState: state });
+  assert.equal(t('recovering', 0, 2), '• <b>A</b>: ✅ 0/2 · не встигає');
+  assert.equal(t('dark', 0, 1), '• <b>A</b>: ✅ 0/1 · без постів');
+  assert.equal(t('starved', 1, 3), '• <b>A</b>: ✅ 1/3 · бракує матеріалу');
+  assert.equal(t('held', 0, 0), '• <b>A</b>: ✅ 0/0 · на паузі');
+  assert.equal(t('met', 2, 2), '• <b>A</b>: ✅ 2/2');
+  assert.equal(t('on_track', 1, 2), '• <b>A</b>: ✅ 1/2', 'on_track has no word');
 });

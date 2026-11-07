@@ -10,6 +10,8 @@ import { seriesIdOf } from '../series-pause/streak';
 import { addSkip, isCriticRejection, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from './skip-reasons';
 import { errText } from '../../common/err-text';
 import { reasonFor, reasonOfError, reasonText } from '../reasons/catalogue';
+import { dailyTarget } from '../slo/slo-target';
+import type { SloState } from '../slo/types';
 
 /**
  * Spec 037 FR-010 (T10): the owner's Inbox notes about silent days, computed by code from the slots (no LLM):
@@ -57,6 +59,12 @@ export interface WatchResource {
   /** The card's posts-per-day minimum (Telegram channels in a non-off mode); 0 for other resources. */
   minPerDay: number;
   agentId?:  string | null;
+  /**
+   * Spec 091 FR-007: the day's `channel_slo` row of the channel, when the controller wrote one. Its `target` replaces `minPerDay`;
+   * `held` (target 0: off, shadow, owner or agent paused) has no dark day; a `starved` or `dark` channel is reported even when
+   * its resource is in the `paused` set.
+   */
+  slo?:      { target: number; state: SloState } | null;
 }
 
 export interface SilentAlert {
@@ -185,16 +193,18 @@ export function evaluateSilentDays(i: {
   const out: SilentAlert[] = [];
 
   for (const r of i.resources) {
-    if (i.paused?.has(r.ref)) continue;
+    const stuck = r.slo?.state === 'starved' || r.slo?.state === 'dark';
+    if (i.paused?.has(r.ref) && !stuck) continue;
     const slots = byRef.get(r.ref) ?? [];
+    const minPerDay = r.slo ? r.slo.target : r.minPerDay;
     const today = localDate(i.now, r.tz);
     const dayOf = (s: WatchSlot) => localDate(s.scheduledAt, r.tz);
     const counted = slots.filter((s) => !isNotAMiss(s.error));
 
     // ── dark_day ────────────────────────────────────────────────────────────
-    if (localHour(i.now, r.tz) >= darkHour) {
+    if (localHour(i.now, r.tz) >= darkHour && r.slo?.state !== 'held') {
       const planned = counted.filter((s) => dayOf(s) === today);
-      if ((planned.length >= 1 || r.minPerDay >= 1) && !planned.some((s) => OUT.has(s.status))) {
+      if ((planned.length >= 1 || minPerDay >= 1) && !planned.some((s) => OUT.has(s.status))) {
         const reasons: SkipCounts = {};
         for (const s of planned) if (ENDED_NOT_OUT.has(s.status)) addSkip(reasons, skipGroupOf(s.error, s.criticVerdict));
         const later = planned.filter((s) => s.status === 'planned' || s.status === 'running' || s.status === 'approved' || s.status === 'awaiting_approval')
@@ -203,7 +213,7 @@ export function evaluateSilentDays(i: {
         const body = [
           planned.length
             ? `Planned today: ${planned.length}; out: 0; not out by reason: ${reasonsLine(reasons)}.`
-            : `No slot was planned today although the card asks for at least ${r.minPerDay} post(s) a day (check the planner runs).`,
+            : `No slot was planned today although the channel's daily target is ${minPerDay} post(s) a day (check the planner runs).`,
           later.length ? `Still to come: ${later.length} (next at ${localTimeLabel(later[0].scheduledAt, r.tz)}, ${later[0].status}).` : '',
           lastMiss?.error ? `Latest: ${reasonText(lastMiss.error, 'en')}` : '',
           'Check the slots and the run traces on /app/editor.',
@@ -218,7 +228,7 @@ export function evaluateSilentDays(i: {
             title: `Тихий день: на ${r.ref} до ${darkHour}:00 нічого не вийшло`,
             body: [
               planned.length ? `Заплановано сьогодні: ${planned.length}, вийшло: 0${groups.length ? `; причини: ${groups.map((g) => GROUP_UK[g] ?? g).join(', ')}` : ''}.`
-                : `Сьогодні не заплановано жодного слота, хоча картка просить мінімум ${r.minPerDay}.`,
+                : `Сьогодні не заплановано жодного слота, хоча денна ціль каналу — мінімум ${minPerDay}.`,
               later.length ? `Ще попереду: ${later.length}.` : '',
               'Слоти й сліди запусків — на /app/editor.',
             ].filter(Boolean).join('\n'),
@@ -328,6 +338,17 @@ export interface SilentDaysDeps {
   minPerDay?: (card: EditorCard, day: string, now: Date) => Promise<number>;
 }
 
+/** Spec 091 FR-007: `channel_slo` rows of the days around `now`, keyed `<channel_key>|<YYYY-MM-DD>`. A missing table is an empty map. */
+async function sloRowsOf(pool: Pick<Pool, 'query'>, now: Date): Promise<Map<string, { target: number; state: SloState }>> {
+  const out = new Map<string, { target: number; state: SloState }>();
+  try {
+    const { rows } = await pool.query(
+      `SELECT channel_key, day::text AS day, target, state FROM channel_slo WHERE day >= ($1::timestamptz AT TIME ZONE 'UTC')::date - 1`, [now]);
+    for (const r of rows) out.set(`${r.channel_key}|${r.day}`, { target: Number(r.target), state: r.state });
+  } catch { /* the controller has not run yet */ }
+  return out;
+}
+
 export class SilentDaysWatch {
   private lastRun = 0;
 
@@ -350,9 +371,13 @@ export class SilentDaysWatch {
     }));
     const anchorOf = new Map<string, string>(rows.map((r: any) => [r.ref, `telegram:${r.channel_key}`]));
     const minOf = new Map<string, number>();
+    const sloOf = new Map<string, { target: number; state: SloState }>();
+    const sloRows = await sloRowsOf(this.d.pool, now);
     for (const c of cards) {
       const ref = `telegram:${c.channelKey}`;
-      minOf.set(ref, c.mode === 'off' ? 0 : await this.minOfCard(c, now));
+      const row = sloRows.get(`${c.channelKey}|${localDate(now, c.timezone)}`);
+      if (row) sloOf.set(ref, row);
+      minOf.set(ref, row ? row.target : c.mode === 'off' ? 0 : await this.minOfCard(c, now));
       if (!anchorOf.has(ref)) anchorOf.set(ref, ref);
     }
     // Resources: every card's channel (a missing plan is a silent day too) and every resource with slots.
@@ -369,7 +394,7 @@ export class SilentDaysWatch {
     return {
       slots,
       resources: refs.filter((r) => !off.has(r)).map((ref) => ({
-        ref, tz: tzOf.get(ref) ?? 'Europe/Kyiv', minPerDay: minOf.get(ref) ?? 0, agentId: agentOf.get(anchorOf.get(ref) ?? ref) ?? null,
+        ref, tz: tzOf.get(ref) ?? 'Europe/Kyiv', minPerDay: minOf.get(ref) ?? 0, slo: sloOf.get(ref) ?? null, agentId: agentOf.get(anchorOf.get(ref) ?? ref) ?? null,
       })),
     };
   }
@@ -377,7 +402,8 @@ export class SilentDaysWatch {
   /** The card's daily minimum for its local today: the pause-aware one when wired, else the card's own (a failure falls back too). */
   private async minOfCard(c: EditorCard, now: Date): Promise<number> {
     const own = Math.max(0, Number(c.postsPerDayMin) || 0);
-    if (!this.d.minPerDay) return own;
+    // Spec 091 FR-007: no day row (the controller is off or has not run): the pause-aware hook when wired, else the target rules on what is at hand.
+    if (!this.d.minPerDay) return dailyTarget({ cardMin: own, capacityLeft: own, published: 0, plannedAhead: 0 }).target;
     try { return Math.max(0, Number(await this.d.minPerDay(c, localDate(now, c.timezone), now)) || 0); } catch { return own; }
   }
 

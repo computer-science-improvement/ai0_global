@@ -91,6 +91,10 @@ export interface PostsRun { agentId: string; handle: string; ref: string; firstD
  * kpi-digest.service, so the pause is put on the same Kyiv calendar): those snapshots keep their anomaly flag for the days the
  * code had stopped the channel, and counting them would escalate "no directive filed" right after the owner pressed Resume.
  * A day counts again when the pause ended before its window began (about a week after the resume).
+ *
+ * Spec 091 FR-007: the SLO controller's day row (`channel_slo`, the snapshot's day or the one before) decides first. A `held` day
+ * (target 0: mode off / shadow, agent or owner paused) is left out; a `starved` or `dark` day is counted even when a breaker
+ * pause row would have left it out: a channel that cannot post is exactly what the manager must look at.
  */
 export async function negativePostsDays(pool: Q, fromDay: string): Promise<PostsDay[]> {
   const { rows } = await pool.query(
@@ -102,11 +106,15 @@ export async function negativePostsDays(pool: Q, fromDay: string): Promise<Posts
         AND s.metrics->'posts'->>'anomaly' = 'true' AND (s.metrics->'posts'->>'z')::float8 < 0
         AND NOT EXISTS (SELECT 1 FROM resource_pauses p
                          WHERE p.resource_ref = s.scope_id AND p.lifted_at IS NULL AND p.starts_at <= now() AND p.until > now())
-        AND NOT EXISTS (SELECT 1 FROM series_pauses sp
+        AND NOT EXISTS (SELECT 1 FROM channel_slo c
+                         WHERE 'telegram:' || c.channel_key = s.scope_id AND c.day BETWEEN s.day - 1 AND s.day AND c.state = 'held')
+        AND (EXISTS (SELECT 1 FROM channel_slo c
+                      WHERE 'telegram:' || c.channel_key = s.scope_id AND c.day BETWEEN s.day - 1 AND s.day AND c.state IN ('starved', 'dark'))
+         OR NOT EXISTS (SELECT 1 FROM series_pauses sp
                          WHERE sp.series_key = 'resource:' || s.scope_id
                            AND (sp.resumed_at IS NULL
                                 OR ((sp.paused_at AT TIME ZONE 'Europe/Kyiv')::date <= s.day - 1
-                                    AND (sp.resumed_at AT TIME ZONE 'Europe/Kyiv')::date >= s.day - 7)))
+                                    AND (sp.resumed_at AT TIME ZONE 'Europe/Kyiv')::date >= s.day - 7))))
       ORDER BY a.handle, s.scope_id, s.day`, [fromDay]);
   return rows.map((r: any) => ({ agentId: String(r.agent_id), handle: String(r.handle), ref: String(r.ref), day: String(r.day) }));
 }

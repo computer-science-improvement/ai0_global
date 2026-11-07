@@ -27,7 +27,14 @@ export interface ResourceDigest {
    * `series_paused` (the dead-series breaker paused a series here), `critic_streak` (the critic rejected 3 or more posts in a row).
    */
   signals?:  Array<'series_paused' | 'critic_streak'>;
+  /**
+   * Spec 091 FR-006: today's `channel_slo` row of a Telegram channel (state, target, published, replacements, reason). A fact for
+   * the manager, not part of the digest hash or the review signature (the controller recovers by itself).
+   */
+  slo?:      SloDigest;
 }
+
+export interface SloDigest { state: string; target: number; published: number; replacements: number; reason: string | null }
 
 export interface KpiDigest {
   generatedAt: string;
@@ -75,6 +82,25 @@ export async function ownerAnswersOf(pool: Pick<Pool, 'query'>, days = 14): Prom
   } catch {
     return undefined;
   }
+}
+
+/**
+ * Spec 091 FR-006: today's `channel_slo` row per Telegram channel, keyed by resource ref (`telegram:<channel>`). Best effort: an
+ * unreadable or missing table is an empty map.
+ */
+export async function sloSignalsOf(pool: Pick<Pool, 'query'>, day: string): Promise<Map<string, SloDigest>> {
+  const out = new Map<string, SloDigest>();
+  try {
+    const { rows } = await pool.query(
+      `SELECT channel_key, state, target, published, replacements, reason FROM channel_slo WHERE day = $1::date`, [day]);
+    for (const r of rows) {
+      out.set(`telegram:${r.channel_key}`, {
+        state: String(r.state), target: Number(r.target), published: Number(r.published), replacements: Number(r.replacements),
+        reason: r.reason ? String(r.reason).slice(0, 160) : null,
+      });
+    }
+  } catch { /* no table yet */ }
+  return out;
 }
 
 export interface AuditDigestLine { reportId: string; week: string; at: string; open: number; error: number; warn: number; info: number; fixable: number }
@@ -275,11 +301,11 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
   const doc = (h: object, resources: Res[], extra: Record<string, unknown> = {}) =>
     JSON.stringify({ generatedAt: d.generatedAt, today: d.today, ...h, resources, ...extra });
   const withQ = (r: ResourceDigest, q: unknown): Res => ({ ...r, quality: q } as Res);
-  const stub = (r: ResourceDigest): Res => ({ ref: r.ref, agent: r.agent, anomalies: [], note: QUIET_NOTE });
+  const stub = (r: ResourceDigest): Res => ({ ref: r.ref, agent: r.agent, anomalies: [], note: QUIET_NOTE, ...(r.slo ? { slo: r.slo } : {}) });
   const short = (r: ResourceDigest): Res => (r.quality ? withQ(r, slimQuality(r.quality, { samples: flagged(r) ? 1 : 0, sampleChars: 200 })) : (r as unknown as Res));
   const noSamples = (r: ResourceDigest): Res => (r.quality && !flagged(r) ? withQ(r, slimQuality(r.quality, { samples: 0, sampleChars: 0 })) : (r as unknown as Res));
   const compact = (r: ResourceDigest): Res => (r.quality ? withQ(r, compactQuality(r.quality)) : (r as unknown as Res));
-  const tiny = (r: ResourceDigest): Res => ({ ref: r.ref, agent: r.agent, health: r.health, kpis: r.kpis, anomalies: r.anomalies, quality: r.quality ? tinyQuality(r.quality) : r.quality } as Res);
+  const tiny = (r: ResourceDigest): Res => ({ ref: r.ref, agent: r.agent, health: r.health, kpis: r.kpis, anomalies: r.anomalies, quality: r.quality ? tinyQuality(r.quality) : r.quality, ...(r.slo ? { slo: r.slo } : {}) } as Res);
   const rs = d.resources;
   const loudRows = rs.filter(loud);
   const quietRefs = rs.filter((r) => !loud(r)).map((r) => r.ref);
@@ -449,6 +475,10 @@ export class KpiDigestService {
       const r = out.find((x) => x.ref === ref);
       if (r) r.signals = [...new Set([...(r.signals ?? []), ...sig])];
     }
+
+    // Spec 091 FR-006: today's SLO row per channel (a fact; outside the hash and the review signature).
+    const slo = await sloSignalsOf(this.d.pool, today);
+    for (const r of out) { const v = slo.get(r.ref); if (v) r.slo = v; }
 
     // Spec 069 FR-005: the escalations the code raised and nobody has read yet (best effort: an unreadable table means none).
     const escalations = await openEscalations(this.d.pool, now).catch(() => []);

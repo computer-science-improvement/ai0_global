@@ -125,6 +125,9 @@ export const ESCALATION_LINES = [
   'Блок escalations у дайджесті — ескалації, які код уже підняв власнику (поради не виконано двічі за 14 днів; кількість постів нижча за норму три дні поспіль без директив). Це не нова порада: відповідай на кожну в submit_review.escalations — або directive_id (директива цьому агенту, подана в цьому прогоні й названа в directive_ids), або decline_reason (≥ 20 символів, чому директива зараз не потрібна). Рядки відкритих директив із «не виконано — ескалюй» не дублюй порадою.',
 ];
 
+/** Spec 091 FR-006: the SLO controller owns recovery of missed posts and dark channels; the manager does not file `task` directives for it. */
+export const SLO_PROMPT_LINE = 'The SLO controller recovers missed posts and dark channels by itself. Do not file `task` directives to make up a missed post. File directives for strategy, format or frequency. (Блок slo у дайджесті — стан каналу за сьогодні: лише факт.)';
+
 /** System prompt of the scheduled manager run. */
 export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string }; open?: KpiDigest['directives']['open']; qualityRefs?: string[] }): string {
   const tz = 'Europe/Kyiv';
@@ -137,6 +140,7 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     // Spec 060 FR-005: advice nobody followed is not "in force"; a series stopped by code is not advised again.
     ...NOT_FOLLOWED_LINES,
     ...ESCALATION_LINES,
+    SLO_PROMPT_LINE,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     '',

@@ -88,6 +88,42 @@ export interface ChannelLine {
   subs:      number | null;
   /** Average views per published post (weekly, when tracked). */
   views?:    number | null;
+  /** Spec 091 FR-008: the day's SLO target and state (daily report only); absent without a `channel_slo` row. */
+  target?:   number;
+  sloState?: string;
+}
+
+/** Spec 091 FR-008: the state word of a channel below its target (held shows even at target 0). */
+const SLO_WORD_UK: Record<string, string> = {
+  behind: 'не встигає', recovering: 'не встигає', dark: 'без постів', starved: 'бракує матеріалу', held: 'на паузі',
+};
+
+/**
+ * Spec 091 FR-008: put the day's `channel_slo` rows on the channel lines (target + state), and add a line for a channel that
+ * is below its target but had no slot to count (a dark channel is the one the owner must see). Best effort: no table or no
+ * row leaves the lines as they were.
+ */
+export async function withSlo(pool: ReportDeps['pool'], lines: ChannelLine[], day: string): Promise<ChannelLine[]> {
+  let rows: any[];
+  try {
+    ({ rows } = await pool.query(
+      `SELECT s.channel_key, s.target, s.published, s.state, c.title
+         FROM channel_slo s LEFT JOIN editor_channels c ON c.channel_key = s.channel_key WHERE s.day = $1::date`, [day]));
+  } catch {
+    return lines;
+  }
+  const byRef = new Map(lines.map((l) => [l.ref, l]));
+  const out = [...lines];
+  for (const r of rows) {
+    const ref = `telegram:${r.channel_key}`;
+    const l = byRef.get(ref);
+    const target = Number(r.target);
+    if (l) { l.target = target; l.sloState = r.state; continue; }
+    if (target > 0 && Number(r.published) < target) {
+      out.push({ ref, title: r.title || r.channel_key, published: Number(r.published), skipped: 0, skipWhy: null, failed: 0, awaiting: 0, subs: null, target, sloState: r.state });
+    }
+  }
+  return out.sort((a, b) => a.title.localeCompare(b.title));
 }
 
 const SKIP_UK: Record<string, string> = {
@@ -172,7 +208,9 @@ export function channelBlock(lines: ChannelLine[], empty: string): string[] {
 }
 
 export function channelText(l: ChannelLine): string {
-  const bits = [`✅ ${l.published}`];
+  const bits = [l.target != null ? `✅ ${l.published}/${l.target}` : `✅ ${l.published}`];
+  const word = l.target != null && l.sloState && (l.published < l.target || l.sloState === 'held') ? SLO_WORD_UK[l.sloState] : null;
+  if (word) bits.push(word);
   if (l.skipped) bits.push(`⏭ ${l.skipped}${l.skipWhy ? ` (${l.skipWhy})` : ''}`);
   if (l.failed) bits.push(`❌ ${l.failed}`);
   if (l.awaiting) bits.push(`⏳ ${l.awaiting} на схвалення`);
@@ -307,7 +345,7 @@ export class OwnerReports {
     const now = this.now();
     const { from, to } = await this.dayBounds(now);
     const [channels, budgets, health, waiting, last, repeating] = await Promise.all([
-      channelLines(this.d.pool, from, to),
+      channelLines(this.d.pool, from, to).then((l) => withSlo(this.d.pool, l, kyivDate(now))),
       this.d.budgets().catch(() => ({ rows: [] as BudgetStatus[] })),
       this.d.health().catch(() => null),
       this.d.waiting().catch(() => [] as WaitingCount[]),

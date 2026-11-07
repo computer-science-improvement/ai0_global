@@ -221,6 +221,8 @@ import { STEERING_SERVICE, SteeringController } from './steering/steering.contro
 import { telegramReader } from './steering/steering-source';
 import { OwnerBotService } from './owner-bot/owner-bot.service';
 import { AUTONOMY_DECISIONS, AutonomyDecisionsController } from './autonomy/autonomy-decisions.controller';
+import { EDITOR_SLO_REPO, SloController } from './slo/slo.controller';
+import { ChannelSloRepository } from './slo/channel-slo.repository';
 import { OWNER_BOT, OwnerBotWorker, type OwnerBotInfra } from './owner-bot/owner-bot.worker';
 import { OwnerReports } from './owner-bot/owner-reports';
 import { OwnerBotController } from './owner-bot/owner-bot.controller';
@@ -2549,6 +2551,7 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    { provide: EDITOR_SLO_REPO, inject: [DB_POOL], useFactory: (pool: Pool) => new ChannelSloRepository(pool) },   // spec 091 FR-008
     { provide: AUTONOMY_DECISIONS, inject: [AGENT_INFRA], useFactory: (infra: AgentInfra) => ({ repo: infra.decisions, undo: infra.autonomyUndo }) },
     {
       // Spec 012 part A: the owner bot (cards with buttons for what waits, delivered on the admin bot's chat).
@@ -2665,7 +2668,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController, SloController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
