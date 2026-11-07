@@ -340,10 +340,14 @@ export class SloController {
     const { card, day } = a;
     const maxRuns = num(this.d.env, 'SLO_MAX_RECOVERY_RUNS_PER_DAY', 3, 0, 10);
     const darkHours = num(this.d.env, 'SLO_DARK_HOURS', 24, 6, 168);
+    // A run needs room: none in quiet hours or a full rest of the day (it would plan nothing and start the cooldown), and none
+    // while the day still has slots to run (a re-plan would supersede them; their skips bring the run back).
+    if (a.capacityLeft <= 0 || a.counts.plannedAhead > 0) return;
     const row = await this.d.repo.get(card.channelKey, day).catch(() => null);
     if (maxRuns <= 0 || (row?.recoveryRuns ?? 0) >= maxRuns) return;
     const last = await this.lastRecoveryAt(card.channelKey);
-    if (last && now.getTime() - last.getTime() < darkHours * HOUR) return;
+    // The SLO_DARK_HOURS spacing holds within the channel's local day; a new day may run again (from its first free hour).
+    if (last && localDate(last, card.timezone) === day && now.getTime() - last.getTime() < darkHours * HOUR) return;
     if (this.d.budget) {
       const b = await this.d.budget(card).catch(() => ({ ok: true as const }));
       if (!b.ok) { this.d.log?.(`SLO: no recovery run for ${card.channelKey}: ${b.reason}`); return; }

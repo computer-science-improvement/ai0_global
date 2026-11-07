@@ -168,6 +168,25 @@ test('a dark channel gets one recovery run per tick, at most once per SLO_DARK_H
   assert.deepEqual(i.calls.bump, []);
 });
 
+test('dark: no recovery run in quiet hours or while the day has slots ahead; a new local day may run again', async () => {
+  // 23:43 in Kyiv (21:43Z): the rest of the day is quiet hours, the run would plan nothing.
+  const late = new Date('2026-11-06T21:43:00Z');
+  const q = fx(); q.counts.lastPost = new Date(late.getTime() - 30 * HOUR); q.counts.ahead = 0;
+  await q.c.tick([q.card], late);
+  assert.equal(q.calls.recover, 0, 'quiet rest of the day');
+  assert.deepEqual(q.calls.bump, [], 'not counted');
+  // Slots still planned today: they run first.
+  const p = fx(); p.counts.lastPost = new Date(NOW.getTime() - 30 * HOUR); p.counts.ahead = 2;
+  await p.c.tick([p.card], NOW);
+  assert.equal(p.calls.recover, 0, 'planned slots ahead');
+  // Ran at 18:00 Kyiv yesterday; at 10:00 Kyiv today (16 h later) the new day runs again.
+  const d = fx(); d.counts.lastPost = new Date(NOW.getTime() - 60 * HOUR); d.counts.ahead = 0;
+  await d.c.tick([d.card], new Date('2026-11-05T16:00:00Z'));
+  assert.equal(d.calls.recover, 1);
+  await d.c.tick([d.card], new Date('2026-11-06T08:00:00Z'));
+  assert.equal(d.calls.recover, 2, 'a new local day');
+});
+
 test('dark: a held channel is not recovered; a dark one keeps the SLO_DARK_HOURS setting live', async () => {
   const held = fx({ ctx: { mode: 'live', heldReason: 'paused by the owner', playbookPerDay: null, ownerPausedSlots: 0 } });
   held.counts.lastPost = new Date(NOW.getTime() - 100 * HOUR); held.counts.ahead = 0;

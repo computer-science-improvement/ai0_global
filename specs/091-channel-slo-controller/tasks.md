@@ -24,3 +24,4 @@
 - A `task` directive slot is marked when the orchestrator reports it done (`report_directive_done` with `ref_type` slot): no code inserts that slot.
 - The HTTP controller is `SloApiController` (the tick is `SloController`). A held channel's bar is empty, not full.
 - Not done: `preflight_stale` dropping the idea instead of the slot (optional in the spec).
+- Found on dev-stage after the deploy (2026-11-07): a recovery run fired at 23:43 Kyiv into quiet hours, planned nothing and its 24 h spacing pinned the next run to the same dead hour. A run now needs room left in the day and no planned slots ahead (not counted otherwise), and the SLO_DARK_HOURS spacing holds within the local day only.
