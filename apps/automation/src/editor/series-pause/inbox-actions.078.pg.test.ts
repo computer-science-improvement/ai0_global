@@ -142,7 +142,7 @@ test('A10: a run of notes the owner pressed a button on in the dashboard is no l
     for (const [n, ago] of [[0, 7], [1, 4], [2, 1]] as const) {
       const { rows } = await db.pool.query(
         `INSERT INTO agent_inbox (kind, severity, title, ref_type, ref_id, subject, parts, actions, created_at)
-         VALUES ('series_missed', 'action', $1, 'resource_day', $2, $3, ARRAY['x'], $4::jsonb, now() - ($5 || ' days')::interval) RETURNING id::int`,
+         VALUES ('resource_health', 'action', $1, 'resource_day', $2, $3, ARRAY['x'], $4::jsonb, now() - ($5 || ' days')::interval) RETURNING id::int`,
         [`pga078 ${subject} ${n}`, `${subject}|d${n}`, subject, JSON.stringify(pk), String(ago)]);
       ids.push(rows[0].id);
     }
@@ -153,7 +153,7 @@ test('A10: a run of notes the owner pressed a button on in the dashboard is no l
     }
     const listed = (await repeatingSubjects(db.pool, new Date(), 3)).filter((x) => x.subject === subject).length;
     const next = await inbox.postOnce({
-      kind: 'series_missed', severity: 'action', title: `pga078 ${subject} next`, refType: 'resource_day', refId: `${subject}|next`,
+      kind: 'resource_health', severity: 'action', title: `pga078 ${subject} next`, refType: 'resource_day', refId: `${subject}|next`,
       gate: { subject, parts: ['y:new'] },
     });
     const sev = (await db.pool.query(`SELECT severity FROM agent_inbox WHERE id = $1`, [next])).rows[0]?.severity;

@@ -220,6 +220,7 @@ import { SteeringService } from './steering/steering.service';
 import { STEERING_SERVICE, SteeringController } from './steering/steering.controller';
 import { telegramReader } from './steering/steering-source';
 import { OwnerBotService } from './owner-bot/owner-bot.service';
+import { AUTONOMY_DECISIONS, AutonomyDecisionsController } from './autonomy/autonomy-decisions.controller';
 import { OWNER_BOT, OwnerBotWorker, type OwnerBotInfra } from './owner-bot/owner-bot.worker';
 import { OwnerReports } from './owner-bot/owner-reports';
 import { OwnerBotController } from './owner-bot/owner-bot.controller';
@@ -2521,6 +2522,7 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    { provide: AUTONOMY_DECISIONS, inject: [AGENT_INFRA], useFactory: (infra: AgentInfra) => ({ repo: infra.decisions, undo: infra.autonomyUndo }) },
     {
       // Spec 012 part A: the owner bot (cards with buttons for what waits, delivered on the admin bot's chat).
       provide: OWNER_BOT,
@@ -2541,6 +2543,7 @@ export const EDITOR_PROVIDERS = [
         const reports = new OwnerReports({
           pool, repo, env, budgets: () => budgetSnapshot(new SpendRepository(pool)), health: () => health.health(),
           waiting: async () => (bot ? bot.waitingCounts() : []),
+          decisions: infra.decisions,
         });
         bot = new OwnerBotService({
           pool, repo, env, api: token ? telegramBotApi(token) : null,
@@ -2563,6 +2566,7 @@ export const EDITOR_PROVIDERS = [
           status: () => reports.statusLines(),
           reports: { today: () => reports.daily(), week: () => reports.weekly() },
           log: (m) => logger.warn(m),
+          decisions: infra.decisions,
         });
         return { bot, reports };
       },
@@ -2634,7 +2638,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController, AuditController, ReadinessController, SourcesController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

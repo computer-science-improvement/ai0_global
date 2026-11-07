@@ -86,7 +86,7 @@ test('postOnce: one item per kind and resource-day, even against the unique inde
   const item = { kind: 'dark_day', title: 'Silent day', body: 'b', severity: 'action' as const, ...dailyRef(REF, '2026-10-01') };
   assert.ok(await inbox.postOnce(item));
   assert.equal(await inbox.postOnce(item), null);
-  assert.equal(alerts.length, 1, 'no second Telegram alert either');
+  assert.equal(alerts.length, 0, 'dark_day is info (spec 090 FR-011): no Telegram alert, the first or the second time');
   // A raw duplicate insert hits the unique index (migration 076).
   await assert.rejects(pool.query(`INSERT INTO agent_inbox (kind, title, ref_type, ref_id) VALUES ('dark_day', 't', 'resource_day', $1)`, [`${REF}|2026-10-01`]), /duplicate key/);
 });

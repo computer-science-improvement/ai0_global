@@ -5,6 +5,7 @@ import { BotApiError, type BotApi, type Keyboard } from './bot-api';
 import { OWN_CARD_REF_TYPES, inboxItem, type CardSource, type WaitingItem } from './card-sources';
 import type { CardButton, NewCard, OwnerCard, OwnerCardsRepository } from './owner-cards.repository';
 import { cardText, errorText, esc, plural } from './owner-text';
+import type { AutonomyDecisionsRepository } from '../autonomy/autonomy-decisions.repository';
 
 /**
  * Spec 012 part A: the owner bot. Cards for what waits (FR-002), their delivery (FR-003: the minute sweep, critical
@@ -32,7 +33,13 @@ export interface OwnerBotDeps {
   reports?: Partial<Record<'today' | 'week', () => Promise<{ text: string; keyboard?: Keyboard | null }>>>;
   log?:    (m: string) => void;
   now?:    () => Date;
+  /** Spec 090 FR-011 item 4: the log of silent decisions; a card whose item was decided by silence closes with that outcome. */
+  decisions?: Pick<AutonomyDecisionsRepository, 'latestFor'>;
 }
+
+/** Spec 090 FR-011: the closing words of a card whose item the system decided on the owner's silence. */
+export const AUTO_APPLIED_UK = 'Застосовано автоматично';
+export const AUTO_DROPPED_UK = 'Скасовано автоматично';
 
 // ── settings ────────────────────────────────────────────────────────────────
 
@@ -161,7 +168,8 @@ export class OwnerBotService implements OwnerBotHandler {
         if (!stale.length) continue;
         const expired = (await src.expired?.(stale.map((c) => c.refId)).catch(() => null)) ?? new Set<string>();
         for (const c of stale) {
-          if (await this.close(c, expired.has(c.refId) ? 'Минув термін' : 'Вирішено в дашборді')) out.closed++;
+          const silent = await this.silentOutcome(c);
+          if (await this.close(c, silent ?? (expired.has(c.refId) ? 'Минув термін' : 'Вирішено в дашборді'))) out.closed++;
         }
       }
       out.sent = await this.deliver(now);
@@ -212,6 +220,34 @@ export class OwnerBotService implements OwnerBotHandler {
   }
 
   /** Closes a card decided elsewhere: the buttons go and it says why. False when it was no longer live. */
+  /**
+   * Spec 090 FR-011 item 4: the card's item may have been decided by silence. Maps the card to the ref the decision log uses
+   * (`directive`, `pending_action`, `playbook`, `setup_proposal`, and `series_pause` through an Inbox note) and words the outcome.
+   */
+  async silentOutcome(card: Pick<OwnerCard, 'kind' | 'refId'>): Promise<string | null> {
+    if (!this.d.decisions) return null;
+    try {
+      let ref: { type: string; id: string } | null = null;
+      const plain = card.refId.replace(/:(contested|start|bot|graduate)$/, '');
+      if (card.kind === 'directive' || card.kind === 'contested') ref = { type: 'directive', id: plain };
+      else if (card.kind === 'action') ref = { type: 'pending_action', id: plain };
+      else if (card.kind === 'playbook') ref = { type: 'playbook', id: plain };
+      else if (card.kind === 'setup') ref = { type: 'setup_proposal', id: plain };
+      else if (card.kind === 'inbox' && /^\d+$/.test(card.refId)) {
+        const { rows } = await this.d.pool.query(`SELECT ref_type, ref_id FROM agent_inbox WHERE id = $1`, [Number(card.refId)]);
+        if (rows[0]?.ref_type === 'series_pause' && rows[0].ref_id) ref = { type: 'series_pause', id: String(rows[0].ref_id) };
+      }
+      if (!ref) return null;
+      const dec = await this.d.decisions.latestFor(ref.type, ref.id);
+      if (!dec) return null;
+      if (dec.action === 'applied' || dec.action === 'resumed') return AUTO_APPLIED_UK;
+      if (dec.action === 'dropped') return AUTO_DROPPED_UK;
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
   private async close(card: OwnerCard, outcome: string): Promise<boolean> {
     const done = await this.d.repo.resolve(card.id, 'closed', outcome, null);
     if (!done) return false;

@@ -44,6 +44,20 @@ export function dailyRef(resourceRef: string, day: string): { refType: string; r
   return { refType: RESOURCE_DAY_REF, refId: `${resourceRef}|${day}` };
 }
 
+/**
+ * Spec 090 FR-011 item 3: the one closed set of note kinds outside the owner's human-only gates (FR-009). A note of one of
+ * these kinds is always stored as `info`: visible in the Inbox, counted in the daily report, and never a Telegram card or
+ * alert. Every other kind keeps the severity its poster gave it (spec 078 D5 demotion still applies to those).
+ * Adding a kind here is a reviewed decision: `owner-inbox.090.test.ts` pins the set.
+ */
+export const INFO_ONLY_NOTE_KINDS: ReadonlySet<string> = new Set([
+  'dark_day', 'series_missed', 'series_paused', 'low_runway', 'host_struck', 'escalation', 'directive_ignored', 'directive_failed',
+  'audit_report', 'loadout_suggestions', 'event_not_covered', 'evergreen_fallback', 'playbook_pending', 'directive_structural',
+]);
+
+/** The single decision point: whether a note of this kind goes out as info only. */
+export const isInfoOnlyNote = (kind: string): boolean => INFO_ONLY_NOTE_KINDS.has(kind);
+
 export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert' | 'gate' | 'actions'>> {
   id:        number;
   agentId:   string | null;
@@ -95,7 +109,9 @@ export class OwnerInbox {
     private readonly dashboardUrl: string | null = null,
   ) {}
 
-  async post(i: InboxItemInput): Promise<number> {
+  async post(i0: InboxItemInput): Promise<number> {
+    const quiet = isInfoOnlyNote(i0.kind);
+    const i: InboxItemInput = quiet ? { ...i0, severity: 'info' } : i0;
     const { rows } = i.gate
       ? await this.pool.query(
         `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity, subject, parts) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
@@ -105,7 +121,7 @@ export class OwnerInbox {
         [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
     const id = Number(rows[0].id);
     await this.storeActions(id, i);
-    await this.deliver(id, i, await this.answered(id, i));
+    await this.deliver(id, i, await this.answered(id, i), quiet);
     return id;
   }
 
@@ -114,8 +130,10 @@ export class OwnerInbox {
    * spec 037 FR-010). Returns the new id, or null when it was a duplicate (no alert either).
    */
   async postOnce(i0: InboxItemInput & { refType: string; refId: string }): Promise<number | null> {
-    let i = i0;
-    let demoted = false;
+    // Spec 090 FR-011: a kind outside the human-only gates is info, whatever its poster asked for.
+    const quiet = isInfoOnlyNote(i0.kind);
+    let i: typeof i0 = quiet ? { ...i0, severity: 'info' } : i0;
+    let demoted = quiet;
     const gate = i.gate;
     if (gate) {
       // Spec 060 FR-003 / 069 FR-004: a gated note fires again only on a new cause or a number that grew by a whole step

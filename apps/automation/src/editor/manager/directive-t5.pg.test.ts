@@ -156,7 +156,7 @@ test('an experiment quota unfilled at its deadline → failed with an Inbox entr
   const row = (await s.repo.get(dir.id))!;
   assert.equal(row.status, 'failed');
   assert.match(row.execError ?? '', /0\/2 slot/);
-  assert.deepEqual((await pool.query(`SELECT kind, severity FROM agent_inbox WHERE ref_id = $1`, [dir.id])).rows, [{ kind: 'directive_failed', severity: 'action' }]);
+  assert.deepEqual((await pool.query(`SELECT kind, severity FROM agent_inbox WHERE ref_id = $1`, [dir.id])).rows, [{ kind: 'directive_failed', severity: 'info' }]);
 });
 
 test('an unverified applied directive is evaluated inconclusive (not_verified) with its adherence', { skip }, async () => {

@@ -119,7 +119,7 @@ test('breaker: 3 skips in a row pause the series once, skip its planned slots at
   assert.equal(open[0].streak, 3);
   assert.match(open[0].reason, /немає повного тексту/);
   assert.deepEqual((await pool.query(`SELECT kind, severity, ref_type, ref_id FROM agent_inbox WHERE kind = 'series_paused' AND ref_id = $1`, [open[0].id])).rows,
-    [{ kind: 'series_paused', severity: 'action', ref_type: 'series_pause', ref_id: open[0].id }]);
+    [{ kind: 'series_paused', severity: 'info', ref_type: 'series_pause', ref_id: open[0].id }]);
 
   for (const id of planned) assert.deepEqual(await state(id), { status: 'skipped', error: `series_paused: "Prompt" is paused after repeated skips (spec 060)` });
   assert.equal((await state(otherSeries)).status, 'planned', 'another series');

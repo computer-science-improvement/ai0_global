@@ -160,7 +160,7 @@ test('a directive whose plan cannot apply ends failed after 3 hourly attempts wi
   assert.equal(row.execAttempts, 3);
   assert.match(row.execError ?? '', /not_executable/);
   const items = (await pool.query(`SELECT kind, severity FROM agent_inbox WHERE ref_id = $1`, [dir.id])).rows;
-  assert.deepEqual(items, [{ kind: 'directive_failed', severity: 'action' }]);
+  assert.deepEqual(items, [{ kind: 'directive_failed', severity: 'info' }]);
 });
 
 test('pause_series: applied → the series is inactive; on resume_on housekeeping writes it active again', { skip }, async () => {

@@ -53,13 +53,12 @@ test('the weekly tick claims the week once; a second tick object (restart, secon
 
   const { rows: inbox } = await db.pool.query(`SELECT kind, severity, title, body, ref_type, ref_id FROM agent_inbox WHERE kind = 'audit_report'`);
   assert.equal(inbox.length, 1);
-  assert.equal(inbox[0].severity, 'action');
+  assert.equal(inbox[0].severity, 'info', 'audit_report is info-only (spec 090 FR-011)');
   assert.equal(inbox[0].title, 'System audit: 2 open findings (1 error), 2 fixable in one click');
   assert.equal(inbox[0].body, 'The system is mostly fine.');
   assert.equal(inbox[0].ref_type, 'audit');
   assert.match(inbox[0].ref_id, /^[0-9a-f-]{36}$/);
-  assert.equal(alerts.length, 1);
-  assert.match(alerts[0], /Аудит системи: 2 знахідки \(1 помилка\), 2 можна виправити одним кліком/);
+  assert.equal(alerts.length, 0, 'spec 090 FR-011: the audit report is an Inbox note, not a Telegram alert');
 });
 
 test('the digest line reads the newest finished report and is gone when everything is handled', { skip }, async () => {

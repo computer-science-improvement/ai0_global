@@ -188,17 +188,19 @@ test('/today sends the summary; the "Що чекає" button runs /waiting', asy
 test('weekly lines: spend per published post, the manager, what the agents learnt', () => {
   const w = weekWorkLines({
     filed: 5, applied: 3, declined: 1, open: 2, measured: { worked: 2, no_effect: 1, hurt: 0, inconclusive: 1 },
-    memory: 7, skills: 2, steering: 1, rules: 3, spendUsd: 12.5,
+    memory: 7, skills: 2, steering: 1, rules: 3, spendUsd: 12.5, timeoutApplied: 0, timeoutDropped: 0,
   }, 25);
   assert.deepEqual(w.spend, ['Разом: $12.50 · $0.50 на опублікований пост']);
   assert.deepEqual(w.manager, [
     'Директив: 5 · застосовано 3 · відхилено 1 · ще відкрито 2',
+    'Застосовано через вашу тишу: 0',
+    'Знято за браком відповіді: 0',
     'Оцінено результат: 4 (спрацювало 2, без ефекту 1, зашкодило 0, неясно 1)',
   ]);
   assert.deepEqual(w.learnt, ['Нотаток у памʼяті: 7 · версій скілів: 2 · стилів за референсом: 1 · ваших правил: 3']);
-  const none = weekWorkLines({ filed: 0, applied: 0, declined: 0, open: 0, measured: { worked: 0, no_effect: 0, hurt: 0, inconclusive: 0 }, memory: 0, skills: 0, steering: 0, rules: 0, spendUsd: 0 }, 0);
+  const none = weekWorkLines({ filed: 0, applied: 0, declined: 0, open: 0, measured: { worked: 0, no_effect: 0, hurt: 0, inconclusive: 0 }, memory: 0, skills: 0, steering: 0, rules: 0, spendUsd: 0, timeoutApplied: 0, timeoutDropped: 0 }, 0);
   assert.deepEqual(none.spend, ['Разом: $0.00']);
-  assert.equal(none.manager[1], 'Результатів ще не оцінено');
+  assert.equal(none.manager[3], 'Результатів ще не оцінено');
 });
 
 function weekPool() {

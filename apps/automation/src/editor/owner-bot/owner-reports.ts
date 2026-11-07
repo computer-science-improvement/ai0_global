@@ -7,6 +7,7 @@ import { isNotAMiss, isOwnerDecision, skipGroupOf } from '../silent/skip-reasons
 import type { Keyboard } from './bot-api';
 import type { OwnerCardsRepository } from './owner-cards.repository';
 import { esc, plural } from './owner-text';
+import { humanOnlyItems, humanOnlyLines, silentDecisionsDaily, silentDecisionsWeekly, type DecisionsReader } from './autonomy-report';
 
 /**
  * Spec 012 FR-005 / FR-006: the owner's daily summary and weekly report, in Ukrainian (Telegram). The data is read
@@ -68,7 +69,9 @@ export interface ReportDeps {
   budgets:  () => Promise<{ rows: BudgetStatus[] }>;
   health:   () => Promise<NetworkHealth>;
   waiting:  () => Promise<WaitingCount[]>;
-  env:      (key: string) => string | undefined;
+  /** Spec 090 FR-011: the log of decisions made on owner silence; without it the sections are left out. */
+  decisions?: DecisionsReader;
+  env:     (key: string) => string | undefined;
   now?:     () => Date;
 }
 
@@ -209,6 +212,8 @@ export interface WeekWork {
   measured: Record<'worked' | 'no_effect' | 'hurt' | 'inconclusive', number>;
   memory: number; skills: number; steering: number; rules: number;
   spendUsd: number;
+  /** Spec 090 FR-002 item 5: directives the owner's silence applied / dropped (separate lines in the report). */
+  timeoutApplied: number; timeoutDropped: number;
 }
 
 export async function weekWork(pool: ReportDeps['pool'], from: Date, to: Date): Promise<WeekWork> {
@@ -220,7 +225,9 @@ export async function weekWork(pool: ReportDeps['pool'], from: Date, to: Date): 
             count(*) FILTER (WHERE outcome = 'worked' AND updated_at >= $1 AND updated_at < $2)::int AS worked,
             count(*) FILTER (WHERE outcome = 'no_effect' AND updated_at >= $1 AND updated_at < $2)::int AS no_effect,
             count(*) FILTER (WHERE outcome = 'hurt' AND updated_at >= $1 AND updated_at < $2)::int AS hurt,
-            count(*) FILTER (WHERE outcome = 'inconclusive' AND updated_at >= $1 AND updated_at < $2)::int AS inconclusive
+            count(*) FILTER (WHERE outcome = 'inconclusive' AND updated_at >= $1 AND updated_at < $2)::int AS inconclusive,
+            count(*) FILTER (WHERE owner_decision = 'timeout_applied' AND COALESCE(applied_at, updated_at) >= $1 AND COALESCE(applied_at, updated_at) < $2)::int AS timeout_applied,
+            count(*) FILTER (WHERE owner_decision = 'timeout_dropped' AND updated_at >= $1 AND updated_at < $2)::int AS timeout_dropped
        FROM agent_directives WHERE NOT shadow`, [from, to]);
   const { rows: [l] } = await pool.query(
     `SELECT (SELECT count(*) FROM editor_channel_memory WHERE created_at >= $1 AND created_at < $2 AND created_by <> 'owner')::int
@@ -235,6 +242,7 @@ export async function weekWork(pool: ReportDeps['pool'], from: Date, to: Date): 
     filed: n(d?.filed), applied: n(d?.applied), declined: n(d?.declined), open: n(d?.open),
     measured: { worked: n(d?.worked), no_effect: n(d?.no_effect), hurt: n(d?.hurt), inconclusive: n(d?.inconclusive) },
     memory: n(l?.memory), skills: n(l?.skills), steering: n(l?.steering), rules: n(l?.rules), spendUsd: n(l?.spend),
+    timeoutApplied: n(d?.timeout_applied), timeoutDropped: n(d?.timeout_dropped),
   };
 }
 
@@ -253,6 +261,8 @@ export function weekWorkLines(w: WeekWork, published: number): { spend: string[]
     spend: [`Разом: ${usd(w.spendUsd)}${published ? ` · ${usd(w.spendUsd / published)} на опублікований пост` : ''}`],
     manager: [
       `Директив: ${w.filed} · застосовано ${w.applied} · відхилено ${w.declined} · ще відкрито ${w.open}`,
+      `Застосовано через вашу тишу: ${w.timeoutApplied ?? 0}`,
+      `Знято за браком відповіді: ${w.timeoutDropped ?? 0}`,
       measured
         ? `Оцінено результат: ${measured} (спрацювало ${m.worked}, без ефекту ${m.no_effect}, зашкодило ${m.hurt}, неясно ${m.inconclusive})`
         : 'Результатів ще не оцінено',
@@ -312,6 +322,9 @@ export class OwnerReports {
 
     const lines = [`📊 <b>Підсумок дня · ${ddmm(kyivDate(now))}</b>`, ''];
     lines.push('<b>Канали</b>', ...channelBlock(channels, 'Сьогодні постів не було'), '');
+    // Spec 090 FR-011: what the system decided on the owner's silence today (left out when there is nothing).
+    const silent = await silentDecisionsDaily(this.d.decisions, from, to).catch(() => [] as string[]);
+    if (silent.length) lines.push(...silent, '');
     const spend = spendLines(budgets.rows);
     if (spend.length) lines.push('<b>Витрати сьогодні</b>', ...spend, '');
     lines.push('<b>Чекає на вас</b>');
@@ -340,6 +353,11 @@ export class OwnerReports {
     lines.push('<b>Канали</b>', ...channelBlock(channels, 'Постів не було'), '');
     lines.push('<b>Витрати за 7 днів</b>', ...w.spend, '');
     lines.push('<b>Що зробив менеджер</b>', ...w.manager, '');
+    // Spec 090 FR-011: the week's silent decisions, one line per family; and what only the owner can decide.
+    const silent = await silentDecisionsWeekly(this.d.decisions, from, to).catch(() => [] as string[]);
+    if (silent.length) lines.push(...silent, '');
+    const mine = humanOnlyLines(await humanOnlyItems(this.d.pool as any).catch(() => []), now);
+    if (mine.length) lines.push(...mine, '');
     lines.push('<b>Чого навчились агенти</b>', ...w.learnt, '');
     lines.push("<b>Здоров'я</b>", ...healthLines(health), '');
     lines.push('<b>Цілі</b>', 'Цілей ще немає');

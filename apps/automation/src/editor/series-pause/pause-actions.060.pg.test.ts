@@ -55,7 +55,7 @@ after(async () => {
   await pool.end();
 });
 
-const note = async (id: number) => (await pool.query(`SELECT title, body, read_at, actions FROM agent_inbox WHERE id = $1`, [id])).rows[0];
+const note = async (id: number) => (await pool.query(`SELECT title, body, read_at, actions, severity FROM agent_inbox WHERE id = $1`, [id])).rows[0];
 const inboxCards = () => inboxSource({
   pool, approvals: {} as any, directives: {} as any, actions: {} as any, steering: {} as any, setup: {} as any, playbooks: {} as any,
   inbox, setupSections: [], noteActions: actions,
@@ -89,9 +89,10 @@ test('the breaker\'s note is stored with Відновити and Залишити
   const { pauseId, noteId } = await breakerPause('PgtA');
   const n = await note(noteId);
   assert.deepEqual(n.actions.map((a: any) => a.label), ['Відновити', 'Залишити на паузі']);
-  const card = (await inboxCards().waiting(new Date())).find((w) => w.refId === String(noteId))!;
-  assert.deepEqual(card.buttons.map((b) => b.label), ['Відновити', 'Залишити на паузі', '✓ Прочитано', 'Відкрити']);
-  assert.equal(card.buttons[0].key, `resume:${pauseId}`);
+  // Spec 090 FR-011: series_paused is info, so no owner-bot card is made; the buttons live on the Inbox note (dashboard).
+  assert.equal((await inboxCards().waiting(new Date())).find((w) => w.refId === String(noteId)), undefined);
+  assert.equal(n.severity, 'info');
+  assert.equal(n.actions[0].key, `resume:${pauseId}`);
 });
 
 test('Відновити: the pause is resumed by the owner, the note is read and says so; a second press says it is already resumed', { skip }, async () => {

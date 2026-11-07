@@ -338,7 +338,7 @@ test('pause_resource: owner-approved → accepted → paused (out of the network
   const p1 = await s.file(pauseInput(3));
   assert.equal(p1.ok, true, JSON.stringify(p1));
   assert.deepEqual([p1.directive.status, p1.directive.structural], ['awaiting_owner', true]);
-  assert.deepEqual(await inboxOf(p1.directive.id), [{ kind: 'directive_structural', severity: 'action' }]);
+  assert.deepEqual(await inboxOf(p1.directive.id), [{ kind: 'directive_structural', severity: 'info' }]);
   await s.svc.decide(p1.directive.id, true);
 
   const run = await s.orchestrate([{ name: 'accept_directive', args: { id: p1.directive.id, plan: 'Instagram на паузі 3 дні, контент лише в Telegram', conflicting_rule_ids: [] } }]);

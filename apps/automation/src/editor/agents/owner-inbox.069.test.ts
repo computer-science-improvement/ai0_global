@@ -31,7 +31,7 @@ function fakePool(o: PoolOpts = {}) {
 }
 
 const note = (over: Partial<Omit<InboxItemInput, 'refType' | 'refId'>> = {}): InboxItemInput & { refType: string; refId: string } => ({
-  kind: 'series_missed', severity: 'action', title: 'Series missed', body: 'b', refType: 'resource_day', refId: 'telegram:@x|2026-10-22',
+  kind: 'resource_health', severity: 'action', title: 'Series missed', body: 'b', refType: 'resource_day', refId: 'telegram:@x|2026-10-22',
   gate: { subject: 'silent:telegram:@x:miss', parts: PARTS }, ...over,
 });
 

@@ -175,7 +175,7 @@ test('contest timeout → rejected (timeout_dropped); unanswered directives: aut
   assert.deepEqual([f.status, f.resolution], ['applied', AUTO_APPLIED], f.execError ?? '');
   assert.deepEqual(await inboxOf(fs.id), [{ kind: 'directive_auto_applied', severity: 'info' }]);
   assert.equal((await s.repo.get(task.id))!.status, 'expired');
-  assert.deepEqual(await inboxOf(task.id), [{ kind: 'directive_ignored', severity: 'action' }]);
+  assert.deepEqual(await inboxOf(task.id), [{ kind: 'directive_ignored', severity: 'info' }]);
   assert.equal((await s.repo.get(adv.id))!.status, 'expired');
   assert.deepEqual(await inboxOf(adv.id), []);
 });

@@ -126,7 +126,7 @@ test('the A10 lookups count a dashboard-stamped card as a reaction, next to a Te
       },
     } as any;
     await new OwnerInbox(pool).postOnce({
-      kind: 'series_missed', severity: 'action', title: 't', refType: 'resource_day', refId: 'telegram:@x|2026-10-28',
+      kind: 'resource_health', severity: 'action', title: 't', refType: 'resource_day', refId: 'telegram:@x|2026-10-28',
       gate: { subject: 'silent:telegram:@x:miss', parts: ['x'] },
     });
     return {
