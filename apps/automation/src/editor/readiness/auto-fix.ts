@@ -10,8 +10,14 @@
  * decision S9): it removes a source from the card, which cannot be undone in one tap, so it is never part of a batch.
  * `host_proxy_add` (076) is not excluded: adding a host to the proxy list is harmless and reversible in Settings.
  */
-export const AUTO_SAFE_FIX_KINDS = ['tools_allow_add', 'hashtag_min_zero'] as const;
+export const AUTO_SAFE_FIX_KINDS = ['tools_allow_add', 'hashtag_min_zero', 'series_resume'] as const;
 export type AutoSafeFixKind = typeof AUTO_SAFE_FIX_KINDS[number];
+
+/**
+ * Spec 090 FR-005: `series_resume` is auto-safe only for the finding that proves the pause's cause is gone. The doctor also
+ * attaches the same fix to `series_paused` (a pause that is still justified), which must stay one tap for the owner.
+ */
+export const SERIES_RESUME_AUTO_CODE = 'pause_cause_gone';
 
 export const FIX_ALL_EXCLUDED_KINDS: readonly string[] = ['bind_dataset', 'dataset_patch', 'source_drop'];
 
@@ -30,5 +36,13 @@ export const AUTO_SAFE_RUN_REPAIRS = ['config_format_mismatch', 'config_source_m
 export const DESTRUCTIVE_FIX_KINDS: readonly string[] = ['source_drop'];
 
 export const isDestructiveFix = (kind: string): boolean => DESTRUCTIVE_FIX_KINDS.includes(kind);
-export const isAutoSafeFix = (kind: string): boolean => (AUTO_SAFE_FIX_KINDS as readonly string[]).includes(kind);
+/**
+ * Whether code may apply this fix by itself. `code` is the finding's reason code: a kind with a guard (`series_resume`) is
+ * auto-safe only for the code that makes it safe, so a call without a code is never auto-safe for it.
+ */
+export const isAutoSafeFix = (kind: string, code?: string): boolean => {
+  if (!(AUTO_SAFE_FIX_KINDS as readonly string[]).includes(kind)) return false;
+  if (kind === 'series_resume') return code === SERIES_RESUME_AUTO_CODE;
+  return true;
+};
 export const isFixAllKind = (kind: string): boolean => !FIX_ALL_EXCLUDED_KINDS.includes(kind);

@@ -38,7 +38,7 @@ export const toReadinessFinding = (f: Finding): ReadinessFinding => ({
   key: f.key, code: f.check, severity: f.severity, title: f.title, detail: f.detail, subject: f.subject,
   link: f.link ?? null, firstSeenAt: f.firstSeenAt ?? null,
   fix: f.fix ? {
-    label: fixLabel(f.fix), auto: isAutoSafeFix(f.fix.kind), inFixAll: isFixAllKind(f.fix.kind),
+    label: fixLabel(f.fix), auto: isAutoSafeFix(f.fix.kind, f.check), inFixAll: isFixAllKind(f.fix.kind),
     ...(isDestructiveFix(f.fix.kind) ? { destructive: true as const } : {}),
   } : null,
 });

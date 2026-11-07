@@ -18,6 +18,8 @@ export interface ReportFinding extends Finding {
   at?:             string;
   /** What the fix did, or why it failed. */
   result?:         string;
+  /** Spec 090 FR-006: who applied it when it was not the owner's click (`auto:silence`). */
+  by?:             string;
   dismissedUntil?: string;
 }
 

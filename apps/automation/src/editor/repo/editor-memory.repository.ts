@@ -75,6 +75,13 @@ export class EditorMemoryRepository {
     }));
   }
 
+  /** Spec 090 FR-010: the undo of a retirement (the row was only soft-deleted). */
+  async reactivate(channelKey: string, id: number): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE editor_channel_memory SET active = true WHERE id = $1 AND channel_key = $2 AND NOT active`, [id, channelKey]);
+    return (rowCount ?? 0) > 0;
+  }
+
   /** The owner may retire any active entry of the channel (soft delete; the row stays for history). */
   async retireByOwner(channelKey: string, id: number): Promise<boolean> {
     const { rowCount } = await this.pool.query(

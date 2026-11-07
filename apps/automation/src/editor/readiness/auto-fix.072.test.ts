@@ -6,14 +6,14 @@ import { FIX_KINDS } from '../sysadmin/audit.types';
 
 /** Spec 072 FR-004: the closed list of fixes code may apply by itself. A test fails if it changes. */
 
-test('exactly two kinds are auto-safe, and both are real fix kinds', () => {
-  assert.deepEqual([...AUTO_SAFE_FIX_KINDS], ['tools_allow_add', 'hashtag_min_zero']);
+test('exactly three kinds are auto-safe, and all are real fix kinds (spec 090 FR-005 added series_resume, guarded by pause_cause_gone)', () => {
+  assert.deepEqual([...AUTO_SAFE_FIX_KINDS], ['tools_allow_add', 'hashtag_min_zero', 'series_resume']);
   for (const k of AUTO_SAFE_FIX_KINDS) assert.ok(FIX_KINDS.includes(k), k);
 });
 
 test('no other kind is auto-safe', () => {
   const others = FIX_KINDS.filter((k) => !(AUTO_SAFE_FIX_KINDS as readonly string[]).includes(k));
-  assert.equal(others.length, FIX_KINDS.length - 2);
+  assert.equal(others.length, FIX_KINDS.length - 3);
   for (const k of others) assert.equal(isAutoSafeFix(k), false, k);
   assert.equal(isAutoSafeFix('tools_allow_add'), true);
 });

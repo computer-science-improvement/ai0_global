@@ -18,6 +18,8 @@ export interface AuditFixPorts {
   patchSkill(handle: string, name: string, patch: { enabled?: boolean; inline?: boolean }): Promise<unknown>;
   /** Retires a reviewer row (never an owner row); false when nothing was retired. */
   retireMemory(channel: string, id: number): Promise<boolean>;
+  /** Spec 090 FR-010: the inverse of `retireMemory` (a soft delete), for the undo of a memory_retire applied on silence. */
+  reactivateMemory?(channel: string, id: number): Promise<boolean>;
   /** ConfigConflictsService.apply. The weekly audit passes neither field: every conflict of the orchestrator's group. */
   applyConflicts(orch: Agent, o?: { codes?: string[]; ref?: string }): Promise<{ applied: string[]; remaining: unknown[] }>;
 }

@@ -4,9 +4,29 @@ import { AuditRepository, reportCounts, type AuditReport, type ReportFinding, ty
 import type { AuditPass } from './auditor-runner';
 import { clip } from './audit-text';
 import { errText } from '../../common/err-text';
-import { fixErrorText, runFix, type AuditFixPorts } from './fix-runner';
+import { describeFix, fixErrorText, runFix, type AuditFixPorts } from './fix-runner';
+import type { Fix } from './audit.types';
+import type { AutonomyDecisionsRepository, AutonomyUndo, UndoRecord } from '../autonomy/autonomy-decisions.repository';
+import { silenceApplies, type Env } from '../autonomy/owner-gates';
 
 export type { AuditFixPorts } from './fix-runner';
+
+/** Spec 090 FR-006: `applied_by` of a fix code applied because the owner stayed silent. */
+export const SILENCE_BY = 'auto:silence';
+export const MEMORY_RETIRE_UNDO_KIND = 'memory_retire';
+export const SKILL_INLINE_UNDO_KIND = 'skill_inline_off';
+
+/** The channel a fix is about (the decision log filters by it). */
+const channelOf = (fix: Fix): string | null => ('channel' in fix && typeof fix.channel === 'string' ? fix.channel : null);
+
+/** Spec 090 FR-010: how to reverse a fix, only where `fix-runner` has an inverse; null otherwise (nothing records the old value). */
+export function auditUndoFor(fix: Fix): UndoRecord | null {
+  switch (fix.kind) {
+    case 'memory_retire':    return { kind: MEMORY_RETIRE_UNDO_KIND, channel: fix.channel, id: fix.id };
+    case 'skill_inline_off': return { kind: SKILL_INLINE_UNDO_KIND, agent: fix.agent, skill: fix.skill };
+    default:                 return null;
+  }
+}
 
 /**
  * Spec 055 FR-003: run an audit, store it, and apply or dismiss its findings. The fixes are a closed list; each one is a call
@@ -86,7 +106,59 @@ export class AuditService {
     return { ok: true, report: b.row };
   }
 
-  async apply(reportId: string, key: string): Promise<FindingOutcome> {
+  /**
+   * Spec 090 FR-006: open findings whose fix kind is safe (`SILENCE_APPLY_AUDIT_FIX_KINDS`) are applied by code once the
+   * latest report is older than AUDIT_AUTO_FIX_HOURS (0 = off), through the same `apply` as the owner's click, `by =
+   * 'auto:silence'`. A kind the registry does not know waits (as do the `SILENCE_WAIT_AUDIT_FIX_KINDS`); `series_resume`
+   * only for `pause_cause_gone`. A fix that fails stays `failed` (it is not tried again) and is logged once as `failed`.
+   * Never throws.
+   */
+  async silenceSweep(o: { env: Env; decisions: Pick<AutonomyDecisionsRepository, 'record'>; now?: Date }): Promise<{ applied: number; failed: number }> {
+    const out = { applied: 0, failed: 0 };
+    const now = o.now ?? this.now();
+    try {
+      const report = await this.d.repo.latest();
+      if (!report || !report.finishedAt) return out;
+      const reportAt = new Date(report.finishedAt);
+      for (const f of report.findings) {
+        if (f.status !== 'open' || !f.fix) continue;
+        const gate = `audit_fix:${f.fix.kind}`;
+        let applies = false;
+        try { applies = silenceApplies(gate, o.env, reportAt, now); } catch { applies = false; } // a kind the registry lacks waits
+        if (!applies) continue;
+        if (f.fix.kind === 'series_resume' && f.check !== 'pause_cause_gone') continue;
+        const fix = f.fix;
+        const r = await this.apply(report.id, f.key, SILENCE_BY);
+        if (r.ok) {
+          out.applied++;
+          await o.decisions.record({
+            gate, refType: 'audit_finding', refId: `${report.id}:${f.key}`, channelKey: channelOf(fix), action: 'applied',
+            summary: `${describeFix(fix)} (audit finding "${f.title}")`.slice(0, 480), undo: auditUndoFor(fix), at: now,
+          });
+        } else if (r.error === 'fix_failed') {
+          out.failed++;
+          await o.decisions.record({
+            gate, refType: 'audit_finding', refId: `${report.id}:${f.key}`, channelKey: channelOf(fix), action: 'failed',
+            summary: `${describeFix(fix)} failed: ${r.details ?? 'unknown error'}`.slice(0, 480), undo: null, at: now,
+          });
+        }
+      }
+    } catch (err) { this.d.log?.(`audit silence sweep failed: ${errText(err)}`); }
+    return out;
+  }
+
+  /** Spec 090 FR-010: the inverses `fix-runner` has (memory row back on, skill loaded inline again). */
+  registerUndo(undo: Pick<AutonomyUndo, 'register'>): void {
+    undo.register(MEMORY_RETIRE_UNDO_KIND, async (u) => {
+      if (!this.d.fixes.reactivateMemory) throw new Error('reactivating a memory row is not wired');
+      if (!(await this.d.fixes.reactivateMemory(String(u.channel ?? ''), Number(u.id)))) throw new Error('the memory row is already active or gone');
+    });
+    undo.register(SKILL_INLINE_UNDO_KIND, async (u) => {
+      await this.d.fixes.patchSkill(String(u.agent ?? ''), String(u.skill ?? ''), { inline: true });
+    });
+  }
+
+  async apply(reportId: string, key: string, by?: string): Promise<FindingOutcome> {
     const report = await this.d.repo.get(reportId);
     if (!report) return { ok: false, error: 'report_not_found' };
     const f = report.findings.find((x) => x.key === key);
@@ -99,10 +171,10 @@ export class AuditService {
       result = (await runFix(this.d.fixes, f.fix)).applied ?? '';
     } catch (err: any) {
       const text = fixErrorText(err);
-      const failed = await this.d.repo.updateFinding(reportId, key, (cur) => ({ ...cur, status: 'failed', result: text, at: this.now().toISOString() }));
+      const failed = await this.d.repo.updateFinding(reportId, key, (cur) => ({ ...cur, status: 'failed', result: text, at: this.now().toISOString(), ...(by ? { by } : {}) }));
       return { ok: false, error: 'fix_failed', details: text, report: failed ?? report };
     }
-    const next = await this.d.repo.updateFinding(reportId, key, (cur) => ({ ...cur, status: 'applied', result, at: this.now().toISOString() }));
+    const next = await this.d.repo.updateFinding(reportId, key, (cur) => ({ ...cur, status: 'applied', result, at: this.now().toISOString(), ...(by ? { by } : {}) }));
     return { ok: true, report: next ?? report, result };
   }
 

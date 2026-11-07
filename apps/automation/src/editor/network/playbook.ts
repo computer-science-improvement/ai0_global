@@ -8,7 +8,7 @@ import { findSlopPhrases, normalizeSlop } from '../post/slop-phrases';
 import { scheduleChangeNeedsCard, SILENT_SHIFT_MAX_MINUTES } from '../approval/approval-policy';
 import {
   CadenceSchema, cadenceChange, instancesOn, parseCadence, SERIES_ORIGINS, SERIES_SOURCE_MODES, seriesSourceErrors,
-  SeriesSourceCatalog, seriesSourceLabel, SeriesSourceSchema,
+  SeriesSourceCatalog, seriesContent, seriesSourceLabel, SeriesSourceSchema,
 } from './series';
 
 export { CADENCE_RE } from './series';
@@ -310,6 +310,52 @@ export function classifyPlaybookChange(prev: Playbook | null, next: Playbook, op
   if (prev.rules.join('\n') !== next.rules.join('\n')) reasons.push('rules changed');
   return { structural: reasons.length > 0, reasons };
 }
+
+/** Where a `pending_owner` version came from, as `playbooks` records it (spec 090 FR-004). */
+export interface PlaybookOrigin {
+  /** `playbooks.created_by`: orchestrator | owner | migration | directive. */
+  createdBy?:   string | null;
+  /** `playbooks.directive_id`: set only for the version a `strategy` directive asked the orchestrator to build (spec 025 FR-015). */
+  directiveId?: string | null;
+  /** Rule lines that came from an owner rule. The playbook does not record a rule's origin, so the caller passes them when it knows them. */
+  ownerRuleLines?: readonly string[];
+}
+
+/**
+ * Spec 090 FR-004: why a pending version must keep waiting for the owner although the owner is silent (empty = it may be
+ * activated on silence). Compared with the active version `prev`, the version `next`:
+ *  - changes or deletes a series with `locked: true` or `origin: 'owner'`;
+ *  - adds or removes a platform section;
+ *  - was built for a `strategy` directive (a directive link) or by a strategy migration;
+ *  - drops or rewrites a rule line that came from an owner rule (only when the caller knows those lines).
+ * With no active version there is nothing to compare: it waits.
+ */
+export function structuralForSilenceReasons(prev: Playbook | null, next: Playbook, origin: PlaybookOrigin = {}): string[] {
+  if (!prev) return ['no active version to compare with'];
+  const reasons: string[] = [];
+  if (origin.directiveId) reasons.push('built for a strategy directive');
+  if (origin.createdBy === 'migration') reasons.push('built by a strategy migration');
+  const pRefs = new Set(prev.platforms.map((s) => s.resource_ref));
+  const nRefs = new Set(next.platforms.map((s) => s.resource_ref));
+  for (const r of pRefs) if (!nRefs.has(r)) reasons.push(`platform section ${r} removed`);
+  for (const r of nRefs) if (!pRefs.has(r)) reasons.push(`platform section ${r} added`);
+  for (const o of prev.series) {
+    if (!o.locked && o.origin !== 'owner') continue;
+    const n = next.series.find((s) => s.name === o.name);
+    if (!n) reasons.push(`owner series "${o.name}" removed`);
+    else if (seriesContent(n) !== seriesContent(o)) reasons.push(`owner series "${o.name}" changed`);
+  }
+  const nextRules = new Set(next.rules.map((r) => r.trim()));
+  for (const line of origin.ownerRuleLines ?? []) {
+    const t = line.trim();
+    if (t && prev.rules.some((r) => r.trim() === t) && !nextRules.has(t)) reasons.push(`owner rule line changed: ${t.slice(0, 60)}`);
+  }
+  return reasons;
+}
+
+/** Spec 090 FR-004: true when a pending version keeps waiting for the owner (`playbook:structural`). */
+export const structuralForSilence = (prev: Playbook | null, next: Playbook, origin: PlaybookOrigin = {}): boolean =>
+  structuralForSilenceReasons(prev, next, origin).length > 0;
 
 /** The structural changes of one series (empty = it may apply at once). */
 export function seriesChangeReasons(o: Series, s: Series, mode?: ChannelMode): string[] {

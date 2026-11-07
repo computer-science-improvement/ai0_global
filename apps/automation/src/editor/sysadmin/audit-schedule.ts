@@ -54,7 +54,12 @@ export interface AuditTickDeps {
   env:    (k: string) => string | undefined;
   now?:   () => Date;
   log?:   (msg: string) => void;
+  /** Spec 090 FR-006: applies the safe findings of the latest report once it is older than AUDIT_AUTO_FIX_HOURS. Run at most once an hour from the tick. */
+  silence?: (now: Date) => Promise<unknown>;
 }
+
+/** How often the tick runs the silence step. */
+export const SILENCE_EVERY_MS = 60 * 60_000;
 
 export type AuditTickResult =
   | { ran: false; reason: 'not_due' | 'done_this_week' | 'week_taken' | 'already_running' | 'run_failed' }
@@ -64,11 +69,16 @@ export type AuditTickResult =
 export class AuditTick {
   /** The week this process has handled (claimed or found taken): a minute tick does not hit the table again. */
   private handled: string | null = null;
+  private lastSilence = 0;
 
   constructor(private readonly d: AuditTickDeps) {}
 
   async tick(): Promise<AuditTickResult> {
     const now = (this.d.now ?? (() => new Date()))();
+    if (this.d.silence && now.getTime() - this.lastSilence >= SILENCE_EVERY_MS) {
+      this.lastSilence = now.getTime();
+      try { await this.d.silence(now); } catch (err: any) { this.d.log?.(`audit silence step failed: ${errText(err)}`); }
+    }
     const week = auditDue(now, this.d.env);
     if (!week) return { ran: false, reason: 'not_due' };
     if (this.handled === week) return { ran: false, reason: 'done_this_week' };

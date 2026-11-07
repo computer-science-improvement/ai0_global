@@ -11,10 +11,15 @@ import { rowToSlot } from '../repo/editor-plans.repository';
 import { APPROVAL_BATCH_HOUR } from '../approval/approval-timing';
 import { networkContext, NetworkContextDeps } from './network-context';
 import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, NetworkMode, NetworkRepository, type PlaybookRow } from './network.repository';
-import { PlaybookSchema, validatePlaybook } from './playbook';
+import { PlaybookSchema, structuralForSilenceReasons, validatePlaybook } from './playbook';
+import { silenceApplies, type Env } from '../autonomy/owner-gates';
+import type { AutonomyDecisionsRepository, AutonomyUndo } from '../autonomy/autonomy-decisions.repository';
 import { lockOwnerSeries, normalizePlaybook, seriesSourceCatalog } from './series-edit';
 import type { NetworkOffers } from './network-offers';
 import { errText } from '../../common/err-text';
+
+/** Spec 090 FR-010: `autonomy_decisions.undo.kind` of a playbook activation. */
+export const PLAYBOOK_UNDO_KIND = 'playbook_version';
 
 /** A content_decisions row as the dashboard reads it (spec 024 FR-006/FR-011). */
 function toDecisionView(d: any) {
@@ -108,6 +113,46 @@ export class NetworkService {
   /** Spec 024 FR-010: a legacy group offered without a playbook is offered again once its first playbook is active. */
   private async playbookActive(agentId: string): Promise<void> {
     await this.d.offers?.onPlaybookActive(agentId).catch((err) => this.d.log?.(`network offer after playbook failed: ${errText(err)}`));
+  }
+
+  /**
+   * Spec 090 FR-004: a `pending_owner` version older than PLAYBOOK_PENDING_HOURS is activated through the owner's approve path
+   * (`decide`), unless it is structural for silence (those keep waiting, nothing is written). Each activation is one
+   * `playbook` decision with an undo back to the previous active version. Never throws; returns how many were activated.
+   */
+  async silenceSweep(o: { env: Env; decisions: Pick<AutonomyDecisionsRepository, 'record'>; now?: Date }): Promise<number> {
+    const now = o.now ?? (this.d.now ?? (() => new Date()))();
+    let n = 0;
+    try {
+      for (const pb of await this.d.repo.pendingPlaybooksBefore(now)) {
+        try {
+          if (!silenceApplies('playbook', o.env, pb.createdAt, now)) continue;
+          const prev = await this.d.repo.activePlaybook(pb.agentId);
+          const why = structuralForSilenceReasons(prev ? normalizePlaybook(prev.body) : null, normalizePlaybook(pb.body), { createdBy: pb.createdBy, directiveId: pb.directiveId });
+          if (why.length) continue; // playbook:structural waits for the owner
+          const agent = await this.d.agents.get(pb.agentId);
+          const channelKey = agent ? telegramKeyOf(agent) : null;
+          await this.decide(pb.id, true);
+          n++;
+          await o.decisions.record({
+            gate: 'playbook', refType: 'playbook', refId: pb.id, channelKey, action: 'applied',
+            summary: `Playbook v${pb.version} of ${agent ? `@${agent.handle}` : pb.agentId} activated after ${Math.round((now.getTime() - new Date(pb.createdAt).getTime()) / 3_600_000)} h without an answer`,
+            undo: prev ? { kind: PLAYBOOK_UNDO_KIND, agentId: pb.agentId, previousId: prev.id, activatedId: pb.id } : null,
+            at: now,
+          });
+        } catch (err) { this.d.log?.(`playbook silence sweep of ${pb.id} failed: ${errText(err)}`); }
+      }
+    } catch (err) { this.d.log?.(`playbook silence sweep failed: ${errText(err)}`); }
+    return n;
+  }
+
+  /** Spec 090 FR-010: the undo of a playbook activation re-activates the version it replaced. */
+  registerUndo(undo: Pick<AutonomyUndo, 'register'>): void {
+    undo.register(PLAYBOOK_UNDO_KIND, async (u) => {
+      const agentId = String(u.agentId ?? ''), previousId = String(u.previousId ?? '');
+      if (!(await this.d.repo.reactivatePlaybook(agentId, previousId))) throw new Error('the previous playbook version can no longer be re-activated');
+      await this.playbookActive(agentId);
+    });
   }
 
   /** Spec 024 FR-010: every offer to convert a legacy network, with the owner's answer. */

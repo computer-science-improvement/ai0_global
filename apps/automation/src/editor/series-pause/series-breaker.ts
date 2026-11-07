@@ -1,4 +1,6 @@
 import type { OwnerInbox } from '../agents/owner-inbox';
+import type { AutonomyDecisionsRepository, AutonomyUndo } from '../autonomy/autonomy-decisions.repository';
+import { silenceFor, type Env } from '../autonomy/owner-gates';
 import { pausedActions } from './note-actions';
 import { classifyClose, PAUSING_CAUSES, skipsUk } from './skip-cause';
 import { skipLine, type RecentSkip, type SeriesPause, type SeriesPausesRepository } from './series-pauses.repository';
@@ -62,6 +64,30 @@ export interface SeriesBreakerDeps {
   retryHours?: () => number;
   everyMs?: number;
   log?:     (m: string) => void;
+  /** Spec 090 FR-005/FR-010: the decision log. Without it a lifted pause is not logged. */
+  decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
+  /** Live settings, for the `OWNER_SILENCE` master switch (`wait` = a pause is not lifted by code). Without it the registry default (`act`) applies. */
+  env?: Env;
+}
+
+/** Spec 090 FR-010: `autonomy_decisions.undo.kind` of a lifted pause. */
+export const SERIES_PAUSE_UNDO_KIND = 'series_pause';
+
+/**
+ * Spec 090 FR-010: the undo of a pause lifted on silence puts the same pause back with cause `owner` (so code never lifts it
+ * again), and skips the planned slots of the series again. An open pause on the same key is left as it is.
+ */
+export function registerSeriesPauseUndo(
+  undo: Pick<AutonomyUndo, 'register'>,
+  repo: Pick<SeriesPausesRepository, 'insertOpen' | 'skipPlanned'>,
+): void {
+  undo.register(SERIES_PAUSE_UNDO_KIND, async (u, ctx) => {
+    const channelKey = String(u.channelKey ?? ''), seriesKey = String(u.seriesKey ?? '');
+    if (!channelKey || !seriesKey) throw new Error('the undo record has no channelKey / seriesKey');
+    const label = String(u.label ?? seriesKey);
+    const p = await repo.insertOpen({ channelKey, key: seriesKey, label, cause: 'owner', reason: `paused again from the decision log by ${ctx.by}`, streak: 0 });
+    if (p) await repo.skipPlanned(p);
+  });
 }
 
 /**
@@ -107,6 +133,7 @@ export class SeriesBreaker {
   async retryStale(now: Date): Promise<number> {
     const hours = this.d.retryHours?.() ?? 0;
     if (!(hours > 0) || !this.d.repo.autoResume) return 0;
+    if (this.d.env && silenceFor('series_pause:no_material', this.d.env) !== 'apply') return 0; // OWNER_SILENCE=wait
     const cutoff = now.getTime() - hours * 3_600_000;
     let n = 0;
     for (const p of await this.d.repo.open()) {
@@ -115,6 +142,12 @@ export class SeriesBreaker {
         if (await this.d.repo.autoResume(p.id, `resumed by code after ${hours} h; paused again after new skips if there is still nothing to post`)) {
           n++;
           this.d.log?.(`series "${p.label}" on ${p.channelKey}: pause lifted after ${hours} h (SERIES_PAUSE_RETRY_HOURS)`);
+          await this.d.decisions?.record({
+            gate: 'series_pause:no_material', refType: 'series_pause', refId: p.id, channelKey: p.channelKey, action: 'resumed',
+            summary: `Series "${p.label}" on ${p.channelKey} resumed after ${hours} h of pause (no material)`,
+            undo: { kind: SERIES_PAUSE_UNDO_KIND, channelKey: p.channelKey, seriesKey: p.key, label: p.label },
+            at: now,
+          });
         }
       } catch (err: any) { this.d.log?.(`auto-resume of ${p.channelKey} ${p.key} failed: ${err?.message ?? err}`); }
     }

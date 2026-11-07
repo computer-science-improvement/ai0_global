@@ -25,7 +25,7 @@ import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
-import { DEFAULT_SERIES_PAUSE_RETRY_HOURS, DEFAULT_SERIES_SKIP_STREAK, SeriesBreaker } from './series-pause/series-breaker';
+import { DEFAULT_SERIES_PAUSE_RETRY_HOURS, DEFAULT_SERIES_SKIP_STREAK, registerSeriesPauseUndo, SeriesBreaker } from './series-pause/series-breaker';
 import { SeriesPauseActions } from './series-pause/pause-actions';
 import { registerPauseResumeAction } from './series-pause/pause-resume-action';
 import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
@@ -791,7 +791,16 @@ export class AuditWorker {
     @Inject(AGENT_INFRA) infra: AgentInfra,
     config: ConfigService,
   ) {
-    this.job = new AuditTick({ svc, inbox: infra.inbox, env: (k) => config.get<string>(k) ?? undefined, log: (m) => this.logger.warn(m) });
+    const env = (k: string) => config.get<string>(k) ?? undefined;
+    // Spec 090 FR-006/FR-010: safe findings of the latest report are applied on silence (hourly, from this tick); undo for the two fixes with an inverse.
+    svc.registerUndo(infra.autonomyUndo);
+    this.job = new AuditTick({
+      svc, inbox: infra.inbox, env, log: (m) => this.logger.warn(m),
+      silence: async (now) => {
+        const r = await svc.silenceSweep({ env, decisions: infra.decisions, now });
+        if (r.applied || r.failed) this.logger.log(`audit: ${r.applied} fix(es) applied on silence, ${r.failed} failed`);
+      },
+    });
   }
 
   @Cron('* * * * *', { name: 'audit-tick' })
@@ -818,7 +827,11 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(APPROVAL_INFRA) private readonly approval: ApprovalInfra,
     @Inject(NETWORK_SERVICE) private readonly network: NetworkService,
     @Inject(LOADOUT_SCAN) private readonly loadoutScan: LoadoutScan,
-  ) {}
+    private readonly config: ConfigService,
+  ) {
+    // Spec 090 FR-004/FR-010: the undo of a playbook activation made on owner silence.
+    this.network.registerUndo(this.infra.autonomyUndo);
+  }
 
   /** Spec 054 FR-005: once a week (Monday), the owner's inbox hears about agents whose tool set could change. */
   @Cron('30 9 * * 1', { name: 'loadout-suggestions' })
@@ -917,7 +930,11 @@ export class AgentsUpkeep implements OnModuleInit {
   @Cron('23 * * * *', { name: 'agents-housekeeping' })
   async housekeeping(): Promise<void> {
     try {
-      await this.infra.actions.expireOld(new Date());
+      await this.infra.actions.expireOld(new Date()).catch((err) => this.logger.warn(`pending cards sweep failed: ${err?.message ?? err}`));
+      // Spec 090 FR-004: a non-structural playbook version nobody answered is activated (PLAYBOOK_PENDING_HOURS, live).
+      const activated = await this.network.silenceSweep({ env: (k) => this.config.get<string>(k) ?? undefined, decisions: this.infra.decisions })
+        .catch((err) => { this.logger.warn(`playbook silence sweep failed: ${err?.message ?? err}`); return 0; });
+      if (activated) this.logger.log(`playbooks: ${activated} pending version(s) activated on owner silence`);
       for (const a of await this.infra.agents.list()) {
         if (a.parentId || a.mode !== 'shadow' || !a.shadowUntil || a.shadowUntil.getTime() > Date.now()) continue;
         await this.infra.inbox.post({
@@ -1824,9 +1841,12 @@ export const EDITOR_PROVIDERS = [
         const seriesPausesRepo = new SeriesPausesRepository(pool);
         const breaker = new SeriesBreaker({
           repo: seriesPausesRepo, inbox: infra.inbox, log: (m) => logger.warn(m),
+          decisions: infra.decisions, env: (k) => cfg.get<string>(k) ?? undefined,
           threshold: () => Math.max(0, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_SKIP_STREAK', DEFAULT_SERIES_SKIP_STREAK))),
           retryHours: () => Math.max(0, envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_PAUSE_RETRY_HOURS', DEFAULT_SERIES_PAUSE_RETRY_HOURS)),
         });
+        // Spec 090 FR-005/FR-010: re-pausing a series the breaker lifted on silence.
+        registerSeriesPauseUndo(infra.autonomyUndo, seriesPausesRepo);
         // Spec 037 FR-014: the daily post audit (and at once after a rule change), code only.
         const audit = new PostAuditService({ pool, cardOf: editorCardAudit((k) => repos.channels.get(k)), log: (m) => logger.warn(m) });
         // Spec 037 FR-003 (T3): an announced event with no post within 24 h after it — one Inbox note per event.
@@ -2163,6 +2183,7 @@ export const EDITOR_PROVIDERS = [
             agentByHandle: (h) => infra.agents.getByHandle(h),
             patchSkill: (handle, name, patch) => agentsSvc.patchSkill(handle, name, patch),
             retireMemory: retireMemoryPort(repos.memory),
+            reactivateMemory: (channel, id) => repos.memory.reactivate(channel, id),
             applyConflicts: (orch, o) => conflicts.apply(orch, o && (o.codes || o.ref) ? (c) => (!o.codes || o.codes.includes(c.code)) && (!o.ref || c.ref === o.ref) : undefined),
           },
         });
@@ -2218,6 +2239,7 @@ export const EDITOR_PROVIDERS = [
           }),
           // READINESS_AUTO_FIX is live: read on every recheck. Anything but off/false/0/no is on.
           autoFix: () => !['off', 'false', '0', 'no'].includes((cfg.get<string>('READINESS_AUTO_FIX') ?? '').trim().toLowerCase()),
+          decisions: infra.decisions, env,
           log: (m) => logger.log(m),
         });
         READINESS.svc = svc;

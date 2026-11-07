@@ -1,6 +1,8 @@
 import type { ChannelMode } from '../card';
 import type { Finding, Fix } from '../sysadmin/audit.types';
 import { describeFix, tryFix, type FixPorts, type FixResult } from '../sysadmin/fix-runner';
+import type { AutonomyDecisionsRepository } from '../autonomy/autonomy-decisions.repository';
+import { silenceFor, type Env } from '../autonomy/owner-gates';
 import { isAutoSafeFix } from './auto-fix';
 import { channelDoctor } from './doctor';
 import { canonical, ChannelNotFound, configHash } from './facts';
@@ -83,6 +85,10 @@ export interface ReadinessDeps {
   autoFix(): boolean;
   /** The doctor; tests swap it. */
   doctor?: (facts: ChannelFacts) => Finding[];
+  /** Spec 090 FR-010: the decision log for fixes code applies on its own (`series_resume`). */
+  decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
+  /** Live settings, for `OWNER_SILENCE`. Without it the registry default (`act`) applies. */
+  env?: Env;
   now?: () => Date;
   log?: (msg: string) => void;
 }
@@ -92,6 +98,7 @@ const sameSet = (a: readonly string[], b: readonly string[]): boolean => a.lengt
 /** What a fix is aimed at: the part of its `subject.id` that tells two applications of one kind apart. */
 function autoFixTarget(fix: Fix): string {
   if (fix.kind === 'tools_allow_add') return fix.tools.join(',');
+  if (fix.kind === 'series_resume') return fix.pauseId;
   return ('channel' in fix ? fix.channel : undefined) ?? fix.kind;
 }
 
@@ -284,13 +291,24 @@ export class ReadinessService {
     const rows: Finding[] = [];
     for (const f of found) {
       const fix = f.fix;
-      if (!fix || !isAutoSafeFix(fix.kind)) continue;
+      if (!fix || !isAutoSafeFix(fix.kind, f.check)) continue;
+      // Spec 090 FR-005: OWNER_SILENCE=wait switches the pause resume back to one tap.
+      if (fix.kind === 'series_resume' && this.d.env && silenceFor('readiness_fix:series_resume', this.d.env) !== 'apply') continue;
       const id = canonical(fix);
       if (done.has(id)) continue;
       done.add(id);
       const r = await this.applyFix(fix);
       if (!r.ok) { this.log(`readiness: auto-fix of ${facts.channelKey} refused (${fix.kind}): ${r.error}`); continue; }
       this.log(`readiness: ${describeFix(fix)} (by itself, ${reason})`);
+      if (fix.kind === 'series_resume') {
+        const pause = facts.pauses.find((p) => p.id === fix.pauseId);
+        await this.d.decisions?.record({
+          gate: 'readiness_fix:series_resume', refType: 'series_pause', refId: fix.pauseId, channelKey: facts.channelKey, action: 'resumed',
+          summary: `${pause ? `Series "${pause.label}"` : 'A paused series'} on ${facts.channelKey} resumed: ${f.detail}`.slice(0, 480),
+          undo: pause ? { kind: 'series_pause', channelKey: facts.channelKey, seriesKey: pause.key, label: pause.label } : null,
+          at: now,
+        });
+      }
       rows.push({
         ...mkFinding(facts, {
           code: AUTO_FIXED_CODE, severity: 'info',

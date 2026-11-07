@@ -325,6 +325,25 @@ export class NetworkRepository {
     return rows[0] ? toPlaybook(rows[0]) : null;
   }
 
+  /** Spec 090 FR-004: `pending_owner` versions created before `before` (oldest first). */
+  async pendingPlaybooksBefore(before: Date): Promise<PlaybookRow[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM playbooks WHERE status = 'pending_owner' AND created_at <= $1 ORDER BY created_at`, [before]);
+    return rows.map(toPlaybook);
+  }
+
+  /**
+   * Spec 090 FR-010: puts a superseded version back as the active one (the undo of a playbook activation). The version that is
+   * active now becomes `superseded`. False when `versionId` is not a superseded version of `agentId`.
+   */
+  async reactivatePlaybook(agentId: string, versionId: string): Promise<boolean> {
+    const prev = await this.playbook(versionId);
+    if (!prev || prev.agentId !== agentId || prev.status !== 'superseded') return false;
+    await this.pool.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status = 'active'`, [agentId]);
+    const r = await this.pool.query(`UPDATE playbooks SET status = 'active', decided_at = now() WHERE id = $1 AND status = 'superseded'`, [versionId]);
+    return (r.rowCount ?? 0) > 0;
+  }
+
   // ── ideas ─────────────────────────────────────────────────────────────────
 
   async addIdea(i: { agentId: string; title: string; angle?: string | null; sources: string[]; variants: IdeaVariant[]; why?: string | null; evidence?: unknown; origin: IdeaOrigin; originRef?: string | null; expiresAt: Date; status?: IdeaStatus }): Promise<IdeaRow> {
