@@ -35,7 +35,8 @@ const num = (v: string | undefined, d: number, min: number, max: number) => {
 export function graduationSettings(env: (k: string) => string | undefined): GraduationSettings {
   const m = env('LAUNCH_GRADUATION')?.trim().toLowerCase();
   return {
-    mode: m === 'auto' || m === 'off' ? m : 'propose',
+    // Spec 090 FR-008: an unset or unknown value is `auto`, the catalog default (readiness blockers still hold the switch).
+    mode: m === 'propose' || m === 'off' ? m : 'auto',
     minDays: num(env('LAUNCH_GRADUATE_MIN_DAYS'), 7, 1, 60),
     minApproved: num(env('LAUNCH_GRADUATE_MIN_APPROVED'), 10, 1, 200),
     minCleanPct: num(env('LAUNCH_GRADUATE_MIN_CLEAN_PCT'), 80, 0, 100),

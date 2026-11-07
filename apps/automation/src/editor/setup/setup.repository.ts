@@ -100,6 +100,13 @@ export class ChannelSetupRepository {
     return rows.map(toProposal);
   }
 
+  /** Spec 090 FR-007: `ready` proposals last changed before `before` (oldest first). */
+  async readyBefore(before: Date): Promise<SetupProposal[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM channel_setup_proposals WHERE status = 'ready' AND sections IS NOT NULL AND updated_at <= $1 ORDER BY updated_at`, [before]);
+    return rows.map(toProposal);
+  }
+
   /** The newest proposal per channel. */
   async latestByChannel(): Promise<Map<string, SetupProposal>> {
     const { rows } = await this.pool.query(

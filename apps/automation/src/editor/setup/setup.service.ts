@@ -20,6 +20,9 @@ import { hasPostText, MIN_SPAN_DAYS, MIN_TEXT_POSTS, type SetupPost } from './se
 import type { SetupExpiry } from './setup-expiry';
 import type { ChannelSetupRepository, SectionState, SetupProposal } from './setup.repository';
 import { errText } from '../../common/err-text';
+import type { AutonomyDecisionsRepository } from '../autonomy/autonomy-decisions.repository';
+import { silenceApplies, type Env } from '../autonomy/owner-gates';
+import { SETUP_OWNER_SECTIONS, SETUP_SAFE_SECTIONS, SILENCE_FAILED_PREFIX } from './setup-silence';
 
 /**
  * Spec 042: channel setup from history. The queue is `channel_setup_proposals` itself: `analyze` queues proposals, one
@@ -60,6 +63,9 @@ export interface ChannelSetupDeps {
   writers:  ApplyWriters;
   /** Spec 057: the hourly expiry sweep run from the minute tick (absent = proposals never expire). */
   expiry?:  Pick<SetupExpiry, 'sweep'>;
+  /** Spec 090 FR-007: live settings and the decision log for the apply-on-silence step (absent = proposals never apply by themselves). */
+  env?:       Env;
+  decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
   now?:     () => Date;
   log?:     (msg: string) => void;
 }
@@ -73,6 +79,7 @@ const ApplyBody = z.object({
 
 export class ChannelSetupService {
   private worker: Promise<void> | null = null;
+  private lastSilence = 0;
 
   constructor(private readonly d: ChannelSetupDeps) {}
 
@@ -110,6 +117,11 @@ export class ChannelSetupService {
   /** The editor's minute tick: stuck proposals back to the queue, forgotten ones expire (spec 057), then the worker. */
   async tick(): Promise<void> {
     await this.d.repo.requeueStuck(new Date(this.now().getTime() - STUCK_MS)).catch(() => 0);
+    // Spec 090 FR-007: the safe sections of an unanswered proposal go first, so the TTL sweep below only closes the rest.
+    if (this.d.env && this.d.decisions && this.now().getTime() - this.lastSilence >= 3_600_000) {
+      this.lastSilence = this.now().getTime();
+      await this.applyOnSilence().catch((err) => this.d.log?.(`setup apply on silence failed: ${errText(err)}`));
+    }
     await this.d.expiry?.sweep().catch((err) => this.d.log?.(`setup expiry sweep failed: ${errText(err)}`));
     this.kick();
   }
@@ -309,6 +321,46 @@ export class ChannelSetupService {
       proposal: updated, applied: out.applied, kept: out.kept, rebuilt: out.rebuilt,
       failed: out.failed, changedSinceAnalysis: drift,
     };
+  }
+
+  /**
+   * Spec 090 FR-007: a `ready` proposal that nobody answered for SETUP_PROPOSAL_APPLY_HOURS gets its safe sections
+   * (`SETUP_SAFE_SECTIONS`) applied through the owner's own `apply` (a section that changed since the analysis is skipped, as
+   * ever). The proposal becomes `partially_applied`; the other sections expire at SETUP_PROPOSAL_TTL_DAYS. One `setup_proposal`
+   * decision per proposal. A failed apply is logged once as `failed` and not tried again. No undo: `setup-apply` keeps only a
+   * lossy comparison baseline of the previous values (picked fields, example texts), not enough to write them back.
+   * Never throws; returns the number of proposals applied.
+   */
+  async applyOnSilence(): Promise<number> {
+    const { env, decisions } = this.d;
+    if (!env || !decisions) return 0;
+    const now = this.now();
+    let n = 0;
+    try {
+      for (const p of await this.d.repo.readyBefore(now)) {
+        try {
+          if (p.reason?.startsWith(SILENCE_FAILED_PREFIX)) continue;
+          if (!silenceApplies('setup_proposal', env, p.updatedAt, now)) continue;
+          const wanted = SETUP_SAFE_SECTIONS.filter((s) => (p.sectionStatus[s] ?? 'pending') === 'pending');
+          if (!wanted.length) continue;
+          const r = await this.apply(p.id, { sections: wanted });
+          const base = { gate: 'setup_proposal', refType: 'setup_proposal', refId: p.id, channelKey: p.channelKey, undo: null, at: now } as const;
+          if (r.failed) {
+            await this.d.repo.update(p.id, { reason: `${SILENCE_FAILED_PREFIX}: ${r.failed.section}: ${r.failed.error}`.slice(0, 480) });
+            await decisions.record({ ...base, action: 'failed', summary: `Setup of ${p.channelKey}: applying "${r.failed.section}" failed: ${r.failed.error}`.slice(0, 480) });
+          }
+          if (r.applied.length) {
+            n++;
+            const waiting = SETUP_OWNER_SECTIONS.filter((s) => (r.proposal?.sectionStatus?.[s] ?? 'pending') === 'pending');
+            await decisions.record({
+              ...base, action: 'applied',
+              summary: `Setup proposal for ${p.channelKey}: applied ${r.applied.join(', ')} after ${Math.round((now.getTime() - p.updatedAt.getTime()) / 3_600_000)} h without an answer${waiting.length ? `; ${waiting.join(', ')} left for you` : ''}`.slice(0, 480),
+            });
+          }
+        } catch (err) { this.d.log?.(`setup apply on silence of ${p.id} failed: ${errText(err)}`); }
+      }
+    } catch (err) { this.d.log?.(`setup apply on silence failed: ${errText(err)}`); }
+    return n;
   }
 
   async discard(id: string) {

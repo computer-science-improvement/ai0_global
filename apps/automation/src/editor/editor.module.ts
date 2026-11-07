@@ -2397,8 +2397,11 @@ export const EDITOR_PROVIDERS = [
               });
             },
           },
+          // Spec 090 FR-008/FR-010: a graduation made by code is logged, with an undo back to approval mode.
+          decisions: infra.decisions, env,
           log: (m) => logger.warn(m),
         });
+        svc.registerUndo(infra.autonomyUndo);
         LAUNCH.svc = svc;
         return svc;
       },
@@ -2487,6 +2490,8 @@ export const EDITOR_PROVIDERS = [
           model: onboarderModel(env, models),
           state: channelStateOf(pool, repos, infra),
           writers: setupWriters(repos, infra, ops, agentsSvc, networkSvc, 'Setup from the channel history'),
+          // Spec 090 FR-007: the safe sections of an unanswered proposal apply after SETUP_PROPOSAL_APPLY_HOURS.
+          env, decisions: infra.decisions,
           log: (m) => logger.warn(m),
         });
       },

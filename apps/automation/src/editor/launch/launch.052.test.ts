@@ -444,7 +444,9 @@ const meets = (): GraduationFacts => ({
 
 test('graduation: the criteria from Start (days, approved, clean, recent rejection, critic over 5 verdicts, health)', () => {
   const s = graduationSettings(() => undefined);
-  assert.deepEqual(s, { mode: 'propose', minDays: 7, minApproved: 10, minCleanPct: 80, minCriticPct: 80 });
+  assert.deepEqual(s, { mode: 'auto', minDays: 7, minApproved: 10, minCleanPct: 80, minCriticPct: 80 }, 'spec 090 FR-008: auto by default');
+  assert.equal(graduationSettings((k) => ({ LAUNCH_GRADUATION: 'propose' } as Record<string, string>)[k]).mode, 'propose');
+  assert.equal(graduationSettings((k) => ({ LAUNCH_GRADUATION: 'nonsense' } as Record<string, string>)[k]).mode, 'auto');
   assert.equal(graduationSettings((k) => ({ LAUNCH_GRADUATION: 'AUTO', LAUNCH_GRADUATE_MIN_DAYS: '0' } as Record<string, string>)[k]).mode, 'auto');
   assert.equal(graduationSettings((k) => ({ LAUNCH_GRADUATE_MIN_DAYS: '0' } as Record<string, string>)[k]).minDays, 1, 'clamped');
   const day8 = new Date(NOW.getTime() + 8 * 86_400_000);
@@ -472,6 +474,7 @@ async function runningLaunch(o: Parameters<typeof service>[0] = {}) {
 
 test('graduation (propose): hourly; a proposal card when met; Not yet snoozes 7 days and 5 more approved; Go live switches', async () => {
   const { svc, repo, calls, box, at } = await runningLaunch();
+  box.env.LAUNCH_GRADUATION = 'propose'; // spec 090 FR-008: the default is auto now
   const id = repo.rows[0].id;
   at(60_000);
   await run(svc);
@@ -836,6 +839,7 @@ test('readiness graduation (auto): a blocker count that cannot be read holds the
 test('readiness graduation (propose and off): blockers change nothing; without the wiring auto switches as before', async () => {
   {
     const { svc, repo, calls, box, at } = await runningLaunch({ readiness: true });
+    box.env.LAUNCH_GRADUATION = 'propose';
     box.facts = meets();
     box.blockers = 4;
     at(8 * 86_400_000);

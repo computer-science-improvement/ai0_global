@@ -27,6 +27,8 @@ import {
   MAX_BRIEF_CHARS, MAX_REFERENCES, MIN_BRIEF_CHARS, PRE_START_STATUSES, type ChannelLaunch, type LaunchBotState, type LaunchPromoItem, type LaunchRef,
 } from './launch.types';
 import { errText as errMessage } from '../../common/err-text';
+import type { AutonomyDecisionsRepository, AutonomyUndo } from '../autonomy/autonomy-decisions.repository';
+import { silenceFor, type Env } from '../autonomy/owner-gates';
 
 /**
  * Spec 052 FR-001: the launch of a new channel. `create` checks and stores the launch; one in-process worker (kicked on
@@ -129,9 +131,15 @@ export interface LaunchDeps {
     /** Joins through the promo links to the channel since a time (022 link_joins). */
     joins(targetRef: string, since: Date): Promise<number>;
   };
+  /** Spec 090 FR-008/FR-010: the decision log for a graduation made on `auto`, and the live settings for `OWNER_SILENCE`. */
+  decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
+  env?:       Env;
   now?:     () => Date;
   log?:     (msg: string) => void;
 }
+
+/** Spec 090 FR-010: `autonomy_decisions.undo.kind` of a graduation made by code. */
+export const LAUNCH_GRADUATION_UNDO_KIND = 'launch_graduation';
 
 /** A launch whose bot is not an admin yet is checked again this often (FR-002). */
 export const BOT_RECHECK_MS = 2 * 60_000;
@@ -293,7 +301,9 @@ export class LaunchService {
     const settings = this.d.graduation.settings();
     const stats = evaluateGraduation(await this.d.graduation.facts(l.channelKey, l.startedAt ?? l.createdAt), settings, l.startedAt ?? l.createdAt, now);
     const due = mode === 'approve' && settings.mode !== 'off' && dueToGraduate(stats, g, now);
-    if (due && settings.mode === 'auto') {
+    // Spec 090: OWNER_SILENCE=wait is the old contract: the switch is proposed to the owner, never made by code.
+    const silent = !this.d.env || silenceFor('launch_graduation', this.d.env) === 'apply';
+    if (due && settings.mode === 'auto' && silent) {
       // FR-011, A22: the criteria are met, but open readiness blockers hold the switch. Nothing changes the channel's mode here;
       // the next hourly check looks again. A count that cannot be read holds it too (it is never read as 0).
       if (this.d.graduation.blockers) {
@@ -313,10 +323,29 @@ export class LaunchService {
         graduation: { ...g, stats, proposedAt: null, decidedAt: now.toISOString(), by: 'auto', checkedAt: now.toISOString(), paused: false, heldBy: null, heldBlockers: null },
       });
       if (next) await this.d.graduation.note?.(next, stats).catch((err) => this.d.log?.(`launch ${l.channelKey}: note: ${errText(err)}`));
+      if (next) {
+        await this.d.decisions?.record({
+          gate: 'launch_graduation', refType: 'launch', refId: l.id, channelKey: l.channelKey, action: 'applied',
+          summary: `${l.channelKey} went live by itself: ${stats.criteria.map((c) => c.label).join('; ')}`.slice(0, 480),
+          undo: { kind: LAUNCH_GRADUATION_UNDO_KIND, channelKey: l.channelKey, launchId: l.id }, at: now,
+        });
+      }
       return next;
     }
     const proposedAt = due ? (g.proposedAt ?? now.toISOString()) : null;
     return this.d.repo.update(l.id, { graduation: { ...g, stats, proposedAt, checkedAt: now.toISOString(), paused: mode === 'off', heldBy: null, heldBlockers: null } });
+  }
+
+  /**
+   * Spec 090 FR-010: the undo of a graduation made by code puts the channel back into approval mode. The launch stays
+   * `graduated` (its criteria were met; the launch does not run the check again), so code does not switch it to live a second time.
+   */
+  registerUndo(undo: Pick<AutonomyUndo, 'register'>): void {
+    undo.register(LAUNCH_GRADUATION_UNDO_KIND, async (u) => {
+      const channelKey = String(u.channelKey ?? '');
+      if (!channelKey) throw new Error('the undo record has no channelKey');
+      await this.d.setMode(channelKey, 'approve');
+    });
   }
 
   /** The owner's Go live (dashboard, chat panel or the owner bot card). */
