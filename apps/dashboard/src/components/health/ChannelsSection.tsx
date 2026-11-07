@@ -44,19 +44,21 @@ function ChannelRow({ v }: { v: ChannelView }) {
       </button>
       <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="channels" title={r.channelKey} subtitle="Daily minimum, last 7 days">
         <div className="table-wrap">
-          <table className="table">
+          <table className="table slo-table">
             <thead><tr>
-              <th>Day</th><th>State</th><th className="num">Published / target</th><th className="num">Replacements</th><th className="num">Recovery runs</th><th>Reason</th>
+              <th>Day</th><th>State</th><th className="num" title="Published / target">Posts</th><th className="num" title="Replacement slots added">Repl.</th><th className="num" title="Recovery runs">Runs</th>
             </tr></thead>
             <tbody>
               {[...v.strip].reverse().map((c) => (
                 <tr key={c.day}>
                   <td className="mono">{c.day}</td>
-                  <td>{c.row ? <Badge tone={SLO_STATE_TONE[c.row.state]}>{SLO_STATE_LABEL[c.row.state]}</Badge> : <span className="ink-dim">No data</span>}</td>
+                  <td className="slo-state-cell">
+                    {c.row ? <Badge tone={SLO_STATE_TONE[c.row.state]}>{SLO_STATE_LABEL[c.row.state]}</Badge> : <span className="ink-dim">No data</span>}
+                    {c.row?.reason && <span className="text-caption ink-muted slo-reason">{c.row.reason}</span>}
+                  </td>
                   <td className="num mono">{c.row ? `${c.row.published} / ${c.row.target}` : '—'}</td>
                   <td className="num mono">{c.row?.replacements ?? '—'}</td>
                   <td className="num mono">{c.row?.recoveryRuns ?? '—'}</td>
-                  <td className="text-caption ink-muted">{c.row?.reason ?? ''}</td>
                 </tr>
               ))}
             </tbody>

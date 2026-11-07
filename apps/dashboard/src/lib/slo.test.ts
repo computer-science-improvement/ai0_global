@@ -48,6 +48,8 @@ test('day marks: held is neutral, finished days are met or missed, the running d
   assert.equal(dayMark(row('@a', '2026-11-05', { published: 1, state: 'behind' }), T, '2026-11-05'), 'missed');
   assert.equal(dayMark(row('@a', T, { published: 1, state: 'behind' }), T, T), 'today');
   assert.equal(dayMark(row('@a', T, { published: 2 }), T, T), 'met');
+  assert.equal(dayMark(row('@a', '2026-11-05', { state: 'dark', target: 0, published: 0 }), T, '2026-11-05'), 'missed', 'a dark day whose target fell to 0 is still missed');
+  assert.equal(dayMark(row('@a', T, { state: 'dark', target: 2, published: 0 }), T, T), 'today');
 });
 
 test('the strip is seven days ending today, oldest first, only for the channel', () => {

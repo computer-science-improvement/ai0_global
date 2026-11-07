@@ -32,12 +32,13 @@ export function shiftDay(day: string, by: number): string {
 export type DayMark = 'met' | 'missed' | 'held' | 'today' | 'none';
 
 /**
- * The mark of one day on the strip: `held` days (target 0) are neutral; a finished day is `met` when published reached the
+ * The mark of one day on the strip: a finished `dark` day is `missed`; `held` days (target 0) are neutral; a finished day is `met` when published reached the
  * target and `missed` when the target was higher; the running day is `met` once it is, else `today` (not decided yet);
  * a day without a row is `none`.
  */
 export function dayMark(row: SloRow | undefined, today: string, day: string): DayMark {
   if (!row) return 'none';
+  if (row.state === 'dark') return day === today ? 'today' : 'missed';   // a dark day is missed even when its target fell to 0
   if (row.state === 'held' || row.target === 0) return 'held';
   if (row.published >= row.target) return 'met';
   return day === today ? 'today' : 'missed';

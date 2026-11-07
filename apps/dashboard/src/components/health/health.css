@@ -85,3 +85,6 @@
 .slo-cell.is-missed { background: var(--color-warning); border-color: var(--color-warning); }
 .slo-cell.is-today { background: transparent; border-color: var(--color-ink-dim); }
 .slo-cell.is-none { background: transparent; border-style: dashed; }
+.slo-table th, .slo-table td { white-space: nowrap; vertical-align: top; }
+.slo-table .slo-state-cell { white-space: normal; width: 100%; min-width: 10rem; }
+.slo-reason { display: block; margin-top: 4px; }
