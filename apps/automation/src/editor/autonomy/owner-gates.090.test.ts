@@ -49,6 +49,7 @@ test('registry pin: every key and what silence does', () => {
     'audit_fix:host_proxy_add': 'wait',
     'readiness_fix:series_resume': 'apply',
     launch_graduation: 'apply',
+    slo_recovery: 'apply',
     credential: 'wait',
     bot_admin: 'wait',
     budget_raise: 'wait',
@@ -69,8 +70,8 @@ test('human-only gates never apply and are flagged', () => {
   for (const k of HUMAN_ONLY_GATES) assert.equal(silenceFor(k, env()), 'wait');
 });
 
-test('every apply gate is reversible; keys are unique', () => {
-  for (const g of OWNER_GATES) if (g.onSilence === 'apply') assert.equal(g.reversible, true, g.key);
+test('every apply gate is reversible (spec 091 slo_recovery is the one logged, irreversible exception); keys are unique', () => {
+  for (const g of OWNER_GATES) if (g.onSilence === 'apply') assert.equal(g.reversible, g.key !== 'slo_recovery', g.key);
   assert.equal(new Set(OWNER_GATES.map((g) => g.key)).size, OWNER_GATES.length);
 });
 

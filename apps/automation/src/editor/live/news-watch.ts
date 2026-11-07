@@ -2,7 +2,8 @@ import type { Pool } from 'pg';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isPlaceholderPlan } from '../repo/editor-plans.repository';
-import { isQuietHour, localDate, localHour, zonedToUtc } from '../roles/time';
+import { localDate, localHour } from '../roles/time';
+import { freeTime, roomBlock } from '../slo/slot-time';
 import { filterFresh, readFeedGuarded, type FeedItem, type HttpSeams } from './feed-items';
 import type { HostFailures } from '../net/host-failures';
 import { liveTopicLabel, type LiveSpec } from './live-slot';
@@ -35,7 +36,6 @@ export type NewsWatchOutcome =
 /** A new slot lands this far ahead (minutes): enough to write it, soon enough to be news. */
 export const NEWS_WATCH_LEAD_MIN = [15, 20, 25, 30] as const;
 const CONFIG_TTL_MS = 10 * 60_000;
-const ACTIVE = `('planned','running','awaiting_approval','approved','published','shadowed')`;
 /** Formats a news slot may take, in order of preference (the card must allow it). */
 const NEWS_FORMATS = ['news', 'text', 'photo'];
 
@@ -125,12 +125,12 @@ export class NewsWatchService {
     }
     if (!eligible.length) return { added: null, reason: summary('nothing to add') };
 
-    const block = await this.roomBlock(card, cfg, date, now);
+    const block = await roomBlock(this.d.pool, card, cfg.maxPerDay, date, now);
     if (block) {
       for (const c of eligible) await this.ignore(card, c, block, logged);
       return { added: null, reason: summary(`not added: ${block}`) };
     }
-    const at = await this.freeTime(card, now);
+    const at = await freeTime(this.d.pool, card, now, NEWS_WATCH_LEAD_MIN);
     if (!at) {
       for (const c of eligible) await this.ignore(card, c, 'no_gap', logged);
       return { added: null, reason: summary('not added: no_gap') };
@@ -154,43 +154,6 @@ export class NewsWatchService {
     await this.logRow(card, { decision: 'added', reason: `score ${best.score}, ${best.age_hours} h old, ${best.hits} keyword(s); slot at ${at.toISOString()}`, item: best, slotId });
     for (const c of eligible.slice(1)) await this.ignore(card, c, 'not_best', logged);
     return { added: { slotId, url: item.url, at }, reason: summary(`added «${item.title}»`) };
-  }
-
-  /** Why the day has no room for one more slot (null = it has). */
-  private async roomBlock(card: EditorCard, cfg: ResolvedNewsWatch, date: string, now: Date): Promise<string | null> {
-    if (cfg.maxPerDay <= 0) return 'daily_cap';
-    const from = zonedToUtc(date, '00:00', card.timezone);
-    const to = new Date(from.getTime() + 86_400_000);
-    const { rows } = await this.d.pool.query(
-      `SELECT count(*) FILTER (WHERE live_spec->>'origin' = 'news_watch')::int AS watch,
-              count(*) FILTER (WHERE status IN ${ACTIVE})::int AS active
-         FROM editor_slots WHERE channel_key = $1 AND resource_ref IS NULL AND scheduled_at >= $2 AND scheduled_at < $3`,
-      [card.channelKey, from, to]);
-    if (Number(rows[0]?.watch ?? 0) >= cfg.maxPerDay) return 'daily_cap';
-    const { rows: pub } = await this.d.pool.query(
-      `SELECT count(*)::int AS n FROM published_posts WHERE channel_id = $1 AND posted_at >= $2`, [card.channelKey, from]);
-    if (Math.max(Number(rows[0]?.active ?? 0), Number(pub[0]?.n ?? 0)) >= card.postsPerDayMax) return 'day_full';
-    if (now.getTime() >= to.getTime()) return 'day_over';
-    return null;
-  }
-
-  /** The first of now + 15/20/25/30 min outside quiet hours and ≥ min_gap from every post of the channel. */
-  private async freeTime(card: EditorCard, now: Date): Promise<Date | null> {
-    const gap = card.minGapMinutes * 60_000;
-    const { rows } = await this.d.pool.query(
-      `SELECT scheduled_at AS at FROM editor_slots
-        WHERE channel_key = $1 AND resource_ref IS NULL AND status IN ${ACTIVE}
-          AND scheduled_at BETWEEN $2::timestamptz - interval '1 day' AND $2::timestamptz + interval '1 day'
-       UNION ALL
-       SELECT max(posted_at) FROM published_posts WHERE channel_id = $3`, [card.channelKey, now, card.channelKey]);
-    const taken = rows.map((r: any) => (r.at ? new Date(r.at).getTime() : null)).filter((x): x is number => x != null);
-    const base = Math.ceil(now.getTime() / 60_000) * 60_000;
-    for (const m of NEWS_WATCH_LEAD_MIN) {
-      const t = base + m * 60_000;
-      if (isQuietHour(localHour(new Date(t), card.timezone), card.quietStartHour, card.quietEndHour)) continue;
-      if (taken.every((x) => Math.abs(x - t) >= gap)) return new Date(t);
-    }
-    return null;
   }
 
   /** Items already logged for this channel in the last 24 h (an ignored item is logged once a day). */

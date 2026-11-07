@@ -5,6 +5,7 @@ import type { LiveSpec } from '../live/live-slot';
 import type { StoredCritic } from '../critic/critic';
 import { PREVIEW_STALE_MS, type SlotPreview } from '../roles/preview-run';
 import type { SlotFallback } from '../silent/fallback-ladder';
+import type { SloSlotMark } from '../slo/types';
 import { EMPTY_DAY_ERROR_RE, type EmptyDaySlot } from '../schedule/empty-day';
 
 export type SlotStatus =
@@ -52,6 +53,8 @@ export interface EditorSlot {
   /** Spec 040 FR-008: when a failed attempt runs again; `scheduledAt` keeps the planned time (delays stay visible). */
   retryAt?:           Date | null;
   replacesSlotId?:    string | null;
+  /** Spec 091 FR-003: the SLO controller's mark on a slot it inserted (migration 104); present only when set. */
+  slo?:               SloSlotMark | null;
   platformPostId?:    number | null;
   // ── independent resources (spec 024); present only when set ──
   /** unique / duplicate / adapt; null = a pre-024 or single-channel slot. */
@@ -150,6 +153,7 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.freshness_deadline ? { freshnessDeadline: new Date(r.freshness_deadline) } : {}),
     ...(r.retry_at ? { retryAt: new Date(r.retry_at) } : {}),
     ...(r.replaces_slot_id ? { replacesSlotId: r.replaces_slot_id } : {}),
+    ...(r.slo ? { slo: r.slo } : {}),
     ...(r.platform_post_id != null ? { platformPostId: Number(r.platform_post_id) } : {}),
     ...(r.treatment ? { treatment: r.treatment } : {}),
     ...(r.treatment_reason ? { treatmentReason: r.treatment_reason } : {}),
@@ -177,10 +181,11 @@ function liveSpecOf(r: any): LiveSpec {
 /**
  * Spec 034 FR-011: which content slots of a superseded plan stay (and move to the new plan) on a replan.
  * Only future `planned` slots are replaced; running, written (awaiting_approval / approved / published /
- * shadowed), due-now, owner pins, reserved, repurposed and news-watch slots stay. `$2` = now + the lead.
+ * shadowed), due-now, owner pins, reserved, repurposed, news-watch and SLO-controller (spec 091: `slo` set) slots stay. `$2` = now + the lead.
  */
 const REPLACEABLE = `kind = 'content' AND status = 'planned' AND schedule_rule_id IS NULL AND scheduled_at > $2
-   AND COALESCE(source_post->>'via', '') <> 'repurpose' AND COALESCE(live_spec->>'origin', '') <> 'news_watch'`;
+   AND COALESCE(source_post->>'via', '') <> 'repurpose' AND COALESCE(live_spec->>'origin', '') <> 'news_watch'
+   AND slo IS NULL`;
 /** Slots that move to the new plan (whatever is not replaced and not already finished without a post). */
 const KEPT = `(kind = 'reserved' OR schedule_rule_id IS NOT NULL
    OR status IN ('planned','running','awaiting_approval','approved','published','shadowed'))`;
@@ -570,7 +575,7 @@ export class EditorPlansRepository {
   }
 
   /** Planned slots that are more than `maxLateMs` overdue are skipped instead of posted late. */
-  async skipStale(now: Date, maxLateMs: number): Promise<number> {
+  async skipStale(now: Date, maxLateMs: number, onClosed?: (ids: string[]) => void): Promise<number> {
     // Spec 024 FR-007: a derived slot whose source never got out in time names why.
     const derived = await this.pool.query(
       `UPDATE editor_slots d SET status = 'skipped', error = 'source_not_published', updated_at = now()
@@ -585,10 +590,12 @@ export class EditorPlansRepository {
         WHERE s.status = 'planned' AND s.kind = 'content' AND COALESCE(s.retry_at, s.scheduled_at) < $1
           AND EXISTS (SELECT 1 FROM editor_channels c WHERE c.channel_key = s.channel_key AND c.mode = 'off')`,
       [new Date(now.getTime() - maxLateMs)]);
-    const { rowCount } = await this.pool.query(
+    const { rowCount, rows: staleRows } = await this.pool.query(
       `UPDATE editor_slots SET status = 'skipped', error = 'stale: missed its time window', updated_at = now()
-        WHERE status = 'planned' AND kind = 'content' AND COALESCE(retry_at, scheduled_at) < $1`,
+        WHERE status = 'planned' AND kind = 'content' AND COALESCE(retry_at, scheduled_at) < $1 RETURNING id`,
       [new Date(now.getTime() - maxLateMs)]);
+    // Spec 091 FR-003: the slots that missed their window reach the SLO controller (it decides whether they get a replacement).
+    if (onClosed && staleRows?.length) onClosed(staleRows.map((r: any) => String(r.id)));
     return (rowCount ?? 0) + (derived?.rowCount ?? 0) + (off?.rowCount ?? 0);
   }
 

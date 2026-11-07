@@ -10,6 +10,14 @@ import { resourceOfKey, seriesNameOfKey, type SeriesPausesRepository } from './s
 export class PlannerPauseView {
   constructor(private readonly repo: Pick<SeriesPausesRepository, 'open' | 'closedSlots'>) {}
 
+  /** Spec 091 FR-001: the series (not pins, not whole-channel pauses) the owner paused. */
+  async ownerPaused(channelKey: string): Promise<PausedSeriesCtx[]> {
+    const open = await this.repo.open(channelKey);
+    return open.filter((p) => p.cause === 'owner' && p.key.startsWith('series:')).map((p) => ({
+      name: seriesNameOfKey(p.key), resourceRef: resourceOfKey(p.key), label: p.label, streak: p.streak, reason: p.reason,
+    }));
+  }
+
   async forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> {
     const open = await this.repo.open(channelKey);
     // A pinned slot (rule:) is the owner's: the planner never plans it, so only series and resources are told.

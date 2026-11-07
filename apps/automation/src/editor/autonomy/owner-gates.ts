@@ -112,6 +112,10 @@ export const OWNER_GATES: readonly OwnerGate[] = [
   { key: 'launch_graduation', onSilence: 'apply', whenWait: 'wait', reversible: true,
     note: 'A launched channel that meets the criteria goes live by itself (held by readiness blockers).' },
 
+  // Spec 091 FR-005: a dark channel is recovered by code (a forced planner run, an evergreen post); logged, not reversible.
+  { key: 'slo_recovery', onSilence: 'apply', whenWait: 'wait', hoursSetting: 'SLO_DARK_HOURS', defaultHours: 24, reversible: false,
+    note: 'A live channel with no post for the dark window gets a recovery planner run (and an evergreen post) without waiting for you.' },
+
   // Human-only (FR-009).
   human('credential', 'Tokens and connections need you.'),
   human('bot_admin', 'Bot admin rights need you.'),

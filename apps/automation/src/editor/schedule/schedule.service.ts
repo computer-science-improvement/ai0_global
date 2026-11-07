@@ -15,7 +15,7 @@ import { Playbook, validatePlaybook } from '../network/playbook';
 import { instancesOn, parseCadence, SeriesSourceCatalog, seriesSourceLabel, type SeriesSource } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
-import { type ExcludedInstance, minAfterPauses, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { type ExcludedInstance, minAfterPauses, pausedInstances, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
 import { checkPlanSkeleton, EXCLUDING_CODES, skeletonResourcesWith } from '../readiness/plan-skeleton';
 import type { ScheduleRepository } from './schedule.repository';
 import {
@@ -74,7 +74,11 @@ export interface ScheduleServiceDeps {
    */
   formatOk?: (format: string) => boolean;
   /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
-  pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
+  pauses?:  {
+    forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }>;
+    /** Spec 091 FR-001: only the series the OWNER paused (the SLO target owes nothing for those, and still owes the rest). */
+    ownerPaused?(channelKey: string): Promise<PausedSeriesCtx[]>;
+  };
   now?:     () => Date;
   /** Spec 076 FR-004: the server reads a new or changed feed series source in the background when the owner saves it. */
   probe?:   BackgroundProbe;
@@ -248,6 +252,35 @@ export class ScheduleService {
     const clocks: PlanScheduleCtx['clocks'] = net ? this.clocks({ card, net }) : { [anchorRef]: { tz: card.timezone, quiet: { start: card.quietStartHour, end: card.quietEndHour }, gapMin: card.minGapMinutes } };
     const series = (net?.playbook ? normalizePlaybook(net.playbook).series : []).filter((x) => clocks[x.resource_ref]);
     return minAfterPauses({ planDate: day, paused: view.paused, series, clocks }, anchorRef, card.postsPerDayMin);
+  }
+
+  /**
+   * Spec 091 FR-001: what the channel's daily SLO target reads from the schedule — the playbook's (or a frequency rule's) per_day
+   * for the channel itself, the daily posts owed to series the OWNER paused, and whether every active series of the channel is
+   * owner-paused. Pauses for no material / an unreachable source are NOT read: they do not lower the target. Never throws.
+   */
+  async sloInputs(card: EditorCard, day: string, now: Date = this.now()): Promise<{ playbookPerDay: { min: number; max: number } | null; ownerPausedSlots: number; allSeriesOwnerPaused: boolean }> {
+    const none = { playbookPerDay: null, ownerPausedSlots: 0, allSeriesOwnerPaused: false };
+    try {
+      const anchorRef = `telegram:${card.channelKey}`;
+      const sc = await this.scopeByChannel(card.channelKey);
+      const net = isFail(sc) ? null : sc.net;
+      const clocks: PlanScheduleCtx['clocks'] = net ? this.clocks({ card, net }) : { [anchorRef]: { tz: card.timezone, quiet: { start: card.quietStartHour, end: card.quietEndHour }, gapMin: card.minGapMinutes } };
+      const pb = net?.playbook ? normalizePlaybook(net.playbook) : null;
+      const section = pb?.platforms.find((x) => x.resource_ref === anchorRef) ?? null;
+      const rules = await this.d.rules.activeFor([anchorRef]);
+      const hasFrequency = rules.some((r) => r.kind === 'frequency' && r.resourceRef === anchorRef);
+      const playbookPerDay = section || hasFrequency
+        ? planPerDay({ rules, pins: [], planDate: day }, anchorRef, section?.per_day ?? { min: card.postsPerDayMin, max: card.postsPerDayMax })
+        : null;
+      const owner = this.d.pauses?.ownerPaused ? await this.d.pauses.ownerPaused(card.channelKey).catch(() => []) : [];
+      const series = (pb?.series ?? []).filter((x) => clocks[x.resource_ref] && x.resource_ref === anchorRef && x.active !== false);
+      const ownerPausedSlots = owner.length ? pausedInstances({ planDate: day, paused: owner, series, clocks }, anchorRef) : 0;
+      const allSeriesOwnerPaused = series.length > 0 && series.every((x) => owner.some((p) => p.name === x.name));
+      return { playbookPerDay, ownerPausedSlots, allSeriesOwnerPaused };
+    } catch {
+      return none;
+    }
   }
 
   /** The card with the day's posts per day (frequency rule, minus pins) — for validatePlan. */

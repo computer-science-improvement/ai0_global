@@ -38,11 +38,29 @@ function slotMatch(key: string, from: number): { sql: string; params: unknown[] 
 
 export const WINDOW_DAYS = 14;
 
-export class SeriesPausesRepository {
-  constructor(private readonly pool: Pick<Pool, 'query'>) {}
+export const CHANNEL_PAUSE_PREFIX = 'resource:telegram:';
 
-  /** A new open pause; null when the series already has one. */
+export interface SeriesPausesOptions {
+  /**
+   * Spec 091 FR-002: true while the SLO controller is on (SLO_CONTROLLER, read at each call). Then a whole-channel pause
+   * (`resource:telegram:<channel>`) is the owner's alone: any other cause is refused. Absent = off (the pre-091 behaviour).
+   */
+  sloOn?: () => boolean;
+  log?:   (m: string) => void;
+}
+
+export class SeriesPausesRepository {
+  constructor(private readonly pool: Pick<Pool, 'query'>, private readonly o: SeriesPausesOptions = {}) {}
+
+  /**
+   * A new open pause; null when the series already has one. Spec 091: with the SLO controller on, a `resource:telegram:` pause
+   * of any cause but `owner` is refused (null) — a channel is never paused for lack of material, it is recovered.
+   */
   async insertOpen(p: { channelKey: string; key: string; label: string; cause: SeriesPause['cause']; reason: string; streak: number }): Promise<SeriesPause | null> {
+    if (p.key.startsWith(CHANNEL_PAUSE_PREFIX) && p.cause !== 'owner' && this.o.sloOn?.()) {
+      this.o.log?.(`channel pause of ${p.channelKey} refused (cause ${p.cause}): the SLO controller recovers a channel, only the owner pauses it`);
+      return null;
+    }
     const { rows } = await this.pool.query(
       `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES ($1, $2, $3, $4, $5, $6)
        ON CONFLICT (channel_key, series_key) WHERE resumed_at IS NULL DO NOTHING RETURNING *`,

@@ -25,6 +25,10 @@ import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
+import { ChannelSloRepository } from './slo/channel-slo.repository';
+import { SloController } from './slo/slo-controller';
+import { SloSlotInserter } from './slo/slot-inserter';
+import { StubDarkRecovery, StubRungPlanner } from './slo/slo-stubs';
 import { DEFAULT_SERIES_PAUSE_RETRY_HOURS, DEFAULT_SERIES_SKIP_STREAK, registerSeriesPauseUndo, SeriesBreaker } from './series-pause/series-breaker';
 import { SeriesPauseActions } from './series-pause/pause-actions';
 import { registerPauseResumeAction } from './series-pause/pause-resume-action';
@@ -472,6 +476,8 @@ const LOADOUT_REGISTRY: { reg?: Pick<LoadoutRegistry, 'all'> } = {};
 const AUDIT: { svc?: AuditService } = {};
 /** Spec 072: the channel doctor, bound late (073's run-time check and the launch and owner-bot cards reach it through here). */
 const READINESS: { svc?: ReadinessService } = {};
+/** Spec 091: the SLO controller, bound late (the runner reports closed slots to it; the controller is built after the runner). */
+const SLO: { svc?: SloController } = {};
 
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
@@ -1705,6 +1711,8 @@ export const EDITOR_PROVIDERS = [
           // Spec 071 R4: a post's `library://` alias against the series' next row (`data://`).
           canonicalRef: async (ref) => (await resolveContentRef(pool, ref).catch(() => null))?.dataRef ?? ref,
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          // Spec 091 FR-003: a slot that closed without a post may get a replacement (the controller is bound by EDITOR_SCHEDULER).
+          onSlotClosed: (id) => SLO.svc?.onSlotClosed(id),
           // Spec 073 FR-005: the planner alert says why (the validator's lines from the last refused submit_plan).
           lastToolErrors: (runId, tool) => lastToolErrors(pool, runId, tool),
           deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
@@ -1840,9 +1848,44 @@ export const EDITOR_PROVIDERS = [
           minPerDay: (card, day, now) => schedule.minPerDay(card, day, now),   // spec 068 FR-005: a paused series is not owed
         });
         // Spec 060 FR-001: the dead-series breaker (SERIES_SKIP_STREAK, 0 = off; read at each check) — code only.
-        const seriesPausesRepo = new SeriesPausesRepository(pool);
+        // Spec 091 FR-002: with SLO_CONTROLLER on (the default) a whole channel is never paused by the breaker, and the repository refuses it.
+        const sloEnv = (k: string) => cfg.get<string>(k) ?? undefined;
+        const sloOn = () => (sloEnv('SLO_CONTROLLER') ?? 'on').trim() !== 'off';
+        const seriesPausesRepo = new SeriesPausesRepository(pool, { sloOn, log: (m) => logger.warn(m) });
+        const sloRef: { scheduler?: EditorScheduler } = {};
+        const sloController = new SloController({
+          pool, repo: new ChannelSloRepository(pool, (m) => logger.warn(m)),
+          inserter: new SloSlotInserter({ pool, env: sloEnv, log: (m) => logger.warn(m) }),
+          // Stubs until spec 091 T6/T7 land (recovery-ladder.ts, dark-recovery.ts): an evergreen rung, a simple forced planner run.
+          planner: new StubRungPlanner(),
+          dark: new StubDarkRecovery({
+            pool, inserter: new SloSlotInserter({ pool, env: sloEnv, log: (m) => logger.warn(m) }),
+            resetTries: (k, now) => sloRef.scheduler?.resetPlannerTries(k, now),
+            runPlanner: (card, extra) => sloRef.scheduler!.runPlannerNow(card, extra),
+          }),
+          env: sloEnv,
+          card: (k) => repos.channels.get(k),
+          slot: (id) => repos.plans.getSlot(id),
+          budget: (card) => runner.budgetAllows(card),
+          inbox: infra.inbox, agentOf: (k) => seriesPausesRepo.agentOf(k), decisions: infra.decisions, log: (m) => logger.warn(m),
+          context: async (card, pausedRefs, day, now) => {
+            const ctx = await infra.runtime.forChannel(card.channelKey, 'executor').catch(() => null);
+            const mode = effectiveMode(ctx?.orchestrator?.mode ?? null, card.mode);
+            const ref = `telegram:${card.channelKey}`;
+            let heldReason: string | null = null;
+            if (ctx?.paused) heldReason = 'the channel agent is paused';
+            else if (pausedRefs.has(ref)) heldReason = 'the channel is paused by the owner (resource pause)';
+            else if (await held(card, new Set(pausedRefs)).catch(() => false)) heldReason = 'the channel is held by a paused resource';
+            else if ((await seriesPausesRepo.open(card.channelKey).catch(() => [] as Awaited<ReturnType<typeof seriesPausesRepo.open>>)).some((p) => p.key === `resource:${ref}` && p.cause === 'owner')) heldReason = 'the channel is paused by the owner';
+            const sched = await schedule.sloInputs(card, day, now);
+            if (!heldReason && sched.allSeriesOwnerPaused) heldReason = 'every series of the channel is paused by the owner';
+            return { mode, heldReason, playbookPerDay: sched.playbookPerDay, ownerPausedSlots: sched.ownerPausedSlots };
+          },
+        });
+        SLO.svc = sloController;
         const breaker = new SeriesBreaker({
           repo: seriesPausesRepo, inbox: infra.inbox, log: (m) => logger.warn(m),
+          sloOn, onPlainStreak: (k, hit) => sloController.onPlainStreak(k, hit),
           decisions: infra.decisions, env: (k) => cfg.get<string>(k) ?? undefined,
           threshold: () => Math.max(0, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_SKIP_STREAK', DEFAULT_SERIES_SKIP_STREAK))),
           retryHours: () => Math.max(0, envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_PAUSE_RETRY_HOURS', DEFAULT_SERIES_PAUSE_RETRY_HOURS)),
@@ -1853,8 +1896,14 @@ export const EDITOR_PROVIDERS = [
         const audit = new PostAuditService({ pool, cardOf: editorCardAudit((k) => repos.channels.get(k)), log: (m) => logger.warn(m) });
         // Spec 037 FR-003 (T3): an announced event with no post within 24 h after it — one Inbox note per event.
         const eventRecaps = new EventRecapWatch({ pool, inbox: infra.inbox, log: (m) => logger.warn(m) });
-        return new EditorScheduler({
+        const scheduler = new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
+          slo: sloController,
+          // Spec 091 FR-005: a restart keeps the planner tries a recovery run cleared (the newest slo_recovery decision of the channel).
+          triesFloor: async (k) => {
+            const { rows } = await pool.query(`SELECT max(decided_at) AS at FROM autonomy_decisions WHERE gate = 'slo_recovery' AND ref_type = 'channel' AND ref_id = $1`, [k]);
+            return rows[0]?.at ? new Date(rows[0].at) : null;
+          },
           // Spec 049 FR-002: a slot on a resource that cannot publish (broken connection) is skipped with the reason.
           unavailable: (ref) => platform.health.blocked(ref),
           postAudit: (now) => audit.tick(now),
@@ -1892,6 +1941,8 @@ export const EDITOR_PROVIDERS = [
           notify,
           log: (m) => logger.warn(m),
         });
+        sloRef.scheduler = scheduler;
+        return scheduler;
       },
     },
     {

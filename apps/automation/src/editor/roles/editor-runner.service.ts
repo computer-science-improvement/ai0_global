@@ -83,7 +83,7 @@ export interface EditorRunnerDeps {
   } | null>;
   /** Spec 020: network planner and the idea pool for the single-channel planner. */
   network?: {
-    runNetworkPlanner(card: EditorCard, planDate?: string): Promise<AgentLoopResult | null>;
+    runNetworkPlanner(card: EditorCard, planDate?: string, extra?: string | null): Promise<AgentLoopResult | null>;
     plannerExtras(card: EditorCard, planDate?: string): Promise<{ network: unknown; excludeTools: Set<string>; ideasNote: string | null } | null>;
   };
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the planner prompt. Optional. */
@@ -96,6 +96,11 @@ export interface EditorRunnerDeps {
   preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /**
+   * Spec 091 FR-003: a content slot just closed without a post (`skipByCode`, the ladder's final skip). Fire-and-forget: the
+   * SLO controller decides about a replacement; its errors never reach the run. Absent = none.
+   */
+  onSlotClosed?: (slotId: string) => void;
   /**
    * Spec 073 FR-009 / A15: the slot's config check before the pre-flight. `context` is `ScheduleService.slotConfigContext` (read
    * only; null = nothing to check), `patch` is `EditorPlansRepository.patchSlotConfig` (a running slot only). Absent = no check.
@@ -437,7 +442,7 @@ export class EditorRunnerService {
   }
 
   /** `planDate` (spec 031): approval mode plans the next day ahead, so its batch is written and approved the evening before. */
-  async runPlanner(card: EditorCard, opts: { planDate?: string } = {}): Promise<AgentLoopResult> {
+  async runPlanner(card: EditorCard, opts: { planDate?: string; extra?: string | null } = {}): Promise<AgentLoopResult> {
     const now = this.now();
     const planDate = opts.planDate ?? localDate(now, card.timezone);
     const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
@@ -445,14 +450,14 @@ export class EditorRunnerService {
     const off = this.paused(ctx);
     if (off) return off;
     if (this.d.network) {
-      const net = await this.d.network.runNetworkPlanner(card, opts.planDate).catch(() => null);
+      const net = await this.d.network.runNetworkPlanner(card, opts.planDate, opts.extra ?? null).catch(() => null);
       if (net) return net;
     }
     const extra = this.d.network ? await this.d.network.plannerExtras(card, planDate).catch(() => null) : null;
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
     const catalog = this.d.catalogSummary ? await this.d.catalogSummary(card).catch(() => null) : null;
     const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
-    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote, catalog ? `\n${catalog}` : null, stories ? `\n${stories}` : null].filter(Boolean).join('\n');
+    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote, catalog ? `\n${catalog}` : null, stories ? `\n${stories}` : null, opts.extra ? `\n${opts.extra}` : null].filter(Boolean).join('\n');
     const res = await this.run('planner', card, user, null, {
       planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
     }, ctx);
@@ -720,6 +725,7 @@ export class EditorRunnerService {
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
       await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: ((final.code === 'series_skip' || final.code === 'config') && final.reason ? final.reason : failure.reason).slice(0, 500) });
+      this.slotClosed(slot);
       if (this.d.deadSource) {
         for (const url of rejectedSources) await this.d.deadSource(slot, url, failure.reason).catch(() => 0);
       }
@@ -857,9 +863,24 @@ export class EditorRunnerService {
     return out;
   }
 
+  /** Spec 091 FR-003: the SLO controller hears of a slot that closed without a post; never throws. */
+  private slotClosed(slot: EditorSlot): void {
+    try { this.d.onSlotClosed?.(slot.id); } catch { /* fire-and-forget */ }
+  }
+
+  /**
+   * Spec 091 FR-003: does the budget gate allow another run for this channel (the same gate as every LLM step, headroom included)?
+   * The SLO controller asks before it adds a slot or starts a recovery run. No gate configured = yes.
+   */
+  async budgetAllows(card: EditorCard): Promise<{ ok: true } | { ok: false; reason: string }> {
+    if (!this.d.budget) return { ok: true };
+    return this.d.budget(card, null).catch(() => ({ ok: true as const }));
+  }
+
   private async skipByCode(slot: EditorSlot, reason: string): Promise<AgentLoopResult> {
     await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: reason });
     if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+    this.slotClosed(slot);
     return { runId: null, status: 'disabled', error: reason, totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 } };
   }
 

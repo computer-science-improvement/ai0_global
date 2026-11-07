@@ -64,6 +64,13 @@ export interface SeriesBreakerDeps {
   retryHours?: () => number;
   everyMs?: number;
   log?:     (m: string) => void;
+  /**
+   * Spec 091 FR-002: true while the SLO controller is on (SLO_CONTROLLER, read at each check). Then a streak of plain slots
+   * (a whole Telegram channel; a platform resource is still paused) is not paused: it goes to `onPlainStreak`. Absent = off (the pre-091 behaviour, `resource:` pauses).
+   */
+  sloOn?: () => boolean;
+  /** Spec 091 FR-002: the streak of a channel's own plain slots, handed to the controller (it counts toward `starved`). Never throws into the breaker. */
+  onPlainStreak?: (channelKey: string, hit: StreakHit) => void;
   /** Spec 090 FR-005/FR-010: the decision log. Without it a lifted pause is not logged. */
   decisions?: Pick<AutonomyDecisionsRepository, 'record'>;
   /** Live settings, for the `OWNER_SILENCE` master switch (`wait` = a pause is not lifted by code). Without it the registry default (`act`) applies. */
@@ -114,7 +121,12 @@ export class SeriesBreaker {
       const openKeys = new Set(open.map((p) => pauseMapKey(p.channelKey, p.key)));
       const hits = skipStreaks(slots, { threshold, resumedAt })
         .filter((h) => (PAUSING_CAUSES as readonly string[]).includes(h.cause) && !openKeys.has(pauseMapKey(h.channelKey, h.key)));
+      const slo = !!this.d.sloOn?.();
       for (const h of hits) {
+        if (slo && h.kind === 'resource' && h.resourceRef.startsWith('telegram:')) {
+          try { this.d.onPlainStreak?.(h.channelKey, h); } catch (err: any) { this.d.log?.(`plain streak of ${h.channelKey} not handed on: ${err?.message ?? err}`); }
+          continue;
+        }
         try { if (await this.pause(h)) created++; } catch (err: any) { this.d.log?.(`series pause of ${h.channelKey} ${h.key} failed: ${err?.message ?? err}`); }
       }
     }

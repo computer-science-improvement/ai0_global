@@ -80,6 +80,22 @@ export interface EditorSchedulerDeps {
    * are claimed. `plainPaused` lists the channels whose own plain slots (no series) are paused: they are not planned.
    */
   seriesPauses?: { check(now: Date): Promise<unknown>; plainPaused(): Promise<Set<string>> };
+  /**
+   * Spec 091: the channel SLO controller. While `enabled()` it replaces the `plainPaused` gate (a channel is never stopped from
+   * planning because its plain slots skipped): `tick` runs after the breaker check and before claiming, `onSlotClosed` is told
+   * of every content slot that closed without a post (fire-and-forget; it never fails the run). `enabled()` false (SLO_CONTROLLER=off)
+   * keeps today's path, `resource:` pauses and the gate included.
+   */
+  slo?: {
+    enabled(): boolean;
+    tick(cards: EditorCard[], now: Date, paused: ReadonlySet<string>): Promise<void>;
+    onSlotClosed(slotId: string, now?: Date): void;
+  };
+  /**
+   * Spec 091 FR-005: the moment up to which a channel's failed planner runs no longer count (the last dark-recovery run),
+   * so a restart does not bring back the tries that recovery cleared. Absent = none.
+   */
+  triesFloor?: (channelKey: string) => Promise<Date | null>;
   /** Spec 037 FR-014: the post audit — daily per resource and at once after a rule change; throttled by the hook itself. */
   postAudit?: (now: Date) => Promise<unknown>;
   /**
@@ -109,6 +125,8 @@ export class EditorScheduler {
   private busy = false;
   private readonly plannerTries = new Map<string, { n: number; at: number }>();
   private readonly alerted = new Set<string>();
+  /** Spec 091 FR-005: per channel, the planner tries before this instant were cleared by a recovery run. */
+  private readonly triesFloor = new Map<string, Date>();
 
   constructor(private readonly d: EditorSchedulerDeps) {}
 
@@ -163,14 +181,15 @@ export class EditorScheduler {
   }
 
   async tick(now: Date): Promise<void> {
-    await this.d.plans.skipStale(now, STALE_MS);
+    await this.d.plans.skipStale(now, STALE_MS, (ids) => { for (const id of ids) this.slotClosed(id, now); });
     await this.d.plans.sweepStuck(now, STUCK_MS);
 
     const cards = await this.d.channels.listActive();
     const byKey = new Map(cards.map((c) => [c.channelKey, c]));
     const approving = await this.approvingCards(cards);
     const paused = await this.pausedRefs(now);
-    const plainPaused = await this.plainPaused();
+    // Spec 091 FR-002: with the controller on, no channel is stopped from planning by a plain-slot pause (the controller recovers it).
+    const plainPaused = this.sloOn() ? new Set<string>() : await this.plainPaused();
 
     for (const card of cards) {
       if (this.d.pinGate) {
@@ -198,6 +217,9 @@ export class EditorScheduler {
     if (this.d.seriesPauses) {
       try { await this.d.seriesPauses.check(now); } catch (err: any) { this.d.log?.(`series breaker failed: ${err?.message ?? err}`); }
     }
+    if (this.sloOn()) {
+      try { await this.d.slo!.tick(cards, now, paused); } catch (err: any) { this.d.log?.(`SLO controller failed: ${err?.message ?? err}`); }
+    }
     if (this.d.postAudit) {
       try { await this.d.postAudit(now); } catch (err: any) { this.d.log?.(`post audit failed: ${err?.message ?? err}`); }
     }
@@ -220,6 +242,7 @@ export class EditorScheduler {
     }
     await this.runLimited(due, EXECUTOR_PARALLEL, async (slot) => {
       await this.d.runner.runExecutor(slot, byKey.get(slot.channelKey)!);
+      this.slotClosed(slot.id, now);        // spec 091: whatever way the run ended, the controller looks at a slot that closed without a post
       await this.checkFailures(slot.channelKey, now);
     });
   }
@@ -234,6 +257,33 @@ export class EditorScheduler {
       this.d.log?.(`resource pauses failed: ${err?.message ?? err}`);
       return new Set();
     }
+  }
+
+  private sloOn(): boolean {
+    try { return !!this.d.slo?.enabled(); } catch { return false; }
+  }
+
+  /** Spec 091 FR-003: tell the controller a slot closed (fire-and-forget; its own errors are logged there). */
+  private slotClosed(id: string, now?: Date): void {
+    if (!this.sloOn()) return;
+    try { this.d.slo!.onSlotClosed(id, now); } catch (err: any) { this.d.log?.(`SLO close event of ${id} failed: ${err?.message ?? err}`); }
+  }
+
+  /**
+   * Spec 091 FR-005: the dark-recovery part clears a channel's planner tries (the in-memory counter and, through the floor, the
+   * count restored from `editor_runs` after a restart), so `maybePlan` may run the planner again today.
+   */
+  resetPlannerTries(channelKey: string, now: Date = new Date()): void {
+    for (const k of [...this.plannerTries.keys()]) if (k.startsWith(`${channelKey}:`)) this.plannerTries.set(k, { n: 0, at: 0 });
+    this.triesFloor.set(channelKey, now);
+  }
+
+  /**
+   * Spec 091 FR-005: run the planner for one channel now, whatever its tries, with an extra context string appended to the
+   * planner's user prompt (the dark reason, the last skip reasons, the instruction). The day's plan is replaced like any replan.
+   */
+  async runPlannerNow(card: EditorCard, extraContext: string | null = null): ReturnType<EditorSchedulerDeps['runner']['runPlanner']> {
+    return this.d.runner.runPlanner(card, extraContext ? { extra: extraContext } : {});
   }
 
   /** Spec 060: channels whose own plain slots the breaker paused (empty without the hook or on error). */
@@ -335,6 +385,10 @@ export class EditorScheduler {
   private async seedTries(card: EditorCard, key: string, day: string, since: Date): Promise<void> {
     if (this.plannerTries.has(key)) return;
     try {
+      // Spec 091: a recovery run cleared the tries up to its start; only the runs after it count.
+      let floor = this.triesFloor.get(card.channelKey) ?? null;
+      if (this.d.triesFloor) { const f = await this.d.triesFloor(card.channelKey).catch(() => null); if (f && (!floor || f > floor)) floor = f; }
+      if (floor && floor > since) since = floor;
       const r = await plannerRunsOn(this.d.pool, card.channelKey, card.timezone, day, { since });
       this.plannerTries.set(key, { n: r.failed, at: r.lastFailedAt?.getTime() ?? 0 });
     } catch (err: any) {

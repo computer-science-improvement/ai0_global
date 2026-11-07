@@ -251,7 +251,7 @@ export class NetworkRunner {
    * channel is not the anchor of an independent network with a playbook — the
    * caller then runs the single-channel planner (which can use the idea pool too).
    */
-  async runNetworkPlanner(card: EditorCard, planDateIn?: string): Promise<AgentLoopResult | null> {
+  async runNetworkPlanner(card: EditorCard, planDateIn?: string, extra?: string | null): Promise<AgentLoopResult | null> {
     const c = await this.context(card, 'planner');
     if (!c || c.net.mode !== 'independent' || !c.net.playbook) return null;
     if (c.agentCtx.paused) return null;
@@ -272,7 +272,7 @@ export class NetworkRunner {
     const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs, { steering, commitments })}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}${styleLine ? `\n\n${styleLine}` : ''}`;
     const quotas = await this.quotas(card.channelKey, planDate);
     const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
-    const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories].filter(Boolean).join('\n\n');
+    const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories, extra].filter(Boolean).join('\n\n');
     const res = await this.run('planner', card, c, system, user, STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       // Spec 073 FR-005: the validator's lines from the last refused submit_network_plan.
