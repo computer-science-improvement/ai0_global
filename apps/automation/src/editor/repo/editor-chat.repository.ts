@@ -12,6 +12,8 @@ export interface EditorChat {
   title:     string;
   /** The last agent addressed in this chat by @handle (spec 018). */
   agentId?:  string | null;
+  /** Spec 103: 'connector' for a chat started from Claude (migration 105); present only when set. */
+  createdVia?: 'connector' | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -72,6 +74,7 @@ export interface MyChannel {
 
 const toChat = (r: any): EditorChat => ({
   id: r.id, title: r.title, createdAt: r.created_at, updatedAt: r.updated_at, ...(r.agent_id ? { agentId: r.agent_id } : {}),
+  ...(r.created_via ? { createdVia: r.created_via } : {}),
 });
 
 const toMessage = (r: any): EditorChatMessage => ({
@@ -94,9 +97,9 @@ export class EditorChatRepository {
 
   // ── chats ─────────────────────────────────────────────────────────────────
 
-  async createChat(title?: string | null): Promise<EditorChat> {
+  async createChat(o: { title?: string | null; createdVia?: 'connector' | null } = {}): Promise<EditorChat> {
     const { rows } = await this.pool.query(
-      `INSERT INTO editor_chats (title) VALUES (COALESCE($1, 'New chat')) RETURNING *`, [title ?? null]);
+      `INSERT INTO editor_chats (title, created_via) VALUES (COALESCE($1, 'New chat'), $2) RETURNING *`, [o.title ?? null, o.createdVia ?? null]);
     return toChat(rows[0]);
   }
 

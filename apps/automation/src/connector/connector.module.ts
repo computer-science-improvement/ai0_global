@@ -1,6 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module';
-import { EditorModule } from '../editor/editor.module';
+import { DB_POOL } from '../database/database.tokens';
+import { AGENTS_SERVICE } from '../editor/agents/agents.controller';
+import { APPROVALS_SERVICE } from '../editor/approval/approvals.controller';
+import { EDITOR_CHAT } from '../editor/api/editor-chat.controller';
+import { EDITOR_OPS } from '../editor/api/editor.controller';
+import { AGENT_INFRA, APPROVAL_INFRA, EDITOR_PUBLISH, EDITOR_REPOS, EditorModule } from '../editor/editor.module';
+import { NETWORK_HEALTH } from '../editor/health/network-health.controller';
+import { EDITOR_SLO_REPO } from '../editor/slo/slo.controller';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { ConnectorAdminController } from './admin/admin.controller';
 import { CONNECTOR_AUDIT, PgAudit, type AuditSink } from './audit/audit';
@@ -14,6 +21,7 @@ import { OAuthService } from './oauth/oauth.service';
 import { PgOAuthStore } from './oauth/pg-store';
 import { OAUTH_STORE, type OAuthStore } from './oauth/store';
 import { CONNECTOR_TOOLS, type ConnectorToolsFactory } from './types';
+import { ConnectorToolsFactoryImpl } from './tools/connector-tools.factory';
 
 /**
  * Spec 103 — the Claude connector: a remote MCP server (Streamable HTTP, stateless, JSON responses) with its own
@@ -47,8 +55,12 @@ import { CONNECTOR_TOOLS, type ConnectorToolsFactory } from './types';
       useFactory: (cfg: ConnectorConfig, oauth: OAuthService, store: OAuthStore, tools: ConnectorToolsFactory, audit: AuditSink) =>
         new McpEndpoint({ cfg, oauth, store, tools, audit }),
     },
-    // WP-C PLACEHOLDER: replace this one provider with the real tools factory at integration.
-    { provide: CONNECTOR_TOOLS, useValue: { tools: async () => [] } satisfies ConnectorToolsFactory },
+    {
+      provide: CONNECTOR_TOOLS,
+      inject: [EDITOR_REPOS, EDITOR_OPS, EDITOR_CHAT, AGENTS_SERVICE, APPROVALS_SERVICE, APPROVAL_INFRA, AGENT_INFRA, NETWORK_HEALTH, EDITOR_SLO_REPO, EDITOR_PUBLISH, DB_POOL],
+      useFactory: (repos: any, ops: any, chat: any, agentsSvc: any, approvals: any, approval: any, agentInfra: any, health: any, slo: any, publish: any, pool: any) =>
+        new ConnectorToolsFactoryImpl({ repos, ops, chat, agentsSvc, approvals, approval, agentInfra, health, slo, publish, pool }),
+    },
   ],
 })
 export class ConnectorModule {}

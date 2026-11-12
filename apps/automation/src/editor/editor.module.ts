@@ -2742,6 +2742,6 @@ export const EDITOR_PROVIDERS = [
   // Spec 103: the Claude connector (src/connector) calls these services in-process.
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER,
                 EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS, AGENTS_SERVICE, APPROVALS_SERVICE, APPROVAL_INFRA, NETWORK_HEALTH,
-                EDITOR_SLO_REPO, UPCOMING_SLOTS, SCHEDULE_SERVICE],
+                EDITOR_SLO_REPO, UPCOMING_SLOTS, SCHEDULE_SERVICE, EDITOR_PUBLISH],
 })
 export class EditorModule {}

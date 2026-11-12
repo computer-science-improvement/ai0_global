@@ -101,6 +101,11 @@ export interface SendOptions {
   /** Channel picked in the UI (optional; "Channel: @x" or any @channel mention in the text works too). */
   channel?: string | null;
   onEvent?: (e: ChatStreamEvent) => void;
+  /**
+   * Where the message came from. 'connector' (spec 103): the text is relayed from Claude, not typed by the owner in this
+   * chat, so no wording in it can unlock publish_draft / schedule_draft (userIntent is false on every turn).
+   */
+  via?: 'connector';
 }
 
 const draftLine = (d: EditorDraft) =>
@@ -217,8 +222,13 @@ export class EditorChatService {
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
-  async createChat() {
-    return this.d.repo.createChat();
+  async createChat(o: { createdVia?: 'connector' } = {}) {
+    return this.d.repo.createChat(o);
+  }
+
+  /** True while a turn of this chat is running (in this process); the connector's read waits on it. */
+  isRunning(chatId: string): boolean {
+    return this.running.has(chatId);
   }
 
   async listChats() {
@@ -426,7 +436,7 @@ export class EditorChatService {
     const extras: ComposerExtras & AgentChatExtras & Record<string, unknown> = {
       chat: { chatId, channelKey },
       card: resolved?.card,
-      userIntent: hasPublishIntent(text),
+      userIntent: opts.via === 'connector' ? false : hasPublishIntent(text),
       // Spec 069 FR-007: lint_post / preview_post judge a spec against what this chat has read, like save_draft does.
       chatSources: () => this.d.chatReads?.sourcesFor(chatId) ?? [],
       // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
