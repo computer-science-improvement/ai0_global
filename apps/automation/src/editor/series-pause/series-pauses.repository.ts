@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { SERIES_PAUSED_CODE } from './skip-cause';
+import { unlockedSql } from '../repo/slot-lock';
 import { pauseMapKey, type StreakSlot } from './streak';
 
 /** A paused series (spec 060, migration 093). One open pause per (channelKey, key). */
@@ -130,7 +131,7 @@ export class SeriesPausesRepository {
     const why = p.cause === 'owner' ? 'is paused by the owner' : 'is paused after repeated skips';
     const { rowCount } = await this.pool.query(
       `UPDATE editor_slots s SET status = 'skipped', error = $2, updated_at = now()
-        WHERE s.kind = 'content' AND s.status = 'planned' AND s.channel_key = $1 AND ${m.sql}`,
+        WHERE s.kind = 'content' AND s.status = 'planned' AND s.channel_key = $1 AND ${m.sql} AND ${unlockedSql('s')}`,
       [p.channelKey, `${SERIES_PAUSED_CODE}: "${p.label}" ${why} (spec 060)`.slice(0, 300), ...m.params]);
     return rowCount ?? 0;
   }

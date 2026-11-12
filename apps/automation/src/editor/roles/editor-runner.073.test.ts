@@ -420,3 +420,18 @@ test('A12 a source-read tool of the right kind is enough: library passes with qu
   assert.deepEqual(run([]), ['config_tools_missing'], 'an allowlist that removed everything');
   assert.deepEqual(checkSlotConfig(slot, c.ctx({ tools: null })).map((p) => p.code), []);
 });
+
+// ── Spec 103: a locked slot's format and hints are the owner's ──────────────────────────────────────────
+
+test('103 a locked slot is never patched by the config gate: the gate\'s normal skip path applies (code first, no writer run)', async () => {
+  for (const lockedBy of ['connector', 'owner'] as const) {
+    const c = pdrCase();
+    const s = setup([], { slot: slotOf(c, { lockedBy }), card: cardOf(c), registry: realRegistry(), gate: { context: withTools(c) } });
+    await s.runner.runExecutor(s.st, s.card);
+    assert.deepEqual(s.patches, [], `${lockedBy}: nothing is rewritten`);
+    assert.equal(s.st.format, c.slot.format, 'the format is as the owner left it');
+    assert.equal(s.runs.length, 0, 'no writer run');
+    assert.equal(s.st.status, 'skipped');
+    assert.match(s.st.error, /^config_format_mismatch\b/);
+  }
+});

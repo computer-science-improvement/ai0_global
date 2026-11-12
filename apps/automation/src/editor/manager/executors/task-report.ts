@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { telegramKeyOf, type Agent } from '../../agents/agent.types';
+import { unlockedSql } from '../../repo/slot-lock';
 
 /**
  * `report_directive_done` for a `task` (spec 025 FR-015): the row the orchestrator names must exist, belong to
@@ -22,7 +23,7 @@ export async function markDirectiveSlot(pool: Pick<Pool, 'query'>, slotId: strin
   try {
     const { rowCount } = await pool.query(
       `UPDATE editor_slots s SET slo = $2::jsonb
-        WHERE s.id = $1 AND s.slo IS NULL
+        WHERE s.id = $1 AND s.slo IS NULL AND ${unlockedSql('s')}
           AND EXISTS (SELECT 1 FROM channel_slo c
                        WHERE c.channel_key = s.channel_key AND c.state IN ('recovering', 'dark')
                          AND c.day = (now() AT TIME ZONE resource_tz('telegram:' || s.channel_key))::date)`,

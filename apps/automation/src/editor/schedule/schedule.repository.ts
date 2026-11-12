@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import { rowToSlot, RESERVED_ONLY_RATIONALE, type EditorSlot } from '../repo/editor-plans.repository';
 import type { LiveSpec } from '../live/live-slot';
+import { lockedSql } from '../repo/slot-lock';
 import { rowToRule, ruleColumns, type ScheduleRule, type ScheduleRuleInput } from './schedule-rules';
 
 type Q = Pick<Pool, 'query'> & Partial<Pick<Pool, 'connect'>>;
@@ -137,7 +138,7 @@ export class ScheduleRepository {
 
   /**
    * Spec 034 FR-011: content slots of the day's active plan that a replan keeps (not pins — they are
-   * `pinsOn`; not repurposed posts): running, written, due within `keepUntil`, and news-watch slots.
+   * `pinsOn`; not repurposed posts): running, written, due within `keepUntil`, news-watch slots and locked planned slots (spec 103).
    * The planners treat them as fixed points (count, gap, series) like pins.
    */
   async keptOn(channelKey: string, planDate: string, keepUntil: Date): Promise<EditorSlot[]> {
@@ -146,7 +147,7 @@ export class ScheduleRepository {
         WHERE p.channel_key = $1 AND p.plan_date = $2::date AND p.status = 'active'
           AND s.kind = 'content' AND s.schedule_rule_id IS NULL AND COALESCE(s.source_post->>'via', '') <> 'repurpose'
           AND (s.status IN ('running','awaiting_approval','approved','published','shadowed')
-            OR (s.status = 'planned' AND (s.scheduled_at <= $3 OR COALESCE(s.live_spec->>'origin', '') = 'news_watch')))
+            OR (s.status = 'planned' AND (s.scheduled_at <= $3 OR COALESCE(s.live_spec->>'origin', '') = 'news_watch' OR ${lockedSql('s')})))
         ORDER BY s.scheduled_at`, [channelKey, planDate, keepUntil]);
     return rows.map(rowToSlot);
   }

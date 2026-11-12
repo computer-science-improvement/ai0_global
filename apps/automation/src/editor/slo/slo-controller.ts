@@ -14,6 +14,7 @@ import type { AutonomyDecisionsRepository } from '../autonomy/autonomy-decisions
 import { remainingCapacity } from '../roles/plan-rules';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { EditorSlot } from '../repo/editor-plans.repository';
+import { isLocked, unlockedSql } from '../repo/slot-lock';
 import { classifyClose, type SkipCause } from '../series-pause/skip-cause';
 import type { StreakHit } from '../series-pause/streak';
 import type { ChannelSloRepository } from './channel-slo.repository';
@@ -150,7 +151,7 @@ export class SloController {
     this.seen.add(slotId);
     if (this.seen.size > 2000) this.seen.delete(this.seen.values().next().value as string);
     if (slot.resourceRef && slot.resourceRef !== `telegram:${slot.channelKey}`) return null;      // another platform: not the channel's minimum
-    if (slot.approvedAt || slot.ownerEdited || slot.rejectReason) return null;                   // the owner touched it: an approval hold, not a miss
+    if (slot.approvedAt || slot.ownerEdited || slot.rejectReason || isLocked(slot)) return null; // the owner touched it (or locked it, spec 103): an approval hold, not a miss
     const c = classifyClose({ status: slot.status, error: slot.error, criticVerdict: slot.critic?.verdict ?? null });
     if (c.k === 'ignore' || c.k === 'out') return null;                                           // budget, config, the owner's own decisions
     const cause: SkipCause = c.k === 'cause' ? c.cause : 'quality';                              // an unclassified skip: the cheapest rungs
@@ -264,14 +265,14 @@ export class SloController {
     const { rows } = await this.d.pool.query(
       `SELECT s.id FROM editor_slots s
         WHERE s.channel_key = $1 AND s.kind = 'content' AND s.resource_ref IS NULL AND s.status IN ('skipped','failed')
-          AND s.scheduled_at >= $2 AND s.scheduled_at < $3 AND s.replaces_slot_id IS NULL
+          AND s.scheduled_at >= $2 AND s.scheduled_at < $3 AND s.replaces_slot_id IS NULL AND ${unlockedSql('s')}
           AND NOT EXISTS (SELECT 1 FROM editor_slots r WHERE r.replaces_slot_id = s.id)
           AND COALESCE(s.slo->>'depth', '0')::int < ${MAX_REPLACEMENT_DEPTH}
         ORDER BY s.scheduled_at DESC LIMIT 8`,
       [a.card.channelKey, from, new Date(from.getTime() + 86_400_000)]);
     for (const r of rows) {
       const slot = await this.d.slot(String(r.id));
-      if (!slot || slot.approvedAt || slot.ownerEdited || slot.rejectReason) continue;
+      if (!slot || slot.approvedAt || slot.ownerEdited || slot.rejectReason || isLocked(slot)) continue;
       const c = classifyClose({ status: slot.status, error: slot.error, criticVerdict: slot.critic?.verdict ?? null });
       if (c.k === 'ignore' || c.k === 'out') continue;
       if (await this.replace(a, toClosed(slot), c.k === 'cause' ? c.cause : 'quality', now)) return;   // at most one per channel per tick

@@ -9,6 +9,7 @@ import type { SkillSource } from '../skills/skill-library';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
+import { isLocked } from '../repo/slot-lock';
 import { agentInlineSkills, buildSystemPrompt, executorUserPrompt, moreSkillsLine, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
 import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
 import { parseResourceRef } from '../agents/agent.types';
@@ -753,7 +754,8 @@ export class EditorRunnerService {
       problems = checkSlotConfig(toConfigSlot(slot), sctx);
       if (problems.some((p) => isRepairable(p.code))) {
         const fix = repairSlotConfig(toConfigSlot(slot), problems, sctx);
-        if (fix.format || fix.sourceHints) {
+        // Spec 103: a locked slot's format and hints are the owner's; the gate's normal skip path applies instead (patchSlotConfig also refuses it in SQL).
+        if ((fix.format || fix.sourceHints) && !isLocked(slot)) {
           const patched = await dep.patch(slot.id, fix);
           if (patched) {
             slot = patched;

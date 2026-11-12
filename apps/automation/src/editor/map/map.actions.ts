@@ -3,6 +3,7 @@ import type { Pool } from 'pg';
 import { z } from 'zod';
 import { parseResourceRef, type Platform } from '../agents/agent.types';
 import type { ResourceListItem } from '../agents/resource-catalog';
+import { unlockedSql } from '../repo/slot-lock';
 import { BLOCKED_SLOT_ERROR, linkPairs, PENDING_SLOTS, recordMapEvent, unlinkPairs } from '../promo/promo-links';
 
 export { BLOCKED_SLOT_ERROR };
@@ -117,7 +118,7 @@ export class MapActions {
   private async cancelCopies(ref: string): Promise<number> {
     const { rows } = await this.d.pool.query(
       `UPDATE editor_slots s SET status = 'skipped', error = $2, updated_at = now()
-        WHERE s.derived_from_slot_id IS NOT NULL AND s.status IN ${PENDING_SLOTS}
+        WHERE s.derived_from_slot_id IS NOT NULL AND s.status IN ${PENDING_SLOTS} AND ${unlockedSql('s')}
           AND (COALESCE(s.resource_ref, 'telegram:' || s.channel_key) = $1
                OR (SELECT COALESCE(p.resource_ref, 'telegram:' || p.channel_key) FROM editor_slots p WHERE p.id = s.derived_from_slot_id) = $1)
       RETURNING s.id`, [ref, LEFT_NETWORK_SLOT_ERROR]);

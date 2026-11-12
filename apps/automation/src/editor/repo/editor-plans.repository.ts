@@ -7,7 +7,7 @@ import { PREVIEW_STALE_MS, type SlotPreview } from '../roles/preview-run';
 import type { SlotFallback } from '../silent/fallback-ladder';
 import type { SloSlotMark } from '../slo/types';
 import { EMPTY_DAY_ERROR_RE, type EmptyDaySlot } from '../schedule/empty-day';
-import type { SlotLockOwner } from './slot-lock';
+import { lockedSql, unlockedSql, type SlotLockOwner } from './slot-lock';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -116,7 +116,7 @@ export type ApprovalRender =
  */
 const TAG_SERIES_SLOTS = `UPDATE editor_slots s SET series_name = substr(h.v, 8)
    FROM (SELECT id, (SELECT x FROM jsonb_array_elements_text(source_hints) x WHERE x LIKE 'series:%' LIMIT 1) AS v
-           FROM editor_slots WHERE plan_id = $1 AND series_name IS NULL) h
+           FROM editor_slots WHERE plan_id = $1 AND series_name IS NULL AND ${unlockedSql()}) h
   WHERE s.id = h.id AND h.v IS NOT NULL`;
 
 /** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
@@ -195,9 +195,10 @@ function liveSpecOf(r: any): LiveSpec {
  */
 const REPLACEABLE = `kind = 'content' AND status = 'planned' AND schedule_rule_id IS NULL AND scheduled_at > $2
    AND COALESCE(source_post->>'via', '') <> 'repurpose' AND COALESCE(live_spec->>'origin', '') <> 'news_watch'
-   AND slo IS NULL`;
+   AND slo IS NULL AND ${unlockedSql()}`;
 /** Slots that move to the new plan (whatever is not replaced and not already finished without a post). */
 const KEPT = `(kind = 'reserved' OR schedule_rule_id IS NOT NULL
+   OR (${lockedSql()} AND status IN ('planned','running','awaiting_approval','approved'))
    OR status IN ('planned','running','awaiting_approval','approved','published','shadowed'))`;
 /** Planned slots this close to their time are about to run: a replan keeps them (mirrors the planner's lead). */
 export const REPLAN_KEEP_LEAD_MS = 5 * 60_000;
@@ -649,6 +650,29 @@ export class EditorPlansRepository {
     return rows[0] ? rowToSlot(rows[0]) : null;
   }
 
+  /**
+   * Spec 103 §8: hand a slot back to the automation. Clears the lock only: created_via and owner_edited stay, a written
+   * post stays as it is, a planned slot is the agent's again. Null for an unknown id.
+   */
+  async unlockSlot(id: string): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET locked_by = NULL, locked_at = NULL, updated_at = now() WHERE id = $1 RETURNING *`, [id]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
+  /**
+   * Spec 103 §8: lock an open slot (planned, waiting or approved); an already locked slot keeps its owner and time.
+   * `{closed: status}` for a slot that has gone out or been closed, null for an unknown id.
+   */
+  async lockSlot(id: string, by: SlotLockOwner = 'owner'): Promise<{ slot: EditorSlot } | { closed: string } | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET locked_by = COALESCE(locked_by, $2), locked_at = COALESCE(locked_at, now()), updated_at = now()
+        WHERE id = $1 AND status IN ('planned','awaiting_approval','approved') RETURNING *`, [id, by]);
+    if (rows[0]) return { slot: rowToSlot(rows[0]) };
+    const { rows: cur } = await this.pool.query(`SELECT status FROM editor_slots WHERE id = $1`, [id]);
+    return cur[0] ? { closed: String(cur[0].status) } : null;
+  }
+
   /** Plans of one date (active first), each with its slots. */
   async listPlans(planDate: string, channelKey?: string | null): Promise<EditorPlan[]> {
     const { rows: plans } = await this.pool.query(
@@ -766,7 +790,7 @@ export class EditorPlansRepository {
                          || jsonb_build_object('repairs', COALESCE(fallback->'repairs', '[]'::jsonb)
                                                           || jsonb_build_array(jsonb_build_object('at', $4::text, 'note', $5::text))),
               updated_at = now()
-        WHERE id = $1 AND status = 'running' RETURNING *`,
+        WHERE id = $1 AND status = 'running' AND ${unlockedSql()} RETURNING *`,
       [id, p.format ?? null, p.sourceHints ? JSON.stringify(p.sourceHints) : null, at.toISOString(), p.note]);
     return rows[0] ? rowToSlot(rows[0]) : null;
   }
@@ -776,7 +800,7 @@ export class EditorPlansRepository {
     await this.pool.query(
       `UPDATE editor_slots SET idea_id = $2, topic = $3, angle = $4, source_hints = $5,
               lint_warnings = COALESCE(lint_warnings, '[]'::jsonb) || to_jsonb($6::text), updated_at = now()
-        WHERE id = $1`, [id, p.ideaId, p.topic, p.angle, JSON.stringify(p.sourceHints), p.note]);
+        WHERE id = $1 AND ${unlockedSql()}`, [id, p.ideaId, p.topic, p.angle, JSON.stringify(p.sourceHints), p.note]);
   }
 
   /** How many of the channel's most recent finished slots failed in a row. */

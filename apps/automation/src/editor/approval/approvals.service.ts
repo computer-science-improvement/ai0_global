@@ -19,6 +19,7 @@ import { heldByCritic, type StoredCritic } from '../critic/critic';
 import type { ResourceStyle } from '../post/style/resource-style';
 import type { ApprovalFinding } from '../audit/approval-findings';
 import { errText } from '../../common/err-text';
+import { isLocked } from '../repo/slot-lock';
 
 export interface ApprovalsServiceDeps {
   repo:  ApprovalsRepository;
@@ -300,7 +301,7 @@ export class ApprovalsService {
     if (!done) throw alreadyDecided(it.status === 'awaiting_approval' ? await this.d.repo.get(id) : it);
     await this.learn(it.channelKey, rejectPreference({ slotId: it.id, topic: it.topic, resourceRef: it.resourceRef ?? null, reason: p.data.reason || null }));
     let replacementId: string | null = null;
-    if (!done.replacesSlotId && done.kind === 'content' && done.scheduledAt.getTime() - now.getTime() >= REPLACEMENT_MIN_LEAD_MS) {
+    if (!done.replacesSlotId && !isLocked(done) && done.kind === 'content' && done.scheduledAt.getTime() - now.getTime() >= REPLACEMENT_MIN_LEAD_MS) {
       const note = [
         `Заміна поста, який власник відхилив («${done.topic}»).`,
         p.data.reason ? `Причина: ${p.data.reason}.` : 'Причину не вказано — зроби інший кут або інше джерело.',
@@ -324,6 +325,8 @@ export class ApprovalsService {
     });
     const out = { approved: 0, skippedWithWarnings: 0, conflicts: 0, ids: [] as string[] };
     for (const it of items) {
+      // Spec 103: a locked post (made or edited through the connector) is decided one by one, never in a bulk.
+      if (isLocked(it)) continue;
       // Spec 034 FR-004: a post the critic did not pass is decided one by one, like one with lint warnings.
       if ((it.lintWarnings ?? []).length || heldByCritic(it.critic)) { out.skippedWithWarnings++; continue; }
       try {

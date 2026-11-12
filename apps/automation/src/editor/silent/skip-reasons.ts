@@ -6,6 +6,7 @@
  */
 
 import { CONFIG_FAILURE_CODES } from '../readiness/slot-config';
+import { isOwnerSkip } from '../repo/slot-lock';
 
 export const SKIP_GROUPS = ['critic', 'lint', 'config', 'cap', 'nothing_fresh', 'budget', 'other'] as const;
 export type SkipGroup = typeof SKIP_GROUPS[number];
@@ -40,10 +41,10 @@ export function isNotAMiss(error: string | null | undefined): boolean {
   return NOT_A_MISS.some((r) => r.test(e));
 }
 
-/** Is this slot error the owner's own decision (rejected, paused)? */
+/** Is this slot error the owner's own decision (rejected, paused, skipped by the owner from the dashboard, the chat or the connector)? */
 export function isOwnerDecision(error: string | null | undefined): boolean {
   const e = (error ?? '').trim();
-  return OWNER.some((r) => r.test(e));
+  return OWNER.some((r) => r.test(e)) || isOwnerSkip(e);
 }
 
 /**

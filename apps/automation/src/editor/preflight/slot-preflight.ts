@@ -1,6 +1,7 @@
 import type { ContentLedger, LedgerVerdict } from '../../data/content-ledger';
 import type { EditorCard } from '../card';
 import type { EditorSlot } from '../repo/editor-plans.repository';
+import { isLocked } from '../repo/slot-lock';
 import type { IdeaRow } from '../network/network.repository';
 import type { HostBlock, HostFailures } from '../net/host-failures';
 import { feedKey, hostOf } from '../net/host-failures';
@@ -142,7 +143,8 @@ export class SlotPreflight {
     if (!problem) return { ok: true, slot };
     // A missing format is not cured by another idea of the same format; a series slot has its own source rule; a slot that carries
     // a manager directive (`directive:<id>`, an experiment quota) would lose the hint and the angle in a swap, so it fails instead.
-    if (problem.code === 'preflight_format_unavailable' || !idea || slot.seriesName || (slot.sourceHints ?? []).some((h) => /^directive:/i.test(h.trim()))) {
+    // Spec 103: a locked slot is the owner's: its topic is never swapped for another idea, the problem ends it like any other.
+    if (isLocked(slot) || problem.code === 'preflight_format_unavailable' || !idea || slot.seriesName || (slot.sourceHints ?? []).some((h) => /^directive:/i.test(h.trim()))) {
       return this.fail(slot, idea, problem);
     }
     const swap = await this.swap(slot, card, idea);
@@ -290,6 +292,7 @@ export class SlotPreflight {
 
   /** One swap: the next accepted idea of the same orchestrator that passes every check and fits the slot's resource and format. */
   private async swap(slot: EditorSlot, card: EditorCard, from: IdeaRow): Promise<{ idea: IdeaRow; slot: EditorSlot } | null> {
+    if (isLocked(slot)) return null; // belt and braces: retopicSlot also refuses a locked slot in SQL
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
     const now = this.now();
     const pool = (await this.d.ideas.accepted(from.agentId, MAX_SWAP_CANDIDATES))

@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import type { ChannelMode, EditorCard } from '../card';
+import { unlockedSql } from './slot-lock';
 import { bindingsStillEnabled, enabledBindingExtIds, liveRefsOf } from '../migration/binding-guard';
 import { audienceCapsOfProfile } from '../post/audience-asks';
 import { styleOfRow } from '../post/style/resource-style';
@@ -62,12 +63,13 @@ function capsOfRow(r: any): Pick<EditorCard, 'readerQuestionsMax' | 'pollsPerWee
 
 /**
  * Waiting and approved (not yet published) posts of a channel become `skipped`
- * with the reason `mode_changed`; their waiting platform rows are canceled.
+ * with the reason `mode_changed`; their waiting platform rows are canceled. Locked posts (spec 103) stay: the approval
+ * publisher re-checks the channel mode at send time and refuses off / shadow.
  */
 export async function dropWaitingPosts(db: Pick<Pool, 'query'>, channelKey: string): Promise<number> {
   const { rows } = await db.query(
     `UPDATE editor_slots SET status = 'skipped', error = 'mode_changed', updated_at = now()
-      WHERE channel_key = $1 AND status IN ('awaiting_approval','approved') RETURNING platform_post_id`, [channelKey]);
+      WHERE channel_key = $1 AND status IN ('awaiting_approval','approved') AND ${unlockedSql()} RETURNING platform_post_id`, [channelKey]);
   const ids = rows.map((r) => r.platform_post_id).filter((x) => x != null);
   if (ids.length) {
     await db.query(`UPDATE platform_posts SET status = 'canceled', error = 'mode_changed' WHERE id = ANY($1::bigint[]) AND status = 'awaiting_approval'`, [ids]);

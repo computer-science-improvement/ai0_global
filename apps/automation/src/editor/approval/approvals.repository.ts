@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import { ContentLedger } from '../../data/content-ledger';
 import { rowToSlot, type EditorSlot } from '../repo/editor-plans.repository';
 import { dropWaitingPosts } from '../repo/editor-channels.repository';
+import { isLocked, unlockedSql } from '../repo/slot-lock';
 
 /** A waiting / approved post with what the owner's card shows next to it. */
 export interface ApprovalItem extends EditorSlot {
@@ -156,13 +157,14 @@ export class ApprovalsRepository {
   /** The one replacement a rejected post may get: a new planned slot at the same time (unique per rejected slot). */
   async insertReplacement(rejected: EditorSlot, note: string): Promise<string | null> {
     if (rejected.replacesSlotId) return null; // a replacement is never replaced again
+    if (isLocked(rejected)) return null;      // spec 103: a locked (owner / connector) post is the owner's, the agent does not rewrite it
     const { rows } = await this.pool.query(
       // Spec 034: a live slot's replacement stays live (without the item the owner turned down).
       `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id, replaces_slot_id,
                                  topic_mode, live_spec)
        SELECT plan_id, channel_key, scheduled_at, 'content', format, topic, $2, source_hints, is_experiment, resource_ref, idea_id, id,
               topic_mode, live_spec - 'item'
-         FROM editor_slots WHERE id = $1 AND kind = 'content'
+         FROM editor_slots WHERE id = $1 AND kind = 'content' AND ${unlockedSql()}
        ON CONFLICT (replaces_slot_id) WHERE replaces_slot_id IS NOT NULL DO NOTHING
        RETURNING id`, [rejected.id, note.slice(0, 1000)]);
     return rows[0]?.id ?? null;
