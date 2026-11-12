@@ -162,3 +162,26 @@ Integration (lead):
   checks every injected editor token is exported by `EditorModule`.
 - The worktree's node_modules were reinstalled with `pnpm@9.15.0 install --frozen-lockfile` (Node 20): the old install
   lacked rolldown's native binding, so `vite build` failed.
+
+Review (wf_640f8b4c-591: 5 lenses, each finding checked by a skeptic; 23 real of 33) and fixes (4 Sonnet worktrees):
+- Lock: `request_story_repost` refuses a locked slot and the story guard does not offer it (was **high**: a plan_post
+  slot could become a forward of a sibling's post); `formatLocked` covers locked slots (no lighter_format / evergreen);
+  `dropFuturePins` leaves locked pin slots; bulk approve returns `skippedLocked`; the autonomy switch never approves a
+  locked post.
+- Tools: a topic edit drops live/series/idea drivers (`topic_mode='fixed'`); a move to another day changes `plan_id`;
+  `apply_card` reports the real outcome and takes `input` (8 KB); ISO dates that roll over are refused; the combined
+  `@handle` + message length is checked before a chat is created; `get_post.lint_warnings` are clipped and untrusted;
+  the agent plan API carries the badge fields.
+- OAuth: authorize never writes or un-revokes a client (the CIMD row is written on consent allow), 60/min per IP,
+  50 pending per client, failed CIMD fetch cached 5 min; the DCR cap counts used clients, unused ones are purged after
+  24 h and hidden, IPv6 keyed by /64; the refresh grace path needs a used, unrevoked row; out-of-scope tool calls are
+  audited; nginx answers 404 for other `/.well-known/*`; the consent page and its Origin check use the `DASHBOARD_URL`
+  origin (`dashboardOrigin`); remote results are compact JSON capped at 80,000 characters (`truncated: true`);
+  OAuth audit rows carry `ok`.
+- Dashboard: activity shows ok / blocked / error (null-safe); Approve all leaves locked posts out and the toast names
+  them; owner and connector skips are owner decisions, not misses; a Configuration save refreshes the connector status;
+  the consent page has pending/error states, `bad_origin` / `connector_off` texts, and labels verified (CIMD) vs
+  self-registered (DCR) apps.
+- Refuted by the skeptics (no change): binding the consent request to the starting browser (does not stop the
+  phishing case it targets), parallel refresh knock-out, strict scope parsing, chat slash commands in connector turns,
+  the agent schema in prepare_post.

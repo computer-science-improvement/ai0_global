@@ -26,7 +26,8 @@ for example `https://dev.ai0.global/api/mcp`.
    Check: `curl -s https://dev.ai0.global/.well-known/oauth-authorization-server` returns JSON once the connector is on
    (404 `connector_off` before).
 3. Settings → Configuration: `DASHBOARD_URL` must be the public https origin (`https://dev.ai0.global`). If the connector
-   should live on another origin, set `MCP_PUBLIC_URL` (https, no path).
+   should live on another origin, set `MCP_PUBLIC_URL` (https, no path). The consent page always opens on the
+   `DASHBOARD_URL` origin, where the owner's dashboard session lives.
 4. Settings → Connectors: turn the connector on (`MCP_CONNECTOR`). The tab shows the URL and warns when it is not https
    or not configured.
 
@@ -41,8 +42,11 @@ claude mcp add --transport http ai0 https://dev.ai0.global/api/mcp
 ```
 Then run `/mcp` in Claude Code, pick `ai0` and authenticate (a browser opens on the consent page).
 
-Claude identifies itself with a Client ID Metadata Document (only Claude's two documents are accepted). Dynamic client
-registration is a fallback restricted to Claude's callback URLs and loopback; 20 registrations per IP per hour, 100 clients.
+Claude identifies itself with a Client ID Metadata Document (only Claude's two documents are accepted); the consent page
+labels it "Verified Claude app". Dynamic client registration is a fallback restricted to Claude's callback URLs and
+loopback (labelled "Self-registered app — its name is not verified"): 20 registrations per IP (IPv6: per /64) per hour,
+100 clients in use; a registration that never got access is hidden and removed after 24 h. The authorize endpoint
+allows 60 requests per minute per IP and 50 waiting requests per app.
 
 ## 3. What Claude can do
 
@@ -54,7 +58,9 @@ Write (`mcp:write`, Claude asks before each call): `prepare_post`, `plan_post`, 
 
 - **prepare_post** writes a finished Telegram post for a time. In an approve-mode channel it waits for approval
   (dashboard, owner bot, or `approve_post` in Claude); in a live channel it goes out at its time. Shadow and off channels refuse.
-- **plan_post** books a slot with a topic; the agent writes it at its time from the owner's brief.
+- **plan_post** books a slot with a topic; the agent writes it at its time from the owner's brief. **update_post** on an
+  agent slot makes the owner's topic the slot's topic (a live, series or idea driver is dropped) and locks it; moving a
+  post to another day moves it into that day's plan.
 - **talk_to_agent** posts to the owner chat (the chat shows a `Claude` badge in the dashboard). Publishing is disabled
   in these turns: `publish_draft` and `schedule_draft` refuse.
 - **apply_card** applies only safe card kinds; network mode, agent creation, migrations, imports, schema edits,
@@ -67,6 +73,9 @@ A slot with `locked_by` set (`connector` or `owner`) is the owner's:
 - replans keep it and plan around it; the SLO controller never replaces it; pre-flight and the config gate never
   rewrite its topic or format; series/resource pauses, mode sweeps and bulk approve leave it; an approval reject writes
   no agent replacement;
+- the agent never turns it into a story repost and the fallback ladder never changes its format or swaps in an
+  evergreen post; a pin rule edit leaves a locked pin slot alone; bulk approve and the autonomy switch never approve it
+  (the bulk result counts it as `skippedLocked`: approve it one by one);
 - the publish-time guards still apply: a post on a channel that is off or shadow at its time is not sent
   (`mode_changed`), a post that missed its window closes as stale, dedup/similarity/daily cap still skip.
 
@@ -80,6 +89,9 @@ a written post stays as it is. API: `POST /api/editor/slots/:id/unlock` (and `/l
 - Tokens are opaque and stored as SHA-256 hashes (`mcp_oauth_tokens`). Access lives 1 h, refresh 30 days (rotated on
   every use; a reused old refresh token revokes the grant). A connector token is never a dashboard session, and
   `TRACKING_TOKEN` is never accepted on `/api/mcp`.
+- Disconnect really disconnects: an app stays out of Connected apps until the owner allows it again on the consent page.
+- A tool call outside the grant's permissions (a read-only grant calling a write tool) is refused and shows in Recent
+  activity as an error (`not_allowed_for_scope`).
 - Kill switch: turn `MCP_CONNECTOR` off. Every connector route answers 404 at once; grants stay but cannot be used.
 
 ## 6. Troubleshooting
