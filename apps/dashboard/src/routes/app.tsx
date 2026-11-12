@@ -48,7 +48,7 @@ function Centered({ children }: { children: React.ReactNode }) {
   return <div className="au-root">{children}</div>;
 }
 
-function AuthPending() {
+export function AuthPending() {
   return (
     <Centered>
       <div role="status" aria-live="polite" className="au-pending">
@@ -60,7 +60,7 @@ function AuthPending() {
 }
 
 /** `/auth/me` itself failed (server down / 5xx): not a logout, so offer a retry. */
-function AuthCheckFailed() {
+export function AuthCheckFailed() {
   const router = useRouter();
   return (
     <Centered>

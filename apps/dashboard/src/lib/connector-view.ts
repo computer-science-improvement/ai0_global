@@ -46,7 +46,22 @@ const EVENT_LABEL: Record<string, string> = {
 export const activityLabel = (event: string): string => EVENT_LABEL[event] ?? event;
 
 /** True when the owner should look at the row (a refused reuse, a denied consent or a failed call). */
-export const activityAlert = (a: { event: string; ok: boolean }): boolean => !a.ok || a.event === 'refresh_reuse';
+export const activityAlert = (a: { event: string; ok: boolean | null }): boolean =>
+  a.ok === false || a.event === 'refresh_reuse' || a.event === 'consent_deny';
+
+/** The result badge text. OAuth rows carry `ok: null` (they have no success flag), so null is not an error. */
+export const activityResult = (a: { event: string; ok: boolean | null }): 'ok' | 'blocked' | 'error' =>
+  a.ok === false ? 'error' : activityAlert(a) ? 'blocked' : 'ok';
+
+/** Configuration keys that change what Settings → Connectors shows (address, switch). */
+export const CONNECTOR_SETTING_KEYS: readonly string[] = ['MCP_CONNECTOR', 'MCP_PUBLIC_URL', 'DASHBOARD_URL'];
+
+/** Label for a client's kind on the consent page: only a metadata-document client is verified. */
+export function clientKindLabel(kind: string): string | null {
+  if (kind === 'cimd') return 'Verified Claude app';
+  if (kind === 'dcr') return 'Self-registered app — its name is not verified';
+  return kind ? `${kind} app` : null;
+}
 
 /** The host of a URL, for display; a string that is not a URL comes back as it is. */
 export function hostOf(url: string): string {
@@ -66,15 +81,15 @@ export function safeRedirect(url: unknown, loopbackOk: boolean): string | null {
   return u.protocol === 'http:' && local && loopbackOk ? u.toString() : null;
 }
 
-export type ConsentFailure = 'unknown' | 'expired' | 'decided' | 'denied' | 'error';
+export type ConsentFailure = 'unknown' | 'expired' | 'decided' | 'denied' | 'badOrigin' | 'connectorOff' | 'error';
 
 /** What a failed consent call means for the owner, from the HTTP status and the server's `{error}` code. */
 export function consentFailure(status: number, body: string): ConsentFailure {
   let code = '';
   try { const j = JSON.parse(body) as { error?: unknown }; if (typeof j.error === 'string') code = j.error; } catch { /* not JSON */ }
-  if (status === 404) return 'unknown';
+  if (status === 404) return code === 'connector_off' ? 'connectorOff' : 'unknown';
   if (status === 410) return /decid|used|already/i.test(code) ? 'decided' : 'expired';
-  if (status === 403) return 'denied';
+  if (status === 403) return code === 'bad_origin' ? 'badOrigin' : 'denied';
   return 'error';
 }
 
@@ -83,5 +98,7 @@ export const CONSENT_FAILURE_TEXT: Record<ConsentFailure, { title: string; text:
   expired: { title: 'Request expired', text: 'This sign-in request timed out. Start again from Claude (Connect).' },
   decided: { title: 'Already decided', text: 'This request was already answered. You can close this tab.' },
   denied: { title: 'Not allowed from here', text: 'Only a signed-in dashboard session can approve a connection. Sign in to the dashboard and try again.' },
+  badOrigin: { title: 'Wrong address', text: 'Open this page on the dashboard address, then start again from Claude (Connect).' },
+  connectorOff: { title: 'Connector is off', text: 'The connector is turned off in Settings → Connectors.' },
   error: { title: "Couldn't load the request", text: 'Something went wrong on the server. Try again, or start again from Claude.' },
 };

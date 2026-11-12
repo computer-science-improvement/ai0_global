@@ -43,7 +43,8 @@ export interface ConnectorActivity {
   event:      string;
   tool:       string | null;
   clientName: string | null;
-  ok:         boolean;
+  /** `null` on OAuth rows (register, consent, token, revoke): only tool calls carry a success flag. */
+  ok:         boolean | null;
   error:      string | null;
   durationMs: number | null;
   summary:    string | null;

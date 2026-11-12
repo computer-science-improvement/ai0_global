@@ -81,6 +81,9 @@ export const NOT_A_MISS: readonly RegExp[] = [/^superseded by a new plan/, /^mod
 /** Skips that are the owner's own decision (rejected, paused): not a miss either, the owner knows. */
 export const OWNER_DECISION: readonly RegExp[] = [/^rejected by owner/, /^resource_paused/, /^agent @.* is paused/, /^agent paused/];
 
+/** Owner skips written by any surface (dashboard, chat, connector); mirrors OWNER_SKIP_PREFIXES in automation slot-lock.ts. */
+export const OWNER_SKIP_PREFIXES: readonly string[] = ['skipped by owner (connector)', 'skipped by the owner (chat)', 'skipped by owner'];
+
 /** The slot fields the miss rule reads (an `EditorSlot` or an `/api/upcoming` row both fit). */
 export interface MissCandidate {
   status: string | null;
@@ -100,7 +103,8 @@ export function isNotAMiss(error: string | null | undefined): boolean {
 /** The error is the owner's own decision (rejected by the owner, a paused resource or agent). */
 export function isOwnerDecision(error: string | null | undefined): boolean {
   const e = (error ?? '').trim();
-  return OWNER_DECISION.some((r) => r.test(e));
+  return OWNER_DECISION.some((r) => r.test(e))
+    || OWNER_SKIP_PREFIXES.some((p) => e === p || e.startsWith(`${p}:`) || e.startsWith(`${p} `));
 }
 
 /**

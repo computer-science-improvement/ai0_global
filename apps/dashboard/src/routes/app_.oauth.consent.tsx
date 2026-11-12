@@ -5,8 +5,9 @@ import { ApiError } from '../api/client';
 import { connectorsApi } from '../api/connectors';
 import { useAuth } from '../auth/use-auth';
 import { sessionQuery } from '../auth/session';
+import { AuthCheckFailed, AuthPending } from './app';
 import { Icon } from '../components/ui/Icon';
-import { CONSENT_FAILURE_TEXT, consentFailure, safeRedirect, scopeLabel, type ConsentFailure } from '../lib/connector-view';
+import { CONSENT_FAILURE_TEXT, clientKindLabel, consentFailure, safeRedirect, scopeLabel, type ConsentFailure } from '../lib/connector-view';
 import '../components/auth/auth.css';
 
 // Spec 103 FR-E: the page the connector's /api/oauth/authorize sends the owner to (`?request=<opaque id>`). It sits
@@ -27,6 +28,8 @@ export const Route = createFileRoute('/app_/oauth/consent')({
       throw redirect({ to: '/login', search: { next: location.href, ...(session.reason ? { reason: session.reason } : {}) } });
     }
   },
+  pendingComponent: AuthPending,
+  errorComponent: AuthCheckFailed,
   component: ConsentPage,
 });
 
@@ -96,7 +99,7 @@ function ConsentPage() {
       <div className="text-overline au-over">Connect Claude</div>
       <h1 className="page-title au-title au-consent-title">{r.client.name} wants access to ai0</h1>
       <p className="au-sub">
-        {r.client.kind ? <>{r.client.kind} app · </> : null}
+        {clientKindLabel(r.client.kind) ? <>{clientKindLabel(r.client.kind)} · </> : null}
         it will return to <span className="mono au-host">{r.client.redirectHost}</span>
       </p>
 

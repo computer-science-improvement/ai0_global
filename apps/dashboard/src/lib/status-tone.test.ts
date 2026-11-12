@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import {
-  MARK_LABEL, MARK_ORDER, NOT_A_MISS, OWNER_DECISION, PUBLICATION_TONE, SLOT_TONE,
+  MARK_LABEL, MARK_ORDER, NOT_A_MISS, OWNER_DECISION, OWNER_SKIP_PREFIXES, PUBLICATION_TONE, SLOT_TONE,
   isMissed, isNotAMiss, isOwnerDecision, markTone, publicationLabel, publicationTone, slotLabel, slotMark, slotTone,
 } from './status-tone';
 
@@ -107,4 +107,21 @@ test('NOT_A_MISS and OWNER_DECISION are the backend\'s NOT_A_MISS and OWNER (ski
   const src = readFileSync(BACKEND, 'utf8');
   same(NOT_A_MISS, backendList(src, 'NOT_A_MISS'));
   same(OWNER_DECISION, backendList(src, 'OWNER'));
+});
+
+test('D4: owner skips from any surface are decisions, not misses', () => {
+  for (const error of ['skipped by owner', 'skipped by owner: not today', 'skipped by the owner (chat)', 'skipped by owner (connector): not today', 'skipped by owner (connector)']) {
+    assert.equal(isOwnerDecision(error), true, error);
+    assert.equal(isMissed({ status: 'skipped', error, seriesName: 'Tips' }), false, error);
+    assert.equal(slotMark({ status: 'skipped', error, scheduleRuleId: 'r1' }), 'skipped', error);
+  }
+  assert.equal(isOwnerDecision('skipped by ownership'), false);
+  assert.equal(isMissed({ status: 'skipped', error: 'no material', seriesName: 'Tips' }), true);
+});
+
+const SLOT_LOCK = fileURLToPath(new URL('../../../automation/src/editor/repo/slot-lock.ts', import.meta.url));
+test("OWNER_SKIP_PREFIXES are the backend's (slot-lock.ts)", { skip: !existsSync(SLOT_LOCK) && 'backend source not in this checkout' }, () => {
+  const src = readFileSync(SLOT_LOCK, 'utf8');
+  const strings = [...src.matchAll(/export const (?:OWNER_SKIP_PREFIX|OWNER_CHAT_SKIP_PREFIX|CONNECTOR_SKIP_PREFIX)\s*=\s*'([^']+)'/g)].map((m) => m[1]);
+  assert.deepEqual([...OWNER_SKIP_PREFIXES].sort(), strings.sort());
 });

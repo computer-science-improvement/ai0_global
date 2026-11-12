@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { activityAlert, activityLabel, claudeCodeCommand, consentFailure, safeRedirect, scopeChip, scopeLabel, statusWarning } from './connector-view';
+import { activityAlert, activityLabel, activityResult, claudeCodeCommand, clientKindLabel, CONNECTOR_SETTING_KEYS, CONSENT_FAILURE_TEXT, consentFailure, safeRedirect, scopeChip, scopeLabel, statusWarning } from './connector-view';
 
 test('scopes read in plain English and unknown ones pass through', () => {
   assert.match(scopeLabel('mcp:read'), /^See channels/);
@@ -52,4 +52,30 @@ test('activity: labels and which rows need a look', () => {
   assert.equal(activityAlert({ event: 'tools/call', ok: false }), true);
   assert.equal(activityAlert({ event: 'refresh_reuse', ok: true }), true);
   assert.equal(activityAlert({ event: 'tools/call', ok: true }), false);
+});
+
+test('D1: OAuth rows have ok null: not an error, and a reuse or denial is "blocked"', () => {
+  assert.equal(activityAlert({ event: 'token_issued', ok: null }), false);
+  assert.equal(activityResult({ event: 'token_issued', ok: null }), 'ok');
+  assert.equal(activityResult({ event: 'refresh_reuse', ok: null }), 'blocked');
+  assert.equal(activityResult({ event: 'consent_deny', ok: null }), 'blocked');
+  assert.equal(activityResult({ event: 'tool_call', ok: false }), 'error');
+  assert.equal(activityResult({ event: 'tool_call', ok: true }), 'ok');
+});
+
+test('D6: the settings that change the connector status', () => {
+  assert.deepEqual([...CONNECTOR_SETTING_KEYS].sort(), ['DASHBOARD_URL', 'MCP_CONNECTOR', 'MCP_PUBLIC_URL']);
+});
+
+test('D7: bad_origin and connector_off have their own texts', () => {
+  assert.equal(consentFailure(403, '{"error":"bad_origin"}'), 'badOrigin');
+  assert.match(CONSENT_FAILURE_TEXT.badOrigin.text, /Open this page on the dashboard address/);
+  assert.equal(consentFailure(404, '{"error":"connector_off"}'), 'connectorOff');
+  assert.match(CONSENT_FAILURE_TEXT.connectorOff.text, /turned off in Settings → Connectors/);
+});
+
+test('AUTH-1: client kinds are labelled verified or not', () => {
+  assert.equal(clientKindLabel('cimd'), 'Verified Claude app');
+  assert.match(clientKindLabel('dcr')!, /not verified/);
+  assert.equal(clientKindLabel(''), null);
 });

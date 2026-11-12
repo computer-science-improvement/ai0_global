@@ -17,7 +17,7 @@ import { toast, describeError } from '../ui/Toast';
 import { Toggle } from '../agents/AgentsUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { isOn } from '../../lib/settings-catalog';
-import { activityAlert, activityLabel, claudeCodeCommand, scopeChip, statusWarning } from '../../lib/connector-view';
+import { activityAlert, activityLabel, activityResult, claudeCodeCommand, scopeChip, statusWarning } from '../../lib/connector-view';
 
 const CATALOG_KEY = ['settings', 'catalog'] as const;
 const SWITCH_KEY = 'MCP_CONNECTOR';
@@ -205,7 +205,7 @@ function ActivityTable({ items }: { items: ConnectorActivity[] }) {
               </td>
               <td>{a.clientName ?? '—'}</td>
               <td>
-                <Badge tone={activityAlert(a) ? 'danger' : 'success'} title={a.error ?? undefined}>{!a.ok ? 'error' : activityAlert(a) ? 'blocked' : 'ok'}</Badge>
+                <Badge tone={activityAlert(a) ? 'danger' : 'success'} title={a.error ?? undefined}>{activityResult(a)}</Badge>
                 {a.error && <div className="text-micro ink-dim" style={{ overflowWrap: 'anywhere' }}>{a.error}</div>}
               </td>
               <td className="num mono">{a.durationMs != null ? `${a.durationMs} ms` : '—'}</td>

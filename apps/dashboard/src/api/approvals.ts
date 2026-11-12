@@ -124,7 +124,7 @@ export function useBulkApprove() {
   return useMutation({
     meta: { silentError: true },
     mutationFn: (b: { channel?: string; resource?: string; date?: string; idea_id?: string }) =>
-      api<{ approved: number; skippedWithWarnings: number; conflicts: number; ids: string[] }>('/api/editor/approvals/bulk', {
+      api<{ approved: number; skippedWithWarnings: number; conflicts: number; skippedLocked?: number; ids: string[] }>('/api/editor/approvals/bulk', {
         method: 'POST', body: JSON.stringify(b),
       }),
     onSettled: () => qc.invalidateQueries({ queryKey: KEY }),

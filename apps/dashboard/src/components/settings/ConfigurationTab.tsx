@@ -7,6 +7,8 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { settingsApi, type SettingState, type SettingsCatalog } from '../../api/settings';
+import { CONNECTOR_STATUS_KEY } from '../../api/connectors';
+import { CONNECTOR_SETTING_KEYS } from '../../lib/connector-view';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { SectionCard, EmptyState } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
@@ -40,7 +42,11 @@ export function ConfigurationTab({ group, onGroup }: { group: string; onGroup: (
   const save = useMutation({
     mutationFn: (a: { kind: 'set'; key: string; value: string } | { kind: 'reset' | 'import'; key: string }) =>
       a.kind === 'set' ? settingsApi.setValue(a.key, a.value) : a.kind === 'reset' ? settingsApi.reset(a.key) : settingsApi.importEnv(a.key),
-    onSuccess: put,
+    onSuccess: (fresh) => {
+      put(fresh);
+      // The connector status (URL, switch, warnings) is derived from these settings.
+      if (CONNECTOR_SETTING_KEYS.includes(fresh.key)) void qc.invalidateQueries({ queryKey: CONNECTOR_STATUS_KEY });
+    },
   });
 
   // After "Restart service": poll until the service answers with a new start time.

@@ -9,8 +9,10 @@ import { Fragment, useMemo } from 'react';
 import { EmptyState } from '../ui/primitives';
 import { Icon } from '../ui/Icon';
 import { toast, describeError } from '../ui/Toast';
+import { isLockedSlot } from '../../lib/slot-origin';
 import { ApprovalCard } from './ApprovalCard';
 import { heldByCritic } from '../../lib/critic';
+import { bulkApproveToast, bulkApprovable } from '../../lib/approval-bulk';
 import { fmtDay, useApprovals, useBulkApprove, type ApprovalCardData, type ApprovalFilter } from '../../api/approvals';
 
 interface Group { key: string; channelKey: string; resourceRef: string; title: string; day: string; items: ApprovalCardData[] }
@@ -25,8 +27,6 @@ function groupOf(items: ApprovalCardData[]): Group[] {
   }
   return [...m.values()].sort((a, b) => a.day.localeCompare(b.day) || a.channelKey.localeCompare(b.channelKey) || a.resourceRef.localeCompare(b.resourceRef));
 }
-
-const posts = (n: number) => `${n} ${n === 1 ? 'post' : 'posts'}`;
 
 export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: ApprovalFilter; emptyNote?: string; limit?: number }) {
   const q = useApprovals({ ...filter, status: ['awaiting_approval', 'approved'] });
@@ -45,10 +45,7 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
 
   const approveAll = (body: { channel?: string; resource?: string; date: string }, label: string) => bulk.mutate(body, {
     onSuccess: (r) => {
-      const parts = [`Approved ${posts(r.approved)} (${label})`];
-      if (r.skippedWithWarnings) parts.push(`${r.skippedWithWarnings} with warnings or critic notes — review them one by one`);
-      if (r.conflicts) parts.push(`${r.conflicts} already decided`);
-      toast.success(parts.join('; '));
+      toast.success(bulkApproveToast(r, label));
     },
     onError: (e) => toast.error(describeError(e)),
   });
@@ -66,7 +63,8 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
       {groups.map((g) => {
         const waiting = g.items.filter((i) => i.status === 'awaiting_approval');
         // Posts with lint warnings or a critic verdict other than pass are decided one by one (spec 034 FR-004).
-        const clean = waiting.filter((i) => !i.lintWarnings.length && !heldByCritic(i.critic)).length;
+        const clean = bulkApprovable(waiting, heldByCritic);
+        const lockedWaiting = waiting.filter((i) => isLockedSlot(i)).length;
         const nk = `${g.channelKey}|${g.day}`;
         const showNetwork = (networkDays.get(nk)?.size ?? 0) > 1 && nk !== lastNetworkDay;
         if (showNetwork) lastNetworkDay = nk;
@@ -92,7 +90,7 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
                 </div>
                 {waiting.length > 0 && (
                   <button className="btn-secondary btn-sm" disabled={bulk.isPending || clean === 0}
-                    title={clean === 0 ? 'Every post has warnings — approve them one by one' : undefined}
+                    title={clean === 0 ? 'Every post has warnings or is locked — approve them one by one' : lockedWaiting > 0 ? `${lockedWaiting} locked ${lockedWaiting === 1 ? 'post is' : 'posts are'} left out: approve them one by one` : undefined}
                     onClick={() => approveAll({ resource: g.resourceRef, date: g.day }, `${g.title}, ${fmtDay(g.day)}`)}>
                     <Icon name="check" size={14} /> Approve all for {fmtDay(g.day)}{clean < waiting.length ? ` (${clean})` : ''}
                   </button>
