@@ -42,6 +42,16 @@ claude mcp add --transport http ai0 https://dev.ai0.global/api/mcp
 ```
 Then run `/mcp` in Claude Code, pick `ai0` and authenticate (a browser opens on the consent page).
 
+**The connector's icon.** Claude.ai and Claude Desktop do not use the server's own icon for a custom connector (not
+documented; observed by many server owners in anthropics/claude-ai-mcp#152, still open in Nov 2026). They show Google's
+favicon of the **registrable domain**: for `dev.ai0.global` that is `ai0.global`, which is the GoDaddy site, so the
+connector shows GoDaddy's default "house" logo until that site has a favicon. To fix it, upload
+`apps/dashboard/public/icon-512.png` as the favicon of the `ai0.global` site in GoDaddy. Google refreshes its favicon
+cache on its own schedule (days, sometimes weeks), and Claude caches the icon per domain: remove and re-add the
+connector after the new icon shows at `https://www.google.com/s2/favicons?domain=ai0.global&sz=64`. The server still
+sends `serverInfo.icons` and `websiteUrl` (MCP 2025-11-25), and the dashboard serves `favicon.ico`, `icon-192.png`,
+`icon-512.png` and `apple-touch-icon.png`, for clients that follow the spec.
+
 Claude identifies itself with a Client ID Metadata Document (only Claude's two documents are accepted); the consent page
 labels it "Verified Claude app". Dynamic client registration is a fallback restricted to Claude's callback URLs and
 loopback (labelled "Self-registered app — its name is not verified"): 20 registrations per IP (IPv6: per /64) per hour,

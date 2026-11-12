@@ -29,6 +29,14 @@ export interface McpTool {
   call(args: Record<string, unknown>): Promise<unknown>;
 }
 
+/** An icon of the server (MCP 2025-11-25 `Icon`). */
+export interface McpIcon {
+  src:       string;
+  mimeType?: string;
+  /** e.g. ['48x48'], or ['any'] for SVG. */
+  sizes?:    string[];
+}
+
 /** Thrown by a tool to report a failure to the model (tool result with isError). */
 export class ToolFailure extends Error {}
 
@@ -37,6 +45,9 @@ export interface McpServerOptions {
   version: string;
   /** Shown to the user by some clients (serverInfo.title). */
   title?:  string;
+  /** serverInfo.icons and serverInfo.websiteUrl (MCP 2025-11-25): absolute https URLs a client may show as the server's logo. */
+  icons?:  McpIcon[];
+  websiteUrl?: string;
   /** Returned by `initialize`: how a model should use this server (spec 103). */
   instructions?: string;
   tools:   () => Promise<McpTool[]>;
@@ -127,7 +138,12 @@ export class McpServer {
           return ok({
             protocolVersion: SUPPORTED_PROTOCOL_VERSIONS.includes(requested) ? requested : SUPPORTED_PROTOCOL_VERSIONS[0],
             capabilities:    { tools: { listChanged: false } },
-            serverInfo:      { name: this.o.name, version: this.o.version, ...(this.o.title ? { title: this.o.title } : {}) },
+            serverInfo:      {
+              name: this.o.name, version: this.o.version,
+              ...(this.o.title ? { title: this.o.title } : {}),
+              ...(this.o.icons?.length ? { icons: this.o.icons } : {}),
+              ...(this.o.websiteUrl ? { websiteUrl: this.o.websiteUrl } : {}),
+            },
             ...(this.o.instructions ? { instructions: this.o.instructions } : {}),
           });
         }

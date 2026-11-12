@@ -27,6 +27,10 @@ test('spec 103: initialize carries title and instructions; tools/list carries ti
     protocolVersion: '2025-11-25', capabilities: { tools: { listChanged: false } },
     serverInfo: { name: 'ai0', version: '2', title: 'ai0 network' }, instructions: 'Use me well.',
   });
+  const icons = [{ src: 'https://x.test/icon-512.png', mimeType: 'image/png', sizes: ['512x512'] }];
+  const withIcons = new McpServer({ name: 'ai0', version: '2', icons, websiteUrl: 'https://x.test', tools: async () => [] });
+  const init2 = await withIcons.handle({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-11-25' } });
+  assert.deepEqual((init2!.result as any).serverInfo, { name: 'ai0', version: '2', icons, websiteUrl: 'https://x.test' });
   const list = await s.handle({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
   assert.deepEqual((list!.result as any).tools[0], {
     name: 'echo', title: 'Echo', description: 'echo back', inputSchema: echo.inputSchema, annotations: { readOnlyHint: true, openWorldHint: false },

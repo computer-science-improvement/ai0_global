@@ -135,7 +135,14 @@ test('initialize returns the server info and the instructions', async () => {
   const r = await s.post(rpc('initialize', { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'c', version: '1' } }));
   const res = (r.body as any).result;
   assert.equal(res.protocolVersion, '2025-11-25');
-  assert.deepEqual(res.serverInfo, { name: 'ai0', version: '1.0.0', title: 'ai0 network' });
+  assert.deepEqual(res.serverInfo, {
+    name: 'ai0', version: '1.0.0', title: 'ai0 network', websiteUrl: 'https://dev.ai0.global',
+    icons: [
+      { src: 'https://dev.ai0.global/icon-512.png', mimeType: 'image/png', sizes: ['512x512'] },
+      { src: 'https://dev.ai0.global/icon-192.png', mimeType: 'image/png', sizes: ['192x192'] },
+      { src: 'https://dev.ai0.global/favicon.svg', mimeType: 'image/svg+xml', sizes: ['any'] },
+    ],
+  });
   assert.equal(res.instructions, SERVER_INSTRUCTIONS);
   for (const word of ['timezone', 'locked', 'untrusted', 'publish']) assert.ok(SERVER_INSTRUCTIONS.toLowerCase().includes(word), word);
 });

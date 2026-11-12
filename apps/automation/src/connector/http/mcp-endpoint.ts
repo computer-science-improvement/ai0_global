@@ -1,11 +1,11 @@
 import { Logger } from '@nestjs/common';
-import { McpServer, RPC, SUPPORTED_PROTOCOL_VERSIONS, ToolFailure, type McpTool } from '../../editor/mcp/mcp-server';
+import { McpServer, RPC, SUPPORTED_PROTOCOL_VERSIONS, ToolFailure, type McpIcon, type McpTool } from '../../editor/mcp/mcp-server';
 import { clientIp } from '../../auth/client-info';
 import { summarizeArgs, type AuditSink } from '../audit/audit';
 import { MAX_RESULT_CHARS, RATE_LIMIT_PER_MIN, TOOL_TIMEOUT_MS, TOUCH_INTERVAL_MS } from '../oauth/constants';
 import type { OAuthService } from '../oauth/oauth.service';
 import type { OAuthStore } from '../oauth/store';
-import type { ConnectorPrincipal, ConnectorTool, ConnectorToolsFactory } from '../types';
+import type { ConnectorPrincipal, ConnectorTool, ConnectorToolsFactory, ConnectorUrls } from '../types';
 import { liveUrls, type ConnectorConfig } from './config';
 import type { McpBodyState } from './mcp-body.middleware';
 
@@ -20,6 +20,19 @@ export const SERVER_INSTRUCTIONS = [
   'Publishing: nothing is published directly from here. Posts go out only through the schedule and the approval flow. There is no publish-now tool.',
   'Prefer read tools first; ask the owner before write tools that change what will be published.',
 ].join('\n');
+
+/**
+ * The logo a client may show for the connector: the dashboard's own icon files (apps/dashboard/public), by absolute URL.
+ * Claude.ai currently draws custom connector icons from Google's favicon of the registrable domain instead (spec 103
+ * runbook §2), so these matter for clients that follow MCP 2025-11-25 `serverInfo.icons`.
+ */
+export function serverIcons(site: string): McpIcon[] {
+  return [
+    { src: `${site}/icon-512.png`, mimeType: 'image/png', sizes: ['512x512'] },
+    { src: `${site}/icon-192.png`, mimeType: 'image/png', sizes: ['192x192'] },
+    { src: `${site}/favicon.svg`, mimeType: 'image/svg+xml', sizes: ['any'] },
+  ];
+}
 
 export interface McpEndpointDeps {
   cfg:     ConnectorConfig;
@@ -115,7 +128,7 @@ export class McpEndpoint {
     if (msg && typeof msg === 'object' && msg.method === undefined && ('result' in msg || 'error' in msg)) { res.status(202).end(); return; }
 
     const ip = clientIp(req);
-    const { server, visible, all } = this.serverFor(principal, ip);
+    const { server, visible, all } = this.serverFor(principal, ip, urls);
     await this.auditRefused(msg, principal, ip, visible, all);
     const out = await server.handle(body);
     if (out === null) { res.status(202).end(); return; }
@@ -143,13 +156,15 @@ export class McpEndpoint {
     void this.d.store.touchGrant(grantId, ip, now).catch(() => undefined);
   }
 
-  private serverFor(p: ConnectorPrincipal, ip: string | null) {
+  private serverFor(p: ConnectorPrincipal, ip: string | null, urls: ConnectorUrls) {
     let everything: Promise<ConnectorTool[]> | null = null;
     let cached: Promise<McpTool[]> | null = null;
     const all = () => (everything ??= this.d.tools.tools(p));
     const tools = () => (cached ??= all().then((list) => list.filter((t) => p.scopes.has(t.scope)).map((t) => this.audited(t, p, ip))));
+    const site = urls.dashboardOrigin ?? urls.origin;
     const server = new McpServer({
       name: 'ai0', title: 'ai0 network', version: '1.0.0', instructions: SERVER_INSTRUCTIONS, tools, maxResultChars: MAX_RESULT_CHARS,
+      icons: serverIcons(site), websiteUrl: site,
       log: (msg) => this.log.warn(msg),
     });
     return { server, visible: tools, all };
