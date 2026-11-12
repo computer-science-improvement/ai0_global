@@ -7,6 +7,7 @@ import { PREVIEW_STALE_MS, type SlotPreview } from '../roles/preview-run';
 import type { SlotFallback } from '../silent/fallback-ladder';
 import type { SloSlotMark } from '../slo/types';
 import { EMPTY_DAY_ERROR_RE, type EmptyDaySlot } from '../schedule/empty-day';
+import type { SlotLockOwner } from './slot-lock';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -74,6 +75,12 @@ export interface EditorSlot {
   previewDraft?:      SlotPreview | null;
   /** Spec 037 FR-010: the fallback ladder of a failed post (migration 076; present only when set). */
   fallback?:          SlotFallback | null;
+  // ── Claude connector (spec 103, migration 105); present only when set ──
+  /** 'connector': the slot was made through the connector (a label only). */
+  createdVia?:        'connector' | null;
+  /** A locked slot is the owner's: the automation never replaces, re-plans or rewrites it (see slot-lock.ts). */
+  lockedBy?:          SlotLockOwner | null;
+  lockedAt?:          Date | null;
 }
 
 /** editor_slots.source_post of a derived slot (spec 024). */
@@ -163,6 +170,9 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.critic ? { critic: r.critic } : {}),
     ...(r.preview_draft ? { previewDraft: r.preview_draft } : {}),
     ...(r.fallback ? { fallback: r.fallback } : {}),
+    ...(r.created_via ? { createdVia: r.created_via } : {}),
+    ...(r.locked_by ? { lockedBy: r.locked_by } : {}),
+    ...(r.locked_at ? { lockedAt: new Date(r.locked_at) } : {}),
   };
 }
 

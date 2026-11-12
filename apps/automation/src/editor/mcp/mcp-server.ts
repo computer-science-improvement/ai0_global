@@ -10,10 +10,22 @@ import type { Readable, Writable } from 'stream';
  * protocol messages only; diagnostics go to the `log` callback (stderr).
  */
 
+/** MCP tool annotations (spec 2025-06-18+): hints a client uses to decide when to ask the user before a call. */
+export interface McpToolAnnotations {
+  title?:           string;
+  readOnlyHint?:    boolean;
+  destructiveHint?: boolean;
+  idempotentHint?:  boolean;
+  openWorldHint?:   boolean;
+}
+
 export interface McpTool {
-  name:        string;
-  description: string;
-  inputSchema: Record<string, unknown>;
+  name:         string;
+  /** Human-readable name (spec 103: every connector tool has one). */
+  title?:       string;
+  description:  string;
+  inputSchema:  Record<string, unknown>;
+  annotations?: McpToolAnnotations;
   call(args: Record<string, unknown>): Promise<unknown>;
 }
 
@@ -23,6 +35,10 @@ export class ToolFailure extends Error {}
 export interface McpServerOptions {
   name:    string;
   version: string;
+  /** Shown to the user by some clients (serverInfo.title). */
+  title?:  string;
+  /** Returned by `initialize`: how a model should use this server (spec 103). */
+  instructions?: string;
   tools:   () => Promise<McpTool[]>;
   log?:    (msg: string) => void;
 }
@@ -35,7 +51,8 @@ interface JsonRpcResponse {
   error?:  { code: number; message: string; data?: unknown };
 }
 
-export const SUPPORTED_PROTOCOL_VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05'];
+/** Newest first: an unknown requested version is answered with the first one. */
+export const SUPPORTED_PROTOCOL_VERSIONS = ['2025-11-25', '2025-06-18', '2025-03-26', '2024-11-05'];
 
 export const RPC = { PARSE: -32700, INVALID_REQUEST: -32600, METHOD_NOT_FOUND: -32601, INVALID_PARAMS: -32602, INTERNAL: -32603 } as const;
 
@@ -62,14 +79,19 @@ export class McpServer {
           return ok({
             protocolVersion: SUPPORTED_PROTOCOL_VERSIONS.includes(requested) ? requested : SUPPORTED_PROTOCOL_VERSIONS[0],
             capabilities:    { tools: { listChanged: false } },
-            serverInfo:      { name: this.o.name, version: this.o.version },
+            serverInfo:      { name: this.o.name, version: this.o.version, ...(this.o.title ? { title: this.o.title } : {}) },
+            ...(this.o.instructions ? { instructions: this.o.instructions } : {}),
           });
         }
         case 'ping':
           return isNotification ? null : ok({});
         case 'tools/list': {
           const tools = await this.o.tools();
-          return ok({ tools: tools.map(({ name, description, inputSchema }) => ({ name, description, inputSchema })) });
+          return ok({
+            tools: tools.map(({ name, title, description, inputSchema, annotations }) => ({
+              name, ...(title ? { title } : {}), description, inputSchema, ...(annotations ? { annotations } : {}),
+            })),
+          });
         }
         case 'tools/call': {
           const name = params?.name;

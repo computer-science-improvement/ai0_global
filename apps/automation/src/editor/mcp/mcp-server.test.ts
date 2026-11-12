@@ -16,7 +16,21 @@ test('initialize negotiates the protocol version and advertises tools', async ()
   const r = await server().handle({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-03-26', capabilities: {}, clientInfo: { name: 'c', version: '1' } } });
   assert.deepEqual(r, { jsonrpc: '2.0', id: 1, result: { protocolVersion: '2025-03-26', capabilities: { tools: { listChanged: false } }, serverInfo: { name: 'ai0-editor', version: '1.0.0' } } });
   const future = await server().handle({ jsonrpc: '2.0', id: 2, method: 'initialize', params: { protocolVersion: '2099-01-01' } });
-  assert.equal((future!.result as any).protocolVersion, '2025-06-18');
+  assert.equal((future!.result as any).protocolVersion, '2025-11-25');
+});
+
+test('spec 103: initialize carries title and instructions; tools/list carries title and annotations', async () => {
+  const annotated: McpTool = { ...echo, title: 'Echo', annotations: { readOnlyHint: true, openWorldHint: false } };
+  const s = new McpServer({ name: 'ai0', title: 'ai0 network', version: '2', instructions: 'Use me well.', tools: async () => [annotated] });
+  const init = await s.handle({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-11-25' } });
+  assert.deepEqual(init!.result, {
+    protocolVersion: '2025-11-25', capabilities: { tools: { listChanged: false } },
+    serverInfo: { name: 'ai0', version: '2', title: 'ai0 network' }, instructions: 'Use me well.',
+  });
+  const list = await s.handle({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
+  assert.deepEqual((list!.result as any).tools[0], {
+    name: 'echo', title: 'Echo', description: 'echo back', inputSchema: echo.inputSchema, annotations: { readOnlyHint: true, openWorldHint: false },
+  });
 });
 
 test('tools/list and tools/call', async () => {

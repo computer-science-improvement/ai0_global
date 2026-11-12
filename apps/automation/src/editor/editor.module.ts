@@ -229,6 +229,7 @@ import { telegramReader } from './steering/steering-source';
 import { OwnerBotService } from './owner-bot/owner-bot.service';
 import { AUTONOMY_DECISIONS, AutonomyDecisionsController } from './autonomy/autonomy-decisions.controller';
 import { EDITOR_SLO_REPO, SloApiController } from './slo/slo.controller';
+import { SlotLockController } from './lock/slot-lock.controller';
 import { OWNER_BOT, OwnerBotWorker, type OwnerBotInfra } from './owner-bot/owner-bot.worker';
 import { OwnerReports } from './owner-bot/owner-reports';
 import { OwnerBotController } from './owner-bot/owner-bot.controller';
@@ -2736,8 +2737,11 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController, SloApiController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, AutonomyDecisionsController, LaunchController, MapController, AuditController, ReadinessController, SourcesController, SloApiController, SlotLockController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
-  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
+  // Spec 103: the Claude connector (src/connector) calls these services in-process.
+  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER,
+                EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS, AGENTS_SERVICE, APPROVALS_SERVICE, APPROVAL_INFRA, NETWORK_HEALTH,
+                EDITOR_SLO_REPO, UPCOMING_SLOTS, SCHEDULE_SERVICE],
 })
 export class EditorModule {}

@@ -20,6 +20,7 @@ import { ActivityModule }       from './activity/activity.module';
 import { AgentModule }          from './agent/agent.module';
 import { PaymentsModule }       from './payments/payments.module';
 import { EditorModule }         from './editor/editor.module';
+import { ConnectorModule }      from './connector/connector.module';
 import { SpendModule }          from './spend/spend.module';
 import { DataModule }           from './data/data.module';
 
@@ -39,6 +40,7 @@ import { DataModule }           from './data/data.module';
     AgentModule,
     PaymentsModule,
     EditorModule,
+    ConnectorModule,
     SpendModule,
     StatsModule,
     PublishersModule,
