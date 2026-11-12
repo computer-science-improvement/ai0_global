@@ -254,6 +254,7 @@ export class NetworkService {
         sourceHints: s.sourceHints, seriesName: s.seriesName ?? null, isExperiment: s.isExperiment, createdAt: s.createdAt ?? null,
         pinned: !!s.scheduleRuleId, topicMode: s.topicMode ?? 'fixed', ...(s.liveSpec ? { liveSpec: s.liveSpec } : {}),
         critic: s.critic ?? null, previewDraft: s.previewDraft ?? null,
+        createdVia: s.createdVia ?? null, lockedBy: s.lockedBy ?? null, lockedAt: s.lockedAt ?? null,
       })),
       decisions: decisions.map(toDecisionView),
     };

@@ -256,7 +256,7 @@ export function buildReadTools(d: ReadToolDeps): ConnectorTool[] {
         locked: !!s.lockedBy, locked_by: s.lockedBy ?? null, topic: clip(s.topic, 300), angle: s.angle ? clip(s.angle, 300) : null, format: s.format,
         reason: s.error ? { code, label: entry?.en ?? null, fix: entry?.fix?.en ?? null, detail: clip(s.error, 300) } : null,
         preview: s.renderedPreview ? clip(s.renderedPreview, PREVIEW_MAX) : null,
-        spec: s.postSpec ? clipDeep(s.postSpec) : null, lint_warnings: s.lintWarnings ?? [], critic,
+        spec: s.postSpec ? clipDeep(s.postSpec) : null, lint_warnings: (s.lintWarnings ?? []).map((w) => clip(String(w), 300)), critic,
         approval: s.approvedAt || s.status === 'awaiting_approval' || s.rejectReason ? {
           approved_at: s.approvedAt?.toISOString() ?? null, owner_edited: !!s.ownerEdited, reject_reason: s.rejectReason ? clip(s.rejectReason, 300) : null,
           editable_until: new Date(s.scheduledAt.getTime() - 120_000).toISOString(),
@@ -266,7 +266,7 @@ export function buildReadTools(d: ReadToolDeps): ConnectorTool[] {
           at: detail.published.postedAt.toISOString(), message_id: detail.published.messageId,
           link: s.channelKey.startsWith('@') ? `https://t.me/${s.channelKey.slice(1)}/${detail.published.messageId}` : null,
         } : null,
-        untrusted_fields: ['topic', 'angle', 'reason.detail', 'preview', 'spec', 'critic'],
+        untrusted_fields: ['topic', 'angle', 'reason.detail', 'preview', 'spec', 'lint_warnings', 'critic'],
       };
     },
   });

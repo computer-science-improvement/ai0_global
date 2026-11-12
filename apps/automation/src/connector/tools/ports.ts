@@ -54,6 +54,7 @@ export interface ConnectorWritePorts {
   replan(channelKey: string, o: { day: 'today' | 'tomorrow'; instruction?: string }): Promise<ReplanOutcome>;
   cardsApi: {
     get(id: string): Promise<CardView | null>;
+    /** The editor's answer: `{action}` with the settled card (status applied | failed | expired, error, result). */
     apply(id: string, input?: unknown): Promise<unknown>;
     discard(id: string): Promise<unknown>;
   };

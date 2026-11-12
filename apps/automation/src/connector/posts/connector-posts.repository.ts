@@ -44,6 +44,8 @@ export interface PlannedPatch {
   format?:      string;
   at?:          Date;
   sourceHints?: string[];
+  /** The channel's local day of `at`: when given with `at`, the slot moves into that day's active plan. */
+  planDate?:    string;
 }
 
 /** The part of the store the connector's post service uses (a fake in unit tests). */
@@ -54,7 +56,7 @@ export interface ConnectorPostsStore {
   /** A planned slot: topic, angle, format, time. Guarded: still planned and more than `lockBefore` away. Locks it. */
   patchPlanned(id: string, p: PlannedPatch, lockBefore: Date): Promise<EditorSlot | null>;
   /** A waiting or approved post: new text and/or time. Status is kept. Guarded by `lockBefore`. Locks it. */
-  patchWritten(id: string, p: { fields?: PreparedFields; at?: Date }, lockBefore: Date): Promise<EditorSlot | null>;
+  patchWritten(id: string, p: { fields?: PreparedFields; at?: Date; planDate?: string }, lockBefore: Date): Promise<EditorSlot | null>;
   /** planned, awaiting_approval or approved → skipped (`error` is the connector skip text). */
   cancel(id: string, error: string): Promise<EditorSlot | null>;
   /** Times of the channel's other live slots in [from, to] (the minimum-gap check). */
@@ -131,40 +133,56 @@ export class ConnectorPostsRepository implements ConnectorPostsStore {
   }
 
   async patchPlanned(id: string, p: PlannedPatch, lockBefore: Date): Promise<EditorSlot | null> {
-    const sets: string[] = [];
-    const params: unknown[] = [id, lockBefore];
-    const add = (col: string, v: unknown) => { params.push(v); sets.push(`${col} = $${params.length}`); };
-    if (p.topic !== undefined) add('topic', p.topic.slice(0, 300));
-    if (p.angle !== undefined) add('angle', p.angle);
-    if (p.format !== undefined) add('format', p.format);
-    if (p.at !== undefined) add('scheduled_at', p.at);
-    if (p.sourceHints !== undefined) add('source_hints', JSON.stringify(p.sourceHints));
-    const { rows } = await this.pool.query(
-      `UPDATE editor_slots SET ${[...sets, `locked_by = COALESCE(locked_by, 'connector')`, `locked_at = COALESCE(locked_at, now())`, 'updated_at = now()'].join(', ')}
-        WHERE id = $1 AND status = 'planned' AND kind = 'content' AND scheduled_at > $2 RETURNING *`, params);
-    return rows[0] ? rowToSlot(rows[0]) : null;
+    const cur = await this.pool.query(`SELECT channel_key FROM editor_slots WHERE id = $1`, [id]);
+    if (!cur.rows[0]) return null;
+    return this.inTx(async (c) => {
+      const sets: string[] = [];
+      const params: unknown[] = [id, lockBefore];
+      const add = (col: string, v: unknown) => { params.push(v); sets.push(`${col} = $${params.length}`); };
+      if (p.topic !== undefined) add('topic', p.topic.slice(0, 300));
+      if (p.angle !== undefined) add('angle', p.angle);
+      if (p.format !== undefined) add('format', p.format);
+      if (p.at !== undefined) {
+        add('scheduled_at', p.at);
+        if (p.planDate) add('plan_id', await this.planFor(c, cur.rows[0].channel_key as string, p.planDate));
+      }
+      if (p.topic !== undefined || p.angle !== undefined) {
+        // The owner's brief is the slot's whole direction: a live feed spec, an idea or a series row would override it.
+        sets.push(`topic_mode = 'fixed'`, 'live_spec = NULL', 'idea_id = NULL', 'series_name = NULL');
+        add('source_hints', JSON.stringify(['connector:plan']));
+      } else if (p.sourceHints !== undefined) add('source_hints', JSON.stringify(p.sourceHints));
+      const { rows } = await c.query(
+        `UPDATE editor_slots SET ${[...sets, `locked_by = COALESCE(locked_by, 'connector')`, `locked_at = COALESCE(locked_at, now())`, 'updated_at = now()'].join(', ')}
+          WHERE id = $1 AND status = 'planned' AND kind = 'content' AND scheduled_at > $2 RETURNING *`, params);
+      return rows[0] ? rowToSlot(rows[0]) : null;
+    });
   }
 
-  async patchWritten(id: string, p: { fields?: PreparedFields; at?: Date }, lockBefore: Date): Promise<EditorSlot | null> {
-    const sets: string[] = [];
-    const params: unknown[] = [id, lockBefore];
-    const add = (col: string, v: unknown) => { params.push(v); sets.push(`${col} = $${params.length}`); };
-    if (p.fields) {
-      add('post_spec', JSON.stringify(p.fields.postSpec));
-      add('rendered_preview', p.fields.renderedPreview);
-      add('render_messages', JSON.stringify(p.fields.renderMessages));
-      add('prepared_media', JSON.stringify(p.fields.preparedMedia ?? {}));
-      add('lint_warnings', JSON.stringify(p.fields.lintWarnings));
-      sets.push('owner_edited = true', 'error = NULL');
-    }
-    if (p.at) {
-      add('scheduled_at', p.at);
-      sets.push(`freshness_deadline = CASE WHEN freshness_deadline IS NULL THEN NULL ELSE $${params.length}::timestamptz + interval '30 minutes' END`);
-    }
-    const { rows } = await this.pool.query(
-      `UPDATE editor_slots SET ${[...sets, `locked_by = COALESCE(locked_by, 'connector')`, `locked_at = COALESCE(locked_at, now())`, 'updated_at = now()'].join(', ')}
-        WHERE id = $1 AND status IN ('awaiting_approval', 'approved') AND kind = 'content' AND scheduled_at > $2 RETURNING *`, params);
-    return rows[0] ? rowToSlot(rows[0]) : null;
+  async patchWritten(id: string, p: { fields?: PreparedFields; at?: Date; planDate?: string }, lockBefore: Date): Promise<EditorSlot | null> {
+    const cur = await this.pool.query(`SELECT channel_key FROM editor_slots WHERE id = $1`, [id]);
+    if (!cur.rows[0]) return null;
+    return this.inTx(async (c) => {
+      const sets: string[] = [];
+      const params: unknown[] = [id, lockBefore];
+      const add = (col: string, v: unknown) => { params.push(v); sets.push(`${col} = $${params.length}`); };
+      if (p.fields) {
+        add('post_spec', JSON.stringify(p.fields.postSpec));
+        add('rendered_preview', p.fields.renderedPreview);
+        add('render_messages', JSON.stringify(p.fields.renderMessages));
+        add('prepared_media', JSON.stringify(p.fields.preparedMedia ?? {}));
+        add('lint_warnings', JSON.stringify(p.fields.lintWarnings));
+        sets.push('owner_edited = true', 'error = NULL');
+      }
+      if (p.at) {
+        add('scheduled_at', p.at);
+        sets.push(`freshness_deadline = CASE WHEN freshness_deadline IS NULL THEN NULL ELSE $${params.length}::timestamptz + interval '30 minutes' END`);
+        if (p.planDate) add('plan_id', await this.planFor(c, cur.rows[0].channel_key as string, p.planDate));
+      }
+      const { rows } = await c.query(
+        `UPDATE editor_slots SET ${[...sets, `locked_by = COALESCE(locked_by, 'connector')`, `locked_at = COALESCE(locked_at, now())`, 'updated_at = now()'].join(', ')}
+          WHERE id = $1 AND status IN ('awaiting_approval', 'approved') AND kind = 'content' AND scheduled_at > $2 RETURNING *`, params);
+      return rows[0] ? rowToSlot(rows[0]) : null;
+    });
   }
 
   async cancel(id: string, error: string): Promise<EditorSlot | null> {

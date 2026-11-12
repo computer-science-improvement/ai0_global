@@ -218,13 +218,13 @@ export class ConnectorPostsService {
         ...(i.topic !== undefined ? { topic: i.topic } : {}),
         ...(i.angle !== undefined ? { angle: i.angle.trim() || null } : {}),
         ...(i.format !== undefined ? { format: this.formatOf(card, i.format) } : {}),
-        ...(at ? { at } : {}),
+        ...(at ? { at, planDate: localDate(at, card.timezone) } : {}),
       }, lockBefore);
     } else {
       if (hasBrief) refuse('A written post takes new text (post) and a new time (at), not a topic, angle or format.', 'send the whole post again in post');
       const written = hasPost ? await this.writePost(card, i.post) : null;
       if (written) warnings.push(...written.fields.lintWarnings);
-      updated = await this.d.store.patchWritten(slot.id, { ...(written ? { fields: written.fields } : {}), ...(at ? { at } : {}) }, lockBefore);
+      updated = await this.d.store.patchWritten(slot.id, { ...(written ? { fields: written.fields } : {}), ...(at ? { at, planDate: localDate(at, card.timezone) } : {}) }, lockBefore);
     }
     if (!updated) refuse('The post changed meanwhile (published, moved or closed).', 'call get_post for its current state');
     return {

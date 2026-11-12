@@ -420,3 +420,103 @@ test('ConnectorChatService.talk: continues only connector chats; read can read a
   assert.equal(r.running, true);
   assert.ok(r.hint);
 });
+
+// ── review fixes (spec 103 fix pass, tools) ─────────────────────────────────
+
+test('C6: an ISO time with a rolled-over date or hour is not a time', () => {
+  for (const bad of ['2026-02-30T10:00:00+02:00', '2026-02-31T10:00+02:00', '2026-04-31T10:00:00Z', '2026-13-01T10:00:00Z', '2026-11-13T24:00:00+02:00', '2026-11-13T10:60:00Z']) {
+    assert.equal(parseTimeInput(bad, 'Europe/Kyiv'), null, bad);
+  }
+  assert.equal(parseTimeInput('2028-02-29T10:00:00+02:00', 'Europe/Kyiv')?.toISOString(), '2028-02-29T08:00:00.000Z', 'a real leap day stays');
+});
+
+test('C1: apply_card reports failed and expired cards as refusals, with the reason', async () => {
+  const mk = (settle: any) => allTools({ cardsApi: {
+    get: async () => ({ id: 'a', kind: 'set_brief', status: 'pending', summary: 's', chatId: null }),
+    apply: async () => settle, discard: async () => ({}),
+  } }).write;
+  await assert.rejects(call(mk({ action: { status: 'failed', error: 'slot already running' } }), 'apply_card', { card_id: 'a' }), (e: any) => e instanceof ToolFailure && /failed/.test(e.message) && /slot already running/.test(e.message));
+  await assert.rejects(call(mk({ action: { status: 'expired' } }), 'apply_card', { card_id: 'a' }), /expired/);
+  const ok: any = await call(mk({ action: { status: 'applied', result: { then: [{ kind: 'detach_skill', ok: true }] } } }), 'apply_card', { card_id: 'a' });
+  assert.equal(ok.applied, true);
+  assert.deepEqual(ok.then, [{ kind: 'detach_skill', ok: true }]);
+});
+
+test('C1: apply/discard HTTP errors become readable refusals', async () => {
+  const http = (error: string, details?: string) => ({ getResponse: () => ({ error, details }) });
+  const { write } = allTools({ cardsApi: {
+    get: async () => ({ id: 'a', kind: 'content_examples', status: 'pending', summary: 's', chatId: null }),
+    apply: async () => { throw http('example_slop', 'example 2 has a cliche'); }, discard: async () => { throw http('action_in_progress'); },
+  } });
+  await assert.rejects(call(write, 'apply_card', { card_id: 'a' }), (e: any) => e instanceof ToolFailure && /example_slop/.test(e.message) && /cliche/.test(e.message));
+  await assert.rejects(call(write, 'discard_card', { card_id: 'a' }), (e: any) => e instanceof ToolFailure && /action_in_progress/.test(e.message));
+});
+
+test('C4: apply_card passes the owner input through, caps its size, and describes skip_then', async () => {
+  const seen: any[] = [];
+  const { write } = allTools({ cardsApi: {
+    get: async () => ({ id: 'a', kind: 'write_skill', status: 'pending', summary: 's', chatId: null }),
+    apply: async (id: string, input: unknown) => { seen.push(input); return { action: { status: 'applied' } }; }, discard: async () => ({}),
+  } });
+  const tool = write.find((t) => t.name === 'apply_card')!;
+  assert.ok((tool.inputSchema as any).properties.input, 'the schema has input');
+  assert.match(tool.description, /skip_then/);
+  assert.match(tool.description, /content_examples/);
+  await call(write, 'apply_card', { card_id: 'a', input: { skip_then: [0] } });
+  await call(write, 'apply_card', { card_id: 'a' });
+  assert.deepEqual(seen, [{ skip_then: [0] }, undefined]);
+  await assert.rejects(call(write, 'apply_card', { card_id: 'a', input: { x: 'y'.repeat(9000) } }), /too large/);
+  assert.equal(seen.length, 2, 'an oversized input is never sent');
+});
+
+test('C1/C4 factory: a non-UUID card id is not found without a query; input reaches applyAction', async () => {
+  const seen: any = { action: 0, applied: [] as any[] };
+  const f = new ConnectorToolsFactoryImpl({
+    repos: { channels: { list: async () => [], get: async () => null }, runs: { get: async () => null } }, ops: { replan: async () => ({}) }, chat: {},
+    agentsSvc: {
+      handles: async () => ({ agents: [] }), action: async () => { seen.action++; return { action: { id: 'x', kind: 'set_brief', status: 'pending', summary: 's' } }; },
+      applyAction: async (id: string, input: unknown) => { seen.applied.push(input); return { action: { status: 'applied' } }; }, discardAction: async () => ({}),
+    },
+    approvals: { approve: async () => ({ movedTo: null }), reject: async () => ({ replacementId: null }) }, approval: { mode: async () => 'live' },
+    agentInfra: { agents: { list: async () => [] }, channelKeyOf: async () => null }, health: { health: async () => ({}) },
+    slo: { get: async () => null, history: async () => [] }, publish: {} as any, pool: {} as any,
+  } as any);
+  const tools = await f.tools({ grantId: 'g', clientId: 'c', clientName: 'Claude', scopes: new Set(['mcp:read', 'mcp:write']) } as any);
+  await assert.rejects(call(tools, 'apply_card', { card_id: 'not-a-uuid' }), /No card/);
+  assert.equal(seen.action, 0, 'no lookup for a malformed id');
+  const id = '11111111-1111-4111-8111-111111111111';
+  await call(tools, 'apply_card', { card_id: id, input: { skip_then: [1] } });
+  assert.deepEqual(seen.applied, [{ skip_then: [1] }]);
+});
+
+test('C10: get_post clips lint warnings and names them untrusted', async () => {
+  const { read, readPorts } = allTools();
+  readPorts.queries.slotDetail = async () => ({
+    slot: { ...slotOf({ status: 'awaiting_approval' }), topic: 'x', angle: null, format: 'text', error: null, renderedPreview: 'p', postSpec: {}, lintWarnings: ['slop: "' + 'q'.repeat(2000) + '"'], critic: null, approvedAt: null, ownerEdited: false, rejectReason: null },
+    runs: [], published: null,
+  });
+  const r: any = await call(read, 'get_post', { post_id: 'p-1' });
+  assert.ok(r.lint_warnings[0].length <= 300);
+  assert.ok(r.untrusted_fields.includes('lint_warnings'));
+});
+
+test('C9: a message that is too long once @handle is added is refused before any chat is created', async () => {
+  const { chat, sent } = fakeChat();
+  const svc = new ConnectorChatService({ chat: chat as any, agents: { handles: async () => ['manager'], byId: async () => new Map() }, sleep: async () => {} });
+  await assert.rejects(svc.talk({ message: 'x'.repeat(7995), agent: 'manager' }), /too long/);
+  assert.equal(chat.chats.size, 0, 'no orphan chat');
+  assert.equal(sent.length, 0);
+  await svc.talk({ message: 'x'.repeat(7980), agent: 'manager', waitSeconds: 0 });
+  assert.equal(sent.length, 1);
+});
+
+test('LOCK-3/4: update_post hands the store the channel-local day of the new time (planned and written slots)', async () => {
+  const { svc, store } = posts();
+  store.setSlot({ id: 's1', channelKey: '@chan', kind: 'content', status: 'planned', scheduledAt: new Date('2026-11-13T16:00:00Z'), resourceRef: null });
+  await svc.update({ postId: 's1', topic: 'New topic', at: '2026-11-14 18:00' });
+  assert.equal(store.calls.patchPlanned[0].topic, 'New topic');
+  assert.equal(store.calls.patchPlanned[0].planDate, '2026-11-14', 'the channel-local day of the new time');
+  store.setSlot({ id: 's2', channelKey: '@chan', kind: 'content', status: 'approved', scheduledAt: new Date('2026-11-13T16:00:00Z'), resourceRef: null, renderedPreview: 'x' });
+  await svc.update({ postId: 's2', at: '2026-11-15 09:00' });
+  assert.equal(store.calls.patchWritten[0].planDate, '2026-11-15');
+});

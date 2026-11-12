@@ -72,6 +72,7 @@ export class ConnectorChatService {
       if (!known.includes(handle)) refuse(`There is no agent @${clip(handle, 40)}.`, `agents: ${known.map((h) => `@${h}`).join(', ') || 'none'}`);
       if (!text.toLowerCase().startsWith(`@${handle}`)) text = `@${handle} ${text}`;
     }
+    if (text.length > MESSAGE_IN_MAX) refuse(`The message is too long once @handle is added (${text.length} of ${MESSAGE_IN_MAX} characters).`, 'shorten it');
     let chatId = i.chatId;
     if (chatId) {
       const found = await this.d.chat.getChat(chatId).catch(() => null);

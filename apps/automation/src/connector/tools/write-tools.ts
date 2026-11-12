@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { ConnectorTool } from '../types';
 import { clip, parseArgs, refuse, resolveChannel, schema, writeTool } from './common';
+import { reasonOfHttp } from '../posts/connector-posts.service';
 import { postSchema } from './read-tools';
 import type { ConnectorWritePorts } from './ports';
 
@@ -26,6 +27,10 @@ export const CARD_KINDS_REFUSED: readonly string[] = [
 ];
 
 export function isCardKindAllowed(kind: string): boolean { return CARD_KINDS_ALLOWED.includes(kind); }
+
+const CARD_INPUT_MAX = 8192;
+/** What a card's follow-ups reported, cut so a long result cannot flood the answer. */
+const clipThen = (v: unknown): unknown => { const s = JSON.stringify(v) ?? ''; return s.length > 1500 ? clip(s, 1500) : v; };
 
 const channelProp = { type: 'string', description: 'Channel key, e.g. @my_channel (list_channels shows them).' };
 const atProp = { type: 'string', description: 'Time: ISO 8601 with an offset (2026-11-13T18:00:00+02:00) or YYYY-MM-DD HH:MM in the channel\'s timezone.' };
@@ -157,18 +162,33 @@ export function buildWriteTools(p: ConnectorWritePorts): ConnectorTool[] {
 
   const applyCard = writeTool({
     name: 'apply_card', title: 'Apply a card',
-    description: `Apply a card an agent proposed in a chat (its id is in read_agent_chat). Only after the owner has said to apply this card: show them its summary and ask first. Some kinds can only be applied in the dashboard: ${CARD_KINDS_REFUSED.join(', ')}.`,
-    inputSchema: schema({ card_id: { type: 'string', description: 'Card id from read_agent_chat or talk_to_agent.' } }, ['card_id']),
+    description: `Apply a card an agent proposed in a chat (its id is in read_agent_chat). Only after the owner has said to apply this card: show them its summary and ask first. Some kinds can only be applied in the dashboard: ${CARD_KINDS_REFUSED.join(', ')}. Optional input carries the owner's choices: skip_then (a list of follow-up actions or their indexes to leave out, for write_skill / attach_skill cards that carry ticked follow-ups such as detach_skill) and, for content_examples, the choice per example (for example {"examples": [{"index": 0, "choice": "bad"}]}; with no input every example is kept as good). Applying reports what the follow-ups did in result.then.`,
+    inputSchema: schema({
+      card_id: { type: 'string', description: 'Card id from read_agent_chat or talk_to_agent.' },
+      input: { type: 'object', description: 'The owner\'s choices for the card (skip_then, content_examples choices). At most 8 KB of JSON.' },
+    }, ['card_id']),
     async call(args) {
-      const a = parseArgs(z.object({ card_id: idArg('card_id') }), args);
+      const a = parseArgs(z.object({ card_id: idArg('card_id'), input: z.record(z.string(), z.unknown()).optional() }), args);
+      if (a.input !== undefined && JSON.stringify(a.input).length > CARD_INPUT_MAX) refuse('input is too large.', `at most ${CARD_INPUT_MAX} bytes of JSON`);
       const card = await p.cardsApi.get(a.card_id);
       if (!card) refuse(`No card ${clip(a.card_id, 60)}.`, 'card ids come from read_agent_chat');
       if (!isCardKindAllowed(card.kind)) {
         refuse(`Cards of kind ${clip(card.kind, 60)} cannot be applied from Claude.`, 'open the dashboard chat and apply it there; the connector never changes modes, agents, imports or strategies');
       }
       if (card.status !== 'pending') refuse(`This card is ${card.status}, not pending.`);
-      await p.cardsApi.apply(a.card_id);
-      return { card_id: a.card_id, kind: card.kind, applied: true, summary: clip(card.summary, 400), untrusted_fields: ['summary'] };
+      let settled: { action?: { status?: string; error?: string | null; result?: { then?: unknown } | null } } | null | undefined;
+      try {
+        settled = (await p.cardsApi.apply(a.card_id, a.input)) as typeof settled;
+      } catch (err) { return reasonOfHttp(err); }
+      const action = settled?.action;
+      if (action && action.status !== 'applied') {
+        refuse(`The card was not applied: it is ${clip(String(action.status), 40)}.`, action.error ? `reason: ${clip(String(action.error), 300)}` : undefined);
+      }
+      const then = action?.result?.then;
+      return {
+        card_id: a.card_id, kind: card.kind, applied: true, summary: clip(card.summary, 400),
+        ...(then !== undefined ? { then: clipThen(then) } : {}), untrusted_fields: ['summary', ...(then !== undefined ? ['then'] : [])],
+      };
     },
   });
 
@@ -181,7 +201,7 @@ export function buildWriteTools(p: ConnectorWritePorts): ConnectorTool[] {
       const card = await p.cardsApi.get(a.card_id);
       if (!card) refuse(`No card ${clip(a.card_id, 60)}.`, 'card ids come from read_agent_chat');
       if (card.status !== 'pending') refuse(`This card is ${card.status}, not pending.`);
-      await p.cardsApi.discard(a.card_id);
+      try { await p.cardsApi.discard(a.card_id); } catch (err) { return reasonOfHttp(err); }
       return { card_id: a.card_id, kind: card.kind, discarded: true };
     },
   });

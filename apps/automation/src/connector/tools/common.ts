@@ -61,6 +61,9 @@ export function parseTimeInput(input: unknown, tz: string): Date | null {
   if (typeof input !== 'string') return null;
   const t = input.trim();
   if (ISO_OFFSET_RE.test(t)) {
+    // new Date() rolls 02-30 into March and 24:00 into the next day: the written parts must be real ones.
+    const [y, mo, dd, hh, mi, ss] = t.split(/[-T:.+Z]/i).slice(0, 6).map((x) => Number(x ?? 0));
+    if (mo < 1 || mo > 12 || dd < 1 || dd > new Date(Date.UTC(y, mo, 0)).getUTCDate() || hh > 23 || mi > 59 || (ss ?? 0) > 59) return null;
     const d = new Date(t);
     return Number.isNaN(d.getTime()) ? null : d;
   }
@@ -87,6 +90,9 @@ export function requireTime(input: unknown, tz: string, field = 'at'): Date {
   if (!d) refuse(`${field} is not a valid time.`, `use ISO 8601 with an offset (2026-11-13T18:00:00+02:00) or 'YYYY-MM-DD HH:MM' in the channel's timezone (${tz})`);
   return d;
 }
+
+/** A canonical UUID: card and post ids are UUID columns, so anything else cannot exist (and must not reach the query). */
+export const isUuid = (s: string): boolean => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
 
 // ── tool building ───────────────────────────────────────────────────────────
 

@@ -9,6 +9,7 @@ import { ConnectorChatService } from '../chat/connector-chat.service';
 import { ConnectorPostsRepository } from '../posts/connector-posts.repository';
 import { ConnectorPostsService } from '../posts/connector-posts.service';
 import { PgConnectorQueries } from '../queries/connector-queries';
+import { isUuid } from './common';
 import type { ConnectorReadPorts, ConnectorWritePorts, ReplanOutcome } from './ports';
 import { buildReadTools } from './read-tools';
 import { buildWriteTools } from './write-tools';
@@ -95,12 +96,13 @@ export class ConnectorToolsFactoryImpl implements ConnectorToolsFactory {
       },
       cardsApi: {
         async get(id) {
+          if (!isUuid(id)) return null;
           try {
             const { action } = await t.agentsSvc.action(id);
             return { id: action.id, kind: action.kind, status: action.status, summary: action.summary ?? '', chatId: action.chatId ?? null };
           } catch (err) { if (statusOf(err) === 'action_not_found') return null; throw err; }
         },
-        apply: (id) => t.agentsSvc.applyAction(id),
+        apply: (id, input) => t.agentsSvc.applyAction(id, input ?? null),
         discard: (id) => t.agentsSvc.discardAction(id),
       },
     };
