@@ -59,8 +59,9 @@ export default defineConfig({
     // the prefix here turns `/api/strategies` into `/strategies` and 404s
     // ("Cannot GET /strategies"). Each bare-root controller the dashboard calls
     // needs its own entry — and the SAME entry in nginx.conf (prod).
+    // Spec 103: `/.well-known/oauth-` (connector discovery; a prefix match) is mirrored from nginx; `/api/mcp` is already under `/api`.
     proxy: Object.fromEntries(
-      ['/api', '/auth', '/tracking', '/activity', '/scheduled-posts', '/settings', '/stats', '/r/'].map(
+      ['/api', '/auth', '/tracking', '/activity', '/scheduled-posts', '/settings', '/stats', '/r/', '/.well-known/oauth-'].map(
         (prefix) => [prefix, { target: 'http://localhost:3000', changeOrigin: true }],
       ),
     ),

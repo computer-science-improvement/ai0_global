@@ -8,6 +8,7 @@ import * as winston                from 'winston';
 import cookieParser                from 'cookie-parser';
 import { dataRowsJsonBody }        from './data/rows-body.middleware';
 import { uploadPageJsonBody }      from './editor/sources/upload-body.middleware';
+import { mcpJsonBody }             from './connector/http/mcp-body.middleware';
 import { bootSettings }            from './settings/boot';
 import { armBootSignals }          from './boot-signals';
 
@@ -53,6 +54,8 @@ async function bootstrap() {
   app.use('/api/data', dataRowsJsonBody);
   // POST /api/editor/sources/upload (spec 076) takes a saved page of up to 5 000 000 characters: its own parser and a 12 MB limit.
   app.use('/api/editor/sources/upload', uploadPageJsonBody);
+  // POST /api/mcp (spec 103): one JSON-RPC message up to 1 MB; its own parser, flags failures for the endpoint to answer.
+  app.use('/api/mcp', mcpJsonBody);
   app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
 
   // Enforce class-validator decorators on every @Body() DTO. `whitelist`
