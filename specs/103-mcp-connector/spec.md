@@ -1,6 +1,6 @@
 # Spec 103 — Claude connector (remote MCP control of the network)
 
-Status: IN PROGRESS · Priority P1 · Depends on 006 (stdio MCP), 028 (auth), 031 (approval mode), 034 (partial replan), 039 (settings), 047/048 (owner chat), 091 (SLO controller) · Migration 105
+Status: DONE (2026-11-12; not deployed — migration 105 applies with the deploy) · Priority P1 · Depends on 006 (stdio MCP), 028 (auth), 031 (approval mode), 034 (partial replan), 039 (settings), 047/048 (owner chat), 091 (SLO controller) · Migration 105
 
 ## 1. Why
 
