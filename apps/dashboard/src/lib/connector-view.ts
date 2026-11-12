@@ -33,6 +33,7 @@ export function statusWarning(s: StatusLike): { tone: 'danger' | 'warning'; text
 }
 
 const EVENT_LABEL: Record<string, string> = {
+  tool_call: 'Tool call',
   'tools/call': 'Tool call',
   register: 'App registered',
   consent_allow: 'Access allowed',

@@ -121,4 +121,44 @@ Checks: `tsc`, tests, `vite build`.
 
 ## Deltas
 
-(filled during implementation)
+Owner decisions (2026-11-12): **D1** as proposed — in approve-mode channels connector posts wait for approval
+(`defaultNeedsApproval`); **D2** as proposed — `approve_post` and `apply_card` are available in Claude, with Claude's
+confirmation (`OWNER_CONFIRMED_TOOLS`). Owner also confirmed: authorization is OAuth on the platform.
+
+WP-A (OAuth, transport):
+- `/api/mcp` has its own 1 MB JSON middleware (`mcp-body.middleware.ts`); invalid or oversize bodies are answered after
+  auth, so an unauthenticated caller learns nothing and connector-off stays a plain 404.
+- A crash inside a tool returns a generic message to Claude (the stdio server returns the raw error).
+- Code exchange validates first, then consumes the code atomically with the grant id: a wrong verifier does not burn the
+  code; a second use revokes the grant (audited as `refresh_reuse`, summary `code_reuse`). Tool rows use the audit event `tool_call`.
+- A CIMD client disconnected in Settings can connect again on its next authorize; a disconnected DCR client stays revoked.
+- The client IP is the existing `clientIp(req)` behind `trust proxy` (loopback, link-local, unique-local).
+- Rate-limit, DCR and touch counters are in memory (single instance; reset on restart).
+
+WP-B (lock):
+- Bulk approve skips locked posts entirely (approve them one by one).
+- A locked slot that is already closed stays in the old plan as history; only open locked slots move to the new plan.
+- `isOwnerDecision` (skip-reasons) now covers every owner skip prefix, so owner and connector skips are never stalls
+  anywhere (series streak, silent days, quality digest, owner reports).
+- The approval publisher already re-checks the mode at send time; tests pin that a locked approved post on an off or
+  shadow channel is never sent.
+- `dropFuturePins` is not lock-aware (pins are not connector slots).
+
+WP-C (tools):
+- `EditorModule` also exports `EDITOR_PUBLISH` (prepare_post renders through it).
+- plan_post notes go to `source_hints` as `owner_notes: …`; plan_post refuses off and warns on shadow.
+- `talk_to_agent` continues only chats created via the connector; `read_agent_chat` reads any chat.
+- No source-dedup pre-check in prepare_post: the publisher's dedup applies at send time.
+
+WP-D (dashboard):
+- The consent route is `app_.oauth.consent.tsx` (outside the app shell, own session guard).
+- `SlotDescription` renders both badges for the editor row, slot page, agent plan list and dialog.
+- The consent page validates the server's redirect (https, or loopback http only for a loopback client).
+
+Integration (lead):
+- Approval cards and `/api/agents/:handle/schedule` slots now carry `createdVia` / `lockedBy` (the badges needed them).
+- Consent 410 codes split into `request_expired` and `request_decided` (the page tells them apart).
+- `CONNECTOR_PROVIDERS` is exported; `connector.module.test.ts` resolves it against the real editor providers and
+  checks every injected editor token is exported by `EditorModule`.
+- The worktree's node_modules were reinstalled with `pnpm@9.15.0 install --frozen-lockfile` (Node 20): the old install
+  lacked rolldown's native binding, so `vite build` failed.

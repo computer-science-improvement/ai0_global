@@ -47,6 +47,7 @@ test('consent failures: unknown, expired, already decided, wrong session', () =>
 
 test('activity: labels and which rows need a look', () => {
   assert.equal(activityLabel('tools/call'), 'Tool call');
+  assert.equal(activityLabel('tool_call'), 'Tool call'); // the event name mcp_audit stores for tool rows
   assert.equal(activityLabel('weird'), 'weird');
   assert.equal(activityAlert({ event: 'tools/call', ok: false }), true);
   assert.equal(activityAlert({ event: 'refresh_reuse', ok: true }), true);
