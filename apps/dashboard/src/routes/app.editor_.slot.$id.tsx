@@ -9,8 +9,9 @@ import { describeError } from '../components/ui/Toast';
 import { JsonBlock, RUN_TONE, SlotStatus, fmtUsd, runStatusLabel, slotView } from '../components/editor/EditorUi';
 import { PlanStamp, SlotDescription, SlotPost } from '../components/editor/SlotPlan';
 import '../components/editor/editor.css';
-import { useEditorChannel, useEditorRuns, useEditorSlot, useRunSlot, useSkipSlot } from '../api/editor';
+import { useEditorChannel, useEditorRuns, useEditorSlot, useRunSlot, useSkipSlot, useUnlockSlot } from '../api/editor';
 import { fmtDate } from '../lib/format';
+import { isLockedSlot, lockedTooltip } from '../lib/slot-origin';
 import { feedsOf } from '../lib/slot-plan';
 import { formatIn, zoneLabel } from '../lib/zoned-time';
 
@@ -23,6 +24,7 @@ function EditorSlotPage() {
   const runs = useEditorRuns({ slot: id, limit: 10 });
   const run = useRunSlot();
   const skip = useSkipSlot();
+  const unlock = useUnlockSlot();
   const confirm = useConfirm();
   const channel = useEditorChannel(slot.data?.channelKey ?? '');
 
@@ -30,7 +32,8 @@ function EditorSlotPage() {
   if (!slot.data) return <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />;
   const s = slot.data;
   const planned = s.status === 'planned' && s.kind === 'content';
-  const busy = run.isPending || skip.isPending;
+  const busy = run.isPending || skip.isPending || unlock.isPending;
+  const locked = isLockedSlot(s);
   // The channel's zone (spec 024): every time on this page is the resource's, never the browser's.
   const tz = channel.data?.timezone ?? 'Europe/Kyiv';
   const view = slotView(s);
@@ -58,6 +61,12 @@ function EditorSlotPage() {
 
       <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: 16 }} className="compose-rise">
         <SlotStatus slot={s} />
+        {locked && (
+          <button type="button" className="chip-toggle is-warning" aria-pressed disabled={busy} title={lockedTooltip(s)} data-testid="unlock-slot"
+            onClick={async () => { if (await confirm('unlock this slot and hand it back to the agent (a written post stays as it is)', { danger: false, confirmLabel: 'Unlock' })) unlock.mutate(s.id); }}>
+            <Icon name="unlock" size={13} /> Unlock
+          </button>
+        )}
         <span className="mono text-micro ink-muted">attempt {s.attempts}</span>
         {s.publishedPostId != null && <span className="mono text-micro ink-muted">· published post #{s.publishedPostId}</span>}
       </div>

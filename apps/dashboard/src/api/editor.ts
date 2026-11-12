@@ -68,7 +68,7 @@ export function useReplan() {
     // The planner runs in the background; refresh now and again shortly after.
     onSuccess: (_d, v) => {
       const { key, date } = typeof v === 'string' ? { key: v, date: undefined } : v;
-      toast.success(`Planner started for ${key} — ${date === 'tomorrow' ? 'tomorrow is' : 'the rest of today is'} replanned; written posts stay. The new plan appears in a minute.`);
+      toast.success(`Planner started for ${key} — ${date === 'tomorrow' ? 'tomorrow is' : 'the rest of today is'} replanned; written and locked posts stay. The new plan appears in a minute.`);
       qc.invalidateQueries({ queryKey: KEY });
       setTimeout(() => qc.invalidateQueries({ queryKey: KEY }), 20_000);
     },
@@ -127,6 +127,15 @@ export function useSkipSlot() {
   return useMutation({
     mutationFn: (v: { id: string; reason?: string }) =>
       api<EditorSlot>(`/api/editor/slots/${v.id}/skip`, { method: 'POST', body: JSON.stringify({ reason: v.reason }) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
+  });
+}
+
+/** Spec 103: hand a locked slot back to the agent (the lock only stops the automation, never the owner). */
+export function useUnlockSlot() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => api<{ slot: EditorSlot }>(`/api/editor/slots/${encodeURIComponent(id)}/unlock`, { method: 'POST' }),
     onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
   });
 }

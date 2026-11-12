@@ -10,6 +10,7 @@ import type { AgentNode, SeriesPause } from '../api/agents';
 import type { RuleInput, ScheduleResource, ScheduleResponse, ScheduleSlot } from '../api/schedule';
 import type { EditorMode, ScheduledPost, TrackedChannel } from '../api/types';
 import { cellEntries, type Entry } from './schedule-grid';
+import { originFacts } from './slot-origin';
 import { MARK_LABEL, publicationLabel, slotMark, type MarkKind } from './status-tone';
 import { KYIV_TZ, dayIn, formatIn, zoneLabel, zonedToUtc } from './zoned-time';
 import { skipReason } from './slot-plan';
@@ -269,6 +270,9 @@ function entryChip(e: Entry, res: ScheduleResource, byId: Map<string, ScheduleSl
     if (why && (CLOSED.has(slot.status) || why.code === 'retrying' || why.code === 'waiting_for_budget')) {
       detail = [detail, why.code === 'other' ? why.detail : `${why.label}${why.detail ? `: ${why.detail}` : ''}`].filter(Boolean).join(' · ');
     }
+    // Spec 103: a post made from Claude, or one the automation must not overwrite, says so in the tooltip.
+    const facts = originFacts(slot);
+    if (facts) detail = [detail, facts].filter(Boolean).join(' · ');
     if (kind === 'reserved') label = `${slot.promo ? 'Promo' : 'Reserved'} · ${lower(label)}`;
   } else {
     // A series instance or a pin the planner has not turned into a slot. Past days: the series may not have existed

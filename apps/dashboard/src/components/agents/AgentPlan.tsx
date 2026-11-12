@@ -41,6 +41,7 @@ import {
 import { useAgentNetwork, useNetworkPlan, type ContentDecision, type Decision, type PlanSlot } from '../../api/network';
 import { NetworkError, ResourceLabel, fmtDay, platformOf, shiftDay } from './NetworkUi';
 import type { Tone } from '../ui/primitives';
+import { isLockedSlot, originFacts } from '../../lib/slot-origin';
 
 const PILL_W = 176;
 const ROW_H = 30;
@@ -357,7 +358,8 @@ function TreatmentMark({ treatment }: { treatment: PlanSlot['treatment'] }) {
 
 function slotTitle(slot: PlanSlot, tz: string): string {
   const what = isLive(slot) ? liveLine(slot, tz) : slot.topic;
-  return `${dual(slot.at, tz)} · ${MARK_LABEL[slotMark(missCandidate(slot))]} · ${slot.format}${slot.treatment ? ` · ${TREATMENT_LABEL[slot.treatment]}` : ''}\n${what}`;
+  const origin = originFacts(slot);
+  return `${dual(slot.at, tz)} · ${MARK_LABEL[slotMark(missCandidate(slot))]} · ${slot.format}${slot.treatment ? ` · ${TREATMENT_LABEL[slot.treatment]}` : ''}${origin ? ` · ${origin}` : ''}\n${what}`;
 }
 
 function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz: string; left: number; top: number; active: boolean; onClick: () => void }) {
@@ -371,6 +373,7 @@ function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz
       <StatusMark status={mark} size={12} />
       <TreatmentMark treatment={slot.treatment ?? null} />
       {isLive(slot) && <span aria-label="live" className="apl-pill-live"><Icon name="radar" size={11} /></span>}
+      {isLockedSlot(slot) && <span aria-label="locked" className="apl-pill-lock"><Icon name="lock" size={11} /></span>}
       <span className="mono apl-pill-time">{t.local}</span>
       {t.kyiv && <span className="tabular-nums apl-pill-kyiv">· {t.kyiv} Kyiv</span>}
       <span className="apl-pill-topic">{slot.kind === 'reserved' ? 'reserved' : slot.topic}</span>

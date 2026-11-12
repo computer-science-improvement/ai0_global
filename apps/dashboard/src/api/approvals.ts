@@ -1,3 +1,4 @@
+import type { SlotLockOwner } from '../lib/slot-origin';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 import type { EditorMode, TgMessage } from './types';
@@ -44,6 +45,9 @@ export interface ApprovalCardData {
   /** Spec 037 FR-014: what the code's checks found in the post (absent on older servers). */
   findings?:     ApprovalFinding[];
   ownerEdited:   boolean;
+  /** Spec 103: made through the Claude connector / locked against the automation (absent on older servers). */
+  createdVia?:   'connector' | null;
+  lockedBy?:     SlotLockOwner | null;
   approvedAt:    string | null;
   expiresAt:     string;
   editableUntil: string;

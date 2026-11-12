@@ -1,3 +1,4 @@
+import type { SlotOriginFields } from '../lib/slot-origin';
 import type { CriticVerdict } from '../lib/critic';
 import { previewRunning, type LiveSpecView, type SlotPreviewView } from '../lib/slot-plan';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -130,7 +131,7 @@ export interface IdeaRow {
 
 export type PlanSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed' | 'awaiting_approval' | 'approved' | 'expired';
 
-export interface PlanSlot {
+export interface PlanSlot extends SlotOriginFields {
   id:          string;
   at:          string;
   kind:        'content' | 'reserved';

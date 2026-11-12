@@ -21,10 +21,11 @@ import {
   canPreview, isLive, liveLine, LIVE_ORIGIN_LABEL, plannedAtLine, plannedEveningBefore, planScheduleNote, previewCostHint, previewFootnote,
   previewRunning, PREVIEW_STATUS_LABEL, runLabel, skipReason, type PlanSlotLike, type SkipReason, type SlotPreviewView,
 } from '../../lib/slot-plan';
+import { lockedLabel, lockedTooltip, originLabel, originTooltip, type SlotOriginFields } from '../../lib/slot-origin';
 import { reasonLink, type ReasonLinkProps, type ReasonLinkVars } from '../../lib/reasons';
 import { usePreviewSlot } from '../../api/editor';
 
-export interface SlotPlanView extends PlanSlotLike {
+export interface SlotPlanView extends PlanSlotLike, SlotOriginFields {
   id:           string;
   angle?:       string | null;
   sourceHints?: string[];
@@ -84,6 +85,11 @@ export function SlotDescription({ slot, tz, feeds, compact = false, links }: { s
   const item = slot.liveSpec?.item;
   const skip = slot.status === 'skipped' || slot.status === 'failed' || slot.status === 'expired' ? skipReason(slot.error) : null;
   const chips: ReactNode[] = [];
+  // Spec 103: a post made from Claude and a post the automation must not overwrite.
+  const via = originLabel(slot);
+  const lock = lockedLabel(slot);
+  if (via) chips.push(<Badge key="via" tone="neutral" title={originTooltip(slot)}><Icon name="connections" size={10} /> {via}</Badge>);
+  if (lock) chips.push(<Badge key="lock" tone="warning" title={lockedTooltip(slot)}><Icon name="lock" size={10} /> {lock}</Badge>);
   if (!live && slot.seriesName) chips.push(<span key="series" className="chip" title="A recurring series from the playbook">series: {slot.seriesName}</span>);
   if (slot.pinned) chips.push(<span key="pin" className="chip" title="Your pinned post">pinned</span>);
   if (!live && slot.sourceHints?.length) chips.push(<span key="hints" className="chip" style={{ overflowWrap: 'anywhere' }} title="Where the planner suggests to look">sources: {slot.sourceHints.join(', ')}</span>);

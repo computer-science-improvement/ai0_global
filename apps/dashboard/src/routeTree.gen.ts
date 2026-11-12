@@ -45,6 +45,7 @@ import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppAgentsRouteImport } from './routes/app.agents'
 import { Route as AppAgentRouteImport } from './routes/app.agent'
 import { Route as AppAdsRouteImport } from './routes/app.ads'
+import { Route as AppOauthConsentRouteImport } from './routes/app_.oauth.consent'
 import { Route as AppStrategiesNewRouteImport } from './routes/app.strategies_.new'
 import { Route as AppStrategiesIdRouteImport } from './routes/app.strategies_.$id'
 import { Route as AppEditorChannelRouteImport } from './routes/app.editor_.$channel'
@@ -239,6 +240,11 @@ const AppAdsRoute = AppAdsRouteImport.update({
   path: '/ads',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOauthConsentRoute = AppOauthConsentRouteImport.update({
+  id: '/app_/oauth/consent',
+  path: '/app/oauth/consent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppStrategiesNewRoute = AppStrategiesNewRouteImport.update({
   id: '/strategies_/new',
   path: '/strategies/new',
@@ -353,6 +359,7 @@ export interface FileRoutesByFullPath {
   '/app/editor/$channel': typeof AppEditorChannelRoute
   '/app/strategies/$id': typeof AppStrategiesIdRoute
   '/app/strategies/new': typeof AppStrategiesNewRoute
+  '/app/oauth/consent': typeof AppOauthConsentRoute
   '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
   '/app/editor/run/$id': typeof AppEditorRunIdRoute
   '/app/editor/slot/$id': typeof AppEditorSlotIdRoute
@@ -403,6 +410,7 @@ export interface FileRoutesByTo {
   '/app/editor/$channel': typeof AppEditorChannelRoute
   '/app/strategies/$id': typeof AppStrategiesIdRoute
   '/app/strategies/new': typeof AppStrategiesNewRoute
+  '/app/oauth/consent': typeof AppOauthConsentRoute
   '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
   '/app/editor/run/$id': typeof AppEditorRunIdRoute
   '/app/editor/slot/$id': typeof AppEditorSlotIdRoute
@@ -455,6 +463,7 @@ export interface FileRoutesById {
   '/app/editor_/$channel': typeof AppEditorChannelRoute
   '/app/strategies_/$id': typeof AppStrategiesIdRoute
   '/app/strategies_/new': typeof AppStrategiesNewRoute
+  '/app_/oauth/consent': typeof AppOauthConsentRoute
   '/app/connections_/meta_/$accountId': typeof AppConnectionsMetaAccountIdRoute
   '/app/editor_/run/$id': typeof AppEditorRunIdRoute
   '/app/editor_/slot/$id': typeof AppEditorSlotIdRoute
@@ -508,6 +517,7 @@ export interface FileRouteTypes {
     | '/app/editor/$channel'
     | '/app/strategies/$id'
     | '/app/strategies/new'
+    | '/app/oauth/consent'
     | '/app/connections/meta/$accountId'
     | '/app/editor/run/$id'
     | '/app/editor/slot/$id'
@@ -558,6 +568,7 @@ export interface FileRouteTypes {
     | '/app/editor/$channel'
     | '/app/strategies/$id'
     | '/app/strategies/new'
+    | '/app/oauth/consent'
     | '/app/connections/meta/$accountId'
     | '/app/editor/run/$id'
     | '/app/editor/slot/$id'
@@ -609,6 +620,7 @@ export interface FileRouteTypes {
     | '/app/editor_/$channel'
     | '/app/strategies_/$id'
     | '/app/strategies_/new'
+    | '/app_/oauth/consent'
     | '/app/connections_/meta_/$accountId'
     | '/app/editor_/run/$id'
     | '/app/editor_/slot/$id'
@@ -620,6 +632,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   WhiteLabelRoute: typeof WhiteLabelRoute
   ReportTokenRoute: typeof ReportTokenRoute
+  AppOauthConsentRoute: typeof AppOauthConsentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -876,6 +889,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app_/oauth/consent': {
+      id: '/app_/oauth/consent'
+      path: '/app/oauth/consent'
+      fullPath: '/app/oauth/consent'
+      preLoaderRoute: typeof AppOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/strategies_/new': {
       id: '/app/strategies_/new'
       path: '/strategies/new'
@@ -1072,6 +1092,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   WhiteLabelRoute: WhiteLabelRoute,
   ReportTokenRoute: ReportTokenRoute,
+  AppOauthConsentRoute: AppOauthConsentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

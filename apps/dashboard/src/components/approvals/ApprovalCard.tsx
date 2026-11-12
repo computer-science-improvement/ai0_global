@@ -17,6 +17,7 @@ import { CriticBlock } from '../critic/CriticBlock';
 import { ApprovalFindings } from './ApprovalFindings';
 import { CompactCard, plainText } from '../ui/CompactCard';
 import { CriticBadge } from '../editor/SlotPlan';
+import { lockedLabel, lockedTooltip, originLabel, originTooltip } from '../../lib/slot-origin';
 import { heldByCritic } from '../../lib/critic';
 import { slotLabel, slotTone } from '../../lib/status-tone';
 import { errorBody } from '../../api/agents';
@@ -79,6 +80,8 @@ export function ApprovalCard({ item, delay = 0, focused = false }: { item: Appro
           <Icon name={PLATFORM_ICON[item.platform] ?? 'globe'} size={11} /> {item.format}
         </span>
         {item.ownerEdited && <span className="chip">edited</span>}
+        {originLabel(item) && <Badge tone="neutral" title={originTooltip(item)}><Icon name="connections" size={10} /> {originLabel(item)}</Badge>}
+        {lockedLabel(item) && <Badge tone="warning" title={lockedTooltip(item)}><Icon name="lock" size={10} /> {lockedLabel(item)}</Badge>}
         {item.replacesSlotId && <span className="chip">replacement</span>}
         {item.isExperiment && <span className="chip">experiment</span>}
       </>}
@@ -109,6 +112,8 @@ function ApprovalDetails({ item }: { item: ApprovalCardData }) {
         <Badge tone={slotTone(item.status)}>{statusLabel(item.status)}</Badge>
         <span className="chip mono">{item.format}</span>
         {item.ownerEdited && <span className="chip">edited</span>}
+        {originLabel(item) && <Badge tone="neutral" title={originTooltip(item)}><Icon name="connections" size={10} /> {originLabel(item)}</Badge>}
+        {lockedLabel(item) && <Badge tone="warning" title={lockedTooltip(item)}><Icon name="lock" size={10} /> {lockedLabel(item)}</Badge>}
         {item.replacesSlotId && <span className="chip">replacement</span>}
         {item.isExperiment && <span className="chip">experiment</span>}
       </div>

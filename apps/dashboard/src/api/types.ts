@@ -1,3 +1,4 @@
+import type { SlotOriginFields } from '../lib/slot-origin';
 import type { CriticVerdict } from '../lib/critic';
 import type { SlotPreviewView } from '../lib/slot-plan';
 export interface TrackedChannel {
@@ -602,7 +603,7 @@ export interface EditorChannelsResponse {
   channels: EditorChannel[];
 }
 
-export interface EditorSlot {
+export interface EditorSlot extends SlotOriginFields {
   id:              string;
   planId:          string;
   channelKey:      string;
@@ -825,6 +826,8 @@ export interface EditorChat {
   updatedAt: string;
   /** The chat's last addressed agent (spec 018); absent/null → the composer. */
   agentId?:  string | null;
+  /** Spec 103: 'connector' = started from Claude. */
+  createdVia?: 'connector' | null;
 }
 
 export interface EditorChatMessage {

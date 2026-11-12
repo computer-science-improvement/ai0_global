@@ -1,5 +1,6 @@
-// Settings page. Three tabs: Configuration (spec 039: every setting that moved out of .env, built from the server's
-// catalog; ?group= filters it), Security (dashboard sessions + sign-in audit, spec 028) and Navigation (the menu
+// Settings page. Four tabs: Configuration (spec 039: every setting that moved out of .env, built from the server's
+// catalog; ?group= filters it), Security (dashboard sessions + sign-in audit, spec 028), Connectors (the Claude
+// connector, spec 103) and Navigation (the menu
 // constructor, spec 027: ?edit=<item id> focuses an item, ?from=<href> is the page "Add current page" captures).
 // Active tab in ?tab= for reload/linkability; the old telegram / ai / meta tabs open Configuration.
 
@@ -7,19 +8,21 @@ import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { SecurityTab } from '../components/settings/SecurityTab';
+import { ConnectorsTab } from '../components/settings/ConnectorsTab';
 import { NavigationTab } from '../components/settings/NavigationTab';
 import { ConfigurationTab } from '../components/settings/ConfigurationTab';
 import '../components/settings/settings.css';
 
-type Tab = 'configuration' | 'security' | 'navigation';
+type Tab = 'configuration' | 'security' | 'connectors' | 'navigation';
 
 const TABS: ReadonlyArray<{ key: Tab; label: string }> = [
   { key: 'configuration', label: 'Configuration' },
   { key: 'security',      label: 'Security' },
+  { key: 'connectors',    label: 'Connectors' },
   { key: 'navigation',    label: 'Navigation' },
 ];
 
-const VALID: Tab[] = ['configuration', 'security', 'navigation'];
+const VALID: Tab[] = ['configuration', 'security', 'connectors', 'navigation'];
 /** Links to the tabs that became Configuration groups keep working. */
 const LEGACY: Record<string, { tab: Tab; group: string }> = {
   telegram: { tab: 'configuration', group: 'telegram' },
@@ -60,6 +63,7 @@ function SettingsPage() {
 
       {tab === 'configuration' && <ConfigurationTab group={group ?? 'all'} onGroup={setGroup} />}
       {tab === 'security' && <SecurityTab />}
+      {tab === 'connectors' && <ConnectorsTab />}
       {tab === 'navigation' && <NavigationTab editId={edit} from={from} />}
     </div>
   );

@@ -1,3 +1,4 @@
+import type { SlotOriginFields } from '../lib/slot-origin';
 import type { LiveSpecView } from '../lib/slot-plan';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
@@ -64,7 +65,7 @@ export type ScheduleItem =
   | { kind: 'blackout'; ruleId: string; resourceRef: string; date: string; time: string; until: string }
   | { kind: 'frequency'; ruleId: string; resourceRef: string; date: string; min: number | null; max: number | null };
 
-export interface ScheduleSlot {
+export interface ScheduleSlot extends SlotOriginFields {
   id:             string;
   resourceRef:    string;
   at:             string;

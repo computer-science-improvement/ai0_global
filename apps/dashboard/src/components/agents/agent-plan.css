@@ -60,6 +60,7 @@
 .apl-pill.is-active { background: var(--color-surface-3); border-color: var(--color-accent); }
 .apl-pill.is-dim { opacity: 0.55; text-decoration: line-through; }
 .apl-pill-live { display: inline-flex; flex: none; color: var(--color-accent); }
+.apl-pill-lock { display: inline-flex; flex: none; color: var(--color-warning); }
 .apl-pill-time { flex: none; font-size: 11px; font-weight: 600; }
 .apl-pill-kyiv { flex: none; font-size: 11px; color: var(--color-ink-dim); }
 .apl-pill-topic { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-muted); }

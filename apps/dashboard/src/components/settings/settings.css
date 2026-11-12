@@ -64,6 +64,13 @@
 .set-sess-name { font-size: 14px; font-weight: 500; color: var(--color-ink); overflow-wrap: anywhere; }
 .set-sess-meta { margin-top: 2px; font-size: 12px; line-height: 1.5; color: var(--color-ink-dim); overflow-wrap: anywhere; }
 
+/* ── Connectors (spec 103) ── */
+.con-url { padding: 12px 14px; }
+.con-url-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.con-url-text { flex: 1 1 240px; min-width: 0; font-size: 13px; color: var(--color-ink); overflow-wrap: anywhere; }
+.con-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.con-list { margin: 0; padding-left: 20px; color: var(--color-ink-muted); line-height: 1.6; }
+
 /* ── Navigation: tune the constructor from index.css ── */
 .set-bar-state { margin-right: auto; font-size: 13px; color: var(--color-ink-dim); }
 .set-bar-state.is-dirty { color: var(--color-warning); }

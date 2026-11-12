@@ -128,6 +128,7 @@ export function slotView(slot: EditorSlot): SlotPlanView {
     topicMode: slot.topicMode ?? 'fixed', liveSpec: slot.liveSpec ?? null, treatment: slot.treatment ?? null, previewDraft: slot.previewDraft ?? null,
     angle: slot.angle, sourceHints: slot.sourceHints, seriesName: slot.seriesName ?? null, pinned: !!slot.scheduleRuleId,
     isExperiment: slot.isExperiment, critic: slot.critic ?? null, preview: slot.renderedPreview,
+    createdVia: slot.createdVia ?? null, lockedBy: slot.lockedBy ?? null, lockedAt: slot.lockedAt ?? null,
   };
 }
 

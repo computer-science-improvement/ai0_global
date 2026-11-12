@@ -21,7 +21,7 @@ test('More tools: the hidden pages, without sub-views, in registry order', () =>
     'tracked', 'discovery', 'graph', 'recommendations',
     'connections', 'groups', 'landing', 'ads',
   ]);
-  for (const sub of ['approvals', 'directives', 'bots', 'telegraph', 'connections-meta', 'connections-tiktok', 'settings-navigation', 'settings-security', 'settings-ai']) {
+  for (const sub of ['approvals', 'directives', 'bots', 'telegraph', 'connections-meta', 'connections-tiktok', 'settings-navigation', 'settings-security', 'settings-connectors', 'settings-ai']) {
     assert.ok(!ids(more).includes(sub), `${sub} is a sub-view`);
   }
 });

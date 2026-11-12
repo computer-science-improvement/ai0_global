@@ -64,7 +64,7 @@ test('spec 078: the default menu has 11 items in Home, Network, Insights and Sys
   for (const id of [
     'approvals', 'directives', 'dm-inbox', 'models', 'artifacts', 'compose', 'scheduled', 'editor', 'logs', 'data',
     'tracked', 'discovery', 'graph', 'recommendations', 'connections', 'groups', 'landing', 'ads',
-    'connections-meta', 'connections-tiktok', 'bots', 'telegraph', 'settings-navigation', 'settings-security', 'settings-ai',
+    'connections-meta', 'connections-tiktok', 'bots', 'telegraph', 'settings-navigation', 'settings-security', 'settings-connectors', 'settings-ai',
   ]) assert.ok(hidden.includes(id), id);
   assert.equal(hrefOf(nav.hidden.find((i) => i.id === 'directives')!), '/app/agents/manager?tab=directives');
   assert.equal(hrefOf(nav.hidden.find((i) => i.id === 'approvals')!), '/app/agents/inbox?tab=approvals');
@@ -92,7 +92,7 @@ test('spec 078: registry order matches the IA, sub-views are flagged and the Age
     'overview', 'agents-inbox', 'chat', 'agents', 'calendar', 'channels', 'network-map', 'analytics', 'spend', 'health', 'settings',
   ]);
   const sub = menuEntries().filter((e) => e.subview).map((e) => e.id).sort();
-  assert.deepEqual(sub, ['approvals', 'bots', 'connections-meta', 'connections-tiktok', 'directives', 'settings-ai', 'settings-navigation', 'settings-security', 'telegraph']);
+  assert.deepEqual(sub, ['approvals', 'bots', 'connections-meta', 'connections-tiktok', 'directives', 'settings-ai', 'settings-connectors', 'settings-navigation', 'settings-security', 'telegraph']);
   assert.ok(sub.every((id) => NAV_REGISTRY.find((e) => e.id === id)!.hiddenByDefault), 'a sub-view is never in the default menu');
   assert.equal(NAV_REGISTRY.find((e) => e.id === 'agents')!.badge, 'directives');
   // Ids are never renamed: the handoff's names map onto the real ones.

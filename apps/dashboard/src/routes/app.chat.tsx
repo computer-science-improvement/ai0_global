@@ -29,6 +29,7 @@ import {
 } from '../api/chat';
 import { useAgentHandles, useAgentTree } from '../api/agents';
 import type { ChatAgentRef, EditorChatEvent, EditorChatMessage, EditorDraft, PendingAction } from '../api/types';
+import { isConnectorChat } from '../lib/slot-origin';
 import '../components/chat/chat.css';
 
 // Editor chat (spec 010): a Claude-style conversation with the composer agent.
@@ -672,6 +673,7 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
                   <button type="button" className="chat-item-main" onClick={() => onPick(c.id)} aria-current={c.id === activeId ? 'page' : undefined}>
                     <div className="text-body-sm chat-item-title">
                       <span className="chat-item-name">{c.title}</span>
+                      {isConnectorChat(c) && <Badge tone="neutral" title="Started from Claude through the connector">Claude</Badge>}
                       {waiting.has(c.id) && <Badge tone="warning">to confirm</Badge>}
                     </div>
                     <div className="text-micro mono chat-item-age">{fmtRelative(c.updatedAt)}</div>
