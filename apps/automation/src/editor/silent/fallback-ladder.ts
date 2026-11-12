@@ -343,8 +343,8 @@ export function lighterFormat(format: string, allowed: ReadonlySet<string>): str
  * (the owner did) and a poll / quiz slot made from a dataset row (`data://` / `library://`: the row is the question). A quiz
  * that fails goes to the next row or a rewrite, never to a plain text post.
  */
-export function formatLocked(slot: { format: string; seriesName?: string | null; scheduleRuleId?: string | null; sourceHints?: readonly string[] | null }): boolean {
-  if (slot.seriesName || slot.scheduleRuleId) return true;
+export function formatLocked(slot: { format: string; seriesName?: string | null; scheduleRuleId?: string | null; sourceHints?: readonly string[] | null; lockedBy?: string | null }): boolean {
+  if (slot.seriesName || slot.scheduleRuleId || slot.lockedBy) return true; // spec 103: a locked slot's format is the owner's
   const hints = slot.sourceHints ?? [];
   if (hints.some((h) => h.startsWith('series:'))) return true;
   return POLL_LIKE.has(slot.format) && hints.some((h) => h.startsWith('data://') || h.startsWith('library://'));

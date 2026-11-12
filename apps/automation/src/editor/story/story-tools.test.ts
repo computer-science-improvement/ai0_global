@@ -86,3 +86,14 @@ test('dry-run Preview: stores the repost preview, writes and sends nothing', asy
   assert.match((sink as any).post.preview, /Repost ai_tech\/55 into ai_news/);
   assert.equal(h.queries.length + h.forwards.length + h.reposts.length, 0);
 });
+
+test('spec 103 LOCK-1: a locked slot (the owner\'s plan_post) is refused: no UPDATE, no forward', async () => {
+  const h = harness();
+  h.slot.lockedBy = 'connector';
+  const r: any = await h.tool.execute(INPUT, h.ctx);
+  assert.equal(r.error, 'locked_slot');
+  assert.match(r.details, /own_angle/);
+  assert.equal(h.queries.length, 0);
+  assert.equal(h.forwards.length, 0);
+  assert.equal(h.reposts.length, 0);
+});

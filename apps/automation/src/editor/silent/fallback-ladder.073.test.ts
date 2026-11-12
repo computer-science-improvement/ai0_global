@@ -83,6 +83,13 @@ test('formatLocked: a series instance, a pin, a series hint and a dataset-row po
   assert.equal(formatLocked({ format: 'quiz', sourceHints: ['https://news.example/a'] }), false);
   assert.equal(formatLocked({ format: 'photo', sourceHints: [], seriesName: null, scheduleRuleId: null }), false);
   assert.equal(formatLocked({ format: 'text' }), false);
+  // Spec 103 LOCK-2: the owner's locked plan_post keeps its format: no lighter_format, no evergreen.
+  assert.equal(formatLocked({ format: 'longread', lockedBy: 'connector' }), true);
+  assert.equal(formatLocked({ format: 'longread', lockedBy: 'owner' }), true);
+  assert.equal(formatLocked({ format: 'longread', lockedBy: null }), false);
+  const allowed = new Set(['longread', 'text', 'photo']);
+  const steps = ladderPlan({ format: 'longread', allowed, evergreen: true, failure: 'lint', locked: formatLocked({ format: 'longread', lockedBy: 'connector' }) }).map((x) => x.step);
+  assert.deepEqual(steps, ['next_candidate']);
 });
 
 test('ladderPlan: locked keeps the format — revise_source (when fixable) and next_candidate, no lighter format, no evergreen', () => {
@@ -180,4 +187,16 @@ test('PublishProbe: series_format_mismatch drops the row like the other row guar
   await sk.execute({ cause: 'no_material' }, {} as any);
   assert.equal(probe.last?.code, 'series_format_mismatch', 'skip_slot does not clear it');
   assert.equal(configStop(probe)?.code, 'series_format_mismatch');
+});
+
+test('runner (spec 103 LOCK-2): a locked plan_post that fails lint keeps its format: no lighter_format, no evergreen (an unlocked one still gets them)', async () => {
+  const plain = { ...baseSlot, format: 'photo', topic: 'owner brief', sourceHints: ['connector:plan'] };
+  const open = setup([lint, lint, lint, lint], { slot: plain, evergreen: true });
+  await open.runner.runExecutor(open.st, open.card);
+  assert.ok(stepsOf(open.st).includes('lighter_format') || open.evergreenCalls.length > 0, `control: an unlocked slot climbs the lighter steps (${stepsOf(open.st)})`);
+  const s = setup([lint, lint, lint, lint], { slot: { ...plain, lockedBy: 'connector' }, evergreen: true });
+  await s.runner.runExecutor(s.st, s.card);
+  assert.deepEqual(formatsOf(s.runs).filter((f) => f !== 'photo'), [], `every attempt keeps the format: ${formatsOf(s.runs)}`);
+  assert.deepEqual(stepsOf(s.st).filter((x: string) => x === 'lighter_format' || x === 'evergreen'), []);
+  assert.equal(s.evergreenCalls.length, 0);
 });

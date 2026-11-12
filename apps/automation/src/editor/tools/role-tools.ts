@@ -17,6 +17,7 @@ import { similarity } from '../post/similarity';
 import { SubmitPlanInput, validatePlan, type PlanIdea } from '../roles/plan-rules';
 import { isQuietHour, localDate, localHour, zonedToUtc } from '../roles/time';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
+import { isLocked } from '../repo/slot-lock';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import type { SendResult } from '../publish/telegram-editor.publisher';
@@ -234,7 +235,7 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   // Spec 037 T2: one story, one post (the resource's 14 days, the network's 24 h); warnings go to the critic.
   let story: Extract<StoryGuardResult, { ok: true }> | null = null;
   if (d.stories && ledger) {
-    const st = await storyGuard(d.stories, { channelKey, slotId, spec, card, at, now });
+    const st = await storyGuard(d.stories, { channelKey, slotId, spec, card, at, now, locked: isLocked(slot) });
     if ('error' in st) return st;
     story = st;
     lint.warnings.push(...st.warnings.map((w) => ({ code: w.code, message: w.message })));

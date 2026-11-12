@@ -319,17 +319,17 @@ export class ApprovalsService {
    * «Апрувнути все на завтра» for a resource, a network (channel) or the
    * variants of one idea. Posts with lint warnings are never bulk-approved.
    */
-  async bulk(body: unknown): Promise<{ approved: number; skippedWithWarnings: number; conflicts: number; ids: string[] }> {
+  async bulk(body: unknown): Promise<{ approved: number; skippedWithWarnings: number; conflicts: number; skippedLocked: number; ids: string[] }> {
     const p = BulkSchema.safeParse(body ?? {});
     if (!p.success) throw badRequest(p.error);
     const items = await this.d.repo.list({
       status: ['awaiting_approval'], channel: p.data.channel ?? null, resource: p.data.resource ?? null,
       planDate: p.data.date ?? null, ideaId: p.data.idea_id ?? null,
     });
-    const out = { approved: 0, skippedWithWarnings: 0, conflicts: 0, ids: [] as string[] };
+    const out = { approved: 0, skippedWithWarnings: 0, conflicts: 0, skippedLocked: 0, ids: [] as string[] };
     for (const it of items) {
       // Spec 103: a locked post (made or edited through the connector) is decided one by one, never in a bulk.
-      if (isLocked(it)) continue;
+      if (isLocked(it)) { out.skippedLocked++; continue; }
       // Spec 034 FR-004: a post the critic did not pass is decided one by one, like one with lint warnings.
       if ((it.lintWarnings ?? []).length || heldByCritic(it.critic)) { out.skippedWithWarnings++; continue; }
       try {

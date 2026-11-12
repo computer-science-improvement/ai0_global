@@ -4,6 +4,7 @@ import { parseResourceRef } from '../agents/agent.types';
 import type { ChannelMode, EditorCard } from '../card';
 import type { ApprovalStats, ApprovalStatsReport, ApprovalStatsRepository } from './approval-stats';
 import { heldByCritic, type StoredCritic } from '../critic/critic';
+import { isLocked } from '../repo/slot-lock';
 import { errText } from '../../common/err-text';
 
 /**
@@ -31,7 +32,7 @@ export interface AutonomyDeps {
   /** The owner's switch: the channel card (audited in its memory) and its resource orchestrator. */
   setMode: (channelKey: string, mode: 'live' | 'approve') => Promise<void>;
   /** Posts of the channel (all its resources) that wait for approval. */
-  waiting: (channelKey: string) => Promise<Array<{ id: string; lintWarnings?: string[] | null; critic?: Pick<StoredCritic, 'verdict'> | null }>>;
+  waiting: (channelKey: string) => Promise<Array<{ id: string; lintWarnings?: string[] | null; critic?: Pick<StoredCritic, 'verdict'> | null; lockedBy?: string | null }>>;
   /** ApprovalsService.approve: single-flight; a lost race throws ConflictException. */
   approve: (slotId: string) => Promise<unknown>;
   now?:    () => Date;
@@ -157,6 +158,8 @@ export class AutonomyService {
     }
     if (to === 'live' && from === 'approve' && p.data.approve_waiting) {
       for (const w of await this.d.waiting(channel)) {
+        // Spec 103 §8 row 9: a locked post (the owner's, through the connector) is decided one by one, never in a bulk or a mode switch.
+        if (isLocked(w)) { out.skippedWithWarnings++; continue; }
         // Spec 034 FR-004: a post the critic did not pass is decided by the owner one by one, like one with warnings.
         if ((w.lintWarnings ?? []).length || heldByCritic(w.critic)) { out.skippedWithWarnings++; continue; }
         try {

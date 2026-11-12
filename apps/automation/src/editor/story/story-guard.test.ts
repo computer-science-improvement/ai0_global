@@ -31,7 +31,7 @@ const hubSpec = (story?: Record<string, unknown>, extraP = '') => makeSpec({
   ...(story ? { story } : {}),
 });
 
-function harness(history: Partial<StoryHistory>, mode: 'live' | 'shadow' | 'approve' = 'live') {
+function harness(history: Partial<StoryHistory>, mode: 'live' | 'shadow' | 'approve' = 'live', lockedBy: string | null = null) {
   const sent: any[] = [];
   const recorded: any[] = [];
   const updates: any[] = [];
@@ -39,7 +39,7 @@ function harness(history: Partial<StoryHistory>, mode: 'live' | 'shadow' | 'appr
     pool: { query: async () => ({ rows: [] }) } as any,
     plans: {
       createPlan: async () => 'p', reservedSlots: async () => [],
-      getSlot: async (id: string) => ({ id, channelKey: '@chan', status: 'running', scheduledAt: NOW, sourceHints: [], format: 'text', topic: 'Apple Home Hub' }) as any,
+      getSlot: async (id: string) => ({ id, channelKey: '@chan', status: 'running', scheduledAt: NOW, sourceHints: [], format: 'text', topic: 'Apple Home Hub', lockedBy }) as any,
       updateSlot: async (id: string, p: any) => { updates.push([id, p]); },
       countPublishedSince: async () => 0, lastPostAt: async () => null, sourceAlreadyPosted: async () => false,
       recentTexts: async () => [], insertPublication: async () => 501,
@@ -102,6 +102,16 @@ test('a sibling\'s story of the last 24 h needs a decision: none → refused; ow
   assert.equal(own.recorded[0].story.decision, 'own_angle');
   assert.match(own.recorded[0].story.reason, /українськими/);
   assert.equal(own.updates.at(-1)[1].status, 'shadowed');
+});
+
+test('spec 103 LOCK-1: a locked slot\'s story_decision_required leaves request_story_repost out of the hint (own_angle or skip_slot only)', async () => {
+  const sib = prior('slot-x', '2026-10-09T08:00:00+03:00', HUB, '@ai_tech', 55);
+  const h = harness({ siblings: ['@ai_tech'], network: [sib] }, 'live', 'connector');
+  const r: any = await h.tools.publish_post.execute({ spec: hubSpec() }, h.ctx);
+  assert.equal(r.error, 'story_decision_required');
+  assert.match(r.details, /skip_slot/);
+  assert.match(r.details, /own_angle/);
+  assert.doesNotMatch(r.details, /request_story_repost/);
 });
 
 test('the critic reads the story: earlier posts and storyFirstPostAt', async () => {

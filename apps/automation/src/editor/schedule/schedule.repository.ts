@@ -84,7 +84,7 @@ export class ScheduleRepository {
    */
   async dropFuturePins(ruleId: string, now: Date): Promise<number> {
     const { rowCount } = await this.pool.query(
-      `DELETE FROM editor_slots WHERE schedule_rule_id = $1 AND status = 'planned' AND scheduled_at > $2`, [ruleId, now]);
+      `DELETE FROM editor_slots WHERE schedule_rule_id = $1 AND status = 'planned' AND scheduled_at > $2 AND locked_by IS NULL`, [ruleId, now]);
     return rowCount ?? 0;
   }
 

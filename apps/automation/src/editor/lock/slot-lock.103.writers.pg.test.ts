@@ -1,7 +1,7 @@
 /**
  * Spec 103 §8, the paragraph under the table (prefix p103b_, EDITOR_PG_TEST_URL): the other slot writers act only on their own rows
  * or lanes and cannot reach a connector slot (kind 'content', resource_ref NULL, created_via 'connector', locked_by 'connector').
- * Each is stated and asserted here: pins (dropFuturePins, materialise), promo, sponsor, story, news watch, the SLO inserter (insert
+ * Each is stated and asserted here: pins (dropFuturePins, materialise; a LOCKED pin slot is kept by dropFuturePins), promo, sponsor, story, news watch, the SLO inserter (insert
  * only), drafts (reserved lane) and moveSlot / skipSlot from the chat card (an owner action, which keeps working on a locked slot).
  * Also: the owner's own paths on a locked slot (skip, run now, approve, edit, reschedule, reject) and lock / unlock itself.
  */
@@ -20,6 +20,7 @@ import { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { ScheduleRepository } from '../schedule/schedule.repository';
 import { SloSlotInserter } from '../slo/slot-inserter';
+import { buildStoryTools } from '../story/story-tools';
 import { SlotLockController } from './slot-lock.controller';
 import { LockFx, NOW, DAY, at, HOUR } from './testing/lock-db';
 
@@ -65,6 +66,25 @@ test('pins: dropFuturePins deletes only the slots of its own rule; materialise o
   assert.equal((await fx.pool.query(`SELECT 1 FROM editor_slots WHERE id = $1`, [pin])).rowCount, 0, 'the pin is gone');
   assert.equal(await snap(mine), before, 'dropFuturePins did not touch it');
 });
+test('pins (LOCK-5): dropFuturePins leaves a LOCKED pin slot (the owner edited it through the connector); materialise does not duplicate it', { skip }, async () => {
+  const card = await fx.channel();
+  const agentId = await orchestrator(card.channelKey);
+  const repo = new ScheduleRepository(fx.pool);
+  const rule = await repo.insert(agentId, { resource_ref: `telegram:${card.channelKey}`, kind: 'pin', at_local: '18:00', format: 'text', brief: 'a daily pin for the lock test' } as any, 'owner');
+  const input = { ruleId: rule.id, ruleDate: DAY, channelKey: card.channelKey, planDate: DAY, scheduledAt: later(8), resourceRef: null, format: 'text', topic: 'pin', sourceHints: [], seriesName: null };
+  const locked = await repo.materialise(input);
+  const free = await repo.materialise({ ...input, ruleDate: '2099-01-01', scheduledAt: later(30) });
+  assert.ok(locked && free);
+  await fx.pool.query(`UPDATE editor_slots SET locked_by = 'connector', topic = 'edited in Claude' WHERE id = $1`, [locked]);
+  assert.equal(await repo.dropFuturePins(rule.id, NOW), 1, 'only the unlocked pin goes');
+  const row = await fx.row(locked!);
+  assert.equal(row.locked_by, 'connector');
+  assert.equal(row.topic, 'edited in Claude');
+  assert.equal((await fx.pool.query(`SELECT 1 FROM editor_slots WHERE id = $1`, [free])).rowCount, 0);
+  // The (rule, date) unique index: materialising the rule again is a no-op for the kept pin.
+  assert.equal(await repo.materialise(input), null, 'no duplicate');
+  assert.equal((await fx.pool.query(`SELECT 1 FROM editor_slots WHERE schedule_rule_id = $1 AND rule_date = $2`, [rule.id, DAY])).rowCount, 1);
+});
 
 test('promo: unlinkPairs and the promo claims act on slots with a promo block only', { skip }, async () => {
   const card = await fx.channel();
@@ -88,14 +108,47 @@ test('sponsor: dropSlot drops the slot it just reserved, by id', { skip }, async
   assert.equal(await snap(mine), before);
 });
 
-test('story: story_repost marks the slot the promo executor claimed (reserved + promo); that claim cannot take a connector slot', { skip }, async () => {
+test('story: request_story_repost refuses a locked content slot the executor claimed (LOCK-1): promo and format stay, nothing is forwarded; an unlocked slot still reposts', { skip }, async () => {
+  const card = await fx.channel({ mode: 'live' });
+  const mine = await connectorSlot(card.channelKey, { at: NOW });
+  await fx.pool.query(`UPDATE editor_slots SET format = 'longread' WHERE id = $1`, [mine]);
+  const claimed = (await plans.claimDue(later(1), 50)).filter((s) => s.id === mine);
+  assert.equal(claimed.length, 1, 'the executor claims the locked planned slot (running)');
+  const src = { storyId: 'st-1', storyKey: 'k', storyPostId: 1, fromKey: 'ai_tech', messageId: 55, postedAt: new Date(NOW.getTime() - HOUR) };
+  const forwards: unknown[] = [];
+  const reposts: unknown[] = [];
+  const mk = (clock: Date) => buildStoryTools({
+    pool: fx.pool, plans,
+    stories: { repostSource: async () => src, repostCounts: async () => ({ story: 0, day: 0 }), recordRepost: async (i: unknown) => { reposts.push(i); }, recordForward: async () => 1 },
+    forward: async (...a: unknown[]) => { forwards.push(a); return 9; },
+    now: () => clock,
+  } as any)[0];
+  const ctxFor = (slotId: string): any => ({ runId: 'r', role: 'executor', channelKey: card.channelKey, slotId, extras: { card } });
+  const input = { story_key: 'k', source_post_id: 'telegram:ai_tech/55', reason: 'the neighbour already told it fully' };
+  const r: any = await mk(NOW).execute(input, ctxFor(mine));
+  assert.equal(r.error, 'locked_slot');
+  const row = await fx.row(mine);
+  assert.equal(row.promo, null, 'promo unchanged');
+  assert.equal(row.format, 'longread', 'format unchanged');
+  assert.equal(row.status, 'running');
+  assert.deepEqual([forwards.length, reposts.length], [0, 0]);
+  // The guard in SQL alone also holds: the UPDATE carries locked_by IS NULL.
+  const toolSrc = readFileSync(join(__dirname, '..', 'story', 'story-tools.ts'), 'utf8');
+  assert.match(toolSrc, /UPDATE editor_slots[^`]*locked_by IS NULL/);
+  // An agent's own running slot is unaffected (the tool still works for it).
+  const open = await fx.slot(card.channelKey, { at: NOW, lockedBy: undefined as any, resourceRef: null, kind: 'content' });
+  await fx.pool.query(`UPDATE editor_slots SET status = 'running' WHERE id = $1`, [open]);
+  const ok: any = await mk(NOW).execute(input, ctxFor(open));
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  assert.equal((await fx.row(open)).format, 'repost');
+});
+
+test('promo / reserved claims still cannot take a connector slot (kind content, no promo block)', { skip }, async () => {
   const card = await fx.channel();
   const mine = await connectorSlot(card.channelKey, { at: NOW });
   assert.equal(await plans.claimPromoSlot(mine), null);
   assert.deepEqual(await plans.claimDueReserved(later(24), 50), [], 'nor does the reserved-lane claim (kind content)');
   assert.equal((await fx.row(mine)).status, 'planned');
-  const src = readFileSync(join(__dirname, '..', 'story', 'story-tools.ts'), 'utf8');
-  assert.equal((src.match(/UPDATE editor_slots/g) ?? []).length, 1, 'one update, on the claimed slot id');
 });
 
 test('news watch: it only inserts live slots (no UPDATE or DELETE of editor_slots in it)', () => {

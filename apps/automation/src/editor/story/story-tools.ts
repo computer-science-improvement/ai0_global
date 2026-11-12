@@ -6,6 +6,7 @@ import { dryRunOf } from '../roles/preview-run';
 import { localDate, zonedToUtc } from '../roles/time';
 import { PromoExecutor } from '../promo/promo-executor';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
+import { isLocked } from '../repo/slot-lock';
 import { REPOST_HOURS } from './story-match';
 import type { StoryRegistry } from './story.repository';
 
@@ -66,6 +67,8 @@ export function buildStoryTools(d: StoryToolDeps): EditorTool[] {
       const t = now();
       const slot = await d.plans.getSlot(slotId);
       if (!slot || slot.channelKey !== channelKey) return { error: 'slot_not_found' };
+      // Spec 103 §8: a locked slot is the owner's post. A repost would replace their brief and format with another channel's post.
+      if (isLocked(slot)) return { error: 'locked_slot', details: 'the owner planned this post: write it with story.decision own_angle (and story.reason) or call skip_slot' };
       const dry = dryRunOf(ctx);
       if (slot.status !== 'running' && !(dry && (slot.status === 'planned' || dry.probe))) return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
       if (card.mode === 'off') return { error: 'channel_off' };
@@ -90,7 +93,8 @@ export function buildStoryTools(d: StoryToolDeps): EditorTool[] {
       }
 
       const promo = { kind: 'story_repost', post_ref: postRef, story_key: src.storyKey, reason, story_post_id: src.storyPostId };
-      await d.pool.query(`UPDATE editor_slots SET promo = $2, format = 'repost', updated_at = now() WHERE id = $1`, [slotId, JSON.stringify(promo)]);
+      const upd = await d.pool.query(`UPDATE editor_slots SET promo = $2, format = 'repost', updated_at = now() WHERE id = $1 AND locked_by IS NULL`, [slotId, JSON.stringify(promo)]);
+      if (upd.rowCount === 0) return { error: 'locked_slot', details: 'the slot was locked meanwhile: write it with story.decision own_angle or call skip_slot' };
       const at = slot.scheduledAt && new Date(slot.scheduledAt).getTime() > t.getTime() ? new Date(slot.scheduledAt) : t;
       await d.stories.recordRepost({ channelKey, slotId, source: src, reason, postedAt: at });
 

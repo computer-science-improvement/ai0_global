@@ -33,6 +33,8 @@ export interface StoryGuardInput {
   /** The (scheduled) publish instant of the post. */
   at:         Date;
   now:        Date;
+  /** Spec 103: the slot is locked (the owner's post): a repost is not an option, so the hint leaves it out. */
+  locked?:    boolean;
 }
 
 const FACTS_SHOWN = 6;
@@ -74,8 +76,8 @@ export async function storyGuard(reg: Pick<StoryRegistry, 'history'>, i: StoryGu
       return {
         error: 'story_decision_required',
         details: `${s.channel} уже опублікував цю історію чи тему за останні ${CROSS_CHANNEL_HOURS} год («${(s.lead ?? bodyText(s).split('\n')[0] ?? '').slice(0, 90)}»). `
-          + `Виріши: skip_slot (code story_skip), власний кут — story.decision "own_angle" і story.reason (чим твій пост інший), `
-          + `або request_story_repost${ref ? ` (source_post_id ${ref})` : ' (коли пост сусіда вийде)'}.`,
+          + `Виріши: skip_slot (code story_skip), власний кут — story.decision "own_angle" і story.reason (чим твій пост інший)`
+          + (i.locked ? '.' : `, або request_story_repost${ref ? ` (source_post_id ${ref})` : ' (коли пост сусіда вийде)'}.`),
       };
     }
     if (!st.reason) return { error: 'story_decision_required', details: 'own_angle потребує story.reason: чим твій пост відрізняється від посту сусіднього каналу' };

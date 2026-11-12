@@ -10,6 +10,7 @@ import { ApprovalPublisher } from '../approval/approval-publisher';
 import { ApprovalUpkeep } from '../approval/approval-upkeep';
 import { ApprovalsRepository } from '../approval/approvals.repository';
 import { ApprovalsService } from '../approval/approvals.service';
+import { AutonomyService } from '../approval/autonomy';
 import { syncAgentsFor } from '../approval/pg-test-agents';
 import { PAUSED_ERROR } from '../pauses/resource-pauses';
 import { dropWaitingPosts, EditorChannelsRepository } from '../repo/editor-channels.repository';
@@ -113,6 +114,27 @@ for (const sh of SHAPES) {
     const id = await fx.slot(card.channelKey, { at: later(10), status: 'awaiting_approval', lockedBy: sh.lockedBy });
     const out = await service().bulk({ channel: card.channelKey });
     assert.equal(out.approved, sh.lockedBy ? 0 : 1);
+    assert.equal(out.skippedLocked, sh.lockedBy ? 1 : 0, 'a locked post is counted, not silently dropped');
+    assert.equal((await fx.row(id)).status, sh.lockedBy ? 'awaiting_approval' : 'approved');
+  });
+
+  test(`row 9 (D3): approve_waiting on the autonomy switch never approves a locked post and reports it (${sh.name})`, { skip }, async () => {
+    const card = await approvalChannel();
+    const id = await fx.slot(card.channelKey, { at: later(10), status: 'awaiting_approval', lockedBy: sh.lockedBy });
+    const svc = service();
+    const autonomy = new AutonomyService({
+      stats: { report: async () => ({}) as any },
+      card: (k) => channels.get(k),
+      mode: async () => 'approve',
+      setMode: async () => {},
+      waiting: (k) => repo.list({ status: ['awaiting_approval'], channel: k }),
+      approve: async (i) => { await svc.approve(i); },
+      now: () => NOW,
+    });
+    const out = await autonomy.switchMode({ channel: card.channelKey, mode: 'live', approve_waiting: true });
+    assert.equal(out.approved, sh.lockedBy ? 0 : 1);
+    assert.equal(out.skippedWithWarnings, sh.lockedBy ? 1 : 0);
+    assert.equal(out.leftWaiting, sh.lockedBy ? 1 : 0);
     assert.equal((await fx.row(id)).status, sh.lockedBy ? 'awaiting_approval' : 'approved');
   });
 }
