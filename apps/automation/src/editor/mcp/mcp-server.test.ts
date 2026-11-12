@@ -78,3 +78,28 @@ test('stdio transport: newline-delimited JSON in, one response line per request 
   assert.equal(byId.get(null).error.code, RPC.PARSE);
   assert.equal(byId.get(2).result.isError, false);
 });
+
+test('fitResult (C5): compact, cut by halving the biggest array, then clipping strings; always within the budget', async () => {
+  const { fitResult } = await import('./mcp-server');
+  assert.equal(fitResult({ a: [1, 2] }, 100), '{"a":[1,2]}');
+  const arr = JSON.parse(fitResult({ items: Array.from({ length: 100 }, (_, i) => ({ i, t: 'x'.repeat(100) })) }, 2000));
+  assert.equal(arr.truncated, true);
+  assert.ok(arr.items.length >= 1 && arr.items.length < 100);
+  assert.equal(arr.items[0].i, 0, 'the first items are kept');
+  const top = JSON.parse(fitResult([1, 2, 3, 'x'.repeat(5000)], 500));
+  assert.equal(top.truncated, true);
+  assert.ok(Array.isArray(top.items));
+  const str = fitResult({ one: 'z'.repeat(50_000) }, 3000);
+  assert.ok(str.length <= 3000);
+  assert.equal(JSON.parse(str).truncated, true);
+  const plain = fitResult('q'.repeat(10_000), 1000);
+  assert.ok(plain.length <= 1000);
+  assert.equal(JSON.parse(plain).truncated, true);
+});
+
+test('the stdio server keeps pretty-printed, unbounded results (no budget set)', async () => {
+  const s = new McpServer({ name: 't', version: '1', tools: async () => [{ name: 'big', description: 'd', inputSchema: {}, call: async () => ({ a: 'x'.repeat(100_000) }) }] });
+  const r: any = await s.handle({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'big', arguments: {} } });
+  assert.ok(r.result.content[0].text.startsWith('{\n  "a"'));
+  assert.ok(r.result.content[0].text.length > 100_000);
+});

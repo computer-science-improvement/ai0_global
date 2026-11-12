@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
-import { ClientRegistry, defaultMetadataFetcher, type MetadataFetcher } from './clients';
+import { ClientRegistry, defaultMetadataFetcher, ipKey, type MetadataFetcher } from './clients';
 import { CIMD_URL_CODE, CIMD_URL_HOSTED, DCR_MAX_ACTIVE, DCR_PER_IP_PER_HOUR } from './constants';
 import { OAuthError } from './errors';
 import { MemoryOAuthStore } from './memory-store';
@@ -72,8 +72,8 @@ test('DCR: 20 registrations per IP per hour, then it frees up', async () => {
 });
 
 test('DCR: at most 100 active clients', async () => {
-  const { clients, store } = reg();
-  for (let i = 0; i < DCR_MAX_ACTIVE; i++) await store.upsertClient({ clientId: `c${i}`, kind: 'dcr', name: 'x', redirectUris: [] }, new Date());
+  const { clients, store, clock } = reg();
+  for (let i = 0; i < DCR_MAX_ACTIVE; i++) { await store.upsertClient({ clientId: `c${i}`, kind: 'dcr', name: 'x', redirectUris: [] }, clock.now()); await store.touchClient(`c${i}`, clock.now()); }
   await assert.rejects(clients.register(dcrBody(), '7.7.7.7'), (e: any) => e.status === 429);
 });
 
@@ -96,6 +96,8 @@ test('CIMD: a valid document is accepted and recorded', async () => {
   const { clients, store } = cimdRegistry(async () => ({ status: 200, text: doc({ client_name: 'Claude Hosted' }) }));
   const c = await clients.resolve(CIMD_URL_HOSTED);
   assert.deepEqual({ kind: c?.kind, name: c?.name, uris: c?.redirectUris }, { kind: 'cimd', name: 'Claude Hosted', uris: ['https://claude.ai/api/mcp/auth_callback'] });
+  assert.equal(await store.getClient(CIMD_URL_HOSTED), null, 'resolving writes nothing');
+  await clients.activate(c!);
   assert.equal((await store.getClient(CIMD_URL_HOSTED))?.kind, 'cimd');
 });
 
@@ -141,13 +143,60 @@ test('CIMD: the document is cached for 24 hours', async () => {
   assert.equal(fetched, 2);
 });
 
-test('CIMD: a client removed in Settings can connect again (grants were revoked, the client is not barred)', async () => {
-  const { clients, store } = cimdRegistry(async () => { throw new Error('offline'); });
-  await clients.resolve(CIMD_URL_HOSTED);
+test('CIMD (AUTH-2/D5): resolving never un-revokes a disconnected client; only the owner allowing it does', async () => {
+  const { clients, store, clock } = cimdRegistry(async () => { throw new Error('offline'); });
+  await clients.activate((await clients.resolve(CIMD_URL_HOSTED))!);
   const row = await store.getClient(CIMD_URL_HOSTED);
-  await store.revokeClient(row!.id, new Date());
-  assert.ok(await clients.resolve(CIMD_URL_HOSTED));
+  await store.revokeClient(row!.id, clock.now());
+  clock.advance(1000);
+  assert.ok(await clients.resolve(CIMD_URL_HOSTED), 'it can still be asked to consent');
+  assert.ok((await store.getClient(CIMD_URL_HOSTED))?.revokedAt, 'but stays disconnected');
+  assert.equal((await store.getClient(CIMD_URL_HOSTED))?.lastUsedAt?.getTime(), row!.lastUsedAt?.getTime(), 'and last used does not move');
+  await clients.activate((await clients.resolve(CIMD_URL_HOSTED))!);
   assert.equal((await store.getClient(CIMD_URL_HOSTED))?.revokedAt, null);
+});
+
+test('CIMD (AUTH-2): a failed fetch is remembered for 5 minutes', async () => {
+  let fetched = 0;
+  const { clients, clock } = cimdRegistry(async () => { fetched++; throw new Error('offline'); });
+  for (let i = 0; i < 5; i++) await clients.resolve(CIMD_URL_HOSTED);
+  assert.equal(fetched, 1);
+  clock.advance(5 * 60 * 1000 + 1);
+  await clients.resolve(CIMD_URL_HOSTED);
+  assert.equal(fetched, 2);
+});
+
+test('DCR (AUTH-3): unused registrations do not count toward the cap, used ones do', async () => {
+  const { clients, store, clock } = reg();
+  for (let i = 0; i < DCR_MAX_ACTIVE; i++) await store.upsertClient({ clientId: `u${i}`, kind: 'dcr', name: 'x', redirectUris: [] }, clock.now());
+  await clients.register(dcrBody(), '7.7.7.7'); // 100 unused registrations: still open
+  assert.equal(await store.countActiveDcr(clock.now()), 0);
+  await store.touchClient('u1', clock.now());
+  assert.equal(await store.countActiveDcr(clock.now()), 1);
+  clock.advance(25 * 3600 * 1000);
+  assert.equal(await store.countActiveDcr(clock.now()), 0, 'used more than 24 h ago and no live grant');
+});
+
+test('DCR (AUTH-3): registrations with no grant are purged after 24 h and hidden from the client list', async () => {
+  const { store, clock } = reg();
+  await store.upsertClient({ clientId: 'never', kind: 'dcr', name: 'Never used', redirectUris: [] }, clock.now());
+  await store.upsertClient({ clientId: 'real', kind: 'dcr', name: 'Real', redirectUris: [] }, clock.now());
+  await store.createGrant({ id: 'g1', clientId: 'real', scope: 'mcp:read', resource: 'x' }, clock.now());
+  assert.deepEqual((await store.listClients()).map((c) => c.clientId), ['real']);
+  clock.advance(24 * 3600 * 1000 + 1);
+  await store.purge(clock.now());
+  assert.equal(await store.getClient('never'), null);
+  assert.ok(await store.getClient('real'));
+});
+
+test('DCR (AUTH-3): IPv6 addresses in one /64 share a registration budget', async () => {
+  const { clients } = reg();
+  for (let i = 0; i < DCR_PER_IP_PER_HOUR; i++) await clients.register(dcrBody(), `2001:db8:1:2:${i.toString(16)}::${i + 1}`);
+  await assert.rejects(clients.register(dcrBody(), '2001:db8:1:2:ffff:1:2:3'), (e: any) => e.status === 429);
+  await clients.register(dcrBody(), '2001:db8:1:3::1'); // another /64
+  assert.equal(ipKey('::ffff:1.2.3.4'), '1.2.3.4');
+  assert.equal(ipKey('2001:DB8::1'), '2001:db8:0:0::/64');
+  assert.equal(ipKey(null), 'unknown');
 });
 
 test('default fetcher: reads a document, treats a redirect as failure, caps the size at 64 KB', async () => {

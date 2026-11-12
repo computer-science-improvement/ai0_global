@@ -38,7 +38,7 @@ export class ConnectorAdminController {
   @Delete('clients/:id')
   async removeClient(@Param('id') id: string, @Req() req: any) {
     const r = await this.store.revokeClient(uuid(id), new Date());
-    if (r.found) await this.audit.record({ event: 'revoked', summary: `client removed, ${r.revoked} grant(s) revoked`, ip: clientIp(req) });
+    if (r.found) await this.audit.record({ event: 'revoked', ok: true, summary: `client removed, ${r.revoked} grant(s) revoked`, ip: clientIp(req) });
     return { ok: r.found, revoked: r.revoked };
   }
 
@@ -57,7 +57,7 @@ export class ConnectorAdminController {
   async revokeGrant(@Param('id') id: string, @Req() req: any) {
     const g = await this.store.getGrant(uuid(id));
     const ok = await this.store.revokeGrant(id, 'revoked_by_owner', new Date());
-    if (ok) await this.audit.record({ event: 'revoked', grantId: id, clientId: g?.clientId ?? null, summary: 'revoked by the owner', ip: clientIp(req) });
+    if (ok) await this.audit.record({ event: 'revoked', grantId: id, clientId: g?.clientId ?? null, ok: true, summary: 'revoked by the owner', ip: clientIp(req) });
     return { ok };
   }
 
@@ -65,7 +65,7 @@ export class ConnectorAdminController {
   @HttpCode(200)
   async revokeAll(@Req() req: any) {
     const revoked = await this.store.revokeAllGrants('revoked_by_owner', new Date());
-    await this.audit.record({ event: 'revoked', summary: `all access revoked (${revoked})`, ip: clientIp(req) });
+    await this.audit.record({ event: 'revoked', ok: true, summary: `all access revoked (${revoked})`, ip: clientIp(req) });
     return { ok: true, revoked };
   }
 

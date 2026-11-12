@@ -67,8 +67,10 @@ export interface OAuthStore {
   // clients
   upsertClient(c: { clientId: string; kind: ClientKind; name: string; redirectUris: string[]; metadata?: Record<string, unknown>; createdIp?: string | null }, now: Date): Promise<ClientRow>;
   getClient(clientId: string): Promise<ClientRow | null>;
-  countActiveDcr(): Promise<number>;
+  /** DCR clients that count toward the cap: not revoked, and holding a live grant or used in the last 24 h. */
+  countActiveDcr(now: Date): Promise<number>;
   touchClient(clientId: string, now: Date): Promise<void>;
+  /** Active clients; a DCR client that never got a grant is hidden. */
   listClients(): Promise<ClientListRow[]>;
   /** Marks the client revoked and revokes every live grant it has; returns the number of grants revoked. */
   revokeClient(id: string, now: Date): Promise<{ found: boolean; revoked: number }>;
@@ -76,6 +78,8 @@ export interface OAuthStore {
   // consent requests
   insertRequest(r: Omit<RequestRow, 'decidedAt' | 'decision' | 'createdAt'>, now: Date): Promise<void>;
   getRequest(idHash: string): Promise<RequestRow | null>;
+  /** Requests of this client that still wait for a decision and have not expired. */
+  countPendingRequests(clientId: string, now: Date): Promise<number>;
   /** Atomic: only a pending, unexpired request takes a decision. Returns the row, or null when it was not pending. */
   decideRequest(idHash: string, decision: 'allow' | 'deny', now: Date): Promise<RequestRow | null>;
 
@@ -104,6 +108,6 @@ export interface OAuthStore {
   consumeRefresh(hash: string, replacedBy: string, now: Date): Promise<boolean>;
   setReplacedBy(hash: string, replacedBy: string): Promise<void>;
 
-  /** Housekeeping: drops expired codes, tokens and requests older than a day. */
+  /** Housekeeping: drops expired codes, tokens and requests older than a day, and DCR clients that never got a grant within a day. */
   purge(now: Date): Promise<void>;
 }

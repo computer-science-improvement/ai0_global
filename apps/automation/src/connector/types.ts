@@ -42,6 +42,11 @@ export interface ConnectorUrls {
   resource: string;
   /** The OAuth issuer (the bare origin). */
   issuer:   string;
+  /**
+   * Where the owner signs in and where the consent page lives: the origin of DASHBOARD_URL, else `origin`. It may differ
+   * from `origin` when MCP_PUBLIC_URL points at another host; the session cookie and the Telegram widget belong to the dashboard host.
+   */
+  dashboardOrigin?: string;
   /** Protected Resource Metadata URL: <origin>/.well-known/oauth-protected-resource/api/mcp */
   prm:      string;
 }
@@ -55,8 +60,19 @@ export interface ConnectorStatus {
   url:        string | null;
   issuer:     string | null;
   httpsOk:    boolean;
+  /** Origin of the consent / sign-in pages (DASHBOARD_URL, else the connector origin). */
+  dashboardOrigin?: string | null;
   /** Why it is not usable: 'off' | 'not_configured' | 'not_https' | null. */
   reason:     'off' | 'not_configured' | 'not_https' | null;
+}
+
+/** The origin of DASHBOARD_URL when it is an http(s) URL, else the fallback. */
+function dashboardOriginOf(raw: string | undefined, fallback: string): string {
+  try {
+    const u = new URL((raw ?? '').trim());
+    if (u.protocol === 'https:' || u.protocol === 'http:') return u.origin;
+  } catch { /* unset or not a URL */ }
+  return fallback;
 }
 
 const LOCAL_HOST_RE = /^(localhost|127\.0\.0\.1|\[::1\])$/;
@@ -78,13 +94,13 @@ export function connectorStatus(env: (k: string) => string | undefined): { statu
       httpsOk = u.protocol === 'https:' || (u.protocol === 'http:' && local);
       if (u.protocol === 'https:' || u.protocol === 'http:') {
         const origin = u.origin;
-        urls = { origin, issuer: origin, resource: `${origin}${MCP_PATH}`, prm: `${origin}/.well-known/oauth-protected-resource${MCP_PATH}` };
+        urls = { origin, issuer: origin, dashboardOrigin: dashboardOriginOf(env('DASHBOARD_URL'), origin), resource: `${origin}${MCP_PATH}`, prm: `${origin}/.well-known/oauth-protected-resource${MCP_PATH}` };
       }
     } catch { /* not a URL: not configured */ }
   }
   const reason: ConnectorStatus['reason'] = !urls ? 'not_configured' : !httpsOk ? 'not_https' : !enabledFlag ? 'off' : null;
   return {
-    status: { enabled: reason === null, configured: !!urls, url: urls?.resource ?? null, issuer: urls?.issuer ?? null, httpsOk, reason },
+    status: { enabled: reason === null, configured: !!urls, url: urls?.resource ?? null, issuer: urls?.issuer ?? null, httpsOk, dashboardOrigin: urls?.dashboardOrigin ?? null, reason },
     urls: reason === null ? urls : (urls && httpsOk ? urls : null),
   };
 }

@@ -2,10 +2,10 @@ import { Logger } from '@nestjs/common';
 import { McpServer, RPC, SUPPORTED_PROTOCOL_VERSIONS, ToolFailure, type McpTool } from '../../editor/mcp/mcp-server';
 import { clientIp } from '../../auth/client-info';
 import { summarizeArgs, type AuditSink } from '../audit/audit';
-import { RATE_LIMIT_PER_MIN, TOOL_TIMEOUT_MS, TOUCH_INTERVAL_MS } from '../oauth/constants';
+import { MAX_RESULT_CHARS, RATE_LIMIT_PER_MIN, TOOL_TIMEOUT_MS, TOUCH_INTERVAL_MS } from '../oauth/constants';
 import type { OAuthService } from '../oauth/oauth.service';
 import type { OAuthStore } from '../oauth/store';
-import type { ConnectorPrincipal, ConnectorToolsFactory } from '../types';
+import type { ConnectorPrincipal, ConnectorTool, ConnectorToolsFactory } from '../types';
 import { liveUrls, type ConnectorConfig } from './config';
 import type { McpBodyState } from './mcp-body.middleware';
 
@@ -115,7 +115,8 @@ export class McpEndpoint {
     if (msg && typeof msg === 'object' && msg.method === undefined && ('result' in msg || 'error' in msg)) { res.status(202).end(); return; }
 
     const ip = clientIp(req);
-    const server = this.serverFor(principal, ip);
+    const { server, visible, all } = this.serverFor(principal, ip);
+    await this.auditRefused(msg, principal, ip, visible, all);
     const out = await server.handle(body);
     if (out === null) { res.status(202).end(); return; }
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -142,13 +143,28 @@ export class McpEndpoint {
     void this.d.store.touchGrant(grantId, ip, now).catch(() => undefined);
   }
 
-  private serverFor(p: ConnectorPrincipal, ip: string | null): McpServer {
+  private serverFor(p: ConnectorPrincipal, ip: string | null) {
+    let everything: Promise<ConnectorTool[]> | null = null;
     let cached: Promise<McpTool[]> | null = null;
-    const tools = () => (cached ??= this.d.tools.tools(p).then((all) => all.filter((t) => p.scopes.has(t.scope)).map((t) => this.audited(t, p, ip))));
-    return new McpServer({
-      name: 'ai0', title: 'ai0 network', version: '1.0.0', instructions: SERVER_INSTRUCTIONS, tools,
+    const all = () => (everything ??= this.d.tools.tools(p));
+    const tools = () => (cached ??= all().then((list) => list.filter((t) => p.scopes.has(t.scope)).map((t) => this.audited(t, p, ip))));
+    const server = new McpServer({
+      name: 'ai0', title: 'ai0 network', version: '1.0.0', instructions: SERVER_INSTRUCTIONS, tools, maxResultChars: MAX_RESULT_CHARS,
       log: (msg) => this.log.warn(msg),
     });
+    return { server, visible: tools, all };
+  }
+
+  /** A tools/call for a tool outside the caller's scope (or unknown) is refused by the server; it still leaves an audit row. */
+  private async auditRefused(msg: Record<string, unknown> | null, p: ConnectorPrincipal, ip: string | null, visible: () => Promise<McpTool[]>, all: () => Promise<ConnectorTool[]>): Promise<void> {
+    if (!msg || msg.method !== 'tools/call') return;
+    const name = (msg.params as { name?: unknown } | undefined)?.name;
+    if (typeof name !== 'string') return;
+    try {
+      if ((await visible()).some((t) => t.name === name)) return;
+      const known = (await all()).some((t) => t.name === name);
+      await this.d.audit.record({ event: 'tool_call', grantId: p.grantId, clientId: p.clientId, tool: name.slice(0, 100), ok: false, error: known ? 'not_allowed_for_scope' : 'unknown_tool', ip });
+    } catch { /* the tool list failing is reported by the server itself */ }
   }
 
   /** Audit row per call (ids only, never text), timing, and a hard cap so a stuck tool cannot hold the request. */

@@ -33,10 +33,11 @@ test('clients: upsert, DCR count, list with active grants, revoke cascades to gr
   assert.equal(c.kind, 'dcr');
   assert.deepEqual(c.redirectUris, [HOSTED_REDIRECT]);
   await store.upsertClient({ clientId: 'https://claude.ai/oauth/mcp-oauth-client-metadata', kind: 'cimd', name: 'Claude', redirectUris: [HOSTED_REDIRECT] }, T0);
-  assert.equal(await store.countActiveDcr(), 1);
+  assert.equal(await store.countActiveDcr(T0), 0, 'a registration with no grant and no use does not count');
 
   const g = randomUUID();
   await store.createGrant({ id: g, clientId: 'dcr_1', scope: 'mcp:read', resource: URLS.resource }, T0);
+  assert.equal(await store.countActiveDcr(T0), 1);
   await store.insertToken({ tokenHash: 'h_rt', kind: 'refresh', grantId: g, clientId: 'dcr_1', scope: 'mcp:read', resource: URLS.resource, redirectUri: null, codeChallenge: null, expiresAt: plus(86400_000) }, T0);
   const list = await store.listClients();
   assert.equal(list.find((x) => x.clientId === 'dcr_1')?.activeGrants, 1);
@@ -48,7 +49,7 @@ test('clients: upsert, DCR count, list with active grants, revoke cascades to gr
   assert.deepEqual(r, { found: true, revoked: 1 });
   assert.ok((await store.getGrant(g))?.revokedAt);
   assert.ok((await store.getToken('h_rt'))?.revokedAt);
-  assert.equal(await store.countActiveDcr(), 0);
+  assert.equal(await store.countActiveDcr(plus(1000)), 0);
   assert.equal((await store.listClients()).some((x) => x.clientId === 'dcr_1'), false);
   assert.deepEqual(await store.revokeClient(randomUUID(), T0), { found: false, revoked: 0 });
 });
@@ -188,4 +189,31 @@ test('audit: the tool row stores what it is given, capped; a failing write never
   assert.equal(row.summary.length, 300);
   const broken = new PgAudit({ query: async () => { throw new Error('db down'); } } as any);
   await broken.record({ event: 'tool_call' });
+});
+
+test('AUTH-2/3: pending request count, DCR cap counts only used or granted clients, purge of grantless DCR clients, hidden from the list', { skip }, async () => {
+  await store.upsertClient({ clientId: 'dcr_never', kind: 'dcr', name: 'Never', redirectUris: [] }, T0);
+  await store.upsertClient({ clientId: 'dcr_used', kind: 'dcr', name: 'Used', redirectUris: [] }, T0);
+  await store.touchClient('dcr_used', T0);
+  await store.upsertClient({ clientId: 'dcr_granted', kind: 'dcr', name: 'Granted', redirectUris: [] }, T0);
+  await store.createGrant({ id: randomUUID(), clientId: 'dcr_granted', scope: 'mcp:read', resource: URLS.resource }, T0);
+  const dcrNow = async (at: Date) => (await store.countActiveDcr(at));
+  const before = await dcrNow(T0);
+  assert.ok(before >= 2);
+  const listed = (await store.listClients()).map((c) => c.clientId);
+  assert.ok(!listed.includes('dcr_never') && listed.includes('dcr_granted'));
+  // used 24 h ago stops counting; a live grant keeps counting
+  assert.ok(await dcrNow(plus(25 * 3600_000)) < before, 'a client used more than a day ago no longer counts');
+
+  for (let i = 0; i < 3; i++) {
+    await store.insertRequest({ idHash: `pend_${i}`, clientId: 'dcr_granted', redirectUri: HOSTED_REDIRECT, codeChallenge: 'c'.repeat(43), scope: 'mcp:read', state: null, resource: URLS.resource, expiresAt: plus(600_000) }, T0);
+  }
+  await store.decideRequest('pend_0', 'deny', plus(1000));
+  assert.equal(await store.countPendingRequests('dcr_granted', plus(2000)), 2);
+  assert.equal(await store.countPendingRequests('dcr_granted', plus(700_000)), 0, 'expired requests do not count');
+
+  await store.purge(plus(25 * 3600_000));
+  assert.equal(await store.getClient('dcr_never'), null);
+  assert.equal(await store.getClient('dcr_used'), null, 'used but no grant: purged after a day');
+  assert.ok(await store.getClient('dcr_granted'));
 });

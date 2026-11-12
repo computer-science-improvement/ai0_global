@@ -230,7 +230,7 @@ export const SETTINGS: readonly SettingDef[] = [
 
   // ── Connectors (spec 103) ──────────────────────────────────────────────────
   { key: 'MCP_CONNECTOR', group: 'connectors', label: 'Claude connector', help: 'Lets Claude (claude.ai, Claude Desktop, Claude Code) connect over MCP after you sign in and allow it. Off: the connector URL and its sign-in pages answer 404; existing access stays but cannot be used.', type: 'bool', bool: OFF, default: 'off', apply: 'live', danger: true },
-  { key: 'MCP_PUBLIC_URL', group: 'connectors', label: 'Connector public URL', help: 'The https origin Claude reaches (no path). Empty = the dashboard URL. The connector URL is this plus /api/mcp.', type: 'url', default: '', apply: 'live' },
+  { key: 'MCP_PUBLIC_URL', group: 'connectors', label: 'Connector public URL', help: 'The https origin Claude reaches (no path). Empty = the dashboard URL. The connector URL is this plus /api/mcp. Sign-in and the consent page stay on the dashboard URL, so owner approval works even when this host differs.', type: 'url', default: '', apply: 'live' },
 
   // ── Retention ──────────────────────────────────────────────────────────────
   { key: 'RETENTION_ENABLED', group: 'retention', label: 'Nightly cleanup', help: 'At 03:00 delete or clear the rows older than the windows below.', type: 'bool', bool: TF, default: 'false', apply: 'live' },

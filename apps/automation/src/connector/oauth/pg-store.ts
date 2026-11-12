@@ -43,8 +43,13 @@ export class PgOAuthStore implements OAuthStore {
     const { rows } = await this.pool.query(`SELECT * FROM mcp_oauth_clients WHERE client_id = $1`, [clientId]);
     return rows[0] ? toClient(rows[0]) : null;
   }
-  async countActiveDcr() {
-    const { rows } = await this.pool.query(`SELECT count(*)::int AS n FROM mcp_oauth_clients WHERE kind = 'dcr' AND revoked_at IS NULL`);
+  async countActiveDcr(now: Date) {
+    const { rows } = await this.pool.query(
+      `SELECT count(*)::int AS n FROM mcp_oauth_clients c
+        WHERE c.kind = 'dcr' AND c.revoked_at IS NULL
+          AND (c.last_used_at > $1 OR EXISTS (SELECT 1 FROM mcp_oauth_grants g WHERE g.client_id = c.client_id AND g.revoked_at IS NULL))`,
+      [new Date(now.getTime() - 24 * 3600 * 1000)],
+    );
     return rows[0].n as number;
   }
   async touchClient(clientId: string, now: Date) {
@@ -53,7 +58,9 @@ export class PgOAuthStore implements OAuthStore {
   async listClients(): Promise<ClientListRow[]> {
     const { rows } = await this.pool.query(
       `SELECT c.*, (SELECT count(*)::int FROM mcp_oauth_grants g WHERE g.client_id = c.client_id AND g.revoked_at IS NULL) AS active_grants
-         FROM mcp_oauth_clients c WHERE c.revoked_at IS NULL ORDER BY c.created_at DESC`,
+         FROM mcp_oauth_clients c
+        WHERE c.revoked_at IS NULL AND (c.kind = 'cimd' OR EXISTS (SELECT 1 FROM mcp_oauth_grants g WHERE g.client_id = c.client_id))
+        ORDER BY c.created_at DESC`,
     );
     return rows.map((r) => ({ ...toClient(r), activeGrants: r.active_grants as number }));
   }
@@ -76,6 +83,10 @@ export class PgOAuthStore implements OAuthStore {
   async getRequest(idHash: string) {
     const { rows } = await this.pool.query(`SELECT * FROM mcp_oauth_requests WHERE id_hash = $1`, [idHash]);
     return rows[0] ? toRequest(rows[0]) : null;
+  }
+  async countPendingRequests(clientId: string, now: Date) {
+    const { rows } = await this.pool.query(`SELECT count(*)::int AS n FROM mcp_oauth_requests WHERE client_id = $1 AND decision IS NULL AND expires_at > $2`, [clientId, now]);
+    return rows[0].n as number;
   }
   async decideRequest(idHash: string, decision: 'allow' | 'deny', now: Date) {
     const { rows } = await this.pool.query(
@@ -160,5 +171,9 @@ export class PgOAuthStore implements OAuthStore {
     const cutoff = new Date(now.getTime() - 24 * 3600 * 1000);
     await this.pool.query(`DELETE FROM mcp_oauth_tokens WHERE expires_at < $1`, [cutoff]);
     await this.pool.query(`DELETE FROM mcp_oauth_requests WHERE expires_at < $1`, [cutoff]);
+    await this.pool.query(
+      `DELETE FROM mcp_oauth_clients c WHERE c.kind = 'dcr' AND c.created_at < $1 AND NOT EXISTS (SELECT 1 FROM mcp_oauth_grants g WHERE g.client_id = c.client_id)`,
+      [cutoff],
+    );
   }
 }

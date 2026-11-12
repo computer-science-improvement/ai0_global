@@ -1,6 +1,8 @@
 import { randomUUID } from 'crypto';
 import type { ClientListRow, ClientRow, GrantListRow, GrantRow, OAuthStore, RequestRow, TokenRow } from './store';
 
+const DAY_MS = 24 * 3600 * 1000;
+
 /** In-memory OAuthStore for unit tests: the same atomic rules as the PG one (single use, rotation, revoke cascade). */
 export class MemoryOAuthStore implements OAuthStore {
   readonly clients  = new Map<string, ClientRow>();
@@ -17,10 +19,14 @@ export class MemoryOAuthStore implements OAuthStore {
     return row;
   }
   async getClient(clientId: string) { return this.clients.get(clientId) ?? null; }
-  async countActiveDcr() { return [...this.clients.values()].filter((c) => c.kind === 'dcr' && !c.revokedAt).length; }
+  async countActiveDcr(now: Date) {
+    const dayAgo = now.getTime() - DAY_MS;
+    return [...this.clients.values()].filter((c) => c.kind === 'dcr' && !c.revokedAt
+      && ([...this.grants.values()].some((g) => g.clientId === c.clientId && !g.revokedAt) || (c.lastUsedAt !== null && c.lastUsedAt.getTime() > dayAgo))).length;
+  }
   async touchClient(clientId: string, now: Date) { const c = this.clients.get(clientId); if (c) c.lastUsedAt = now; }
   async listClients(): Promise<ClientListRow[]> {
-    return [...this.clients.values()].filter((c) => !c.revokedAt).map((c) => ({
+    return [...this.clients.values()].filter((c) => !c.revokedAt && (c.kind === 'cimd' || [...this.grants.values()].some((g) => g.clientId === c.clientId))).map((c) => ({
       ...c, activeGrants: [...this.grants.values()].filter((g) => g.clientId === c.clientId && !g.revokedAt).length,
     }));
   }
@@ -37,6 +43,9 @@ export class MemoryOAuthStore implements OAuthStore {
     this.requests.set(r.idHash, { ...r, createdAt: now, decidedAt: null, decision: null });
   }
   async getRequest(idHash: string) { return this.requests.get(idHash) ?? null; }
+  async countPendingRequests(clientId: string, now: Date) {
+    return [...this.requests.values()].filter((r) => r.clientId === clientId && !r.decision && r.expiresAt > now).length;
+  }
   async decideRequest(idHash: string, decision: 'allow' | 'deny', now: Date) {
     const r = this.requests.get(idHash);
     if (!r || r.decision || r.expiresAt <= now) return null;
@@ -99,5 +108,8 @@ export class MemoryOAuthStore implements OAuthStore {
     const cutoff = now.getTime() - 24 * 3600 * 1000;
     for (const [h, t] of this.tokens) if (t.expiresAt.getTime() < cutoff) this.tokens.delete(h);
     for (const [h, r] of this.requests) if (r.expiresAt.getTime() < cutoff) this.requests.delete(h);
+    for (const [cid, c] of this.clients) {
+      if (c.kind === 'dcr' && c.createdAt.getTime() < cutoff && ![...this.grants.values()].some((g) => g.clientId === cid)) this.clients.delete(cid);
+    }
   }
 }

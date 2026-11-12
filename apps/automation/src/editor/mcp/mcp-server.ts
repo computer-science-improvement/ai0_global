@@ -40,6 +40,11 @@ export interface McpServerOptions {
   /** Returned by `initialize`: how a model should use this server (spec 103). */
   instructions?: string;
   tools:   () => Promise<McpTool[]>;
+  /**
+   * Remote endpoints: serialise results compactly and keep each under this many characters (over budget → a cut result
+   * with `truncated: true` and a hint). Unset (stdio): pretty-printed and unbounded, as before.
+   */
+  maxResultChars?: number;
   log?:    (msg: string) => void;
 }
 
@@ -57,6 +62,49 @@ export const SUPPORTED_PROTOCOL_VERSIONS = ['2025-11-25', '2025-06-18', '2025-03
 export const RPC = { PARSE: -32700, INVALID_REQUEST: -32600, METHOD_NOT_FOUND: -32601, INVALID_PARAMS: -32602, INTERNAL: -32603 } as const;
 
 const errorText = (err: unknown) => (err instanceof Error ? err.message : String(err));
+
+const TRUNCATION_HINT = 'The result was too large and was cut to fit. Ask for less: a smaller limit, a narrower filter, or fewer items (for a run, only its first steps are kept).';
+
+/** Longest array (by compact JSON length) with more than one item anywhere in the tree; the parent holder lets the caller cut it. */
+function longestArray(node: unknown, best: { len: number; arr: unknown[] | null } = { len: 0, arr: null }): { len: number; arr: unknown[] | null } {
+  if (Array.isArray(node)) {
+    if (node.length > 1) { const len = JSON.stringify(node).length; if (len > best.len) { best.len = len; best.arr = node; } }
+    for (const x of node) longestArray(x, best);
+  } else if (node && typeof node === 'object') {
+    for (const v of Object.values(node)) longestArray(v, best);
+  }
+  return best;
+}
+
+/** Compact JSON text of a tool result, at most `max` characters. A bigger result is cut (arrays halved, then long strings clipped) and marked. */
+export function fitResult(result: unknown, max: number): string {
+  const first = typeof result === 'string' ? result : JSON.stringify(result);
+  if (first.length <= max) return first;
+  if (typeof result === 'string') return JSON.stringify({ truncated: true, hint: TRUNCATION_HINT, text: result.slice(0, Math.max(0, max - 400)) }).slice(0, max);
+  const copy = JSON.parse(first);
+  const root: Record<string, unknown> = Array.isArray(copy) ? { items: copy } : (copy && typeof copy === 'object' ? copy : { value: copy });
+  root.truncated = true;
+  root.hint = TRUNCATION_HINT;
+  for (let i = 0; i < 60; i++) {
+    const text = JSON.stringify(root);
+    if (text.length <= max) return text;
+    const { arr } = longestArray(root);
+    if (arr) { arr.length = Math.max(1, Math.floor(arr.length / 2)); continue; }
+    break;
+  }
+  // No array left to cut: clip long strings, then give up on structure.
+  const clip = (n: unknown, cap: number): unknown => {
+    if (typeof n === 'string') return n.length > cap ? `${n.slice(0, cap)}…` : n;
+    if (Array.isArray(n)) return n.map((x) => clip(x, cap));
+    if (n && typeof n === 'object') return Object.fromEntries(Object.entries(n).map(([k, v]) => [k, clip(v, cap)]));
+    return n;
+  };
+  for (const cap of [4000, 1000, 300, 100]) {
+    const text = JSON.stringify(clip(root, cap));
+    if (text.length <= max) return text;
+  }
+  return JSON.stringify({ truncated: true, hint: TRUNCATION_HINT, text: first.slice(0, Math.max(0, max - 400)) }).slice(0, max);
+}
 
 export class McpServer {
   constructor(private readonly o: McpServerOptions) {}
@@ -103,7 +151,7 @@ export class McpServer {
           if (!tool) return fail(RPC.INVALID_PARAMS, `unknown tool: ${name}`);
           try {
             const result = await tool.call(args);
-            const text = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
+            const text = this.o.maxResultChars ? fitResult(result, this.o.maxResultChars) : typeof result === 'string' ? result : JSON.stringify(result, null, 2);
             return ok({ content: [{ type: 'text', text }], isError: false });
           } catch (err) {
             if (!(err instanceof ToolFailure)) this.o.log?.(`tool ${name} failed: ${errorText(err)}`);

@@ -1,9 +1,10 @@
 import type { AuditSink } from '../audit/audit';
-import { CIMD_CACHE_MS, CIMD_MAX_BYTES, CIMD_TIMEOUT_MS, DCR_MAX_ACTIVE, DCR_PER_IP_PER_HOUR, PINNED_CIMD } from './constants';
+import { isIPv6 } from 'net';
+import { CIMD_CACHE_MS, CIMD_FAIL_CACHE_MS, CIMD_MAX_BYTES, CIMD_TIMEOUT_MS, DCR_MAX_ACTIVE, DCR_PER_IP_PER_HOUR, PINNED_CIMD } from './constants';
 import { newOpaqueId } from './crypto';
 import { OAuthError } from './errors';
 import { isAllowedRedirect } from './redirect';
-import type { ClientRow, OAuthStore } from './store';
+import type { OAuthStore } from './store';
 
 /** Fetches a client metadata document. Injectable so tests never touch the network. */
 export type MetadataFetcher = (url: string) => Promise<{ status: number; text: string }>;
@@ -26,6 +27,19 @@ export const defaultMetadataFetcher: MetadataFetcher = async (url) => {
   return { status: res.status, text: Buffer.concat(chunks).toString('utf8') };
 };
 
+/** Per-address key for the registration limit: an IPv6 address counts by its /64 (one subscriber holds a whole /64), IPv4-mapped as IPv4. */
+export function ipKey(ip: string | null): string {
+  if (!ip) return 'unknown';
+  const v4 = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/i.exec(ip);
+  if (v4) return v4[1];
+  if (!isIPv6(ip)) return ip;
+  const [head, tail] = ip.split('::');
+  const h = head ? head.split(':') : [];
+  const t = tail !== undefined && tail !== '' ? tail.split(':') : [];
+  const groups = tail === undefined ? h : [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t];
+  return `${groups.slice(0, 4).map((g) => g.toLowerCase().replace(/^0+(?=.)/, '')).join(':')}::/64`;
+}
+
 export interface ResolvedClient {
   clientId:     string;
   kind:         'cimd' | 'dcr';
@@ -34,7 +48,7 @@ export interface ResolvedClient {
 }
 
 export class ClientRegistry {
-  private readonly cache = new Map<string, { at: number; doc: { name: string; redirectUris: string[] } }>();
+  private readonly cache = new Map<string, { at: number; ttl: number; doc?: { name: string; redirectUris: string[] }; err?: OAuthError }>();
   private readonly dcrByIp = new Map<string, number[]>();
 
   constructor(
@@ -59,35 +73,50 @@ export class ClientRegistry {
   private async resolveCimd(url: string): Promise<ResolvedClient> {
     const pinned = PINNED_CIMD[url];
     if (!pinned) throw new OAuthError(400, 'unauthorized_client', 'This client is not allowed to connect');
-    // "Disconnect" in Settings revokes the grants; the hosted Claude client may connect again later, so a CIMD client is never barred.
+    // Read only: an anonymous authorize call must not write the client row or bring a disconnected client back.
+    // The row is written when the owner allows (activate), and "Disconnect" stays in force until then.
     const doc = await this.cimdDocument(url, pinned);
-    const row: ClientRow = await this.store.upsertClient({ clientId: url, kind: 'cimd', name: doc.name, redirectUris: doc.redirectUris }, this.now());
-    return { clientId: url, kind: 'cimd', name: row.name, redirectUris: row.redirectUris };
+    return { clientId: url, kind: 'cimd', name: doc.name, redirectUris: doc.redirectUris };
+  }
+
+  /** The owner allowed this client: stores a CIMD client (clearing a Disconnect) and marks it used. A DCR client is just marked used. */
+  async activate(c: ResolvedClient): Promise<void> {
+    if (c.kind === 'cimd') await this.store.upsertClient({ clientId: c.clientId, kind: 'cimd', name: c.name, redirectUris: c.redirectUris }, this.now());
+    else await this.store.touchClient(c.clientId, this.now());
   }
 
   private async cimdDocument(url: string, pinned: { name: string; redirectUris: string[] }): Promise<{ name: string; redirectUris: string[] }> {
     const t = this.now().getTime();
     const hit = this.cache.get(url);
-    if (hit && t - hit.at < CIMD_CACHE_MS) return hit.doc;
+    if (hit && t - hit.at < hit.ttl) {
+      if (hit.err) throw hit.err;
+      return hit.doc!;
+    }
+    const fallback = { name: pinned.name, redirectUris: pinned.redirectUris };
+    // Fetch failed (network, timeout, redirect, size, non-200, not JSON): the pinned copy keeps Claude connectable.
+    // The failure is remembered for a few minutes so repeated anonymous authorize calls do not each wait on the host.
+    const failed = () => { this.cache.set(url, { at: t, ttl: CIMD_FAIL_CACHE_MS, doc: fallback }); return fallback; };
     let text: string;
     try {
       const r = await this.fetcher(url);
       if (r.status !== 200) throw new Error(`status ${r.status}`);
       text = r.text;
     } catch {
-      // Fetch failed (network, timeout, redirect, size, non-200): the pinned copy keeps Claude connectable.
-      return { name: pinned.name, redirectUris: pinned.redirectUris };
+      return failed();
     }
     let json: any;
-    try { json = JSON.parse(text); } catch { return { name: pinned.name, redirectUris: pinned.redirectUris }; }
-    if (!json || typeof json !== 'object' || json.client_id !== url) {
-      throw new OAuthError(400, 'unauthorized_client', 'The client metadata document does not match its client_id');
-    }
+    try { json = JSON.parse(text); } catch { return failed(); }
+    const reject = (message: string): never => {
+      const err = new OAuthError(400, 'unauthorized_client', message);
+      this.cache.set(url, { at: t, ttl: CIMD_FAIL_CACHE_MS, err });
+      throw err;
+    };
+    if (!json || typeof json !== 'object' || json.client_id !== url) reject('The client metadata document does not match its client_id');
     const uris = Array.isArray(json.redirect_uris) ? json.redirect_uris.filter((u: unknown): u is string => typeof u === 'string' && isAllowedRedirect(u)) : [];
-    if (!uris.length) throw new OAuthError(400, 'unauthorized_client', 'The client metadata document lists no acceptable redirect_uri');
+    if (!uris.length) reject('The client metadata document lists no acceptable redirect_uri');
     const name = typeof json.client_name === 'string' && json.client_name.trim() ? json.client_name.trim().slice(0, 100) : pinned.name;
     const doc = { name, redirectUris: uris };
-    this.cache.set(url, { at: t, doc });
+    this.cache.set(url, { at: t, ttl: CIMD_CACHE_MS, doc });
     return doc;
   }
 
@@ -114,16 +143,17 @@ export class ClientRegistry {
     const name = typeof rawName === 'string' && rawName.trim() ? rawName.trim().slice(0, 100) : 'MCP client';
 
     const t = this.now().getTime();
-    const key = ip ?? 'unknown';
+    const key = ipKey(ip);
+    if (this.dcrByIp.size > 1000) for (const [k, v] of this.dcrByIp) if (v.every((x) => t - x >= 3600 * 1000)) this.dcrByIp.delete(k);
     const recent = (this.dcrByIp.get(key) ?? []).filter((x) => t - x < 3600 * 1000);
     if (recent.length >= DCR_PER_IP_PER_HOUR) throw new OAuthError(429, 'temporarily_unavailable', 'Too many registrations from this address; try again later');
-    if ((await this.store.countActiveDcr()) >= DCR_MAX_ACTIVE) throw new OAuthError(429, 'temporarily_unavailable', 'Too many registered clients');
+    if ((await this.store.countActiveDcr(this.now())) >= DCR_MAX_ACTIVE) throw new OAuthError(429, 'temporarily_unavailable', 'Too many registered clients');
     recent.push(t);
     this.dcrByIp.set(key, recent);
 
     const clientId = `ai0mcp_dcr_${newOpaqueId(16)}`;
     await this.store.upsertClient({ clientId, kind: 'dcr', name, redirectUris: uris as string[], metadata: { grant_types: b.grant_types, scope: b.scope }, createdIp: ip }, this.now());
-    await this.audit?.record({ event: 'register', clientId, summary: `client=${name}`, ip }, this.now());
+    await this.audit?.record({ event: 'register', clientId, ok: true, summary: `client=${name}`, ip }, this.now());
     return {
       client_id: clientId,
       client_id_issued_at: Math.floor(t / 1000),

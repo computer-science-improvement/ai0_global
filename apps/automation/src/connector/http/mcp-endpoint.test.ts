@@ -214,3 +214,37 @@ test('summarizeArgs keeps ids and times, drops text', () => {
   assert.equal(summarizeArgs(null), '');
   assert.ok(summarizeArgs({ channel: 'x'.repeat(500) }).length <= 70);
 });
+
+// ── review fixes (spec 103 fix pass) ─────────────────────────────────────────
+
+test('AUTH-5: a call to a tool outside the grant, or an unknown tool, is refused and audited', async () => {
+  const s = await setup({ scope: 'mcp:read' });
+  const out = await s.post(rpc('tools/call', { name: 'prepare_post', arguments: { channel: '@c', post: { text: 'SECRET' } } }));
+  assert.equal((out.body as any).error.code, -32602);
+  const unknown = await s.post(rpc('tools/call', { name: 'x'.repeat(300), arguments: {} }));
+  assert.equal((unknown.body as any).error.code, -32602);
+  const rows = s.audit.entries.filter((e) => e.event === 'tool_call');
+  assert.equal(rows.length, 2);
+  assert.deepEqual([rows[0].tool, rows[0].ok, rows[0].error], ['prepare_post', false, 'not_allowed_for_scope']);
+  assert.deepEqual([rows[1].tool?.length, rows[1].ok, rows[1].error], [100, false, 'unknown_tool']);
+  assert.ok(!JSON.stringify(rows).includes('SECRET'));
+  // an allowed call still writes exactly one row
+  await s.post(rpc('tools/call', { name: 'list_channels', arguments: {} }));
+  assert.equal(s.audit.entries.filter((e) => e.event === 'tool_call').length, 3);
+});
+
+test('C5: results are compact JSON; an oversized result is cut with truncated:true and a hint, under the budget', async () => {
+  const big = { steps: Array.from({ length: 60 }, (_, i) => ({ idx: i, input: 'я'.repeat(2000), output: 'o'.repeat(2000) })), run: { id: 'r1' }, untrusted_fields: ['steps[].input'] };
+  const s = await setup({ tools: [readTool(), { ...readTool(), name: 'get_run', call: async () => big }, { ...readTool(), name: 'small', call: async () => ({ a: 1, b: [1, 2] }) }] });
+  const small = await s.post(rpc('tools/call', { name: 'small', arguments: {} }));
+  assert.equal((small.body as any).result.content[0].text, '{"a":1,"b":[1,2]}', 'compact, no indentation');
+  const r = await s.post(rpc('tools/call', { name: 'get_run', arguments: {} }));
+  const text: string = (r.body as any).result.content[0].text;
+  assert.ok(text.length <= 80_000, `${text.length} chars`);
+  const parsed = JSON.parse(text);
+  assert.equal(parsed.truncated, true);
+  assert.match(parsed.hint, /too large/);
+  assert.ok(parsed.steps.length >= 1 && parsed.steps.length < 60);
+  assert.equal(parsed.run.id, 'r1');
+  assert.equal((r.body as any).result.isError, false);
+});

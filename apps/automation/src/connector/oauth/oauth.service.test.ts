@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { OAuthError } from './errors';
-import { REFRESH_GRACE_MS } from './constants';
+import { CIMD_URL_HOSTED, PENDING_REQUESTS_PER_CLIENT, REFRESH_GRACE_MS } from './constants';
 import { sha256Hex } from './crypto';
 import { HOSTED_REDIRECT, SESSION, URLS, getCode, makeOAuth, pkce, registerDcr } from './testing/fixtures';
 
@@ -345,4 +345,94 @@ test('revoke: a token of another client is left alone', async () => {
   const other = await registerDcr(a.h.clients);
   await a.h.oauth.revoke({ token: a.tok.access_token, client_id: other }, { ip: null });
   assert.ok(await a.h.oauth.authenticateAccess(a.tok.access_token, URLS));
+});
+
+// ── review fixes (spec 103 fix pass) ─────────────────────────────────────────
+
+test('AUTH-2/D5: an anonymous authorize call writes no client row and does not bring a disconnected client back', async () => {
+  const h = makeOAuth();
+  const q = (extra: Record<string, string> = {}) => ({ client_id: CIMD_URL_HOSTED, redirect_uri: HOSTED_REDIRECT, response_type: 'code', code_challenge: pkce().challenge, code_challenge_method: 'S256', ...extra });
+  assert.equal((await h.oauth.authorize(q(), URLS)).kind, 'redirect');
+  assert.equal(await h.store.getClient(CIMD_URL_HOSTED), null, 'no row from authorize');
+  // connect once, then Disconnect
+  const c = await getCode(h, CIMD_URL_HOSTED);
+  await h.oauth.token(tokenReq(CIMD_URL_HOSTED, c.code, c.verifier), URLS, { ip: null });
+  const row = (await h.store.getClient(CIMD_URL_HOSTED))!;
+  await h.store.revokeClient(row.id, h.clock.now());
+  h.clock.advance(60_000);
+  await h.oauth.authorize(q({ response_type: 'nope' }), URLS);
+  await h.oauth.authorize(q(), URLS);
+  const after = (await h.store.getClient(CIMD_URL_HOSTED))!;
+  assert.ok(after.revokedAt, 'still disconnected');
+  assert.equal(after.lastUsedAt?.getTime(), row.lastUsedAt?.getTime(), 'last used did not move');
+  assert.equal((await h.store.listClients()).some((x) => x.clientId === CIMD_URL_HOSTED), false);
+  // the owner allowing it again reconnects it
+  const again = await getCode(h, CIMD_URL_HOSTED);
+  assert.ok(again.code);
+  assert.equal((await h.store.getClient(CIMD_URL_HOSTED))!.revokedAt, null);
+});
+
+test('AUTH-2: a hosted client that has no row yet can still be asked to consent (resolved from the document)', async () => {
+  const h = makeOAuth();
+  const a = await h.oauth.authorize({ client_id: CIMD_URL_HOSTED, redirect_uri: HOSTED_REDIRECT, response_type: 'code', code_challenge: pkce().challenge, code_challenge_method: 'S256' }, URLS);
+  assert.ok(a.kind === 'redirect');
+  const id = new URL(a.location).searchParams.get('request')!;
+  assert.equal((await h.oauth.requestInfo(id)).client.name, 'Claude');
+});
+
+test('AUTH-2: at most 50 live consent requests per client', async () => {
+  const h = makeOAuth();
+  const clientId = await registerDcr(h.clients);
+  const go = () => h.oauth.authorize({ client_id: clientId, redirect_uri: HOSTED_REDIRECT, response_type: 'code', code_challenge: pkce().challenge, code_challenge_method: 'S256' }, URLS);
+  for (let i = 0; i < PENDING_REQUESTS_PER_CLIENT; i++) assert.equal((await go()).kind, 'redirect');
+  const over = await go();
+  assert.ok(over.kind === 'page' && over.status === 429);
+  h.clock.advance(11 * 60 * 1000); // they expire
+  assert.equal((await go()).kind, 'redirect');
+});
+
+test('AUTH-4: a refresh token revoked mid-request gets invalid_grant, not a new pair', async () => {
+  const { h, clientId, tok } = await connected();
+  const store = h.store;
+  const orig = store.consumeRefresh.bind(store);
+  // the token is revoked between the read and the rotation: the rotation then fails on revoked_at, not used_at
+  store.consumeRefresh = async (hashed: string, next: string, now: Date) => {
+    const t = store.tokens.get(hashed)!;
+    t.revokedAt = now;
+    return orig(hashed, next, now);
+  };
+  await rejects(h.oauth.token({ grant_type: 'refresh_token', client_id: clientId, refresh_token: tok.refresh_token }, URLS, { ip: null }), 'invalid_grant');
+  assert.equal([...store.tokens.values()].filter((t) => t.kind === 'access').length, 1, 'no second access token was minted');
+});
+
+test('P1: the consent redirect and the decision Origin check use the dashboard origin; the issuer stays on the MCP origin', async () => {
+  const h = makeOAuth();
+  const clientId = await registerDcr(h.clients);
+  const urls = { ...URLS, origin: 'https://mcp.ai0.global', issuer: 'https://mcp.ai0.global', resource: 'https://mcp.ai0.global/api/mcp', prm: 'https://mcp.ai0.global/.well-known/oauth-protected-resource/api/mcp', dashboardOrigin: 'https://dev.ai0.global' };
+  const a = await h.oauth.authorize({ client_id: clientId, redirect_uri: HOSTED_REDIRECT, response_type: 'code', code_challenge: pkce().challenge, code_challenge_method: 'S256', resource: urls.resource }, urls);
+  assert.ok(a.kind === 'redirect' && a.location.startsWith('https://dev.ai0.global/app/oauth/consent?request='));
+  const id = new URL(a.location).searchParams.get('request')!;
+  await rejects(h.oauth.decide(id, { decision: 'allow' }, urls, { ...SESSION, origin: 'https://mcp.ai0.global' }), 'bad_origin', 403);
+  const ok = await h.oauth.decide(id, { decision: 'allow' }, urls, { ...SESSION, origin: 'https://dev.ai0.global' });
+  assert.equal(new URL(ok.redirect).searchParams.get('iss'), 'https://mcp.ai0.global');
+});
+
+test('D1: OAuth audit rows say ok explicitly (true for normal events, false for token reuse)', async () => {
+  const { h, clientId, tok } = await connected();
+  await h.oauth.token({ grant_type: 'refresh_token', client_id: clientId, refresh_token: tok.refresh_token }, URLS, { ip: null });
+  h.clock.advance(REFRESH_GRACE_MS + 1000);
+  await rejects(h.oauth.token({ grant_type: 'refresh_token', client_id: clientId, refresh_token: tok.refresh_token }, URLS, { ip: null }), 'invalid_grant');
+  const by = (e: string) => h.audit.entries.filter((x) => x.event === e);
+  for (const e of ['register', 'consent_allow', 'token_issued']) assert.ok(by(e).length && by(e).every((x) => x.ok === true), e);
+  assert.ok(by('refresh_reuse').length && by('refresh_reuse').every((x) => x.ok === false));
+
+  const deny = makeOAuth();
+  const id2 = await registerDcr(deny.clients);
+  const a = await deny.oauth.authorize({ client_id: id2, redirect_uri: HOSTED_REDIRECT, response_type: 'code', code_challenge: pkce().challenge, code_challenge_method: 'S256' }, URLS);
+  await deny.oauth.decide(new URL((a as any).location).searchParams.get('request')!, { decision: 'deny' }, URLS, SESSION);
+  assert.equal(deny.audit.entries.find((x) => x.event === 'consent_deny')?.ok, true);
+
+  const t2 = await connected();
+  await t2.h.oauth.revoke({ token: t2.tok.access_token }, { ip: null });
+  assert.equal(t2.h.audit.entries.find((x) => x.event === 'revoked')?.ok, true);
 });

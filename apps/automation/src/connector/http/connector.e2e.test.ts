@@ -295,7 +295,7 @@ test('admin API: status, clients, grants, activity, revoke one, remove a client,
   const hdr = { 'x-test-auth': 'bearer' };
   assert.equal((await call('GET', '/api/connector/status')).status, 401);
   const st = await call('GET', '/api/connector/status', { headers: hdr });
-  assert.deepEqual(st.json, { enabled: true, configured: true, url: `${ORIGIN}/api/mcp`, issuer: ORIGIN, httpsOk: true, reason: null });
+  assert.deepEqual(st.json, { enabled: true, configured: true, url: `${ORIGIN}/api/mcp`, issuer: ORIGIN, httpsOk: true, dashboardOrigin: ORIGIN, reason: null });
 
   const clients = await call('GET', '/api/connector/clients', { headers: hdr });
   assert.ok(clients.json.clients.length >= 2);
@@ -321,6 +321,8 @@ test('admin API: status, clients, grants, activity, revoke one, remove a client,
   for (const k of ['id', 'at', 'event', 'tool', 'clientName', 'ok', 'error', 'durationMs', 'summary']) assert.ok(k in act.json.items[0], k);
 
   assert.deepEqual((await call('DELETE', `/api/connector/grants/${g.id}`, { headers: hdr })).json, { ok: true });
+  const after = await call('GET', '/api/connector/activity?limit=10', { headers: hdr });
+  assert.equal(after.json.items.find((x: any) => x.event === 'revoked')?.ok, true, 'D1: OAuth audit rows carry ok, so the dashboard does not show them as errors');
   assert.equal((await rpc(tok.json.access_token, { jsonrpc: '2.0', id: 2, method: 'ping' })).status, 401);
   assert.equal((await call('DELETE', '/api/connector/grants/not-a-uuid', { headers: hdr })).status, 400);
 

@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { SCOPE_LABELS, type ConnectorPrincipal, type ConnectorScope, type ConnectorUrls } from '../types';
 import type { AuditSink } from '../audit/audit';
 import { ClientRegistry } from './clients';
-import { ACCESS_TTL_S, CODE_TTL_MS, REFRESH_GRACE_MS, REFRESH_TTL_MS, REQUEST_TTL_MS, isScope } from './constants';
+import { ACCESS_TTL_S, CODE_TTL_MS, PENDING_REQUESTS_PER_CLIENT, REFRESH_GRACE_MS, REFRESH_TTL_MS, REQUEST_TTL_MS, isScope } from './constants';
 import { CHALLENGE_RE, VERIFIER_RE, newOpaqueId, newToken, s256, safeEq, sha256Hex, type TokenKind } from './crypto';
 import { OAuthError } from './errors';
 import { anyRedirectMatches, isLoopbackUri } from './redirect';
@@ -11,7 +11,7 @@ import type { OAuthStore, TokenRow } from './store';
 export type AuthorizeResult =
   | { kind: 'redirect'; location: string }
   /** Pre-redirect failure: unknown client or bad redirect_uri. Shown as a plain page, never redirected. */
-  | { kind: 'page'; message: string };
+  | { kind: 'page'; message: string; status?: number };
 
 export interface TokenResponse {
   access_token:  string;
@@ -71,12 +71,15 @@ export class OAuthService {
     if (!scopes) return fail('invalid_scope', 'Supported scopes: mcp:read, mcp:write');
     if (q.resource !== undefined && !sameResource(q.resource, urls.resource)) return fail('invalid_target', `resource must be ${urls.resource}`);
 
+    if (await this.store.countPendingRequests(client.clientId, now) >= PENDING_REQUESTS_PER_CLIENT) {
+      return { kind: 'page', status: 429, message: 'Too many sign-in requests are waiting for this client. Wait a few minutes and try again.' };
+    }
     const id = newOpaqueId();
     await this.store.insertRequest({
       idHash: hash(id), clientId: client.clientId, redirectUri, codeChallenge: challenge, scope: scopes.join(' '),
       state: q.state ?? null, resource: urls.resource, expiresAt: new Date(now.getTime() + REQUEST_TTL_MS),
     }, now);
-    return { kind: 'redirect', location: `${urls.origin}/app/oauth/consent?request=${encodeURIComponent(id)}` };
+    return { kind: 'redirect', location: `${urls.dashboardOrigin ?? urls.origin}/app/oauth/consent?request=${encodeURIComponent(id)}` };
   }
 
   /** `scope` → the granted set. Empty means both; `offline_access` is ignored (refresh tokens are always issued); unknown → null. */
@@ -106,13 +109,19 @@ export class OAuthService {
     return row;
   }
 
+  /** The request's client: stored DCR client or hosted CIMD document, not revoked (a Disconnected CIMD client is allowed again only by consent). */
+  private async liveClient(clientId: string) {
+    const client = await this.clients.resolve(clientId).catch((e) => { if (e instanceof OAuthError) return null; throw e; });
+    if (!client) throw new OAuthError(404, 'request_not_found', 'Unknown authorization request');
+    return client;
+  }
+
   async requestInfo(id: string): Promise<{
     id: string; client: { clientId: string; name: string; kind: string; redirectHost: string; loopback: boolean };
     scopes: { scope: string; label: string }[]; expiresAt: string;
   }> {
     const row = await this.pending(id);
-    const client = await this.store.getClient(row.clientId);
-    if (!client || client.revokedAt) throw new OAuthError(404, 'request_not_found', 'Unknown authorization request');
+    const client = await this.liveClient(row.clientId);
     return {
       id,
       client: { clientId: client.clientId, name: client.name, kind: client.kind, redirectHost: new URL(row.redirectUri).host, loopback: isLoopbackUri(row.redirectUri) },
@@ -125,7 +134,7 @@ export class OAuthService {
     // A TRACKING_TOKEN bearer is a script, not the owner at the browser: only a real session (or the explicit local dev bypass) may consent.
     const okMethod = ctx.authMethod === 'session' || (ctx.authMethod === 'dev' && !ctx.production);
     if (!okMethod) throw new OAuthError(403, 'session_required', 'Sign in to the dashboard to approve this connection');
-    if (ctx.origin !== undefined && ctx.origin !== urls.origin) throw new OAuthError(403, 'bad_origin', 'The request did not come from the dashboard');
+    if (ctx.origin !== undefined && ctx.origin !== (urls.dashboardOrigin ?? urls.origin)) throw new OAuthError(403, 'bad_origin', 'The request did not come from the dashboard');
     if (body.decision !== 'allow' && body.decision !== 'deny') throw new OAuthError(400, 'invalid_request', 'decision must be "allow" or "deny"');
 
     const row = await this.pending(id);
@@ -138,7 +147,7 @@ export class OAuthService {
       chosen = requested.filter((s) => (body.scopes as string[]).includes(s));
     }
     const now = this.now();
-    const client = await this.store.getClient(row.clientId);
+    const client = await this.liveClient(row.clientId);
     if (body.decision === 'allow' && !chosen.length) throw new OAuthError(400, 'invalid_scope', 'Pick at least one permission');
 
     const decided = await this.store.decideRequest(hash(id), body.decision, now);
@@ -146,7 +155,7 @@ export class OAuthService {
     if (!decided) throw new OAuthError(410, 'request_decided', 'This authorization request was already answered');
 
     if (body.decision === 'deny') {
-      await this.audit.record({ event: 'consent_deny', clientId: row.clientId, summary: `client=${client?.name ?? row.clientId}`, ip: ctx.ip }, now);
+      await this.audit.record({ event: 'consent_deny', clientId: row.clientId, ok: true, summary: `client=${client.name}`, ip: ctx.ip }, now);
       return { redirect: this.callbackUrl(row.redirectUri, { error: 'access_denied', error_description: 'The owner denied the request' }, row.state ?? undefined, urls.issuer) };
     }
     const code = newToken('code');
@@ -154,8 +163,8 @@ export class OAuthService {
       tokenHash: hash(code), kind: 'code', grantId: null, clientId: row.clientId, scope: chosen.join(' '), resource: row.resource,
       redirectUri: row.redirectUri, codeChallenge: row.codeChallenge, expiresAt: new Date(now.getTime() + CODE_TTL_MS),
     }, now);
-    await this.store.touchClient(row.clientId, now);
-    await this.audit.record({ event: 'consent_allow', clientId: row.clientId, summary: `client=${client?.name ?? row.clientId} scope=${chosen.join(' ')}`, ip: ctx.ip }, now);
+    await this.clients.activate(client);
+    await this.audit.record({ event: 'consent_allow', clientId: row.clientId, ok: true, summary: `client=${client.name} scope=${chosen.join(' ')}`, ip: ctx.ip }, now);
     return { redirect: this.callbackUrl(row.redirectUri, { code }, row.state ?? undefined, urls.issuer) };
   }
 
@@ -209,7 +218,7 @@ export class OAuthService {
     }
     const out = await this.issuePair(grantId, row.clientId, row.scope, row.resource, now);
     await this.store.touchClient(row.clientId, now);
-    await this.audit.record({ event: 'token_issued', grantId, clientId: row.clientId, summary: `authorization_code scope=${row.scope}`, ip: caller.ip }, now);
+    await this.audit.record({ event: 'token_issued', grantId, clientId: row.clientId, ok: true, summary: `authorization_code scope=${row.scope}`, ip: caller.ip }, now);
     return out;
   }
 
@@ -238,8 +247,11 @@ export class OAuthService {
     const rotated = row.usedAt ? false : await this.store.consumeRefresh(hash(a.refresh), next.hash, now);
     if (!rotated) {
       // Already used: a lost response being retried (grace) or a stolen token (revoke everything).
-      const used = row.usedAt ? row : await this.store.getToken(hash(a.refresh));
-      const usedAt = used?.usedAt ?? now;
+      // Re-read: only a row that really is used and still not revoked may take the grace path (a refresh token revoked
+      // between the read above and the rotation must get invalid_grant, not a new pair).
+      const used = await this.store.getToken(hash(a.refresh));
+      if (!used?.usedAt || used.revokedAt) throw bad();
+      const usedAt = used.usedAt;
       if (now.getTime() - usedAt.getTime() > REFRESH_GRACE_MS) {
         await this.revokeForReuse(row, 'refresh_reuse', caller.ip);
         throw bad();
@@ -248,14 +260,14 @@ export class OAuthService {
       await this.store.setReplacedBy(hash(a.refresh), next.hash);
     }
     const out = await this.issuePair(row.grantId, row.clientId, scope, row.resource, now, next);
-    await this.audit.record({ event: 'token_issued', grantId: row.grantId, clientId: row.clientId, summary: rotated ? 'refresh_token' : 'refresh_token (retry)', ip: caller.ip }, now);
+    await this.audit.record({ event: 'token_issued', grantId: row.grantId, clientId: row.clientId, ok: true, summary: rotated ? 'refresh_token' : 'refresh_token (retry)', ip: caller.ip }, now);
     return out;
   }
 
   private async revokeForReuse(row: TokenRow, reason: 'code_reuse' | 'refresh_reuse', ip: string | null): Promise<void> {
     if (!row.grantId) return;
     const was = await this.store.revokeGrant(row.grantId, reason, this.now());
-    if (was) await this.audit.record({ event: 'refresh_reuse', grantId: row.grantId, clientId: row.clientId, summary: reason, ip }, this.now());
+    if (was) await this.audit.record({ event: 'refresh_reuse', grantId: row.grantId, clientId: row.clientId, ok: false, summary: reason, ip }, this.now());
   }
 
   private mint(kind: TokenKind): { raw: string; hash: string } {
@@ -281,7 +293,7 @@ export class OAuthService {
     if (typeof p.client_id === 'string' && p.client_id && p.client_id !== row.clientId) return;
     const now = this.now();
     if (await this.store.revokeGrant(row.grantId, 'revoked_by_client', now)) {
-      await this.audit.record({ event: 'revoked', grantId: row.grantId, clientId: row.clientId, summary: 'revoked by the client', ip: caller.ip }, now);
+      await this.audit.record({ event: 'revoked', grantId: row.grantId, clientId: row.clientId, ok: true, summary: 'revoked by the client', ip: caller.ip }, now);
     }
   }
 

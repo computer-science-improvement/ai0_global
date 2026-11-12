@@ -1,9 +1,12 @@
 import { Controller, Get, HttpCode, HttpException, Inject, NotFoundException, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { clientIp } from '../../auth/client-info';
+import { SlidingWindowLimiter } from '../../common/rate-limit/sliding-window-limiter';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { CONNECTOR_CONFIG, OAUTH_SERVICE, liveUrls, type ConnectorConfig } from '../http/config';
 import type { ConnectorUrls } from '../types';
 import { ClientRegistry } from './clients';
+import { AUTHORIZE_PER_IP_PER_MIN } from './constants';
+import { sha256Hex } from './crypto';
 import { OAuthError } from './errors';
 import type { OAuthService } from './oauth.service';
 
@@ -27,6 +30,9 @@ function errorPage(message: string): string {
 /** OAuth authorization server endpoints + the consent API (spec 103 §5). All answer 404 {error:'connector_off'} when the connector is off. */
 @Controller('api/oauth')
 export class OAuthController {
+  /** Anonymous GET /authorize: a limit per client address (hashed, never the raw IP). */
+  private readonly authorizeLimiter = new SlidingWindowLimiter(AUTHORIZE_PER_IP_PER_MIN, 60_000);
+
   constructor(
     @Inject(CONNECTOR_CONFIG) private readonly cfg: ConnectorConfig,
     @Inject(OAUTH_SERVICE) private readonly oauth: OAuthService,
@@ -51,10 +57,16 @@ export class OAuthController {
   @Get('authorize')
   async authorize(@Req() req: any, @Res() res: any) {
     const urls = this.urls();
-    const r = await this.oauth.authorize(strings(req.query), urls);
     res.setHeader('Cache-Control', 'no-store');
+    const gate = this.authorizeLimiter.hit(sha256Hex(clientIp(req) ?? 'unknown'));
+    if (!gate.ok) {
+      res.setHeader('Retry-After', String(gate.retryAfterSec));
+      res.status(429).type('html').send(errorPage('Too many requests. Wait a minute and try again.'));
+      return;
+    }
+    const r = await this.oauth.authorize(strings(req.query), urls);
     if (r.kind === 'page') {
-      res.status(400).type('html').send(errorPage(r.message));
+      res.status(r.status ?? 400).type('html').send(errorPage(r.message));
       return;
     }
     res.redirect(302, r.location);
