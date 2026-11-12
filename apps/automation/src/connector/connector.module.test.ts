@@ -51,11 +51,16 @@ test('ConnectorModule providers resolve with the editor providers, and the tools
     const tools = await factory.tools(all);
     const names = tools.map((t) => t.name);
     for (const n of ['list_channels', 'get_channel', 'list_schedule', 'get_post', 'get_problems', 'get_logs', 'get_run', 'list_agents',
-      'read_agent_chat', 'list_recent_posts', 'check_post', 'prepare_post', 'plan_post', 'update_post', 'cancel_post', 'reject_post',
+      'read_agent_chat', 'get_draft', 'list_recent_posts', 'check_post', 'prepare_post', 'plan_post', 'update_post', 'cancel_post', 'reject_post',
       'approve_post', 'replan_channel', 'talk_to_agent', 'apply_card', 'discard_card']) {
       assert.ok(names.includes(n), `missing tool ${n}`);
     }
     assert.ok(!names.some((n) => /publish/.test(n)), 'no publish-now tool in v1');
+    // Spec 104: the one MCP Apps view, named by the tools that draw a preview; every tool is model-only.
+    const [view] = await factory.resources!(all);
+    assert.equal(view.mimeType, 'text/html;profile=mcp-app');
+    assert.equal((tools.find((t) => t.name === 'get_draft')!._meta as any).ui.resourceUri, view.uri);
+    for (const t of tools) assert.deepEqual((t._meta as any)?.ui?.visibility, ['model'], `${t.name} cannot be called from a view`);
     for (const t of tools) {
       assert.ok(t.title, `${t.name} has a title`);
       if (t.scope === 'mcp:read') assert.equal(t.annotations?.readOnlyHint, true, `${t.name} is read-only`);

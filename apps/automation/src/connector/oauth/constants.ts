@@ -24,6 +24,8 @@ export const RATE_LIMIT_PER_MIN = 120;
 export const TOUCH_INTERVAL_MS = 60 * 1000;
 /** One tool result on the remote endpoint, in characters of compact JSON (Claude Code's own limit is about 25,000 tokens). */
 export const MAX_RESULT_CHARS = 80_000;
+/** Spec 104: the most a view's structuredContent may take (compact JSON); text + view stay under Claude's ~150k per result. */
+export const MAX_STRUCTURED_CHARS = 50_000;
 export const TOOL_TIMEOUT_MS = 200 * 1000;
 
 export const isScope = (s: string): s is ConnectorScope => (CONNECTOR_SCOPES as readonly string[]).includes(s);

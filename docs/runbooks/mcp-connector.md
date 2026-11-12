@@ -61,7 +61,10 @@ allows 60 requests per minute per IP and 50 waiting requests per app.
 ## 3. What Claude can do
 
 Read (`mcp:read`, no confirmation): `list_channels`, `get_channel`, `list_schedule`, `get_post`, `get_problems`,
-`get_logs`, `get_run`, `list_agents`, `read_agent_chat`, `list_recent_posts`, `check_post`.
+`get_logs`, `get_run`, `list_agents`, `read_agent_chat`, `get_draft`, `list_recent_posts`, `check_post`.
+
+- **get_draft** (spec 104) shows one draft an agent wrote in a chat: the preview, the spec, the checks and the critic.
+  Drafts from connector chats are proposals; to schedule one, Claude passes its spec to `prepare_post`.
 
 Write (`mcp:write`, Claude asks before each call): `prepare_post`, `plan_post`, `update_post`, `cancel_post`,
 `reject_post`, `approve_post`, `replan_channel`, `talk_to_agent`, `apply_card`, `discard_card`.
@@ -104,7 +107,32 @@ a written post stays as it is. API: `POST /api/editor/slots/:id/unlock` (and `/l
   activity as an error (`not_allowed_for_scope`).
 - Kill switch: turn `MCP_CONNECTOR` off. Every connector route answers 404 at once; grants stay but cannot be used.
 
-## 6. Troubleshooting
+## 6. Previews in Claude (MCP Apps, spec 104)
+
+Hosts that support MCP Apps (claude.ai, Claude Desktop) draw a read-only preview next to these tools' text results:
+`get_post`, `prepare_post`, `update_post`, `plan_post`, `check_post`, `get_draft` (the post as Telegram shows it: photo,
+caption with code blocks, italics, links and hashtags, status, time, lint and critic), `list_schedule` and `get_channel`
+(the next posts), `talk_to_agent` and `read_agent_chat` (the agent's messages, cards and up to 4 drafts drawn).
+Other clients get the same text results as before; nothing in the text changed.
+
+**Try it:** deploy, then in Claude open Settings → Connectors → ai0 and **reconnect** (or remove and add it again), and
+start a new chat: Claude reads the tool list, with the preview's `ui://ai0/preview-<hash>.html`, when the connector
+connects. Then ask, for example, "show me the schedule for @ai0_prompts_dev" or "show me the draft the prompts agent
+just wrote". Settings → Configuration → Connectors: **Previews in Claude** (`MCP_APPS`, on by default; off = text
+only) and **Preview image hosts** (`MCP_APP_IMAGE_HOSTS`). Reconnect after changing either.
+
+- **Read and preview only.** Every connector tool is `visibility: ["model"]`, so Claude refuses a tool call from the
+  preview; the preview script never calls a tool, sends a chat message or changes the model's context. Links open
+  through Claude (`openLink`, http/https only).
+- **Untrusted text stays text.** The server parses captions into Telegram's tag subset (bold, italic, underline,
+  strike, spoiler, code, pre with a language, blockquote, http(s) links); the preview builds DOM with `textContent`
+  only. Its own CSP allows inline script only, no network, frames or forms.
+- **Images** load only from the CSP list: PromptHero, X, GitHub raw, Wikimedia, Steam, Epic Games, Unsplash, this site,
+  the storage origin and `MCP_APP_IMAGE_HOSTS`. Any other image shows as a placeholder with an Open link.
+- The preview has no `ui.domain`: Claude picks its own sandbox origin. The SDK (`@modelcontextprotocol/ext-apps`,
+  pinned) is inlined into the page; nothing is loaded from a CDN but the Geist font.
+
+## 7. Troubleshooting
 
 | Symptom | Check |
 |---|---|
@@ -114,3 +142,5 @@ a written post stays as it is. API: `POST /api/editor/slots/:id/unlock` (and `/l
 | Tools fail with `rate_limited` | 120 requests per minute per grant. |
 | A post from Claude did not go out | `get_post` in Claude (or the slot page): approval still waiting, channel switched to shadow/off, stale, or a publish guard. |
 | Token stops working after a deploy | It should not: the server is stateless and tokens live in Postgres. Check `MCP_PUBLIC_URL`/`DASHBOARD_URL` did not change — the token is bound to the resource URL. |
+| No preview in Claude, only text | Reconnect the connector and start a new chat (the tool list is read on connect). `MCP_APPS` on? The host may not support MCP Apps (text only is expected there). |
+| Preview shows "Image not shown here" | The image host is not in the CSP list: add it to `MCP_APP_IMAGE_HOSTS`, then reconnect. |

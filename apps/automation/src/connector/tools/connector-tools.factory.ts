@@ -1,10 +1,15 @@
-import type { HttpException } from '@nestjs/common';
+import { Logger, type HttpException } from '@nestjs/common';
 import type { Pool } from 'pg';
 import type { EditorCard } from '../../editor/card';
 import type { PublishSpecDeps } from '../../editor/publish/publish-spec';
 import { prepareAndRender } from '../../editor/publish/publish-spec';
 import { isPaused } from '../../editor/agents/agent.types';
-import type { ConnectorPrincipal, ConnectorTool, ConnectorToolsFactory } from '../types';
+import type { RenderedDraft } from '../../editor/chat/drafts.service';
+import type { McpResource } from '../../editor/mcp/mcp-server';
+import type { EditorDraft } from '../../editor/repo/editor-chat.repository';
+import { withApps, type ViewPorts } from '../apps/apps';
+import { DEFAULT_IMAGE_HOSTS, imageOrigins, widgetResource } from '../apps/widget';
+import { connectorStatus, type ConnectorPrincipal, type ConnectorTool, type ConnectorToolsFactory } from '../types';
 import { ConnectorChatService } from '../chat/connector-chat.service';
 import { ConnectorPostsRepository } from '../posts/connector-posts.repository';
 import { ConnectorPostsService } from '../posts/connector-posts.service';
@@ -32,9 +37,13 @@ export interface ConnectorTooling {
   slo:        { get(c: string, day: string): Promise<any>; history(day: string, days: number, c: string): Promise<any[]> };
   publish:    Pick<PublishSpecDeps, 'media'>;
   pool:       Pool;
+  /** The editor chat's drafts (spec 104: get_draft and the draft previews); absent → no draft is found. */
+  drafts?:    { get(id: string): Promise<EditorDraft | null>; withRender(d: EditorDraft): Promise<RenderedDraft> };
   env?:       (k: string) => string | undefined;
   now?:       () => Date;
   log?:       (m: string) => void;
+  /** Builds the MCP Apps view for the given image origins (default widgetResource; tests replace it). */
+  viewResource?: (imageOrigins: string[]) => McpResource;
 }
 
 const statusOf = (err: unknown): string | null => {
@@ -42,11 +51,25 @@ const statusOf = (err: unknown): string | null => {
   return r && typeof r === 'object' ? String((r as { error?: unknown }).error ?? '') : null;
 };
 
+/** MCP_APPS (spec 104): on unless set to off. */
+export const appsOn = (env: (k: string) => string | undefined): boolean => (env('MCP_APPS') ?? 'on').trim().toLowerCase() !== 'off';
+
+/** The CSP image origins of the view: the built-in hosts, MCP_APP_IMAGE_HOSTS, the site itself and the storage origin. */
+export function viewImageOrigins(env: (k: string) => string | undefined): string[] {
+  const extra = (env('MCP_APP_IMAGE_HOSTS') ?? '').split(',').map((h) => h.trim()).filter(Boolean);
+  const urls = connectorStatus(env).urls;
+  return imageOrigins([...DEFAULT_IMAGE_HOSTS, ...extra], [urls?.origin, urls?.dashboardOrigin, env('SUPABASE_URL')]);
+}
+
 export class ConnectorToolsFactoryImpl implements ConnectorToolsFactory {
   private readonly all: ConnectorTool[];
+  private readonly views: ViewPorts;
+  private readonly env: (k: string) => string | undefined;
+  private view: { key: string; resource: McpResource | null } | null = null;
 
   constructor(private readonly t: ConnectorTooling) {
     const now = t.now ?? (() => new Date());
+    this.env = t.env ?? ((k) => process.env[k]);
     const queries = new PgConnectorQueries(t.pool);
     // The connector works with Telegram channels only (keys like @x).
     const cards = async () => (await t.repos.channels.list()).filter((c) => c.channelKey.startsWith('@'));
@@ -78,9 +101,14 @@ export class ConnectorToolsFactoryImpl implements ConnectorToolsFactory {
       log: t.log,
     });
 
+    const draft = async (id: string) => (isUuid(id) && t.drafts ? t.drafts.get(id) : null);
     const read: ConnectorReadPorts = {
-      now, env: t.env ?? ((k) => process.env[k]), cards, card, modeOf, slo: t.slo, health: () => t.health.health(), queries,
-      run: (id) => t.repos.runs.get(id), agents: agentRows,
+      now, env: this.env, cards, card, modeOf, slo: t.slo, health: () => t.health.health(), queries,
+      run: (id) => t.repos.runs.get(id), agents: agentRows, draft,
+    };
+    this.views = {
+      card, slotDetail: (id) => queries.slotDetail(id),
+      ...(t.drafts ? { draft: async (id: string) => { const d = await draft(id); return d ? t.drafts!.withRender(d) : null; } } : {}),
     };
     const write: ConnectorWritePorts = {
       now, cards, posts, chat,
@@ -110,6 +138,34 @@ export class ConnectorToolsFactoryImpl implements ConnectorToolsFactory {
   }
 
   async tools(p: ConnectorPrincipal): Promise<ConnectorTool[]> {
-    return this.all.filter((x) => p.scopes.has(x.scope));
+    const mine = this.all.filter((x) => p.scopes.has(x.scope));
+    const view = appsOn(this.env) ? this.resource() : null;
+    return view ? withApps(mine, this.views, view.uri) : mine;
+  }
+
+  /** Spec 104: the MCP Apps view (none when MCP_APPS=off). The page is static, so any grant may read it. */
+  async resources(): Promise<McpResource[]> {
+    const view = appsOn(this.env) ? this.resource() : null;
+    return view ? [view] : [];
+  }
+
+  /**
+   * The view resource for the current image hosts (rebuilt only when they change: the URI hash covers the CSP). A page
+   * that cannot be built (the SDK bundle missing or changed shape) never breaks the connector: the tools stay text-only.
+   */
+  private resource(): McpResource | null {
+    const origins = viewImageOrigins(this.env);
+    const key = origins.join(' ');
+    if (this.view?.key !== key) {
+      let resource: McpResource | null = null;
+      try {
+        resource = (this.t.viewResource ?? ((o) => widgetResource({ imageOrigins: o })))(origins);
+      } catch (err) {
+        const msg = `MCP Apps view unavailable, tools stay text-only: ${err instanceof Error ? err.message : String(err)}`;
+        if (this.t.log) this.t.log(msg); else new Logger('McpConnector').warn(msg);
+      }
+      this.view = { key, resource };
+    }
+    return this.view.resource;
   }
 }

@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common';
 import { McpServer, RPC, SUPPORTED_PROTOCOL_VERSIONS, ToolFailure, type McpIcon, type McpTool } from '../../editor/mcp/mcp-server';
 import { clientIp } from '../../auth/client-info';
 import { summarizeArgs, type AuditSink } from '../audit/audit';
-import { MAX_RESULT_CHARS, RATE_LIMIT_PER_MIN, TOOL_TIMEOUT_MS, TOUCH_INTERVAL_MS } from '../oauth/constants';
+import { MAX_RESULT_CHARS, MAX_STRUCTURED_CHARS, RATE_LIMIT_PER_MIN, TOOL_TIMEOUT_MS, TOUCH_INTERVAL_MS } from '../oauth/constants';
 import type { OAuthService } from '../oauth/oauth.service';
 import type { OAuthStore } from '../oauth/store';
 import type { ConnectorPrincipal, ConnectorTool, ConnectorToolsFactory, ConnectorUrls } from '../types';
@@ -162,8 +162,11 @@ export class McpEndpoint {
     const all = () => (everything ??= this.d.tools.tools(p));
     const tools = () => (cached ??= all().then((list) => list.filter((t) => p.scopes.has(t.scope)).map((t) => this.audited(t, p, ip))));
     const site = urls.dashboardOrigin ?? urls.origin;
+    const factory = this.d.tools;
     const server = new McpServer({
       name: 'ai0', title: 'ai0 network', version: '1.0.0', instructions: SERVER_INSTRUCTIONS, tools, maxResultChars: MAX_RESULT_CHARS,
+      // Spec 104: the MCP Apps view; a view's structuredContent stays within its own budget (with the text, under Claude's limit).
+      ...(factory.resources ? { resources: () => factory.resources!(p), maxStructuredChars: MAX_STRUCTURED_CHARS } : {}),
       icons: serverIcons(site), websiteUrl: site,
       log: (msg) => this.log.warn(msg),
     });

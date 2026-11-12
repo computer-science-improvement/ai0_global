@@ -1,4 +1,4 @@
-import type { McpTool } from '../editor/mcp/mcp-server';
+import type { McpResource, McpTool } from '../editor/mcp/mcp-server';
 
 /**
  * Spec 103 — contracts between the connector's parts:
@@ -31,6 +31,8 @@ export interface ConnectorTool extends McpTool {
 /** WP-C implements it; WP-A calls it for every request. */
 export interface ConnectorToolsFactory {
   tools(p: ConnectorPrincipal): Promise<ConnectorTool[]>;
+  /** Spec 104: readable resources (the MCP Apps view); absent → the server has no resources capability. */
+  resources?(p: ConnectorPrincipal): Promise<McpResource[]>;
 }
 export const CONNECTOR_TOOLS = 'CONNECTOR_TOOLS';
 

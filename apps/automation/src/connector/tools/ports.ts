@@ -2,6 +2,7 @@ import type { ChannelMode, EditorCard } from '../../editor/card';
 import type { NetworkHealth } from '../../editor/health/network-health';
 import type { ChannelSloRow } from '../../editor/slo/channel-slo.repository';
 import type { EditorRunRow, EditorRunStep } from '../../editor/repo/editor-runs.repository';
+import type { EditorDraft } from '../../editor/repo/editor-chat.repository';
 import type { ConnectorQueries } from '../queries/connector-queries';
 import type { ConnectorChatService } from '../chat/connector-chat.service';
 import type { ConnectorPostsService } from '../posts/connector-posts.service';
@@ -43,6 +44,8 @@ export interface ConnectorReadPorts {
   queries: ConnectorQueries;
   run(id: string): Promise<{ run: EditorRunRow; steps: EditorRunStep[] } | null>;
   agents(): Promise<AgentRow[]>;
+  /** A draft of an agent chat (spec 104 get_draft); absent → get_draft finds none. */
+  draft?(id: string): Promise<EditorDraft | null>;
 }
 
 export interface ConnectorWritePorts {

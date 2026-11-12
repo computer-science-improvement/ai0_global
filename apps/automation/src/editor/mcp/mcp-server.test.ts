@@ -107,3 +107,50 @@ test('the stdio server keeps pretty-printed, unbounded results (no budget set)',
   assert.ok(r.result.content[0].text.startsWith('{\n  "a"'));
   assert.ok(r.result.content[0].text.length > 100_000);
 });
+
+test('spec 104: tools/list passes _meta through; a view adds structuredContent and leaves the text byte-identical', async () => {
+  const seen: unknown[][] = [];
+  const viewed: McpTool = {
+    ...echo, _meta: { ui: { resourceUri: 'ui://x/v.html', visibility: ['model'] } },
+    view: async (args, result) => { seen.push([args, result]); return { ai0_view: 1, view: { kind: 'post', got: (result as any).got } }; },
+  };
+  const plain = new McpServer({ name: 't', version: '1', tools: async () => [echo], maxResultChars: 80_000 });
+  const withView = new McpServer({ name: 't', version: '1', tools: async () => [viewed], maxResultChars: 80_000 });
+  const list: any = await withView.handle({ jsonrpc: '2.0', id: 1, method: 'tools/list' });
+  assert.deepEqual(list.result.tools[0]._meta, { ui: { resourceUri: 'ui://x/v.html', visibility: ['model'] } });
+  assert.ok(!('view' in list.result.tools[0]));
+  const call = { jsonrpc: '2.0' as const, id: 2, method: 'tools/call', params: { name: 'echo', arguments: { x: 'hi' } } };
+  const a: any = await plain.handle(call);
+  const b: any = await withView.handle(call);
+  assert.deepEqual(b.result.content, a.result.content, 'the text result is unchanged by the view');
+  assert.equal(a.result.structuredContent, undefined);
+  assert.deepEqual(b.result.structuredContent, { ai0_view: 1, view: { kind: 'post', got: 'hi' } });
+  assert.deepEqual(seen, [[{ x: 'hi' }, { got: 'hi' }]]);
+});
+
+test('spec 104: a failing, slow, odd or oversized view leaves the call text-only; a refused call never builds a view', async () => {
+  const logs: string[] = [];
+  let built = 0;
+  const mk = (name: string, view: McpTool['view'], call: McpTool['call'] = async () => ({ ok: 1 })): McpTool => ({ name, description: 'd', inputSchema: {}, call, view });
+  const s = new McpServer({
+    name: 't', version: '1', maxResultChars: 80_000, maxStructuredChars: 100, viewTimeoutMs: 20, log: (m) => logs.push(m),
+    tools: async () => [
+      mk('throws', async () => { throw new Error('db down'); }),
+      mk('slow', () => new Promise((r) => setTimeout(() => r({ late: true }), 200))),
+      mk('array', async () => [1, 2] as unknown as Record<string, unknown>),
+      mk('big', async () => ({ v: 'x'.repeat(500) })),
+      mk('refused', async () => { built++; return { v: 1 }; }, async () => { throw new ToolFailure('no'); }),
+    ],
+  });
+  for (const name of ['throws', 'slow', 'array', 'big']) {
+    const r: any = await s.handle({ jsonrpc: '2.0', id: name, method: 'tools/call', params: { name, arguments: {} } });
+    assert.equal(r.result.isError, false, name);
+    assert.equal(r.result.structuredContent, undefined, name);
+    assert.equal(r.result.content[0].text, '{"ok":1}', name);
+  }
+  const refused: any = await s.handle({ jsonrpc: '2.0', id: 9, method: 'tools/call', params: { name: 'refused', arguments: {} } });
+  assert.equal(refused.result.isError, true);
+  assert.equal(built, 0);
+  assert.ok(logs.some((l) => /throws: view failed: db down/.test(l)));
+  assert.ok(logs.some((l) => /big: view left out/.test(l)));
+});

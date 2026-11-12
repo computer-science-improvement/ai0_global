@@ -3,7 +3,7 @@ import { AuthModule } from '../auth/auth.module';
 import { DB_POOL } from '../database/database.tokens';
 import { AGENTS_SERVICE } from '../editor/agents/agents.controller';
 import { APPROVALS_SERVICE } from '../editor/approval/approvals.controller';
-import { EDITOR_CHAT } from '../editor/api/editor-chat.controller';
+import { EDITOR_CHAT, EDITOR_DRAFTS } from '../editor/api/editor-chat.controller';
 import { EDITOR_OPS } from '../editor/api/editor.controller';
 import { AGENT_INFRA, APPROVAL_INFRA, EDITOR_PUBLISH, EDITOR_REPOS, EditorModule } from '../editor/editor.module';
 import { NETWORK_HEALTH } from '../editor/health/network-health.controller';
@@ -54,9 +54,9 @@ export const CONNECTOR_PROVIDERS: Provider[] = [
   },
   {
     provide: CONNECTOR_TOOLS,
-    inject: [EDITOR_REPOS, EDITOR_OPS, EDITOR_CHAT, AGENTS_SERVICE, APPROVALS_SERVICE, APPROVAL_INFRA, AGENT_INFRA, NETWORK_HEALTH, EDITOR_SLO_REPO, EDITOR_PUBLISH, DB_POOL],
-    useFactory: (repos: any, ops: any, chat: any, agentsSvc: any, approvals: any, approval: any, agentInfra: any, health: any, slo: any, publish: any, pool: any) =>
-      new ConnectorToolsFactoryImpl({ repos, ops, chat, agentsSvc, approvals, approval, agentInfra, health, slo, publish, pool }),
+    inject: [EDITOR_REPOS, EDITOR_OPS, EDITOR_CHAT, AGENTS_SERVICE, APPROVALS_SERVICE, APPROVAL_INFRA, AGENT_INFRA, NETWORK_HEALTH, EDITOR_SLO_REPO, EDITOR_PUBLISH, DB_POOL, EDITOR_DRAFTS],
+    useFactory: (repos: any, ops: any, chat: any, agentsSvc: any, approvals: any, approval: any, agentInfra: any, health: any, slo: any, publish: any, pool: any, drafts: any) =>
+      new ConnectorToolsFactoryImpl({ repos, ops, chat, agentsSvc, approvals, approval, agentInfra, health, slo, publish, pool, drafts }),
   },
 ];
 

@@ -142,7 +142,7 @@ export function buildWriteTools(p: ConnectorWritePorts): ConnectorTool[] {
 
   const talkToAgent = writeTool({
     name: 'talk_to_agent', title: 'Talk to an agent',
-    description: 'Send a message to one of the network\'s agents (list_agents) and wait for the answer, up to wait_seconds. The chat is marked as started from Claude; publishing is off in it, so drafts and cards are proposals. If the agent is still answering, use read_agent_chat. Continue a chat only with chat_id from an earlier talk_to_agent.',
+    description: 'Send a message to one of the network\'s agents (list_agents) and wait for the answer, up to wait_seconds. The chat is marked as started from Claude; publishing is off in it, so drafts and cards are proposals. If the agent is still answering, use read_agent_chat. Continue a chat only with chat_id from an earlier talk_to_agent. get_draft shows a draft in full.',
     inputSchema: schema({
       message: { type: 'string', minLength: 1, maxLength: 8000, description: 'What to say.' },
       agent: { type: 'string', description: 'Agent handle, with or without @ (list_agents). Default: the network manager.' },

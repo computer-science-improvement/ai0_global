@@ -26,7 +26,33 @@ export interface McpTool {
   description:  string;
   inputSchema:  Record<string, unknown>;
   annotations?: McpToolAnnotations;
+  /** Tool metadata for tools/list (`_meta`), e.g. the MCP Apps `ui.resourceUri` of its view (spec 104). */
+  _meta?: Record<string, unknown>;
   call(args: Record<string, unknown>): Promise<unknown>;
+  /**
+   * MCP Apps (spec 104): the `structuredContent` a view renders for a successful call, built after `call` from its
+   * arguments and result. Null, a failure or a timeout leaves the call text-only. The text result is never changed by it.
+   */
+  view?(args: Record<string, unknown>, result: unknown): Promise<Record<string, unknown> | null>;
+}
+
+/** What `resources/read` returns for one resource (MCP `TextResourceContents`; `_meta` carries e.g. the MCP Apps CSP). */
+export interface McpResourceContent {
+  text:   string;
+  _meta?: Record<string, unknown>;
+}
+
+/** A readable resource (spec 104: the MCP Apps `ui://` views). */
+export interface McpResource {
+  uri:          string;
+  name:         string;
+  title?:       string;
+  description?: string;
+  mimeType:     string;
+  _meta?:       Record<string, unknown>;
+  /** Other URIs this resource also answers (an older cache-busting version a host still holds). */
+  matches?(uri: string): boolean;
+  read(): Promise<McpResourceContent>;
 }
 
 /** An icon of the server (MCP 2025-11-25 `Icon`). */
@@ -51,11 +77,17 @@ export interface McpServerOptions {
   /** Returned by `initialize`: how a model should use this server (spec 103). */
   instructions?: string;
   tools:   () => Promise<McpTool[]>;
+  /** Readable resources (spec 104). Unset: no `resources` capability and resources/* are unknown methods, as before. */
+  resources?: () => Promise<McpResource[]>;
   /**
    * Remote endpoints: serialise results compactly and keep each under this many characters (over budget → a cut result
    * with `truncated: true` and a hint). Unset (stdio): pretty-printed and unbounded, as before.
    */
   maxResultChars?: number;
+  /** A view's structuredContent over this many characters (compact JSON) is left out, and the call stays text-only. */
+  maxStructuredChars?: number;
+  /** How long a tool's `view` may take before the call is answered text-only (default 10 s). */
+  viewTimeoutMs?: number;
   log?:    (msg: string) => void;
 }
 
@@ -71,6 +103,11 @@ interface JsonRpcResponse {
 export const SUPPORTED_PROTOCOL_VERSIONS = ['2025-11-25', '2025-06-18', '2025-03-26', '2024-11-05'];
 
 export const RPC = { PARSE: -32700, INVALID_REQUEST: -32600, METHOD_NOT_FOUND: -32601, INVALID_PARAMS: -32602, INTERNAL: -32603 } as const;
+
+/** MCP's error code for a `resources/read` of an unknown URI. */
+export const RESOURCE_NOT_FOUND = -32002;
+
+const VIEW_TIMEOUT_MS = 10_000;
 
 const errorText = (err: unknown) => (err instanceof Error ? err.message : String(err));
 
@@ -137,7 +174,7 @@ export class McpServer {
           const requested = params?.protocolVersion;
           return ok({
             protocolVersion: SUPPORTED_PROTOCOL_VERSIONS.includes(requested) ? requested : SUPPORTED_PROTOCOL_VERSIONS[0],
-            capabilities:    { tools: { listChanged: false } },
+            capabilities:    { tools: { listChanged: false }, ...(this.o.resources ? { resources: { listChanged: false } } : {}) },
             serverInfo:      {
               name: this.o.name, version: this.o.version,
               ...(this.o.title ? { title: this.o.title } : {}),
@@ -152,8 +189,8 @@ export class McpServer {
         case 'tools/list': {
           const tools = await this.o.tools();
           return ok({
-            tools: tools.map(({ name, title, description, inputSchema, annotations }) => ({
-              name, ...(title ? { title } : {}), description, inputSchema, ...(annotations ? { annotations } : {}),
+            tools: tools.map(({ name, title, description, inputSchema, annotations, _meta }) => ({
+              name, ...(title ? { title } : {}), description, inputSchema, ...(annotations ? { annotations } : {}), ...(_meta ? { _meta } : {}),
             })),
           });
         }
@@ -168,11 +205,32 @@ export class McpServer {
           try {
             const result = await tool.call(args);
             const text = this.o.maxResultChars ? fitResult(result, this.o.maxResultChars) : typeof result === 'string' ? result : JSON.stringify(result, null, 2);
-            return ok({ content: [{ type: 'text', text }], isError: false });
+            const structuredContent = tool.view ? await this.viewOf(tool, args, result) : null;
+            return ok({ content: [{ type: 'text', text }], ...(structuredContent ? { structuredContent } : {}), isError: false });
           } catch (err) {
             if (!(err instanceof ToolFailure)) this.o.log?.(`tool ${name} failed: ${errorText(err)}`);
             return ok({ content: [{ type: 'text', text: errorText(err) }], isError: true });
           }
+        }
+        case 'resources/list':
+        case 'resources/templates/list':
+        case 'resources/read': {
+          if (!this.o.resources) return isNotification ? null : fail(RPC.METHOD_NOT_FOUND, `method not found: ${method}`);
+          const resources = await this.o.resources();
+          if (method === 'resources/list') {
+            return ok({
+              resources: resources.map(({ uri, name, title, description, mimeType, _meta }) => ({
+                uri, name, ...(title ? { title } : {}), ...(description ? { description } : {}), mimeType, ...(_meta ? { _meta } : {}),
+              })),
+            });
+          }
+          if (method === 'resources/templates/list') return ok({ resourceTemplates: [] });
+          const uri = params?.uri;
+          if (typeof uri !== 'string') return fail(RPC.INVALID_PARAMS, 'resources/read needs {uri}');
+          const res = resources.find((r) => r.uri === uri) ?? resources.find((r) => r.matches?.(uri));
+          if (!res) return fail(RESOURCE_NOT_FOUND, `resource not found: ${uri.slice(0, 200)}`);
+          const content = await res.read();
+          return ok({ contents: [{ uri, mimeType: res.mimeType, text: content.text, ...(content._meta ? { _meta: content._meta } : {}) }] });
         }
         default:
           if (isNotification) return null; // notifications/initialized, notifications/cancelled, …
@@ -180,6 +238,26 @@ export class McpServer {
       }
     } catch (err) {
       return isNotification ? null : fail(RPC.INTERNAL, errorText(err));
+    }
+  }
+
+  /** A tool's view content, or null: a failure, a timeout or an oversized view never fails the call (spec 104). */
+  private async viewOf(tool: McpTool, args: Record<string, unknown>, result: unknown): Promise<Record<string, unknown> | null> {
+    let timer: NodeJS.Timeout | undefined;
+    try {
+      const view = await Promise.race([
+        tool.view!(args, result),
+        new Promise<null>((resolve) => { timer = setTimeout(() => resolve(null), this.o.viewTimeoutMs ?? VIEW_TIMEOUT_MS); }),
+      ]);
+      if (!view || typeof view !== 'object' || Array.isArray(view)) return null;
+      const max = this.o.maxStructuredChars;
+      if (max && JSON.stringify(view).length > max) { this.o.log?.(`tool ${tool.name}: view left out (over ${max} characters)`); return null; }
+      return view;
+    } catch (err) {
+      this.o.log?.(`tool ${tool.name}: view failed: ${errorText(err)}`);
+      return null;
+    } finally {
+      if (timer) clearTimeout(timer);
     }
   }
 

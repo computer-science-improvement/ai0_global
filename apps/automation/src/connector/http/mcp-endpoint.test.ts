@@ -255,3 +255,37 @@ test('C5: results are compact JSON; an oversized result is cut with truncated:tr
   assert.equal(parsed.run.id, 'r1');
   assert.equal((r.body as any).result.isError, false);
 });
+
+test('spec 104: the endpoint serves the factory\'s resources (MCP Apps view) and the view\'s structuredContent next to the text', async () => {
+  const h = makeOAuth();
+  const clientId = await registerDcr(h.clients);
+  const c = await getCode(h, clientId, { scope: 'mcp:read' });
+  const tok = await h.oauth.token({ grant_type: 'authorization_code', client_id: clientId, code: c.code, code_verifier: c.verifier, redirect_uri: HOSTED_REDIRECT }, URLS, { ip: null });
+  const view = { uri: 'ui://ai0/preview-abc.html', name: 'ai0-preview', mimeType: 'text/html;profile=mcp-app', _meta: { ui: { prefersBorder: false } }, read: async () => ({ text: '<p>x</p>', _meta: { ui: { prefersBorder: false } } }) };
+  const tool: ConnectorTool = { ...readTool(), _meta: { ui: { resourceUri: view.uri, visibility: ['model'] } }, view: async () => ({ ai0_view: 1, view: { kind: 'schedule' } }) };
+  const asked: string[] = [];
+  const ep = new McpEndpoint({
+    cfg: env(), oauth: h.oauth, store: { touchGrant: async () => {} }, audit: new MemoryAudit(), now: h.clock.now,
+    tools: { tools: async () => [tool], resources: async (p) => { asked.push(p.grantId); return [view]; } },
+  });
+  const post = async (body: unknown) => {
+    const res = new FakeRes();
+    await ep.handle({ method: 'POST', headers: { authorization: `Bearer ${tok.access_token}` }, body, mcpBody: 'ok', ip: '3.3.3.3' }, res);
+    return res.body as any;
+  };
+  const init = await post(rpc('initialize', { protocolVersion: '2025-11-25' }));
+  assert.deepEqual(init.result.capabilities.resources, { listChanged: false });
+  const read = await post(rpc('resources/read', { uri: view.uri }));
+  assert.equal(read.result.contents[0].text, '<p>x</p>');
+  assert.equal(read.result.contents[0].mimeType, 'text/html;profile=mcp-app');
+  const listed = await post(rpc('tools/list'));
+  assert.deepEqual(listed.result.tools[0]._meta.ui, { resourceUri: view.uri, visibility: ['model'] });
+  const called = await post(rpc('tools/call', { name: 'list_channels', arguments: {} }));
+  assert.equal(called.result.content[0].text, JSON.stringify({ channels: [] }));
+  assert.deepEqual(called.result.structuredContent, { ai0_view: 1, view: { kind: 'schedule' } });
+  assert.equal(asked.length, 1);
+  const plainEp = new McpEndpoint({ cfg: env(), oauth: h.oauth, store: { touchGrant: async () => {} }, audit: new MemoryAudit(), now: h.clock.now, tools: { tools: async () => [readTool()] } });
+  const res = new FakeRes();
+  await plainEp.handle({ method: 'POST', headers: { authorization: `Bearer ${tok.access_token}` }, body: rpc('resources/list'), mcpBody: 'ok', ip: '3.3.3.3' }, res);
+  assert.equal((res.body as any).error.code, -32601, 'a factory without resources: no resources methods, as before');
+});

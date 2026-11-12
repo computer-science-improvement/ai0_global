@@ -9,7 +9,7 @@ import type { ScheduleRow } from '../queries/connector-queries';
 import type { ConnectorChatService } from '../chat/connector-chat.service';
 import type { ConnectorPostsService } from '../posts/connector-posts.service';
 import {
-  MESSAGE_MAX, PREVIEW_MAX, clip, clipDeep, parseArgs, readTool, refuse, requireTime, resolveChannel, schema, timeOut,
+  MESSAGE_MAX, PREVIEW_MAX, clip, clipDeep, isUuid, parseArgs, readTool, refuse, requireTime, resolveChannel, schema, timeOut,
 } from './common';
 import type { ConnectorReadPorts } from './ports';
 
@@ -349,7 +349,7 @@ export function buildReadTools(d: ReadToolDeps): ConnectorTool[] {
 
   const readAgentChat = readTool({
     name: 'read_agent_chat', title: 'Read an agent chat',
-    description: 'Read a chat with an agent: the agent\'s newest messages with their cards and drafts, and whether it is still answering. Use it after talk_to_agent returned "running", or to read a chat from the dashboard. Waits up to wait_seconds for a running turn to finish.',
+    description: 'Read a chat with an agent: the agent\'s newest messages with their cards and drafts, and whether it is still answering. Use it after talk_to_agent returned "running", or to read a chat from the dashboard. Waits up to wait_seconds for a running turn to finish. get_draft shows one draft in full (its spec, preview and checks).',
     inputSchema: schema({
       chat_id: { type: 'string', description: 'Chat id from talk_to_agent.' },
       after_message_id: { type: 'integer', minimum: 0, description: 'Only messages after this id (next_after_message_id of the last read).' },
@@ -358,6 +358,36 @@ export function buildReadTools(d: ReadToolDeps): ConnectorTool[] {
     async call(args) {
       const a = parseArgs(z.object({ chat_id: z.string().min(1).max(80), after_message_id: z.number().int().min(0).optional(), wait_seconds: z.number().int().min(0).max(90).optional() }), args);
       return d.chat.read({ chatId: a.chat_id, afterMessageId: a.after_message_id, waitSeconds: a.wait_seconds });
+    },
+  });
+
+  const getDraft = readTool({
+    name: 'get_draft', title: 'Get a draft',
+    description: 'One draft an agent wrote in a chat (its id is in read_agent_chat or talk_to_agent): channel, status, the preview as it would read in Telegram, the spec, the checks (lint errors and warnings), the critic\'s verdict, and the post it was scheduled as, if any. A draft is a proposal: nothing is published from here; to schedule it, pass its spec to prepare_post.',
+    inputSchema: schema({ draft_id: { type: 'string', description: 'Draft id from read_agent_chat or talk_to_agent (messages[].drafts[].id).' } }, ['draft_id']),
+    async call(args) {
+      const id = parseArgs(z.object({ draft_id: z.string().trim().min(1).max(80) }), args).draft_id;
+      const draft = isUuid(id) && p.draft ? await p.draft(id) : null;
+      if (!draft) refuse(`No draft ${clip(id, 60)}.`, 'draft ids come from read_agent_chat (messages[].drafts[].id)');
+      if (!draft.channelKey.startsWith('@')) refuse(`${clip(draft.channelKey, 80)} is not a Telegram channel.`, 'the connector works with Telegram channels only');
+      const tz = (await p.card(draft.channelKey))?.timezone ?? KYIV;
+      const spec = (draft.spec && typeof draft.spec === 'object' ? draft.spec : {}) as { title?: unknown; format?: unknown };
+      const issue = (i: { code: string; message: string }) => ({ code: i.code, message: clip(i.message, 300) });
+      return {
+        draft_id: draft.id, chat_id: draft.chatId, channel: draft.channelKey, status: draft.status,
+        scheduled: draft.scheduledAt ? timeOut(draft.scheduledAt, tz) : null,
+        format: typeof spec.format === 'string' ? spec.format : null, title: typeof spec.title === 'string' ? clip(spec.title, 200) : null,
+        preview: draft.preview ? clip(draft.preview, PREVIEW_MAX) : null,
+        spec: clipDeep(draft.spec),
+        lint: draft.lint ? { ok: draft.lint.ok, errors: draft.lint.errors.slice(0, 20).map(issue), warnings: draft.lint.warnings.slice(0, 20).map(issue) } : null,
+        critic: draft.critic ? { verdict: draft.critic.verdict, notes: clip(draft.critic.notes, 600) } : null,
+        post_id: draft.slotId, published_message_id: draft.publishedPostId,
+        link: draft.publishedPostId ? `https://t.me/${draft.channelKey.slice(1)}/${draft.publishedPostId}` : null,
+        error: draft.error ? clip(draft.error, 300) : null,
+        created_at: draft.createdAt.toISOString(), updated_at: draft.updatedAt.toISOString(),
+        note: 'A draft is a proposal: nothing is published from it here. To schedule it, pass its spec to prepare_post (check_post first).',
+        untrusted_fields: ['title', 'preview', 'spec', 'lint', 'critic', 'error'],
+      };
     },
   });
 
@@ -391,7 +421,7 @@ export function buildReadTools(d: ReadToolDeps): ConnectorTool[] {
     },
   });
 
-  return [listChannels, getChannel, listSchedule, getPost, getProblems, getLogs, getRun, listAgents, readAgentChat, listRecentPosts, checkPost];
+  return [listChannels, getChannel, listSchedule, getPost, getProblems, getLogs, getRun, listAgents, readAgentChat, getDraft, listRecentPosts, checkPost];
 }
 
 /** The `post` input of check_post, prepare_post and update_post (the editor's PostSpec). */

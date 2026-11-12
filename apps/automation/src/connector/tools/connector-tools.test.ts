@@ -199,7 +199,7 @@ test('check_post saves nothing and reports lint', async () => {
 
 // ── tool surface ────────────────────────────────────────────────────────────
 
-const READ = ['list_channels', 'get_channel', 'list_schedule', 'get_post', 'get_problems', 'get_logs', 'get_run', 'list_agents', 'read_agent_chat', 'list_recent_posts', 'check_post'];
+const READ = ['list_channels', 'get_channel', 'list_schedule', 'get_post', 'get_problems', 'get_logs', 'get_run', 'list_agents', 'read_agent_chat', 'get_draft', 'list_recent_posts', 'check_post'];
 const WRITE = ['prepare_post', 'plan_post', 'update_post', 'cancel_post', 'reject_post', 'approve_post', 'replan_channel', 'talk_to_agent', 'apply_card', 'discard_card'];
 
 function allTools(over: { cardsApi?: any; replan?: any; chat?: any } = {}) {
@@ -259,7 +259,7 @@ test('the factory filters tools by the grant scopes', async () => {
   });
   const p = (scopes: string[]): any => ({ grantId: 'g', clientId: 'c', clientName: 'Claude', scopes: new Set(scopes) });
   assert.deepEqual((await f.tools(p(['mcp:read']))).map((t) => t.name), READ);
-  assert.equal((await f.tools(p(['mcp:read', 'mcp:write']))).length, 21);
+  assert.equal((await f.tools(p(['mcp:read', 'mcp:write']))).length, 22);
   assert.deepEqual((await f.tools(p([]))).length, 0);
 });
 
@@ -519,4 +519,102 @@ test('LOCK-3/4: update_post hands the store the channel-local day of the new tim
   store.setSlot({ id: 's2', channelKey: '@chan', kind: 'content', status: 'approved', scheduledAt: new Date('2026-11-13T16:00:00Z'), resourceRef: null, renderedPreview: 'x' });
   await svc.update({ postId: 's2', at: '2026-11-15 09:00' });
   assert.equal(store.calls.patchWritten[0].planDate, '2026-11-15');
+});
+
+// ── spec 104: get_draft and the MCP Apps wiring ─────────────────────────────
+
+const DRAFT = '11111111-2222-4333-8444-555555555555';
+const draftRow = (over: any = {}) => ({
+  id: DRAFT, chatId: 'chat-1', channelKey: '@chan', spec: { format: 'photo', title: 'Loft prompt', body: [{ type: 'p', text: 'B'.repeat(5000) }] },
+  preview: 'P'.repeat(5000), lint: { ok: false, errors: [{ code: 'e1', message: 'E'.repeat(900) }], warnings: [{ code: 'w1', message: 'careful' }] },
+  status: 'draft', scheduledAt: null, slotId: null, publishedPostId: null, error: null, critic: { verdict: 'revise', notes: 'N'.repeat(900), scores: null, reason: 'r' },
+  createdAt: NOW, updatedAt: NOW, ...over,
+});
+
+test('get_draft: the draft in full, cut and marked untrusted; a proposal, never published from here', async () => {
+  const { read, readPorts } = allTools();
+  const asked: string[] = [];
+  readPorts.draft = async (id: string) => { asked.push(id); return id === DRAFT ? draftRow() : null; };
+  const r: any = await call(read, 'get_draft', { draft_id: DRAFT });
+  assert.equal(r.draft_id, DRAFT);
+  assert.equal(r.channel, '@chan');
+  assert.equal(r.status, 'draft');
+  assert.equal(r.title, 'Loft prompt');
+  assert.ok(r.preview.length <= 1500);
+  assert.ok(r.spec.body[0].text.length <= 1500);
+  assert.ok(r.lint.errors[0].message.length <= 300);
+  assert.equal(r.lint.ok, false);
+  assert.ok(r.critic.notes.length <= 600);
+  assert.equal(r.scheduled, null);
+  assert.match(r.note, /nothing is published from it here/);
+  assert.deepEqual(r.untrusted_fields, ['title', 'preview', 'spec', 'lint', 'critic', 'error']);
+  const scheduled: any = await (async () => { readPorts.draft = async () => draftRow({ status: 'scheduled', scheduledAt: new Date('2026-11-13T16:00:00Z'), slotId: 'slot-1' }); return call(read, 'get_draft', { draft_id: DRAFT }); })();
+  assert.deepEqual(scheduled.scheduled, { at: '2026-11-13T16:00:00.000Z', local: '2026-11-13 18:00', tz: 'Europe/Kyiv' });
+  assert.equal(scheduled.post_id, 'slot-1');
+});
+
+test('get_draft: unknown, non-uuid and non-Telegram drafts are refused; a bad id never reaches the store', async () => {
+  const { read, readPorts } = allTools();
+  const asked: string[] = [];
+  readPorts.draft = async (id: string) => { asked.push(id); return id === DRAFT ? draftRow({ channelKey: 'instagram:acc' }) : null; };
+  await assert.rejects(call(read, 'get_draft', { draft_id: "x' or 1=1" }), /No draft/);
+  await assert.rejects(call(read, 'get_draft', { draft_id: '00000000-0000-4000-8000-000000000000' }), /No draft/);
+  await assert.rejects(call(read, 'get_draft', { draft_id: DRAFT }), /not a Telegram channel/);
+  await assert.rejects(call(read, 'get_draft', {}), /Invalid input/);
+  assert.deepEqual(asked, ['00000000-0000-4000-8000-000000000000', DRAFT]);
+  const { read: noPort } = allTools();
+  await assert.rejects(call(noPort, 'get_draft', { draft_id: DRAFT }), /No draft/, 'no drafts port: nothing found');
+});
+
+function factoryWith(env: Record<string, string>, drafts?: any, more: any = {}) {
+  return new ConnectorToolsFactoryImpl({
+    repos: { channels: { list: async () => [card], get: async (k) => (k === '@chan' ? card : null) }, runs: { get: async () => null } }, ops: { replan: async () => ({}) }, chat: {},
+    agentsSvc: { handles: async () => ({ agents: [] }), action: async () => ({ action: {} }), applyAction: async () => ({}), discardAction: async () => ({}) },
+    approvals: { approve: async () => ({ movedTo: null }), reject: async () => ({ replacementId: null }) }, approval: { mode: async () => 'live' },
+    agentInfra: { agents: { list: async () => [] }, channelKeyOf: async () => null }, health: { health: async () => ({}) },
+    slo: { get: async () => null, history: async () => [] }, publish: {} as any, pool: { query: async () => ({ rows: [] }) } as any,
+    env: (k) => env[k], drafts, ...more,
+  });
+}
+const everyone: any = { grantId: 'g', clientId: 'c', clientName: 'Claude', scopes: new Set(['mcp:read', 'mcp:write']) };
+
+test('factory (spec 104): MCP_APPS on → every tool model-only, preview tools name the one view; off → plain tools and no resources', async () => {
+  const drafts = { get: async (id: string) => (id === DRAFT ? draftRow({ spec: makeSpec() }) : null), withRender: async (d: any) => ({ ...d, render: null }) };
+  const on = factoryWith({ MCP_PUBLIC_URL: 'https://dev.ai0.global', MCP_APP_IMAGE_HOSTS: 'img.example.com, *.cdn.test, bad host' }, drafts);
+  const tools = await on.tools(everyone);
+  const [view] = await on.resources();
+  assert.equal(view.mimeType, 'text/html;profile=mcp-app');
+  const domains = (view._meta as any).ui.csp.resourceDomains;
+  for (const d of ['https://cdn.prompthero.com', 'https://dev.ai0.global', 'https://img.example.com', 'https://*.cdn.test']) assert.ok(domains.includes(d), d);
+  assert.ok(!domains.some((d: string) => d.includes('bad')));
+  for (const t of tools) assert.deepEqual((t._meta as any).ui.visibility, ['model'], t.name);
+  const named = tools.filter((t) => (t._meta as any).ui.resourceUri).map((t) => t.name).sort();
+  assert.deepEqual(named, ['check_post', 'get_channel', 'get_draft', 'get_post', 'list_schedule', 'plan_post', 'prepare_post', 'read_agent_chat', 'talk_to_agent', 'update_post']);
+  for (const t of tools) if ((t._meta as any).ui.resourceUri) assert.equal((t._meta as any).ui.resourceUri, view.uri, t.name);
+  assert.equal((await on.tools(everyone))[0]._meta && (await on.resources())[0], view, 'the view is reused while the hosts are the same');
+  const gd = tools.find((t) => t.name === 'get_draft')!;
+  const text: any = await gd.call({ draft_id: DRAFT });
+  assert.equal(text.draft_id, DRAFT);
+  const sc: any = await gd.view!({ draft_id: DRAFT }, text);
+  assert.equal(sc.view.kind, 'post');
+  assert.equal(sc.view.source, 'draft');
+
+  const off = factoryWith({ MCP_APPS: 'off' }, drafts);
+  for (const t of await off.tools(everyone)) {
+    assert.equal(t._meta, undefined, t.name);
+    assert.equal(t.view, undefined, t.name);
+  }
+  assert.deepEqual(await off.resources(), []);
+});
+
+test('factory (spec 104): a view that cannot be built leaves the tools text-only and the connector working', async () => {
+  const logs: string[] = [];
+  let builds = 0;
+  const f = factoryWith({}, undefined, { viewResource: () => { builds++; throw new Error('ext-apps bundle: no App export'); }, log: (m: string) => logs.push(m) });
+  const tools = await f.tools(everyone);
+  assert.equal(tools.length, 22);
+  for (const t of tools) assert.equal(t._meta, undefined, t.name);
+  assert.deepEqual(await f.resources(), []);
+  assert.equal(builds, 1, 'tried once while the hosts are the same, not per request');
+  assert.match(logs[0], /text-only: ext-apps bundle: no App export/);
 });
