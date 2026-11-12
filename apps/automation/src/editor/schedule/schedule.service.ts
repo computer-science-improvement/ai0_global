@@ -575,6 +575,8 @@ export class ScheduleService {
         promo: !!s.promo, topicMode: s.topicMode ?? 'fixed', ...(s.liveSpec ? { live: s.liveSpec } : {}),
         // Spec 078 B4: why a slot was skipped or failed (the Calendar tells a miss from a deliberate skip by it).
         error: s.error ?? null,
+        // Spec 103: made through the Claude connector / locked against the automation (the calendar badges).
+        createdVia: s.createdVia ?? null, lockedBy: s.lockedBy ?? null,
       };
     }).filter((s) => s.date >= from && s.date <= to && refs.includes(s.resourceRef));
     return {

@@ -100,7 +100,9 @@ export class OAuthService {
   private async pending(id: string) {
     const row = id ? await this.store.getRequest(hash(id)) : null;
     if (!row) throw new OAuthError(404, 'request_not_found', 'Unknown authorization request');
-    if (row.decision || row.expiresAt <= this.now()) throw new OAuthError(410, 'request_gone', 'This authorization request has expired or was already answered');
+    // The consent page tells the two apart by the code (expired → start again from Claude; decided → close the tab).
+    if (row.decision) throw new OAuthError(410, 'request_decided', 'This authorization request was already answered');
+    if (row.expiresAt <= this.now()) throw new OAuthError(410, 'request_expired', 'This authorization request has expired');
     return row;
   }
 
@@ -140,7 +142,8 @@ export class OAuthService {
     if (body.decision === 'allow' && !chosen.length) throw new OAuthError(400, 'invalid_scope', 'Pick at least one permission');
 
     const decided = await this.store.decideRequest(hash(id), body.decision, now);
-    if (!decided) throw new OAuthError(410, 'request_gone', 'This authorization request has expired or was already answered');
+    // Lost the race to a concurrent decision (pending() just saw it fresh and undecided).
+    if (!decided) throw new OAuthError(410, 'request_decided', 'This authorization request was already answered');
 
     if (body.decision === 'deny') {
       await this.audit.record({ event: 'consent_deny', clientId: row.clientId, summary: `client=${client?.name ?? row.clientId}`, ip: ctx.ip }, now);

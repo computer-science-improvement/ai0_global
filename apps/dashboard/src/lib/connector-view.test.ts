@@ -37,6 +37,10 @@ test('consent failures: unknown, expired, already decided, wrong session', () =>
   assert.equal(consentFailure(404, '{"error":"not_found"}'), 'unknown');
   assert.equal(consentFailure(410, '{"error":"expired"}'), 'expired');
   assert.equal(consentFailure(410, '{"error":"already_decided"}'), 'decided');
+  // The codes the backend sends (oauth.service.ts pending/decide).
+  assert.equal(consentFailure(410, '{"error":"request_expired","error_description":"x"}'), 'expired');
+  assert.equal(consentFailure(410, '{"error":"request_decided","error_description":"x"}'), 'decided');
+  assert.equal(consentFailure(404, '{"error":"request_not_found"}'), 'unknown');
   assert.equal(consentFailure(403, ''), 'denied');
   assert.equal(consentFailure(500, 'boom'), 'error');
 });

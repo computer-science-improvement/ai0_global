@@ -72,6 +72,9 @@ export interface ApprovalCard {
   editableUntil: Date;
   replacesSlotId: string | null;
   error:         string | null;
+  /** Spec 103: 'connector' for a post prepared in Claude; lockedBy set → the automation never replaces or rewrites it. */
+  createdVia:    'connector' | null;
+  lockedBy:      EditorSlot['lockedBy'] | null;
   rationale: {
     idea:   { id: string; title: string; angle: string | null; why: string | null } | null;
     source: { url: string; label: string | null } | null;
@@ -130,7 +133,7 @@ export class ApprovalsService {
       format: i.format, topic: i.topic, isExperiment: i.isExperiment, spec: i.postSpec, preview: i.renderedPreview,
       render: i.renderMessages ?? null, lintWarnings: i.lintWarnings ?? [], critic: i.critic ?? null, ownerEdited: !!i.ownerEdited, approvedAt: i.approvedAt ?? null,
       expiresAt: expiresAt(i, { approvalHoldHours: i.holdHours }), editableUntil: new Date(i.scheduledAt.getTime() - EDIT_LOCK_MS),
-      replacesSlotId: i.replacesSlotId ?? null, error: i.error,
+      replacesSlotId: i.replacesSlotId ?? null, error: i.error, createdVia: i.createdVia ?? null, lockedBy: i.lockedBy ?? null,
       rationale: { idea: i.idea, source, angle: i.angle, plan: i.planRationale },
     };
   }

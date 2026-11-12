@@ -113,7 +113,7 @@ test('consent info: client, redirect host and scope labels; unknown id 404; expi
   assert.match(info.scopes[0].label, /See channels/);
   await rejects(h.oauth.requestInfo('unknown'), 'request_not_found', 404);
   h.clock.advance(10 * 60 * 1000 + 1);
-  await rejects(h.oauth.requestInfo(id), 'request_gone', 410);
+  await rejects(h.oauth.requestInfo(id), 'request_expired', 410);
 });
 
 test('consent decision: only a real session (or local dev bypass); a TRACKING_TOKEN bearer is refused', async () => {
@@ -141,10 +141,10 @@ test('consent decision: expired and already-decided requests are 410, unknown is
   const id = await pendingRequest(h, clientId);
   await rejects(h.oauth.decide('nope', { decision: 'allow' }, URLS, SESSION), 'request_not_found', 404);
   await h.oauth.decide(id, { decision: 'allow' }, URLS, SESSION);
-  await rejects(h.oauth.decide(id, { decision: 'allow' }, URLS, SESSION), 'request_gone', 410);
+  await rejects(h.oauth.decide(id, { decision: 'allow' }, URLS, SESSION), 'request_decided', 410);
   const id2 = await pendingRequest(h, clientId);
   h.clock.advance(10 * 60 * 1000 + 1);
-  await rejects(h.oauth.decide(id2, { decision: 'allow' }, URLS, SESSION), 'request_gone', 410);
+  await rejects(h.oauth.decide(id2, { decision: 'allow' }, URLS, SESSION), 'request_expired', 410);
 });
 
 test('consent decision: deny redirects with access_denied, state and iss; allow carries state and iss', async () => {
