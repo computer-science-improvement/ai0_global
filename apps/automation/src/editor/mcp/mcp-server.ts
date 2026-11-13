@@ -88,6 +88,12 @@ export interface McpServerOptions {
   maxStructuredChars?: number;
   /** How long a tool's `view` may take before the call is answered text-only (default 10 s). */
   viewTimeoutMs?: number;
+  /**
+   * Where a view goes. `structuredContent` (default) is for MCP Apps hosts, which keep it out of the model's context;
+   * a plain MCP client reads structuredContent *instead of* the text, so for those the view goes into the result's
+   * `_meta[meta]`, which they ignore and an MCP Apps view still receives.
+   */
+  viewIn?: 'structuredContent' | { meta: string };
   log?:    (msg: string) => void;
 }
 
@@ -205,8 +211,10 @@ export class McpServer {
           try {
             const result = await tool.call(args);
             const text = this.o.maxResultChars ? fitResult(result, this.o.maxResultChars) : typeof result === 'string' ? result : JSON.stringify(result, null, 2);
-            const structuredContent = tool.view ? await this.viewOf(tool, args, result) : null;
-            return ok({ content: [{ type: 'text', text }], ...(structuredContent ? { structuredContent } : {}), isError: false });
+            const view = tool.view ? await this.viewOf(tool, args, result) : null;
+            const where = this.o.viewIn ?? 'structuredContent';
+            const placed = !view ? {} : where === 'structuredContent' ? { structuredContent: view } : { _meta: { [where.meta]: view } };
+            return ok({ content: [{ type: 'text', text }], ...placed, isError: false });
           } catch (err) {
             if (!(err instanceof ToolFailure)) this.o.log?.(`tool ${name} failed: ${errorText(err)}`);
             return ok({ content: [{ type: 'text', text: errorText(err) }], isError: true });

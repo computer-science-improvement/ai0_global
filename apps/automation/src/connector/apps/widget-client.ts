@@ -381,8 +381,10 @@ var VIEWS = { post: function (v) { return postView(v, false); }, schedule: sched
 function render(r) {
   if (!r || typeof r !== 'object') { message('No result.'); return; }
   if (r.isError) { message('The call returned an error.', firstText(r)); return; }
-  var sc = r.structuredContent;
-  var v = sc && sc.ai0_view === 1 ? sc.view : null;
+  // MCP Apps hosts get the view as structuredContent; for other clients the server puts it in result _meta.
+  var sc = r.structuredContent && r.structuredContent.ai0_view === 1 ? r.structuredContent : null;
+  var mc = r._meta && r._meta['ai0/view'] && r._meta['ai0/view'].ai0_view === 1 ? r._meta['ai0/view'] : null;
+  var v = (sc || mc) ? (sc || mc).view : null;
   var draw = v && typeof v === 'object' ? VIEWS[v.kind] : null;
   if (!draw) { message('No preview for this result.', 'The text result has everything.'); return; }
   try { show(draw(v)); } catch (e) { message('This preview could not be drawn.', 'The text result has everything.'); }

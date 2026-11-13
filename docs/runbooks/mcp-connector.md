@@ -115,6 +115,13 @@ caption with code blocks, italics, links and hashtags, status, time, lint and cr
 (the next posts), `talk_to_agent` and `read_agent_chat` (the agent's messages, cards and up to 4 drafts drawn).
 Other clients get the same text results as before; nothing in the text changed.
 
+**How the view travels.** A client that lists `extensions["io.modelcontextprotocol/ui"]` (with our MIME type) in
+`initialize` gets an `Mcp-Session-Id` ending in `.ui`; with that header the view goes in `structuredContent`. Every
+other client gets it in the result's `_meta["ai0/view"]`, which plain clients ignore: a plain MCP client such as Claude
+Code shows the model `structuredContent` *instead of* the text, so sending it there would replace the text. The server
+stores nothing; the log line `initialize: <client> <version>, MCP Apps: yes|no` shows which clients asked. The preview
+reads either place.
+
 **Try it:** deploy, then in Claude open Settings → Connectors → ai0 and **reconnect** (or remove and add it again), and
 start a new chat: Claude reads the tool list, with the preview's `ui://ai0/preview-<hash>.html`, when the connector
 connects. Then ask, for example, "show me the schedule for @ai0_prompts_dev" or "show me the draft the prompts agent
@@ -143,4 +150,5 @@ only) and **Preview image hosts** (`MCP_APP_IMAGE_HOSTS`). Reconnect after chang
 | A post from Claude did not go out | `get_post` in Claude (or the slot page): approval still waiting, channel switched to shadow/off, stale, or a publish guard. |
 | Token stops working after a deploy | It should not: the server is stateless and tokens live in Postgres. Check `MCP_PUBLIC_URL`/`DASHBOARD_URL` did not change — the token is bound to the resource URL. |
 | No preview in Claude, only text | Reconnect the connector and start a new chat (the tool list is read on connect). `MCP_APPS` on? The host may not support MCP Apps (text only is expected there). |
+| A client shows JSON with `ai0_view` instead of the tool's text | It got the view as `structuredContent`: it sent the `.ui` session id (it said it draws MCP Apps in `initialize`, see the `initialize:` log line). Turn `MCP_APPS` off if such a client misbehaves. |
 | Preview shows "Image not shown here" | The image host is not in the CSP list: add it to `MCP_APP_IMAGE_HOSTS`, then reconnect. |

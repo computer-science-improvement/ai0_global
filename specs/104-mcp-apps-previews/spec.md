@@ -13,7 +13,7 @@ generate, right in Claude".
 
 1. **One MCP Apps view** (`@modelcontextprotocol/ext-apps` 2.0.4, pinned; extension `io.modelcontextprotocol/ui`):
    resource `ui://ai0/preview-<hash>.html`, MIME `text/html;profile=mcp-app`, dashboard look (Geist, #0A0C0B, #3DDC97),
-   English UI. It draws four kinds of `structuredContent.view`:
+   English UI. It draws four kinds of view (`structuredContent.view`, or `_meta["ai0/view"].view`, see 3):
    - `post`: a post (`get_post`, `prepare_post`, `update_post`, `plan_post`), a draft (`get_draft`) or a check
      (`check_post`) as Telegram shows it: photo, album, poll, caption (code block with Copy, italics, links, hashtags),
      inline buttons, status, time, lint errors and warnings, critic, the reason it did not go out, the published link.
@@ -21,9 +21,14 @@ generate, right in Claude".
    - `chat` (`talk_to_agent`, `read_agent_chat`): the agent's messages, cards, and the newest 4 drafts drawn.
 2. **`get_draft`** (read tool): one chat draft in full (spec, preview, lint, critic, the post it became), with
    `untrusted_fields`. The chat tools' descriptions point to it; their results are unchanged.
-3. **Text results are byte-identical.** The view is built by a separate `view` hook after the call and sent only as
-   `structuredContent` (at most 50k chars; a failure, a 10 s timeout or an oversized view leaves the call text-only).
-   Tools carry `_meta.ui.resourceUri` (plus the legacy `ui/resourceUri` key); clients without MCP Apps ignore both.
+3. **Text results are byte-identical.** The view is built by a separate `view` hook after the call (at most 50k
+   chars; a failure, a 10 s timeout or an oversized view leaves the call text-only). Tools carry
+   `_meta.ui.resourceUri` (plus the legacy `ui/resourceUri` key); clients without MCP Apps ignore both.
+   **Where the view goes** (fix after the first deploy): a plain MCP client (Claude Code) shows the model
+   `structuredContent` *instead of* the text, so after ca5a22a9 it saw view JSON. Now only a client that advertised
+   `extensions["io.modelcontextprotocol/ui"]` in `initialize` gets the view as `structuredContent`; the stateless
+   server marks it with an `Mcp-Session-Id` ending in `.ui`, which the client sends back on every request. Everyone
+   else gets the view in the result's `_meta["ai0/view"]` (ignored by plain clients). The view reads both.
 
 ## Security
 

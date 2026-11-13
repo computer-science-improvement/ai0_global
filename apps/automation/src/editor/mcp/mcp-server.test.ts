@@ -128,6 +128,20 @@ test('spec 104: tools/list passes _meta through; a view adds structuredContent a
   assert.deepEqual(seen, [[{ x: 'hi' }, { got: 'hi' }]]);
 });
 
+test('spec 104: viewIn { meta } puts the view in the result _meta instead of structuredContent (plain clients read structuredContent instead of the text)', async () => {
+  const viewed: McpTool = { ...echo, view: async () => ({ ai0_view: 1, view: { kind: 'post' } }) };
+  const plain = new McpServer({ name: 't', version: '1', tools: async () => [echo], maxResultChars: 80_000 });
+  const s = new McpServer({ name: 't', version: '1', tools: async () => [viewed], maxResultChars: 80_000, viewIn: { meta: 'ai0/view' } });
+  const call = { jsonrpc: '2.0' as const, id: 2, method: 'tools/call', params: { name: 'echo', arguments: { x: 'hi' } } };
+  const a: any = await plain.handle(call);
+  const r: any = await s.handle(call);
+  assert.deepEqual(r.result, { ...a.result, _meta: { 'ai0/view': { ai0_view: 1, view: { kind: 'post' } } } });
+  assert.equal(r.result.structuredContent, undefined);
+  const failing = new McpServer({ name: 't', version: '1', tools: async () => [{ ...echo, view: async () => { throw new Error('x'); } }], viewIn: { meta: 'ai0/view' }, log: () => {} });
+  const f: any = await failing.handle(call);
+  assert.equal(f.result._meta, undefined, 'no view: no _meta at all');
+});
+
 test('spec 104: a failing, slow, odd or oversized view leaves the call text-only; a refused call never builds a view', async () => {
   const logs: string[] = [];
   let built = 0;

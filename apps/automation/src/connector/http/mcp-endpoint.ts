@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { Logger } from '@nestjs/common';
 import { McpServer, RPC, SUPPORTED_PROTOCOL_VERSIONS, ToolFailure, type McpIcon, type McpTool } from '../../editor/mcp/mcp-server';
 import { clientIp } from '../../auth/client-info';
@@ -5,6 +6,7 @@ import { summarizeArgs, type AuditSink } from '../audit/audit';
 import { MAX_RESULT_CHARS, MAX_STRUCTURED_CHARS, RATE_LIMIT_PER_MIN, TOOL_TIMEOUT_MS, TOUCH_INTERVAL_MS } from '../oauth/constants';
 import type { OAuthService } from '../oauth/oauth.service';
 import type { OAuthStore } from '../oauth/store';
+import { RESOURCE_MIME_TYPE, UI_EXTENSION_ID } from '../apps/apps';
 import type { ConnectorPrincipal, ConnectorTool, ConnectorToolsFactory, ConnectorUrls } from '../types';
 import { liveUrls, type ConnectorConfig } from './config';
 import type { McpBodyState } from './mcp-body.middleware';
@@ -32,6 +34,24 @@ export function serverIcons(site: string): McpIcon[] {
     { src: `${site}/icon-192.png`, mimeType: 'image/png', sizes: ['192x192'] },
     { src: `${site}/favicon.svg`, mimeType: 'image/svg+xml', sizes: ['any'] },
   ];
+}
+
+/** Spec 104: the result `_meta` key that carries a view for clients without MCP Apps (they ignore result _meta). */
+export const VIEW_META_KEY = 'ai0/view';
+/**
+ * Spec 104: the server is stateless, but whether the client draws MCP Apps is only said in `initialize`. A client that
+ * advertises the extension gets an `Mcp-Session-Id` ending in this suffix and sends it back on every request (Streamable
+ * HTTP); only those requests get views as `structuredContent`. Nothing is stored; a forged suffix only changes where
+ * the caller's own results put the view.
+ */
+export const APPS_SESSION_SUFFIX = '.ui';
+
+/** The client's initialize capabilities advertise MCP Apps (`extensions["io.modelcontextprotocol/ui"]`) for our MIME type. */
+export function clientDrawsApps(capabilities: unknown): boolean {
+  const ext = (capabilities as { extensions?: Record<string, unknown> } | null | undefined)?.extensions?.[UI_EXTENSION_ID];
+  if (!ext || typeof ext !== 'object') return false;
+  const types = (ext as { mimeTypes?: unknown }).mimeTypes;
+  return !Array.isArray(types) || types.includes(RESOURCE_MIME_TYPE);
 }
 
 export interface McpEndpointDeps {
@@ -128,10 +148,20 @@ export class McpEndpoint {
     if (msg && typeof msg === 'object' && msg.method === undefined && ('result' in msg || 'error' in msg)) { res.status(202).end(); return; }
 
     const ip = clientIp(req);
-    const { server, visible, all } = this.serverFor(principal, ip, urls);
+    const initialize = !!msg && typeof msg === 'object' && msg.method === 'initialize';
+    const session = req.headers['mcp-session-id'];
+    const apps = initialize
+      ? clientDrawsApps((msg.params as { capabilities?: unknown } | undefined)?.capabilities)
+      : typeof session === 'string' && session.endsWith(APPS_SESSION_SUFFIX);
+    if (initialize) {
+      const info = (msg.params as { clientInfo?: { name?: unknown; version?: unknown } } | undefined)?.clientInfo;
+      this.log.log(`initialize: ${String(info?.name ?? '?').slice(0, 60)} ${String(info?.version ?? '').slice(0, 30)}, MCP Apps: ${apps ? 'yes' : 'no'}`);
+    }
+    const { server, visible, all } = this.serverFor(principal, ip, urls, apps);
     await this.auditRefused(msg, principal, ip, visible, all);
     const out = await server.handle(body);
     if (out === null) { res.status(202).end(); return; }
+    if (initialize && apps && !out.error) res.setHeader('Mcp-Session-Id', `${randomUUID()}${APPS_SESSION_SUFFIX}`);
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.status(200).json(out);
   }
@@ -156,7 +186,7 @@ export class McpEndpoint {
     void this.d.store.touchGrant(grantId, ip, now).catch(() => undefined);
   }
 
-  private serverFor(p: ConnectorPrincipal, ip: string | null, urls: ConnectorUrls) {
+  private serverFor(p: ConnectorPrincipal, ip: string | null, urls: ConnectorUrls, apps = false) {
     let everything: Promise<ConnectorTool[]> | null = null;
     let cached: Promise<McpTool[]> | null = null;
     const all = () => (everything ??= this.d.tools.tools(p));
@@ -167,6 +197,8 @@ export class McpEndpoint {
       name: 'ai0', title: 'ai0 network', version: '1.0.0', instructions: SERVER_INSTRUCTIONS, tools, maxResultChars: MAX_RESULT_CHARS,
       // Spec 104: the MCP Apps view; a view's structuredContent stays within its own budget (with the text, under Claude's limit).
       ...(factory.resources ? { resources: () => factory.resources!(p), maxStructuredChars: MAX_STRUCTURED_CHARS } : {}),
+      // A plain MCP client reads structuredContent instead of the text: it gets the view in result _meta (ignored).
+      viewIn: apps ? 'structuredContent' : { meta: VIEW_META_KEY },
       icons: serverIcons(site), websiteUrl: site,
       log: (msg) => this.log.warn(msg),
     });

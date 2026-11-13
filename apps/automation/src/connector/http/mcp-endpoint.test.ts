@@ -256,7 +256,7 @@ test('C5: results are compact JSON; an oversized result is cut with truncated:tr
   assert.equal((r.body as any).result.isError, false);
 });
 
-test('spec 104: the endpoint serves the factory\'s resources (MCP Apps view) and the view\'s structuredContent next to the text', async () => {
+test('spec 104: the endpoint serves the factory\'s resources (MCP Apps view); the view goes to structuredContent only for MCP Apps clients', async () => {
   const h = makeOAuth();
   const clientId = await registerDcr(h.clients);
   const c = await getCode(h, clientId, { scope: 'mcp:read' });
@@ -268,21 +268,36 @@ test('spec 104: the endpoint serves the factory\'s resources (MCP Apps view) and
     cfg: env(), oauth: h.oauth, store: { touchGrant: async () => {} }, audit: new MemoryAudit(), now: h.clock.now,
     tools: { tools: async () => [tool], resources: async (p) => { asked.push(p.grantId); return [view]; } },
   });
-  const post = async (body: unknown) => {
+  let lastHeaders: Record<string, string> = {};
+  const post = async (body: unknown, headers: Record<string, string> = {}) => {
     const res = new FakeRes();
-    await ep.handle({ method: 'POST', headers: { authorization: `Bearer ${tok.access_token}` }, body, mcpBody: 'ok', ip: '3.3.3.3' }, res);
+    await ep.handle({ method: 'POST', headers: { authorization: `Bearer ${tok.access_token}`, ...headers }, body, mcpBody: 'ok', ip: '3.3.3.3' }, res);
+    lastHeaders = res.headers;
     return res.body as any;
   };
   const init = await post(rpc('initialize', { protocolVersion: '2025-11-25' }));
   assert.deepEqual(init.result.capabilities.resources, { listChanged: false });
+  assert.equal(lastHeaders['mcp-session-id'], undefined, 'a client without MCP Apps gets no session id (as before)');
+  await post(rpc('initialize', { protocolVersion: '2025-11-25', capabilities: { extensions: { 'io.modelcontextprotocol/ui': { mimeTypes: ['text/plain'] } } } }));
+  assert.equal(lastHeaders['mcp-session-id'], undefined, 'MCP Apps without our MIME type: no marker');
+  await post(rpc('initialize', { protocolVersion: '2025-11-25', capabilities: { extensions: { 'io.modelcontextprotocol/ui': { mimeTypes: ['text/html;profile=mcp-app'] } } } }));
+  const session = lastHeaders['mcp-session-id'];
+  assert.match(session, /^[0-9a-f-]{36}\.ui$/);
   const read = await post(rpc('resources/read', { uri: view.uri }));
   assert.equal(read.result.contents[0].text, '<p>x</p>');
   assert.equal(read.result.contents[0].mimeType, 'text/html;profile=mcp-app');
   const listed = await post(rpc('tools/list'));
   assert.deepEqual(listed.result.tools[0]._meta.ui, { resourceUri: view.uri, visibility: ['model'] });
-  const called = await post(rpc('tools/call', { name: 'list_channels', arguments: {} }));
+  const called = await post(rpc('tools/call', { name: 'list_channels', arguments: {} }), { 'mcp-session-id': session });
   assert.equal(called.result.content[0].text, JSON.stringify({ channels: [] }));
   assert.deepEqual(called.result.structuredContent, { ai0_view: 1, view: { kind: 'schedule' } });
+  assert.equal(called.result._meta, undefined);
+  for (const headers of [{}, { 'mcp-session-id': 'abc' }] as Record<string, string>[]) {
+    const plain = await post(rpc('tools/call', { name: 'list_channels', arguments: {} }), headers);
+    assert.deepEqual(plain.result.content, called.result.content, 'the text is the same for every client');
+    assert.equal(plain.result.structuredContent, undefined, 'a plain client would read structuredContent instead of the text');
+    assert.deepEqual(plain.result._meta, { 'ai0/view': { ai0_view: 1, view: { kind: 'schedule' } } });
+  }
   assert.equal(asked.length, 1);
   const plainEp = new McpEndpoint({ cfg: env(), oauth: h.oauth, store: { touchGrant: async () => {} }, audit: new MemoryAudit(), now: h.clock.now, tools: { tools: async () => [readTool()] } });
   const res = new FakeRes();
